@@ -8,8 +8,8 @@ class BDD
 	
 	public function __construct()
 	{
-		mysql_connect(Config::get('mysql/host'), Config::get('mysql/username'), Config::get('mysql/password'));
-		mysql_select_db(Config::get('mysql/database'));
+		mysql_connect('localhost', 'root', '');
+		mysql_select_db('dreamvids');
 		$this->table = '';
 		$this->prefixe = '';
 	}
