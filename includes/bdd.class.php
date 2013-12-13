@@ -6,8 +6,8 @@ class BDD
 	
 	public function __construct()
 	{
-		mysql_connect("serveur", "utilisateur", "mot_de_passe");
-		mysql_select_db("nom_bdd");
+		mysql_connect("localhost", "root", "");
+		mysql_select_db("dreamvids");
 		$this->table = '';
 		$this->prefixe = '';
 	}
