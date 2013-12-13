@@ -6,7 +6,7 @@ require_once('classes/LoggedUser.php');
 
 session_start();
 //TODO: Update mysql connection settings
-initDataBaseConfig('127.0.0.1', 'root', '');
+initDataBaseConfig('127.0.0.1', 'root', '', 'dreamvids');
 
 echo '<h1 style="text-align:center">Welcome to DreamVids.Fr !</h1>';
 
