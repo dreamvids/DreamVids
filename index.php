@@ -2,6 +2,7 @@
 
 include('includes/functions.php');
 require_once('classes/Config.php');
+require_once('classes/LoggedUser.php');
 
 session_start();
 //TODO: Update mysql connection settings
