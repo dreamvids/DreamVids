@@ -4,3 +4,4 @@
 - Upload des vidéos / Videos upload
 - Système de commentaires / Comments system
 - Système de J'aime - J'aime pas / I Like - I don't Like system
+- Réécriture des URLs / URL Rewriting
