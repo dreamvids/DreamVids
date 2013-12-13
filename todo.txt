@@ -1,0 +1,6 @@
+- Espace membre simple
+- Visualisation des vidéos
+- Design (responsive !)
+- Upload des vidéos
+- Système de commentaires
+- Système de J'aime/J'aime pas
