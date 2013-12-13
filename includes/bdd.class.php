@@ -1,4 +1,6 @@
 <?php
+require_once('../classes/Config.php')
+
 class BDD
 {
 	private $table;
@@ -6,8 +8,8 @@ class BDD
 	
 	public function __construct()
 	{
-		mysql_connect("localhost", "root", "");
-		mysql_select_db("dreamvids");
+		mysql_connect(Config::get('mysql/host'), Config::get('mysql/username'), Config::get('mysql/password'));
+		mysql_select_db(Config::get('mysql/database'));
 		$this->table = '';
 		$this->prefixe = '';
 	}

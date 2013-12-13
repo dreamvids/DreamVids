@@ -1,6 +1,6 @@
 - Espace membre simple / Simple member area
 - Visualisation des vidéos / Viewing videos
-- Design (responsive !) -- Merci Bootstrap :P
+- Design (responsive !)
 - Upload des vidéos / Videos upload
 - Système de commentaires / Comments system
 - Système de J'aime - J'aime pas / I Like - I don't Like system
