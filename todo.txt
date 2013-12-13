@@ -1,6 +1,6 @@
-- Espace membre simple
-- Visualisation des vidéos
-- Design (responsive !)
-- Upload des vidéos
-- Système de commentaires
-- Système de J'aime/J'aime pas
+- Espace membre simple / Simple member area
+- Visualisation des vidéos / Viewing videos
+- Design (responsive !) / 
+- Upload des vidéos / Videos upload
+- Système de commentaires / Comments system
+- Système de J'aime - J'aime pas / I Like - I don't Like system
