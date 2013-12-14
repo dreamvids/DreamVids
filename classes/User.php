@@ -1,7 +1,9 @@
 <?php
 
+require_once('includes/bdd.class.php');
+
 class User {
-    
+
     private $id;
     private $name;
     private $mail;
@@ -9,12 +11,20 @@ class User {
     private $subscribers;
     private $rank;
 
-    public function __construct() {
-        loadDataFromDatabase();
+    public function __construct($name) {
+    	$this->name = $name;
+        $this->loadDataFromDatabase();
     }
 
     public function loadDataFromDatabase() {
-    	//TODO: Load fields values from DB
+    	$db = new BDD();
+
+    	$result = $db->query('SELECT * FROM users WHERE username='.$this->name) or die(mysql_error());
+
+    	while ($row = mysql_fetch_assoc($result)) {
+            // test
+    		echo $row['id'];
+    	}
     }
 
     public function saveDataToDatabase() {

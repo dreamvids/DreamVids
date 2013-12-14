@@ -1,15 +1,19 @@
 <?php
-require_once('../classes/Config.php')
 
 class BDD
 {
+	public static $HOST = '127.0.0.1';
+	public static $USERNAME = 'root';
+	public static $PASSWORD = '';
+	public static $DB_NAME = 'dreamvids';
+
 	private $table;
 	private $prefixe;
 	
 	public function __construct()
 	{
-		mysql_connect('localhost', 'root', '');
-		mysql_select_db('dreamvids');
+		mysql_connect(self::$HOST, self::$USERNAME, self::$PASSWORD);
+		mysql_select_db(self::$DB_NAME);
 		$this->table = '';
 		$this->prefixe = '';
 	}
