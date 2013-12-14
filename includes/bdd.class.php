@@ -1,6 +1,4 @@
 <?php
-require_once('../classes/Config.php')
-
 class BDD
 {
 	private $table;
