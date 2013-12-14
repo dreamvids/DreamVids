@@ -17,14 +17,7 @@ class User {
     }
 
     public function loadDataFromDatabase() {
-    	$db = new BDD();
-
-    	$result = $db->query('SELECT * FROM users WHERE username='.$this->name) or die(mysql_error());
-
-    	while ($row = mysql_fetch_assoc($result)) {
-            // test
-    		echo $row['id'];
-    	}
+    	//TODO: Get values from DB
     }
 
     public function saveDataToDatabase() {
