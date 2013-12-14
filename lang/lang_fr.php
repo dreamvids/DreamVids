@@ -24,6 +24,12 @@ $lang = array(
 
 'password_confirm' => 'Confirmez le mot de passe',
 
-'register' => 'M\'inscrire !'
+'register' => 'M\'inscrire !',
+
+'error_log_username' => 'Cet utilisateur n\'existe pas.',
+
+'error_log_pass' => 'Mot de passe incorrect.',
+
+'login' => 'Connexion'
 );
 ?>
