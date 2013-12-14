@@ -1,8 +1,5 @@
 <?php
-<<<<<<< HEAD
 
-=======
->>>>>>> 2b20bce7553ff04d207a70723451241d430cb2bd
 class BDD
 {
 	public static $HOST = '127.0.0.1';
