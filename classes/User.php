@@ -4,7 +4,8 @@ require_once('includes/bdd.class.php');
 
 class User {
 
-    private $id;
+    private $existing;
+    private $id = 0;
     private $name;
     private $mail;
     private $avatar;
@@ -16,32 +17,60 @@ class User {
         $this->loadDataFromDatabase();
     }
 
+    // Read infos about User from the DB
     public function loadDataFromDatabase() {
-    	//TODO: Get values from DB
+    	$db = new BDD();
+        $result = $db->query("SELECT * FROM users WHERE username='".$this->name."'") or die(mysql_error());
+
+        while($row = mysql_fetch_array($result)) {
+            $this->id = $row['id'];
+            $this->mail = $row['email'];
+            $this->avatar = $row['avatar'];
+            $this->subscribers = $row['subscribers'];
+            $this->rank = $row['rank'];
+        }
+
+        if($this->id != 0) {
+            $this->existing = true;
+        }
+        else
+            $this->existing = false;
     }
 
     public function saveDataToDatabase() {
-    	//TODO: Save fields value to DB
+        if($this->existing) {
+            $db = new BDD();
+            $db->query("UPDATE users SET username='$this->name', email='$this->mail', avatar='$this->avatar', subscribers='$this->subscribers', rank='$this->rank' WHERE id='$this->id'")
+                or die(mysql_error());
+        }
     }
 
     public function setEmailAddress($newMail) {
-        $this->mail = $newMail;
-        saveDataToDatabase();
+        if($this->existing) {
+            $this->mail = $newMail;
+            $this->saveDataToDatabase();
+        }
     }
 
     public function setAvatarPath($newAvatar) {
-        $this->avatar = $newAvatar;
-        saveDataToDatabase();
+        if($this->existing) {
+            $this->avatar = $newAvatar;
+            $this->saveDataToDatabase();
+        }
     }
 
     public function setSubscribers($newSubscribers) {
-        $this->subscribers = $newSubscribers;
-        saveDataToDatabase();
+        if($this->existing) {
+            $this->subscribers = $newSubscribers;
+            $this->saveDataToDatabase();
+        }
     }
 
     public function setRank($newRank) {
-        $this->rank = $newRank;
-        saveDataToDatabase();
+        if($this->existing) {
+            $this->rank = $newRank;
+            $this->saveDataToDatabase();
+        }
     }
 
     //
