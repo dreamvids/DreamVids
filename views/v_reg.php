@@ -1,5 +1,7 @@
 <?php
-echo (isset($err) ) ? '<div class="alert alert-error">'.$lang['error'].': '.$err.'</div>' : '';
+require '_top.php';
+
+echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
 echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-success">'.$lang['reg_ok'].'</div>' : '';
 ?>
 <form action="" method="post">
@@ -13,3 +15,6 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 	<br /><br />
 	<input type="submit" name="submit" value="<?php echo $lang['register']; ?>" />
 </form>
+<?php
+require '_btm.php';
+?>
