@@ -1,12 +1,14 @@
 <?php
 include 'includes/bdd.class.php';
 include 'includes/functions.php';
+require 'classes/LoggedUser.php';
 include 'includes/tasks.php';
-require 'models/m_reg.php';
+require 'models/m_log.php';
 
-if (isset($_GET['out']) )
+if (isset($session) )
 {
-	Log::Logout($session->user_id);
+	if (isset($_GET['out']) )
+		Log::logout($session->getId() );
 	header('location:./');
 	exit();
 }
@@ -18,18 +20,20 @@ if (isset($_POST['submit']) )
 		$pass = Log::getPassFromUsername($_POST['username']);
 		if (sha1($_POST['pass']) == $pass)
 		{
-			Log::connect($user);
+			Log::connect($_POST['username'], $_POST['remember']);
 			header('location:./');
 			exit();
 		}
 		else
 		{
 			$err = $lang['error_log_pass'];
+			unset($_POST['pass']);
 		}
 	}
 	else
 	{
 		$err = $lang['error_log_username'];
+		unset($_POST['username']);
 	}
 }
 

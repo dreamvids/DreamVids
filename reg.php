@@ -1,8 +1,15 @@
 <?php
 include 'includes/bdd.class.php';
 include 'includes/functions.php';
+require 'classes/LoggedUser.php';
 include 'includes/tasks.php';
 require 'models/m_reg.php';
+
+if (isset($session) )
+{
+	header('location:./');
+	exit();
+}
 
 if (isset($_GET['jam']) )
 {

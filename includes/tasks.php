@@ -8,12 +8,7 @@ if (isset($_COOKIE['SESSID']) )
 	
 	if ($bdd->num_rows($reponse) > 0)
 	{
-		$session = $bdd->fetch_array($bdd->select("*", "users", "WHERE id='".$donnees['membre_id']."'") );
-		$session['email'] = secure($session['email']);
-		$session['username'] = secure($session['username']);
-		$expire = tps() + 15*60;
-		$bdd->update("users_sessions", "expiration='".$expire."'", "WHERE user_id='".$session['id']."' AND remember='0'");
-		$bdd->update("users", "actual_ip='".$_SERVER['REMOTE_ADDR']."'", "WHERE id='".$session['id']."'");
+		$session = new LoggedUser($donnees['user_id'], $bdd->real_escape_string($_COOKIE['sessid']) );
 	}
 	else
 	{
@@ -61,7 +56,7 @@ else
 		break;
 	}
 }
-$l = array('fr' => 0, 'en' => 1);
+$l = array('fr' => 0);
 
 $bdd->close();
 ?>

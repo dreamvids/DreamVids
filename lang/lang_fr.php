@@ -30,6 +30,8 @@ $lang = array(
 
 'error_log_pass' => 'Mot de passe incorrect.',
 
-'login' => 'Connexion'
+'login' => 'Connexion',
+
+'log_ok' => 'Connexion réussie !'
 );
 ?>

@@ -1,7 +1,4 @@
 <?php
-
-require_once('includes/bdd.class.php');
-
 class User {
 
     private $existing;
@@ -12,17 +9,17 @@ class User {
     private $subscribers;
     private $rank;
 
-    public function __construct($name) {
-    	$this->name = $name;
+    protected function __construct($id) {
+    	$this->id = $id;
         $this->loadDataFromDatabase();
     }
 
     // Read infos about User from the DB
-    public function loadDataFromDatabase() {
+    private function loadDataFromDatabase() {
     	$db = new BDD();
-        $result = $db->query("SELECT * FROM users WHERE username='".$this->name."'") or die(mysql_error());
+        $result = $db->select("*", "users", "WHERE username='".$this->name."'") or die(mysql_error());
 
-        while($row = mysql_fetch_array($result)) {
+        while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
             $this->mail = $row['email'];
             $this->avatar = $row['avatar'];
@@ -40,7 +37,7 @@ class User {
     public function saveDataToDatabase() {
         if($this->existing) {
             $db = new BDD();
-            $db->query("UPDATE users SET username='$this->name', email='$this->mail', avatar='$this->avatar', subscribers='$this->subscribers', rank='$this->rank' WHERE id='$this->id'")
+            $db->update("users", "username='$this->name', email='$this->mail', avatar='$this->avatar', subscribers='$this->subscribers', rank='$this->rank'", "WHERE id='$this->id'")
                 or die(mysql_error());
         }
     }
@@ -48,28 +45,24 @@ class User {
     public function setEmailAddress($newMail) {
         if($this->existing) {
             $this->mail = $newMail;
-            $this->saveDataToDatabase();
         }
     }
 
     public function setAvatarPath($newAvatar) {
         if($this->existing) {
             $this->avatar = $newAvatar;
-            $this->saveDataToDatabase();
         }
     }
 
     public function setSubscribers($newSubscribers) {
         if($this->existing) {
             $this->subscribers = $newSubscribers;
-            $this->saveDataToDatabase();
         }
     }
 
     public function setRank($newRank) {
         if($this->existing) {
             $this->rank = $newRank;
-            $this->saveDataToDatabase();
         }
     }
 
