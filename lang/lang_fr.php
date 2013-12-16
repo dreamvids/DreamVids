@@ -2,6 +2,8 @@
 $lang = array(
 'error_reg_username_jam' => 'Tous les noms d\'utilisateur proposés sont déjà utilisés.',
 
+'error_reg_userlen' => 'Le nom d\'utilisateur ne doit pas dépasser 40 caractères',
+
 'error_reg_username' => 'Ce nom d\'utilisateur est déjà utilisé.',
 
 'error_reg_email' => 'Cette adresse E-Mail est déjà utilisée.',
@@ -34,6 +36,12 @@ $lang = array(
 
 'log_ok' => 'Connexion réussie !',
 
-'remember' => 'Se souvenir de moi'
+'remember' => 'Se souvenir de moi',
+
+'profile_ok' => 'Toutes les modifications ont été enregistrées !',
+
+'profile_update' => 'Mettre à jours mes informations',
+
+'avatar' => 'Avatar'
 );
 ?>

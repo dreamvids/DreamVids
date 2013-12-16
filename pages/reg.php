@@ -49,22 +49,30 @@ elseif (isset($_POST['submit']) )
 		{
 			if (!Reg::emailExist($_POST['email']) )
 			{
-				if (!Reg::UsernameExist($_POST['username']) )
+				if (strlen($_POST['username']) <= 40)
 				{
-					if ($_POST['pass1'] === $_POST['pass2'])
+					if (!Reg::UsernameExist($_POST['username']) )
 					{
-						Reg::register($_POST['email'], $_POST['username'], $_POST['pass1']);
+						if ($_POST['pass1'] === $_POST['pass2'])
+						{
+							Reg::register($_POST['email'], $_POST['username'], $_POST['pass1']);
+						}
+						else
+						{
+							$err = $lang['error_reg_equality_pass'];
+							unset($_POST['pass1']);
+							unset($_POST['pass2']);
+						}
 					}
 					else
 					{
-						$err = $lang['error_reg_equality_pass'];
-						unset($_POST['pass1']);
-						unset($_POST['pass2']);
+						$err = $lang['error_reg_username'];
+						unset($_POST['username']);
 					}
 				}
 				else
 				{
-					$err = $lang['error_reg_username'];
+					$err = $lang['error_reg_userlen'];
 					unset($_POST['username']);
 				}
 			}

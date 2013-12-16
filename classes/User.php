@@ -38,9 +38,21 @@ class User {
     public function saveDataToDatabase() {
         if($this->existing) {
             $db = new BDD();
-            $db->update("users", "username='$this->name', email='$this->mail', avatar='$this->avatar', subscribers='$this->subscribers', rank='$this->rank'", "WHERE id='$this->id'")
-                or die(mysql_error());
+            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', subscribers='$this->subscribers', rank='$this->rank'", "WHERE id='$this->id'");
         }
+    }
+    
+    public function setUsername($newName) {
+    	if ($this->existing) {
+    		$this->name = $newName;
+    	}
+    }
+    
+    public function setPass($newPass) {
+    	if ($this->existing) {
+    		$db = new BDD();
+    		$db->update("users", "pass='".sha1($db->real_escape_string($newPass) )."'",  "WHERE id='$this->id'");
+    	}
     }
 
     public function setEmailAddress($newMail) {
