@@ -1,6 +1,4 @@
 <?php
-require '_top.php';
-
 echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
 ?>
 <form action="" method="post">
@@ -12,6 +10,3 @@ echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$er
 	<br /><br />
 	<input type="submit" name="submit" value="<?php echo $lang['login']; ?>" />
 </form>
-<?php
-require '_btm.php';
-?>

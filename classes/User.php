@@ -17,10 +17,11 @@ class User {
     // Read infos about User from the DB
     private function loadDataFromDatabase() {
     	$db = new BDD();
-        $result = $db->select("*", "users", "WHERE username='".$this->name."'") or die(mysql_error());
+        $result = $db->select("*", "users", "WHERE id='".$this->id."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
+            $this->name = $row['username'];
             $this->mail = $row['email'];
             $this->avatar = $row['avatar'];
             $this->subscribers = $row['subscribers'];

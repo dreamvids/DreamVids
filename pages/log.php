@@ -1,10 +1,4 @@
 <?php
-include 'includes/bdd.class.php';
-include 'includes/functions.php';
-require 'classes/LoggedUser.php';
-include 'includes/tasks.php';
-require 'models/m_log.php';
-
 if (isset($session) )
 {
 	if (isset($_GET['out']) )
@@ -36,6 +30,4 @@ if (isset($_POST['submit']) )
 		unset($_POST['username']);
 	}
 }
-
-require 'views/v_log.php';
 ?>

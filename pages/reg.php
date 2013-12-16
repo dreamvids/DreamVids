@@ -1,10 +1,4 @@
 <?php
-include 'includes/bdd.class.php';
-include 'includes/functions.php';
-require 'classes/LoggedUser.php';
-include 'includes/tasks.php';
-require 'models/m_reg.php';
-
 if (isset($session) )
 {
 	header('location:./');
@@ -91,6 +85,4 @@ elseif (isset($_POST['submit']) )
 		$err = $lang['error_reg_empty'];
 	}
 }
-
-require 'views/v_reg.php';
 ?>

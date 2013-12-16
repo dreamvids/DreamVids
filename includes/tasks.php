@@ -8,7 +8,7 @@ if (isset($_COOKIE['SESSID']) )
 	
 	if ($bdd->num_rows($reponse) > 0)
 	{
-		$session = new LoggedUser($donnees['user_id'], $bdd->real_escape_string($_COOKIE['sessid']) );
+		$session = new LoggedUser($donnees['user_id'], $bdd->real_escape_string($_COOKIE['SESSID']) );
 	}
 	else
 	{
@@ -19,6 +19,7 @@ if (isset($_COOKIE['SESSID']) )
 $bdd->delete("users_sessions", "WHERE expiration < '".tps()."'");
 
 $reponse = $bdd->select("*", "config");
+echo mysql_error();
 while ($donnees = $bdd->fetch_array($reponse) )
 {
 	$config[$donnees['key']] = $donnees['value'];
