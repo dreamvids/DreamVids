@@ -1,10 +1,20 @@
 <?php
 
-require_once('classes/User.php');
-
 session_start();
 
-require_once('classes/LoggedUser.php');
-echo '<h1 style="text-align:center">Welcome to DreamVids.Fr !</h1>';
+$content = 'pages/home.php';
+
+if(!empty($_GET['page'])) {
+	$page = htmlentities($_GET['page']);
+	$pages = scandir('./pages');
+
+	if(!empty($page) && in_array($page.'.php', $pages)) {
+		$content = 'pages/'.$page.'.php';
+	}
+}
+
+include('views/_top.php');
+include($content);
+include('views/_btm.php');
 
 ?>
