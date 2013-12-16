@@ -32,6 +32,8 @@ $lang = array(
 
 'login' => 'Connexion',
 
-'log_ok' => 'Connexion réussie !'
+'log_ok' => 'Connexion réussie !',
+
+'remember' => 'Se souvenir de moi'
 );
 ?>

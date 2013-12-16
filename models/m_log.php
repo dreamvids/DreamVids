@@ -21,7 +21,7 @@ class Log
 	{
 		$remember = ($remember == 'remember') ? 1 : 0;
 		$sessid = md5(uniqid() );
-		$expiration = ($remember) ? tps() + 15*60 : tps() + 365*86400;
+		$expiration = ($remember) ? tps() + 365*86400 : tps() + 15*60;
 		$bdd = new BDD();
 		$data = $bdd->fetch_array($bdd->select("id", "users", "WHERE username='".$username."'") );
 		$bdd->insert("users_sessions", "'".$data['id']."', '".$sessid."', '".$expiration."', '".$remember."'");
@@ -34,7 +34,7 @@ class Log
 		$bdd = new BDD();
 		$bdd->delete("users_sessions", "WHERE user_id='".$bdd->real_escape_string($user_id)."'");
 		$bdd->close();
-		setcookie("SESSID", -1);
+		setcookie("SESSID", '', -1);
 	}
 }
 ?>
