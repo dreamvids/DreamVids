@@ -6,14 +6,14 @@ $model = 'models/m_home.php';
 $view = 'views/v_home.php';
 
 if(!empty($_GET['page'])) {
-	$page = htmlentities($_GET['page']);
-	$pages = scandir('./pages');
+        $page = htmlentities($_GET['page']);
+        $pages = scandir('./pages');
 
-	if(!empty($page) && in_array($page.'.php', $pages)) {
-		$content = 'pages/'.$page.'.php';
-		$model = 'models/m_'.$page.'.php';
-		$view = 'views/v_'.$page.'.php';
-	}
+        if(!empty($page) && in_array($page.'.php', $pages)) {
+                $content = 'pages/'.$page.'.php';
+                $model = 'models/m_'.$page.'.php';
+                $view = 'views/v_'.$page.'.php';
+        }
 }
 
 include 'includes/bdd.class.php';
