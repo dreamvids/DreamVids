@@ -3,20 +3,24 @@
 class Video {
 
 	private $id;
-	private $user;
+	private $userId;
 	private $title;
 	private $description;
 	private $views;
 	private $path;
+	private $likes;
+	private $dislikes;
 
 	// "constructor" (kind of) for uploading
-	public static function create($user, $title, $description, $path) {
+	public static function create($userId, $title, $description, $path) {
 		$instance = new self();
 
-		$instance->user = $user;
+		$instance->userId = $userId;
 		$instance->title = $title;
 		$instance->description = $description;
 		$instance->path = $path;
+		$instance->likes = 0;
+		$instance->dislikes = 0;
 
 		$instance->createVideo();
 		return $instance;
@@ -32,13 +36,36 @@ class Video {
 	
 
 	private function createVideo() {
-		$id = $this->generateId(6);
+		$db = new BDD();
 
-		//TODO: Save data to DB
+		// check if the id is available
+		$rows = 1;
+		$id = 0;
+		while($rows != 0) {
+			$id = $this->generateId(6);
+			$res0 = $db->query("SELECT * FROM videos WHERE id='".$id."'");
+			$rows = $db->num_rows($res0);
+		}
+
+		$res1 = $db->insert("videos", "'".$id."', '".$this->userId."', '".$this->title."', '".$this->description."', '".$this->path."', '".$this->views."', '".$this->likes."', '".$this->dislikes."'");
+
+		$db->close();
 	}
 
 	private function loadVideo($id) {
-		//TODO: Load data from DB
+		$db = new BDD();
+        $result = $db->select("*", "videos", "WHERE id='".$this->id."'") or die(mysql_error());
+
+        while($row = $db->fetch_array($result)) {
+            $this->id = $row['id'];
+            $this->userId = $row['user_id'];
+            $this->title = $row['title'];
+            $this->description = $row['description'];
+            $this->path = $row['url'];
+            $this->views = $row['views'];
+            $this->likes = $row['likes'];
+            $this->dislikes = $row['dislikes'];
+        }
 	}
 
 	// generates a random string
@@ -48,7 +75,6 @@ class Video {
 
 	    for ($i = 0; $i < $length; $i++) {
 	        $id .= $chars[rand(0, strlen($chars) - 1)];
-	        $i++;
 	    }
 
 	    return $id;
@@ -58,8 +84,8 @@ class Video {
 		return $this->id;
 	}
 
-	public function getUser() {
-		return $this->user;
+	public function getUserId() {
+		return $this->userId;
 	}
 
 	public function getTitle() {
@@ -76,6 +102,14 @@ class Video {
 
 	public function getPath() {
 		return $this->path;
+	}
+
+	public function getLikes() {
+		return $this->likes;
+	}
+
+	public function getDislikes() {
+		return $this->dislikes;
 	}
 
 }
