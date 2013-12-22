@@ -2,7 +2,7 @@
 
 class Video {
 
-	private $id;
+	private $id = 0;
 	private $userId;
 	private $title;
 	private $description;
@@ -29,8 +29,8 @@ class Video {
 	// "constructor" (kind of) for viewing
 	public static function get($id) {
 		$instance = new self();
-
 		$instance->loadVideo($id);
+
 		return $instance;
 	}
 	
@@ -53,8 +53,9 @@ class Video {
 	}
 
 	private function loadVideo($id) {
+		$this->id = $id;
 		$db = new BDD();
-        $result = $db->select("*", "videos", "WHERE id='".$this->id."'") or die(mysql_error());
+        $result = $db->select("*", "videos", "WHERE id LIKE '%".$this->id."%'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
@@ -68,7 +69,7 @@ class Video {
         }
 	}
 
-	// generates a random string
+	// gerates a random string
 	private function generateId($length) {
 		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	    $id = '';

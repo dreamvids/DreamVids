@@ -19,6 +19,7 @@ if(!empty($_GET['page'])) {
 include 'includes/bdd.class.php';
 include 'includes/functions.php';
 include 'classes/LoggedUser.php';
+include 'classes/Video.php';
 include 'includes/tasks.php';
 include $model;
 include $content;

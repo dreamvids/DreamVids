@@ -104,6 +104,20 @@ class User {
     public function getRank() {
         return $this->rank;
     }
+
+
+    // static methods
+    public static function getNameById($userId) {
+        $username = 'unknow';
+        $db = new BDD();
+        $result = $db->select("*", "users", "WHERE id='".$userId."'") or die(mysql_error());
+
+        while($row = $db->fetch_array($result)) {
+            $username = $row['username'];
+        }
+
+        return $username;
+    }
 }
 
 ?>
