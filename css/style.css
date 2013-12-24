@@ -1,1 +1,54 @@
 @CHARSET "UTF-8";
+
+body {
+	background-color: #fff;
+}
+
+
+/** HEADER **/
+#header {
+	background-color: #f0f0f0;
+	height: 110px;
+	width: 100%;
+}
+
+#logo {
+	width: 246px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#logo img {
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+}
+
+/** END_HEADER **/
+
+/** NAV **/
+/** END_NAV **/
+
+/** HOME **/
+h1 {
+	color: #959595;
+}
+/** END_HOME **/
+
+
+/** UTILITY **/
+.pagination-centered {
+	text-align: center;
+}
+
+.lol {
+	border-top: 8px solid #3091db;
+	width: 340px;
+	margin-bottom: -10px;
+}
+
+.yolo {
+	width: 480px;
+	border-bottom: 8px solid #3091db;
+}
+/** END_UTILITY **/
