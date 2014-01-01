@@ -1,6 +1,3 @@
-<?php
-echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
-?>
 <!--<form action="" method="post">
 	<input type="text" name="username" required="" placeholder="<?php echo $lang['username']; ?>" value="<?php echo @$_POST['username']; ?>" />
 	<br /><br />
@@ -22,7 +19,8 @@ echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$er
 	</div>
 
 	<div class="container" style="width: 40%; float: left;">
-		<form role="form">
+		<?php echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : ''; ?>
+		<form role="form" method='post' action=''>
 			<div class="form-group">
 				<label for="username">Nom d'utilisateur</label>
 				<input type="text" name="username" required="" placeholder="<?php echo $lang['username']; ?>" value="<?php echo @$_POST['username']; ?>" class="form-control"/>

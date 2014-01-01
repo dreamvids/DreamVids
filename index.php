@@ -27,3 +27,5 @@ include 'views/_top.php';
 include $view;
 include 'views/_btm.php';
 ?>
+
+<!DOCTYPE html>

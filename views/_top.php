@@ -29,9 +29,15 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
+					<?php if(isset($session)) { ?>
+					<li><a href="index.php?page=upload">Ajouter une vidéo</a></li>
+					<li><a href="index.php?page=member">Espace membre</a></li>
+					<li><a href="index.php?page=log&out=1">Déconnexion</a></li>
+					<?php } else { ?>
 					<li><a href="index.php?page=log">Connexion</a></li>
 					<li><a href="index.php?page=reg">S'inscrire</a></li>
 					<li><a href="#">Informations</a></li>
+					<?php } ?>
 				</ul>
 			</div>
 		</div>

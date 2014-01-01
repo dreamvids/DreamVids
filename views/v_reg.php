@@ -1,7 +1,3 @@
-<?php
-echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
-echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-success">'.$lang['reg_ok'].'</div>' : '';
-?>
 <!--<form action="" method="post">
 	<input type="email" required="" placeholder="<?php echo $lang['email_address']; ?>" name="email" value="<?php echo @$_POST['email']; ?>" />
 	<br /><br />
@@ -24,7 +20,12 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 	</div>
 
 	<div class="container" style="width: 40%; float: left;">
-		<form role="form">
+		<?php
+		echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
+		echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-success">'.$lang['reg_ok'].'</div>' : '';
+		?>
+		
+		<form role="form" action="" method="post">
 			<div class="form-group">
 				<label for="email"><?php echo $lang['email_address']; ?></label>
 				<input type="email" required="" placeholder="<?php echo $lang['email_address']; ?>" name="email" value="<?php echo @$_POST['email']; ?>" class="form-control"/>

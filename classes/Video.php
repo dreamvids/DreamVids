@@ -2,7 +2,7 @@
 
 class Video {
 
-	private $id = 0;
+	private $id = -1;
 	private $userId;
 	private $title;
 	private $description;
@@ -48,6 +48,7 @@ class Video {
 		}
 
 		$res1 = $db->insert("videos", "'".$id."', '".$this->userId."', '".$this->title."', '".$this->description."', '".$this->path."', '".$this->views."', '".$this->likes."', '".$this->dislikes."'");
+		$this->id = $id;
 
 		$db->close();
 	}

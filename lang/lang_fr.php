@@ -18,6 +18,20 @@ $lang = array(
 
 'reg_ok' => 'Inscription réussie ! <a href="login">Connectez-vous</a> dès maintenant !',
 
+'error_video_file_empty' => 'Veuillez spécifier une vidéo à mettre en ligne',
+
+'error_video_title_empty' => 'Veuillez spécifier un titre pour la vidéo',
+
+'error_video_description_empty' => 'Veuillez spécifier une description pour la vidéo',
+
+'error_video_tags_empty' => 'Veuillez spécifier des tags pour la vidéo',
+
+'error_video_type_incorrect' => 'Ce fichier n\' est pas une vidéo valide',
+
+'error_video_already_existing' => 'Une vidéo protant le même nom à déjà été mise en ligne !',
+
+'upload_ok' => 'Vidéo mise en ligne avec succès !',
+
 'email_address' => 'Adresse E-Mail',
 
 'username' => 'Nom d\'utilisateur',

@@ -9,7 +9,7 @@ class User {
     private $subscribers;
     private $rank;
 
-    protected function __construct($id) {
+    public function __construct($id) {
     	$this->id = $id;
         $this->loadDataFromDatabase();
     }
@@ -46,6 +46,10 @@ class User {
     	if ($this->existing) {
     		$this->name = $newName;
     	}
+    }
+
+    public function getUsername() {
+        return $this->name;
     }
     
     public function setPass($newPass) {
@@ -117,6 +121,18 @@ class User {
         }
 
         return $username;
+    }
+
+    public static function getIdByName($username) {
+        $id = -1;
+        $db = new BDD();
+        $result = $db->select("*", "users", "WHERE username='".$username."'") or die(mysql_error());
+
+        while($row = $db->fetch_array($result)) {
+            $id = $row['id'];
+        }
+
+        return $id;
     }
 }
 

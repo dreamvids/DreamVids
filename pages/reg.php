@@ -1,7 +1,7 @@
 <?php
 if (isset($session) )
 {
-	header('location:./');
+	header('location: ./');
 	exit();
 }
 
