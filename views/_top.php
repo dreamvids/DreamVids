@@ -1,9 +1,21 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>DreamVids</title>
 		<meta charset="utf-8" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="player/themes/maccaco/projekktor.style.css" type="text/css" media="screen" />
+
+		<script type="text/javascript" src="player/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="player/projekktor-1.3.08.min.js"></script>
+
+		<script type="text/javascript">
+         $(document).ready(function() {
+               projekktor('video');
+         })
+		</script>
 	</head>
 	
 	<body>

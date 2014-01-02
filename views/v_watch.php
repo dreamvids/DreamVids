@@ -12,16 +12,8 @@
 	</div>
 
 	<div class='container' style='width: 80%;'>
-		<video controls>
+		<video id="player" width="640" height="360" style="width: 100%; height: 100%; position: absolute;" controls>
 			<source src="<?php echo $path; ?>">
-		</video>
-
-		<br><br>
-
-		<button class="btn btn-success">+1</button>
-		<button class="btn btn-danger">-1</button>
-
-		<button class="btn btn-primary">S'abonner</button>
-		<button class="btn btn-danger">Reporter</button>
+		</video>	
 	</div>
 </div>

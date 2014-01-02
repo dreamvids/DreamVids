@@ -2,22 +2,21 @@
 class User {
 
     private $existing;
-    private $id = 0;
+    private $id = -1;
     private $name;
     private $mail;
     private $avatar;
     private $subscribers;
     private $rank;
 
-    public function __construct($id) {
-    	$this->id = $id;
-        $this->loadDataFromDatabase();
+    protected function __construct($id) {
+        $this->loadDataFromDatabase($id);
     }
 
     // Read infos about User from the DB
-    private function loadDataFromDatabase() {
+    private function loadDataFromDatabase($id) {
     	$db = new BDD();
-        $result = $db->select("*", "users", "WHERE id='".$this->id."'") or die(mysql_error());
+        $result = $db->select("*", "users", "WHERE id='".$id."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
@@ -28,7 +27,7 @@ class User {
             $this->rank = $row['rank'];
         }
 
-        if($this->id != 0) {
+        if($this->id >= 0) {
             $this->existing = true;
         }
         else

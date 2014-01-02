@@ -37,18 +37,23 @@ if(isset($_POST['submit'])) {
 }
 
 if(isset($_FILES['videoInput'])) {
-	$id = $session->getId();
-	$name = $_FILES['videoInput']['name'];
-	$explode = explode(".", $name);
-	$ext = $explode[1];
-	$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv');
+	if(isset($session)) {
+		echo $session->getSessionId();
+		$name = $_FILES['videoInput']['name'];
+		$explode = explode(".", $name);
+		$ext = $explode[1];
+		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv');
 
-	if(in_array($ext, $acceptedExts)) {
-		Upload::uploadVideo($id);
+		if(in_array($ext, $acceptedExts)) {
+			Upload::uploadVideo($session);
+		}
+		else {
+			$err = $lang['error_video_type_incorrect'];
+			unset($_POST['videoInput']);
+		}
 	}
 	else {
-		$err = $lang['error_video_type_incorrect'];
-		unset($_POST['videoInput']);
+		echo "c le mal";
 	}
 }
 

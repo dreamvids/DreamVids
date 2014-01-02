@@ -1,9 +1,9 @@
 <?php
 
 class Upload {
-	public static function uploadVideo($userId) {
-		if(isset($_FILES['videoInput'])) {
-			$user = new User($userId);
+	public static function uploadVideo($user) {
+		if(isset($_FILES['videoInput']) && isset($user)) {
+
 			$title = $_POST['videoTitle'];
 			$description = $_POST['videoDescription'];
 			$tags = $_POST['videoTags'];
@@ -20,6 +20,7 @@ class Upload {
 
 			//header('Location: index.php?page=watch&vid='.$video->getId());
 		}
+		else echo "lol pas drol";
 	}
 }
 
