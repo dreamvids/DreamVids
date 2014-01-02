@@ -2,6 +2,7 @@
 - Visualisation des vidéos / Viewing videos
 - Design (responsive !)
 - Upload des vidéos / Videos upload
+- Conversion des vidéos upload en mp4 et en webm
 - Système de commentaires / Comments system
 - Système de J'aime - J'aime pas / I Like - I don't Like system
 - Réécriture des URLs / URL Rewriting
