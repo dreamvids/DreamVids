@@ -8,6 +8,8 @@ New, Free, Open Source and French Videos sharing platform.
 
 For NginX Config :
 
+delete the .htaccess & place this code in your nginx config
+
 <pre>
 # nginx configuration
 
