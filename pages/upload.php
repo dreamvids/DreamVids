@@ -38,7 +38,6 @@ if(isset($_POST['submit'])) {
 
 if(isset($_FILES['videoInput'])) {
 	if(isset($session)) {
-		echo $session->getSessionId();
 		$name = $_FILES['videoInput']['name'];
 		$explode = explode(".", $name);
 		$ext = $explode[1];

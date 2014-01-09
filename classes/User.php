@@ -9,7 +9,7 @@ class User {
     private $subscribers;
     private $rank;
 
-    protected function __construct($id) {
+    public function __construct($id) {
         $this->loadDataFromDatabase($id);
     }
 

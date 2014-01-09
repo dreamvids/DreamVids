@@ -43,7 +43,7 @@ class Video {
 		$id = 0;
 		while($rows != 0) {
 			$id = $this->generateId(6);
-			$res0 = $db->query("SELECT * FROM videos WHERE id='".$id."'");
+			$res0 = $db->select("*", "videos", "WHERE id='".$id."'");
 			$rows = $db->num_rows($res0);
 		}
 

@@ -5,7 +5,6 @@ if(!isset($session)) {
 	exit();
 }
 
-echo "ssid: ".$session->getSessionId();
-Manager::getVideosFromUser($session->getId());
+$vids = Manager::getVideosFromUser($session->getId());
 
 ?>

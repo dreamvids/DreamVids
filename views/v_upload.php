@@ -38,7 +38,6 @@
 
 			<br>
 
-			<button class="btn">Annuler</button>
 			<input type="submit" class="btn btn-primary" name="submit">
 		</form>
 	</div>
