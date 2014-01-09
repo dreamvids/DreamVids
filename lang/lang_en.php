@@ -2,7 +2,7 @@
 $lang = array(
 'error_reg_username_jam' => 'All usernames proposed are already used.',
 
-'error_reg_userlen' => 'The username shouldn't exceed 40 characters',
+'error_reg_userlen' => 'The username shouldn\'t exceed 40 characters',
 
 'error_reg_username' => 'This username is already used.',
 
@@ -28,19 +28,19 @@ $lang = array(
 
 'register' => 'Register !',
 
-'error_log_username' => 'Cet utilisateur n\'existe pas.',
+'error_log_username' => 'This username doesn\'t exist.',
 
-'error_log_pass' => 'Mot de passe incorrect.',
+'error_log_pass' => 'Incorrect password.',
 
-'login' => 'Connexion',
+'login' => 'Login',
 
-'log_ok' => 'Connexion réussie !',
+'log_ok' => 'Login successful !',
 
-'remember' => 'Se souvenir de moi',
+'remember' => 'Remember me',
 
-'profile_ok' => 'Toutes les modifications ont été enregistrées !',
+'profile_ok' => 'All changes have been saved !',
 
-'profile_update' => 'Mettre à jours mes informations',
+'profile_update' => 'Update my information',
 
 'avatar' => 'Avatar'
 );
