@@ -12,9 +12,9 @@
 
 <div class="container">
 	<div class="container">
-		<div class='lol'></div>
+		<div class='border-top'></div>
 			<h1>Inscription</h1>
-		<div class='yolo'></div>
+		<div class='border-bottom'></div>
 
 		<br><br>
 	</div>

@@ -6,5 +6,8 @@ if(!isset($session)) {
 }
 
 $vids = Manager::getVideosFromUser($session->getId());
+if(empty($vids)) {
+	$err = "Vous n'avez pas encore publié de vidéos !";	
+}
 
 ?>

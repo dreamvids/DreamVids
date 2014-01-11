@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="container">
-		<div class='lol'></div>
+		<div class='border-top'></div>
 		<h1>Nouveautés !</h1>
-		<div class='yolo'></div>
+		<div class='border-bottom'></div>
 	</div>
 
 	<br><br>

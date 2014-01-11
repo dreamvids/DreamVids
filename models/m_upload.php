@@ -11,6 +11,9 @@ class Upload {
 
 			$path = 'uploads/'.$user->getName().'/'.$name;
 
+			if(!file_exists('uploads/')){
+				mkdir('uploads/');
+			}
 			if(!file_exists('uploads/'.$user->getName())) {
 				mkdir('uploads/'.$user->getName());
 			}

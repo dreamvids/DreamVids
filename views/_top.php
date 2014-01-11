@@ -22,7 +22,7 @@
 		<br><br>
 	</div>
 
-	<div class="navbar navbar-default navbar-static-top">
+	<div class="navbar navbar-default navbar-static-top" id="navbar">
 		<div class="container">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
 				<span class='icon-bar'></span>

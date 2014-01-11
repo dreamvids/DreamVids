@@ -12,7 +12,6 @@ class Manager {
 			}
 			return $vids;
 		}
-		else echo "BAAAAAD";
 	}
 }
 
