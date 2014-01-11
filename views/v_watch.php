@@ -12,13 +12,10 @@
 	</div>
 
 	<div class='container' style=''>
-		<!--<video id="video" width="640" height="360" style="" controls class="video-js vjs-default-skin">
-			<source src="<?php echo $path; ?>">
-		</video>-->
 
-		<video id="example_video_1" class="video-js vjs-default-skin"
-		  controls preload="auto" width="640" height="360" data-setup='{"video":true}'>
-		 <source src="<?php echo $path; ?>" type='video/mp4' />
+		<video id="video_player" class="video-js vjs-default-skin"
+		controls preload="auto" width="640" height="360" data-setup='{"video":true}'>
+			<source src="<?php echo $path; ?>" type='video/mp4' />
 		</video>
 	</div>
 
