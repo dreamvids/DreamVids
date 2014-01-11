@@ -30,6 +30,8 @@ $lang = array(
 
 'error_video_already_existing' => 'Une vidéo protant le même nom à déjà été mise en ligne !',
 
+'error_no_videos_uploaded' => 'Vous n\'avez pas encore publié de vidéos !',
+
 'upload_ok' => 'Vidéo mise en ligne avec succès !',
 
 'email_address' => 'Adresse E-Mail',

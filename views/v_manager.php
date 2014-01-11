@@ -1,21 +1,33 @@
 <div class="container">
-	<div class="container">
+	<div class="container" style="width: 80%;">
 		<div class='border-top'></div>
-			<h1>Gestionnaire de vidéos</h1>
+			<h1><?php echo $session->getName(); ?><small> Mises en ligne</small></h1>
 		<div class='border-bottom'></div>
+
+		<br><br>
+	</div>
+
+	<div class='container' style='width: 80%;'>
+		<img src='img/banner-default.png'>
+
+		<ul class="nav nav-pills">
+		  <li><a href="index.php?page=profile">Mon compte</a></li>
+		  <li class="active"><a href="index.php?page=manager">Mes vidéos</a></li>
+		  <li><a href="#">Messagerie</a></li>
+		</ul>
 
 		<br><br>
 	</div>
 
 	<div class="container">
 		<?php
-		echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
+		echo (isset($err) ) ? '<div class="container"><div class="container" style="width: 80%;"><div class="alert alert-danger">'.$lang['error'].': '.$err.'</div></div></div>' : '';
 		
 		foreach ($vids as $vid)
 		{
 		?>
 			<div class="row">
-				<div class="container">
+				<div class="container" style="width: 80%;">
 					<div class="col-md-4">
 						<a href="#" class="thumbnail" style="width: 171px; height:113px;">
 					      <img data-src="holder.js/171x110" src="img/videos/video.png">
@@ -29,14 +41,14 @@
 					    <p>-: <?php echo $vid->getDislikes(); ?></p>
 					</div>
 
-					<div class="col-md-4" style="margin-top: 3%;">
-					    <button class='btn btn-info' onclick="document.location.href='?page=watch&vid=<?php echo $vid->getId(); ?>'">Regarder</button>
-					    <button class='btn btn-success'>Paramètres</button>
-					    <button class='btn btn-danger'>Supprimer</button>
-					</div>
+					<br><br>
+				    <button class='btn btn-info' onclick="document.location.href='?page=watch&vid=<?php echo $vid->getId(); ?>'">Regarder</button>
+				    <button class='btn btn-success'>Paramètres</button>
+				    <button class='btn btn-danger'>Supprimer</button>
+					
 				</div>
 
-				<div class="separator"></div>
+				<div class="container separator" style="width: 80%;"></div>
 		<?php
 		}
 		?>
