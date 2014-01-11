@@ -3,7 +3,7 @@
 ?>
 
 <div class='container'>
-	<div class="container" style='width: 80%;'>
+	<div class="container" style=''>
 		<div class='lol'></div>
 			<h1><?php echo $title; ?><small> de <a href='#'><?php echo $author; ?><a></small></h1>
 		<div class='yolo'></div>
@@ -11,9 +11,27 @@
 		<br><br>
 	</div>
 
-	<div class='container' style='width: 80%;'>
-		<video id="player" width="640" height="360" style="width: 100%; height: 100%; position: absolute;" controls>
+	<div class='container' style=''>
+		<!--<video id="video" width="640" height="360" style="" controls class="video-js vjs-default-skin">
 			<source src="<?php echo $path; ?>">
-		</video>	
+		</video>-->
+
+		<video id="example_video_1" class="video-js vjs-default-skin"
+		  controls preload="auto" width="640" height="360" data-setup='{"video":true}'>
+		 <source src="<?php echo $path; ?>" type='video/mp4' />
+		</video>
+	</div>
+
+	<br>
+
+	<div class="container">
+		<div class="panel panel-primary" style="width: 56%;">
+			<div class="panel-heading">
+				Description
+			</div>
+			<div class="panel-body">
+				<?php echo $desc; ?>
+			</div>
+		</div>
 	</div>
 </div>

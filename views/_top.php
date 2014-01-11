@@ -5,23 +5,20 @@
 		<meta charset="utf-8" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
-		<link rel="stylesheet" href="player/themes/maccaco/projekktor.style.css" type="text/css" media="screen" />
 
-		<script type="text/javascript" src="player/jquery-1.9.1.min.js"></script>
+		<script src="jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="player/projekktor-1.3.08.min.js"></script>
 
-		<script type="text/javascript">
-         $(document).ready(function() {
-               projekktor('video');
-         })
-		</script>
+		<!-- video.js video player -->
+		<link href="video-js/video-js.css" rel="stylesheet" type="text/css">
+		<script src="video-js/video.js"></script>
+		<!-- End -->
 	</head>
 	
 	<body>
 
 	<div id="header">
-		<div id="logo" class=""><a href="index.php"><img src="img/logo.png" alt="logo" style="height: 100px; width: 246px;"/></a></div>
+		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" alt="logo" style="height: 100px; width: 246px;"/></a></div>
 		<br><br>
 	</div>
 
