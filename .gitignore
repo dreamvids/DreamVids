@@ -1,4 +1,5 @@
 .cache/
 .settings/
 .project
+uploads/
 includes/bdd.class.php
