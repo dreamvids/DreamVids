@@ -21,7 +21,7 @@ class Upload {
 			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
 			$video = Video::create($user->getId(), $title, $description, $path);
 
-			//header('Location: index.php?page=watch&vid='.$video->getId());
+			header('Location: index.php?page=watch&vid='.$video->getId());
 		}
 		else echo "lol pas drol";
 	}

@@ -49,5 +49,31 @@ function bbcode($imput)
 	$imput = preg_replace('!\[u\](.+)\[/u\]!isU', '<span style="text-decoration:underline;">$1</span>', $imput);
 
 	return($imput);
-}  
+}
+
+function convert($input)
+{
+	$types = array('mp4', 'webm', 'ogg');
+	$defs = array('1280x720','640x360');
+
+	foreach ($type as $type) {
+		foreach ($defs as $def) {
+
+			$string = ('convert_'.$type.'.sh '.$input.' '.$def.' > dev/null &');
+	
+			$descriptorspec = array(
+			   0 => array("pipe", "r"),
+			   1 => array("pipe", "w"),
+			   2 => array("pipe", "w"),
+			);
+		
+			$process = proc_open($string, $descriptorspec, $pipes);
+			$stdout = stream_get_contents($pipes[1]);
+			fclose($pipes[1]);
+			$stderr = stream_get_contents($pipes[2]);
+			fclose($pipes[2]);
+			$ret = proc_close($process);
+		}
+	}
+}
 ?>
