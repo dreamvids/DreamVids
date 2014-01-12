@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="container">
 		<div class='border-top'></div>
-			<h1>Mettre en linge une vidéo</h1>
+			<h1>Mettre en ligne une vidéo</h1>
 		<div class='border-bottom'></div>
 
 		<br><br>
