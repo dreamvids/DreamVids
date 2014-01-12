@@ -18,7 +18,7 @@
 	<body>
 
 	<div id="header">
-		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" alt="logo" style="height: 100px; width: 246px;"/></a></div>
+		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
 
