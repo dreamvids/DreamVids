@@ -27,7 +27,7 @@
 				Description
 			</div>
 			<div class="panel-body">
-				<?php echo $desc; ?>
+				<?php echo bbcode(secure($desc)); ?>
 			</div>
 		</div>
 	</div>
