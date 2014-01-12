@@ -41,7 +41,7 @@ if(isset($_FILES['videoInput'])) {
 		$name = $_FILES['videoInput']['name'];
 		$explode = explode(".", $name);
 		$ext = $explode[1];
-		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv');
+		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv');
 
 		if(in_array($ext, $acceptedExts)) {
 			Upload::uploadVideo($session);
