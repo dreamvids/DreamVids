@@ -17,7 +17,7 @@
 		controls preload="auto" width="640" height="360" data-setup='{"video":true}'>
 			<source src="<?php echo $path.'.mp4'; ?>" type='video/mp4' />
 			<source src="<?php echo $path'.webm'; ?>" type='video/webm' />
-			<source src="<?php echo $path; ?>" type='video/ogg' />
+			<source src="<?php echo $path; ?>" type='video/mp4' />
 		</video>
 	</div>
 
