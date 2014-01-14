@@ -42,8 +42,8 @@ $lang = array(
 
 'profile_update' => 'Update my information',
 
-'avatar' => 'Avatar'
+'avatar' => 'Avatar',
 
-'error_no_videos_uploaded' => 'You haven\'t uploaded any video yet !',
+'error_no_videos_uploaded' => 'You haven\'t uploaded any video yet !'
 );
 ?>
