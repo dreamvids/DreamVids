@@ -19,7 +19,7 @@
 				<label for="videoInput">Vidéo</label>
 				<input type="file" id="videoInput" name="videoInput">
 				<p class="help-block">Séléctionnez la vidéo a mettre en ligne</p>
-				<div class="progress progress-striped active">
+				<div class="progress progress-striped active" id="progress-style">
 					<div class="progress-bar" id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 						<span class="sr-only"><span id="percent"></span>% Completé</span>
 					</div>
@@ -31,17 +31,17 @@
 		<form role="form" method="post" action="">
 			<div class="form-group">
 				<label for="videoTitle">Titre</label>
-				<input type="text" class="form-control" name="videoTitle" id="videoTitle" placeholder="Titre">
+				<input type="text" required class="form-control" name="videoTitle" id="videoTitle" placeholder="Titre">
 			</div>
 
 			<div class="form-group">
 				<label for="videoDescription">Description</label>
-				<textarea rows="4" cols="50" class="form-control" name="videoDescription" id="videoDescription" placeholder="Texte de présentation de la vidéo"></textarea>
+				<textarea rows="4" cols="50" required class="form-control" name="videoDescription" id="videoDescription" placeholder="Texte de présentation de la vidéo"></textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="videoTags">Tags</label>
-				<input type="text" class="form-control" name="videoTags" id="videoTags" placeholder="Mots clés">
+				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="Mots clés">
 			</div>
 
 			<br>
@@ -55,21 +55,25 @@
 var fileInput = document.getElementById('videoInput'),
 progress = document.getElementById('progress');
 
+function updateProgress(percent) {
+	percent = Math.round(percent*10)/10;
+    progress.style.width = percent+'%';
+    progress.setAttribute('aria-valuenow', percent);
+    document.getElementById('percent').innerHTML = percent;
+    document.getElementById('vid-ok').innerHTML = '<b>'+percent+' %</b>';
+}
+
 fileInput.onchange = function() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'index.php?page=upload');
 	xhr.upload.onprogress = function(e) {
-		var percent = (e.loaded/e.total)*100;
-	    progress.style.width = percent+'%';
-	    progress.setAttribute('aria-valuenow', percent);
-	    document.getElementById('percent').innerHTML = percent;
+		updateProgress( (e.loaded/e.total)*100);
 	};
 	xhr.onload = function() {
-	    document.getElementById('vid-ok').innerHTML = 'Upload terminé !';
-		var percent = 100;
-	    progress.style.width = percent+'%';
-	    progress.setAttribute('aria-valuenow', percent);
-	    document.getElementById('percent').innerHTML = percent;
+		updateProgress(100);
+	    document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
+	    document.getElementById('progress-style').className = 'progress progress-striped';
+	    progress.className = 'progress-bar progress-bar-success';
 	};
 	var form = new FormData();
 	form.append('videoInput', fileInput.files[0]);

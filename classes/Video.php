@@ -12,13 +12,15 @@ class Video {
 	private $dislikes;
 
 	// "constructor" (kind of) for uploading
-	public static function create($userId, $title, $description, $path) {
+	public static function create($id, $userId, $title, $description, $path) {
 		$instance = new self();
 
+		$instance->id = $id;
 		$instance->userId = $userId;
 		$instance->title = $title;
 		$instance->description = $description;
 		$instance->path = $path;
+		$instance->views = 0;
 		$instance->likes = 0;
 		$instance->dislikes = 0;
 
@@ -37,19 +39,7 @@ class Video {
 
 	private function createVideo() {
 		$db = new BDD();
-
-		// check if the id is available
-		$rows = 1;
-		$id = 0;
-		while($rows != 0) {
-			$id = $this->generateId(6);
-			$res0 = $db->select("*", "videos", "WHERE id='".$id."'");
-			$rows = $db->num_rows($res0);
-		}
-
-		$res1 = $db->insert("videos", "'".$id."', '".$this->userId."', '".$this->title."', '".$this->description."', '".$this->path."', '".$this->views."', '".$this->likes."', '".$this->dislikes."'");
-		$this->id = $id;
-
+		$res1 = $db->insert("videos", "'".$this->id."', '".$this->userId."', '".$db->real_escape_string($this->title)."', '".$db->real_escape_string($this->description)."', '".$db->real_escape_string($this->path)."', '".$this->views."', '".$this->likes."', '".$this->dislikes."'");
 		$db->close();
 	}
 
@@ -69,15 +59,27 @@ class Video {
             $this->dislikes = $row['dislikes'];
         }
 	}
+	
+	public function saveDataToDatabase() {
+		$db = new BDD();
+		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."'", "WHERE id='".$this->id."'");
+	}
 
-	// gerates a random string
-	private function generateId($length) {
-		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	    $id = '';
-
-	    for ($i = 0; $i < $length; $i++) {
-	        $id .= $chars[rand(0, strlen($chars) - 1)];
-	    }
+	// generates a random string
+	public static function generateId($length) {
+		$db = new BDD();
+		$rows = 1;
+		$id = 0;
+		while($rows != 0) {
+			$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		    $id = '';
+	
+		    for ($i = 0; $i < $length; $i++) {
+		        $id .= $chars[rand(0, strlen($chars) - 1)];
+		    }
+			$res0 = $db->select("id", "videos", "WHERE id='".$id."'");
+			$rows = $db->num_rows($res0);
+		}
 
 	    return $id;
 	}
@@ -112,6 +114,36 @@ class Video {
 
 	public function getDislikes() {
 		return $this->dislikes;
+	}
+	
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+	
+	public function setDescription($desc) {
+		$this->description = $desc;
+	}
+	
+	public function setPath($path) {
+		$this->path = $path;
+	}
+	
+	public function setViews() {
+		$this->views++;
+	}
+	
+	public function setLikes($bool = true) {
+		if ($bool)
+			$this->likes++;
+		else
+			$this->likes--;
+	}
+	
+	public function setDislikes($bool = true) {
+		if ($bool)
+			$this->dislikes++;
+		else
+			$this->dislikes--;
 	}
 
 }

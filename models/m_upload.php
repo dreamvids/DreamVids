@@ -1,29 +1,38 @@
 <?php
 
 class Upload {
-	public static function uploadVideo($user) {
-		if(isset($_FILES['videoInput']) && isset($user)) {
-
-			$title = $_POST['videoTitle'];
-			$description = $_POST['videoDescription'];
-			$tags = $_POST['videoTags'];
+	public static function uploadVideo($userId, $username) {
+		if(isset($_FILES['videoInput']) && isset($username)) {
 			$name = $_FILES['videoInput']['name'];
-
-			$path = 'uploads/'.$user->getName().'/'.$name;
+			$exp = explode('.', $name);
+			$ext = $exp[count($exp)-1];
+			$path = 'uploads/'.$username.'/'.$_SESSION['vid_id'].'.'.$ext;
 
 			if(!file_exists('uploads/')){
 				mkdir('uploads/');
 			}
-			if(!file_exists('uploads/'.$user->getName())) {
-				mkdir('uploads/'.$user->getName());
+			if(!file_exists('uploads/'.$username) ) {
+				mkdir('uploads/'.$username);
 			}
 
 			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
-			$video = Video::create($user->getId(), $title, $description, $path);
 			//convert($path);
-			header('Location: index.php?page=watch&vid='.$video->getId());
+			$video = Video::create($_SESSION['vid_id'], $userId, '', '', $path);
 		}
-		else echo "lol pas drol";
+	}
+	
+	public static function addDbInfos() {
+		if (isset($_POST['submit']) ) {
+			$title = $_POST['videoTitle'];
+            $description = $_POST['videoDescription'];
+            $tags = $_POST['videoTags'];
+            $video = Video::get($_SESSION['vid_id']);
+            $video->setTitle($title);
+            $video->setDescription($description);
+            $video->saveDataToDatabase();
+			header('Location: index.php?page=watch&vid='.$video->getId() );
+			exit();
+		}
 	}
 }
 
