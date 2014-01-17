@@ -109,12 +109,10 @@ class User {
     }
 
     public function getVids() {
-        $init = new BDD_PDO();
-        $bdd = $init->_connect();
-        $req = $bdd->prepare('SELECT * FROM videos WHERE user_id = ?');
-        $req->execute(array($this->id));
-        
-        return $req->fetch();
+        $db = new BDD();
+        $req = $db->select("*", "videos", "WHERE user_id = '".$this->id."'");
+        $db->close();        
+        return MVCArray("videos", $req);
     }
 
     // static methods
