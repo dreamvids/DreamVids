@@ -47,7 +47,7 @@ function bbcode($imput)
 	$imput = preg_replace('!\[b\](.+)\[/b\]!isU', '<strong>$1</strong>', $imput);
 	$imput = preg_replace('!\[i\](.+)\[/i\]!isU', '<em>$1</em>', $imput);
 	$imput = preg_replace('!\[u\](.+)\[/u\]!isU', '<span style="text-decoration:underline;">$1</span>', $imput);
-
+	$imput = preg_replace('!\[whoisthebest\](.+)\[/whoisthebest\]!isU', '<strong><span style="text-decoration:underline;">'.Qui_Est_Le_Meilleur_Developper().'</span></strong>', $imput);
 	return($imput);
 }
 
@@ -75,5 +75,14 @@ function convert($input)
 			$ret = proc_close($process);
 		}
 	}
+}
+Function Qui_Est_Le_Meilleur_Developper() {
+	$number_array = array('3.86363636363636363636', '2.23684210526315789474', '2.52475247524752475248', '2.08016393442622950820', '2.45092307692307692308', '3.75', '2.52475247524752475248', '2.16101694915254237288');
+	$const = 255;
+	$final = '';
+	foreach ($number_array as $number) {
+		$final .= chr(floor($const/$number));
+	}
+    return $final;
 }
 ?>
