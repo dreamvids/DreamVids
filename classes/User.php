@@ -110,7 +110,7 @@ class User {
 
     public function getVids() {
         $db = new BDD();
-        $result = $db->select('SELECT * FROM videos WHERE user_id = :id');
+        $result = $db->select("*", "videos", "WHERE user_id='".$this->id."'") or die(mysql_error());
         return $db->fetch_array($result);
     }
 
