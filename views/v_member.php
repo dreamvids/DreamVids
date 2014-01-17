@@ -14,7 +14,7 @@
 	<div class='container' style=''>
 		<?php
 			foreach ($vids as $video) {
-				echo $video['title']."<br>";
+				echo $video."<br>";
 			}
 		?>
 	</div>
