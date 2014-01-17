@@ -111,7 +111,7 @@ class User {
     public function getVids() {
         $db = new BDD();
         $result = $db->select("*", "videos", "WHERE user_id='".getId()."'") or die(mysql_error());
-        return $db->fetch_array($result)
+        return $db->fetch_array($result);
     }
 
     // static methods
