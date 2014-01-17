@@ -110,9 +110,8 @@ class User {
 
     public function getVids() {
         $db = new BDD();
-        $result = $db->prepare('SELECT * FROM videos WHERE user_id = :id');
-        $result->execute(array(':id' => $this->id));
-        return $result->fetchAll();
+        $result = $db->select('SELECT * FROM videos WHERE user_id = :id');
+        return $db->fetch_array($result);
     }
 
     // static methods
