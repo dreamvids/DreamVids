@@ -108,6 +108,14 @@ class User {
         return $this->rank;
     }
 
+    public function getVids() {
+        $init = new BDD_PDO();
+        $bdd = $init->_connect();
+        $req = $bdd->prepare('SELECT * FROM videos WHERE user_id = ?');
+        $req->execute(array($this->id));
+        
+        return $req->fetch();
+    }
 
     // static methods
     public static function getNameById($userId) {
