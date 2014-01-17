@@ -111,7 +111,7 @@ class User {
     public function getVids() {
         $db = new BDD();
         $result = $db->select("*", "videos", "WHERE user_id='".$this->id."'") or die(mysql_error());
-        return $db->fetch_array($result);
+        return $db->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // static methods
