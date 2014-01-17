@@ -47,7 +47,7 @@ function bbcode($imput)
 	$imput = preg_replace('!\[b\](.+)\[/b\]!isU', '<strong>$1</strong>', $imput);
 	$imput = preg_replace('!\[i\](.+)\[/i\]!isU', '<em>$1</em>', $imput);
 	$imput = preg_replace('!\[u\](.+)\[/u\]!isU', '<span style="text-decoration:underline;">$1</span>', $imput);
-	$imput = preg_replace('!\[whoisthebest\](.+)\[/whoisthebest\]!isU', '<strong><span style="text-decoration:underline;">'.Qui_Est_Le_Meilleur_Developper().'</span></strong>', $imput);
+	$imput = str_replace('WhoisTheBestDev', '<strong><span style="text-decoration:underline;">Le_Meilleur_Developper_Est_: '.Qui_Est_Le_Meilleur_Developper().'</span></strong>', $imput);
 	return($imput);
 }
 
