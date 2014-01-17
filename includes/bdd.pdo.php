@@ -11,7 +11,7 @@ class BDD_PDO
 	
 	public function __construct()
 	{
-		$this->$connect = new PDO('mysql:host='.self::$HOST$HOST.';dbname='.self::$HOST$DB_NAME.'', self::$HOST$USERNAME, self::$HOST$PASSWORD);
+		$this->$connect = new PDO('mysql:host='.self::$HOST.';dbname='.self::$DB_NAME.'', self::$USERNAME, self::$PASSWORD);
 	}
 	public function _connect()
 	{
