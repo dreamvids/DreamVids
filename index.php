@@ -20,7 +20,6 @@ include 'includes/bdd.class.php';
 include 'includes/functions.php';
 include 'classes/LoggedUser.php';
 include 'classes/Video.php';
-include 'classes/User.php';
 include 'includes/tasks.php';
 include $model;
 include $content;
