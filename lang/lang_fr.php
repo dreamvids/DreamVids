@@ -58,6 +58,52 @@ $lang = array(
 
 'profile_update' => 'Mettre à jours mes informations',
 
-'avatar' => 'Avatar'
+'avatar' => 'Avatar',
+
+'by' => 'par',
+
+'loading_video' => 'Video en cours de traitement ou navigateur non supporté !',
+
+'desc' => 'Description',
+
+'likes' => 'J\'aimes',
+
+'dislikes' => 'Je n\'aimes pas',
+
+'news' => 'Nouveautés',
+
+'member_space' => 'Espace membre',
+
+'my_account' => 'Mon compte',
+
+'my_vids' => 'Mes vidéos',
+
+'msg' => 'Messagerie',
+
+'reg' => 'Inscription',
+
+'select_vid' => 'Sélectionnez la vidéo à mettre en ligne',
+
+'vid' => 'Vidéo',
+
+'up_vid' => 'Mettre en ligne une vidéo',
+
+'complete' => 'Complété',
+
+'title' => 'Titre',
+
+'tags' => 'Tags',
+
+'dreamvids' => 'DreamVids',
+
+'discover' => 'Découvrir',
+
+'subscriptions' => 'Abonnements',
+
+'logout' => 'Déconnexion',
+
+'infos' => 'Informations',
+
+'error_load_vid' => 'Une erreur est survenue lors du chargement de la vidéo'
 );
 ?>

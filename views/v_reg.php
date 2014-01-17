@@ -13,7 +13,7 @@
 <div class="container">
 	<div class="container">
 		<div class='border-top'></div>
-			<h1>Inscription</h1>
+			<h1><?php echo $lang['reg']; ?></h1>
 		<div class='border-bottom'></div>
 
 		<br><br>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>DreamVids</title>
+		<title><?php echo $lang['dreamvids']; ?></title>
 		<meta charset="utf-8" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
@@ -32,20 +32,20 @@
 
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="#">Découvrir</a></li>
-					<li><a href="#">Nouveautés</a></li>
-					<li><a href="#">Abonnements</a></li>
+					<li><a href="#"><?php echo $lang['discover']; ?></a></li>
+					<li><a href="#"><?php echo $lang['news']; ?></a></li>
+					<li><a href="#"><?php echo $lang['subscriptions']; ?></a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					<?php if(isset($session)) { ?>
-					<li><a href="index.php?page=upload">Ajouter une vidéo</a></li>
-					<li><a href="index.php?page=profile">Espace membre</a></li>
-					<li><a href="index.php?page=log&out=1">Déconnexion</a></li>
+					<li><a href="index.php?page=upload"><?php echo $lang['up_vid']; ?></a></li>
+					<li><a href="index.php?page=profile"><?php echo $lang['member_space']; ?></a></li>
+					<li><a href="index.php?page=log&out=1"><?php echo $lang['logout']; ?></a></li>
 					<?php } else { ?>
-					<li><a href="index.php?page=log">Connexion</a></li>
-					<li><a href="index.php?page=reg">S'inscrire</a></li>
-					<li><a href="#">Informations</a></li>
+					<li><a href="index.php?page=log"><?php echo $lang['login']; ?></a></li>
+					<li><a href="index.php?page=reg"><?php echo $lang['register']; ?></a></li>
+					<li><a href="#"><?php echo $lang['infos']; ?></a></li>
 					<?php } ?>
 				</ul>
 			</div>

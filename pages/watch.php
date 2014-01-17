@@ -13,7 +13,7 @@ if(isset($_GET['vid'])) {
 		$author = User::getNameById($video->getUserId());
 	}
 	else
-		die('Error occurred while loading the video !');
+		die($lang['error_load_vid']);
 }
 else {
 	header("Location: ./");

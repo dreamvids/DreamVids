@@ -17,7 +17,7 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 
 	<div class='container' style='width: 80%;'>
 		<div class='border-top'></div>
-		<h1><?php echo $session->getName(); ?><small> Espace membre</small></h1>
+		<h1><?php echo $session->getName(); ?><small> <?php echo $lang['member_space']; ?></small></h1>
 		<div class='border-bottom'></div>
 	</div>
 
@@ -27,9 +27,9 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 		<img src='img/banner-default.png'>
 
 		<ul class="nav nav-pills">
-		  <li class="active"><a href="index.php?page=member">Mon compte</a></li>
-		  <li><a href="index.php?page=manager">Mes vidéos</a></li>
-		  <li><a href="#">Messagerie</a></li>
+		  <li class="active"><a href="index.php?page=member"><?php echo $lang['my_account']; ?></a></li>
+		  <li><a href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a></li>
+		  <li><a href="#"><?php echo $lang['msg']; ?></a></li>
 		</ul>
 	</div>
 

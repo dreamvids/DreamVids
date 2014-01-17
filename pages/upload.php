@@ -52,9 +52,6 @@ if(isset($_FILES['videoInput'])) {
 			unset($_POST['videoInput']);
 		}
 	}
-	else {
-		echo "c le mal";
-	}
 }
 
 ?>

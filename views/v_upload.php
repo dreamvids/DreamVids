@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="container">
 		<div class='border-top'></div>
-			<h1>Mettre en ligne une vidéo</h1>
+			<h1><?php echo $lang['up_vid']; ?></h1>
 		<div class='border-bottom'></div>
 
 		<br><br>
@@ -16,12 +16,12 @@
 
 		<form role="from" method="post" enctype="multipart/form-data" action="">
 			<div class="form-group">
-				<label for="videoInput">Vidéo</label>
+				<label for="videoInput"><?php echo $lang['vid']; ?></label>
 				<input type="file" id="videoInput" name="videoInput">
-				<p class="help-block">Séléctionnez la vidéo a mettre en ligne</p>
+				<p class="help-block"><?php echo $lang['select_vid']; ?></p>
 				<div class="progress progress-striped active" id="progress-style">
 					<div class="progress-bar" id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-						<span class="sr-only"><span id="percent"></span>% Completé</span>
+						<span class="sr-only"><span id="percent"></span>% <?php echo $lang['complete']; ?></span>
 					</div>
 				</div>
 				<p id="vid-ok"></p>
@@ -30,17 +30,17 @@
 
 		<form role="form" method="post" action="">
 			<div class="form-group">
-				<label for="videoTitle">Titre</label>
+				<label for="videoTitle"><?php echo $lang['title']; ?></label>
 				<input type="text" required class="form-control" name="videoTitle" id="videoTitle" placeholder="Titre">
 			</div>
 
 			<div class="form-group">
-				<label for="videoDescription">Description</label>
+				<label for="videoDescription"><?php echo $lang['desc']; ?></label>
 				<textarea rows="4" cols="50" required class="form-control" name="videoDescription" id="videoDescription" placeholder="Texte de présentation de la vidéo"></textarea>
 			</div>
 
 			<div class="form-group">
-				<label for="videoTags">Tags</label>
+				<label for="videoTags"><?php echo $lang['tags']; ?></label>
 				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="Mots clés">
 			</div>
 
