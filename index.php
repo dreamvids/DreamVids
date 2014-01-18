@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$content = 'pages/home.php';
-$model = 'models/m_home.php';
-$view = 'views/v_home.php';
+$content = 'pages/vidslist.php';
+$model = 'models/m_vidslist.php';
+$view = 'views/v_vidslist.php';
 
 if(!empty($_GET['page'])) {
     $page = htmlentities($_GET['page']);

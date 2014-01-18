@@ -32,9 +32,9 @@
 
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="#"><?php echo $lang['discover']; ?></a></li>
-					<li><a href="#"><?php echo $lang['news']; ?></a></li>
-					<li><a href="#"><?php echo $lang['subscriptions']; ?></a></li>
+					<li><a href="index.php?page=vidslist&mode=discover"><?php echo $lang['discover']; ?></a></li>
+					<li><a href="index.php?page=vidslist"><?php echo $lang['news']; ?></a></li>
+					<li><a href="index.php?page=vidslist&mode=subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
