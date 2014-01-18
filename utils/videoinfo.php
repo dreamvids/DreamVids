@@ -1,5 +1,6 @@
 <?php
 header('content-type: text/text/javascript');
+include 'includes/bdd.class.php';
 include '../classes/Video.php';
 if(isset($_GET['vid'])) {
 	$video = Video::get(htmlentities($_GET['vid']));
