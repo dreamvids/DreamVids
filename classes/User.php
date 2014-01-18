@@ -7,6 +7,8 @@ class User {
     private $mail;
     private $avatar;
     private $subscribers;
+    private $subscriptions;
+    private $reg_timestamp;
     private $rank;
 
     public function __construct($id) {
@@ -16,7 +18,7 @@ class User {
     // Read infos about User from the DB
     private function loadDataFromDatabase($id) {
     	$db = new BDD();
-        $result = $db->select("*", "users", "WHERE id='".$id."'") or die(mysql_error());
+        $result = $db->select("*", "users", "WHERE id='".$db->real_escape_string($id)."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
@@ -24,6 +26,8 @@ class User {
             $this->mail = $row['email'];
             $this->avatar = $row['avatar'];
             $this->subscribers = $row['subscribers'];
+            $this->subscriptions = explode(';', $row['subscriptions']);
+            $this->reg_timestamp = $row['reg_timestamp'];
             $this->rank = $row['rank'];
         }
 
@@ -37,7 +41,8 @@ class User {
     public function saveDataToDatabase() {
         if($this->existing) {
             $db = new BDD();
-            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', subscribers='$this->subscribers', rank='$this->rank'", "WHERE id='$this->id'");
+            $subscriptions = $db->real_escape_string(implode(';', $this->subscriptions) );
+            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', subscribers='$this->subscribers', subscriptions='".$subscriptions."', rank='$this->rank'", "WHERE id='$this->id'");
         }
     }
     
@@ -103,6 +108,10 @@ class User {
     public function getSubscribers() {
         return $this->subscribers;
     }
+    
+    public function getSubscriptions() {
+    	return $this->subscriptions;
+    }
 
     public function getRank() {
         return $this->rank;
@@ -110,16 +119,21 @@ class User {
 
     public function getVids() {
         $db = new BDD();
-        $req = $db->select("*", "videos", "WHERE user_id = '".$this->id."'");
-        $db->close();        
-        return MVCArray("videos", $req);
+        $req = $db->select("id", "videos", "WHERE user_id = '".$this->id."'");
+        $vids = array();
+        while ($data = $db->fetch_array($req) )
+        {
+        	$vids[] = Video::get($data['id']);
+        }
+        $db->close();
+        return $vids;
     }
 
     // static methods
     public static function getNameById($userId) {
         $username = 'unknow';
         $db = new BDD();
-        $result = $db->select("*", "users", "WHERE id='".$userId."'") or die(mysql_error());
+        $result = $db->select("*", "users", "WHERE id='".$db->real_escape_string($userId)."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $username = $row['username'];
@@ -131,7 +145,7 @@ class User {
     public static function getIdByName($username) {
         $id = -1;
         $db = new BDD();
-        $result = $db->select("*", "users", "WHERE username='".$username."'") or die(mysql_error());
+        $result = $db->select("*", "users", "WHERE username='".$db->real_escape_string($username)."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $id = $row['id'];

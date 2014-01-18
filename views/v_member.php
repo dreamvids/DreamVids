@@ -13,7 +13,7 @@
 
 	<div class='container' style=''>
 		<?php
-			print_r($video);
+			var_dump($vids);
 			/*foreach ($vids as $video) {
 				print_r($video)."<br>";
 			}*/

@@ -50,7 +50,7 @@ class Video {
 	private function loadVideo($id) {
 		$this->id = $id;
 		$db = new BDD();
-        $result = $db->select("*", "videos", "WHERE id LIKE '%".$this->id."%'") or die(mysql_error());
+        $result = $db->select("*", "videos", "WHERE id='".$db->real_escape_string($this->id)."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
@@ -68,7 +68,7 @@ class Video {
 	
 	public function saveDataToDatabase() {
 		$db = new BDD();
-		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($this->tags)."'", "WHERE id='".$this->id."'");
+		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($this->tags)."'", "WHERE id='".$db->real_escape_string($this->id)."'");
 	}
 
 	// generates a random string
