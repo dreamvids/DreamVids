@@ -15,19 +15,17 @@
 		?>
 
 		<form role="from" method="post" enctype="multipart/form-data" action="">
-			<div class="form-group">
-				<label for="videoInput"><?php echo $lang['vid']; ?></label>
-				<input type="file" id="videoInput" name="videoInput">
-				<p class="help-block"><?php echo $lang['select_vid']; ?></p>
-				<div class="progress progress-striped active" id="progress-style">
-					<div class="progress-bar" id="progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-						<span class="sr-only"><span id="percent"></span>% <?php echo $lang['complete']; ?></span>
-					</div>
+			<label for="videoInput"><?php echo $lang['vid']; ?></label>
+			<input type="file" id="videoInput" name="videoInput">
+			<p class="help-block"><?php echo $lang['select_vid']; ?></p>
+			<div class="progress progress-striped active" id="progress-style">
+				<div id="progressbar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<span class="sr-only"></span>
 				</div>
-				<p id="vid-ok"></p>
 			</div>
+			<p id="vid-ok"></p>
 		</form>
-
+		
 		<form role="form" method="post" action="">
 			<div class="form-group">
 				<label for="videoTitle"><?php echo $lang['title']; ?></label>
@@ -53,13 +51,12 @@
 
 <script type="text/javascript">
 var fileInput = document.getElementById('videoInput'),
-progress = document.getElementById('progress');
+progress = document.getElementById('progressbar');
 
 function updateProgress(percent) {
 	percent = Math.round(percent*10)/10;
     progress.style.width = percent+'%';
     progress.setAttribute('aria-valuenow', percent);
-    document.getElementById('percent').innerHTML = percent;
     document.getElementById('vid-ok').innerHTML = '<b>'+percent+' %</b>';
 }
 

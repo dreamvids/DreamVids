@@ -9,7 +9,7 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 
-		<script src="jquery-2.0.3.min.js"></script>
+		<script src="js/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 		<!-- video player header-->
