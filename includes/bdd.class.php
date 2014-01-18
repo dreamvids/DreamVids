@@ -4,9 +4,12 @@ class BDD
 {
 	public static $HOST = '127.0.0.1';
 	public static $USERNAME = 'root';
-	public static $PASSWORD = '';
-	public static $DB_NAME = 'dreamvids';
-
+	public static $PASSWORD = 'toor';
+	public static $DB_NAME = 'dev';/*
+	public static $HOST = '62.4.19.145';
+	public static $USERNAME = 'root';
+	public static $PASSWORD = 'rVUApHb3s7';
+	public static $DB_NAME = 'dev';*/
 	private $table;
 	private $prefixe;
 	
