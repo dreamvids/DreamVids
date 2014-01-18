@@ -2,16 +2,18 @@
 <html>
 	<head>
 		<title><?php echo $lang['dreamvids']; ?></title>
-		<meta charset="utf-8" />
+		<meta charset="utf-8" />		
+		<meta http-equiv="Content-Type" content="text/html; charset = utf-8">
+		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 
 		<script src="jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-		<!-- video.js video player -->
-		<link href="video-js/video-js.css" rel="stylesheet" type="text/css">
-		<script src="video-js/video.js"></script>
+		<!-- video player header-->
+			<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css"/>
 		<!-- End -->
 	</head>
 	

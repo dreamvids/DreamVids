@@ -13,9 +13,10 @@
 
 	<div class='container' style=''>
 		<?php
-			foreach ($vids as $video) {
+			print_r($video);
+			/*foreach ($vids as $video) {
 				print_r($video)."<br>";
-			}
+			}*/
 		?>
 	</div>
 </div>

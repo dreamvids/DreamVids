@@ -6,7 +6,6 @@ class BDD
 	public static $USERNAME = 'root';
 	public static $PASSWORD = '';
 	public static $DB_NAME = 'dreamvids';
-
 	private $table;
 	private $prefixe;
 	
