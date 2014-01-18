@@ -11,15 +11,15 @@ if(isset($_GET['vid'])) {
 		videoQuality([
 		{
 			format: 360,
-			mp4: '".$path."_360p.mp4',
-			webm: '".$path."_360p.webm',
-			ogg: '".$path."_360p.ogg'
+			mp4: '".$path."_640x360p.mp4',
+			webm: '".$path."_640x360p.webm',
+			ogg: '".$path."_640x360p.ogg'
 		},
 		{
 			format: 720,
-			mp4:'".$path."_720p.mp4',
-			webm:'".$path."_720p.webm',
-			ogg:'".$path."_720p.ogg'
+			mp4:'".$path."_1280x720p.mp4',
+			webm:'".$path."_1280x720p.webm',
+			ogg:'".$path."_1280x720p.ogg'
 		}]);
 		";
 	}

@@ -16,7 +16,6 @@ class Upload {
 			}
 
 			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
-			//convert($path);
 			$video = Video::create($_SESSION['vid_id'], $userId, '', '', $path);
 		}
 	}
@@ -29,8 +28,9 @@ class Upload {
             $video = Video::get($_SESSION['vid_id']);
             $video->setTitle($title);
             $video->setDescription($description);
-            $video->saveDataToDatabase();
-			header('Location: index.php?page=watch&vid='.$video->getId() );
+            $video->saveDataToDatabase(); 
+			convert(getcwd().'/'.$video->getPath());
+			header('Location: /watch-'.$video->getId() );
 			exit();
 		}
 	}

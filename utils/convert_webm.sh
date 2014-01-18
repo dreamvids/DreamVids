@@ -1,1 +1,1 @@
-ffmpeg -i $1 -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s $2 $1"."$2".ogv"
+ffmpeg -i $1 -c:v libvpx -minrate 345k -maxrate 345k -b:v 345k -c:a libvorbis -s $2 $1"_"$2"p.webm"

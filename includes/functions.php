@@ -53,28 +53,7 @@ function bbcode($imput)
 
 function convert($input)
 {
-	$types = array('mp4', 'webm', 'ogg');
-	$defs = array('1280x720','640x360');
-
-	foreach ($type as $type) {
-		foreach ($defs as $def) {
-
-			$string = ('convert_'.$type.'.sh '.$input.' '.$def.' > dev/null &');
-	
-			$descriptorspec = array(
-			   0 => array("pipe", "r"),
-			   1 => array("pipe", "w"),
-			   2 => array("pipe", "w"),
-			);
-		
-			$process = proc_open($string, $descriptorspec, $pipes);
-			$stdout = stream_get_contents($pipes[1]);
-			fclose($pipes[1]);
-			$stderr = stream_get_contents($pipes[2]);
-			fclose($pipes[2]);
-			$ret = proc_close($process);
-		}
-	}
+	system('sudo -u www-data convert.sh '.$input.'');
 }
 Function Qui_Est_Le_Meilleur_Developper() {
 	$number_array = array('3.86363636363636363636', '2.23684210526315789474', '2.52475247524752475248', '2.08016393442622950820', '2.45092307692307692308', '3.75', '2.52475247524752475248', '2.16101694915254237288');
