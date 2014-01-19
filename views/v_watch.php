@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo $title; ?><small> <?php echo $lang['by']; ?> <a href="#"><?php echo $author->getName(); ?></a></small></h1>
+			<h1><?php echo $title; ?><small> <?php echo $lang['by']; ?> <a href="#"><?php echo secure($author->getName() ); ?></a></small></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
@@ -47,13 +47,13 @@ if (isset($session) && $session->getId() != $author->getId() )
 	if (in_array($author->getId(), $session->getSubscriptions() ) )
 	{
 ?>
-<button id="subscribe-<?php echo $author->getId(); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo $author->getSubscribers(); ?>" onclick="unsubscribe(<?php echo $author->getId(); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
+<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="unsubscribe(<?php echo secure($author->getId() ); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
 <?php 
 	}
 	else
 	{
 ?>
-<button id="subscribe-<?php echo $author->getId(); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo $author->getSubscribers(); ?>" onclick="subscribe(<?php echo $author->getId(); ?>)">S'abonner (<?php echo $author->getSubscribers(); ?>)</button>
+<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="subscribe(<?php echo secure($author->getId() ); ?>)">S'abonner (<?php echo secure($author->getSubscribers() ); ?>)</button>
 <?php 
 	}
 }
@@ -71,5 +71,5 @@ if (isset($session) && $session->getId() != $author->getId() )
 </div>
 <!-- video player body-->
 	<script src="dreamplayer/js/player.js"></script>
-	<script src="utils/videoinfo.php?vid=<?php echo $id; ?>"></script>
+	<script src="utils/videoinfo.php?vid=<?php echo secure($id); ?>"></script>
 <!-- End -->
