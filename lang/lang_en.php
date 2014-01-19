@@ -50,6 +50,8 @@ $lang = array(
 
 'private' => 'Private',
 
-'non_listed' => 'Not listed'
+'non_listed' => 'Not listed',
+
+'no_flagged_videos' => 'There is no videos flagged by users'
 );
 ?>

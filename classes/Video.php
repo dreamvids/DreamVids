@@ -14,6 +14,7 @@ class Video {
 	private $dislikes;
 	private $timestamp;
 	private $visibility; // 0: private, 1: not visible, 2: public;
+	private $flagged; // the video has been flagged by a user. It will be sent to moderators
 
 	// "constructor" (kind of) for uploading
 	public static function create($id, $userId, $title, $description, $tags, $tumbnail, $path, $visibility) {
@@ -31,6 +32,7 @@ class Video {
 		$instance->dislikes = 0;
 		$instance->timestamp = tps();
 		$instance->visibility = $visibility;
+		$instance->flagged = 0;
 
 		$instance->createVideo();
 		return $instance;
@@ -48,7 +50,7 @@ class Video {
 	private function createVideo() {
 		$db = new BDD();
 		$tagsStr = implode(' ', $this->tags);
-		$res1 = $db->insert("videos", "'".$this->id."', '".$this->userId."', '".$db->real_escape_string($this->title)."', '".$db->real_escape_string($this->description)."', '".$db->real_escape_string($tagsStr)."', '".$db->real_escape_string($this->tumbnail)."', '".$db->real_escape_string($this->path)."', '".$this->views."', '".$this->likes."', '".$this->dislikes."', '".$this->timestamp."', '".$this->visibility."'");
+		$res1 = $db->insert("videos", "'".$this->id."', '".$this->userId."', '".$db->real_escape_string($this->title)."', '".$db->real_escape_string($this->description)."', '".$db->real_escape_string($tagsStr)."', '".$db->real_escape_string($this->tumbnail)."', '".$db->real_escape_string($this->path)."', '".$this->views."', '".$this->likes."', '".$this->dislikes."', '".$this->timestamp."', '".$this->visibility."', '".$this->flagged."'");
 		$db->close();
 	}
 
@@ -70,13 +72,14 @@ class Video {
             $this->dislikes = $row['dislikes'];
             $this->timestamp = $row['timestamp'];
             $this->visibility = $row['visibility'];
+            $this->flagged = $row['flagged'];
         }
 	}
 	
 	public function saveDataToDatabase() {
 		$db = new BDD();
 		$tagsStr = implode(' ', $this->tags);
-		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility, "WHERE id='".$db->real_escape_string($this->id)."'");
+		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility.", flagged=".$this->flagged, "WHERE id='".$db->real_escape_string($this->id)."'");
 	}
 
 	// generates a random string
@@ -145,6 +148,10 @@ class Video {
 	public function getVisibility() {
 		return $this->visibility;
 	}
+
+	public function isFlagged() {
+		return $this->flagged;
+	}
 	
 	public function setTitle($title) {
 		$this->title = $title;
@@ -187,6 +194,10 @@ class Video {
 			$this->dislikes++;
 		else
 			$this->dislikes--;
+	}
+
+	public function setFlagged($flagged) {
+		$this->flagged = $flagged;
 	}
 }
 

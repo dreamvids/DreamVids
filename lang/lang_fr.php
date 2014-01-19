@@ -118,7 +118,9 @@ $lang = array(
 
 'tumbnail' => 'Miniature',
 
-'views' => 'Vues'
+'views' => 'Vues',
+
+'no_flagged_videos' => 'Aucune vidéo signalée par un utilisateur'
 
 );
 ?>
