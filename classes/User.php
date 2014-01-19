@@ -75,10 +75,25 @@ class User {
         }
     }
 
-    public function setSubscribers($newSubscribers) {
+    public function setSubscribers($bool=true) {
         if($this->existing) {
-            $this->subscribers = $newSubscribers;
+        	if ($bool)
+	            $this->subscribers++;
+	        else
+	        	$this->subscribers--;
         }
+    }
+    
+    public function setSubscriptions($ch_id, $bool=true) {
+    	if ($this->existing) {
+    		if ($bool)
+    			$this->subscriptions[] = $ch_id;
+    		else
+    		{
+    			$key = array_search($ch_id, $this->subscriptions);
+    			unset($this->subscriptions[$key]);
+    		}
+    	}
     }
 
     public function setRank($newRank) {

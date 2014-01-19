@@ -10,7 +10,7 @@ if(isset($_GET['vid'])) {
 		$likes = $video->getLikes();
 		$dislikes = $video->getDislikes();
 		$path = $video->getPath();
-		$author = User::getNameById($video->getUserId());
+		$author = new User($video->getUserId() );
 	}
 	else
 		die($lang['error_load_vid']);

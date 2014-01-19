@@ -11,6 +11,7 @@
 
 		<script src="js/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/ajax.js"></script>
 
 		<!-- video player header-->
 			<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css"/>

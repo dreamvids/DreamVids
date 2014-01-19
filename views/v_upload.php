@@ -44,7 +44,7 @@
 
 			<br>
 
-			<input type="submit" class="btn btn-primary" name="submit">
+			<input type="submit" id="up-submit" disabled="disabled" class="btn btn-primary" name="submit">
 		</form>
 	</div>
 </div>
@@ -71,6 +71,7 @@ fileInput.onchange = function() {
 	    document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
 	    document.getElementById('progress-style').className = 'progress progress-striped';
 	    progress.className = 'progress-bar progress-bar-success';
+	    document.getElementById('up-submit').removeAttribute('disabled');
 	};
 	var form = new FormData();
 	form.append('videoInput', fileInput.files[0]);

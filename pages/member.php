@@ -6,6 +6,7 @@ if(isset($_GET['uid']) xor isset($_GET['name']) ) {
 	$pseudo = $member->getName();
 	if($pseudo) {
 		$avatar = $member->getAvatarPath();
+		$subscribers = $member->getSubscribers();
 		$rank = $member->getRank();
 		$vids = $member->getVids();
 	}

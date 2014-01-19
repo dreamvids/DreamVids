@@ -13,16 +13,18 @@
 foreach ($vids as $vid)
 {
 ?>
-			<div class="col-sm-6 col-md-3">
-			    <a href="#" class="thumbnail" style="width: 171px; height:113px;">
-			      <img data-src="holder.js/171x110" src="img/videos/video.png">
-			    </a>
-				<p style="margin-left: 3%;"><?php echo '<b>'.$vid->getTitle().'</b>'; ?></p>
-			    <img src="img/videos/user.png" style="width: 32px; height: 32px;">
-			    <p style="display: inline-block; margin-left: 3%;"><?php echo User::getNameById($vid->getUserId() ); ?></p>
-			    <p style="display: ;"><?php echo (strlen($vid->getDescription() ) > 30) ? substr($vid->getDescription(), 0, 30).'...' : $vid->getDescription(); ?></p>
-			    <p style="display: inline-block; margin-top: -3%;"><?php echo $vid->getLikes().' '.$lang['likes'].' - '.$vid->getDislikes().' '.$lang['dislikes']; ?></p>
-		 	</div>
+				<div class="col-sm-6 col-md-3">
+				    <a href="index.php?page=watch&vid=<?php echo $vid->getId(); ?>" class="thumbnail" style="width: 171px; height:113px;">
+				      <img data-src="holder.js/171x110" src="img/videos/video.png">
+				    </a>
+				    <a href="index.php?page=watch&vid=<?php echo $vid->getId(); ?>">
+						<p style="margin-left: 3%;"><?php echo '<b>'.$vid->getTitle().'</b>'; ?></p>
+					</a>
+				    <img src="img/videos/user.png" style="width: 32px; height: 32px;">
+				    <p style="display: inline-block; margin-left: 3%;"><?php echo User::getNameById($vid->getUserId() ); ?></p>
+				    <p style="display: ;"><?php echo (strlen($vid->getDescription() ) > 30) ? substr($vid->getDescription(), 0, 30).'...' : $vid->getDescription(); ?></p>
+				    <p style="display: inline-block; margin-top: -3%;"><?php echo $vid->getLikes().' '.$lang['likes'].' - '.$vid->getDislikes().' '.$lang['dislikes']; ?></p>
+			 	</div>
 <?php
 }
 ?>

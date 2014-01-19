@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo $title; ?><small> <?php echo $lang['by']; ?> <a href="#"><?php echo $author; ?></a></small></h1>
+			<h1><?php echo $title; ?><small> <?php echo $lang['by']; ?> <a href="#"><?php echo $author->getName(); ?></a></small></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
@@ -13,7 +13,7 @@
 
 	<div class="container" style="">
 		<div id="player">
-			<video autobuffer preload="auto" autoplay><img src="img/loadervids.gif" alt="traitement" /><br><b><?php echo $lang['loading_video']; ?></video>
+			<video autobuffer preload="auto" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
 			<span id="repeat">
 				<span class="icon"></span>
 			</span>
@@ -41,8 +41,24 @@
 	<br />
 	
 	<div class="container">
-		<!-- <button class="btn btn-success"> -->
-		
+<?php
+if ($session->getId() != $author->getId() )
+{
+	if (in_array($author->getId(), $session->getSubscriptions() ) )
+	{
+?>
+<button id="subscribe-<?php echo $author->getId(); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo $author->getSubscribers(); ?>" onclick="unsubscribe(<?php echo $author->getId(); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
+<?php 
+	}
+	else
+	{
+?>
+<button id="subscribe-<?php echo $author->getId(); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo $author->getSubscribers(); ?>" onclick="subscribe(<?php echo $author->getId(); ?>)">S'abonner (<?php echo $author->getSubscribers(); ?>)</button>
+<?php 
+	}
+}
+?>
+		<br /><br />
 		<div class="panel panel-primary" style="width: 56%;">
 			<div class="panel-heading">
 				<?php echo $lang['desc']; ?>
