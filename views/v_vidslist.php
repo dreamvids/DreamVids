@@ -27,7 +27,7 @@ else
 if (@$_GET['mode'] == 'subscriptions')
 {
 ?>
-			<div class="col-md-3">
+			<div class="col-md-3 visible-md visible-lg">
 				<ul class="list-group">
 <?php
 	if (count($subs) >= 1)
@@ -67,8 +67,16 @@ foreach ($vids as $vid)
 				    <p style="display: inline-block; margin-top: -3%;"><?php echo secure($vid->getLikes() ).' '.$lang['likes'].' - '.secure($vid->getDislikes() ).' '.$lang['dislikes']; ?></p>
 			 	</div>	 -->
 			 	
-			 				
-			 	<div class="col-md-2">
+<?php
+	if (@$_GET['mode'] == 'subscriptions')
+	{		 				
+		echo '<div class="col-md-3">';
+	}
+	else
+	{
+		echo '<div class="col-md-2">';
+	}
+?>
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
 				      <img data-src="holder.js/171x97" width="171" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
 				    </a>
