@@ -15,8 +15,12 @@ class Vidslist
 		$vids = array();
 		while ($data = $db->fetch_array($rep) )
 		{
-			$vid = $db->fetch_array($db->select("id", "videos", "WHERE user_id='".$data['id']."' ORDER BY timestamp DESC LIMIT 0, 1") );
-			$vids[] = Video::get($vid['id']);
+			$req = $db->select("id", "videos", "WHERE user_id='".$data['id']."' ORDER BY timestamp DESC LIMIT 0, 1");
+			if ($db->num_rows($req) > 0)
+			{
+				$vid = $db->fetch_array($req);
+				$vids[] = Video::get($vid['id']);
+			}
 		}
 		$db->close();
 		return $vids;

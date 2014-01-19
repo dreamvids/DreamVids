@@ -78,7 +78,7 @@ foreach ($vids as $vid)
 					<br />
 				    <?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
 				    <?php echo @date('d/m/Y', $vid->getTimestamp() ).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
-				    <br /><br />
+				    <br /><br /><br /><br />
 			 	</div>
 <?php
 }
