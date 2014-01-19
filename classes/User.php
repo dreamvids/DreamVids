@@ -9,7 +9,7 @@ class User {
     private $subscribers;
     private $subscriptions;
     private $reg_timestamp;
-    private $rank;
+    private $rank; // 0: normal user, 1: moderator, 2: admin;
 
     public function __construct($id) {
         $this->loadDataFromDatabase($id);

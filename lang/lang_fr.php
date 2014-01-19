@@ -112,7 +112,9 @@ $lang = array(
 
 'private' => 'Privée',
 
-'non_listed' => 'Non listée'
+'non_listed' => 'Non listée',
+
+'no_flagged_videos' => 'Aucune vidéo signalée par un utilisateur'
 
 );
 ?>
