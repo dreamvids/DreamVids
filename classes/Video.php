@@ -7,6 +7,7 @@ class Video {
 	private $title;
 	private $description;
 	private $tags;
+	private $tumbnail;
 	private $views;
 	private $path;
 	private $likes;
@@ -15,14 +16,15 @@ class Video {
 	private $visibility; // 0: private, 1: not visible, 2: public;
 
 	// "constructor" (kind of) for uploading
-	public static function create($id, $userId, $title, $description, $tags, $path, $visibility) {
+	public static function create($id, $userId, $title, $description, $tags, $tumbnail, $path, $visibility) {
 		$instance = new self();
 
 		$instance->id = $id;
 		$instance->userId = $userId;
 		$instance->title = $title;
 		$instance->description = $description;
-		$instance->tags = explode(',', $tags);
+		$instance->tags = explode(' ', $tags);
+		$instance->tumbnail = $tumbnail;
 		$instance->path = $path;
 		$instance->views = 0;
 		$instance->likes = 0;
@@ -45,8 +47,8 @@ class Video {
 
 	private function createVideo() {
 		$db = new BDD();
-		$tagsStr = implode(',', $this->tags);
-		$res1 = $db->insert("videos", "'".$this->id."', '".$this->userId."', '".$db->real_escape_string($this->title)."', '".$db->real_escape_string($this->description)."', '".$db->real_escape_string($tagsStr)."', '".$db->real_escape_string($this->path)."', '".$this->views."', '".$this->likes."', '".$this->dislikes."', '".$this->timestamp."', '".$visibility."'");
+		$tagsStr = implode(' ', $this->tags);
+		$res1 = $db->insert("videos", "'".$this->id."', '".$this->userId."', '".$db->real_escape_string($this->title)."', '".$db->real_escape_string($this->description)."', '".$db->real_escape_string($tagsStr)."', '".$db->real_escape_string($this->tumbnail)."', '".$db->real_escape_string($this->path)."', '".$this->views."', '".$this->likes."', '".$this->dislikes."', '".$this->timestamp."', '".$this->visibility."'");
 		$db->close();
 	}
 
@@ -60,7 +62,8 @@ class Video {
             $this->userId = $row['user_id'];
             $this->title = $row['title'];
             $this->description = $row['description'];
-            $this->tags = explode(',', $row['tags']);
+            $this->tags = explode(' ', $row['tags']);
+            $this->tumbnail = $row['tumbnail'];
             $this->path = $row['url'];
             $this->views = $row['views'];
             $this->likes = $row['likes'];
@@ -72,8 +75,8 @@ class Video {
 	
 	public function saveDataToDatabase() {
 		$db = new BDD();
-		$tagsStr = implode(',', $this->tags);
-		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', visibility=".$this->visibility, "WHERE id='".$db->real_escape_string($this->id)."'");
+		$tagsStr = implode(' ', $this->tags);
+		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility, "WHERE id='".$db->real_escape_string($this->id)."'");
 	}
 
 	// generates a random string
@@ -115,6 +118,10 @@ class Video {
 		return $this->tags;
 	}
 
+	public function getTumbnail() {
+		return $this->tumbnail;
+	}
+
 	public function getViews() {
 		return $this->views;
 	}
@@ -148,11 +155,20 @@ class Video {
 	}
 	
 	public function setTags($tags) {
-		$this->tags = $tags;
+		$this->tags = explode(' ', $tags);
+	}
+	
+	public function setTumbnail($tumbnail) {
+		$this->tumbnail = $tumbnail;
 	}
 	
 	public function setPath($path) {
 		$this->path = $path;
+	}
+	
+	public function setVisibility($visibility) {
+		if (in_array($visibility, array(0, 1, 2) ) )
+			$this->visibility = $visibility;
 	}
 	
 	public function setViews() {
@@ -172,11 +188,6 @@ class Video {
 		else
 			$this->dislikes--;
 	}
-
-	public function setVisibility($newVisibility) {
-		$this->visibility = $newVisibility;
-	}
-
 }
 
 ?>

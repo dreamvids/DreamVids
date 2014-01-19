@@ -108,11 +108,17 @@ $lang = array(
 
 'error_load_vid' => 'Une erreur est survenue lors du chargement de la vidéo',
 
-'public' => 'Public',
+'public' => 'Publique',
 
 'private' => 'Privée',
 
-'non_listed' => 'Non listée'
+'non_listed' => 'Non listée',
+
+'visibility' => 'Visibilité',
+
+'tumbnail' => 'Miniature',
+
+'views' => 'Vues'
 
 );
 ?>

@@ -13,7 +13,7 @@
 
 	<div class="container" style="">
 		<div id="player">
-			<video autobuffer preload="auto" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
+			<video autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
 			<span id="repeat">
 				<span class="icon"></span>
 			</span>

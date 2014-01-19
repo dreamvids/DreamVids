@@ -29,17 +29,31 @@
 		<form role="form" method="post" action="">
 			<div class="form-group">
 				<label for="videoTitle"><?php echo $lang['title']; ?></label>
-				<input type="text" required class="form-control" name="videoTitle" id="videoTitle" placeholder="Titre">
+				<input type="text" required class="form-control" name="videoTitle" id="videoTitle" placeholder="<?php echo $lang['title']; ?>">
 			</div>
 
 			<div class="form-group">
 				<label for="videoDescription"><?php echo $lang['desc']; ?></label>
-				<textarea rows="4" cols="50" required class="form-control" name="videoDescription" id="videoDescription" placeholder="Texte de présentation de la vidéo"></textarea>
+				<textarea rows="4" cols="50" required class="form-control" name="videoDescription" id="videoDescription" placeholder="<?php echo $lang['desc']; ?>"></textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="videoTags"><?php echo $lang['tags']; ?></label>
-				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="Mots clés">
+				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="<?php echo $lang['tags']; ?>">
+			</div>
+
+			<div class="form-group">
+				<label for="videoTumbnail"><?php echo $lang['tumbnail']; ?></label>
+				<input type="url" class="form-control" required name="videoTumbnail" id="videoTumbnail" placeholder="http://">
+			</div>
+			
+			<div class="form-group">
+				<label for="videoVisibility"><?php echo $lang['visibility']; ?></label>
+				<select class="form-control" name="videoVisibility" id="videoVisibility">
+					<option value="2"><?php echo $lang['public']; ?></option>
+					<option value="1"><?php echo $lang['non_listed']; ?></option>
+					<option value="0"><?php echo $lang['private']; ?></option>
+				</select>
 			</div>
 
 			<br>

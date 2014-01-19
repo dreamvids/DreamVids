@@ -17,7 +17,7 @@ class Upload {
 
 			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
 			//convert($path);
-			$video = Video::create($_SESSION['vid_id'], $userId, '', '', '', $path);
+			$video = Video::create($_SESSION['vid_id'], $userId, '', '', '', '', $path, 0);
 		}
 	}
 	
@@ -26,10 +26,14 @@ class Upload {
 			$title = $_POST['videoTitle'];
             $description = $_POST['videoDescription'];
             $tags = $_POST['videoTags'];
+            $tumbnail = $_POST['videoTumbnail'];
+            $visibility = $_POST['videoVisibility'];
             $video = Video::get($_SESSION['vid_id']);
             $video->setTitle($title);
             $video->setDescription($description);
             $video->setTags($tags);
+            $video->setTumbnail($tumbnail);
+            $video->setVisibility($visibility);
             $video->saveDataToDatabase();
 			convert(getcwd().'/'.$video->getPath());
 			header('Location: /watch-'.$video->getId() );

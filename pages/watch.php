@@ -10,6 +10,7 @@ if(isset($_GET['vid'])) {
 		$likes = $video->getLikes();
 		$dislikes = $video->getDislikes();
 		$path = $video->getPath();
+		$tumbnail = $video->getTumbnail();
 		$author = new User($video->getUserId() );
 	}
 	else
