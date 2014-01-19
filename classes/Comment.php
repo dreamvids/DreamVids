@@ -120,7 +120,6 @@ class Comment {
 
 	public static function isCommentIdExisting($id) {
 		$db = new BDD();
-		print_r("lol");
         $result = $db->select("*", "videos_comments", "WHERE id LIKE '%".$id."%'") or die(mysql_error());
 
         return $db->num_rows($result) != 0;
