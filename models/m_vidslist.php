@@ -1,7 +1,14 @@
 <?php
 class Vidslist
 {
-	public static function getDiscoverVideos($nb)
+	private $session;
+	
+	public function __construct()
+	{
+		$this->session = $GLOBALS['session'];
+	}
+	
+	public function getDiscoverVideos($nb)
 	{
 		$db = new BDD();
 		$rep = $db->select("id", "users", "ORDER BY subscribers LIMIT 0, ".$nb);
@@ -15,7 +22,7 @@ class Vidslist
 		return $vids;
 	}
 	
-	public static function getNewVideos($nb)
+	public function getNewVideos($nb)
 	{
 		$db = new BDD();
 		$rep = $db->select("id", "videos", "ORDER BY timestamp DESC LIMIT 0, ".$nb);
@@ -28,9 +35,37 @@ class Vidslist
 		return $vids;
 	}
 	
-	public static function getSubscriptionsVideos($nb)
+	public function getSubscriptionsVideos($nb)
 	{
-		
+		$vids = array();
+		$sess_subs = $this->session->getSubscriptions();
+		unset($sess_subs[0]);
+		if (@count($sess_subs) >= 1)
+		{
+			$db = new BDD();
+			$rep = $db->select("id", "videos", "WHERE user_id IN (".implode(',', $sess_subs).") ORDER BY timestamp DESC LIMIT 0, ".$nb);
+			
+			echo $db->error();
+			while ($data = $db->fetch_array($rep) )
+			{
+				$vids[] = Video::get($data['id']);
+			}
+			$db->close();
+		}
+		return $vids;
+	}
+	
+	public function getSubscriptions()
+	{
+		$db = new BDD();
+		$subs = array();
+		$sess_subs = $this->session->getSubscriptions();
+		unset($sess_subs[0]);
+		foreach ($sess_subs as $sub)
+		{
+			$subs[] = new User($sub);
+		}
+		return $subs;
 	}
 }
 ?>
