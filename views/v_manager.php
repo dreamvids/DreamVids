@@ -42,8 +42,8 @@
 					</div>
 
 					<br><br>
-				    <button class='btn btn-info' onclick="document.location.href='?page=watch&vid=<?php echo secure($vid->getId() ); ?>'">Regarder</button>
-				    <button class='btn btn-success'>Paramètres</button>
+				    <button class='btn btn-info' onclick="document.location.href='?page=watch&vid=<?php echo $vid->getId(); ?>'">Regarder</button>
+				    <button class='btn btn-success' onclick="document.location.href='?page=videoproperties&vidId=<?php echo $vid->getId(); ?>'">Paramètres</button>
 				    <button class='btn btn-danger'>Supprimer</button>
 					
 				</div>

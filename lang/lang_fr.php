@@ -94,6 +94,8 @@ $lang = array(
 
 'tags' => 'Tags',
 
+'update_vid' => 'Mettre à jour la vidéo',
+
 'dreamvids' => 'DreamVids',
 
 'discover' => 'Découvrir',
@@ -104,6 +106,13 @@ $lang = array(
 
 'infos' => 'Informations',
 
-'error_load_vid' => 'Une erreur est survenue lors du chargement de la vidéo'
+'error_load_vid' => 'Une erreur est survenue lors du chargement de la vidéo',
+
+'public' => 'Public',
+
+'private' => 'Privée',
+
+'non_listed' => 'Non listée'
+
 );
 ?>
