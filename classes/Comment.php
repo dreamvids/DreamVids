@@ -40,7 +40,7 @@ class Comment {
 	private function loadComment($id) {
 		$this->id = $id;
 		$db = new BDD();
-        $result = $db->select("*", "videos_comments", "WHERE id LIKE '%".$this->id."%'") or die(mysql_error());
+        $result = $db->select("*", "videos_comments", "WHERE id='".$db->real_escape_string($this->id)."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
@@ -53,13 +53,13 @@ class Comment {
 
 	private function registerToDB() {
 		$db = new BDD();
-		$res1 = $db->insert("videos_comments", "'".$this->id."', '".$this->authorId."', '".$this->videoId."', '".$db->real_escape_string($this->content)."', '".$db->real_escape_string($this->timestamp)."'");
+		$res1 = $db->insert("videos_comments", "'".$db->real_escape_string($this->id)."', '".$db->real_escape_string($this->authorId)."', '".$db->real_escape_string($this->videoId)."', '".$db->real_escape_string($this->content)."', '".$db->real_escape_string($this->timestamp)."'");
 		$db->close();
 	}
 
 	public function updateDB() {
 		$db = new BDD();
-		$db->update("videos_comments", "user_id='".$this->authorId."', video_id='".$this->videoId."'", "WHERE id='".$this->id."', comment='".$this->content."', timestamp='".$this->timestamp."'");
+		$db->update("videos_comments", "user_id='".$db->real_escape_string($this->authorId)."', video_id='".$db->real_escape_string($this->videoId)."'", "WHERE id='".$db->real_escape_string($this->id)."', comment='".$db->real_escape_string($this->content)."', timestamp='".$db->real_escape_string($this->timestamp)."'");
 		$db->close();
 	}
 
@@ -111,7 +111,7 @@ class Comment {
 		    for ($i = 0; $i < $length; $i++) {
 		        $id .= $chars[rand(0, strlen($chars) - 1)];
 		    }
-			$res0 = $db->select("id", "videos", "WHERE id='".$id."'");
+			$res0 = $db->select("id", "videos_comments", "WHERE id='".$id."'");
 			$rows = $db->num_rows($res0);
 		}
 
@@ -120,7 +120,7 @@ class Comment {
 
 	public static function isCommentIdExisting($id) {
 		$db = new BDD();
-        $result = $db->select("*", "videos_comments", "WHERE id LIKE '%".$id."%'") or die(mysql_error());
+        $result = $db->select("*", "videos_comments", "WHERE id='".$db->real_escape_string($id)."'") or die(mysql_error());
 
         return $db->num_rows($result) != 0;
 	}

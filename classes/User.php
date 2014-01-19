@@ -42,7 +42,7 @@ class User {
         if($this->existing) {
             $db = new BDD();
             $subscriptions = $db->real_escape_string(implode(';', $this->subscriptions) );
-            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', subscribers='$this->subscribers', subscriptions='".$subscriptions."', rank='$this->rank'", "WHERE id='$this->id'");
+            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', subscribers='$this->subscribers', subscriptions='".$subscriptions."', rank='$this->rank'", "WHERE id='".$db->real_escape_string($this->id)."'");
         }
     }
     
@@ -59,7 +59,7 @@ class User {
     public function setPass($newPass) {
     	if ($this->existing) {
     		$db = new BDD();
-    		$db->update("users", "pass='".sha1($db->real_escape_string($newPass) )."'",  "WHERE id='$this->id'");
+    		$db->update("users", "pass='".sha1($db->real_escape_string($newPass) )."'",  "WHERE id='".$db->real_escape_string($this->id)."'");
     	}
     }
 
@@ -134,7 +134,7 @@ class User {
 
     public function getVids() {
         $db = new BDD();
-        $req = $db->select("id", "videos", "WHERE user_id = '".$this->id."'");
+        $req = $db->select("id", "videos", "WHERE user_id = '".$db->real_escape_string($this->id)."'");
         $vids = array();
         while ($data = $db->fetch_array($req) )
         {
