@@ -13,7 +13,7 @@
 
 	<div class='container' style=''>
 <?php
-if ($session->getId() != $member->getId() )
+if (isset($session) && $session->getId() != $member->getId() )
 {
 	if (in_array($member->getId(), $session->getSubscriptions() ) )
 	{
