@@ -44,6 +44,12 @@ $lang = array(
 
 'avatar' => 'Avatar',
 
-'error_no_videos_uploaded' => 'You haven\'t uploaded any video yet !'
+'error_no_videos_uploaded' => 'You haven\'t uploaded any video yet !',
+
+'public' => 'Public',
+
+'private' => 'Private',
+
+'non_listed' => 'Not listed'
 );
 ?>
