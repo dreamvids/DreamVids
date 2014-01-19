@@ -30,7 +30,7 @@ class Video {
 		$instance->dislikes = 0;
 		$instance->timestamp = tps();
 		$instance->visibility = $visibility;
-		$instance->flagged = false;
+		$instance->flagged = 0;
 
 		$instance->createVideo();
 		return $instance;
