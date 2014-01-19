@@ -68,16 +68,17 @@ foreach ($vids as $vid)
 			 	</div>	 -->
 			 	
 			 				
-			 	<div class="col-sm-6 col-md-3">
+			 	<div class="col-md-2">
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
 				      <img data-src="holder.js/171x97" width="171" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
 				    </a>
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
 						<?php echo '<b>'.secure($vid->getTitle() ).'</b>'; ?>
 					</a>
+					<br />
 				    <?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
 				    <?php echo @date('d/m/Y', $vid->getTimestamp() ).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
-				    <br /><br /><br />
+				    <br /><br />
 			 	</div>
 <?php
 }

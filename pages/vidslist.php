@@ -3,7 +3,7 @@ $vidslist = new Vidslist();
 switch (@$_GET['mode'])
 {
 	case 'discover':
-		$vids = $vidslist->getDiscoverVideos(12);
+		$vids = $vidslist->getDiscoverVideos(18);
 		$title = $lang['discover'];
 	break;
 	
@@ -14,7 +14,7 @@ switch (@$_GET['mode'])
 	break;
 	
 	default:
-		$vids = $vidslist->getNewVideos(12);
+		$vids = $vidslist->getNewVideos(18);
 		$title = $lang['news'];
 	break;
 }
