@@ -35,10 +35,10 @@
 					</div>
 
 					<div class="col-md-4">
-					    <p>Titre: <?php echo $vid->getTitle(); ?></p>
-					    <p>Vues: <?php echo $vid->getViews(); ?></p>
-					    <p>+: <?php echo $vid->getLikes(); ?></p>
-					    <p>-: <?php echo $vid->getDislikes(); ?></p>
+					    <p>Titre: <?php echo secure($vid->getTitle() ); ?></p>
+					    <p>Vues: <?php echo secure($vid->getViews() ); ?></p>
+					    <p>+: <?php echo secure($vid->getLikes() ); ?></p>
+					    <p>-: <?php echo secure($vid->getDislikes() ); ?></p>
 					</div>
 
 					<br><br>

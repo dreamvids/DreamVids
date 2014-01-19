@@ -16,8 +16,8 @@ class LoggedUser extends User {
     private function updateDatabaseInfos() {
     	$db = new BDD();
     	$expire = tps() + 15*60;
-		$db->update("users_sessions", "expiration='".$expire."'", "WHERE user_id='".$this->getId()."' AND remember='0'");
-		$db->update("users", "actual_ip='".$_SERVER['REMOTE_ADDR']."'", "WHERE id='".$this->getId()."'");
+		$db->update("users_sessions", "expiration='".$expire."'", "WHERE user_id='".$db->real_escape_string($this->getId() )."' AND remember='0'");
+		$db->update("users", "actual_ip='".$_SERVER['REMOTE_ADDR']."'", "WHERE id='".$db->real_escape_string($this->getId() )."'");
     }
     
     public function getSessionId() {

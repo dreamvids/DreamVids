@@ -23,7 +23,7 @@ class Log
 		$sessid = md5(uniqid() );
 		$expiration = ($remember) ? tps() + 365*86400 : tps() + 15*60;
 		$bdd = new BDD();
-		$data = $bdd->fetch_array($bdd->select("id", "users", "WHERE username='".$username."'") );
+		$data = $bdd->fetch_array($bdd->select("id", "users", "WHERE username='".$bdd->real_escape_string($username)."'") );
 		$bdd->insert("users_sessions", "'".$data['id']."', '".$sessid."', '".$expiration."', '".$remember."'");
 		$bdd->close();
 		setcookie('SESSID', $sessid, $expiration);
