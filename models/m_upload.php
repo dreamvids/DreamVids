@@ -31,7 +31,8 @@ class Upload {
             $video->setDescription($description);
             $video->setTags($tags);
             $video->saveDataToDatabase();
-			header('Location: index.php?page=watch&vid='.$video->getId() );
+			convert(getcwd().'/'.$video->getPath());
+			header('Location: /watch-'.$video->getId() );
 			exit();
 		}
 	}
