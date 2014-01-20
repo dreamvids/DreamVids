@@ -52,6 +52,9 @@ $lang = array(
 
 'non_listed' => 'Not listed',
 
-'no_flagged_videos' => 'There is no videos flagged by users'
+'no_flagged_videos' => 'There is no videos flagged by users',
+
+'video_suspended' => 'This video has been suspended by a moderator'
+
 );
 ?>

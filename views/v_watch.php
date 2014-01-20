@@ -11,6 +11,33 @@
 		<br><br>
 	</div>
 
+	
+	<?php
+	if(isset($session) && Watch::isModerator($session)) {
+	?>
+
+	<div id='moderatingCommands' class='container'>
+		<form method='post' action='' role='form'>
+			<button class='btn btn-warning' name='suspend_vid'>Suspendre</button>
+			<button type='submit' class='btn btn-info' name='send_message_author'>Envoyer un message au créateur</button>
+			<button type='submit' class='btn btn-info' name='send_message_admin'>Envoyer un message à un admin</button>
+			<button type='submit' class='btn btn-danger' name='request_delete_vid'>Demander la suppression</button>
+		</form>
+	</div>
+
+	<br>
+
+	<?php
+	}
+	?>
+
+	<?php
+	if(isset($err)) {
+		echo '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>';
+	}
+	else {
+	?>
+
 	<div class="container" style="">
 		<div id="player">
 			<video autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
@@ -58,6 +85,7 @@ if (isset($session) && $session->getId() != $author->getId() )
 	}
 }
 ?>
+
 		<br /><br />
 		<div class="panel panel-primary" style="width: 56%;">
 			<div class="panel-heading">
@@ -68,6 +96,10 @@ if (isset($session) && $session->getId() != $author->getId() )
 			</div>
 		</div>
 	</div>
+
+	<?php
+	}
+	?>
 </div>
 <!-- video player body-->
 	<script src="dreamplayer/js/player.js"></script>

@@ -13,7 +13,7 @@ class Video {
 	private $likes;
 	private $dislikes;
 	private $timestamp;
-	private $visibility; // 0: private, 1: not visible, 2: public;
+	private $visibility; // 0: private, 1: not visible, 2: public, 3: suspended by a moderator/admin;
 	private $flagged; // the video has been flagged by a user. It will be sent to moderators
 
 	// "constructor" (kind of) for uploading
@@ -152,6 +152,10 @@ class Video {
 	public function isFlagged() {
 		return $this->flagged;
 	}
+
+	public function isSuspended() {
+		return $this->visibility == 3;
+	}
 	
 	public function setTitle($title) {
 		$this->title = $title;
@@ -174,7 +178,7 @@ class Video {
 	}
 	
 	public function setVisibility($visibility) {
-		if (in_array($visibility, array(0, 1, 2) ) )
+		if (in_array($visibility, array(0, 1, 2, 3)))
 			$this->visibility = $visibility;
 	}
 	
