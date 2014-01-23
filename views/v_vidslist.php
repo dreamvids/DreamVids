@@ -78,7 +78,9 @@ foreach ($vids as $vid)
 	}
 ?>
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
-				      <img data-src="holder.js/171x97" width="171" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
+				     <div style="height:90px;width:100%;overflow:hidden">
+				      <img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
+				     </div>
 				    </a>
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
 						<?php echo '<b>'.secure($vid->getTitle() ).'</b>'; ?>

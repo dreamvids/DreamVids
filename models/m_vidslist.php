@@ -5,7 +5,7 @@ class Vidslist
 	
 	public function __construct()
 	{
-		$this->session = $GLOBALS['session'];
+		$this->session = @$GLOBALS['session'];
 	}
 	
 	public function getDiscoverVideos($nb)
