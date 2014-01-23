@@ -14,8 +14,6 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 	<br><br>
 
 	<div class='container' style='width: 80%;'>
-		<img src='img/banner-default.png'>
-
 		<ul class="nav nav-pills">
 		  <li class="active"><a href="index.php?page=member"><?php echo $lang['my_account']; ?></a></li>
 		  <li><a href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a></li>

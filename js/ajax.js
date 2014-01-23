@@ -72,3 +72,31 @@ function unsubscribe(dr_id) {
 	button.innerHTML = button.getAttribute("data-subscribe")+' ('+button.getAttribute("data-subscribers")+')';
 	ajax('index.php?page=ajax&action=unsubscribe&dr_id='+dr_id)
 }
+
+function like(vid) {
+	var like = document.getElementById('like-'+vid);
+	var dislike = document.getElementById('dislike-'+vid);
+	if (dislike.getAttribute('disliked') == 'disliked') {
+		dislike.removeAttribute('disliked');
+		dislike.innerHTML--;
+	}
+	if (like.getAttribute('liked') != 'liked') {
+		like.innerHTML++;
+		like.setAttribute('liked', 'liked');
+		ajax('index.php?page=ajax&action=like&vid='+vid);
+	}
+}
+
+function dislike(vid) {
+	var like = document.getElementById('like-'+vid);
+	var dislike = document.getElementById('dislike-'+vid);
+	if (like.getAttribute('liked') == 'liked') {
+		like.removeAttribute('liked');
+		like.innerHTML--;
+	}
+	if (dislike.getAttribute('disliked') != 'disliked') {
+		dislike.innerHTML++;
+		dislike.setAttribute('disliked', 'disliked');
+		ajax('index.php?page=ajax&action=dislike&vid='+vid);
+	}
+}

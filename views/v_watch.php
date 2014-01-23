@@ -69,7 +69,7 @@
 	
 	<div class="container">
 <?php
-if (isset($session) && $session->getId() != $author->getId() )
+if (isset($session) && $session->getId() == $author->getId() )
 {
 	if (in_array($author->getId(), $session->getSubscriptions() ) )
 	{
@@ -85,7 +85,8 @@ if (isset($session) && $session->getId() != $author->getId() )
 	}
 }
 ?>
-
+		<br /><br />
+		<img src="img/videos/positive.png" onclick="like('<?php echo secure($_GET['vid']); ?>')" width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" onclick="dislike('<?php echo secure($_GET['vid']); ?>')" width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
 		<br /><br />
 		<div class="panel panel-primary" style="width: 56%;">
 			<div class="panel-heading">

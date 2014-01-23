@@ -3,11 +3,11 @@ $ajax = new Ajax();
 switch (@$_GET['action'])
 {
 	case 'like':
-		
+		$ajax->like($_GET['vid']);
 	break;
 	
 	case 'dislike':
-		
+		$ajax->dislike($_GET['vid']);
 	break;
 	
 	case 'like_comment':

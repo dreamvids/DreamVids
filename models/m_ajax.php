@@ -13,18 +13,36 @@ class Ajax
 	public function like($vid_id)
 	{
 		$db = new BDD();
-		$data = $db->num_rows($db->select("user_id", "videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."'") );
+		$data = $db->num_rows($db->select("user_id", "videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."' AND action='like'") );
 		if ($data == 0)
+		{
 			$db->insert("videos_votes", "'.$this->user_id.', 'video', '".$db->real_escape_string($vid_id)."', 'like'");
+			$db->update("videos", "likes=likes+1", "WHERE id='".$db->real_escape_string($vid_id)."'");
+			$data2 = $db->num_rows($db->select("user_id", "videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."' AND action='dislike'") );
+			if ($data2 > 0)
+			{
+				$db->delete("videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."' AND action='dislike'");
+				$db->update("videos", "dislikes=dislikes-1", "WHERE id='".$db->real_escape_string($vid_id)."'");
+			}
+		}
 		$db->close();
 	}
 	
 	public function dislike($vid_id)
 	{
 		$db = new BDD();
-		$data = $db->num_rows($db->select("user_id", "videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."'") );
+		$data = $db->num_rows($db->select("user_id", "videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."' AND action='dislike'") );
 		if ($data == 0)
+		{
 			$db->insert("videos_votes", "'.$this->user_id.', 'video', '".$db->real_escape_string($vid_id)."', 'dislike'");
+			$db->update("videos", "dislikes=dislikes+1", "WHERE id='".$db->real_escape_string($vid_id)."'");
+			$data2 = $db->num_rows($db->select("user_id", "videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."' AND action='like'") );
+			if ($data2 > 0)
+			{
+				$db->delete("videos_votes", "WHERE obj_id='".$db->real_escape_string($vid_id)."' AND type='video' AND user_id='".$db->real_escape_string($this->user_id)."' AND action='like'");
+				$db->update("videos", "likes=likes-1", "WHERE id='".$db->real_escape_string($vid_id)."'");
+			}
+		}
 		$db->close();
 	}
 	

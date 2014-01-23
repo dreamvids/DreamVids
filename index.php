@@ -23,8 +23,15 @@ include 'classes/Video.php';
 include 'includes/tasks.php';
 include $model;
 include $content;
-include 'views/_top.php';
-include $view;
-include 'views/_btm.php';
 
+if (@$_GET['page'] != 'ajax')
+{
+	include 'views/_top.php';
+	include $view;
+	include 'views/_btm.php';
+}
+else
+{
+	include $view;
+}
 ?>

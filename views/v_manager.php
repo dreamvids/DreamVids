@@ -9,9 +9,9 @@
 
 	<div class='container' style='width: 80%;'>
 		<ul class="nav nav-pills">
-		  <li><a href="index.php?page=profile">Mon compte</a></li>
-		  <li class="active"><a href="index.php?page=manager">Mes vidéos</a></li>
-		  <li><a href="#">Messagerie</a></li>
+		  <li><a href="index.php?page=profile"><?php echo $lang['my_account']; ?></a></li>
+		  <li class="active"><a href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a></li>
+		  <li><a href="#"><?php echo $lang['msg']; ?></a></li>
 		</ul>
 
 		<br><br>
