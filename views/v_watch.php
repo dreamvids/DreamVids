@@ -69,7 +69,7 @@
 	
 	<div class="container">
 <?php
-if (isset($session) && $session->getId() == $author->getId() )
+if (isset($session) && $session->getId() != $author->getId() )
 {
 	if (in_array($author->getId(), $session->getSubscriptions() ) )
 	{
