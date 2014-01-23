@@ -8,8 +8,6 @@
 	</div>
 
 	<div class='container' style='width: 80%;'>
-		<img src='img/banner-default.png'>
-
 		<ul class="nav nav-pills">
 		  <li><a href="index.php?page=profile">Mon compte</a></li>
 		  <li class="active"><a href="index.php?page=manager">Mes vidéos</a></li>
