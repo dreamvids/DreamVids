@@ -17,10 +17,10 @@ time = document.getElementById('time');
 function playPause() { // Fonction appelée à chaque play/pause effectué
     if (video.paused) {
         video.play();
-        playPauseElement.style.backgroundImage = "url(img/player/pause.png)";
+        playPauseElement.style.backgroundImage = "url(dreamplayer/dreamplayer/img/player/pause.png)";
     } else {
         video.pause();
-        playPauseElement.style.backgroundImage = "url(img/player/play.png)";
+        playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/play.png)";
     }
 }
 
@@ -39,9 +39,9 @@ video.addEventListener("canplay", function() { // Au chargement de la page, on d
         time.innerHTML = time2str(video.currentTime) + ' / ' + time2str(video.duration);
 
     if (video.paused)
-        playPauseElement.style.backgroundImage = "url(img/player/play.png)";
+        playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/play.png)";
     else
-        playPauseElement.style.backgroundImage = "url(img/player/pause.png)";
+        playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/pause.png)";
 });
 
 bigPlay = document.getElementById('bigPlay');
@@ -153,7 +153,7 @@ fullscreen.addEventListener("click", toogleFullScreen);
 
 function toogleFullScreen() {
     if (!document.webkitFullscreenElement && !document.mozFullscreenElement && !document.fullscreenElement) { // Mettre en plein écran
-        fullscreen.style.backgroundImage = "url(img/player/lowscreen.png)";
+        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/lowscreen.png)";
         if (player.webkitRequestFullScreen)
             player.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         else if (player.mozRequestFullScreen)
@@ -161,7 +161,7 @@ function toogleFullScreen() {
         else if (player.requestFullScreen)
             player.requestFullScreen();
     } else { // Enlever le plein-écran
-        fullscreen.style.backgroundImage = "url(img/player/fullscreen.png)";
+        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
         if (document.webkitExitFullscreen)
             document.webkitExitFullscreen();
         else if (document.mozCancelFullScreen)
@@ -177,15 +177,15 @@ video.addEventListener("dblclick", function() {
 
 player.addEventListener('webkitfullscreenchange', function(event) {
     if (!document.webkitFullscreenElement)
-        fullscreen.style.backgroundImage = "url(img/player/fullscreen.png)";
+        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
 }, false);
 player.addEventListener('mozfullscreenchange', function(event) {
     if (!document.mozFullscreenElemen)
-        fullscreen.style.backgroundImage = "url(img/player/fullscreen.png)";
+        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
 }, false);
 player.addEventListener('fullscreenchange', function(event) {
     if (!document.fullscreenElement)
-        fullscreen.style.backgroundImage = "url(img/player/fullscreen.png)";
+        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
 }, false);
 
 window.addEventListener("orientationchange", function() { // Semi plein-écran en orientation paysage (mobile)
@@ -220,13 +220,13 @@ video.addEventListener("volumechange", function(event) {
     volume.barre.style.width = percent;
     volume.icon.style.left = percent;
     if (video.volume <= 0.05) // Génération de l'image
-        volume.icon.style.backgroundImage = "url(img/player/volume0.png)";
+        volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume0.png)";
     else if (video.volume <= 0.4)
-        volume.icon.style.backgroundImage = "url(img/player/volume1.png)";
+        volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume1.png)";
     else if (video.volume <= 0.6)
-        volume.icon.style.backgroundImage = "url(img/player/volume2.png)";
+        volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume2.png)";
     else if (video.volume >= 0.6)
-        volume.icon.style.backgroundImage = "url(img/player/volume3.png)";
+        volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume3.png)";
 }, false);
 
 mouseDownVolume = false;
