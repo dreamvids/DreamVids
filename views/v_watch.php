@@ -68,32 +68,39 @@
 	<br />
 	
 	<div class="container">
-<?php
-if (isset($session) && $session->getId() != $author->getId() )
-{
-	if (in_array($author->getId(), $session->getSubscriptions() ) )
+	<?php
+	if (isset($session) && $session->getId() != $author->getId() )
 	{
-?>
-<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="unsubscribe(<?php echo secure($author->getId() ); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
-<?php 
+		if (in_array($author->getId(), $session->getSubscriptions() ) )
+		{
+	?>
+	<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="unsubscribe(<?php echo secure($author->getId() ); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
+	<?php 
+		}
+		else
+		{
+	?>
+	<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="subscribe(<?php echo secure($author->getId() ); ?>)">S'abonner (<?php echo secure($author->getSubscribers() ); ?>)</button>
+	<?php 
+		}
 	}
-	else
-	{
-?>
-<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="subscribe(<?php echo secure($author->getId() ); ?>)">S'abonner (<?php echo secure($author->getSubscribers() ); ?>)</button>
-<?php 
-	}
-}
-?>
+	?>
+
+	<?php
+	if(isset($GLOBALS['session'])) {
+		?>
 		<br /><br />
 		<img src="img/videos/positive.png" onclick="like('<?php echo secure($_GET['vid']); ?>')" width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" onclick="dislike('<?php echo secure($_GET['vid']); ?>')" width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
 		<br /><br />
-		<div class="panel panel-primary" style="width: 56%;">
-			<div class="panel-heading">
-				<?php echo $lang['desc']; ?>
-			</div>
-			<div class="panel-body">
-				<?php echo bbcode(secure($desc)); ?>
+		<?php
+	}
+	?>
+	<div class="panel panel-primary" style="width: 56%;">
+		<div class="panel-heading">
+			<?php echo $lang['desc']; ?>
+		</div>
+		<div class="panel-body">
+			<?php echo bbcode(secure($desc)); ?>
 			</div>
 		</div>
 	</div>

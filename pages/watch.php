@@ -14,8 +14,11 @@ if(isset($_GET['vid'])) {
 			$dislikes = $video->getDislikes();
 			$path = $video->getPath();
 			$tumbnail = $video->getTumbnail();
-			$isLiked = (Watch::isLiked($_GET['vid']) ) ? 'liked="liked"' : '';
-			$isDisliked = (Watch::isDisliked($_GET['vid']) ) ? 'disliked="disliked"' : '';
+
+			if(isset($GLOBALS['session'])) {
+				$isLiked = (Watch::isLiked($_GET['vid']) ) ? 'liked="liked"' : '';
+				$isDisliked = (Watch::isDisliked($_GET['vid']) ) ? 'disliked="disliked"' : '';
+			}
 		}
 		else {
 			$err = $lang['video_suspended'];
