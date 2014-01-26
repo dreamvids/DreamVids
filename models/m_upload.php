@@ -40,6 +40,13 @@ class Upload {
 			exit();
 		}
 	}
+	
+	public static function countVideos() {
+		$db = new BDD();
+		$return = $db->select("id", "videos", "WHERE id='".$_SESSION['vid_id']."'");
+		$db->close();
+		return $db->num_rows($return);
+	}
 }
 
 ?>

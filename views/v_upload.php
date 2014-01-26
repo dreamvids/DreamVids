@@ -24,8 +24,9 @@
 				</div>
 			</div>
 			<p id="vid-ok"></p>
+			<button class="btn btn-danger" onclick="abortUpload();return false"><?php echo $lang['abort']; ?></button>
 		</form>
-		
+		<br /><br />
 		<form role="form" method="post" action="">
 			<div class="form-group">
 				<label for="videoTitle"><?php echo $lang['title']; ?></label>
@@ -65,7 +66,8 @@
 
 <script type="text/javascript">
 var fileInput = document.getElementById('videoInput'),
-progress = document.getElementById('progressbar');
+progress = document.getElementById('progressbar'),
+xhr = null;
 
 function updateProgress(percent) {
 	percent = Math.round(percent*10)/10;
@@ -74,21 +76,43 @@ function updateProgress(percent) {
     document.getElementById('vid-ok').innerHTML = '<b>'+percent+' %</b>';
 }
 
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+
+function abortUpload() {
+	xhr.abort();
+	fileInput.removeAttribute('disabled');
+}
+
 fileInput.onchange = function() {
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'index.php?page=upload');
-	xhr.upload.onprogress = function(e) {
-		updateProgress( (e.loaded/e.total)*100);
-	};
-	xhr.onload = function() {
-		updateProgress(100);
-	    document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
-	    document.getElementById('progress-style').className = 'progress progress-striped';
-	    progress.className = 'progress-bar progress-bar-success';
-	    document.getElementById('up-submit').removeAttribute('disabled');
-	};
-	var form = new FormData();
-	form.append('videoInput', fileInput.files[0]);
-	xhr.send(form);
+	var ext = fileInput.value.split('.');
+	ext = ext[ext.length - 1];
+	alert(ext);
+	if (inArray(ext, ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv']) ) {
+		fileInput.setAttribute('disabled', 'disabled');
+		xhr = new XMLHttpRequest();
+		xhr.open('POST', 'index.php?page=upload');
+		xhr.upload.onprogress = function(e) {
+			updateProgress( (e.loaded/e.total)*100);
+		};
+		xhr.onload = function() {
+			updateProgress(100);
+		    document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
+		    document.getElementById('progress-style').className = 'progress progress-striped';
+		    progress.className = 'progress-bar progress-bar-success';
+		    document.getElementById('up-submit').removeAttribute('disabled');
+		};
+		var form = new FormData();
+		form.append('videoInput', fileInput.files[0]);
+		xhr.send(form);
+	}
+	else {
+		alert("<?php echo $lang['error_video_type_incorrect']; ?>");
+	}
 };
 </script>

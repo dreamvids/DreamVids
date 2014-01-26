@@ -14,7 +14,12 @@ if(isset($_POST['submit'])) {
 		if($_POST['videoTitle'] != '') {
 			if($_POST['videoDescription'] != '') {
 				if($_POST['videoTags'] != '') {
-					Upload::addDbInfos();
+					if (Upload::countVideos() == 1) {
+						Upload::addDbInfos();
+					}
+					else {
+						$err = $lang['err_no_vid_db'];
+					}
 				}
 				else {
 					$err = $lang['error_video_tags_empty'];
