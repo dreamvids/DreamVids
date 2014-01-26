@@ -15,7 +15,7 @@ class Vidslist
 		$vids = array();
 		while ($data = $db->fetch_array($rep) )
 		{
-			$req = $db->select("id", "videos", "WHERE user_id='".$data['id']."' ORDER BY timestamp DESC LIMIT 0, 1");
+			$req = $db->select("id", "videos", "WHERE user_id='".$data['id']."' AND visibility=2 ORDER BY timestamp DESC LIMIT 0, 1");
 			if ($db->num_rows($req) > 0)
 			{
 				$vid = $db->fetch_array($req);
@@ -29,7 +29,7 @@ class Vidslist
 	public function getNewVideos($nb)
 	{
 		$db = new BDD();
-		$rep = $db->select("id", "videos", "ORDER BY timestamp DESC LIMIT 0, ".$nb);
+		$rep = $db->select("id", "videos", "WHERE visibility=2 ORDER BY timestamp DESC LIMIT 0, ".$nb);
 		$vids = array();
 		while ($data = $db->fetch_array($rep) )
 		{
@@ -47,7 +47,7 @@ class Vidslist
 		if (@count($sess_subs) >= 1)
 		{
 			$db = new BDD();
-			$rep = $db->select("id", "videos", "WHERE user_id IN (".implode(',', $sess_subs).") ORDER BY timestamp DESC LIMIT 0, ".$nb);
+			$rep = $db->select("id", "videos", "WHERE user_id IN (".implode(',', $sess_subs).") AND visibility=2 ORDER BY timestamp DESC LIMIT 0, ".$nb);
 			
 			echo $db->error();
 			while ($data = $db->fetch_array($rep) )

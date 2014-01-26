@@ -122,7 +122,9 @@ $lang = array(
 
 'no_flagged_videos' => 'Aucune vidéo signalée par un utilisateur',
 
-'video_suspended' => 'Cette vidéo à été suspendue par un modérateur'
+'video_suspended' => 'Cette vidéo à été suspendue par un modérateur',
+
+'video_private' => 'Cette vidéo est privée !'
 
 );
 ?>

@@ -8,16 +8,21 @@ if(isset($_GET['vid'])) {
 
 	if($title) {
 		if(!$video->isSuspended()) {
-			$desc = $video->getDescription();
-			$views = $video->getViews();
-			$likes = $video->getLikes();
-			$dislikes = $video->getDislikes();
-			$path = $video->getPath();
-			$tumbnail = $video->getTumbnail();
-
-			if(isset($GLOBALS['session'])) {
-				$isLiked = (Watch::isLiked($_GET['vid']) ) ? 'liked="liked"' : '';
-				$isDisliked = (Watch::isDisliked($_GET['vid']) ) ? 'disliked="disliked"' : '';
+			if ($video->getVisibility() > 0 || $session->getId() == $video->getUserId() ) {
+				$desc = $video->getDescription();
+				$views = $video->getViews();
+				$likes = $video->getLikes();
+				$dislikes = $video->getDislikes();
+				$path = $video->getPath();
+				$tumbnail = $video->getTumbnail();
+	
+				if(isset($GLOBALS['session'])) {
+					$isLiked = (Watch::isLiked($_GET['vid']) ) ? 'liked="liked"' : '';
+					$isDisliked = (Watch::isDisliked($_GET['vid']) ) ? 'disliked="disliked"' : '';
+				}
+			}
+			else {
+				$err = $lang['video_private'];
 			}
 		}
 		else {

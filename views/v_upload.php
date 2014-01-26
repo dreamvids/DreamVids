@@ -44,7 +44,7 @@
 
 			<div class="form-group">
 				<label for="videoTumbnail"><?php echo $lang['tumbnail']; ?></label>
-				<input type="url" class="form-control" required name="videoTumbnail" id="videoTumbnail" placeholder="http://">
+				<input type="url" class="form-control" name="videoTumbnail" id="videoTumbnail" placeholder="http://">
 			</div>
 			
 			<div class="form-group">
