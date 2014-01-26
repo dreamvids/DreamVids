@@ -21,6 +21,14 @@
 	<body>
 
 	<div id="header">
+<?php
+if (isset($session) )
+{
+?>
+		<div style="float:right;margin:20px"><center><a href="index.php?page=member&name=<?php echo secure($session->getName() ); ?>"><img src="<?php echo secure($session->getAvatarPath() ); ?>" alt="" width="50" /><br /><b style="color:white"><?php echo secure($session->getName() ); ?></b></a></center></div>
+<?php
+}
+?>
 		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
@@ -41,14 +49,13 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<?php if(isset($session)) { ?>
 					<li><a href="index.php?page=upload"><?php echo $lang['up_vid']; ?></a></li>
+					<?php if(isset($session)) { ?>
 					<li><a href="index.php?page=profile"><?php echo $lang['member_space']; ?></a></li>
 					<li><a href="index.php?page=log&out=1"><?php echo $lang['logout']; ?></a></li>
 					<?php } else { ?>
 					<li><a href="index.php?page=log"><?php echo $lang['login']; ?></a></li>
 					<li><a href="index.php?page=reg"><?php echo $lang['register']; ?></a></li>
-					<li><a href="#"><?php echo $lang['infos']; ?></a></li>
 					<?php } ?>
 				</ul>
 			</div>
