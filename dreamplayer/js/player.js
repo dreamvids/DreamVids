@@ -17,7 +17,7 @@ time = document.getElementById('time');
 function playPause() { // Fonction appelée à chaque play/pause effectué
     if (video.paused) {
         video.play();
-        playPauseElement.style.backgroundImage = "url(dreamplayer/dreamplayer/img/player/pause.png)";
+        playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/pause.png)";
     } else {
         video.pause();
         playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/play.png)";
@@ -83,6 +83,9 @@ video.addEventListener("loadedmetadata", function(event) {
 });
 
 function getOffset(object) {
+    if (document.webkitFullscreenElement || document.mozFullscreenElement || document.fullscreenElement) // Bug du fullscreen u_u
+        return object.offsetLeft;
+	
     var x = 0;
     element = object;
     while (element) {
@@ -152,22 +155,24 @@ fullscreen = document.getElementById('fullscreen');
 fullscreen.addEventListener("click", toogleFullScreen);
 
 function toogleFullScreen() {
-    if (!document.webkitFullscreenElement && !document.mozFullscreenElement && !document.fullscreenElement) { // Mettre en plein écran
-        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/lowscreen.png)";
-        if (player.webkitRequestFullScreen)
-            player.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+    if (!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement)) {
+        if (player.requestFullscreen)
+            player.requestFullscreen();
+        else if (player.msRequestFullscreen)
+            player.msRequestFullscreen();
         else if (player.mozRequestFullScreen)
             player.mozRequestFullScreen();
-        else if (player.requestFullScreen)
-            player.requestFullScreen();
-    } else { // Enlever le plein-écran
-        fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
-        if (document.webkitExitFullscreen)
-            document.webkitExitFullscreen();
+        else if (player.webkitRequestFullscreen)
+            player.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    } else {
+        if (document.exitFullscreen)
+            document.exitFullscreen();
+        else if (document.msExitFullscreen)
+            document.msExitFullscreen();
         else if (document.mozCancelFullScreen)
             document.mozCancelFullScreen();
-        else if (document.exitFullscreen)
-            document.exitFullscreen();
+        else if (document.webkitExitFullscreen)
+            document.webkitExitFullscreen();
     }
 }
 
@@ -178,14 +183,20 @@ video.addEventListener("dblclick", function() {
 player.addEventListener('webkitfullscreenchange', function(event) {
     if (!document.webkitFullscreenElement)
         fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
+    else
+    	fullscreen.style.backgroundImage = "url(dreamplayer/img/player/lowscreen.png)";
 }, false);
 player.addEventListener('mozfullscreenchange', function(event) {
     if (!document.mozFullscreenElemen)
         fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
+    else
+    	fullscreen.style.backgroundImage = "url(dreamplayer/img/player/lowscreen.png)";
 }, false);
 player.addEventListener('fullscreenchange', function(event) {
     if (!document.fullscreenElement)
         fullscreen.style.backgroundImage = "url(dreamplayer/img/player/fullscreen.png)";
+    else
+    	fullscreen.style.backgroundImage = "url(dreamplayer/img/player/lowscreen.png)";
 }, false);
 
 window.addEventListener("orientationchange", function() { // Semi plein-écran en orientation paysage (mobile)
