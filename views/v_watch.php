@@ -119,7 +119,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
-	<br /><br />
+	<br />
 	<div class="panel panel-primary" style="width: 56%;">
 		<div class="panel-heading">
 			<?php echo $lang['desc']; ?>
@@ -128,12 +128,58 @@
 			<?php echo bbcode(secure($desc)); ?>
 			</div>
 		</div>
+
+		<br><h2>Commentaires</h2><br>
+		<button class="btn btn-primary" data-toggle="modal" data-target="#postCommentModal">Poster un commentaire</button>
+		<br><br>
+
+		<?php
+		$comms = Watch::getComments($id);
+		foreach ($comms as $comm) {
+			$date = @date('d/m/Y', $comm->getTimestamp());
+			?>
+
+			<div class="panel panel-default" style="width: 30%;">
+				<div class="panel-heading">
+					<h5><?php echo User::getNameById($comm->getAuthorId()); ?> <small><?php echo $date; ?></small></h5>
+				</div>
+				<div class="panel-body">
+					<p><?php echo $comm->getContent(); ?></p>
+				</div>
+			</div>
+
+			<?php
+		}
+		?>
+
+
 	</div>
 
 	<?php
 	}
 	?>
 </div>
+
+<!-- Comment post window -->
+<div class="modal fade" id="postCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Poster un commentaire</h4>
+			</div>
+			<div class="modal-body">
+				<form method="post" action="" role="">
+					<label for="comment">Commentaire</label>
+					<textarea cols="10" rows='10' name="comment" class="form-control"></textarea>
+					<br>
+					<input type='submit' class='btn btn-primary' value="Poster" name="addKeySubmit">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- video player body-->
 	<script src="dreamplayer/js/player.js"></script>
 	<script src="utils/videoinfo.php?vid=<?php echo secure($id); ?>"></script>
