@@ -102,23 +102,10 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="fb-share-button" data-href="http://dremavids.fr/page=watch&vid=<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
-<!-- Placez cette balise où vous souhaitez faire apparaître le gadget Bouton +1. -->
-<div class="g-plusone" data-size="small" data-href="http://dreamvids.fr/page=watch&vid=<?php echo htmlspecialchars($_GET['vid']); ?>"></div>
-
-<!-- Placez cette ballise après la dernière balise Bouton +1. -->
-<script type="text/javascript">
-  window.___gcfg = {lang: 'fr'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
 	<br />
 	<div class="panel panel-primary" style="width: 56%;">
 		<div class="panel-heading">
@@ -130,21 +117,28 @@
 		</div>
 
 		<br><h2>Commentaires</h2><br>
-		<button class="btn btn-primary" data-toggle="modal" data-target="#postCommentModal">Poster un commentaire</button>
+		<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
+			<div class="form-group">
+				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
+			</div>
+			<div class="form-group">
+				<input class="btn btn-primary btn-success" type="submit" value="Envoyer" />
+			</div>
+		</form>
 		<br><br>
-
+		<div id="new_comments"></div>
 		<?php
 		$comms = Watch::getComments($id);
 		foreach ($comms as $comm) {
-			$date = @date('d/m/Y', $comm->getTimestamp());
+			$date = @date('d/m/Y H:i:s', $comm->getTimestamp() );
 			?>
 
-			<div class="panel panel-default" style="width: 30%;">
+			<div class="panel panel-default" style="width: 100%;">
 				<div class="panel-heading">
 					<h5><?php echo User::getNameById($comm->getAuthorId()); ?> <small><?php echo $date; ?></small></h5>
 				</div>
 				<div class="panel-body">
-					<p><?php echo $comm->getContent(); ?></p>
+					<p><?php echo secure($comm->getContent() ); ?></p>
 				</div>
 			</div>
 

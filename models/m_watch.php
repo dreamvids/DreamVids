@@ -27,7 +27,7 @@ class Watch {
 	public static function getComments($vidId) {
 		$comments = array();
 		$db = new BDD();
-		$res = $db->select("*", "videos_comments", "WHERE video_id='".$vidId."'");
+		$res = $db->select("*", "videos_comments", "WHERE video_id='".$vidId."' ORDER BY timestamp DESC");
 
 		$i = 0;
 		while($row = $db->fetch_array($res)) {

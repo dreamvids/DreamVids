@@ -25,5 +25,9 @@ switch (@$_GET['action'])
 	case 'unsubscribe':
 		$ajax->unsubscribe($_GET['dr_id']);
 	break;
+	
+	case 'comment':
+		$ajax->comment($_GET['vid']);
+	break;
 }
 ?>
