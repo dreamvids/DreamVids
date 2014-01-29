@@ -117,14 +117,16 @@
 		</div>
 
 		<br><h2>Commentaires</h2><br>
-		<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
-			<div class="form-group">
-				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
-			</div>
-			<div class="form-group">
-				<input class="btn btn-primary btn-success" type="submit" value="Envoyer" />
-			</div>
-		</form>
+		<?php if(isset($session)) { ?>
+			<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
+				<div class="form-group">
+					<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
+				</div>
+				<div class="form-group">
+					<input class="btn btn-primary btn-success" type="submit" value="Envoyer" />
+				</div>
+			</form>
+		<?php } ?>
 		<br><br>
 		<div id="new_comments"></div>
 		<?php
