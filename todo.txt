@@ -6,3 +6,4 @@
 - Système de commentaires / Comments system
 - Système de J'aime - J'aime pas / I Like - I don't Like system
 - Réécriture des URLs / URL Rewriting
+- Faire en sorte que le logo DreamVids semble aligné avec la barre de navigation (décalage dû au nombre inégal de caractères à gauche et à droite de la barre de recherche) // MrAurelfender

@@ -22,12 +22,13 @@ include 'classes/LoggedUser.php';
 include 'classes/Video.php';
 include 'classes/Comment.php';
 include 'includes/tasks.php';
+include 'includes/search-bar.php';
 include $model;
 include $content;
 
 if (@$_GET['page'] != 'ajax')
 {
-	include 'views/_top.php';
+    include 'views/_top.php';
 	include $view;
 	include 'views/_btm.php';
 }
