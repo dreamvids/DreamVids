@@ -20,7 +20,8 @@
 			</div>
 			<div class="form-group">
 				<label for="vidDescription"><?php echo $lang['desc']; ?></label>
-				<input type="test" required="" placeholder="<?php echo $lang['desc']; ?>" name="vidDescription" value="<?php echo secure($vidDescription); ?>" class="form-control"/>
+				<!--<input type="test" required="" placeholder="<?php echo $lang['desc']; ?>" name="vidDescription" value="<?php echo secure($vidDescription); ?>" class="form-control"/>-->
+				<textarea required="" placeholder="<?php echo $lang['desc']; ?>" name="vidDescription" class="form-control"><?php echo secure($vidDescription); ?></textarea>
 			</div>
 			<div class="form-group">
 				<label for="vidTags"><?php echo $lang['tags']; ?></label>
