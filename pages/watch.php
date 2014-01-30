@@ -20,6 +20,10 @@ if(isset($_GET['vid'])) {
 					$isLiked = (Watch::isLiked($_GET['vid']) ) ? 'liked="liked"' : '';
 					$isDisliked = (Watch::isDisliked($_GET['vid']) ) ? 'disliked="disliked"' : '';
 				}
+
+				if(isset($_POST['submitFlag'])) {
+					Watch::flagVideo($video);
+				}
 			}
 			else {
 				$err = $lang['video_private'];
