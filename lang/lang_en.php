@@ -62,6 +62,14 @@ $lang = array(
 
 'video_suspended' => 'This video has been suspended by a moderator',
 
+'normal_user' => 'DreamVids user',
+
+'moderator' => 'Modérator',
+
+'admin' => 'Administrator',
+
+'no_new_messages' => 'You have no new messages'
+
 'minute' => ' minute',
 
 'hour' => ' hour',

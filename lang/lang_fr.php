@@ -136,6 +136,14 @@ $lang = array(
 
 'unfollow' => 'Se désabonner',
 
+'user' => 'Utilisateur DreamVids',
+
+'moderator' => 'Modérateur',
+
+'admin' => 'Administrateur',
+
+'no_new_messages' => 'Vous n\' avez aucun nouveau message',
+
 'minute' => ' minute',
 
 'hour' => ' heure',

@@ -17,9 +17,20 @@ if (isset($_POST['submit']) )
 				{
 					if (!Profile::emailExist($_POST['email']) || $_POST['email'] == $session->getEmailAddress() )
 					{
+						if(isset($_POST['avatar'])) {
+							print_r($_FILES);
+							$path = 'uploads/avatars/'.$session->getName().'/';
+
+							if(!file_exists($path))
+								mkdir($path);
+
+							echo $_FILES['avatar']['name'];
+							//move_uploaded_file($_FILES['avatar']['tmp_name'], $path);
+
+							//Profile::uploadAvatar($session, $path.'avatar');
+						}
 						$session->setUsername($_POST['username']);
 						$session->setEmailAddress($_POST['email']);
-						$session->setAvatarPath($_POST['avatar']);
 						$session->saveDataToDatabase();
 					}
 					else

@@ -25,10 +25,16 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 	<br><br>
 
 	<div class='container'>
+
 	 <div class="panel panel-primary" > <div class="panel-heading">
               <h3 class="panel-title"><?php echo $lang['edit_user']; ?></h3>
             </div>
-            <div class="panel-body">
+            
+
+	<br><br>
+
+	<div class='container'>
+
 		<form action="" method="post" role="form">
 			<div class="form-group">
 				<label for="email"><?php echo $lang['email_address']; ?></label>
@@ -40,7 +46,12 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 			</div>
 			<div class="form-group">
 				<label for="avatar"><?php echo $lang['avatar']; ?></label>
-				<input type="url" placeholder="<?php echo $lang['avatar']; ?>" name="avatar" value="<?php echo (isset($_POST['avatar']) ) ? secure($_POST['avatar']) : secure($session->getAvatarPath() ); ?>" class="form-control"/>
+
+				<?php if($session->getAvatarPath() != '') { ?>
+					<img src="<?php echo $session->getAvatarPath(); ?>" style="width: 128px; height: 128px;">
+				<?php } ?>
+
+				<input type="file" id="avatar" name="avatar">
 			</div>
 			<input type="submit" name="submit" value="<?php echo $lang['profile_update']; ?>" class='btn btn-primary' />
 		</form>
