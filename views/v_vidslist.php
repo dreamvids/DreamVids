@@ -83,7 +83,12 @@ foreach ($vids as $vid)
 				     </div>
 				    </a>
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
-						<?php echo '<b>'.substr(secure($vid->getTitle() ), 0, 26).'</b>'; ?>
+						<?php 
+						$nbc_title = strlen(secure($vid->getTitle()));
+						echo '<b>'.substr(secure($vid->getTitle() ), 0, 26).''; 
+						if($nbc_title > 26){ echo '...'; }
+						echo '</b>';
+						?>
 					</a>
 					<br />
 				    <?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />

@@ -43,17 +43,23 @@
 		foreach ($videos as $vid) {
 			?>
 				<div class="col-md-2">
-					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
-						<?php echo '<b>'.secure($vid->getTitle() ).'</b>'; ?>
+				   <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
+				     <div style="height:90px;width:100%;overflow:hidden">
+				      <img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
+				     </div>
+				    </a>
+				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
+						<?php 
+						$nbc_title = strlen(secure($vid->getTitle()));
+						echo '<b>'.substr(secure($vid->getTitle() ), 0, 26).''; 
+						if($nbc_title > 26){ echo '...'; }
+						echo '</b>';
+						?>
 					</a>
 					<br />
-					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
-						<div style="height:90px;width:100%;overflow:hidden">
-							<img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
-						</div>
-					</a>					
-					<?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
-					<br />	
+				    <?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
+				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
+				    
 				</div>
 			<?php
 			if (count($videos) > 5) {
