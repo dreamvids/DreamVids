@@ -19,7 +19,22 @@ if (isset($_POST['submit']) )
 					{
 						$session->setUsername($_POST['username']);
 						$session->setEmailAddress($_POST['email']);
-						$session->setAvatarPath($_POST['avatar']);
+						if (isset($_FILES['avatar']) )
+						{
+							if ($_FILES['avatar']['size'] <= 100000)
+							{
+								$name = $_FILES['avatar']['name'];
+								$explode = explode(".", $name);
+								$ext = $explode[count($explode)-1];
+								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+								$avatarPath = Profile::uploadAvatar($session->getUsername() );
+								$session->setAvatarPath($avatarPath);
+							}
+							else
+							{
+								$err = $lang['size_avatar'];		
+							}
+						}
 						$session->saveDataToDatabase();
 					}
 					else

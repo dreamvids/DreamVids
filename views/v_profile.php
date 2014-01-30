@@ -24,7 +24,7 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 	<br><br>
 
 	<div class='container' style="width: 80%;">
-		<form action="" method="post" role="form">
+		<form action="" method="post" role="form" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="email"><?php echo $lang['email_address']; ?></label>
 				<input type="email" required="" placeholder="<?php echo $lang['email_address']; ?>" name="email" value="<?php echo (isset($_POST['email']) ) ? secure($_POST['email']) : secure($session->getEmailAddress() ); ?>" class="form-control"/>
@@ -35,10 +35,9 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 			</div>
 			<div class="form-group">
 				<label for="avatar"><?php echo $lang['avatar']; ?></label>
-				<input type="url" placeholder="<?php echo $lang['avatar']; ?>" name="avatar" value="<?php echo (isset($_POST['avatar']) ) ? secure($_POST['avatar']) : secure($session->getAvatarPath() ); ?>" class="form-control"/>
+				<input type="file" name="avatar" />
 			</div>
 			<input type="submit" name="submit" value="<?php echo $lang['profile_update']; ?>" class='btn btn-primary' />
 		</form>
 	</div>
-
-</duv>
+</div>

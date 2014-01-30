@@ -27,7 +27,7 @@
 			<button class="btn btn-danger" onclick="abortUpload();return false"><?php echo $lang['abort']; ?></button>
 		</form>
 		<br /><br />
-		<form role="form" method="post" action="">
+		<form role="form" method="post" action="" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="videoTitle"><?php echo $lang['title']; ?></label>
 				<input type="text" required class="form-control" name="videoTitle" id="videoTitle" placeholder="<?php echo $lang['title']; ?>">
@@ -45,7 +45,7 @@
 
 			<div class="form-group">
 				<label for="videoTumbnail"><?php echo $lang['tumbnail']; ?></label>
-				<input type="url" class="form-control" name="videoTumbnail" id="videoTumbnail" placeholder="http://">
+				<input type="file" name="videoTumbnail" id="videoTumbnail" />
 			</div>
 			
 			<div class="form-group">
@@ -92,7 +92,6 @@ function abortUpload() {
 fileInput.onchange = function() {
 	var ext = fileInput.value.split('.');
 	ext = ext[ext.length - 1];
-	alert(ext);
 	if (inArray(ext, ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv']) ) {
 		fileInput.setAttribute('disabled', 'disabled');
 		xhr = new XMLHttpRequest();

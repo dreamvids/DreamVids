@@ -15,7 +15,27 @@ if(isset($_POST['submit'])) {
 			if($_POST['videoDescription'] != '') {
 				if($_POST['videoTags'] != '') {
 					if (Upload::countVideos() == 1) {
-						Upload::addDbInfos();
+						if (isset($_FILES['videoTumbnail']) )
+						{	
+							if ($_FILES['videoTumbnail']['size'] <= 1000000)
+							{
+								$name = $_FILES['videoTumbnail']['name'];
+								$explode = explode(".", $name);
+								$ext = $explode[count($explode)-1];
+								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+								$tumbnailPath = Upload::uploadTumbnail($session->getName() );
+							}
+							else
+							{
+								$err = $lang['size_tumbnail'];
+								$tumbnailPath = '';
+							}
+						}
+						else
+						{
+							$tumbnailPath = '';
+						}
+						Upload::addDbInfos($tumbnailPath);
 					}
 					else {
 						$err = $lang['err_no_vid_db'];

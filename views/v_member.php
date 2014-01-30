@@ -41,10 +41,11 @@
 		<?php
 
 		foreach ($videos as $vid) {
+			$titleVid = (strlen($vid->getTitle() ) > 23) ? secure(substr($vid->getTitle(), 0, 20) ).'...' : secure($vid->getTitle() );
 			?>
 				<div class="col-md-2">
 					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
-						<?php echo '<b>'.secure($vid->getTitle() ).'</b>'; ?>
+						<?php echo '<b>'.$titleVid.'</b>'; ?>
 					</a>
 					<br />
 					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">

@@ -144,7 +144,10 @@ $lang = array(
 
 '<min' => ' moins d\'une minute',
 
-'there_as' => 'il y a'
+'there_as' => 'il y a',
 
+'size_avatar' => 'L\'avatar ne doit pas peser plus de 100 Ko.',
+
+'size_tumbnail' => 'La miniature ne doit pas peser plus de 1 Mo.'
 );
 ?>

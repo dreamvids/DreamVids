@@ -21,22 +21,21 @@ class Upload {
 		}
 	}
 	
-	public static function addDbInfos() {
+	public static function addDbInfos($tumbnailPath) {
 		if (isset($_POST['submit']) ) {
 			$title = $_POST['videoTitle'];
             $description = $_POST['videoDescription'];
             $tags = $_POST['videoTags'];
-            $tumbnail = $_POST['videoTumbnail'];
             $visibility = $_POST['videoVisibility'];
             $video = Video::get($_SESSION['vid_id']);
             $video->setTitle($title);
             $video->setDescription($description);
             $video->setTags($tags);
-            $video->setTumbnail($tumbnail);
+            $video->setTumbnail($tumbnailPath);
             $video->setVisibility($visibility);
             $video->saveDataToDatabase();
 			convert(getcwd().'/'.$video->getPath());
-			header('Location: /watch-'.$video->getId() );
+			//header('Location: /watch-'.$video->getId() );
 			exit();
 		}
 	}
@@ -46,6 +45,26 @@ class Upload {
 		$return = $db->select("id", "videos", "WHERE id='".$_SESSION['vid_id']."'");
 		$db->close();
 		return $db->num_rows($return);
+	}
+	
+	public static function uploadTumbnail($username) {
+		if(isset($_FILES['videoTumbnail']) && isset($username)) {
+			$name = $_FILES['videoTumbnail']['name'];
+			$exp = explode('.', $name);
+			$ext = $exp[count($exp)-1];
+			$path = 'uploads/'.$username.'/'.$_SESSION['vid_id'].'.'.$ext;
+
+			if(!file_exists('uploads/')){
+				mkdir('uploads/');
+			}
+			if(!file_exists('uploads/'.$username) ) {
+				mkdir('uploads/'.$username);
+			}
+
+			move_uploaded_file($_FILES['videoTumbnail']['tmp_name'], $path);
+			
+			return $path;
+		}
 	}
 }
 
