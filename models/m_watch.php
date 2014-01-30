@@ -38,6 +38,11 @@ class Watch {
 
 		return $comments;
 	}
+
+	public static function flagVideo($vid) {
+		$vid->setFlagged(1);
+		$vid->saveDataToDatabase();
+	}
 }
 
 ?>

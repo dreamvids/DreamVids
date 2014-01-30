@@ -3,6 +3,7 @@
 require_once('classes/User.php');
 
 class Moderation {
+	
 	public static function getFlaggedVideos() {
 		$flaggedVids = array();
 
