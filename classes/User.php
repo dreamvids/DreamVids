@@ -5,7 +5,7 @@ class User {
     private $id = -1;
     private $name;
     private $mail;
-    private $avatar;
+    private $avatar = '';
     private $subscribers;
     private $subscriptions;
     private $reg_timestamp;
@@ -167,6 +167,26 @@ class User {
         }
 
         return $id;
+    }
+
+    public static function getRankNameByRankId($rankId) {
+        switch ($rankId) {
+            case 0:
+                return 'DreamVids user';
+                break;
+
+            case 1:
+                return 'Moderator';
+                break;
+
+            case 2:
+                return 'Admin';
+                break;
+            
+            default:
+                return 'OVNI';
+                break;
+        }
     }
 }
 

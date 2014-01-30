@@ -54,7 +54,15 @@ $lang = array(
 
 'no_flagged_videos' => 'There is no videos flagged by users',
 
-'video_suspended' => 'This video has been suspended by a moderator'
+'video_suspended' => 'This video has been suspended by a moderator',
+
+'normal_user' => 'DreamVids user',
+
+'moderator' => 'Modérator',
+
+'admin' => 'Administrator',
+
+'no_new_messages' => 'You have no new messages'
 
 );
 ?>

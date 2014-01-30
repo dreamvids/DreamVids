@@ -128,7 +128,15 @@ $lang = array(
 
 'err_no_vid_db' => 'Problème lors de l\'upload; la vidéo ne s\'est pas enregistrée. Si le problème persiste, contactez l\'équipe technique',
 
-'abort' => 'Annuler'
+'abort' => 'Annuler',
+
+'user' => 'Utilisateur DreamVids',
+
+'moderator' => 'Modérateur',
+
+'admin' => 'Administrateur',
+
+'no_new_messages' => 'Vous n\' avez aucun nouveau message'
 
 );
 ?>
