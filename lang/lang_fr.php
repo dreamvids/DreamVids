@@ -130,6 +130,20 @@ $lang = array(
 
 'abort' => 'Annuler',
 
+'follow' => 'S\'abonner',
+
+'followed' => 'Abonné(e)',
+
+'unfollow' => 'Se désabonner',
+
+'user' => 'Utilisateur DreamVids',
+
+'moderator' => 'Modérateur',
+
+'admin' => 'Administrateur',
+
+'no_new_messages' => 'Vous n\' avez aucun nouveau message',
+
 'minute' => ' minute',
 
 'hour' => ' heure',
@@ -148,6 +162,8 @@ $lang = array(
 
 'size_avatar' => 'L\'avatar ne doit pas peser plus de 100 Ko.',
 
-'size_tumbnail' => 'La miniature ne doit pas peser plus de 1 Mo.'
+'size_tumbnail' => 'La miniature ne doit pas peser plus de 1 Mo.',
+
+'edit_user' => 'Modifier les informations de mon compte'
 );
 ?>

@@ -21,6 +21,7 @@ include 'includes/functions.php';
 include 'classes/LoggedUser.php';
 include 'classes/Video.php';
 include 'classes/Comment.php';
+include 'classes/Message.php';
 include 'includes/tasks.php';
 include $model;
 include $content;

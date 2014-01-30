@@ -32,6 +32,12 @@ $lang = array(
 
 'error_log_pass' => 'Incorrect password.',
 
+'follow' => 'Follow',
+
+'followed' => 'Followed',
+
+'unfollow' => 'Unfollow',
+
 'login' => 'Login',
 
 'log_ok' => 'Login successful !',
@@ -56,6 +62,14 @@ $lang = array(
 
 'video_suspended' => 'This video has been suspended by a moderator',
 
+'normal_user' => 'DreamVids user',
+
+'moderator' => 'Modérator',
+
+'admin' => 'Administrator',
+
+'no_new_messages' => 'You have no new messages',
+
 'minute' => ' minute',
 
 'hour' => ' hour',
@@ -70,7 +84,8 @@ $lang = array(
 
 '<min' => ' less than a minute',
 
-'there_as' => 'there as'
+'there_as' => 'there as',
 
+'edit_user' => 'Change my account informations'
 );
 ?>

@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="container" style="width: 80%;">
+	<div class="container">
 		<div class='border-top'></div>
 			<h1><?php echo $session->getName(); ?><small> Mises en ligne</small></h1>
 		<div class='border-bottom'></div>
@@ -7,11 +7,11 @@
 		<br><br>
 	</div>
 
-	<div class='container' style='width: 80%;'>
+	<div class='container'>
 		<ul class="nav nav-pills">
 		  <li><a href="index.php?page=profile"><?php echo $lang['my_account']; ?></a></li>
 		  <li class="active"><a href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a></li>
-		  <li><a href="#"><?php echo $lang['msg']; ?></a></li>
+		  <li><a href="index.php?page=mail"><?php echo $lang['msg']; ?></a></li>
 		</ul>
 
 		<br><br>
@@ -25,7 +25,7 @@
 		{
 		?>
 			<div class="row">
-				<div class="container" style="width: 80%;">
+				<div class="container">
 					<div class="col-md-4">
 						<a href="#" class="thumbnail" style="width: 171px; height:100px;">
 						 <div style="height:90px;width:100%;overflow:hidden">
