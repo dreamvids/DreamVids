@@ -6,7 +6,7 @@ if(isset($_GET['uid']) xor isset($_GET['name'])) {
 	$pseudo = $member->getName();
 	if($pseudo) {
 		if (isset($_GET['all'])) {
-			$videos = Member::getVideosFromUsers($member->getId(),'1');
+			$videos = Member::getVideosFromUsers($member->getId(),'500');
 		}else{
 			$videos = Member::getVideosFromUsers($member->getId());
 		}

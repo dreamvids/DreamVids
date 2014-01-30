@@ -1,21 +1,11 @@
 <?php
 
 ?>
-
-<div class='container'>
-	<div class="container" style=''>
-		<div class='border-top'></div>
-			<h1><?php echo secure($pseudo); ?></h1>
-		<div class='border-bottom'></div>
-
-		<br><br>
-	</div>
-
-	<div class='container' style=''>
-		<h2><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h2>
-		<div class="row">
-
-		<?php
+<link href="css/perso.php?uid=<?php echo secure($member->getId()); ?>" rel="stylesheet" />
+<div class="container" id="user">
+<div class='container' id='content'>
+<div class='container' id="abonement">		
+	<?php
 		if (isset($session) && $session->getId() != $member->getId() )
 		{
 			if (in_array($member->getId(), $session->getSubscriptions() ) )
@@ -31,26 +21,47 @@
 		<?php 
 			}
 		}
+		?>
+</div>
+	<div class="container" id="head">
+		<div id="img">
+			<img src="<?php echo $avatar; ?>" class="picture" height="70" width="70"/> 
+		</div>
+		<div id="pseudo">
+			<div class='border-top'></div>
+				<h1><?php echo secure($pseudo); ?></h1>	
+			<div class='border-bottom'></div>
+		</div>
+	</div>
+
+	<div class='container' style=''>
+		<h2><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h2><br />	
+		<div class="row">
+			
+		<?php
 
 		foreach ($videos as $vid) {
 			?>
 				<div class="col-md-2">
-					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
-						<div style="height:90px;width:100%;overflow:hidden">
-							<img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
-						</div>
-					</a>
 					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
 						<?php echo '<b>'.secure($vid->getTitle() ).'</b>'; ?>
 					</a>
 					<br />
-					<?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
+					<a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
+						<div style="height:90px;width:100%;overflow:hidden">
+							<img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
+						</div>
+					</a>					
 					<?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
 					<br />	
 				</div>
 			<?php
+			if (count($videos) > 5) {
+				echo "<br />";
+			}
 		}
 		?>
 		</div>
 	</div>
+</div>
 </div>
