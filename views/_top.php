@@ -58,6 +58,19 @@ if (isset($session) )
 					<li><a href="index.php?page=reg"><?php echo $lang['register']; ?></a></li>
 					<?php } ?>
 				</ul>
+
+				<div class="search-bar">
+  					<div class="col-lg-10">
+    					<div class="input-group">
+      						<input type="text" class="form-control" placeholder="Rechercher...">
+      						<span class="input-group-btn">
+        					<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+      						</span>
+    					</div>
+  					</div>
+  				</div>
+
+
 			</div>
 		</div>
 	</div>
