@@ -32,6 +32,12 @@ $lang = array(
 
 'error_log_pass' => 'Incorrect password.',
 
+'follow' => 'Follow',
+
+'followed' => 'Followed',
+
+'unfollow' => 'Unfollow',
+
 'login' => 'Login',
 
 'log_ok' => 'Login successful !',
