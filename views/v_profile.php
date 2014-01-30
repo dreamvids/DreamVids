@@ -1,9 +1,9 @@
  <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="index.php?page=member"><?php echo $lang['my_account']; ?></a>
+          <a class="blog-nav-item active" href="index.php?page=profile"><?php echo $lang['my_account']; ?></a>
           <a class="blog-nav-item" href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a>
-          <a class="blog-nav-item" href="#"><?php echo $lang['msg']; ?></a>
+          <a class="blog-nav-item" href="index.php?page=mail"><?php echo $lang['msg']; ?></a>
 
         </nav>
       </div>

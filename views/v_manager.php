@@ -1,18 +1,19 @@
+ <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="index.php?page=profile"><?php echo $lang['my_account']; ?></a>
+          <a class="blog-nav-item active" href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a>
+          <a class="blog-nav-item" href="index.php?page=mail"><?php echo $lang['msg']; ?></a>
+
+        </nav>
+      </div>
+    </div>
+
 <div class="container">
 	<div class="container">
 		<div class='border-top'></div>
 			<h1><?php echo $session->getName(); ?><small> Mises en ligne</small></h1>
 		<div class='border-bottom'></div>
-
-		<br><br>
-	</div>
-
-	<div class='container'>
-		<ul class="nav nav-pills">
-		  <li><a href="index.php?page=profile"><?php echo $lang['my_account']; ?></a></li>
-		  <li class="active"><a href="index.php?page=manager"><?php echo $lang['my_vids']; ?></a></li>
-		  <li><a href="index.php?page=mail"><?php echo $lang['msg']; ?></a></li>
-		</ul>
 
 		<br><br>
 	</div>

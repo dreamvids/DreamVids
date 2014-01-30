@@ -6,7 +6,9 @@ if(!isset($session)) {
 }
 
 if(isset($_GET['recipient'])) {
-	$recipientId = htmlentities(mysql_real_escape_string($_GET['recipient']));
+	$db = new BDD();
+	$recipientId = htmlentities($db->real_escape_string($_GET['recipient']) );
+	$db->close();
 	if($recipientId != '') $recipient = new User($recipientId);
 }
 
