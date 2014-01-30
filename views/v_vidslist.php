@@ -62,7 +62,7 @@ foreach ($vids as $vid)
 		echo '<div class="col-md-2">';
 	}
 	
-	$titleVid = (strlen($vid->getTitle() ) > 23) ? secure(substr($vid->getTitle(), 0, 20) ).'...' : secure($vid->getTitle() );
+	$titleVid = (strlen($vid->getTitle() ) > 18) ? secure(substr($vid->getTitle(), 0, 15) ).'...' : secure($vid->getTitle() );
 ?>
 				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
 				     <div style="height:90px;width:100%;overflow:hidden">

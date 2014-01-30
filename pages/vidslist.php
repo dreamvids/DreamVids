@@ -18,6 +18,11 @@ switch (@$_GET['mode'])
 		$title = $lang['subscriptions'];
 	break;
 	
+	case 'search':
+		$vids = $vidslist->getSearchVideos($_POST['search']);
+		$title = $lang['search'].' - '.secure($_POST['search']);
+	break;
+	
 	default:
 		$vids = $vidslist->getNewVideos(18);
 		$title = $lang['news'];

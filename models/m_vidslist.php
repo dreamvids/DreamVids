@@ -59,6 +59,19 @@ class Vidslist
 		return $vids;
 	}
 	
+	public function getSearchVideos($search)
+	{
+		$vids = array();
+		$db = new BDD();
+		$rep = $db->select("id", "videos", "WHERE title LIKE '%".$db->real_escape_string($search)."%' OR tags LIKE '%".$db->real_escape_string($search)."%'");
+		while ($data = $db->fetch_array($rep) )
+		{
+			$vids[] = Video::get($data['id']);
+		}
+		$db->close();
+		return $vids;
+	}
+	
 	public function getSubscriptions()
 	{
 		$db = new BDD();

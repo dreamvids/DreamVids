@@ -164,6 +164,14 @@ $lang = array(
 
 'size_tumbnail' => 'La miniature ne doit pas peser plus de 1 Mo.',
 
-'edit_user' => 'Modifier les informations de mon compte'
+'edit_user' => 'Modifier les informations de mon compte',
+
+'background' => 'Arrière-Plan de ma chaîne',
+
+'size_background' => 'L\'arrière-plan ne doit pas peser plus de 2 Mo.',
+
+'search' => 'Rechercher',
+
+
 );
 ?>

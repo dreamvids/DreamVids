@@ -8,7 +8,7 @@ body{
   height: 100%;
   line-height:100%;
   text-align:center;
-  background: url('<?php echo getbackgroundFromID($_GET['uid']); ?>') no-repeat center fixed; 
+  background: url('../<?php echo getbackgroundFromID($_GET['uid']); ?>') no-repeat center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

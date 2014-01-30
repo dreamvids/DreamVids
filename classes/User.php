@@ -6,6 +6,7 @@ class User {
     private $name;
     private $mail;
     private $avatar = '';
+    private $background;
     private $subscribers;
     private $subscriptions;
     private $reg_timestamp;
@@ -25,6 +26,7 @@ class User {
             $this->name = $row['username'];
             $this->mail = $row['email'];
             $this->avatar = $row['avatar'];
+            $this->background = $row['background'];
             $this->subscribers = $row['subscribers'];
             $this->subscriptions = explode(';', $row['subscriptions']);
             $this->reg_timestamp = $row['reg_timestamp'];
@@ -42,7 +44,7 @@ class User {
         if($this->existing) {
             $db = new BDD();
             $subscriptions = $db->real_escape_string(implode(';', $this->subscriptions) );
-            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', subscribers='$this->subscribers', subscriptions='".$subscriptions."', rank='$this->rank'", "WHERE id='".$db->real_escape_string($this->id)."'");
+            $db->update("users", "username='".$db->real_escape_string($this->name)."', email='".$db->real_escape_string($this->mail)."', avatar='".$db->real_escape_string($this->avatar)."', background='".$db->real_escape_string($this->background)."', subscribers='$this->subscribers', subscriptions='".$subscriptions."', rank='$this->rank'", "WHERE id='".$db->real_escape_string($this->id)."'");
         }
     }
     
@@ -72,6 +74,12 @@ class User {
     public function setAvatarPath($newAvatar) {
         if($this->existing) {
             $this->avatar = $newAvatar;
+        }
+    }
+
+    public function setBackgroundPath($newBackground) {
+        if($this->existing) {
+            $this->background = $newBackground;
         }
     }
 
@@ -118,6 +126,10 @@ class User {
 
     public function getAvatarPath() {
         return $this->avatar;
+    }
+
+    public function getBackgroundPath() {
+        return $this->background;
     }
 
     public function getSubscribers() {

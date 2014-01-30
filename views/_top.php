@@ -58,6 +58,12 @@ if (isset($session) )
 					<li><a href="index.php?page=reg"><?php echo $lang['register']; ?></a></li>
 					<?php } ?>
 				</ul>
+		<ul class="nav navbar-nav"><li><form class="navbar-form" role="search" method="post" action="?page=vidslist&mode=search">
+        <div class="form-group center-block">
+          <input type="search" name="search" style="border-radius:15px" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
+        </div>
+        <button type="submit" style="border-radius:25px" class="btn btn-default"><b>>></b></button>
+      </form></li></ul>
 			</div>
 		</div>
 	</div>

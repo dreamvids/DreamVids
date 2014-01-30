@@ -19,7 +19,7 @@ if (isset($_POST['submit']) )
 					{
 						$session->setUsername($_POST['username']);
 						$session->setEmailAddress($_POST['email']);
-						if (isset($_FILES['avatar']) )
+						if ($_FILES['avatar']['name'] != '')
 						{
 							if ($_FILES['avatar']['size'] <= 100000)
 							{
@@ -33,6 +33,23 @@ if (isset($_POST['submit']) )
 							else
 							{
 								$err = $lang['size_avatar'];		
+							}
+						}						
+					
+						if ($_FILES['background']['name'] != '')
+						{
+							if ($_FILES['background']['size'] <= 2000000)
+							{
+								$name = $_FILES['background']['name'];
+								$explode = explode(".", $name);
+								$ext = $explode[count($explode)-1];
+								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+								$backgroundPath = Profile::uploadBackground($session->getUsername() );
+								$session->setBackgroundPath($backgroundPath);
+							}
+							else
+							{
+								$err = $lang['size_background'];		
 							}
 						}
 						$session->saveDataToDatabase();

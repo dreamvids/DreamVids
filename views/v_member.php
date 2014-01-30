@@ -41,7 +41,7 @@
 		<?php
 
 		foreach ($videos as $vid) {
-			$titleVid = (strlen($vid->getTitle() ) > 23) ? secure(substr($vid->getTitle(), 0, 20) ).'...' : secure($vid->getTitle() );
+			$titleVid = (strlen($vid->getTitle() ) > 18) ? secure(substr($vid->getTitle(), 0, 15) ).'...' : secure($vid->getTitle() );
 			?>
 				<div class="col-md-2">
 						<?php echo '<b>'.$titleVid.'</b>'; ?>
