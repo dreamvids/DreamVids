@@ -13,7 +13,6 @@ body {
 }
 
 #logo {
-	width: 246px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -63,3 +62,42 @@ h1 {
 	margin-bottom: 3%;
 }
 /** END_UTILITY **/
+
+/* USERBAR */
+.blog-masthead {
+  background-color: #428bca;
+  box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+  margin-bottom:20px;
+}
+
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.blog-nav .active {
+  color: #fff;
+}
+.blog-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  content: " ";
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  border-right:  5px solid transparent;
+  border-left:   5px solid transparent;
+  border-bottom: 5px solid;
+}
+/* END USERBAR */

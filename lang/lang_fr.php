@@ -130,6 +130,12 @@ $lang = array(
 
 'abort' => 'Annuler',
 
+'follow' => 'S\'abonner',
+
+'followed' => 'Abonné(e)',
+
+'unfollow' => 'Se désabonner',
+
 'minute' => ' minute',
 
 'hour' => ' heure',
@@ -144,7 +150,8 @@ $lang = array(
 
 '<min' => ' moins d\'une minute',
 
-'there_as' => 'il y a'
+'there_as' => 'il y a',
 
+'edit_user' => 'Modifier les informations de mon compte'
 );
 ?>

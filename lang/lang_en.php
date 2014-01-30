@@ -70,7 +70,8 @@ $lang = array(
 
 '<min' => ' less than a minute',
 
-'there_as' => 'there as'
+'there_as' => 'there as',
 
+'edit_user' => 'Change my account informations'
 );
 ?>

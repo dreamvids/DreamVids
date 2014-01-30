@@ -29,11 +29,11 @@ if (isset($session) )
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" alt="logo" style="height: 100px;"/></a></div>
+		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
 
-	<div class="navbar navbar-default navbar-static-top" id="navbar">
+	<div class="navbar navbar-default navbar-static-top" id="navbar" <?php if(@$_GET['page'] == 'profile'){ echo 'style="margin-bottom:0px;"'; } ?>>
 		<div class="container">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
 				<span class='icon-bar'></span>
