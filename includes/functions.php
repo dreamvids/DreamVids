@@ -64,4 +64,33 @@ Function Qui_Est_Le_Meilleur_Developper() {
 	}
     return $final;
 }
+
+function relative_time($iTime) {
+require 'lang/lang_fr.php';
+$iTimeDifference = time() - $iTime ;
+if( $iTimeDifference<0 ) { return; }
+$iSeconds       = $iTimeDifference ;
+$iMinutes       = round( $iTimeDifference/60 );
+$iHours         = round( $iTimeDifference/3600 );
+$iDays          = round( $iTimeDifference/86400 );
+$iWeeks         = round( $iTimeDifference/604800 );
+$iMonths        = round( $iTimeDifference/2419200 );
+$iYears         = round( $iTimeDifference/29030400 );
+$return = $lang['there_as'];
+if( $iSeconds<60 ){
+$return .= " ".$lang['<min'];}
+        elseif( $iMinutes<60 ){
+$return .= " ".$iMinutes . $lang['minute'] . ( $iMinutes>1 ? 's' : '' );}
+        elseif( $iHours<24 ){
+$return .= " ".$iHours . $lang['hour'] . ( $iHours>1 ? 's' : '' );}
+        elseif( $iDays<7 ){
+$return .= " ".$iDays . $lang['day'] . ( $iDays>1 ? 's' : '' );}
+        elseif( $iWeeks <4 ){
+$return .= " ".$iWeeks . $lang['week'] . ( $iWeeks>1 ? 's' : '' );}
+        elseif( $iMonths<12 ){
+$return .= " ".$iMonths . $lang['month'] . ( $iMonths>1 ? 's' : '' );}
+        else{
+$return .= " ".$iYears . $lang['year'] . ( $iYears>1 ? 's' : '' );}
+return $return;
+}
 ?>

@@ -5,14 +5,14 @@
 <div class='container'>
 	<div class="container" style=''>
 		<div class='border-top'></div>
-			<h1><?php echo $pseudo; ?></h1>
+			<h1><?php echo secure($pseudo); ?></h1>
 		<div class='border-bottom'></div>
 
 		<br><br>
 	</div>
 
 	<div class='container' style=''>
-		<h2>Videos</h2>
+		<h2><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h2>
 		<div class="row">
 
 		<?php
@@ -32,8 +32,6 @@
 			}
 		}
 
-		$videos = Member::getVideosFromUsers($member->getId());
-
 		foreach ($videos as $vid) {
 			?>
 				<div class="col-md-2">
@@ -47,7 +45,7 @@
 					</a>
 					<br />
 					<?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
-					<?php echo @date('d/m/Y', $vid->getTimestamp() ).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
+					<?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
 					<br />	
 				</div>
 			<?php

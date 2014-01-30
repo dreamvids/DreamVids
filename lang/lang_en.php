@@ -54,7 +54,23 @@ $lang = array(
 
 'no_flagged_videos' => 'There is no videos flagged by users',
 
-'video_suspended' => 'This video has been suspended by a moderator'
+'video_suspended' => 'This video has been suspended by a moderator',
+
+'minute' => ' minute',
+
+'hour' => ' hour',
+
+'day' => ' day',
+
+'week' => ' week',
+
+'month' => ' month',
+
+'year' => ' year',
+
+'<min' => ' less than a minute',
+
+'there_as' => 'there as'
 
 );
 ?>
