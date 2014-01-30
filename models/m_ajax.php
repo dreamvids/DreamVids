@@ -87,5 +87,12 @@ class Ajax
 			$dreamer->saveDataToDatabase();
 		}
 	}
+	
+	public function comment($vid)
+	{
+		$user_id = User::getIdByName(urldecode($_POST['username']) );
+		$comment = urldecode($_POST['comment']);
+		Comment::create($comment, $user_id, $_GET['vid'], tps() );
+	}
 }
 ?>

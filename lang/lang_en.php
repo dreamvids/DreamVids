@@ -64,5 +64,21 @@ $lang = array(
 
 'no_new_messages' => 'You have no new messages'
 
+'minute' => ' minute',
+
+'hour' => ' hour',
+
+'day' => ' day',
+
+'week' => ' week',
+
+'month' => ' month',
+
+'year' => ' year',
+
+'<min' => ' less than a minute',
+
+'there_as' => 'there as'
+
 );
 ?>

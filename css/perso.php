@@ -1,0 +1,63 @@
+<?php
+header('content-type: text/css');
+require('../includes/bdd.class.php');
+if (isset($_GET['uid'])) {
+	?>
+body{
+  padding:0;
+  height: 100%;
+  line-height:100%;
+  text-align:center;
+  background: url('<?php echo getbackgroundFromID($_GET['uid']); ?>') no-repeat center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#content{
+  width:75%;
+  border:1px solid #fff;
+  vertical-align:middle;
+  display:inline-block;
+  line-height:1.2;
+  text-align:left;
+  height: 100%;
+  padding-top:10px;
+  padding-bottom:20px;
+  background-color: white;
+  opacity:0.8;
+  filter:alpha(opacity=80);
+}
+#abonement{
+ padding-bottom:10px;
+}
+#head{
+  display:block;
+}
+#img{
+padding-right: 20px;
+display:inline-block;
+width:80px;
+height:80px;
+float:left;
+}
+#pseudo{
+  display:inline-block;
+  width:300px;
+  float:left;
+}
+	<?php
+/*include('style.css');
+include('bootstrap.min.css');*/
+}
+function getbackgroundFromID($userId) {
+	$db = new BDD();
+	$res = $db->select('*', 'users',  'WHERE id='.$userId.'');
+	$out = '';
+	while($row = $db->fetch_array($res)) {
+		$out = $row['background'];
+	}
+	return $out;
+}
+
+?>

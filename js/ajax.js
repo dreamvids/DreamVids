@@ -28,7 +28,7 @@ function loadAjax() {
 	return xhr;
 }
 
-function ajax(url) {
+function ajax(url, post) {
     var xhr = loadAjax();
     xhr.onreadystatechange = function()
     {
@@ -37,8 +37,15 @@ function ajax(url) {
         	
         }
     };
-    xhr.open("GET", url, true);
-    xhr.send(null);
+    if (typeof post == 'undefined') {
+	    xhr.open("GET", url, true);
+	    xhr.send(null);
+    }
+    else {
+    	xhr.open("POST", url, true);
+    	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    	xhr.send(post);
+    }
 }
 
 function subscribe(dr_id) {
@@ -99,4 +106,20 @@ function dislike(vid) {
 		dislike.setAttribute('disliked', 'disliked');
 		ajax('index.php?page=ajax&action=dislike&vid='+vid);
 	}
+}
+
+function comment(vid, username, comment) {
+	var newCom = document.getElementById('new_comments');
+	newCom.innerHTML = getCommentHTML(username, comment) + newCom.innerHTML;
+	document.getElementById('text_comment').value = '';
+	ajax('index.php?page=ajax&action=comment&vid='+vid, 'username='+encodeURIComponent(username)+'&comment='+encodeURIComponent(comment) );
+}
+
+function getCommentHTML(username, comment) {
+	var date = new Date();
+	return '<div class="panel panel-default" style="width: 100%;"><div class="panel-heading"><h5>'+username+' <small>'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</small></h5></div><div class="panel-body"><p>'+noHTML(comment)+'</p></div></div>';
+}
+
+function noHTML(str) {
+	return str.replace('<', '&lt;').replace('>', '&gt;');
 }
