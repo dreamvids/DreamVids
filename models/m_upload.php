@@ -35,7 +35,7 @@ class Upload {
             $video->setVisibility($visibility);
             $video->saveDataToDatabase();
 			convert(getcwd().'/'.$video->getPath());
-			//header('Location: /watch-'.$video->getId() );
+			header('Location: /watch-'.$video->getId() );
 			exit();
 		}
 	}
