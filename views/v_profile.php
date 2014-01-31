@@ -61,7 +61,7 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 				<span>ou</span><br>
 			<div class="form-group">
 				<label for="BackGround"><?php echo $lang['background']; ?></label>
-				<input type="text" required="" placeholder="http://" name="BackGround" value="" class="form-control"/>
+				<input type="text" placeholder="http://" name="BackGround" value="" class="form-control"/>
 			</div>
 			<br /><br />
 			<input type="submit" name="submit" value="<?php echo $lang['profile_update']; ?>" class='btn btn-primary' />
