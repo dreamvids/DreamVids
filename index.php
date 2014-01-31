@@ -40,4 +40,9 @@ if (isset($session) || @$_GET['page'] == 'log')
 		include $view;
 	}
 }
+else
+{
+	header('location:http://dreamvids.fr/');
+	exit();
+}
 ?>
