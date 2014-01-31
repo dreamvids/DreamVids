@@ -35,12 +35,12 @@
 
 			<div class="form-group">
 				<label for="videoDescription"><?php echo $lang['desc']; ?></label>
-				<textarea rows="4" cols="50" required class="form-control" name="videoDescription" id="videoDescription" placeholder="<?php echo $lang['desc']; ?>"></textarea>
+				<textarea rows="4" cols="50" class="form-control" name="videoDescription" id="videoDescription" placeholder="<?php echo $lang['desc']; ?>"></textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="videoTags"><?php echo $lang['tags']; ?></label>
-				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="<?php echo $lang['tags']; ?>">
+				<input type="text" class="form-control" name="videoTags" id="videoTags" placeholder="<?php echo $lang['tags']; ?>">
 			</div>
 
 			<div class="form-group">
