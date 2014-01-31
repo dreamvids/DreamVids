@@ -67,7 +67,7 @@ foreach ($vids as $vid)
 ?>
 
             <div class="thumbnail featuredbox">
-              <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>"  style="width: 171px; height:100px;"><img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
+              <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
               <div class="hotfeaturedtext">
                 <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
                 <p><?php echo $descVid; ?></p>
