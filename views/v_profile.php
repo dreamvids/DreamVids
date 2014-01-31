@@ -51,20 +51,18 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 
 				<input type="file" id="avatar" name="avatar" />
 			</div>
+			<br /><br />
 			<div class="form-group">
 				<label for="background"><?php echo $lang['background']; ?></label>
 				<?php if($session->getBackgroundPath() != '') { ?>
 					<img src="<?php echo $session->getBackgroundPath(); ?>" style="width: 150px;">
 				<?php } ?>
 				
-				<input type="file" id="background" name="background" /><br>
-				<span>ou</span><br>
-			<div class="form-group">
-				<label for="BackGround"><?php echo $lang['background']; ?></label>
-				<input type="text" placeholder="http://" name="BackGround" value="" class="form-control"/>
+				<input type="file" id="background" name="background" />
 			</div>
 			<br /><br />
 			<input type="submit" name="submit" value="<?php echo $lang['profile_update']; ?>" class='btn btn-primary' />
+			<br /><br />
 		</form>
 		</div></div>
 	</div>

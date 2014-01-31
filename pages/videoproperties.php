@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($session) | !isset($_GET['vidId'])) {
+if(!isset($session) || !isset($_GET['vidId']) ) {
 	header('Location: ./');
 	exit();
 }

@@ -15,7 +15,7 @@ if(isset($_POST['submit'])) {
 			if($_POST['videoDescription'] != '') {
 				if($_POST['videoTags'] != '') {
 					if (Upload::countVideos() == 1) {
-						if (isset($_FILES['videoTumbnail']) )
+						if ($_FILES['videoTumbnail']['name'] != '')
 						{	
 							if ($_FILES['videoTumbnail']['size'] <= 1000000)
 							{

@@ -69,6 +69,19 @@ var fileInput = document.getElementById('videoInput'),
 progress = document.getElementById('progressbar'),
 xhr = null;
 
+<?php
+if (isset($_POST['submit']) )
+{
+?>
+updateProgress(100);
+document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
+document.getElementById('progress-style').className = 'progress progress-striped';
+progress.className = 'progress-bar progress-bar-success';
+document.getElementById('up-submit').removeAttribute('disabled');
+<?php
+}
+?>
+
 function updateProgress(percent) {
 	percent = Math.round(percent*10)/10;
     progress.style.width = percent+'%';

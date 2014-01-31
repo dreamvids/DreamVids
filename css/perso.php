@@ -64,26 +64,15 @@ float:left;
 #foot{
   display: none;
 }
-	<?php
-/*include('style.css');
-include('bootstrap.min.css');*/
+<?php
 }
 function getbackgroundFromID($userId) {
 	$db = new BDD();
-	$res = $db->select('*', 'users',  'WHERE id='.$userId.'');
+	$res = $db->select('background', 'users',  'WHERE id='.$userId.'');
 	$tmp = '';
-	while($row = $db->fetch_array($res)) {
-		$tmp = $row['background'];
-	}
-  $out = '';
-  if (startswith($tmp, "http://") or startswith($tmp, "https://")) {
-    $out = $tmp;
-  }else{
-    $out = "../".$tmp;
-  }
+	$row = $db->fetch_array($res);
+	$tmp = $row['background'];
+ 	$out = "../".$tmp;
 	return $out;  
-}
-function startswith($hay, $needle) {
-  return substr($hay, 0, strlen($needle)) === $needle;
 }
 ?>
