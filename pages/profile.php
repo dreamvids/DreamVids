@@ -35,21 +35,28 @@ if (isset($_POST['submit']) )
 								$err = $lang['size_avatar'];		
 							}
 						}						
-					
-						if ($_FILES['background']['name'] != '')
-						{
-							if ($_FILES['background']['size'] <= 2000000)
-							{
-								$name = $_FILES['background']['name'];
-								$explode = explode(".", $name);
-								$ext = $explode[count($explode)-1];
-								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								$backgroundPath = Profile::uploadBackground($session->getUsername() );
-								$session->setBackgroundPath($backgroundPath);
+						if(isset($_POST['BackGround'])){
+							if (startswith($_POST['BackGround'], "http://") or startswith($_POST['BackGround'], "https://")) {
+								$session->setBackgroundPath($_POST['BackGround']);
 							}
-							else
+						}
+						else
+						{
+							if ($_FILES['background']['name'] != '')
 							{
-								$err = $lang['size_background'];		
+								if ($_FILES['background']['size'] <= 2000000)
+								{
+									$name = $_FILES['background']['name'];
+									$explode = explode(".", $name);
+									$ext = $explode[count($explode)-1];
+									$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+									$backgroundPath = Profile::uploadBackground($session->getUsername() );
+									$session->setBackgroundPath($backgroundPath);
+								}
+								else
+								{
+									$err = $lang['size_background'];		
+								}
 							}
 						}
 						$session->saveDataToDatabase();
@@ -82,5 +89,8 @@ if (isset($_POST['submit']) )
 	{
 		$err = $lang['error_reg_empty'];
 	}
+}
+function startswith($hay, $needle) {
+  return substr($hay, 0, strlen($needle)) === $needle;
 }
 ?>

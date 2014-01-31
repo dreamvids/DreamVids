@@ -1,5 +1,6 @@
+	<div id="foot">	
 		<div class="container separator" style="width: 80%;"></div>
-		<h4 style="color:grey;margin-top:40px;margin-bottom:40px;text-align:center">
+		<h4 style="color:grey;margin-top:40px;margin-bottom:40px;text-align:center;">
 			Librement réalisé par:
 			<a href="http://twitter.com/BokoratMC">Bokorat</a>, 
 			<a href="http://twitter.com/JouetR">BrezhDev</a>, 
@@ -13,5 +14,6 @@
 			<a href="http://twitter.com/VincentBanana">Vincent Banana</a> 
 			et <a href="http://skype.com/">La bonne humeur</a> !
 		</h4>
+	</div>
 	</body>
 </html>

@@ -8,7 +8,7 @@ body{
   height: 100%;
   line-height:100%;
   text-align:center;
-  background: url('../<?php echo getbackgroundFromID($_GET['uid']); ?>') no-repeat center fixed; 
+  background: url('<?php echo getbackgroundFromID($_GET['uid']); ?>') no-repeat center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -46,6 +46,24 @@ float:left;
   width:300px;
   float:left;
 }
+/*
+#foot{
+  position: absolute;
+  bottom: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: left;
+}
+#foot h4{
+    background-color: white;
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+*/
+#foot{
+  display: none;
+}
 	<?php
 /*include('style.css');
 include('bootstrap.min.css');*/
@@ -53,11 +71,19 @@ include('bootstrap.min.css');*/
 function getbackgroundFromID($userId) {
 	$db = new BDD();
 	$res = $db->select('*', 'users',  'WHERE id='.$userId.'');
-	$out = '';
+	$tmp = '';
 	while($row = $db->fetch_array($res)) {
-		$out = $row['background'];
+		$tmp = $row['background'];
 	}
-	return $out;
+  $out = '';
+  if (startswith($tmp, "http://") or startswith($tmp, "https://")) {
+    $out = $tmp;
+  }else{
+    $out = "../".$tmp;
+  }
+	return $out;  
 }
-
+function startswith($hay, $needle) {
+  return substr($hay, 0, strlen($needle)) === $needle;
+}
 ?>
