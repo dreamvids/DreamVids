@@ -42,7 +42,7 @@ if (isset($session) || @$_GET['page'] == 'log')
 }
 else
 {
-	header('location:http://dreamvids.fr/');
+	header('location:http://beta.dreamvids.fr/?page=log');
 	exit();
 }
 ?>
