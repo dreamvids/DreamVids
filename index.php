@@ -23,17 +23,21 @@ include 'classes/Video.php';
 include 'classes/Comment.php';
 include 'classes/Message.php';
 include 'includes/tasks.php';
-include $model;
-include $content;
 
-if (@$_GET['page'] != 'ajax')
+if (isset($session) || @$_GET['page'] == 'log')
 {
-	include 'views/_top.php';
-	include $view;
-	include 'views/_btm.php';
-}
-else
-{
-	include $view;
+	include $model;
+	include $content;
+	
+	if (@$_GET['page'] != 'ajax')
+	{
+		include 'views/_top.php';
+		include $view;
+		include 'views/_btm.php';
+	}
+	else
+	{
+		include $view;
+	}
 }
 ?>
