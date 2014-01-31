@@ -41,6 +41,7 @@
 			<div class="form-group">
 				<label for="videoTags"><?php echo $lang['tags']; ?></label>
 				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="<?php echo $lang['tags']; ?>">
+				<div class="alert alert-info">Les tags doivent être séparés par une virgule</div>
 			</div>
 
 			<div class="form-group">
@@ -59,6 +60,7 @@
 
 			<br>
 
+			<div class="alert alert-info">Vous pouvez valider le formulaire une fois la mise en ligne terminée</div>
 			<input type="submit" id="up-submit" disabled="disabled" class="btn btn-primary" name="submit">
 		</form>
 	</div>

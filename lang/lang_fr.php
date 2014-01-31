@@ -156,7 +156,7 @@ $lang = array(
 
 'year' => ' an',
 
-'<min' => ' moins d\'une minute',
+'<min' => ' 1 minute',
 
 'there_as' => 'il y a',
 
