@@ -62,21 +62,26 @@ foreach ($vids as $vid)
 		echo '<div class="col-md-2">';
 	}
 	
-	$titleVid = (strlen($vid->getTitle() ) > 18) ? secure(substr($vid->getTitle(), 0, 15) ).'...' : secure($vid->getTitle() );
+	$titleVid = (strlen($vid->getTitle() ) > 29) ? secure(substr($vid->getTitle(), 0, 26) ).'...' : secure($vid->getTitle() );
+	$descVid = (strlen($vid->getDescription() ) > 35) ? secure(substr($vid->getDescription(), 0, 32) ).'...' : secure($vid->getDescription() );
 ?>
-				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
-				     <div style="height:90px;width:100%;overflow:hidden">
-				      <img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
-				     </div>
-				    </a>
-				    <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>">
-						<?php echo '<b>'.$titleVid.'</b>'; ?>
-					</a>
-					<br />
-				    <?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
-				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
-				    <br /><br /><br /><br />
+
+            <div class="thumbnail featuredbox">
+              <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>"  style="width: 171px; height:100px;"><img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
+              <div class="hotfeaturedtext">
+                <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
+                <p><?php echo $descVid; ?></p>
+              </div> <!--/featuredtext-->
+              <div class="hotfeaturedbutton"> 
+                <hr>
+               <span><?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
+				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
+              </div>
+            </div>			  
+
+				   
 			 	</div>
+
 <?php
 }
 

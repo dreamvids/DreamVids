@@ -110,3 +110,43 @@ h1 {
   padding-bottom: 8px;
 }
 /* END USERBAR */
+
+.featuredbox {
+  height: 224px;
+  background: #ffffff;
+  border: solid 1px #cbcbcb;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  padding: 2px 2px 5px 2px;
+}
+.hotfeaturedtext {
+  text-align: left;
+  height: 70px;
+  margin: 8px 6px 5px 6px;
+  font-size: 13px;
+  line-height: 17px;
+  color: #666666;
+}
+.hotfeaturedtext strong {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.hotfeaturedtext hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid #d9d9d9;
+}
+.hotfeaturedbutton {
+  text-align: left;
+  margin: 0 6px;
+  font-size: 13px;
+}
+.hotfeaturedbutton hr {
+  margin: 5px 0;
+  border: 0;
+  border-top: 1px solid #d9d9d9;
+}
