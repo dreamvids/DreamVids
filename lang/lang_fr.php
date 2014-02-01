@@ -86,7 +86,7 @@ $lang = array(
 
 'vid' => 'Vidéo',
 
-'up_vid' => 'Mettre en ligne une vidéo',
+'up_vid' => 'Ajouter une vidéo',
 
 'complete' => 'Complété',
 
