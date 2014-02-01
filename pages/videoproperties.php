@@ -17,7 +17,6 @@ if($video->getUserId() == $session->getId())
 	$vidVisibility = $video->getVisibility();
 	
 	if(isset($_POST['submit'])) {
-		echo 'lol: thumb';
 		$newVidTitle = mysql_real_escape_string($_POST['vidTitle']);
 		$newVidDesc = mysql_real_escape_string($_POST['vidDescription']);
 		$newVidTagsStr = mysql_real_escape_string($_POST['vidTags']);
@@ -54,7 +53,7 @@ if($video->getUserId() == $session->getId())
 	
 		$video->saveDataToDatabase();
 	
-		//header('Location: ./?page=manager');
+		header('Location: ./?page=manager');
 		exit();
 	}
 }
