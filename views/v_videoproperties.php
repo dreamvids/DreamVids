@@ -28,6 +28,11 @@
 				<input type="test" required="" placeholder="<?php echo $lang['tags']; ?>" name="vidTags" value="<?php echo secure($vidTagsStr); ?>" class="form-control"/>
 			</div>
 
+			<div class="form-group">
+				<label for="videoTumbnail"><?php echo $lang['tumbnail']; ?></label>
+				<input type="file" name="videoTumbnail" id="videoTumbnail" />
+			</div>
+
 			<label for='visibility'>Visibilité de la video: </label>
 			
 			<div class="btn-group" data-toggle="buttons">
