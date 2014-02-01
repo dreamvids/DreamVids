@@ -164,26 +164,6 @@
 	?>
 </div>
 
-<!-- Comment post window -->
-<div class="modal fade" id="postCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Poster un commentaire</h4>
-			</div>
-			<div class="modal-body">
-				<form method="post" action="" role="">
-					<label for="comment">Commentaire</label>
-					<textarea cols="10" rows='10' name="comment" class="form-control"></textarea>
-					<br>
-					<input type='submit' class='btn btn-primary' value="Poster" name="addKeySubmit">
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-
 <!-- video player body-->
 	<script src="dreamplayer/js/player.js"></script>
 	<script src="utils/videoinfo.php?vid=<?php echo secure($id); ?>"></script>

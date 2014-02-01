@@ -90,7 +90,7 @@ class Ajax
 	
 	public function comment($vid)
 	{
-		$user_id = User::getIdByName(urldecode($_POST['username']) );
+		$user_id = $this->session->getId();
 		$comment = urldecode($_POST['comment']);
 		Comment::create($comment, $user_id, $_GET['vid'], tps() );
 	}

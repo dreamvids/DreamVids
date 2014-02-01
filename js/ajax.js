@@ -112,7 +112,7 @@ function comment(vid, username, comment) {
 	var newCom = document.getElementById('new_comments');
 	newCom.innerHTML = getCommentHTML(username, comment) + newCom.innerHTML;
 	document.getElementById('text_comment').value = '';
-	ajax('index.php?page=ajax&action=comment&vid='+vid, 'username='+encodeURIComponent(username)+'&comment='+encodeURIComponent(comment) );
+	ajax('index.php?page=ajax&action=comment&vid='+vid, 'comment='+encodeURIComponent(comment) );
 }
 
 function getCommentHTML(username, comment) {
