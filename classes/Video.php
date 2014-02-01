@@ -84,7 +84,6 @@ class Video {
 		$db = new BDD();
 		$tagsStr = implode(' ', $this->tags);
 		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility.", flagged=".$this->flagged, "WHERE id='".$db->real_escape_string($this->id)."'");
-		$db->close();
 	}
 
 	// generates a random string
