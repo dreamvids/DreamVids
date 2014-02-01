@@ -43,7 +43,8 @@
 					</div>
 
 					<br><br>
-				    <button class='btn btn-info' onclick="document.location.href='?page=watch&vid=<?php echo $vid->getId(); ?>'">Regarder</button>
+					
+				    <a href="./?page=watch&vid=<?php echo $vid->getId(); ?>" class="btn btn-info">Regarder</a>
 				    <a href="./?page=videoproperties&vidId=<?php echo $vid->getId(); ?>" class="btn btn-success">Paramètres</a>
 				    <button class='btn btn-danger'>Supprimer</button>
 					
