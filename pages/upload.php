@@ -23,7 +23,10 @@ if(isset($_POST['submit'])) {
 								$explode = explode(".", $name);
 								$ext = $explode[count($explode)-1];
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								$tumbnailPath = Upload::uploadTumbnail($session->getName() );
+								if (in_array($ext, $acceptedExts) )
+								{
+									$tumbnailPath = Upload::uploadTumbnail($session->getName() );
+								}
 							}
 							else
 							{
