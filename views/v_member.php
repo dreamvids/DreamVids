@@ -29,7 +29,7 @@
 		</div>
 		<div id="pseudo">
 			<div class='border-top'></div>
-				<h1><?php echo secure($pseudo); ?> <small><span class="badge"><?php echo secure($member->getSubscribers() ); ?> Abonnés</span></small></h1>	
+				<h1><?php echo secure($pseudo); ?> <small><span class="badge"><a style="text-decoration: none; color: #fff;" href="./?page=subscribers&uid=<?php echo $member->getId(); ?>"><?php echo secure($member->getSubscribers() ); ?> Abonnés</a></span></small></h1>	
 			<div class='border-bottom'></div>
 		</div>
 	</div>
