@@ -1,8 +1,21 @@
-- Espace membre simple / Simple member area
-- Visualisation des vidéos / Viewing videos
-- Design (responsive !)
-- Upload des vidéos / Videos upload
-- Conversion des vidéos upload en mp4 et en webm
-- Système de commentaires / Comments system
-- Système de J'aime - J'aime pas / I Like - I don't Like system
-- Réécriture des URLs / URL Rewriting
+﻿- StopPropagation() du keydown() dans le textarea des commentaires
+
+- Format des pseudos "#[a-zA-Z0-9\-_]{1-40}#"
+
+- Requête "Découvrir"
+
+- Failles XSS
+
+- Panneau de modération
+
+- Garder le volume sonore/qualité en mémoire
+
+- Compteur de vues
+
+- Améliorer les chaines
+
+- N'afficher les vidéos que lorsqu'elles sont converties / Afficher en message "convertion en cours"
+
+- Changement de mot de passe
+
+- Régler la XSS dans le titre des vidéos
