@@ -24,25 +24,43 @@ include 'classes/Comment.php';
 include 'classes/Message.php';
 include 'includes/tasks.php';
 
-if (isset($session) || @$_GET['page'] == 'log')
+if ($config['maintenance'] == '1' || $session->getRank() == $config['rank_adm'])
 {
-	include $model;
-	include $content;
-	
-	if (@$_GET['page'] != 'ajax')
+	if (isset($session) || @$_GET['page'] == 'log')
 	{
-		include 'views/_top.php';
-		include $view;
-		include 'views/_btm.php';
+		include $model;
+		include $content;
+		
+		if (@$_GET['page'] != 'ajax')
+		{
+			include 'views/_top.php';
+			include $view;
+			include 'views/_btm.php';
+		}
+		else
+		{
+			include $view;
+		}
 	}
 	else
 	{
-		include $view;
+		header('location:http://beta.dreamvids.fr/?page=log');
+		exit();
 	}
 }
 else
 {
-	header('location:http://beta.dreamvids.fr/?page=log');
-	exit();
+	echo '<!doctype><html><head><meta charset="utf-8" /><title>Maintenance - DreamVids</title>
+<style type="text/css">
+body
+{
+	background-color: #0986f9;
+	background-image: url("img/maintenance.png");
+	background-position: center;
+	background-attachment:fixed;
+	background-repeat: no-repeat;
+}
+</style>	
+</head><body></body></html>';
 }
 ?>

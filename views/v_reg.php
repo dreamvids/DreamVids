@@ -20,7 +20,7 @@
 			</div>
 			<div class="form-group">
 				<label for="username"><?php echo $lang['username']; ?></label>
-				<input type="text" required="" placeholder="<?php echo $lang['username']; ?>" name="username" value="<?php echo @secure($_POST['username']); ?>" class="form-control"/>
+				<input type="text" maxlength="40" required="" placeholder="<?php echo $lang['username']; ?>" name="username" value="<?php echo @secure($_POST['username']); ?>" class="form-control"/>
 			</div>
 			<div class="form-group">
 				<label for="pass1"><?php echo $lang['password']; ?></label>

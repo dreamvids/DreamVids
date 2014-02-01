@@ -1,8 +1,4 @@
-﻿- StopPropagation() du keydown() dans le textarea des commentaires
-
-- Format des pseudos "#[a-zA-Z0-9\-_]{1-40}#"
-
-- Requête "Découvrir"
+﻿- Requête "Découvrir"
 
 - Failles XSS
 
@@ -19,3 +15,5 @@
 - Changement de mot de passe
 
 - Régler la XSS dans le titre des vidéos
+
+- http://www.twitlonger.com/show/n_1s0872o
