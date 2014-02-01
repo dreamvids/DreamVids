@@ -5,7 +5,7 @@ if(!isset($session) || !isset($_GET['vidId']) ) {
 	exit();
 }
 
-$vidId = mysql_real_escape_string($_GET['vidId']);
+$vidId = $_GET['vidId'];
 $video = VideoProperties::getVideoById($vidId);
 
 if($video->getUserId() == $session->getId())
