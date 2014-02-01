@@ -24,7 +24,7 @@ include 'classes/Comment.php';
 include 'classes/Message.php';
 include 'includes/tasks.php';
 
-if ($config['maintenance'] == '1' || $session->getRank() == $config['rank_adm'])
+if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm']) )
 {
 	if (isset($session) || @$_GET['page'] == 'log')
 	{
@@ -50,17 +50,26 @@ if ($config['maintenance'] == '1' || $session->getRank() == $config['rank_adm'])
 }
 else
 {
-	echo '<!doctype><html><head><meta charset="utf-8" /><title>Maintenance - DreamVids</title>
-<style type="text/css">
-body
-{
-	background-color: #0986f9;
-	background-image: url("img/maintenance.png");
-	background-position: center;
-	background-attachment:fixed;
-	background-repeat: no-repeat;
-}
-</style>	
-</head><body></body></html>';
+	echo '<!doctype>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Maintenance - DreamVids</title>
+		<link rel="icon" type="image/png" href="img/favicon.png" />
+		<style type="text/css">
+			body
+			{
+				background-color: #0986f9;
+				background-image: url("img/maintenance.png");
+				background-position: center;
+				background-attachment:fixed;
+				background-repeat: no-repeat;
+			}
+		</style>	
+	</head>
+	
+	<body>
+	</body>
+</html>';
 }
 ?>

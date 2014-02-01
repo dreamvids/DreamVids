@@ -27,18 +27,18 @@ if(isset($_POST['submit'])) {
 								{
 									$tumbnailPath = Upload::uploadTumbnail($session->getName() );
 								}
+								Upload::addDbInfos($tumbnailPath);
 							}
 							else
 							{
 								$err = $lang['size_tumbnail'];
-								$tumbnailPath = '';
 							}
 						}
 						else
 						{
-							$tumbnailPath = '';
+							$tumbnailPath = 'uploads/'.$session->getName().'/'.$_SESSION['vid_id'].'.png';
+							Upload::addDbInfos($tumbnailPath);
 						}
-						Upload::addDbInfos($tumbnailPath);
 					}
 					else {
 						$err = $lang['err_no_vid_db'];
