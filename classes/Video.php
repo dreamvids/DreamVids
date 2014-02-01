@@ -52,6 +52,10 @@ class Video {
 		$tagsStr = implode(' ', $this->tags);
 		$res1 = $db->insert("videos", "'".$this->id."', '".$this->userId."', '".$db->real_escape_string($this->title)."', '".$db->real_escape_string($this->description)."', '".$db->real_escape_string($tagsStr)."', '".$db->real_escape_string($this->tumbnail)."', '".$db->real_escape_string($this->path)."', '".$this->views."', '".$this->likes."', '".$this->dislikes."', '".$this->timestamp."', '".$this->visibility."', '".$this->flagged."'");
 		$db->close();
+
+		$db2 = new BDD();
+		$res2 = $db2->insert("videos_convert","'', '".$this->id."', '0', '0'");
+		$db2->close();		
 	}
 
 	private function loadVideo($id) {
@@ -80,6 +84,7 @@ class Video {
 		$db = new BDD();
 		$tagsStr = implode(' ', $this->tags);
 		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility.", flagged=".$this->flagged, "WHERE id='".$db->real_escape_string($this->id)."'");
+		$db->close();
 	}
 
 	// generates a random string
