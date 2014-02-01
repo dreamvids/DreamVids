@@ -6,7 +6,7 @@ if(!isset($session) || !isset($_GET['uid']) ) {
 	exit();
 }
 
-$user = new User(htmlentities(mysql_real_escape_string($_GET['uid'])));
+$user = new User($_GET['uid']);
 
 if($user->getId() <= 0) {
 	//header('Location: ./');
