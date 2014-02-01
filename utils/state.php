@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['argc'] = 3) {
-	include '../includes/bdd.class.php';
+	include '/home/www/DreamVids/includes/bdd.class.php';
 
 	$video_id = $_SERVER['argv'][1];
 	$db = new BDD();
