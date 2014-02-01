@@ -36,8 +36,7 @@ if(isset($_POST['submit'])) {
 						}
 						else
 						{
-							$tumbnailPath = 'uploads/'.$session->getName().'/'.$_SESSION['vid_id'].'.png';
-							Upload::addDbInfos($tumbnailPath);
+							Upload::addDbInfos('');
 						}
 					}
 					else {
