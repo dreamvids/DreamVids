@@ -16,7 +16,6 @@ class Upload {
 			}
 
 			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
-			//convert($path);
 			$video = Video::create($_SESSION['vid_id'], $userId, '', '', '', '', $path, 0);
 		}
 	}
