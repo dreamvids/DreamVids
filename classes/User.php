@@ -183,15 +183,15 @@ class User {
 
     public static function getRankNameByRankId($rankId) {
         switch ($rankId) {
-            case 0:
+            case $GLOBALS['config']['rank_mbr']:
                 return 'DreamVids user';
                 break;
 
-            case 1:
+            case $GLOBALS['config']['rank_modo']:
                 return 'Moderator';
                 break;
 
-            case 2:
+            case $GLOBALS['config']['rank_adm']:
                 return 'Admin';
                 break;
             
