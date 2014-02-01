@@ -11,6 +11,7 @@ $user = new User(htmlentities(mysql_real_escape_string($_GET['uid'])));
 if($user->getId() <= 0) {
 	//header('Location: ./');
 	echo 'C\'est celle du paramètre d\'URL qui merde !';
+	var_dump($user);
 	exit();
 }
 
