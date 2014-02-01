@@ -2,7 +2,7 @@
 $lang = array(
 'error_reg_username_jam' => 'Tous les noms d\'utilisateur proposés sont déjà utilisés.',
 
-'error_reg_userlen' => 'Le nom d\'utilisateur ne doit pas dépasser 40 caractères',
+'error_reg_userlen' => 'Le nom d\'utilisateur ne doit pas dépasser 40 caractères et ne doit contenir que des lettres (majuscules et minuscules), des chiffres, des traits-d\'union et des underscore ( _ )',
 
 'error_reg_username' => 'Ce nom d\'utilisateur est déjà utilisé.',
 

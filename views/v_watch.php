@@ -168,3 +168,9 @@
 	<script src="dreamplayer/js/player.js"></script>
 	<script src="utils/videoinfo.php?vid=<?php echo secure($id); ?>"></script>
 <!-- End -->
+
+	<script type="text/javascript">
+		document.getElementById("text_comment").onkeydown = function(e) {
+			e.stopPropagation();
+		}
+	</script>

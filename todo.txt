@@ -1,8 +1,46 @@
-- Espace membre simple / Simple member area
-- Visualisation des vidéos / Viewing videos
-- Design (responsive !)
-- Upload des vidéos / Videos upload
-- Conversion des vidéos upload en mp4 et en webm
-- Système de commentaires / Comments system
-- Système de J'aime - J'aime pas / I Like - I don't Like system
-- Réécriture des URLs / URL Rewriting
+﻿- Requête "Découvrir"
+
+- Panneau de modération
+
+- Garder le volume sonore/qualité en mémoire
+
+- Compteur de vues
+
+- Améliorer les chaines
+
+- N'afficher les vidéos que lorsqu'elles sont converties / Afficher en message "convertion en cours"
+
+- Changement de mot de passe
+
+- Régler la XSS dans le titre des vidéos
+
+- http://www.twitlonger.com/show/n_1s0872o
+
+- Installer un système de rémunération pour les utilisateurs, je comprends que c'est très compliqué à mettre en place mais c'est ce qui va permettre de convaincre un maximum de vidéaste de poster du contenu sur le site.
+
+- Il faudrait que l'ont puisse rechercher des utilisateurs dans la barre de recherche.
+
+- Adopter un système de subbox et de vidéos relatives pour rediriger l’utilisateur vers d'autres contenus.
+
+- Pouvoir accéder à la chaine de l'utilisateur qui poste un commentaire.
+- Mettre un favicon pour plus de SWAG.
+
+- Mettre uniquement de la transparence sur le fond de la chaine et pas sur les miniatures vidéos ou photo de profil.
+
+- Officialisé les utilisateurs avec un icône ou mention "Officiel" à coté du nom (mais ça c'est pas très important).
+
+- Mettre une image par défaut pour ceux qui n'ont pas d'image de profil.
+
+- Pouvoir intégrer le player à son site.
+
+- Avoir la miniature et le nom de la vidéo lorsque que l'on clique sur "Partager sur Facebook".
+
+- Avoir la possibilité de voir qui est abonné à une chaine.
+
+- Avoir la date et le nombre de vues sur la page du lecteur.
+
+- Que l'on puisse trier la recherche par date, popularité.
+
+- avoir la durée de la vidéo sur les miniatures.
+
+- Développer une version mobile ainsi qu'une appli IOS et Android.
