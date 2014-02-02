@@ -16,7 +16,7 @@ if(isset($_GET['vid'])) {
 		$convertion = ConvertionState(htmlentities($_GET['vid']));
 		$videojs = '';
 		$annotjs = '';
-		if (count($convertion) > 0) {
+		/*if (count($convertion) > 0) {
 			$annotjs .= "setAnnotations([";
 			foreach ($Annot as $tmp) {
 				$position = explode(";", $tmp['position']);
@@ -29,16 +29,17 @@ if(isset($_GET['vid'])) {
 				$annotjs .= '{text: "'.$tmp['txt'].'", left: '.$position[0].', top: '.$position[1].',	width: '.$size[0].', height: '.$size[1].',	start: '.$time[0].', end: '.$time[1].$color.'},';
 			}
 			$annotjs .= "{}]);";
-		}
+		}*/
 
-		if ($convertion[0] == '2' and $convertion[1] == '2') {
+		//if ($convertion[0] == '2' and $convertion[1] == '2') {
 			$videojs = "setVideo([{format: 360,	mp4: '".$path."_640x360p.mp4', webm: '".$path."_640x360p.webm'},{format: 720,mp4:'".$path."_1280x720p.mp4', webm:'".$path."_1280x720p.webm'}]);";
-		}elseif ($convertion[0] == '2' and $convertion[1] < '2') {
+	/*	}elseif ($convertion[0] == '2' and $convertion[1] < '2') {
 			$videojs = "setVideo([{format: 360,	mp4: '".$path."_640x360p.mp4', webm: '".$path."_640x360p.webm'}]);";
 		}elseif ($convertion[0] < '2' and $convertion[1] < '2') {
 			$videojs = "setVideo([]);";
 			$annotjs = 'setAnnotations([{text: "Video en Cours de Convertion !",left: 0, top: 0, width: 100, height: 100,start: 0, end: 90}]);';
 		}
+	*/
 		
 		echo $videojs.$annotjs;
 
