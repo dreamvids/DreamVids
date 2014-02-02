@@ -40,7 +40,8 @@
 
 	<div class="container" style="">
 		<div id="player">
-			<video autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
+			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
+			<div id="annotationsElement"></div>
 			<span id="repeat">
 				<span class="icon"></span>
 			</span>
@@ -55,6 +56,7 @@
 				</span>
 				<span id="play-pause"></span>
 				<span id="time"></span>
+				<span id="annotationsButton" style="display: none"></span>
 				<span id="qualityButton">SD</span>
 				<span id="volume">
 					<span id="barre"></span>
