@@ -37,7 +37,7 @@ if(isset($_GET['vid'])) {
 			$videojs = "setVideo([{format: 360,	mp4: '".$path."_640x360p.mp4', webm: '".$path."_640x360p.webm'}]);";
 		}elseif ($convertion[0] < '2' and $convertion[1] < '2') {
 			$videojs = "setVideo([]);";
-			$annotjs = 'setAnnotations([{text: "Video en Cours de Convertion !",left: 0, top: 0, width: 100, height: 100,start: 0, end: 90}]);'
+			$annotjs = 'setAnnotations([{text: "Video en Cours de Convertion !",left: 0, top: 0, width: 100, height: 100,start: 0, end: 90}]);';
 		}
 		
 		echo $videojs.$annotjs;
