@@ -147,7 +147,7 @@
 
 			<div class="panel panel-default" style="width: 100%;">
 				<div class="panel-heading">
-					<h5><?php echo User::getNameById($comm->getAuthorId()); ?> <small><?php echo $date; ?></small></h5>
+					<h5><a href="index.php?page=member&name=<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()); ?></a> <small><?php echo $date; ?></small></h5>
 				</div>
 				<div class="panel-body">
 					<p><?php echo secure($comm->getContent() ); ?></p>
