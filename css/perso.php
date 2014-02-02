@@ -25,7 +25,6 @@ body{
   padding-top:10px;
   padding-bottom:20px;
   background-color: white;
-  opacity:0.8;
   filter:alpha(opacity=80);
 }
 #abonement{

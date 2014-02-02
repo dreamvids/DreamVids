@@ -8,7 +8,7 @@ if(isset($_GET['vid'])) {
 	if($title) {
 		$path = $video->getPath();
 		echo "	
-		videoQuality([
+		setVideo([
 		{
 			format: 360,
 			mp4: '".$path."_640x360p.mp4',
