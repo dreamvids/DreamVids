@@ -7,7 +7,7 @@ function tps()
 
 function secure($str)
 {
-	return htmlspecialchars(stripslashes($str) );
+	return htmlspecialchars(strip_tags(stripslashes($str)), ENT_QUOTES, 'UTF-8');
 }
 
 function MVCArray($table, $reponse)
