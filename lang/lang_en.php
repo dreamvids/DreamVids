@@ -86,6 +86,9 @@ $lang = array(
 
 'there_as' => 'there as',
 
-'edit_user' => 'Change my account informations'
+'edit_user' => 'Change my account informations',
+
+'confirm_delete_vid' => 'Do you really want to delete this video ?',
+
 );
 ?>

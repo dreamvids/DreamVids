@@ -13,6 +13,11 @@ class Manager {
 			return $vids;
 		}
 	}
+
+	public static function deleteVideo($vidId) {
+		$vid = Video::get($vidId);
+		$vid->delete();
+	}
 }
 
 ?>

@@ -172,6 +172,7 @@ $lang = array(
 
 'search' => 'Rechercher',
 
+'confirm_delete_vid' => 'Voulez-vous vraiment supprimer cette vidéo ?',
 
 );
 ?>

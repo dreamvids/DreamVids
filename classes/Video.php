@@ -86,6 +86,17 @@ class Video {
 		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility.", flagged=".$this->flagged, "WHERE id='".$db->real_escape_string($this->id)."'");
 	}
 
+	public function delete() {
+		if($this->id != -1) {
+			$db = new BDD();
+			$delReq = $db->delete("videos", "WHERE id='".$this->id."'");
+			if(file_exists($this->path."_640x360p.mp4")) unlink($this->path."_640x360p.mp4");
+			if(file_exists($this->path."_640x360p.webm")) unlink($this->path."_640x360p.webm");
+			if(file_exists($this->path."_1280x720p.mp4")) unlink($this->path."_1280x720p.mp4");
+			if(file_exists($this->path."_1280x720p.webm")) unlink($this->path."_1280x720p.webm");
+		}
+	}
+
 	// generates a random string
 	public static function generateId($length) {
 		$db = new BDD();

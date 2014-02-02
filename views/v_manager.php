@@ -43,10 +43,10 @@
 					</div>
 
 					<br><br>
-					
+				    
 				    <a href="./?page=watch&vid=<?php echo $vid->getId(); ?>" class="btn btn-info">Regarder</a>
-				    <a href="./?page=videoproperties&vidId=<?php echo $vid->getId(); ?>" class="btn btn-success">Paramètres</a>
-				    <button class='btn btn-danger'>Supprimer</button>
+			    	<a href="./?page=videoproperties&vidId=<?php echo $vid->getId(); ?>" class="btn btn-success">Paramètres</a>
+			    	<a href='./?page=manager&delVid=<?php echo $vid->getId(); ?>' class="btn btn-danger" onclick="confirm('<?php echo $lang['confirm_delete_vid']; ?>')">Supprimer</a>
 					
 				</div>
 
