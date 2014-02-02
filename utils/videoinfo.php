@@ -50,7 +50,7 @@ function ConvertionState($id){
     $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($id)."'") or die(mysql_error());
     $out = array();
     while($row = $db->fetch_array($result)) {
-    	$out[0] = array($row['sd'],$row['hd'])
+    	$out[0] = array($row['sd'],$row['hd']);
     }
     return $out;
 }
