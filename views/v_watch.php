@@ -42,28 +42,29 @@
 		<div id="player">
 			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
 			<div id="annotationsElement"></div>
-			<span id="repeat">
-				<span class="icon"></span>
-			</span>
-			<span id="qualitySelection" class="show"></span>
-			<span id="bigPlay"></span>
-			<span id="bigPause"></span>
-			<div id="controls">
-				<span id="progress">
-					<span id="buffered"></span>
-					<span id="viewed"></span>
-					<span id="current"></span>
+				<span id="repeat">
+					<span class="icon"></span>
 				</span>
-				<span id="play-pause"></span>
-				<span id="time"></span>
-				<span id="annotationsButton" style="display: none"></span>
-				<span id="qualityButton">SD</span>
-				<span id="volume">
-					<span id="barre"></span>
-					<span id="icon"></span>
-				</span>
-				<span id="fullscreen"></span>
-			</div>
+				<span id="qualitySelection" class="show"></span>
+				<span id="bigPlay"></span>
+				<span id="bigPause"></span>
+				<div id="controls">
+					<span id="progress">
+						<span id="buffered"></span>
+						<span id="viewed"></span>
+						<span id="current"></span>
+					</span>
+					<span id="play-pause"></span>
+					<span id="time"></span>
+					<span id="annotationsButton" style="display: none"></span>
+					<span id="qualityButton">SD</span>
+					<span id="volume">
+						<span id="barre"></span>
+						<span id="icon"></span>
+					</span>
+					<span id="widescreen"></span>
+					<span id="fullscreen"></span>
+				</div>
 		</div>
 	</div>
 
@@ -124,42 +125,40 @@
 		<div class="panel-body">
 			<?php echo bbcode(secure($desc)); ?>
 			</div>
-		</div>
+	</div>
 
-		<br><h2>Commentaires</h2><br>
-		<?php if(isset($session)) { ?>
-			<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
-				<div class="form-group">
-					<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
-				</div>
-				<div class="form-group">
-					<input class="btn btn-primary btn-success" type="submit" value="Envoyer" />
-				</div>
-			</form>
-		<?php } ?>
-		<br><br>
-		<div id="new_comments"></div>
-		<?php
-		$comms = Watch::getComments($id);
-		foreach ($comms as $comm) {
-			$date = @date('d/m/Y H:i:s', $comm->getTimestamp() );
-			?>
-
-			<div class="panel panel-default" style="width: 100%;">
-				<div class="panel-heading">
-					<h5><a href="index.php?page=member&name=<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()); ?></a> <small><?php echo $date; ?></small></h5>
-				</div>
-				<div class="panel-body">
-					<p><?php echo secure($comm->getContent() ); ?></p>
-				</div>
+	<br><h2>Commentaires</h2><br>
+	<?php if(isset($session)) { ?>
+		<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
+			<div class="form-group">
+				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
 			</div>
-
-			<?php
-		}
+			<div class="form-group">
+				<input class="btn btn-primary btn-success" type="submit" value="Envoyer" />
+			</div>
+		</form>
+	<?php } ?>
+	<br><br>
+	<div id="new_comments"></div>
+	<?php
+	$comms = Watch::getComments($id);
+	foreach ($comms as $comm) {
+		$date = @date('d/m/Y H:i:s', $comm->getTimestamp() );
 		?>
 
+		<div class="panel panel-default" style="width: 100%;">
+			<div class="panel-heading">
+				<h5><a href="index.php?page=member&name=<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()); ?></a> <small><?php echo $date; ?></small></h5>
+			</div>
+			<div class="panel-body">
+				<p><?php echo secure($comm->getContent() ); ?></p>
+			</div>
+		</div>
 
-	</div>
+		<?php
+	}
+	?>
+
 
 	<?php
 	}

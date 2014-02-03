@@ -1,15 +1,35 @@
 /*
- *  Player
+ *  DreamPlayer by DimouDev
+ *  @_quadrifoglio edit: update 2
+ *
  */
+
+player = document.getElementById('player');
+videoInfos = document.getElementById('videoInfos');
 
 if (document.body.clientWidth < 640) {
     player.style.width = document.body.clientWidth + 'px';
     player.style.height = document.body.clientWidth / (16 / 9) + 'px';
 }
+if (videoInfos)
+    videoInfos.style.height = player.offsetWidth / (16 / 9) + 'px';
 
-player = document.getElementById('player');
+window.addEventListener("resize", function(event) { // Player responsive
+    if (document.body.clientWidth < 640) {
+        player.style.width = document.body.clientWidth + 'px';
+        player.style.height = document.body.clientWidth / (16 / 9) + 'px';
+        if (videoInfos)
+            videoInfos.style.height = player.offsetWidth / (16 / 9) + 'px';
+    } else {
+        player.style.width = '';
+        player.style.height = '';
+        if (videoInfos)
+            videoInfos.style.height = player.offsetWidth / (16 / 9) + 'px';
+    }
+}, false);
 
-video = document.getElementsByTagName('video')[0];
+
+video = player.getElementsByTagName('video')[0];
 
 controls = document.getElementById('controls');
 
@@ -28,7 +48,7 @@ annotationsElement.addEventListener("click", function(event) {
 });
 time = document.getElementById('time');
 
-function playPause() { // Fonction appelée à chaque play/pause effectué
+function playPause() { // Fonction appelÃ©e Ã  chaque play/pause effectuÃ©
     if (video.paused) {
         video.play();
         playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/pause.png)";
@@ -48,7 +68,7 @@ function time2str(time) { // Transformation du temps [int] en 13:37
 
     return (hours != '00' ? hours + ':' : '') + minutes + ':' + seconds;
 }
-video.addEventListener("canplay", function() { // Au chargement de la page, on définit le bon icone (play ou pause)
+video.addEventListener("canplay", function() { // Au chargement de la page, on dÃ©finit le bon icone (play ou pause)
     if (video.duration)
         time.innerHTML = time2str(video.currentTime) + ' / ' + time2str(video.duration);
 
@@ -111,7 +131,7 @@ progress.buffered = document.getElementById('buffered');
 progress.viewed = document.getElementById('viewed');
 progress.current = document.getElementById('current');
 
-video.addEventListener("timeupdate", function(event) { // Mise à jour de la progressbar
+video.addEventListener("timeupdate", function(event) { // Mise Ã  jour de la progressbar
     percent = video.currentTime / video.duration * 100 + "%"
     progress.viewed.style.width = percent;
     progress.current.style.left = percent;
@@ -119,7 +139,7 @@ video.addEventListener("timeupdate", function(event) { // Mise à jour de la pro
         time.innerHTML = time2str(video.currentTime) + ' / ' + time2str(video.duration);
 });
 
-function bufferUpdate() { // Mise à jour du "buffer"
+function bufferUpdate() { // Mise Ã  jour du "buffer"
     if (video.buffered && video.duration && video.buffered.length) {
         percent = video.buffered.end(video.buffered.length - 1) / video.duration * 100;
         progress.buffered.style.width = percent >= 0 && percent <= 100 ? percent + "%" : '0%';
@@ -144,7 +164,7 @@ function getOffset(object) {
 }
 
 mouseDown = false;
-progress.addEventListener("mousedown", function(event) { // Déplacement de la progressbar
+progress.addEventListener("mousedown", function(event) { // DÃ©placement de la progressbar
     mouseDown = true;
     if (video.duration)
         video.currentTime = (event.clientX - getOffset(progress)) / progress.offsetWidth * video.duration;
@@ -176,7 +196,7 @@ function downPlayer() { // Les controles disparaissent
 }
 var timeout = setTimeout(downPlayer, time2down / 2);
 
-function upPlayer() { // Les controles réaparaisent
+function upPlayer() { // Les controles rÃ©aparaisent
     if (new Date().getTime() - 300 < lastTime)
         return;
 
@@ -189,6 +209,24 @@ function upPlayer() { // Les controles réaparaisent
 
 player.addEventListener("mousemove", upPlayer);
 
+
+/*
+ *  Fullscreen
+ */
+
+widescreen = document.getElementById('widescreen');
+
+widescreen.addEventListener("click", function() {
+    console.log(player.className);
+    if (player.className == '' || player.className == 'animated') {
+        player.className = 'animated wide';
+        widescreen.style.backgroundImage = "url(dreamplayer/img/player/smallscreen.png)";
+    } else {
+        player.className = 'animated';
+        widescreen.style.backgroundImage = "url(dreamplayer/img/player/widescreen.png)";
+    }
+});
+
 /*
  *  Fullscreen
  */
@@ -197,6 +235,8 @@ fullscreen = document.getElementById('fullscreen');
 fullscreen.addEventListener("click", toogleFullScreen);
 
 function toogleFullScreen() {
+    console.log(player.className);
+    player.className = (player.className == 'wide' || player.className == 'animated wide') ? 'wide' : '';
     if (!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement)) {
         if (player.requestFullscreen)
             player.requestFullscreen();
@@ -218,9 +258,7 @@ function toogleFullScreen() {
     }
 }
 
-annotationsElement.addEventListener("dblclick", function() {
-    toogleFullScreen();
-});
+annotationsElement.addEventListener("dblclick", toogleFullScreen);
 
 document.addEventListener('webkitfullscreenchange', function() {
     if (!document.webkitFullscreenElement)
@@ -247,23 +285,6 @@ document.addEventListener('fullscreenchange', function() {
         fullscreen.style.backgroundImage = "url(dreamplayer/img/player/lowscreen.png)";
 }, false);
 
-window.addEventListener("orientationchange", function() { // Semi plein-écran en orientation paysage (mobile)
-    if (window.orientation == 90 || window.orientation == -90)
-        player.className = 'semiFullScreen';
-    else
-        player.className = '';
-}, false);
-
-window.addEventListener("resize", function(event) { // Player responsive
-    if (document.body.clientWidth < 640) {
-        player.style.width = document.body.clientWidth + 'px';
-        player.style.height = document.body.clientWidth / (16 / 9) + 'px';
-    } else {
-        player.style.width = '';
-        player.style.height = '';
-    }
-}, false);
-
 /*
  *  Volume
  */
@@ -276,7 +297,7 @@ video.addEventListener("volumechange", function(event) {
     percent = video.volume * 100 + "%";
     volume.barre.style.width = percent;
     volume.icon.style.left = percent;
-    if (video.volume <= 0.05) // Génération de l'image
+    if (video.volume <= 0.05) // GÃ©nÃ©ration de l'image
         volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume0.png)";
     else if (video.volume <= 0.4)
         volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume1.png)";
@@ -287,7 +308,7 @@ video.addEventListener("volumechange", function(event) {
 }, false);
 
 mouseDownVolume = false;
-volume.addEventListener("mousedown", function(event) { // Déplacement de la "barre" de volume
+volume.addEventListener("mousedown", function(event) { // DÃ©placement de la "barre" de volume
     mouseDownVolume = true;
     newVolume = (event.clientX - getOffset(volume)) / volume.offsetWidth;
     newVolume = newVolume < 0 ? 0 : (newVolume > 1 ? 1 : newVolume);
@@ -308,22 +329,33 @@ document.addEventListener("mousemove", function(event) {
     }
 });
 
-repeat = document.getElementById('repeat'); // Affichage de repeat en fin de vidéo
+function mouseWheelVolume(event) {
+    upPlayer();
+    if (event.wheelDelta > 0 || event.detail < 0)
+        video.volume = Math.min(video.volume + 0.1, 1);
+    else
+        video.volume = Math.max(video.volume - 0.1, 0);
+}
+
+player.addEventListener("mousewheel", mouseWheelVolume, false);
+player.addEventListener("DOMMouseScroll", mouseWheelVolume, false);
+
+repeat = document.getElementById('repeat'); // Affichage de repeat en fin de vidÃ©o
 
 video.addEventListener("ended", function() {
     repeat.className = 'show';
-});
+}, false);
 repeat.addEventListener("click", function() {
     repeat.className = '';
     video.currentTime = 0;
     playPause();
-});
+}, false);
 video.addEventListener("play", function() {
     repeat.className = '';
-});
+}, false);
 
 /*
- *  Qualité
+ *  QualitÃ©
  */
 
 var lastTime = 0;
@@ -336,11 +368,17 @@ qualitySelection.addEventListener('click', function() {
 
 qualityButton = document.getElementById('qualityButton'); // On ouvre
 qualityButton.addEventListener('click', function() {
-    if (qualitys.length > 1) // S'il y a plusieurs qualités...
+    if (qualitys.length == 2) {
+        if (qualitys[0].format == currentQuality)
+            setQuality(qualitys[1].format)
+        else
+            setQuality(qualitys[0].format)
+
+    } else if (qualitys.length > 1) // S'il y a plusieurs qualitÃ©s...
         qualitySelection.className = 'show';
 });
 
-function setQuality(format) { // On change la qualité
+function setQuality(format) { // On change la qualitÃ©
     qualitySelection.className = '';
     length = qualitys.length;
     if (currentQuality == format)
@@ -361,13 +399,13 @@ function setQuality(format) { // On change la qualité
             else if (video.canPlayType('video/webm'))
                 video.src = quality.webm;
             else
-                video.src = quality.ogg;
+                video.src = quality.mp4;
 
             currentQuality = format;
             video.load();
 
             video.addEventListener("loadeddata", function() {
-                video.currentTime = lastTime; // On remet au même moment
+                video.currentTime = lastTime; // On remet au mÃªme moment
                 video.play();
             });
         }
@@ -375,7 +413,7 @@ function setQuality(format) { // On change la qualité
 }
 var qualitys;
 
-function setVideo(array) { // On set toutes les qualités au chargement de la page
+function setVideo(array) { // On set toutes les qualitÃ©s au chargement de la page
     if (array.length <= 1)
         qualityButton.style.cursor = 'default';
     else
@@ -417,7 +455,7 @@ document.getElementById('annotationsButton').addEventListener('click', function(
     }
 });
 
-function createAnnotation(id, data) { // Création d'une annotation
+function createAnnotation(id, data) { // CrÃ©ation d'une annotation
     element = document.createElement("span");
     element.id = 'ann' + (id + 1);
     element.className = 'annotation ' + (data.color ? data.color : '');
@@ -442,7 +480,7 @@ function createAnnotation(id, data) { // Création d'une annotation
     annotationsElement.appendChild(element);
 }
 
-video.addEventListener("timeupdate", function(event) { // Mise à jour des annotations
+video.addEventListener("timeupdate", function(event) { // Mise Ã  jour des annotations
     if (annotations) {
         currentTime = video.currentTime;
         children = annotationsElement.children;
@@ -482,36 +520,36 @@ document.addEventListener("keydown", function(event) {
     if (event.target != document.body)
         return;
 
-    if (event.keyCode == 32) {
+    if (event.keyCode == 32) { // [espace]
         playPause();
         upPlayer();
     }
 
-    if (event.keyCode == 70)
+    if (event.keyCode == 70) // [F]
         toogleFullScreen();
 
-    if (event.keyCode == 36) {
+    if (event.keyCode == 36) { // [dÃ©but]
         video.currentTime = 0;
         video.play();
         progress.viewed.style.width = '0%';
         progress.current.style.left = '0%';
     }
 
-    if (event.keyCode == 35) {
+    if (event.keyCode == 35) { // [fin]
         video.currentTime = video.duration;
         progress.viewed.style.width = '100%';
         progress.current.style.left = '100%';
     }
 
-    if (event.keyCode == 38 && controls.className == '')
-        video.volume += 0.1;
+    if (event.keyCode == 38) // [haut]
+        video.volume = Math.min(video.volume + 0.1, 1);
 
-    if (event.keyCode == 40 && controls.className == '')
-        video.volume -= 0.1;
+    if (event.keyCode == 40) // [bas]
+        video.volume = Math.max(video.volume - 0.1, 0);
 
-    if (event.keyCode == 37)
+    if (event.keyCode == 37) // [gauche]
         video.currentTime -= 3;
 
-    if (event.keyCode == 39)
+    if (event.keyCode == 39) // [droite]
         video.currentTime += 3;
 });
