@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb2
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 22 Janvier 2014 à 18:09
--- Version du serveur: 5.5.33
--- Version de PHP: 5.4.23-1~dotdeb.1
+-- Généré le: Lun 03 Février 2014 à 20:12
+-- Version du serveur: 5.6.12-log
+-- Version de PHP: 5.4.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dreamvids`
+-- Base de données: `dev`
 --
+CREATE DATABASE IF NOT EXISTS `dev` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `dev`;
 
 -- --------------------------------------------------------
 
@@ -31,13 +33,35 @@ CREATE TABLE IF NOT EXISTS `config` (
   `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Contenu de la table `config`
+-- Structure de la table `messages`
 --
 
-INSERT INTO `config` (`key`, `value`) VALUES
-('rank_mbr', '1'),
-('rank_adm', '9');
+CREATE TABLE IF NOT EXISTS `messages` (
+  `int_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(6) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `recipient` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`int_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=104 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pre_inscriptions`
+--
+
+CREATE TABLE IF NOT EXISTS `pre_inscriptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `utilisateur` tinyint(1) NOT NULL,
+  `videaste` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=557 ;
 
 -- --------------------------------------------------------
 
@@ -51,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `pass` varchar(40) NOT NULL,
   `avatar` varchar(255) NOT NULL,
+  `background` text NOT NULL,
   `subscribers` int(11) NOT NULL,
   `subscriptions` text NOT NULL,
   `reg_timestamp` bigint(20) NOT NULL,
@@ -58,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=261 ;
 
 -- --------------------------------------------------------
 
@@ -99,17 +124,61 @@ CREATE TABLE IF NOT EXISTS `videos` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `videos_annot`
+--
+
+CREATE TABLE IF NOT EXISTS `videos_annot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `video_id` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `size` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `videos_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `videos_comments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(6) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `video_id` int(11) NOT NULL,
+  `video_id` varchar(6) NOT NULL,
   `comment` text NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `videos_convert`
+--
+
+CREATE TABLE IF NOT EXISTS `videos_convert` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `video_id` text NOT NULL,
+  `sd` int(11) NOT NULL,
+  `hd` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `videos_votes`
+--
+
+CREATE TABLE IF NOT EXISTS `videos_votes` (
+  `user_id` int(11) NOT NULL,
+  `type` varchar(7) NOT NULL,
+  `obj_id` varchar(6) NOT NULL,
+  `action` varchar(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
