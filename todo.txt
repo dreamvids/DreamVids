@@ -35,8 +35,6 @@
 
 - Avoir la miniature et le nom de la vidéo lorsque que l'on clique sur "Partager sur Facebook".
 
-- Avoir la possibilité de voir qui est abonné à une chaine.
-
 - Avoir la date et le nombre de vues sur la page du lecteur.
 
 - Que l'on puisse trier la recherche par date, popularité.
