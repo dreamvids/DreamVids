@@ -42,3 +42,6 @@
 - avoir la durée de la vidéo sur les miniatures.
 
 - Développer une version mobile ainsi qu'une appli IOS et Android.
+
+- "Transition" du bleu au blanc et inversément au survol des boutons de navigation 
+
