@@ -25,7 +25,7 @@ if (isset($_POST['submit']) )
 							{
 								$name = $_FILES['avatar']['name'];
 								$explode = explode(".", $name);
-								$ext = $explode[count($explode)-1];
+								$ext = strtolower($explode[count($explode)-1]);
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
 								if (in_array($ext, $acceptedExts) )
 								{
@@ -45,7 +45,7 @@ if (isset($_POST['submit']) )
 							{
 								$name = $_FILES['background']['name'];
 								$explode = explode(".", $name);
-								$ext = $explode[count($explode)-1];
+								$ext = strtolower($explode[count($explode)-1]);
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
 								if (in_array($ext, $acceptedExts) )
 								{

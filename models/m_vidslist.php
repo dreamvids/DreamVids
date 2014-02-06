@@ -11,16 +11,12 @@ class Vidslist
 	public function getDiscoverVideos($nb)
 	{
 		$db = new BDD();
-		$rep = $db->select("id", "users", "ORDER BY subscribers LIMIT 0, ".$nb);
+		$rep = $db->query("SELECT videos.id FROM videos INNER JOIN users ON users.id = videos.user_id ORDER BY users.subscribers LIMIT 0, ".$nb);
+		echo $db->error();
 		$vids = array();
 		while ($data = $db->fetch_array($rep) )
 		{
-			$req = $db->select("id", "videos", "WHERE user_id='".$data['id']."' AND visibility=2 ORDER BY timestamp DESC LIMIT 0, 1");
-			if ($db->num_rows($req) > 0)
-			{
-				$vid = $db->fetch_array($req);
-				$vids[] = Video::get($vid['id']);
-			}
+			$vids[] = Video::get($data['id']);
 		}
 		$db->close();
 		return $vids;
@@ -63,7 +59,7 @@ class Vidslist
 	{
 		$vids = array();
 		$db = new BDD();
-		$rep = $db->select("id", "videos", "WHERE title LIKE '%".$db->real_escape_string($search)."%' OR tags LIKE '%".$db->real_escape_string($search)."%'");
+		$rep = $db->query("SELECT videos.id FROM videos INNER JOIN users WHERE videos.title LIKE '%".$db->real_escape_string($search)."%' OR videos.tags LIKE '%".$db->real_escape_string($search)."%' OR users.username LIKE '%".$db->real_escape_string($search)."%'");
 		while ($data = $db->fetch_array($rep) )
 		{
 			$vids[] = Video::get($data['id']);

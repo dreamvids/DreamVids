@@ -90,14 +90,12 @@
 	?>
 
 	<?php
-	if(isset($GLOBALS['session'])) {
+	$log = (isset($session) );
 		?>
 		<br /><br />
-		<img src="img/videos/positive.png" onclick="like('<?php echo secure($_GET['vid']); ?>')" width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" onclick="dislike('<?php echo secure($_GET['vid']); ?>')" width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
+		<img src="img/videos/positive.png" <?php if($log){ ?>onclick="like('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" <?php if($log){ ?>onclick="dislike('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
+		<b style="margin-left:50px"><?php echo $video->getViews() ?> vues</b></div>
 		<br /><br />
-		<?php
-	}
-	?>
 
 	<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title) > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
@@ -120,7 +118,7 @@
 	<br />
 	<div class="panel panel-primary" style="width: 56%;">
 		<div class="panel-heading">
-			<?php echo $lang['desc']; ?>
+			<?php echo $lang['desc']; ?> (Mise en ligne le <?php echo date("d/m/Y \à H:i:s", $video->getTimestamp() ); ?>)
 		</div>
 		<div class="panel-body">
 			<?php echo bbcode(secure($desc)); ?>

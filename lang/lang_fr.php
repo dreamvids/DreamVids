@@ -174,5 +174,7 @@ $lang = array(
 
 'confirm_delete_vid' => 'Voulez-vous vraiment supprimer cette vidéo ?',
 
+'edit_pass' => 'Modifier mon mot de passe',
+
 );
 ?>

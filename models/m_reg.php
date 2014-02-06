@@ -21,7 +21,7 @@ class Reg
 	{
 		global $config;
 		$bdd = new BDD();
-		$bdd->insert("users", "'', '".$bdd->real_escape_string($username)."', '".$bdd->real_escape_string($email)."', '".sha1($pass)."', '', '', '', '', '".tps()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SERVER['REMOTE_ADDR']."', '".$config['rank_mbr']."'");
+		$bdd->insert("users", "'', '".$bdd->real_escape_string($username)."', '".$bdd->real_escape_string($email)."', '".sha1($pass)."', 'img/avatar_default.jpg', '', '', '', '".tps()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SERVER['REMOTE_ADDR']."', '".$config['rank_mbr']."'");
 		$bdd->close();
 	}
 }

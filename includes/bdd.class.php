@@ -5,7 +5,7 @@ class BDD
 	public static $HOST = 'localhost';
 	public static $USERNAME = 'root';
 	public static $PASSWORD = '';
-	public static $DB_NAME = 'dev';
+	public static $DB_NAME = 'dreamvids';
 	private $table;
 	private $prefixe;
 	

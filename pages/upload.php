@@ -21,7 +21,7 @@ if(isset($_POST['submit'])) {
 							{
 								$name = $_FILES['videoTumbnail']['name'];
 								$explode = explode(".", $name);
-								$ext = $explode[count($explode)-1];
+								$ext = strtolower($explode[count($explode)-1]);
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
 								if (in_array($ext, $acceptedExts) )
 								{
@@ -68,7 +68,7 @@ if(isset($_FILES['videoInput'])) {
 	if(isset($session)) {
 		$name = $_FILES['videoInput']['name'];
 		$explode = explode(".", $name);
-		$ext = $explode[count($explode)-1];
+		$ext = strtolower($explode[count($explode)-1]);
 		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv');
 
 		if(in_array($ext, $acceptedExts)) {
