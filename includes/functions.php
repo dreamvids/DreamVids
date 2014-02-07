@@ -42,7 +42,9 @@ function passGen($nb_caracts)
 }
 function bbcode($imput)
 {
-	$imput = preg_replace('!\[a\](.+)\[/a\]!isU', '<a href="$1" target="_blank">$1</a>',$imput);
+	//$imput = preg_replace('!\[a\](.+)\[/a\]!isU', '<a href="$1" target="_blank">$1</a>',$imput);
+	//$imput = @eregi_replace("([[:alnum:]]+)://([^[:space:]]*)([[:alnum:]#?/&=])", "<a href=\"\\1://\\2\\3\" target=\"_blank\">\\1://\\2\\3</A>", $imput);
+	$imput = preg_replace('@([^>"])(https?://[a-z0-9\./\+\,\%\#_\-\?\&\=]+)@i', '$1<a href="$2">$2</a>', $imput);
 	$imput = preg_replace('!\[email\](.+)\[/email\]!isU', '<a href="mailto:$1">$1</a>',$imput);
 	$imput = preg_replace('!\[b\](.+)\[/b\]!isU', '<strong>$1</strong>', $imput);
 	$imput = preg_replace('!\[i\](.+)\[/i\]!isU', '<em>$1</em>', $imput);
