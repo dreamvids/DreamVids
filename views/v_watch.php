@@ -121,7 +121,7 @@
 			<?php echo $lang['desc']; ?> (Mise en ligne le <?php echo date("d/m/Y \à H:i:s", $video->getTimestamp() ); ?>)
 		</div>
 		<div class="panel-body">
-			<?php echo bbcode(secure($desc)); ?>
+			<?php echo nl2br($desc); ?>
 			</div>
 	</div>
 

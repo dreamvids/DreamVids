@@ -17,10 +17,10 @@ if($video->getUserId() == $session->getId())
 	$vidVisibility = $video->getVisibility();
 	
 	if(isset($_POST['submit'])) {
-		$newVidTitle = mysql_real_escape_string($_POST['vidTitle']);
-		$newVidDesc = mysql_real_escape_string($_POST['vidDescription']);
-		$newVidTagsStr = mysql_real_escape_string($_POST['vidTags']);
-		$newVisibility = mysql_real_escape_string($_POST['vidVisibility']);
+		$newVidTitle = $_POST['vidTitle'];
+		$newVidDesc = $_POST['vidDescription'];
+		$newVidTagsStr = $_POST['vidTags'];
+		$newVisibility = $_POST['vidVisibility'];
 
 		if(isset($_POST['videoTumbnail'])) {
 			if($_FILES['videoTumbnail']['name'] != '') {
