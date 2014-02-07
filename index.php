@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Europe/Paris');
 
 $content = 'pages/vidslist.php';
 $model = 'models/m_vidslist.php';
