@@ -218,6 +218,19 @@ class Video {
 	public function setFlagged($flagged) {
 		$this->flagged = $flagged;
 	}
+
+
+	public function isFullyConverted() {
+		$db = new BDD();
+	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd=2 AND hd=2") or die(mysql_error());
+	    return $db->num_rows($result) == 1;
+	}
+
+	public function isHalfConverted() {
+		$db = new BDD();
+	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd=0") or die(mysql_error());
+	    return $db->num_rows($result) == 1;
+	}
 }
 
 ?>

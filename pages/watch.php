@@ -9,6 +9,13 @@ if(isset($_GET['vid'])) {
 	if($title) {
 		if(!$video->isSuspended()) {
 			if ($video->getVisibility() > 0 || $session->getId() == $video->getUserId() ) {
+				if($video->isHalfConverted()) {
+					$warn = $lang['video_half_converted'];
+				}
+				else if(!$video->isFullyConverted()) {
+					$warn = $lang['video_not_converted'];
+				}
+
 				$desc = $video->getDescription();
 				$views = $video->getViews();
 				$likes = $video->getLikes();

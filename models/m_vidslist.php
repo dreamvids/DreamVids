@@ -16,7 +16,10 @@ class Vidslist
 		$vids = array();
 		while ($data = $db->fetch_array($rep) )
 		{
-			$vids[] = Video::get($data['id']);
+			$vid = Video::get($data['id']);
+			if($vid->getVisibility() == 2) {
+				$vids[] = Video::get($vid);
+			}
 		}
 		$db->close();
 		return $vids;
@@ -29,7 +32,10 @@ class Vidslist
 		$vids = array();
 		while ($data = $db->fetch_array($rep) )
 		{
-			$vids[] = Video::get($data['id']);
+			$vid = Video::get($data['id']);
+			if($vid->getVisibility() == 2) {
+				$vids[] = Video::get($vid);
+			}
 		}
 		$db->close();
 		return $vids;
@@ -48,7 +54,10 @@ class Vidslist
 			echo $db->error();
 			while ($data = $db->fetch_array($rep) )
 			{
-				$vids[] = Video::get($data['id']);
+				$vid = Video::get($data['id']);
+				if($vid->getVisibility() == 2) {
+					$vids[] = Video::get($vid);
+				}
 			}
 			$db->close();
 		}
@@ -62,7 +71,10 @@ class Vidslist
 		$rep = $db->query("SELECT videos.id FROM videos INNER JOIN users WHERE videos.title LIKE '%".$db->real_escape_string($search)."%' OR videos.tags LIKE '%".$db->real_escape_string($search)."%' OR users.username LIKE '%".$db->real_escape_string($search)."%'");
 		while ($data = $db->fetch_array($rep) )
 		{
-			$vids[] = Video::get($data['id']);
+			$vid = Video::get($data['id']);
+			if($vid->getVisibility() == 2) {
+				$vids[] = Video::get($vid);
+			}
 		}
 		$db->close();
 		return $vids;
