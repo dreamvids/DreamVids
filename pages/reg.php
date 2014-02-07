@@ -49,7 +49,7 @@ elseif (isset($_POST['submit']) )
 		{
 			if (!Reg::emailExist($_POST['email']) )
 			{
-				if (preg_match("#^[a-zA-Z0-9\-_]{1,40}$#", $_POST['username']) )
+				if (preg_match("#^[a-zA-Z0-9\-_]{1,40}$#", $_POST['username']) | !preg_match('/\s/', $_POST['username']) )
 				{
 					if (!Reg::UsernameExist($_POST['username']) )
 					{
