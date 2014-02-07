@@ -74,7 +74,7 @@ class BDD
 	
 	public function real_escape_string($string)
 	{
-		return mysql_real_escape_string($string);
+		return mysql_real_escape_string(htmlspecialchars($string, ENT_QUOTES) );
 	}
 	
 	public function show_columns($table)
