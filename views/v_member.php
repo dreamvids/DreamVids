@@ -7,7 +7,21 @@
 <div class="container">
 <div class='container'>
 <div class='container'>		
-	<?php
+	
+</div>
+ <div class="panel panel-primary" > <div class="panel-heading">
+              <h3 class="panel-title">Informations</h3>
+            </div><br>
+	<div class="container" >
+		<div id="img">
+			<img src="<?php echo $avatar; ?>" class="picture" height="70" width="70"/> 
+		</div>
+		<div id="pseudo">
+			<div class='border-top'></div>
+				<h1><?php echo secure($pseudo); ?> <small><span class="badge"><a style="text-decoration: none; color: #fff;" href="./?page=subscribers&uid=<?php echo $member->getId(); ?>"><?php echo secure($member->getSubscribers() ); ?> Abonnés</a></span></small></h1>	
+			<div class='border-bottom'></div>
+		</div>
+		<?php
 		if (isset($session) && $session->getId() != $member->getId() )
 		{
 			if (in_array($member->getId(), $session->getSubscriptions() ) )
@@ -24,19 +38,6 @@
 			}
 		}
 		?>
-</div>
- <div class="panel panel-primary" > <div class="panel-heading">
-              <h3 class="panel-title">Informations</h3>
-            </div><br>
-	<div class="container" >
-		<div id="img">
-			<img src="<?php echo $avatar; ?>" class="picture" height="70" width="70"/> 
-		</div>
-		<div id="pseudo">
-			<div class='border-top'></div>
-				<h1><?php echo secure($pseudo); ?> <small><span class="badge"><a style="text-decoration: none; color: #fff;" href="./?page=subscribers&uid=<?php echo $member->getId(); ?>"><?php echo secure($member->getSubscribers() ); ?> Abonnés</a></span></small></h1>	
-			<div class='border-bottom'></div>
-		</div>
 	</div><br>
 </div>
  <div class="panel panel-primary" > <div class="panel-heading">
