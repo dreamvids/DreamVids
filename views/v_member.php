@@ -56,9 +56,7 @@
 				    
 				</div>
 			<?php
-			if (count($videos) > 5) {
-				echo "<br />";
-			}
+			
 		}
 		?>
 		</div>
