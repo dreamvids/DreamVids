@@ -18,7 +18,7 @@ class Vidslist
 		{
 			$vid = Video::get($data['id']);
 			if($vid->getVisibility() == 2) {
-				$vids[] = Video::get($vid);
+				$vids[] = $vid;
 			}
 		}
 		$db->close();
@@ -34,7 +34,7 @@ class Vidslist
 		{
 			$vid = Video::get($data['id']);
 			if($vid->getVisibility() == 2) {
-				$vids[] = Video::get($vid);
+				$vids[] = $vid;
 			}
 		}
 		$db->close();
@@ -56,7 +56,7 @@ class Vidslist
 			{
 				$vid = Video::get($data['id']);
 				if($vid->getVisibility() == 2) {
-					$vids[] = Video::get($vid);
+					$vids[] = $vid;
 				}
 			}
 			$db->close();
@@ -73,7 +73,7 @@ class Vidslist
 		{
 			$vid = Video::get($data['id']);
 			if($vid->getVisibility() == 2) {
-				$vids[] = Video::get($vid);
+				$vids[] = $vid;
 			}
 		}
 		$db->close();

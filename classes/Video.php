@@ -61,7 +61,8 @@ class Video {
 	private function loadVideo($id) {
 		$this->id = $id;
 		$db = new BDD();
-        $result = $db->select("*", "videos", "WHERE id='".$db->real_escape_string($this->id)."'") or die(mysql_error());
+        
+        $result = $db->select("*", "videos", "WHERE id='".mysql_real_escape_string($id)."'") or die(mysql_error());
 
         while($row = $db->fetch_array($result)) {
             $this->id = $row['id'];
@@ -228,7 +229,7 @@ class Video {
 
 	public function isHalfConverted() {
 		$db = new BDD();
-	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd=0") or die(mysql_error());
+	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd!=0 AND hd=0") or die(mysql_error());
 	    return $db->num_rows($result) == 1;
 	}
 }

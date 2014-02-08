@@ -32,11 +32,12 @@
 	?>
 
 	<?php
+	if(isset($warn))
+		echo '<div class="container" style="width: 60%; float: left;"><div class="alert alert-warning">'.$warn.'</div></div>';
+
 	if(isset($err)) {
 		echo '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>';
 	}
-	if(isset($warn))
-		echo '<div class="alert alert-warning">'.$warn.'</div>';
 	else {
 	?>
 
