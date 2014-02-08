@@ -44,7 +44,7 @@
               <h3 class="panel-title"><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h3>
             </div><br>
 	<div class='container' style=''>
-		<div class="row">
+		
 			
 		<?php
 
@@ -71,7 +71,7 @@
 			
 		}
 		?>
-		</div>
+		
 
 </div>
 </div></div></div>
