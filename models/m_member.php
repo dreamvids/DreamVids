@@ -10,8 +10,12 @@ class Member {
 
 		$i = 0;
 		while($row = $db->fetch_array($res)) {
-			$vids[$i] = Video::get($row['id']);
-			$i++;
+			$vid = Video::get($row['id']);
+
+			if($vid->getVisibility() == 2) {
+				$vids[$i] = $vid;
+				$i++;
+			}
 		}
 
 		return $vids;
