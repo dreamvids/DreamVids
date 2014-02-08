@@ -2,9 +2,11 @@
 
 ?>
 <link href="css/perso.php?uid=<?php echo secure($member->getId()); ?>" rel="stylesheet" />
-<div class="container" id="user">
-<div class='container' id='content'>
-<div class='container' id="abonement">		
+
+
+<div class="container">
+<div class='container'>
+<div class='container'>		
 	<?php
 		if (isset($session) && $session->getId() != $member->getId() )
 		{
@@ -23,7 +25,10 @@
 		}
 		?>
 </div>
-	<div class="container" id="head">
+ <div class="panel panel-primary" > <div class="panel-heading">
+              <h3 class="panel-title">Informations</h3>
+            </div><br>
+	<div class="container" >
 		<div id="img">
 			<img src="<?php echo $avatar; ?>" class="picture" height="70" width="70"/> 
 		</div>
@@ -32,34 +37,42 @@
 				<h1><?php echo secure($pseudo); ?> <small><span class="badge"><a style="text-decoration: none; color: #fff;" href="./?page=subscribers&uid=<?php echo $member->getId(); ?>"><?php echo secure($member->getSubscribers() ); ?> Abonnés</a></span></small></h1>	
 			<div class='border-bottom'></div>
 		</div>
-	</div>
-
+	</div><br>
+</div>
+ <div class="panel panel-primary" > <div class="panel-heading">
+              <h3 class="panel-title"><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h3>
+            </div><br>
 	<div class='container' style=''>
-		<h2><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h2><br />	
 		<div class="row">
 			
 		<?php
 
 		foreach ($videos as $vid) {
 			$titleVid = (strlen($vid->getTitle() ) > 18) ? secure(substr($vid->getTitle(), 0, 15) ).'...' : secure($vid->getTitle() );
+			$descVid = (strlen($vid->getDescription() ) > 35) ? secure(substr($vid->getDescription(), 0, 32) ).'...' : secure($vid->getDescription() );
 			?>
 				<div class="col-md-2">
-						<?php echo '<b>'.$titleVid.'</b>'; ?>
-				   <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" class="thumbnail" style="width: 171px; height:100px;">
-				     <div style="height:90px;width:100%;overflow:hidden">
-				      <img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>">
-				     </div>
-				    </a>
-					<br />
-				    <?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br />
-				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?>
-				    
+ 			<div class="thumbnail featuredbox">
+              <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
+              <div class="hotfeaturedtext">
+                <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
+                <p><?php echo $descVid; ?></p>
+              </div> <!--/featuredtext-->
+              <div class="hotfeaturedbutton"> 
+                <hr>
+               <span><?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
+				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
+              </div>
+            </div>	
 				</div>
+
 			<?php
 			
 		}
 		?>
 		</div>
-	</div>
+
 </div>
-</div>
+</div></div></div>
+
+
