@@ -33,7 +33,7 @@ if (isset($session) )
 		<br><br>
 	</div>
 
-	<div class="navbar navbar-default navbar-static-top" id="navbar" <?php if(@$_GET['page'] == 'profile'){ echo 'style="margin-bottom:0px;"'; } if(@$_GET['page'] == 'manager'){ echo 'style="margin-bottom:0px;"'; } if(@$_GET['page'] == 'mail'){ echo 'style="margin-bottom:0px;"'; } ?>>
+	<div class="navbar navbar-default navbar-static-top" id="navbar" <?php if(@$_GET['page'] == 'profile' || @$_GET['page'] == 'manager' || @$_GET['page'] == 'mail' || @$_GET['page'] == 'pass') echo 'style="margin-bottom:0px;"'; ?>>
 		<div class="container">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
 				<span class='icon-bar'></span>
