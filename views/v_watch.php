@@ -104,7 +104,7 @@
 			<?php
 		}
 		?>
-		<b style="margin-left:50px"><?php echo $video->getViews() ?> vues</b></div>
+		<b style="margin-left:50px"><?php echo $CurView; ?> vues</b></div>
 		<br /><br />
 
 	<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title) > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
