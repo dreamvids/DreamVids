@@ -1,4 +1,5 @@
 <?php
+ini_set("session.gc_maxlifetime", '36000');
 session_start();
 date_default_timezone_set('Europe/Paris');
 
