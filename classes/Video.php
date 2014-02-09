@@ -263,9 +263,7 @@ class Video {
     {
         $ip = $remote;
     }
-
-    $useragent = $_SERVER['HTTP_USER_AGENT'];
-    return md5($ip.$useragent);
+    return md5($ip);
 }
 }
 
