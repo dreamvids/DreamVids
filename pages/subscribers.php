@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($session) || !isset($_GET['uid']) ) {
-	header('Location: ./?page=log');
+	header('Location: /login');
 	exit();
 }
 

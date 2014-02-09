@@ -5,7 +5,7 @@ if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
 $uploadDone = $lang['upload_ok'];
 
 if(!isset($session)) {
-	header("Location: ./index.php?page=log");
+	header("Location: /login");
 	exit();
 }
 
