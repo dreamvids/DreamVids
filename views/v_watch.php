@@ -120,7 +120,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 	</script>
 
-	<div class="fb-share-button" data-href="http://dremavids.fr/?page=watch&vid=<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
+	<div class="fb-share-button" data-href="http://dremavids.fr/watch-<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
 
 	<br>
 	<form method="post" role="form" action><input type="submit" value="Signaler" class="btn btn-danger" name="submitFlag"></form>
