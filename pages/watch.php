@@ -5,7 +5,7 @@ if(isset($_GET['vid'])) {
 	$title = $video->getTitle();
 	$id = $video->getId();
 	$author = new User($video->getUserId());
-
+	$CurView = '';
 	if($title) {
 		if(!$video->isSuspended()) {
 			if ($video->getVisibility() > 0 || $session->getId() == $video->getUserId() ) {
@@ -22,7 +22,7 @@ if(isset($_GET['vid'])) {
 				$dislikes = $video->getDislikes();
 				$path = $video->getPath();
 				$tumbnail = $video->getTumbnail();
-	
+				$CurView = $video->GetSetView();
 				if(isset($GLOBALS['session'])) {
 					$isLiked = (Watch::isLiked($_GET['vid']) ) ? 'liked="liked"' : '';
 					$isDisliked = (Watch::isDisliked($_GET['vid']) ) ? 'disliked="disliked"' : '';
@@ -30,7 +30,7 @@ if(isset($_GET['vid'])) {
 
 				if(isset($_POST['submitFlag'])) {
 					Watch::flagVideo($video);
-				}
+				}				
 			}
 			else {
 				$err = $lang['video_private'];
