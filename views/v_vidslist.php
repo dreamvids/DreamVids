@@ -35,7 +35,7 @@ if (@$_GET['mode'] == 'subscriptions')
 		foreach ($subs as $sub)
 		{
 ?>
-				  <li class="list-group-item"><a href="index.php?page=member&name=<?php echo secure($sub->getName() ); ?>"><img width="24" src="<?php echo secure($sub->getAvatarPath() ); ?>" alt="" />&nbsp;&nbsp;<?php echo secure($sub->getName() ); ?></a></li>
+				  <li class="list-group-item"><a href="/@<?php echo secure($sub->getName() ); ?>"><img width="24" src="<?php echo secure($sub->getAvatarPath() ); ?>" alt="" />&nbsp;&nbsp;<?php echo secure($sub->getName() ); ?></a></li>
 <?php
 		}
 	}
@@ -67,14 +67,14 @@ foreach ($vids as $vid)
 ?>
 
             <div class="thumbnail featuredbox">
-              <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
+              <a href="/watch-<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
               <div class="hotfeaturedtext">
                 <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
                 <p><?php echo $descVid; ?></p>
               </div> <!--/featuredtext-->
               <div class="hotfeaturedbutton"> 
                 <hr>
-               <span><?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
+               <span><?php echo $lang['by'].' <a href="/@'.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
 				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
               </div>
             </div>			  

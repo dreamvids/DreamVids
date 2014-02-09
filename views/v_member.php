@@ -41,7 +41,7 @@
 	</div><br>
 </div>
  <div class="panel panel-primary" > <div class="panel-heading">
-              <h3 class="panel-title"><a href="index.php?page=member&name=<?php echo secure($pseudo); ?>&all=1">Videos</a></h3>
+              <h3 class="panel-title"><a href="/@<?php echo secure($pseudo); ?>&all=1">Videos</a></h3>
             </div><br>
 	<div class='container' style=''>
 		
@@ -54,14 +54,14 @@
 			?>
 				<div class="col-md-2">
  			<div class="thumbnail featuredbox">
-              <a href="index.php?page=watch&vid=<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
+              <a href="/watch-<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>"></a>
               <div class="hotfeaturedtext">
                 <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
                 <p><?php echo $descVid; ?></p>
               </div> <!--/featuredtext-->
               <div class="hotfeaturedbutton"> 
                 <hr>
-               <span><?php echo $lang['by'].' <a href="index.php?page=member&name='.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
+               <span><?php echo $lang['by'].' <a href="/@'.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
 				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
               </div>
             </div>	

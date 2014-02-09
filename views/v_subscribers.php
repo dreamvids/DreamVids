@@ -15,7 +15,7 @@
 
 			foreach ($subscribers as $sub) {
 				?>
-				<a href="./?page=member&uid=<?php echo $sub->getId(); ?>" class="list-group-item">
+				<a href="/@<?php echo $sub->getId(); ?>" class="list-group-item">
 					<img src="<?php echo $sub->getAvatarPath(); ?>" style="width: 32px; height: 32px;">
 					<?php echo $sub->getName(); ?>
 				</a>
