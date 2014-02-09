@@ -9,7 +9,7 @@ if (isset($session) )
 
 if (isset($_POST['submit']) )
 {
-	if (Log::userExist($_POST['username']) )
+	if (Log::userExist($_POST['username']))
 	{
 		$pass = Log::getPassFromUsername($_POST['username']);
 		if (sha1($_POST['pass']) == $pass)

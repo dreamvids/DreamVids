@@ -29,7 +29,7 @@ if (isset($session) )
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="index.php"><img src="img/logo_white.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
+		<div id="logo" class=""><a href="index.php"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
 
