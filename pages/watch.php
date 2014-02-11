@@ -52,6 +52,15 @@ if(isset($_POST['suspend_vid'])) {
 	if(Watch::isModerator($session)) {
 		$vid = Video::get(htmlentities($_GET['vid']));
 		Watch::suspendVideo($vid->getId());
+		header('Location: /&'.$vid->getId());
+	}
+}
+
+if(isset($_POST['unflag_vid'])) {
+	if(Watch::isModerator($session)) {
+		$vid = Video::get(htmlentities($_GET['vid']));
+		Watch::unflagVideo($vid);
+		header('Location: /&'.$vid->getId());
 	}
 }
 

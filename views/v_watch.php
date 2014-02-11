@@ -18,6 +18,12 @@
 
 	<div id='moderatingCommands' class='container'>
 		<form method='post' action='' role='form'>
+			<?php if($video->isFlagged()) { ?>
+
+			<button class='btn btn-success' name='unflag_vid'>Annuler le flag</button>			
+
+			<?php } ?>
+
 			<button class='btn btn-warning' name='suspend_vid'>Suspendre</button>
 			<button type='submit' class='btn btn-info' name='send_message_author'>Envoyer un message au créateur</button>
 			<button type='submit' class='btn btn-info' name='send_message_admin'>Envoyer un message à un admin</button>

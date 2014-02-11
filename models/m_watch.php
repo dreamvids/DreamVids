@@ -43,6 +43,11 @@ class Watch {
 		$vid->setFlagged(1);
 		$vid->saveDataToDatabase();
 	}
+
+	public static function unflagVideo($vid) {
+		$vid->setFlagged(0);
+		$vid->saveDataToDatabase();
+	}
 }
 
 ?>

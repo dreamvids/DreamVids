@@ -178,10 +178,6 @@ class Video {
 		return $this->visibility;
 	}
 
-	public function isFlagged() {
-		return $this->flagged;
-	}
-
 	public function isSuspended() {
 		return $this->visibility == 3;
 	}
@@ -231,6 +227,10 @@ class Video {
 
 	public function setFlagged($flagged) {
 		$this->flagged = $flagged;
+	}
+
+	public function isFlagged() {
+		return $this->flagged == 1;
 	}
 
 
