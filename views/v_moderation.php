@@ -22,7 +22,7 @@
 
 				<a href="/watch-<?php echo $vid->getId(); ?>" class="list-group-item">
 					<h4 class="list-group-item-heading"><?php echo $vid->getTitle().' - By '.User::getNameById($vid->getUserId()); ?></h4>
-					<p class="list-group-item-text"><?php echo $vid->getDescription(); ?></p>
+					<p class="list-group-item-text"><?php echo bbcode(nl2br(secure($vid->getDescription()) ) ); ?></p>
 				</a>
 
 				<?php
