@@ -24,7 +24,16 @@
 
 			<?php } ?>
 
+			<?php if($video->isSuspended()) { ?>
+
+			<button class='btn btn-success' name='unsuspend_vid'>Ré-activer</button>	
+
+			<?php } else { ?>
+
 			<button class='btn btn-warning' name='suspend_vid'>Suspendre</button>
+
+			<?php } ?>
+
 			<button type='submit' class='btn btn-info' name='send_message_author'>Envoyer un message au créateur</button>
 			<button type='submit' class='btn btn-info' name='send_message_admin'>Envoyer un message à un admin</button>
 			<button type='submit' class='btn btn-danger' name='request_delete_vid'>Demander la suppression</button>

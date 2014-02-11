@@ -11,6 +11,12 @@ class Watch {
 		$video->setVisibility(3); // 3 = suspended
 		$video->saveDataToDatabase();
 	}
+
+	public static function unsuspendVideo($vidId) {
+		$video = Video::get($vidId);
+		$video->setVisibility(2); // 2 = publicw
+		$video->saveDataToDatabase();
+	}
 	
 	public static function isLiked($vid) {
 		$db = new BDD();
