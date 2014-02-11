@@ -18,7 +18,7 @@
                  if(@$session->getRank() == 5 OR @$session->getRank() == 9)  {
                      
                     
-                    echo '<center><a class="btn btn-success" href="">Centre de modération</a></center>';
+                    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
                 }           
                 ?>
                 
