@@ -64,10 +64,26 @@ foreach ($vids as $vid)
 	
 	$titleVid = (strlen($vid->getTitle() ) > 29) ? secure(substr($vid->getTitle(), 0, 26) ).'...' : secure($vid->getTitle() );
 	$descVid = (strlen($vid->getDescription() ) > 35) ? secure(substr($vid->getDescription(), 0, 32) ).'...' : secure($vid->getDescription() );
+        $miniature = ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg';
+        function url_exists($miniature)
+        {
+            $F=@fopen($miniature,"r");
+
+            return ($F)? 1 : 0;
+
+        }
+        if (url_exists($miniature) == 1){
+
+        $miniature_view = ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg';
+        }
+        else
+        {
+        $miniature_view = 'img/thumb_error.png';
+        }
 ?>
 
             <div class="thumbnail featuredbox">
-              <a href="/&<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></a>
+              <a href="/&<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo $miniature_view; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></a>
               <div class="hotfeaturedtext">
                 <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
                 <p><?php echo $descVid; ?></p>
