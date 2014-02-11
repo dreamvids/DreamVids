@@ -14,6 +14,15 @@
 			<a href="http://twitter.com/VincentBanana" target="_blank">VincentBanana</a> 
 			et <a href="http://skype.com/" target="_blank">La bonne humeur</a> !
 		</h4>
+                <?php
+                 if(@$session->getRank() == 5 OR @$session->getRank() == 9)  {
+                     
+                    
+                    echo '<center><a class="btn btn-success" href="">Centre de modération</a></center>';
+                }           
+                ?>
+                
+         
 	</div>
 	
 		
