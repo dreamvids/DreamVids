@@ -1,5 +1,8 @@
 ﻿- Panneau de modération
 
+- changer la manière dont les report sont faits : vidéo normale report=0
+Lorsqu'on report : report++ et affichage dans le pannel du nombre
+
 - Garder le volume sonore/qualité en mémoire
 
 - Compteur de vues
