@@ -73,6 +73,7 @@ if(isset($_FILES['videoInput'])) {
 
 		if(in_array($ext, $acceptedExts)) {
 			Upload::uploadVideo($session->getId(), $session->getName() );
+			echo 'mdr';
 		}
 		else {
 			$err = $lang['error_video_type_incorrect'];

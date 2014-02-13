@@ -14,9 +14,12 @@ class Manager {
 		}
 	}
 
-	public static function deleteVideo($vidId) {
+	public static function deleteVideo($vidId, $userId) {
 		$vid = Video::get($vidId);
-		$vid->delete();
+		
+		if($vid->getUserId() == $userId) {
+			$vid->delete();
+		}
 	}
 }
 
