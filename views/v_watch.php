@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="./index.php?page=member&name=<?php echo secure($author->getName() ); ?>"><?php echo secure($author->getName() ); ?></a></small></h1>
+			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="/@<?php echo secure($author->getName() ); ?>"><?php echo secure($author->getName() ); ?></a></small></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
@@ -18,7 +18,22 @@
 
 	<div id='moderatingCommands' class='container'>
 		<form method='post' action='' role='form'>
+			<?php if($video->isFlagged()) { ?>
+
+			<button class='btn btn-success' name='unflag_vid'>Annuler le flag</button>			
+
+			<?php } ?>
+
+			<?php if($video->isSuspended()) { ?>
+
+			<button class='btn btn-success' name='unsuspend_vid'>Ré-activer</button>	
+
+			<?php } else { ?>
+
 			<button class='btn btn-warning' name='suspend_vid'>Suspendre</button>
+
+			<?php } ?>
+
 			<button type='submit' class='btn btn-info' name='send_message_author'>Envoyer un message au créateur</button>
 			<button type='submit' class='btn btn-info' name='send_message_admin'>Envoyer un message à un admin</button>
 			<button type='submit' class='btn btn-danger' name='request_delete_vid'>Demander la suppression</button>
@@ -32,6 +47,9 @@
 	?>
 
 	<?php
+	if(isset($warn))
+		echo '<div class="container" style="width: 60%; float: left;"><div class="alert alert-warning">'.$warn.'</div></div>';
+
 	if(isset($err)) {
 		echo '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>';
 	}
@@ -93,8 +111,15 @@
 	$log = (isset($session) );
 		?>
 		<br /><br />
-		<img src="img/videos/positive.png" <?php if($log){ ?>onclick="like('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" <?php if($log){ ?>onclick="dislike('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
-		<b style="margin-left:50px"><?php echo $video->getViews() ?> vues</b></div>
+		
+		<?php
+		if($log) {
+			?>
+			<img src="img/videos/positive.png" <?php if($log){ ?>onclick="like('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" <?php if($log){ ?>onclick="dislike('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
+			<?php
+		}
+		?>
+		<b style="margin-left:50px"><?php echo $CurView; ?> vues</b></div>
 		<br /><br />
 
 	<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title) > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
@@ -110,7 +135,7 @@
 	}(document, 'script', 'facebook-jssdk'));
 	</script>
 
-	<div class="fb-share-button" data-href="http://dremavids.fr/page=watch&vid=<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
+	<div class="fb-share-button" data-href="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
 
 	<br>
 	<form method="post" role="form" action><input type="submit" value="Signaler" class="btn btn-danger" name="submitFlag"></form>

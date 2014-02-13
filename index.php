@@ -1,5 +1,7 @@
 <?php
+ini_set("session.gc_maxlifetime", '36000');
 session_start();
+date_default_timezone_set('Europe/Paris');
 
 $content = 'pages/vidslist.php';
 $model = 'models/m_vidslist.php';
@@ -26,8 +28,8 @@ include 'includes/tasks.php';
 
 if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm']) )
 {
-	if (isset($session) || @$_GET['page'] == 'log')
-	{
+	//if (isset($session) || @$_GET['page'] == 'log')
+	//{
 		include $model;
 		include $content;
 		
@@ -41,12 +43,12 @@ if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm'
 		{
 			include $view;
 		}
-	}
+	/*}
 	else
 	{
 		header('location:http://beta.dreamvids.fr/?page=log');
 		exit();
-	}
+	}*/
 }
 else
 {

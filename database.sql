@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 03 Février 2014 à 20:12
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Généré le: Sam 08 Février 2014 à 17:35
+-- Version du serveur: 5.5.24-log
+-- Version de PHP: 5.3.13
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `dev`
 --
-CREATE DATABASE IF NOT EXISTS `dev` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `dev`;
 
 -- --------------------------------------------------------
 
@@ -32,6 +30,16 @@ CREATE TABLE IF NOT EXISTS `config` (
   `key` varchar(255) NOT NULL,
   `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `config`
+--
+
+INSERT INTO `config` (`key`, `value`) VALUES
+('rank_mbr', '1'),
+('rank_adm', '9'),
+('rank_modo', '5'),
+('maintenance', '0');
 
 -- --------------------------------------------------------
 
@@ -47,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `content` text NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`int_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=104 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 -- --------------------------------------------------------
 
@@ -83,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=261 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=185 ;
 
 -- --------------------------------------------------------
 
@@ -124,23 +132,6 @@ CREATE TABLE IF NOT EXISTS `videos` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `videos_annot`
---
-
-CREATE TABLE IF NOT EXISTS `videos_annot` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `video_id` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `position` varchar(255) NOT NULL,
-  `size` varchar(255) NOT NULL,
-  `time` varchar(255) NOT NULL,
-  `color` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `videos_comments`
 --
 
@@ -152,20 +143,6 @@ CREATE TABLE IF NOT EXISTS `videos_comments` (
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `videos_convert`
---
-
-CREATE TABLE IF NOT EXISTS `videos_convert` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `video_id` text NOT NULL,
-  `sd` int(11) NOT NULL,
-  `hd` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 -- --------------------------------------------------------
 

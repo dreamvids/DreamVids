@@ -176,5 +176,9 @@ $lang = array(
 
 'edit_pass' => 'Modifier mon mot de passe',
 
+'video_half_converted' => 'Cette vidéo est en cours de conversion. La HD peut être momentanément indisponible',
+
+'video_not_converted' => 'Cette vidéo n\' est pas encore convertie. Elle peut être inaccessible pendant quelques instants',
+
 );
 ?>

@@ -1,7 +1,7 @@
 <?php
 if (!isset($session) )
 {
-	header('location:signin');
+	header('location: /login');
 	exit();
 }
 

@@ -15,7 +15,6 @@ body{
   background-size: cover;
 }
 #content{
-  width:75%;
   border:1px solid #fff;
   vertical-align:middle;
   display:inline-block;
