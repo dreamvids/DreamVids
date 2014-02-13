@@ -149,7 +149,7 @@
 				<h5><a href="index.php?page=member&name=<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()); ?></a> <small><?php echo $date; ?></small></h5>
 			</div>
 			<div class="panel-body">
-				<p><?php echo secure($comm->getContent() ); ?></p>
+				<p><?php echo bbcode(nl2br(secure($comm->getContent() ) ) ); ?></p>
 			</div>
 		</div>
 
