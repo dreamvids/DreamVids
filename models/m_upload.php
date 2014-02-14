@@ -40,6 +40,7 @@ class Upload {
 	}
 	
 	public static function countVideos() {
+		echo 'COUNT:'.$_SESSION['vid_id'].' <br>';
 		$db = new BDD();
 		$return = $db->select("id", "videos", "WHERE id='".$_SESSION['vid_id']."'");
 		$db->close();

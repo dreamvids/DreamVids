@@ -122,7 +122,7 @@ fileInput.onchange = function() {
 		    document.getElementById('up-submit').removeAttribute('disabled');
 		};
 		var form = new FormData();
-		//form.append('videoInput', fileInput.files[0]);
+		form.append('videoInput', fileInput.files[0]);
 		xhr.send(form);
 	}
 	else {
