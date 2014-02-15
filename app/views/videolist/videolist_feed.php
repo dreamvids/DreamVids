@@ -1,0 +1,1 @@
+<h1>Flux d'actualité</h1>

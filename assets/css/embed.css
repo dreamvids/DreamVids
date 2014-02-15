@@ -1,0 +1,1332 @@
+/* line 17, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url("../fonts/sourcesanspro-light-webfont.eot");
+  src: url("../fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/sourcesanspro-light-webfont.woff") format("woff"), url("../fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+ *	Style
+ */
+/* line 5, ../scss/partials/_player.scss */
+#player {
+  position: relative;
+  overflow: hidden;
+  background: black;
+  width: 640px;
+  padding: 0;
+  float: left;
+  height: auto;
+  box-shadow: 1px 2px 0 #e2e2e2;
+  z-index: 1;
+}
+
+@media all and (max-width: 700px) {
+  /* line 17, ../scss/partials/_player.scss */
+  #player {
+    width: 100%;
+  }
+}
+/* line 21, ../scss/partials/_player.scss */
+#player.animated {
+  -webkit-transition: height, width 0.4s;
+  -moz-transition: height, width 0.4s;
+  -ms-transition: height, width 0.4s;
+  -o-transition: height, width 0.4s;
+  transition: height, width 0.4s;
+}
+
+/* line 28, ../scss/partials/_player.scss */
+#player.wide {
+  width: 100%;
+  height: auto!important;
+}
+
+/* line 32, ../scss/partials/_player.scss */
+#player:-webkit-full-screen {
+  margin: 0!important;
+  top: 0!important;
+  left: 0!important;
+  width: 100%!important;
+  height: 100%!important;
+}
+
+/* line 39, ../scss/partials/_player.scss */
+#player:-webkit-full-screen > #controls, #player:-webkit-full-screen > #controls > #progress {
+  width: 100%;
+}
+
+/* line 43, ../scss/partials/_player.scss */
+video {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ *	Bouton repeat (à la fin)
+ */
+@-webkit-keyframes rotate {
+  /* line 53, ../scss/partials/_player.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 54, ../scss/partials/_player.scss */
+  to {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  /* line 57, ../scss/partials/_player.scss */
+  from {
+    -moz-transform: rotate(0deg);
+  }
+
+  /* line 58, ../scss/partials/_player.scss */
+  to {
+    -moz-transform: rotate(-360deg);
+  }
+}
+
+@-ms-keyframes rotate {
+  /* line 61, ../scss/partials/_player.scss */
+  from {
+    -ms-transform: rotate(0deg);
+  }
+
+  /* line 62, ../scss/partials/_player.scss */
+  to {
+    -ms-transform: rotate(-360deg);
+  }
+}
+
+@-o-keyframes rotate {
+  /* line 65, ../scss/partials/_player.scss */
+  from {
+    -o-transform: rotate(0deg);
+  }
+
+  /* line 66, ../scss/partials/_player.scss */
+  to {
+    -o-transform: rotate(-360deg);
+  }
+}
+
+@keyframes rotate {
+  /* line 69, ../scss/partials/_player.scss */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* line 70, ../scss/partials/_player.scss */
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* line 72, ../scss/partials/_player.scss */
+#repeat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: 0s;
+  -moz-transition: 0s;
+  -ms-transition: 0s;
+  -o-transition: 0s;
+  transition: 0s;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* line 89, ../scss/partials/_player.scss */
+#repeat.show {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+}
+
+@media all and (min-width: 640px) {
+  /* line 95, ../scss/partials/_player.scss */
+  #repeat.show {
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+}
+/* line 103, ../scss/partials/_player.scss */
+#repeat > .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 128px;
+  height: 128px;
+  margin-top: -64px;
+  margin-left: -64px;
+  background-image: url(../img/player/repeat.png);
+}
+
+@media all and (min-width: 640px) {
+  /* line 114, ../scss/partials/_player.scss */
+  #repeat > .icon {
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation: rotate 20s linear 0s;
+    -moz-animation: rotate 20s linear 0s;
+    -ms-animation: rotate 20s linear 0s;
+    -o-animation: rotate 20s linear 0s;
+    animation: rotate 20s linear 0s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+}
+/*
+ *	Sélection de qualité
+ */
+/* line 137, ../scss/partials/_player.scss */
+#qualitySelection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: 0s;
+  -moz-transition: 0s;
+  -ms-transition: 0s;
+  -o-transition: 0s;
+  transition: 0s;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* line 153, ../scss/partials/_player.scss */
+#qualitySelection.show {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+}
+
+@media all and (min-width: 640px) {
+  /* line 159, ../scss/partials/_player.scss */
+  #qualitySelection.show {
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+}
+/* line 167, ../scss/partials/_player.scss */
+#qualitySelection > * {
+  position: absolute;
+  top: 40%;
+  padding-top: 110px;
+  width: 205px;
+  height: 100px;
+  margin-left: -100px;
+  margin-top: -50px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-size: 35px;
+  font-family: 'Source Sans Pro';
+  background-repeat: no-repeat;
+}
+
+/* line 182, ../scss/partials/_player.scss */
+#qualitySelection[data-number="3"] > *:nth-child(-n+2) {
+  top: 30%;
+}
+
+/* line 185, ../scss/partials/_player.scss */
+#qualitySelection > #q1 {
+  left: 30%;
+}
+
+/* line 188, ../scss/partials/_player.scss */
+#qualitySelection > #q2 {
+  left: 70%;
+}
+
+/* line 191, ../scss/partials/_player.scss */
+#qualitySelection > #q3 {
+  left: 50%;
+  top: 70%;
+}
+
+/* line 195, ../scss/partials/_player.scss */
+#qualitySelection > *[data-format="360"] {
+  background-image: url(../img/player/cloudQ1.png);
+}
+
+/* line 198, ../scss/partials/_player.scss */
+#qualitySelection > *[data-format="720"] {
+  background-image: url(../img/player/cloudQ2.png);
+}
+
+/* line 201, ../scss/partials/_player.scss */
+#qualitySelection[data-number="1"] > *[data-format="720"], #qualitySelection[data-number="2"] > *[data-format="720"] {
+  background-image: url(../img/player/cloudQ2lisse.png);
+}
+
+/* line 204, ../scss/partials/_player.scss */
+#qualitySelection > *[data-format="1080"] {
+  background-image: url(../img/player/cloudQ3.png);
+}
+
+@media all and (max-width: 550px) {
+  /* line 208, ../scss/partials/_player.scss */
+  #qualitySelection > * {
+    width: 154px;
+    height: 75px;
+    margin-left: -77px;
+    margin-top: -38px;
+    background-size: 103px 50px;
+  }
+
+  /* line 215, ../scss/partials/_player.scss */
+  #qualitySelection > *[data-format="360"] {
+    background-image: url(../img/player/cloudQ1m.png);
+  }
+
+  /* line 218, ../scss/partials/_player.scss */
+  #qualitySelection > *[data-format="720"] {
+    margin-left: -50px;
+    background-image: url(../img/player/cloudQ2m.png);
+  }
+
+  /* line 222, ../scss/partials/_player.scss */
+  #qualitySelection[data-number="1"] > *[data-format="720"], #qualitySelection[data-number="2"] > *[data-format="720"] {
+    background-image: url(../img/player/cloudQ2lisse.png);
+  }
+
+  /* line 225, ../scss/partials/_player.scss */
+  #qualitySelection > *[data-format="1080"] {
+    background-image: url(../img/player/cloudQ3m.png);
+  }
+}
+/* line 230, ../scss/partials/_player.scss */
+#waitForPlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 128px;
+  height: 128px;
+  margin-top: -64px;
+  margin-left: -64px;
+  cursor: pointer;
+  background-image: url(../img/player/bigPlay.png);
+  background-size: 100% 100%;
+}
+
+@media all and (min-width: 640px) {
+  /* line 243, ../scss/partials/_player.scss */
+  #waitForPlay {
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+
+  /* line 250, ../scss/partials/_player.scss */
+  #waitForPlay:active {
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    -ms-transition: 0.1s;
+    -o-transition: 0.1s;
+    transition: 0.1s;
+  }
+}
+/* line 258, ../scss/partials/_player.scss */
+#waitForPlay:hover {
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -75px;
+}
+
+/* line 264, ../scss/partials/_player.scss */
+#waitForPlay:active {
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  margin-left: -60px;
+}
+
+/*
+ *	Gros icones animés (play et pause)
+ */
+@-webkit-keyframes bigIconPlay {
+  /* line 276, ../scss/partials/_player.scss */
+  from {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 277, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 278, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 279, ../scss/partials/_player.scss */
+  to {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@-moz-keyframes bigIconPlay {
+  /* line 282, ../scss/partials/_player.scss */
+  from {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 283, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 284, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 285, ../scss/partials/_player.scss */
+  to {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@-ms-keyframes bigIconPlay {
+  /* line 288, ../scss/partials/_player.scss */
+  from {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 289, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 290, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 291, ../scss/partials/_player.scss */
+  to {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@-o-keyframes bigIconPlay {
+  /* line 294, ../scss/partials/_player.scss */
+  from {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 295, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 296, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 297, ../scss/partials/_player.scss */
+  to {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@keyframes bigIconPlay {
+  /* line 300, ../scss/partials/_player.scss */
+  from {
+    top: 44%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 301, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 302, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 303, ../scss/partials/_player.scss */
+  to {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+/* line 305, ../scss/partials/_player.scss */
+#bigPlay, #bigPause {
+  position: absolute;
+  left: 50%;
+  width: 0;
+  height: 128px;
+  margin-top: -64px;
+  margin-left: -64px;
+  -webkit-animation-duration: 0.3s;
+  -moz-animation-duration: 0.3s;
+  -ms-animation-duration: 0.3s;
+  -o-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -ms-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+@media all and (max-width: 640px) {
+  /* line 325, ../scss/partials/_player.scss */
+  #bigPlay, #bigPause {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+/* line 331, ../scss/partials/_player.scss */
+#bigPlay {
+  background-image: url(../img/player/bigPlay.png);
+}
+
+@-webkit-keyframes bigIconPause {
+  /* line 335, ../scss/partials/_player.scss */
+  from {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 336, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 337, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 338, ../scss/partials/_player.scss */
+  to {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@-moz-keyframes bigIconPause {
+  /* line 341, ../scss/partials/_player.scss */
+  from {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 342, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 343, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 344, ../scss/partials/_player.scss */
+  to {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@-ms-keyframes bigIconPause {
+  /* line 347, ../scss/partials/_player.scss */
+  from {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 348, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 349, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 350, ../scss/partials/_player.scss */
+  to {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@-o-keyframes bigIconPause {
+  /* line 353, ../scss/partials/_player.scss */
+  from {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 354, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 355, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 356, ../scss/partials/_player.scss */
+  to {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+@keyframes bigIconPause {
+  /* line 359, ../scss/partials/_player.scss */
+  from {
+    top: 47%;
+    opacity: 0;
+    width: 128px;
+  }
+
+  /* line 360, ../scss/partials/_player.scss */
+  10% {
+    opacity: 1;
+  }
+
+  /* line 361, ../scss/partials/_player.scss */
+  60% {
+    opacity: 1;
+  }
+
+  /* line 362, ../scss/partials/_player.scss */
+  to {
+    top: 53%;
+    opacity: 0;
+    width: 128px;
+  }
+}
+
+/* line 364, ../scss/partials/_player.scss */
+#bigPause {
+  background-image: url(../img/player/bigPause.png);
+}
+
+/*
+ *	Barre des controles
+ */
+/* line 372, ../scss/partials/_player.scss */
+#controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 32px;
+  display: block;
+  background-color: #40a6e0;
+  color: white;
+  font-family: 'Source Sans Pro';
+}
+
+@media all and (min-width: 640px) {
+  /* line 383, ../scss/partials/_player.scss */
+  #controls {
+    -webkit-transition: bottom 0.3s;
+    -moz-transition: bottom 0.3s;
+    -ms-transition: bottom 0.3s;
+    -o-transition: bottom 0.3s;
+    transition: bottom 0.3s;
+  }
+}
+/* line 391, ../scss/partials/_player.scss */
+#controls.down {
+  bottom: -40px;
+}
+
+/* line 394, ../scss/partials/_player.scss */
+#controls > * {
+  margin: 0;
+}
+
+/*
+ *	Barre de progression
+ */
+/* line 402, ../scss/partials/_player.scss */
+#progress {
+  display: inline-block;
+  position: relative;
+  bottom: 10px;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* line 410, ../scss/partials/_player.scss */
+#controls.down > #progress, #controls.down > #progress > #buffered {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+@media all and (min-width: 640px) {
+  /* line 414, ../scss/partials/_player.scss */
+  #progress > * {
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+  }
+}
+/* line 422, ../scss/partials/_player.scss */
+#progress.clicking > * {
+  -webkit-transition: 0;
+  -moz-transition: 0;
+  -ms-transition: 0;
+  -o-transition: 0;
+  transition: 0;
+}
+
+/* line 429, ../scss/partials/_player.scss */
+#progress > #buffered {
+  display: block;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* line 435, ../scss/partials/_player.scss */
+#progress > #viewed {
+  display: block;
+  width: 0;
+  height: 100%;
+  position: relative;
+  bottom: 100%;
+  background-color: rgba(20, 20, 20, 0.6);
+}
+
+/* line 443, ../scss/partials/_player.scss */
+#controls.down > #progress > #viewed {
+  background-color: #40a6e0;
+}
+
+/* line 447, ../scss/partials/_player.scss */
+#progress > #current {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  bottom: 23px;
+  left: 0;
+  margin-left: -10px;
+  width: 20px;
+  height: 100%;
+  cursor: pointer;
+  background: white;
+}
+
+/* line 459, ../scss/partials/_player.scss */
+#controls.down > #progress > #current {
+  opacity: 0;
+}
+
+/*
+ *	Petit bouton play/pause
+ */
+/* line 467, ../scss/partials/_player.scss */
+#play-pause {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* line 475, ../scss/partials/_player.scss */
+#play-pause:before, #play-pause:after {
+  content: "";
+  display: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background-position: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+/* line 484, ../scss/partials/_player.scss */
+#play-pause:before {
+  background-image: url(../img/player/play.png);
+}
+
+/* line 487, ../scss/partials/_player.scss */
+#play-pause:after {
+  background-image: url(../img/player/pause.png);
+}
+
+/* line 490, ../scss/partials/_player.scss */
+#play-pause.play:before {
+  display: block;
+}
+
+/* line 493, ../scss/partials/_player.scss */
+#play-pause.pause:after {
+  display: block;
+}
+
+/*
+ *	Indication du temps
+ */
+/* line 501, ../scss/partials/_player.scss */
+#time {
+  position: absolute;
+  bottom: 7px;
+  left: 37px;
+  font-size: 15px;
+  cursor: default;
+}
+
+/*
+ *	Bouton pour "toogle" les annotations
+ */
+/* line 513, ../scss/partials/_player.scss */
+#annotationsButton {
+  display: inline-block;
+  width: 28px;
+  height: 32px;
+  position: absolute;
+  bottom: -1px;
+  right: 172px;
+  cursor: pointer;
+  background-image: url(../img/player/annotation.png);
+  background-position: 0 5px;
+  background-repeat: no-repeat;
+}
+
+/* line 526, ../scss/partials/_player.scss */
+#annotationsButton:hover {
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  opacity: 0.7;
+}
+
+/* line 534, ../scss/partials/_player.scss */
+#annotationsButton.not {
+  opacity: 0.3;
+}
+
+@media all and (max-width: 300px) {
+  /* line 539, ../scss/partials/_player.scss */
+  #annotationsButton {
+    display: none!important;
+  }
+}
+/*
+ *	Bouton pour régler la qualité
+ */
+/* line 548, ../scss/partials/_player.scss */
+#qualityButton {
+  position: absolute;
+  bottom: 7px;
+  right: 155px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* line 556, ../scss/partials/_player.scss */
+#qualityButton.bold {
+  text-shadow: 0 0 3px white;
+}
+
+/*
+ *	Volume
+ */
+/* line 564, ../scss/partials/_player.scss */
+#volume {
+  position: absolute;
+  bottom: 14px;
+  right: 88px;
+  width: 60px;
+  height: 4px;
+  cursor: pointer;
+  background-color: #cccccc;
+  border-radius: 2px;
+}
+
+/* line 574, ../scss/partials/_player.scss */
+#volume > #barre {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* line 581, ../scss/partials/_player.scss */
+#volume > #icon {
+  display: inline-block;
+  position: relative;
+  bottom: 10px;
+  left: 100%;
+  margin-left: -3px;
+  width: 21px;
+  height: 16px;
+  background-image: url(../img/player/volume.png);
+  background-repeat: no-repeat;
+  background-position: -63px 0;
+  cursor: pointer;
+}
+
+/* line 594, ../scss/partials/_player.scss */
+#volume > #icon[data-volume="0"] {
+  background-position: 0 0;
+}
+
+/* line 597, ../scss/partials/_player.scss */
+#volume > #icon[data-volume="1"] {
+  background-position: -21px 0;
+}
+
+/* line 600, ../scss/partials/_player.scss */
+#volume > #icon[data-volume="2"] {
+  background-position: -42px 0;
+}
+
+/* line 603, ../scss/partials/_player.scss */
+#volume > #icon[data-volume="3"] {
+  background-position: -63px 0;
+}
+
+/*
+ *	Séparation
+ */
+/* line 611, ../scss/partials/_player.scss */
+#separation {
+  display: block;
+  position: absolute;
+  bottom: 6px;
+  right: 68px;
+  width: 1px;
+  height: 20px;
+  background-color: white;
+  opacity: 0.5;
+}
+
+/*
+ *	Widescreen
+ */
+/* line 626, ../scss/partials/_player.scss */
+#widescreen {
+  position: absolute;
+  bottom: 0;
+  right: 32px;
+  width: 28px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* line 634, ../scss/partials/_player.scss */
+#widescreen:before, #widescreen:after {
+  content: "";
+  display: none;
+  width: 28px;
+  height: 32px;
+  cursor: pointer;
+  background-position: 0 8px;
+  background-repeat: no-repeat;
+}
+
+/* line 643, ../scss/partials/_player.scss */
+#widescreen:before {
+  background-image: url(../img/player/widescreen.png);
+}
+
+/* line 646, ../scss/partials/_player.scss */
+#widescreen:after {
+  background-image: url(../img/player/smallscreen.png);
+}
+
+/* line 649, ../scss/partials/_player.scss */
+#widescreen.widescreen:before {
+  display: block;
+}
+
+/* line 652, ../scss/partials/_player.scss */
+#widescreen.smallscreen:after {
+  display: block;
+}
+
+@media all and (max-width: 700px) {
+  /* line 656, ../scss/partials/_player.scss */
+  #widescreen {
+    display: none;
+  }
+
+  /* line 659, ../scss/partials/_player.scss */
+  #volume {
+    right: 50px;
+  }
+
+  /* line 662, ../scss/partials/_player.scss */
+  #separation {
+    right: 30px;
+  }
+
+  /* line 665, ../scss/partials/_player.scss */
+  #qualityButton {
+    right: 116px;
+  }
+
+  /* line 668, ../scss/partials/_player.scss */
+  #annotationsButton {
+    right: 136px;
+  }
+}
+/*
+ *	Fullscreen
+ */
+/* line 677, ../scss/partials/_player.scss */
+#fullscreen {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* line 685, ../scss/partials/_player.scss */
+#fullscreen:before, #fullscreen:after {
+  content: "";
+  display: none;
+  width: 28px;
+  height: 32px;
+  cursor: pointer;
+  background-position: 4px 8px;
+  background-repeat: no-repeat;
+}
+
+/* line 694, ../scss/partials/_player.scss */
+#fullscreen:before {
+  background-image: url(../img/player/fullscreen.png);
+}
+
+/* line 697, ../scss/partials/_player.scss */
+#fullscreen:after {
+  background-image: url(../img/player/lowscreen.png);
+}
+
+/* line 700, ../scss/partials/_player.scss */
+#fullscreen.fullscreen:before {
+  display: block;
+}
+
+/* line 703, ../scss/partials/_player.scss */
+#fullscreen.lowscreen:after {
+  display: block;
+}
+
+/*
+ *	Annotations
+ */
+/* line 711, ../scss/partials/_player.scss */
+#annotationsElement {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* line 720, ../scss/partials/_player.scss */
+#annotationsElement.hide {
+  opacity: 0;
+}
+
+/* line 724, ../scss/partials/_player.scss */
+.annotation {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 10px 0 10px;
+  position: absolute;
+  cursor: default;
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  font-family: 'Source Sans Pro';
+  font-size: 30px;
+  text-align: center;
+  background-color: rgba(64, 166, 224, 0.5);
+}
+
+/* line 742, ../scss/partials/_player.scss */
+.annotation > p, .annotation > a {
+  margin: 15px 0 15px 0;
+}
+
+/* line 745, ../scss/partials/_player.scss */
+.annotation > a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+/* line 750, ../scss/partials/_player.scss */
+.annotation > .close {
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-image: url(../img/player/close.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* line 769, ../scss/partials/_player.scss */
+.annotation:hover > .close {
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  opacity: 0.5;
+}
+
+/* line 777, ../scss/partials/_player.scss */
+.annotation > .close:hover {
+  opacity: 1;
+}
+
+/* line 780, ../scss/partials/_player.scss */
+.annotation.hidden {
+  display: none;
+}
+
+/* line 784, ../scss/partials/_player.scss */
+.annotation.orange {
+  background-color: rgba(223, 109, 20, 0.5);
+}
+
+/* line 786, ../scss/partials/_player.scss */
+.annotation.yellow {
+  background-color: rgba(255, 255, 0, 0.5);
+}
+
+/* line 788, ../scss/partials/_player.scss */
+.annotation.pink {
+  background-color: rgba(253, 63, 146, 0.5);
+}
+
+/* line 790, ../scss/partials/_player.scss */
+.annotation.red {
+  background-color: rgba(235, 0, 0, 0.5);
+}
+
+/* line 792, ../scss/partials/_player.scss */
+.annotation.green {
+  background-color: rgba(158, 253, 56, 0.5);
+}
+
+/* line 794, ../scss/partials/_player.scss */
+.annotation.purple {
+  background-color: rgba(102, 0, 153, 0.5);
+}
+
+/* line 798, ../scss/partials/_player.scss */
+.annotation.white {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #1E1E1E;
+}
+
+/* line 801, ../scss/partials/_player.scss */
+.annotation.black {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* line 5, ../scss/embed.scss */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 10, ../scss/embed.scss */
+#player {
+  margin: 0!important;
+  width: 100%!important;
+  height: 100%;
+}
+
+/* line 16, ../scss/embed.scss */
+#qualityButton {
+  right: 123px!important;
+}
+
+/* line 19, ../scss/embed.scss */
+#volume {
+  right: 56px!important;
+}
+
+/* line 22, ../scss/embed.scss */
+#separation {
+  right: 32px!important;
+}
+
+/* line 25, ../scss/embed.scss */
+#annotationsButton {
+  right: 140px!important;
+}
+
+/* line 28, ../scss/embed.scss */
+#widescreen {
+  display: none;
+}
+
+/* line 32, ../scss/embed.scss */
+#DreamVidsIconEmbed {
+  display: block;
+  margin-left: -24px;
+  width: 48px;
+  height: 24px;
+  background-image: url(../img/icon_logo.png);
+  background-size: 48px 24px;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  cursor: pointer;
+}

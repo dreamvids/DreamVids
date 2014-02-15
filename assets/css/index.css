@@ -1,0 +1,399 @@
+/* line 17, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Program Files (x86)/Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url("../fonts/sourcesanspro-light-webfont.eot");
+  src: url("../fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/sourcesanspro-light-webfont.woff") format("woff"), url("../fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* NAV VARIABLES */
+/* line 19, ../scss/partials/_header.scss */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* line 20, ../scss/partials/_header.scss */
+body {
+  font-family: 'Source Sans Pro', Arial;
+}
+
+/* NAV SCSS */
+/* line 26, ../scss/partials/_header.scss */
+#top-nav {
+  width: 100%;
+  height: 60px;
+  background-color: #40a6e0;
+  border-bottom: 2px solid #33799f;
+}
+
+/* line 33, ../scss/partials/_header.scss */
+#inner-top-nav {
+  margin: auto;
+  max-width: 1000px;
+  padding: 0;
+}
+/* line 38, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 43, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left .top-nav-icon-logo {
+  margin-top: 15px;
+}
+/* line 47, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left .top-nav-text-logo {
+  position: relative;
+  left: 15px;
+  top: -4px;
+}
+/* line 54, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+/* line 59, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form {
+  display: inline-block;
+  margin-right: -3px;
+  border-left: 1px solid #33799f;
+  border-right: 1px solid #33799f;
+  /* firefox 19+ */
+  /* ie */
+}
+/* line 65, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"] {
+  height: 58px;
+  border: 0;
+  background-color: #40a6e0;
+  width: 150px;
+  padding-left: 20px;
+  color: white;
+}
+/* line 74, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]::-webkit-input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 75, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]::-moz-input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 76, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]:-ms-input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 77, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]:input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 79, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="submit"] {
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  background-image: url("../img/search_icon.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  left: -10px;
+  top: 8px;
+  cursor: pointer;
+}
+/* line 93, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="submit"]:focus, #inner-top-nav #inner-top-nav-right form input[type="text"]:focus {
+  outline: none;
+}
+/* line 98, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+}
+/* line 103, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 0;
+  padding-right: 15px;
+  position: relative;
+  border-right: 1px solid #33799f;
+}
+/* line 111, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button img, #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+}
+/* line 118, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: normal;
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 129, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button:hover {
+  background-color: #3d9ed5;
+  cursor: pointer;
+}
+/* line 134, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-menu {
+  display: none;
+  position: absolute;
+  z-index: 101;
+  top: 27px;
+}
+/* line 140, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-menu li {
+  margin-top: 2px;
+  margin-bottom: -2px;
+  width: 200px;
+  position: relative;
+  left: -200px;
+  display: block;
+  background-color: #a7a7a7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 14px;
+}
+/* line 158, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-menu li:hover {
+  background-color: #9c9c9c;
+}
+
+/* line 168, ../scss/partials/_header.scss */
+#bottom-nav {
+  height: 40px;
+  background-color: #f1f0f0;
+}
+/* line 172, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav {
+  max-width: 1000px;
+  margin: auto;
+}
+/* line 176, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav {
+  display: inline-block;
+  position: relative;
+  left: -10px;
+}
+/* line 181, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li {
+  display: inline-block;
+  line-height: 41px;
+  text-transform: uppercase;
+  font-size: 14px;
+  width: 120px;
+  margin-left: 10px;
+  text-align: center;
+}
+/* line 190, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li a {
+  color: #959595;
+}
+/* line 194, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li a:hover {
+  color: #40a6e0;
+}
+/* line 198, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li a:hover ~ .bottom-nav-underline {
+  display: block;
+}
+/* line 202, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li .bottom-nav-underline {
+  width: 100%;
+  height: 3px;
+  position: relative;
+  top: -4px;
+  background-color: #40a6e0;
+  display: none;
+}
+/* line 214, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav #mobile-nav-icon {
+  display: none;
+}
+/* line 218, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav #bottom-nav-social {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+/* line 223, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav #bottom-nav-social li {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 42px;
+}
+
+@media all and (max-width: 600px) {
+  /* line 234, ../scss/partials/_header.scss */
+  #top-nav #top-nav-logo-text {
+    display: none;
+  }
+
+  /* line 241, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information {
+    text-align: right;
+  }
+  /* line 245, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+    display: none;
+  }
+  /* line 248, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button #top-nav-user-arrow {
+    margin-left: 15px;
+  }
+
+  /* line 258, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav {
+    background-color: #e5e3e3;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    height: 100%;
+    z-index: 100;
+    box-shadow: 0 0 12px #555;
+  }
+  /* line 267, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav li {
+    display: block;
+    width: 170px;
+    margin-left: 5px;
+  }
+  /* line 272, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav li .bottom-nav-underline {
+    height: 40px;
+    width: 4px;
+    top: -40px;
+    margin-bottom: -40px;
+  }
+  /* line 280, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav.open {
+    left: -5px;
+  }
+  /* line 284, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon {
+    display: inline-block;
+    float: left;
+    line-height: 41px;
+    position: relative;
+    left: 15px;
+  }
+  /* line 291, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open {
+    left: 183px;
+  }
+}
+@media all and (max-width: 450px) {
+  /* line 300, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  /* line 305, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right form input[type="text"] {
+    width: 100px;
+    padding-left: 10px;
+  }
+}
+@media all and (max-width: 350px) {
+  /* line 317, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right form input[type="text"] {
+    width: 50px;
+    padding-left: 5px;
+  }
+}

@@ -1,0 +1,227 @@
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url("../fonts/sourcesanspro-light-webfont.eot");
+  src: url("../fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/sourcesanspro-light-webfont.woff") format("woff"), url("../fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* NAV VARIABLES */
+/* line 18, ../scss/partials/_m_header.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 19, ../scss/partials/_m_header.scss */
+body {
+  font-family: 'Source Sans Pro', Arial;
+}
+
+/* NAV SCSS */
+/* line 27, ../scss/partials/_m_header.scss */
+#top-nav #top-nav-logo-text {
+  display: none;
+}
+
+/* line 32, ../scss/partials/_m_header.scss */
+#inner-top-nav {
+  margin: auto;
+  max-width: 1000px;
+  padding: 0;
+}
+/* line 37, ../scss/partials/_m_header.scss */
+#inner-top-nav #inner-top-nav-left {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 42, ../scss/partials/_m_header.scss */
+#inner-top-nav #inner-top-nav-left .top-nav-icon-logo {
+  margin-top: 15px;
+}
+/* line 46, ../scss/partials/_m_header.scss */
+#inner-top-nav #inner-top-nav-left .top-nav-text-logo {
+  position: relative;
+  left: 15px;
+  top: -4px;
+}
+/* line 55, ../scss/partials/_m_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+}
+/* line 62, ../scss/partials/_m_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  display: none;
+}
+/* line 66, ../scss/partials/_m_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button #top-nav-user-arrow {
+  margin-left: 15px;
+}
+
+/* line 77, ../scss/partials/_m_header.scss */
+#bottom-nav {
+  height: 40px;
+  background-color: #f1f0f0;
+}
+/* line 81, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav {
+  max-width: 1000px;
+  margin: auto;
+}
+/* line 85, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav {
+  background-color: #e5e3e3;
+  position: fixed;
+  top: 0;
+  left: -200px;
+  height: 100%;
+  z-index: 100;
+  box-shadow: 0 0 12px #555;
+}
+/* line 94, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav li {
+  display: block;
+  width: 170px;
+  margin-left: 5px;
+}
+/* line 99, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav li a {
+  color: #959595;
+}
+/* line 103, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav li a:hover {
+  color: #40a6e0;
+}
+/* line 107, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav li a:hover ~ .bottom-nav-underline {
+  display: block;
+}
+/* line 111, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav li .bottom-nav-underline {
+  height: 40px;
+  width: 4px;
+  position: relative;
+  top: -40px;
+  background-color: #40a6e0;
+  display: none;
+  margin-bottom: -40px;
+}
+/* line 122, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav nav.open {
+  left: -5px;
+}
+/* line 126, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav #mobile-nav-icon {
+  display: inline-block;
+  float: left;
+  line-height: 41px;
+  position: relative;
+  left: 15px;
+}
+/* line 133, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav #mobile-nav-icon.open {
+  left: 183px;
+}
+/* line 138, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav #bottom-nav-social {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+/* line 143, ../scss/partials/_m_header.scss */
+#bottom-nav #inner-bottom-nav #bottom-nav-social li {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 42px;
+}
+
+/* line 3, ../scss/m_video.scss */
+#video {
+  max-width: 1000px;
+  margin: auto;
+}
+/* line 7, ../scss/m_video.scss */
+#video #video-top-infos {
+  height: 90px;
+  padding-left: 30px;
+}
+/* line 11, ../scss/m_video.scss */
+#video #video-top-infos #video-top-title {
+  display: block;
+}
+/* line 14, ../scss/m_video.scss */
+#video #video-top-infos #video-top-title h1 {
+  font-weight: normal;
+  font-size: 16px;
+  color: #858484;
+  line-height: 70px;
+  font-size: 24px;
+}
+/* line 22, ../scss/m_video.scss */
+#video #video-top-infos #video-top-title hr {
+  height: 4px;
+  width: 25px;
+  background-color: #f1f0f0;
+  border: none;
+  float: left;
+  position: relative;
+  top: -24px;
+}
+/* line 33, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel {
+  display: block;
+  float: left;
+  position: relative;
+  left: -25px;
+  top: -30px;
+  padding-top: 33px;
+  margin-bottom: -30px;
+}
+/* line 42, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel img {
+  display: inline-block;
+  margin-right: 15px;
+  height: 25px;
+  width: 25px;
+  margin-top: 5px;
+}
+/* line 50, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel #video-top-channel-infos {
+  display: inline-block;
+  vertical-align: baseline;
+  font-size: 14px;
+  position: relative;
+  top: -10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+/* line 59, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel #video-top-channel-infos #video-top-pseudo {
+  color: #40a6e0;
+  display: inline-block;
+  top: -2px;
+}
+/* line 65, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel #video-top-channel-infos hr {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1px;
+  height: 15px;
+  border: 0;
+  background-color: #ebebeb;
+  margin-left: 15px;
+}
+/* line 75, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel #video-top-channel-infos #video-top-abonnes {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  left: 20px;
+}
+/* line 82, ../scss/m_video.scss */
+#video #video-top-infos #video-top-channel #video-top-channel-infos .strong {
+  font-weight: bold;
+  margin-right: 4px;
+}
