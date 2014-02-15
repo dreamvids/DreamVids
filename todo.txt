@@ -1,4 +1,4 @@
-﻿- Panneau de modération
+- Panneau de modération
 
 - Garder le volume sonore/qualité en mémoire
 
@@ -22,5 +22,12 @@
 
 - "Transition" du bleu au blanc et inversément au survol des boutons de navigation
 
+- Permettre au propriétaire d'une chaîne se supprimer les commentaires postés sur ses vidéos
 
+- Afficher le nombre total de vues sur les chaînes
 
+- Génerer automatiquement des miniatures (extraits de la vidéo)
+
+- Dans la liste des abonnées à une chaîne. Classé par ordre croissant d'abonnement à la chaîne question.
+
+- Dans la liste des vidéos dans l'espace membre. Ajouter des liens sur les miniatures, des liens qui mènent aux vidéos.
