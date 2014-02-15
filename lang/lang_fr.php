@@ -2,7 +2,7 @@
 $lang = array(
 'error_reg_username_jam' => 'Tous les noms d\'utilisateur proposés sont déjà utilisés.',
 
-'error_reg_userlen' => 'Le nom d\'utilisateur ne doit pas dépasser 40 caractères et ne doit contenir que des lettres (majuscules et minuscules), des chiffres, des traits-d\'union et des underscore ( _ )',
+'error_reg_userlen' => 'Le nom d\'utilisateur ne doit pas dépasser 40 caractères et ne doit contenir que des lettres (majuscules et minuscules), des chiffres, des traits-d\'union et des underscores ( _ )',
 
 'error_reg_username' => 'Ce nom d\'utilisateur est déjà utilisé.',
 
@@ -26,9 +26,9 @@ $lang = array(
 
 'error_video_tags_empty' => 'Veuillez spécifier des tags pour la vidéo',
 
-'error_video_type_incorrect' => 'Ce fichier n\' est pas une vidéo valide',
+'error_video_type_incorrect' => 'Ce fichier n\'est pas une vidéo valide',
 
-'error_video_already_existing' => 'Une vidéo protant le même nom à déjà été mise en ligne !',
+'error_video_already_existing' => 'Une vidéo portant le même nom à déjà été mise en ligne !',
 
 'error_no_videos_uploaded' => 'Vous n\'avez pas encore publié de vidéos !',
 
@@ -56,7 +56,7 @@ $lang = array(
 
 'profile_ok' => 'Toutes les modifications ont été enregistrées !',
 
-'profile_update' => 'Mettre à jours mes informations',
+'profile_update' => 'Mettre à jour mes informations',
 
 'avatar' => 'Avatar',
 
@@ -178,7 +178,7 @@ $lang = array(
 
 'video_half_converted' => 'Cette vidéo est en cours de conversion. La HD peut être momentanément indisponible',
 
-'video_not_converted' => 'Cette vidéo n\' est pas encore convertie. Elle peut être inaccessible pendant quelques instants',
+'video_not_converted' => 'Cette vidéo n\'est pas encore convertie. Elle peut être inaccessible pendant quelques instants',
 
 'url_valid' => 'Merci de rentrer une URL valide',
 
