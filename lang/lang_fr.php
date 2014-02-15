@@ -180,5 +180,9 @@ $lang = array(
 
 'video_not_converted' => 'Cette vidéo n\' est pas encore convertie. Elle peut être inaccessible pendant quelques instants',
 
+'url_valid' => 'Merci de rentrer une URL valide',
+
+'bug_empty' => 'Merci d\'au moins renseigner un bug !',
+
 );
 ?>

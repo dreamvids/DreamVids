@@ -15,7 +15,7 @@
 			et <a href="http://skype.com/" target="_blank">La bonne humeur</a> !
 		</h4>
                 <?php
-                 if(@$session->getRank() == 5 OR @$session->getRank() == 9)  {
+                 if(@$session->getRank() == $config['rank_adm'] || @$session->getRank() == $config['rank_modo'])  {
                      
                     
                     echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
