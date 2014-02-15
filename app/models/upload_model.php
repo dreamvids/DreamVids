@@ -18,7 +18,7 @@ class Upload_model extends Model {
 
 	public function registerVideo($vidId, $userId, $title, $desc, $tags, $thumb, $timestamp, $visibility) {
 		Video::register($vidId, $userId, $title, $desc, $tags, $thumb, $timestamp, $visibility);
-		$_SESSION['VIDEO_UPLOAD_ID'] = -1;
+		//$_SESSION['VIDEO_UPLOAD_ID'] = -1;
 	}
 
 }

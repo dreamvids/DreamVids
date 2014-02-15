@@ -21,6 +21,15 @@ function uploadVideo() {
 	request.send(formData);
 }
 
+function submitInformations() {
+	var infoForm = $('videoInfoForm');
+	var infoFormData = new FormData(infoForm);
+	var request = new XMLHttpRequest();
+
+	request.open('POST', 'upload/');
+	request.send(infoFormData);
+}
+
 function onFileFieldChangeEvent(event) {
 	fileField.setAttribute('disabled', '');
 	var preProcessRequest = new XMLHttpRequest();

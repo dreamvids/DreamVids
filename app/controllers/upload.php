@@ -22,6 +22,7 @@ class Upload extends Controller {
 
 	public function process() { // called from JS upload script when the video file uploaded
 		if(isset($_FILES['videoFile']) && Session::isActive() && isset($_SESSION['VIDEO_UPLOAD_ID']) && $_SESSION['VIDEO_UPLOAD_ID'] != -1) {
+
 			$this->loadModel('upload_model');
 
 			$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
@@ -39,7 +40,7 @@ class Upload extends Controller {
 			}
 
 			if(move_uploaded_file($_FILES['videoFile']['tmp_name'], ROOT.$path)) {
-				$this->model->updateTempURL($vidId, $path);	
+				$this->model->updateTempURL($vidId, $path);
 			}
 			else $this->model->updateTempURL($vidId, '[error_during_file_moving]');
 		}
@@ -51,41 +52,41 @@ class Upload extends Controller {
 
 		$req = $request->getValues();
 
-		if(isset($req['uploadDataSubmit'])) {
-			if(isset($req['videoTitle'])) {
-				if(isset($req['videoDescription'])) {
-					if(isset($req['videoTags'])) {
+		//if(isset($req['uploadDataSubmit'])) {
+		if(isset($req['videoTitle']) && $req['videoTitle'] != '') {
+			if(isset($req['videoDescription']) && $req['videoDescription'] != '') {
+				if(isset($req['videoTags']) && $req['videoTags'] != '') {
 
-						if(isset($req['videoThumbnail'])) $thumb = $req['videoThumbnail'];
-						else $thumb = '';
+					if(isset($req['videoThumbnail'])) $thumb = $req['videoThumbnail'];
+					else $thumb = '';
 
-						$userId = Session::get()->id;
-						$title = Utils::secure($req['videoTitle']);
-						$desc = Utils::secure($req['videoDescription']);
-						$tags = Utils::secure($req['videoTags']);
-						$visibility = $req['videoVisibility'];
-						$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
+					$userId = Session::get()->id;
+					$title = Utils::secure($req['videoTitle']);
+					$desc = Utils::secure($req['videoDescription']);
+					$tags = Utils::secure($req['videoTags']);
+					$visibility = $req['videoVisibility'];
+					$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
 
-						$this->model->registerVideo($vidId, $userId, $title, $desc, $tags, $thumb, Utils::tps(), $visibility);
-					}
-					else {
-						$data['error'] = 'Please enter some tags';
-						$this->clearView();
-						$this->renderView('upload/upload', $data);
-					}
+					$this->model->registerVideo($vidId, $userId, $title, $desc, $tags, $thumb, Utils::tps(), $visibility);
 				}
 				else {
-					$data['error'] = 'Please enter a description';
+					$data['error'] = 'Please enter some tags';
 					$this->clearView();
 					$this->renderView('upload/upload', $data);
 				}
 			}
 			else {
-				$data['error'] = 'Please enter a title';
+				$data['error'] = 'Please enter a description';
 				$this->clearView();
 				$this->renderView('upload/upload', $data);
 			}
 		}
+		else {
+			$data['error'] = 'Please enter a title';
+			$this->clearView();
+			$this->renderView('upload/upload', $data);
+		}
+		//}
 	}
 
 	public static function uploadThumbnail($username) {
@@ -103,6 +104,7 @@ class Upload extends Controller {
 			}
 
 			move_uploaded_file($_FILES['videoThumbnail']['tmp_name'], $path);
+			$_SESSION['VIDEO_UPLOAD_ID'] = -1;
 			
 			return $path;
 		}

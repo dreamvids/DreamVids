@@ -6,11 +6,11 @@ class Video extends ActiveRecord\Model {
 		Video::create(array(
 			'id' => $id,
 			'user_id' => $userId,
-			'title' => '[upload_processing]',
-			'description' => '[upload_processing]',
-			'tags' => '[upload_processing]',
-			'tumbnail' => '[upload_processing]',
-			'url' => '[upload_processing]',
+			'title' => '[no_info_provided]',
+			'description' => '[no_info_provided]',
+			'tags' => '[no_info_provided]',
+			'tumbnail' => '[no_info_provided]',
+			'url' => '[no_info_provided]',
 			'views' => 0,
 			'likes' => 0,
 			'dislikes' => 0,
@@ -23,7 +23,7 @@ class Video extends ActiveRecord\Model {
 	public static function updateURL($vidId, $url) {
 		Video::update_all(array(
 			'set' => array(
-				'url' => $url
+				'url' => $url,
 			),
 			'conditions' => array(
 				'id = ?',
