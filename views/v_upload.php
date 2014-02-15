@@ -14,7 +14,7 @@
 		echo (!isset($err) && isset($_POST['submit']) ) ? '<div id="uploadDoneAlert" class="alert alert-success">'.$uploadDone.'</div>' : '';
 		?>
 		<div class="alert alert-info">Une fois le formulaire validé, vous allez être redirigé vers votre vidéo, si celle-ci ne se lance pas, attendez quelques secondes puis rechargez la page, le temps que la conversion se fasse :)</div>
-		<form role="from" method="post" enctype="multipart/form-data" action="">
+		<form role="form" method="post" enctype="multipart/form-data" action="">
 			<label for="videoInput"><?php echo $lang['vid']; ?></label>
 			<input type="file" id="videoInput" name="videoInput">
 			<p class="help-block"><?php echo $lang['select_vid']; ?></p>
