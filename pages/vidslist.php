@@ -19,8 +19,8 @@ switch (@$_GET['mode'])
 	break;
 	
 	case 'search':
-		$vids = $vidslist->getSearchVideos($_POST['search']);
-		$title = $lang['search'].' - '.secure($_POST['search']);
+		$vids = $vidslist->getSearchVideos($_GET['q']);
+		$title = $lang['search'].' - '.secure($_GET['q']);
 	break;
 	
 	default:
