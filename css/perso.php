@@ -14,6 +14,9 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
+#header{
+  text-align:left;
+}
 #content{
   border:1px solid #fff;
   vertical-align:middle;
