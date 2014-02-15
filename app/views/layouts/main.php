@@ -44,14 +44,17 @@
 								<?php } ?>
 
 								<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
+
+								<?php if(Session::isActive()) { ?>
 								<div id="top-nav-user-information-menu">
 									<ul>
 										<li><a href="#">Ma chaîne</a></li>
 										<li><a href="#">Mon compte</a></li>
 										<li><a href="#">Messagerie</a></li>
-										<li><a href="#">Déconnexion</a></li>
+										<li><a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnexion</a></li>
 									</ul>
 								</div>
+								<?php } ?>
 							</a>
 						</div>
 
