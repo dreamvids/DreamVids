@@ -20,7 +20,7 @@ if($video->getUserId() == $session->getId())
 		$newVidTitle = $_POST['vidTitle'];
 		$newVidDesc = $_POST['vidDescription'];
 		$newVidTagsStr = $_POST['vidTags'];
-		$newVisibility = ($vidVisibility < 3) ? $_POST['vidVisibility'] : 3;
+		$newVisibility = (in_array($vidVisibility, array(0,1,2) ) ) ? $_POST['vidVisibility'] : $vidvisibility;
 
 		if(isset($_POST['videoTumbnail'])) {
 			if($_FILES['videoTumbnail']['name'] != '') {

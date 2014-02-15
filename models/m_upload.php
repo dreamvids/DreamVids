@@ -25,7 +25,7 @@ class Upload {
 			$title = $_POST['videoTitle'];
             $description = $_POST['videoDescription'];
             $tags = $_POST['videoTags'];
-            $visibility = $_POST['videoVisibility'];
+            $visibility = (in_array($_POST['videoVisibility'], array(0,1,2) ) ) ? $_POST['videoVisibility'] : 2;
             $video = Video::get($_SESSION['vid_id']);
             $video->setTitle($title);
             $video->setDescription($description);
