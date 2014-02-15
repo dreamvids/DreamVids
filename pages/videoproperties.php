@@ -30,7 +30,7 @@ if($video->getUserId() == $session->getId())
 					$ext = $explode[count($explode)-1];
 					$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
 
-					if (in_array($ext, $acceptedExts)) {
+					if (in_array(strtolower($ext), $acceptedExts)) {
 						$tumbnailPath = VideoProperties::uploadTumbnail($session->getName());
 						$video->setTumbnail($tumbnailPath);
 					}

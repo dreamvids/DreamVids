@@ -23,7 +23,7 @@ if(isset($_POST['submit'])) {
 								$explode = explode(".", $name);
 								$ext = strtolower($explode[count($explode)-1]);
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								if (in_array($ext, $acceptedExts) )
+								if (in_array(strtolower($ext), $acceptedExts) )
 								{
 									$tumbnailPath = Upload::uploadTumbnail($session->getName() );
 								}
@@ -71,7 +71,7 @@ if(isset($_FILES['videoInput'])) {
 		$ext = strtolower($explode[count($explode)-1]);
 		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv');
 
-		if(in_array($ext, $acceptedExts)) {
+		if(in_array(strtolower($ext), $acceptedExts)) {
 			Upload::uploadVideo($session->getId(), $session->getName() );
 			echo 'mdr';
 		}

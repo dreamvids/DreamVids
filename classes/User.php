@@ -55,7 +55,7 @@ class User {
     }
 
     public function getUsername() {
-        return $this->name;
+        return $this->getName();
     }
     
     public function setPass($newPass) {
@@ -116,8 +116,26 @@ class User {
         return $this->id;
     }
 
-    public function getName() {
-        return $this->name;
+    public function getName($suffixe=false) {
+    	switch ($this->getRank() )
+    	{
+    		case $GLOBALS['config']['rank_modo']:
+    			$class = 'warning';
+    			$value = 'Modo';
+    		break;
+    		
+    		case $GLOBALS['config']['rank_adm']:
+    			$class = 'danger';
+    			$value = 'Admin';
+    		break;
+    		
+    		default:
+    			$class = '';
+    			$value = '';
+    		break;
+    	}
+    	$suf = ($class != '' && $value != '') ? ' <span class="label label-'.$class.'">'.$value.'</span>' : '';
+        return ($suffixe) ? $this->name.$suf : $this->name;
     }
 
     public function getEmailAddress() {

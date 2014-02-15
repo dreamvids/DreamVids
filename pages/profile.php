@@ -27,7 +27,7 @@ if (isset($_POST['submit']) )
 								$explode = explode(".", $name);
 								$ext = strtolower($explode[count($explode)-1]);
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								if (in_array($ext, $acceptedExts) )
+								if (in_array(strtolower($ext), $acceptedExts) )
 								{
 									$avatarPath = Profile::uploadAvatar($session->getUsername() );
 									$session->setAvatarPath($avatarPath);
@@ -47,7 +47,7 @@ if (isset($_POST['submit']) )
 								$explode = explode(".", $name);
 								$ext = strtolower($explode[count($explode)-1]);
 								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								if (in_array($ext, $acceptedExts) )
+								if (in_array(strtolower($ext), $acceptedExts) )
 								{
 									$backgroundPath = Profile::uploadBackground($session->getUsername() );
 									$session->setBackgroundPath($backgroundPath);
