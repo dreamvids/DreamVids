@@ -47,8 +47,8 @@
 		<div id="videoVues"><?php echo $views; ?> vues</div>
 		<hr />
 		<div id="votes">
-			<p id="votePlus" onclick="plus(1);"><?php echo $likes; ?></p>
-			<m id="voteMoins" onclick="moins(1);"><?php echo $dislikes; ?></m>
+			<p <?php if($likedByUser) echo "class='active'"; ?> id="votePlus" onclick="plus('<?php echo $video->id; ?>');"><?php echo $likes; ?></p>
+			<m <?php if($dislikedByUser) echo "class='active'"; ?> id="voteMoins" onclick="moins('<?php echo $video->id; ?>');"><?php echo $dislikes; ?></m>
 		</div>
 		<hr/>
 		<div id="description">
@@ -165,4 +165,8 @@
 		</div>
 
 	</aside>
+
+	<script src="<?php echo JS.'vote.js'; ?>"></script>
+	<script src="<?php echo JS.'wysiwyg.js'; ?>"></script>
+	<script src="<?php echo JS.'player.js'; ?>"></script>
 </div>

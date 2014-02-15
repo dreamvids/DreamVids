@@ -39,8 +39,64 @@ class Watch extends Controller {
 		$data['dislikes'] = $video->dislikes;
 		$data['subscribers'] = $this->model->getAuthorsSubscribers($videoId);
 		$data['comments'] = $this->model->getCommentsOnVideo($videoId);
+		$data['likedByUser'] = $this->model->isVideoLikedByUser($videoId) ? true : false;
+		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
 
 		$this->renderView('watch/watch', $data);
+	}
+
+	public function like($videoId='nope') {
+		if($videoId != 'nope' && Session::isActive() && Video::exists(array('id' => $videoId))) {
+			$this->loadModel('watch_model');
+			$userId = Session::get()->id;
+
+			if(!$this->model->isVideoLikedByUser($videoId, Session::get()->id)) {
+
+				if($this->model->isVideoDislikedByUser($videoId, Session::get()->id)) {
+					$this->model->removeDislike($videoId, $userId);
+				}
+
+				$this->model->likeVideo($videoId, $userId);
+			}
+		}
+	}
+
+	public function dislike($videoId='nope') {
+		if($videoId != 'nope' && Session::isActive() && Video::exists(array('id' => $videoId))) {
+			$this->loadModel('watch_model');
+			$userId = Session::get()->id;
+
+			if(!$this->model->isVideoDislikedByUser($videoId, Session::get()->id)) {
+
+				if($this->model->isVideoLikedByUser($videoId, Session::get()->id)) {
+					$this->model->removeLike($videoId, $userId);
+				}
+
+				$this->model->dislikeVideo($videoId, $userId);
+			}
+		}
+	}
+
+	public function unlike($videoId='nope') {
+		if($videoId != 'nope' && Session::isActive() && Video::exists(array('id' => $videoId))) {
+			$this->loadModel('watch_model');
+			$userId = Session::get()->id;
+
+			if($this->model->isVideoLikedByUser($videoId, Session::get()->id)) {
+				$this->model->removeLike($videoId, $userId);
+			}
+		}
+	}
+
+	public function undislike($videoId='nope') {
+		if($videoId != 'nope' && Session::isActive() && Video::exists(array('id' => $videoId))) {
+			$this->loadModel('watch_model');
+			$userId = Session::get()->id;
+
+			if($this->model->isVideoDislikedByUser($videoId, Session::get()->id)) {
+				$this->model->removeDislike($videoId, $userId);
+			}
+		}
 	}
 
 }
