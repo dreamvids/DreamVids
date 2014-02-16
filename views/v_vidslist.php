@@ -35,7 +35,7 @@ if (@$_GET['mode'] == 'subscriptions')
 		foreach ($subs as $sub)
 		{
 ?>
-				  <li class="list-group-item"><a href="/@<?php echo secure($sub->getName() ); ?>"><img width="24" src="<?php echo secure($sub->getAvatarPath() ); ?>" alt="" />&nbsp;&nbsp;<?php echo secure($sub->getName() ); ?></a></li>
+			<li class="list-group-item"><a href="/@<?php echo secure($sub->getName() ); ?>"><img width="24" src="<?php echo secure($sub->getAvatarPath() ); ?>" alt="" /></a>&nbsp;&nbsp;<a href="/@<?php echo secure($sub->getName() ); ?>"><?php echo secure($sub->getName() ); ?></a></li>
 <?php
 		}
 	}
