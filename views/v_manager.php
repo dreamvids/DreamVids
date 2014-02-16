@@ -29,7 +29,7 @@
 			<div class="row">
 				<div class="container">
 					<div class="col-md-4">
-						<a href="./?page=watch&vid=<?php echo $vid->getId(); ?>" class="thumbnail" style="width: 171px; height:100px;">
+						<a href="./&<?php echo $vid->getId(); ?>" class="thumbnail" style="width: 171px; height:100px;">
 						 <div style="height:90px;width:100%;overflow:hidden">
 					      <img data-src="holder.js/171x97" width="161" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" />
 					     </div>
@@ -45,7 +45,7 @@
 
 					<br><br>
 				    
-				    <a href="./?page=watch&vid=<?php echo $vid->getId(); ?>" class="btn btn-info">Regarder</a>
+				    <a href="./&<?php echo $vid->getId(); ?>" class="btn btn-info">Regarder</a>
 			    	<a href="./?page=videoproperties&vidId=<?php echo $vid->getId(); ?>" class="btn btn-success">Paramètres</a>
 			    	<a href='./?page=manager&delVid=<?php echo $vid->getId(); ?>' class="btn btn-danger" onclick="confirm('<?php echo $lang['confirm_delete_vid']; ?>')">Supprimer</a>
 					
