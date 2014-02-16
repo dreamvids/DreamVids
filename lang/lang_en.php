@@ -32,11 +32,11 @@ $lang = array(
 
 'error_log_pass' => 'Incorrect password.',
 
-'follow' => 'Follow',
+'follow' => 'Subscribe',
 
-'followed' => 'Followed',
+'followed' => 'Subscriber',
 
-'unfollow' => 'Unfollow',
+'unfollow' => 'Unsubscribe',
 
 'login' => 'Login',
 
@@ -90,7 +90,7 @@ $lang = array(
 
 'confirm_delete_vid' => 'Do you really want to delete this video ?',
 
-'video_half_converted' => 'This video is not fully converted. The HD might be unavailable',
+'video_half_converted' => 'This video is not fully converted. HD may be unavailable',
 
 'video_not_converted' => 'This video is currently in conversion. It might take a while before you can watch it.',
 
