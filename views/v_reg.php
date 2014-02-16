@@ -10,7 +10,7 @@
 	<div class="container" style="width: 40%; float: left;">
 		<?php
 		echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
-		echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-success">'.$lang['reg_ok'].'</div>' : '';
+		echo (!isset($err, $_POST['submit']) ) ? '<div class="alert alert-success">'.$lang['reg_ok'].'</div>' : '';
 		?>
 		
 		<form role="form" action="" method="post">
