@@ -4,7 +4,7 @@ require 'm_reg.php';
 class Profile  extends Reg 
 {
 	public static function uploadAvatar($username) {
-		if(isset($_FILES['avatar']) && isset($username)) {
+		if(isset($_FILES['avatar'], $username)) {
 			$name = $_FILES['avatar']['name'];
 			$exp = explode('.', $name);
 			$ext = $exp[count($exp)-1];
@@ -24,7 +24,7 @@ class Profile  extends Reg
 	}
 	
 	public static function uploadBackground($username) {
-		if(isset($_FILES['background']) && isset($username)) {
+		if(isset($_FILES['background'], $username)) {
 			$name = $_FILES['background']['name'];
 			$exp = explode('.', $name);
 			$ext = $exp[count($exp)-1];
