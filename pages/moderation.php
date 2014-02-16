@@ -5,7 +5,7 @@ if(!isset($session)) {
 	exit();
 }
 
-if($session->getRank() <= 0) {
+if(!in_array($session->getRank(), array($config['rank_adm'], $config['rank_modo']) ) ) {
 	header('Location: ./');
 	exit();
 }
