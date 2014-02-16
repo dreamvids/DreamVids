@@ -1,5 +1,5 @@
 <?php
-if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
+if (!isset($_POST['submit'], $_FILES['videoInput']) )
 	$_SESSION['vid_id'] = Video::generateId(6);
 
 $uploadDone = $lang['upload_ok'];
