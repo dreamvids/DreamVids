@@ -3,11 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo CSS.'style.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo CSS.'index.css'; ?>">
 		<link rel="stylesheet" media="screen and (max-width: 600px)" href="<?php echo CSS.'m_style.css'; ?>">
-
-		<link rel="stylesheet" href="<?php echo CSS.'video.css'; ?>">
-		<link rel="stylesheet" href="<?php echo CSS.'player.css'; ?>">
 
 		<meta name="viewport" content="width = device-width, initial-scale = 0.9, maximum-scale = 1.0, user-scalable = no">
 
@@ -40,7 +37,7 @@
 								<?php if(Session::isActive()) { ?>
 									<h4 id="top-nav-user-information-button-h4"><?php echo Session::get()->username; ?></h4>
 								<?php } else { ?>
-									<h4 id="top-nav-user-information-button-h4">Connexion</h4>
+									<h4 id="top-nav-user-information-button-h4">Espace membre</h4>
 								<?php } ?>
 
 								<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
@@ -52,6 +49,13 @@
 										<li><a href="#">Mon compte</a></li>
 										<li><a href="#">Messagerie</a></li>
 										<li><a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnexion</a></li>
+									</ul>
+								</div>
+								<?php } else { ?>
+								<div id="top-nav-user-information-menu">
+									<ul>
+										<li><a href="<?php echo WEBROOT.'login'; ?>">Connexion</a></li>
+										<li><a href="<?php echo WEBROOT.'register'; ?>">Inscription</a></li>
 									</ul>
 								</div>
 								<?php } ?>
@@ -84,6 +88,10 @@
 		<br>
 		<?php include($content); ?>
 		<br>
+
+		<footer>
+			
+		</footer>
 
 		<script src="<?php echo JS.'ajax.js'; ?>"></script>
 		<script src="<?php echo JS.'interactions.js'; ?>"></script>
