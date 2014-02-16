@@ -9,7 +9,7 @@ class VideoProperties {
 	}
 
 	public static function uploadTumbnail($username) {
-		if(isset($_FILES['videoTumbnail']) && isset($username)) {
+		if(isset($_FILES['videoTumbnail'], $username)) {
 			$name = $_FILES['videoTumbnail']['name'];
 			$exp = explode('.', $name);
 			$ext = $exp[count($exp)-1];
