@@ -53,7 +53,7 @@ if($video->getUserId() == $session->getId())
 	
 		$video->saveDataToDatabase();
 	
-		header('Location: ./?page=manager');
+		header('Location: ./manager');
 		exit();
 	}
 }
