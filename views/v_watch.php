@@ -164,7 +164,7 @@
 	</script>
 		<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
 			<div class="form-group">
-				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..." onkeydown="verifEnter(event);"></textarea>
+				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
 				
 			</div>
 			<div class="form-group">
