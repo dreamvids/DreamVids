@@ -21,7 +21,7 @@
 	<body>
 
 	<div id="header">
-		<a href="index.php?page=bugs"><div style="float:left;margin:20px;position:absolute;" class="btn btn-primary btn-danger">Reporter un bug</div></a>
+		<a href="<?php if(isset($session)) { echo 'index.php?page=bugs'; } else { echo 'login'; } ?>"><div style="float:left;margin:20px;position:absolute;" class="btn btn-primary btn-danger">Reporter un bug</div></a>
 <?php
 if (isset($session) )
 {
