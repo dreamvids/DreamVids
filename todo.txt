@@ -31,3 +31,5 @@
 - Dans la liste des abonnées à une chaîne. Classé par ordre croissant d'abonnement à la chaîne question.
 
 - Dans la liste des vidéos dans l'espace membre. Ajouter des liens sur les miniatures, des liens qui mènent aux vidéos.
+
+- [[[N'IMPORTE QUI A ACCES AU PANEL DE MODÉRATION (http://dreamvids.fr/?page=moderation) ]]]
