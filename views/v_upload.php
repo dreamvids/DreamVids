@@ -61,7 +61,7 @@
 			<br>
 
 			<div class="alert alert-info">Vous pouvez valider le formulaire une fois la mise en ligne terminée</div>
-			<input type="submit" id="up-submit" disabled="disabled" class="btn btn-primary" name="submit">
+			<input type="submit" id="up-submit" disabled="disabled" class="btn btn-primary" name="submit" value="Ajouter">
 		</form>
 	</div>
 </div>
