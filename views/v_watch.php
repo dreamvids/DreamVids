@@ -152,23 +152,23 @@
 
 	<br><h2>Commentaires</h2><br>
 	<?php if(isset($session)) { ?>
-	    <script type="text/javascript">
-        function verifEnter (event){
-           
-            if (event.keyCode=='13' && event.ctrlKey) {
-            commentform = document.getElementById("text_comment"); 
-            comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, commentform.value);return false
-            
-            }
-        	}
-    	</script>
+	<script>
+		window.onload = function () {
+			document.getElementById("text_comment").onkeydown = function (e) {
+				if (e.keyCode == 13 && e.ctrlKey) { 
+					document.getElementById("submit_comment").click();
+				return false;
+				}
+			}
+		}
+	</script>
 		<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
 			<div class="form-group">
 				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..." onkeydown="verifEnter(event);"></textarea>
 				
 			</div>
 			<div class="form-group">
-				<input class="btn btn-primary btn-success" type="submit" value="Envoyer" />
+				<input  id="submit_comment" class="btn btn-primary btn-success" type="submit" value="Envoyer" />
 				<p>Ou Ctrl+Enter pour envoyer</p>
 			</div>
 		</form>
