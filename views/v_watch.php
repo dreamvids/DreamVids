@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
@@ -26,7 +22,7 @@
 
 			<?php if($video->isSuspended()) { ?>
 
-			<button class='btn btn-success' name='unsuspend_vid'>Ré-activer</button>	
+			<button class='btn btn-success' name='unsuspend_vid'>Réactiver</button>	
 
 			<?php } else { ?>
 
