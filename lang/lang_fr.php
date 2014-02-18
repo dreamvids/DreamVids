@@ -142,7 +142,7 @@ $lang = array(
 
 'admin' => 'Administrateur',
 
-'no_new_messages' => 'Vous n\' avez aucun nouveau message',
+'no_new_messages' => 'Vous n\'avez aucun nouveau message',
 
 'minute' => ' minute',
 
