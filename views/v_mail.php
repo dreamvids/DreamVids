@@ -101,7 +101,7 @@
 						<div class="input-group">
 							<textarea type="text" name="sendMessage" class="form-control" rows="4" style="resize:none;"></textarea>
 							<span class="input-group-btn">
-								<input type="submit" name="sendSubmit" class="btn btn-default" style="height:94px;">
+								<input type="submit" name="sendSubmit" class="btn btn-default" style="height:94px;" value="Envoyer">
 							</span>
 						</div>
 					</form>
