@@ -2,6 +2,8 @@
 
 class Watch extends Controller {
 	
+	private static $vidId = -1;
+
 	public function index($videoId='nope') {
 		if($videoId != 'nope') {
 			if(Video::exists(array('id' => $videoId))) {
@@ -25,6 +27,7 @@ class Watch extends Controller {
 			return;
 		}
 
+		self::$vidId = $videoId;
 		$this->loadModel('watch_model');
 
 		$data = array();
@@ -43,6 +46,20 @@ class Watch extends Controller {
 		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
 
 		$this->renderView('watch/watch', $data);
+	}
+
+	public function postRequest($request) {
+		$req = $request->getValues();
+
+		if(isset($req['commentSubmit']) && Session::isActive()) {
+			$content = Utils::secure($req['comment-content']);
+
+			$this->model->postComment(Session::get()->id, self::$vidId, $content);
+
+			$f = fopen('mldkslfjk.txt', 'w');
+			fwrite($f, 'comment ! '.$content);
+			fclose($f);
+		}
 	}
 
 	public function like($videoId='nope') {

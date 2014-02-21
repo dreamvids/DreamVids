@@ -1,18 +1,18 @@
 <section id="video">
 	<div id="video-top-infos">
 		<div id="video-top-title">
-			<h1><?php echo $title; ?></h1>
-			<hr/>
-		</div>
-		<div id="video-top-channel">
-			<img src="<?php echo IMG.'avatar_top_nav.png'; ?>" alt="Image de la chaîne">
-			<span id="hover_subscribe" data-vid="0"><i>S'abonner</i></span>
-			<div id="video-top-channel-infos">
-				<p id="video-top-pseudo"><?php echo $author; ?></p>
-				<hr>
-				<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
+			<div id="video-top-channel">
+				<img src="<?php echo IMG.'avatar_top_nav.png'; ?>" alt="Image de la chaîne">
+				<span id="hover_subscribe" data-vid="0"><i>S'abonner</i></span>
+				<div id="video-top-channel-infos">
+					<p id="video-top-pseudo"><?php echo $author; ?></p>
+					<hr>
+					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
+				</div>
 			</div>
+			<h1><?php echo $title; ?></h1>
 		</div>
+		
 	</div>
 	<div id="player">
 		<video x-webkit-airplay="allow" autobuffer preload="auto" poster="http://puu.sh/6Tf6f.png"></video>
@@ -53,14 +53,15 @@
 		<hr/>
 		<div id="description">
 			<div id="innerDescription">
-				<?php echo $description; ?>
+				Ceci est une description que j'ai écrite à la main très très très longtemps pour avoir quelque chose de plus réaliste et inutile et pour pouvoir commiter quelquechose vu que je n'avais aucune idée de quoi faire.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, laudantium, labore assumenda corporis ea dolor saepe nostrum quae molestias nobis illum accusamus magnam rerum! Velit, fuga, laborum qui ducimus nesciunt sequi necessitatibus dolores illo itaque tenetur ea cupiditate temporibus vero amet dolorem veniam possimus perferendis explicabo sed debitis delectus aliquam.
 			</div>
 		</div>
 		<hr/>
 		<div id="buttons">
-			<img class="share" src="<?php echo IMG.'share.png'; ?>"/>
-			<img class="star" src="<?php echo IMG.'star.png'; ?>"/>
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>"/>
+			<img class="share" src="img/share.png"/>
+			<img class="star" src="img/star.png"/>
+			<img class="flag" src="img/flag.png"/>
 		</div>
 	</section>
 </section>
@@ -69,32 +70,6 @@
 <div id="bottom">
 	<section id="comments">
 		<section id="createComment">
-			<div id="wysiwyg">
-			    <span data-tag="bold" style="background-image: url(img/wysiwyg/1.png);"></span>
-			    <span data-tag="italic" style="background-image: url(img/wysiwyg/2.png);"></span>
-			    <span data-tag="underline" style="background-image: url(img/wysiwyg/3.png);"></span>
-			    <span data-tag="strikeThrough" style="background-image: url(img/wysiwyg/4.png);"></span>
-			    <span data-tag="createLink" style="background-image: url(img/wysiwyg/5.png);"></span>
-			    <span class="button" style="background-image: url(img/wysiwyg/6.png);" onclick="ouvrir();"></span>
-			    <span data-tag="undo" style="background-image: url(img/wysiwyg/7.png);"></span>
-			    <div id="modal">
-			        <img src="<?php echo IMG.''; ?>img/smiley/close.png" class="close" onclick="fermer();" width="30" height="30">
-			        <span class="smiley" data-value="smile.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/smile.png"></span>
-			        <span class="smiley" data-value="blink.gif" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/blink.gif"></span>
-			        <span class="smiley" data-value="clin.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/clin.png"></span>
-			        <span class="smiley" data-value="heureux.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/heureux.png"></span>
-			        <span class="smiley" data-value="hihi.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/hihi.png"></span>
-			        <span class="smiley" data-value="huh.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/huh.png"></span>
-			        <span class="smiley" data-value="langue.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/langue.png"></span>
-			        <span class="smiley" data-value="pleure.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/pleure.png"></span>
-			        <span class="smiley" data-value="rire.gif" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/rire.gif"></span>
-			        <span class="smiley" data-value="siffle.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/siffle.png"></span>
-			        <span class="smiley" data-value="triste.png" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/triste.png"></span>
-			        <span class="smiley" data-value="unsure.gif" data-tag="smiley"><img src="<?php echo IMG.''; ?>img/smiley/unsure.gif"></span>
-			    </div>
-			</div>
-			<div id="editor" contenteditable="true" tabindex="3" onkeyup="document.getElementById('text').value = this.innerHTML;"></div>
-			<input type="hidden" name="text" id="text"/><br />
 		</section>
 		<div id="comments-title">
 			<h3>Commentaires Populaires</h3>
@@ -102,30 +77,69 @@
 		</div>
 
 		<div id="comments-best">
-			<?php foreach ($comments as $comment) { ?>
-
 			<div class="comment">
 				<div class="comment-head">
 					<div class="user">
-						<img src="<?php echo IMG.'avatar_user.png'; ?>" alt="Avatar de Pseudo">
-						<p><?php echo $this->model->getCommentAuthor($comment); ?></p>
+						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
+						<p>Pseudo</p>
 					</div>
 					<div class="date">
-						<p><?php echo Utils::relative_time($comment->timestamp); ?></p>
+						<p>12 / 06 à 8h09</p>
 					</div>
 				</div>
 				<div class="comment-text">
-					<p><?php echo $comment->comment; ?></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, ad, voluptate, molestias, necessitatibus ex a rerum laudantium aperiam sit recusandae perferendis quod deleniti minima consequatur dicta vitae praesentium inventore earum mollitia cumque iste totam nostrum fugit porro sed quibusdam velit! Officiis, temporibus doloribus consequuntur debitis assumenda quidem obcaecati adipisci quaerat.</p>
 				</div>
 				<div class="comment-notation">
 					<ul>
-						<li class="plus"><a href="#">+</a><?php echo $comment->likes; ?></li>
-						<li class="moins"><a href="#">-</a><?php echo $comment->dislikes; ?></li>
+						<li class="plus"><a href="#">+</a>141</li>
+						<li class="moins"><a href="#">-</a>3</li>
 					</ul>
 				</div>
 			</div>
 
-			<?php } ?>
+			<div class="comment">
+				<div class="comment-head">
+					<div class="user">
+						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
+						<p>Lorem</p>
+					</div>
+					<div class="date">
+						<p>18 / 06 à 15h09</p>
+					</div>
+				</div>
+				<div class="comment-text">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</div>
+				<div class="comment-notation">
+					<ul>
+						<li class="plus"><a href="#">+</a>25</li>
+						<li class="moins"><a href="#">-</a>0</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="comment">
+				<div class="comment-head">
+					<div class="user">
+						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
+						<p>Pseudo</p>
+					</div>
+					<div class="date">
+						<p>12 / 06 à 8h09</p>
+					</div>
+				</div>
+				<div class="comment-text">
+					<p>Laudantium aperiam sit recusandae perferendis quod deleniti minima consequatur dicta vitae praesentium inventore earum mollitia cumque iste totam nostrum fugit porro sed quibusdam velit! Officiis, temporibus doloribus consequuntur debitis assumenda quidem obcaecati adipisci quaerat.</p>
+				</div>
+				<div class="comment-notation">
+					<ul>
+						<li class="plus"><a href="#">+</a>854</li>
+						<li class="moins"><a href="#">-</a>24</li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 
 	</section>
@@ -141,6 +155,7 @@
 			<div class="recomandation-thumbnail">
 				<a href="#"><img src="<?php echo IMG.'recomandation_sample.png'; ?>" alt="Video title here"></a>
 				<div class="recomandation-time"><p>12:05</p></div>
+				<a href="#"><div class="recomandation-overlay"><img src="<?php echo IMG.'play_icon_recomandations.png'; ?>" alt="Regardez la vidéo 'Titre de la vidéo'"></div></a>
 			</div>
 			<div class="recomandation-description">
 				<a href="#"><h4>[Découverte] GTA V : Franklin le garagiste !</h4></a>
@@ -153,7 +168,8 @@
 		<div class="recomandation">
 			<div class="recomandation-thumbnail">
 				<a href="#"><img src="<?php echo IMG.'recomandation_sample_2.png'; ?>" alt="Video title here"></a>
-				<div class="recomandation-time"><p>12:05</p></div>
+				<div class="recomandation-time"><p>24:34</p></div>
+				<a href="#"><div class="recomandation-overlay"><img src="<?php echo IMG.'play_icon_recomandations.png'; ?>" alt="Regardez la vidéo 'Titre de la vidéo'"></div></a>
 			</div>
 			<div class="recomandation-description">
 				<a href="#"><h4>LOL - Trevor et ses pulsions !</h4></a>
@@ -166,7 +182,16 @@
 
 	</aside>
 
-	<script src="<?php echo JS.'vote.js'; ?>"></script>
-	<script src="<?php echo JS.'wysiwyg.js'; ?>"></script>
-	<script src="<?php echo JS.'player.js'; ?>"></script>
+	<div class="comment-post">
+	<form method="post" action="">
+		<textarea name="comment-content" rows="6" cols="50"></textarea>
+		<input type="submit" name="commentSubmit" value="Poster">
+	</form>
+	</div>
 </div>
+
+<footer>
+	<div id="inner-footer">
+		footer
+	</div>
+</footer>

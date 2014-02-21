@@ -30,6 +30,18 @@ class Watch_model extends Model {
 		}
 	}
 
+	public function postComment($authorId, $videoId, $commentContent) {
+		Comment::create(array(
+			'id' => Comment::generateId(6),
+			'user_id' => $authorId,
+			'video_id' => $videoId,
+			'comment' => $commentContent,
+			'timestamp' => Utils::tps(),
+			'likes' => 0,
+			'dislikes' => 0
+		));
+	}
+
 	public function isVideoLikedByUser($videoId, $userId='nope') {
 		if($userId == 'nope' && Session::isActive()) $userId = Session::get()->id;
 
