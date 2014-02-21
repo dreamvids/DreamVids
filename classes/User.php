@@ -10,7 +10,7 @@ class User {
     private $subscribers;
     private $subscriptions;
     private $reg_timestamp;
-    private $rank; // 0: normal user, 1: moderator, 2: admin;
+    private $rank; // see the specs in the "config" table
 
     public function __construct($id) {
         $this->loadDataFromDatabase($id);
@@ -181,22 +181,24 @@ class User {
         return $id;
     }
 
-    public static function getRankNameByRankId($rankId) {
-        switch ($rankId) {
+    public static function getDisplayableRank($userId) {
+    	$db = new BDD();
+    	$result = $db->fetch_array($db->select("rank", "users", "WHERE id='".$db->real_escape_string($userId)."'") );
+        switch ($result['rank']) {
             case $GLOBALS['config']['rank_mbr']:
-                return 'DreamVids user';
+                return '';
                 break;
 
             case $GLOBALS['config']['rank_modo']:
-                return 'Moderator';
+                return ' <span class="label label-warning">Modo</span>';
                 break;
 
             case $GLOBALS['config']['rank_adm']:
-                return 'Admin';
+                return ' <span class="label label-danger">Admin</span>';
                 break;
             
             default:
-                return 'OVNI';
+                return '';
                 break;
         }
     }

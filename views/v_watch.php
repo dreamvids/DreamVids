@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="/@<?php echo secure($author->getName() ); ?>"><?php echo secure($author->getName() ); ?></a></small></h1>
+			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="/@<?php echo secure($author->getName() ); ?>"><?php echo secure($author->getName() ).User::getDisplayableRank($author->getId() ); ?></a></small></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
@@ -183,7 +183,7 @@
 
 		<div class="panel panel-default" style="width: 100%;">
 			<div class="panel-heading">
-				<h5><a href="@<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()); ?></a> <small><?php echo $date; ?></small></h5>
+				<h5><a href="@<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()).'</a>'.User::getDisplayableRank($comm->getAuthorId()); ?> <small><?php echo $date; ?></small></h5>
 			</div>
 			<div class="panel-body">
 				<p><?php echo bbcode(nl2br(secure($comm->getContent() ) ) ); ?></p>
