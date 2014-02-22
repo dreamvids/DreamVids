@@ -107,7 +107,7 @@ function abortUpload() {
 fileInput.onchange = function() {
 	var ext = fileInput.value.split('.');
 	ext = ext[ext.length - 1];
-	if (inArray(ext, ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv']) ) {
+	if (inArray(ext.toLowerCase(), ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv']) ) {
 		fileInput.setAttribute('disabled', 'disabled');
 		xhr = new XMLHttpRequest();
 		xhr.open('POST', 'index.php?page=upload');
