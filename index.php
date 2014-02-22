@@ -15,6 +15,7 @@ define('ASSETS', WEBROOT.'assets/');
 define('IMG', WEBROOT.'assets/img/');
 define('CSS', WEBROOT.'assets/css/');
 define('JS', WEBROOT.'assets/js/');
+define('PANEL', WEBROOT.'assets/panel/');
 
 include SYSTEM.'Application.php';
 include SYSTEM.'Utils.php';

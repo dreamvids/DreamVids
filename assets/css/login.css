@@ -1,0 +1,744 @@
+/* line 17, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../Scout/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url("../fonts/sourcesanspro-light-webfont.eot");
+  src: url("../fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/sourcesanspro-light-webfont.woff") format("woff"), url("../fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 1, ../scss/partials/_footer.scss */
+html {
+  background-color: #f1f0f0;
+}
+
+/* line 4, ../scss/partials/_footer.scss */
+body {
+  background-color: white;
+}
+
+/* line 8, ../scss/partials/_footer.scss */
+footer {
+  width: 100%;
+  border-top: 1px solid #d1d1d1;
+  background-color: #f1f0f0;
+  position: absolute;
+}
+/* line 14, ../scss/partials/_footer.scss */
+footer #inner-footer {
+  max-width: 1000px;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+
+/* NAV VARIABLES */
+/* line 20, ../scss/partials/_header.scss */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* line 21, ../scss/partials/_header.scss */
+body {
+  font-family: 'Source Sans Pro', Arial;
+}
+
+/* NAV SCSS */
+/* line 27, ../scss/partials/_header.scss */
+#top-nav {
+  width: 100%;
+  height: 60px;
+  background-color: #40a6e0;
+  border-bottom: 2px solid #33799f;
+}
+
+/* line 34, ../scss/partials/_header.scss */
+#inner-top-nav {
+  margin: auto;
+  max-width: 1000px;
+  padding: 0;
+  position: relative;
+}
+/* line 40, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 45, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left a {
+  cursor: pointer;
+  display: block;
+  height: 60px;
+  width: 180px;
+}
+/* line 51, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left a .top-nav-icon-logo {
+  margin-top: 15px;
+}
+/* line 55, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-left a .top-nav-text-logo {
+  position: relative;
+  left: 15px;
+  top: -4px;
+}
+/* line 63, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 69, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form {
+  display: inline-block;
+  margin-right: -3px;
+  border-left: 1px solid #33799f;
+  border-right: 1px solid #33799f;
+  /* firefox 19+ */
+  /* ie */
+}
+/* line 75, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"] {
+  height: 58px;
+  border: 0;
+  background-color: #40a6e0;
+  width: 150px;
+  padding-left: 20px;
+  color: white;
+}
+/* line 84, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]::-webkit-input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 85, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]::-moz-input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 86, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]::-ms-input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 87, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="text"]::input-placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 14px;
+  font-family: 'Source Sans Pro', Arial;
+  position: relative;
+}
+/* line 89, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="submit"] {
+  vertical-align: top;
+  margin-top: 15px;
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  background-image: url("../img/search_icon.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  right: 5px;
+  cursor: pointer;
+}
+/* line 104, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right form input[type="submit"]:focus, #inner-top-nav #inner-top-nav-right form input[type="text"]:focus {
+  outline: none;
+}
+/* line 109, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+}
+/* line 114, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 0;
+  padding-right: 15px;
+  position: relative;
+  border-right: 1px solid #33799f;
+}
+/* line 122, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button img:first-child {
+  width: 60px;
+  height: 60px;
+  border-right: 1px solid #33799f;
+}
+/* line 128, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button img, #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+}
+/* line 135, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: normal;
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 144, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button:hover {
+  background-color: #3d9ed5;
+  cursor: pointer;
+}
+/* line 149, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-connection {
+  display: inline-block;
+  width: 179px;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 25px;
+  border-right: 1px solid #33799f;
+  text-align: center;
+  font-size: 14px;
+  height: 60px;
+}
+/* line 162, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-connection p {
+  display: inline;
+  color: #E8E8E8;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+/* line 170, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 0;
+  padding-right: 15px;
+  position: relative;
+  border-right: 1px solid #33799f;
+}
+/* line 178, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button img, #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+}
+/* line 185, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: normal;
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 196, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button:hover {
+  background-color: #3d9ed5;
+  cursor: pointer;
+}
+/* line 201, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-menu {
+  display: none;
+  position: absolute;
+  z-index: 101;
+  top: 27px;
+  right: 0;
+}
+/* line 208, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-menu li {
+  margin-top: 2px;
+  margin-bottom: -2px;
+  width: 200px;
+  position: relative;
+  display: block;
+  background-color: #a7a7a7;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: 14px;
+}
+/* line 225, ../scss/partials/_header.scss */
+#inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-menu li:hover {
+  background-color: #9c9c9c;
+}
+
+/* line 235, ../scss/partials/_header.scss */
+#bottom-nav {
+  height: 40px;
+  background-color: #f1f0f0;
+}
+/* line 239, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+}
+/* line 244, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav {
+  display: inline-block;
+  position: relative;
+  left: -10px;
+}
+/* line 249, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li {
+  display: inline-block;
+  line-height: 41px;
+  text-transform: uppercase;
+  font-size: 14px;
+  width: 120px;
+  margin-left: 10px;
+  text-align: center;
+}
+/* line 258, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li a {
+  color: #959595;
+}
+/* line 262, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li a:hover {
+  color: #40a6e0;
+}
+/* line 266, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li a:hover ~ .bottom-nav-underline {
+  display: block;
+}
+/* line 270, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav nav li .bottom-nav-underline {
+  width: 100%;
+  height: 3px;
+  position: relative;
+  top: -4px;
+  background-color: #40a6e0;
+  display: none;
+}
+/* line 282, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav #mobile-nav-icon {
+  display: none;
+}
+/* line 286, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav #bottom-nav-social {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* line 294, ../scss/partials/_header.scss */
+#bottom-nav #inner-bottom-nav #bottom-nav-social li {
+  display: inline-block;
+  margin-right: 10px;
+  line-height: 42px;
+}
+
+@media all and (max-width: 600px) {
+  /* line 305, ../scss/partials/_header.scss */
+  #top-nav a {
+    width: 70px!important;
+  }
+  /* line 308, ../scss/partials/_header.scss */
+  #top-nav a #top-nav-logo-text {
+    display: none;
+  }
+
+  /* line 316, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information {
+    text-align: right;
+  }
+  /* line 320, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button h4 {
+    display: none;
+  }
+  /* line 323, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-nav-user-information-button #top-nav-user-arrow {
+    margin-left: 15px;
+  }
+
+  /* line 333, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav {
+    background-color: #e5e3e3;
+    position: fixed;
+    top: 0;
+    left: -210px;
+    height: 100%;
+    z-index: 100;
+    -webkit-transition: 0.5s;
+    box-shadow: 0 0 0 700px rgba(0, 0, 0, 0);
+  }
+  /* line 343, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav li {
+    display: block;
+    width: 200px;
+    margin-left: 5px;
+  }
+  /* line 351, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav li .bottom-nav-underline {
+    height: 40px;
+    width: 4px;
+    top: -40px;
+    margin-bottom: -40px;
+  }
+  /* line 359, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav.open {
+    left: -5px;
+    box-shadow: 0 0 0 700px rgba(0, 0, 0, 0.5);
+  }
+  /* line 364, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon {
+    display: block;
+    float: left;
+    line-height: 41px;
+    position: relative;
+    left: 15px;
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    z-index: 101;
+    -webkit-transition: 0.3s;
+  }
+  /* line 378, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon p {
+    position: relative;
+    top: 8px;
+    width: 20px;
+    height: 3px;
+    background: #bbb;
+    -webkit-transition: 0.5s;
+  }
+  /* line 387, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon p:before, #bottom-nav #inner-bottom-nav #mobile-nav-icon p:after {
+    content: "";
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 3px;
+    background: #bbb;
+    -webkit-transition: -webkit-transform 0.5s;
+  }
+  /* line 397, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon p:before {
+    top: -6px;
+  }
+  /* line 399, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon p:after {
+    top: 6px;
+    margin-top: -3px;
+  }
+  /* line 406, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon:hover p {
+    background: #999;
+  }
+  /* line 409, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon:hover p:before, #bottom-nav #inner-bottom-nav #mobile-nav-icon:hover p:after {
+    background: #999;
+  }
+  /* line 415, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open {
+    left: 210px;
+  }
+  /* line 421, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open p {
+    background: transparent;
+    -webkit-transition: 0;
+  }
+  /* line 425, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open p:before, #bottom-nav #inner-bottom-nav #mobile-nav-icon.open p:after {
+    top: 0;
+    background: white;
+  }
+  /* line 429, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open p:before {
+    -webkit-transform: rotate(45deg);
+  }
+  /* line 431, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open p:after {
+    -webkit-transform: rotate(-45deg);
+  }
+}
+@media all and (max-width: 600px) and (max-width: 350px) {
+  /* line 343, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav nav li {
+    width: 170px;
+  }
+}
+@media all and (max-width: 600px) and (max-width: 350px) {
+  /* line 415, ../scss/partials/_header.scss */
+  #bottom-nav #inner-bottom-nav #mobile-nav-icon.open {
+    left: 185px;
+  }
+}
+@media all and (max-width: 450px) {
+  /* line 442, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  /* line 447, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right form input[type="text"] {
+    width: 100px;
+    padding-left: 10px;
+  }
+  /* line 454, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-connection {
+    width: 120px;
+  }
+}
+@media all and (max-width: 350px) {
+  /* line 465, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right form input[type="text"] {
+    width: 50px;
+    padding-left: 5px;
+  }
+  /* line 472, ../scss/partials/_header.scss */
+  #inner-top-nav #inner-top-nav-right #top-nav-user-information #top-connection {
+    width: 100px;
+  }
+}
+/* line 1, ../scss/partials/_checkbox.scss */
+input[type=checkbox] {
+  cursor: pointer;
+  width: 25px;
+  margin: 10px 5px 15px 10px;
+}
+/* line 6, ../scss/partials/_checkbox.scss */
+input[type=checkbox]:before {
+  content: "";
+  background-color: #dddddd;
+  color: #ffffff;
+  padding: 12px 0px 13px 5px;
+  display: block;
+  font-size: 20px;
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+  line-height: 0;
+  text-indent: 0;
+  margin-left: -2px;
+}
+/* line 20, ../scss/partials/_checkbox.scss */
+input[type=checkbox]:checked:before, input[type=checkbox]:hover:before, input[type=checkbox][disabled]:checked:before {
+  content: "âœ“";
+}
+/* line 23, ../scss/partials/_checkbox.scss */
+input[type=checkbox]:checked:before {
+  background-color: #2ecc71;
+}
+/* line 26, ../scss/partials/_checkbox.scss */
+input[type=checkbox][disabled] {
+  cursor: default;
+}
+/* line 29, ../scss/partials/_checkbox.scss */
+input[type=checkbox][disabled]:hover:before {
+  content: "";
+}
+/* line 32, ../scss/partials/_checkbox.scss */
+input[type=checkbox][disabled]:checked:before {
+  background-color: #dddddd;
+}
+/* line 36, ../scss/partials/_checkbox.scss */
+input[type=checkbox][disabled] + label {
+  color: #999999;
+  cursor: default;
+}
+/* line 42, ../scss/partials/_checkbox.scss */
+input[type=checkbox] + label {
+  position: relative;
+  right: 5px;
+  cursor: pointer;
+  width: auto!important;
+  margin-left: 5px!important;
+}
+
+/* line 3, ../scss/partials/_login-register.scss */
+#login, #register {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+/* line 10, ../scss/partials/_login-register.scss */
+#login h1, #register h1 {
+  font-size: 25px;
+  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 35px;
+  margin-left: 15px;
+  color: #858484;
+}
+/* line 18, ../scss/partials/_login-register.scss */
+#login h1 a, #register h1 a {
+  color: #ccc;
+  font-size: 20px;
+}
+/* line 22, ../scss/partials/_login-register.scss */
+#login h1 a:hover, #register h1 a:hover {
+  color: #aaa;
+}
+/* line 24, ../scss/partials/_login-register.scss */
+#login h1 a:hover:before, #register h1 a:hover:before {
+  color: #ccc;
+}
+/* line 28, ../scss/partials/_login-register.scss */
+#login h1 a:before, #register h1 a:before {
+  content: " / ";
+}
+/* line 33, ../scss/partials/_login-register.scss */
+#login h1:after, #register h1:after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 25px;
+  background-color: #dddedd;
+  border: none;
+  position: relative;
+  bottom: -5px;
+}
+/* line 45, ../scss/partials/_login-register.scss */
+#login form, #register form {
+  margin: auto;
+  background-color: #f1f0f0;
+  padding: 15px;
+  color: #858484;
+  margin-bottom: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 1px 2px 0px #e2e2e2;
+  -moz-box-shadow: 1px 2px 0px #e2e2e2;
+  box-shadow: 1px 2px 0px #e2e2e2;
+}
+/* line 59, ../scss/partials/_login-register.scss */
+#login form input[type=text], #login form input[type=password], #register form input[type=text], #register form input[type=password] {
+  display: block;
+  border: none;
+  margin: 5px 0;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 70, ../scss/partials/_login-register.scss */
+#login form input[type=text]:focus, #login form input[type=text]:active, #login form input[type=password]:focus, #login form input[type=password]:active, #register form input[type=text]:focus, #register form input[type=text]:active, #register form input[type=password]:focus, #register form input[type=password]:active {
+  outline: none;
+}
+/* line 75, ../scss/partials/_login-register.scss */
+#login form input[type=submit], #register form input[type=submit] {
+  display: block;
+  border: none;
+  margin-top: 5px;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+  background-color: #40a6e0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 90, ../scss/partials/_login-register.scss */
+#login form input[type=submit]:focus, #login form input[type=submit]:active, #login form input[type=submit]:hover, #register form input[type=submit]:focus, #register form input[type=submit]:active, #register form input[type=submit]:hover {
+  outline: none;
+  background-color: #4dace2;
+}
+/* line 94, ../scss/partials/_login-register.scss */
+#login form input[type=submit]:active, #register form input[type=submit]:active {
+  background-color: #33a0de;
+}
+
+@media all and (max-width: 630px) {
+  /* line 103, ../scss/partials/_login-register.scss */
+  #login h1, #register h1 {
+    margin-left: 10px;
+  }
+}

@@ -5,6 +5,7 @@ class Login extends Controller {
 	public function index() {
 		if(!Session::isActive()) {
 			$data = array();
+			$data['css'] = CSS.'login.css';
 			$this->renderView('login/login', $data);
 		}
 		else if(func_num_args() > 0) {
