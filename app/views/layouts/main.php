@@ -3,8 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo CSS.'video.css'; ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo CSS.'index.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'index.css'; ?>">
 
 		<meta name="viewport" content="width = device-width, initial-scale = 0.9, maximum-scale = 1.0, user-scalable = no">
 

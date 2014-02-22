@@ -1,1 +1,1 @@
-<h1>Flux d'actualité</h1>
+<h1>Feed</h1>
