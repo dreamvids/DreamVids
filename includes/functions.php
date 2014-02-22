@@ -55,9 +55,10 @@ function bbcode($imput)
 
 function convert($input)
 {
-	system('sudo -u www-data convert.sh '.$input.'');
+	system('sudo -u www-data convert.sh "'.$input.'"');
 }
-Function Qui_Est_Le_Meilleur_Developper() {
+
+function Qui_Est_Le_Meilleur_Developper() {
 	$number_array = array('3.86363636363636363636', '2.23684210526315789474', '2.52475247524752475248', '2.08016393442622950820', '2.45092307692307692308', '3.75', '2.52475247524752475248', '2.16101694915254237288');
 	$const = 255;
 	$final = '';
