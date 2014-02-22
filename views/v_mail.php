@@ -80,7 +80,7 @@
 			<div class="col-md-6 text-center">
 				<div class="well">
 					<div class="page-header" style="margin-top:0px;padding-top:0px;">
-						<h1><?php echo $recipient->getName(); ?><br><small style="font-size:17px;"> <?php echo User::getRankNameByRankId($recipient->getRank()); ?></small></h1>
+						<h1><?php echo $recipient->getName(); ?><br><small style="font-size:17px;"> <?php echo User::getDisplayableRank($recipient->getId() ); ?></small></h1>
 					</div>
 
 					<?php if(isset($lastReceivedMessage)) { ?>

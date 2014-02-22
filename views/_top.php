@@ -61,7 +61,7 @@ if (isset($session) )
 				</ul>
 		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="/search">
         <div class="form-group center-block">
-          <input type="search" name="q" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
+          <input type="search" required="required" name="q" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
         </div>
         <button type="submit" style="border-radius:25px" class="btn btn-default"><img src="img/search.png" width="14"></button>
       </form></li></ul>

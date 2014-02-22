@@ -19,8 +19,12 @@ switch (@$_GET['mode'])
 	break;
 	
 	case 'search':
-		$vids = $vidslist->getSearchVideos($_GET['q']);
-		$title = $lang['search'].' - '.secure($_GET['q']);
+		$q = urldecode($_GET['q']);
+		if ($_GET['q'] != '' && !preg_match('#^\s*$#', $q) )
+		{
+			$vids = $vidslist->getSearchVideos($q);
+			$title = $lang['search'].' - '.secure($q);
+		}
 	break;
 	
 	default:
