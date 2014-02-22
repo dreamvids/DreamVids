@@ -21,14 +21,24 @@ class Watch extends Controller {
 	}
 
 	public function video($videoId='nope') {
+		$this->loadModel('watch_model');
+
 		if($videoId == 'nope') {
 			header('Location: '.WEBROOT);
 			exit();
 			return;
 		}
 
+		if($this->model->isVideoSuspended($videoId)) {
+			$data = array();
+			$data['video'] = $this->model->getVideoById($videoId);
+			
+			$this->renderView('watch/suspended', $data);
+			exit();
+			return;
+		}
+
 		self::$vidId = $videoId;
-		$this->loadModel('watch_model');
 
 		$data = array();
 		$video = $this->model->getVideoById($videoId);
@@ -56,10 +66,6 @@ class Watch extends Controller {
 			$content = Utils::secure($req['comment-content']);
 
 			$this->model->postComment(Session::get()->id, self::$vidId, $content);
-
-			$f = fopen('mldkslfjk.txt', 'w');
-			fwrite($f, 'comment ! '.$content);
-			fclose($f);
 		}
 	}
 

@@ -15,8 +15,12 @@ class Admin_model extends Model {
 		}
 	}
 
+	public function videoExists($videoId) {
+		return Video::exists(array('id' => $videoId));
+	}
+
 	public function suspendVideo($videoId) {
-		Video::update_all(array('conditions' => array('id' => $videoId), 'set' => array('visibility' => $GLOBALS['config']['vid_visibility_suspended'])));
+		Video::update_all(array('conditions' => array('id' => $videoId), 'set' => array('visibility' => $GLOBALS['config']['vid_visibility_suspended'], 'flagged' => 0)));
 	}
 
 }

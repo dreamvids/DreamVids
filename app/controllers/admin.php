@@ -33,7 +33,11 @@ class Admin extends Controller {
 
 	public function suspendVideo($vidId='nope') {
 		if($vidId != 'nope' && Session::isActive() && Session::get()->rank >= $GLOBALS['config']['rank_modo']) {
-			
+			$this->loadModel('admin_model');
+
+			if($this->model->videoExists($vidId)) {
+				$this->model->suspendVideo($vidId);
+			}
 		}
 	}
 

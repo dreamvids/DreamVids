@@ -15,6 +15,10 @@ function undislikeRequest(videoId) {
    getRequest('/watch/undislike/' + videoId);
 }
 
+function suspendVideo(videoId) {
+	getRequest('/admin/suspendvideo/' + videoId);
+}
+
 function getRequest(target) {
     var preProcessRequest = new XMLHttpRequest();
     preProcessRequest.open('GET', target);

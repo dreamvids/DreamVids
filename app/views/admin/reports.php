@@ -45,7 +45,7 @@
 
 					<ul class="nav navbar-nav navbar-right navbar-user">
 						<li class="dropdown user-dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ModoTropCool <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo Session::get()->username ?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="#"><i class="fa fa-user"></i> Mon profile</a></li>
 								<li class="divider"></li>
@@ -96,9 +96,11 @@
 									<?php foreach ($reportedVids as $vid) { ?>
 									<a href="#" class="list-group-item">
 										<!--<span class="badge pull-left">Il y a 4 minutes</span>-->
-										<i></i> <?php echo $vid->title; ?>
+										<i></i> <?php echo $vid->title.' - ID: '.$vid->id; ?>
 										<span class="btn btn-success btn-xs pull-right">Annuler</span>
-										<span class="btn btn-danger btn-xs pull-right">Suspendre</span>
+										<span class="btn btn-danger btn-xs pull-right" onclick="suspendVideo('<?php echo $vid->id; ?>');">
+											Suspendre
+										</span>
 									</a>
 									<?php } ?>
 								</div>
@@ -121,6 +123,8 @@
 		<script src="<?php echo PANEL.'js/morris/chart-data-morris.js'; ?>"></script>
 		<script src="<?php echo PANEL.'js/tablesorter/jquery.tablesorter.js'; ?>"></script>
 		<script src="<?php echo PANEL.'js/tablesorter/tables.js'; ?>"></script>
+
+		<script src="<?php echo JS.'ajax.js'; ?>"></script>
 
 	</body>
 </html>

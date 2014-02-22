@@ -12,6 +12,10 @@ class Watch_model extends Model {
 		return Video::find_by_id($videoId);
 	}
 
+	public function isVideoSuspended($videoId) {
+		return Video::exists(array('id' => $videoId, 'visibility' => $GLOBALS['config']['vid_visibility_suspended']));
+	}
+
 	public function getAuthorsName($videoId) {
 		return User::find_by_id(Video::find_by_id($videoId)->user_id)->username;
 	}
