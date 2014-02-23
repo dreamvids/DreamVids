@@ -23,4 +23,8 @@ class Admin_model extends Model {
 		Video::update_all(array('conditions' => array('id' => $videoId), 'set' => array('visibility' => $GLOBALS['config']['vid_visibility_suspended'], 'flagged' => 0)));
 	}
 
+	public function cancelFlag($videoId) {
+		Video::update_all(array('conditions' => array('id' => $videoId), 'set' => array('flagged' => 0)));
+	}
+
 }

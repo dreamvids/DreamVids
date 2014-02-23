@@ -19,6 +19,10 @@ function suspendVideo(videoId) {
 	getRequest('/admin/suspendvideo/' + videoId);
 }
 
+function cancelFlag(videoId) {
+	getRequest('/admin/cancelflag/' + videoId);
+}
+
 function getRequest(target) {
     var preProcessRequest = new XMLHttpRequest();
     preProcessRequest.open('GET', target);
