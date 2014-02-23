@@ -30,19 +30,25 @@ class Upload extends Controller {
 			$exp = explode('.', $name);
 			$ext = $exp[count($exp)-1];
 			$username = Session::get()->username;
-			$path = 'uploads/'.$username.'/'.$vidId.'.'.$ext;
+			$path = 'uploads/'.$username.'/videos/'.$vidId.'.'.$ext;
+			$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv');
 
-			if(!file_exists('uploads/')) {
-				mkdir('uploads/');
-			}
-			if(!file_exists('uploads/'.$username)) {
-				mkdir('uploads/'.$username);
-			}
+			if(in_array(strtolower($ext), $acceptedExts)) {
+				if(!file_exists('uploads/')) {
+					mkdir('uploads/');
+				}
+				if(!file_exists('uploads/'.$username)) {
+					mkdir('uploads/'.$username);
+				}
+				if(!file_exists('uploads/'.$username.'/videos')) {
+					mkdir('uploads/'.$username.'/videos');
+				}
 
-			if(move_uploaded_file($_FILES['videoFile']['tmp_name'], ROOT.$path)) {
-				$this->model->updateTempURL($vidId, $path);
+				if(move_uploaded_file($_FILES['videoFile']['tmp_name'], ROOT.$path)) {
+					$this->model->updateTempURL($vidId, $path);
+				}
+				else $this->model->updateTempURL($vidId, '[error_during_file_moving]');
 			}
-			else $this->model->updateTempURL($vidId, '[error_during_file_moving]');
 		}
 	}
 
@@ -52,13 +58,29 @@ class Upload extends Controller {
 
 		$req = $request->getValues();
 
-		//if(isset($req['uploadDataSubmit'])) {
 		if(isset($req['videoTitle']) && $req['videoTitle'] != '') {
 			if(isset($req['videoDescription']) && $req['videoDescription'] != '') {
 				if(isset($req['videoTags']) && $req['videoTags'] != '') {
 
-					if(isset($req['videoThumbnail'])) $thumb = $req['videoThumbnail'];
-					else $thumb = '';
+					if(isset($_FILES['videoThumbnail'])) {
+						$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
+						$name = $_FILES['videoThumbnail']['name'];
+						$exp = explode('.', $name);
+						$ext = $exp[count($exp)-1];
+						$username = Session::get()->username;
+						$path = 'uploads/'.$username.'/thumbnails/'.$vidId.'.'.$ext;
+						$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+
+						if(in_array(strtolower($ext), $acceptedExts)) {
+							if(!file_exists('uploads/'.$username.'/thumbnails')) {
+								mkdir('uploads/'.$username.'/thumbnails');
+							}
+
+							move_uploaded_file($_FILES['videoThumbnail']['tmp_name'], ROOT.$path);
+							$thumb = $path;	
+						}
+					}
+					else $thumb = 'no_thumb';
 
 					$userId = Session::get()->id;
 					$title = Utils::secure($req['videoTitle']);
@@ -68,6 +90,8 @@ class Upload extends Controller {
 					$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
 
 					$this->model->registerVideo($vidId, $userId, $title, $desc, $tags, $thumb, Utils::tps(), $visibility);
+
+					echo 'Vos informations ont bien été enregistrées !'; // handled by JS, displayed in alert box (thanks Ajax)
 				}
 				else {
 					$data['error'] = 'Please enter some tags';
@@ -85,28 +109,6 @@ class Upload extends Controller {
 			$data['error'] = 'Please enter a title';
 			$this->clearView();
 			$this->renderView('upload/upload', $data);
-		}
-		//}
-	}
-
-	public static function uploadThumbnail($username) {
-		if(isset($_FILES['videoThumbnail']) && isset($username)) {
-			$name = $_FILES['videoThumbnail']['name'];
-			$exp = explode('.', $name);
-			$ext = $exp[count($exp)-1];
-			$path = 'uploads/'.$username.'/'.Session::get()->username.'.'.$ext;
-
-			if(!file_exists('uploads/')){
-				mkdir('uploads/');
-			}
-			if(!file_exists('uploads/'.$username) ) {
-				mkdir('uploads/'.$username);
-			}
-
-			move_uploaded_file($_FILES['videoThumbnail']['tmp_name'], $path);
-			$_SESSION['VIDEO_UPLOAD_ID'] = -1;
-			
-			return $path;
 		}
 	}
 

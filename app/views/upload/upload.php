@@ -8,13 +8,12 @@ if(isset($data['error']))
 <progress id="progress-bar" value="0" max="100" style="100%;"></progress><br><br>
 
 <p id="status"></p><br>
-<p id="bytesLoaded"></p><br><br>
 
 <form enctype="multipart/form-data" method="post" id="videoFileForm">
 	<input type="file" name="videoFile" id="videoFile"><br>
 </form>
 
-<form id="videoInfoForm" method="post">
+<form id="videoInfoForm" method="post" enctype="multipart/form-data">
 	<br><br>
 
 	Titre<br>

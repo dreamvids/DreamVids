@@ -26,6 +26,13 @@ function submitInformations() {
 	var infoFormData = new FormData(infoForm);
 	var request = new XMLHttpRequest();
 
+	var thumb = $('videoThumbnail').files[0];
+	infoFormData.append('videoThumbnail', thumb);
+
+	request.onload = function() {
+		alert(request.responseText);
+	}
+
 	request.open('POST', 'upload/');
 	request.send(infoFormData);
 }
@@ -44,7 +51,6 @@ function onProgressEvent(event) {
 
 	$('progress-bar').value = percent;
 	$('status').innerHTML = percent + '% of the video file uploaded';
-	$('bytesLoaded').innerHTML = event.loaded + " of " + event.total + " byes loaded !";
 }
 
 function onCompleteEvent(event) {
