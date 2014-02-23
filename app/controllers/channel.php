@@ -1,15 +1,15 @@
 <?php
 
-class Member extends Controller {
+class Channel extends Controller {
 	
-	public function index($userId='nope') {
-		if($userId != 'nope') {
-			if(User::exists(array('id' => $userId))) {
-				$this->channel($userId);
+	public function index($channelId='nope') {
+		if($channelId != 'nope') {
+			if(User::exists(array('id' => $channelId))) {
+				$this->member($channelId);
 				return;
 			}
-			else if(User::exists(array('username' => $userId))) {
-				$this->channel($userId);
+			else if(User::exists(array('username' => $channelId))) {
+				$this->member($channelId);
 				return;
 			}
 			else {
@@ -22,7 +22,7 @@ class Member extends Controller {
 		exit();
 	}
 
-	public function channel($userId='nope') {
+	public function member($userId='nope') {
 		if($userId != 'nope') {
 			$this->loadModel('member_model');
 			$user = User::find_by_id($userId);
@@ -35,7 +35,7 @@ class Member extends Controller {
 			$data['subscribers'] = $user->subscribers;
 			$data['videos'] = $this->model->getVideoesFromUser($user->id);
 
-			$this->renderView('member/channel', $data);
+			$this->renderView('channel/member', $data);
 		}
 		else {
 			header('Location: '.WEBROOT);
