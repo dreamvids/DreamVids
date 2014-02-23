@@ -6,7 +6,7 @@ class Contributors
 		$db = new BDD();
 		$rep = $db->select("*", "contributors");
 		$db->close();
-		return MVCArray("contributors", $rep);
+		return MVCArray("contributors", $rep, false);
 	}
 }
 ?>

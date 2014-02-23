@@ -10,7 +10,7 @@ function secure($str)
 	return strip_tags(stripslashes($str) );
 }
 
-function MVCArray($table, $reponse)
+function MVCArray($table, $reponse, $secure=true)
 {
 	$bdd = new BDD();
 	$return = array();
@@ -21,7 +21,7 @@ function MVCArray($table, $reponse)
 		$columns = $bdd->show_columns($table);
 		while ($col = $bdd->fetch_array($columns) )
 		{
-			$return[$key][$col['Field']] = secure($donnees[$col['Field']]);
+			$return[$key][$col['Field']] = ($secure) ? secure($donnees[$col['Field']]) : $donnees[$col['Field']];
 		}
 	}
 	$bdd->close();
