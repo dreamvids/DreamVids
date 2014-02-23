@@ -1,6 +1,37 @@
-	<div id="foot">	
-		<div class="container separator" style="width: 80%;"></div>
-		<h4 style="color:grey;margin-top:40px;margin-bottom:40px;text-align:center;">
+                <?php
+                 if(@$session->getRank() == $config['rank_adm'] || @$session->getRank() == $config['rank_modo'])  {
+                     
+                    
+                    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
+                }           
+                ?>
+                <br /><br />
+<div style="background-color:#ecf0f1; color:#34495e;">
+<div class="container">            
+    <div class="row">
+      <div class="col-md-3">
+          <h3>Informations légals</h3>
+          dreamvids.fr - CopyLeft DeamVids 2013-<?php echo @date('Y'); ?>.<br><a href="http://github.com/vetiore/dreamvids" target="_blank">Code source</a>
+      </div>
+      <div class="col-md-3">
+      	<h3>Partenaires</h3>
+      	<a href="https://www.facebook.com/AdoptMusic">AdoptMusic</a><br />
+      	<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a><br />
+      </div>
+      <div class="col-md-3">
+      	<h3>DreamVids</h3>
+      	<a href="index.php?page=contributors">Contributeurs</a><br />
+      	<a href="http://dreamvids.net" target="_blank">Blog de développement</a><br />
+      </div>
+      <div class="col-md-3">
+      	<h3>Suivez-nous</h3>
+      	<a target="_blank" href="https://facebook.com/DreamVids">Facebook</a><br />
+      	<a target="_blank" href="https://twitter.com/DreamVids_">Twitter</a><br />
+      	<a target="_blank" href="https://github.com/Vetiore/DreamVids">GitHub</a><br />
+      </div>
+      <!-- <div class="col-md-4">
+          <h3>Remerciments</h3>
+          <p style="color:grey;">
 			Librement réalisé par:
 			<a href="http://twitter.com/BokoratMC" target="_blank">Bokorat</a>, 
 			<a href="http://twitter.com/JouetR" target="_blank">BrezhDev</a>, 
@@ -13,17 +44,11 @@
 			<a href="http://twitter.com/_quadrifoglio" target="_blank">Quadrifoglio</a>, 
 			<a href="http://twitter.com/VincentBanana" target="_blank">VincentBanana</a> 
 			et <a href="http://skype.com/" target="_blank">La bonne humeur</a> !
-		</h4>
-                <?php
-                 if(@$session->getRank() == $config['rank_adm'] || @$session->getRank() == $config['rank_modo'])  {
-                     
-                    
-                    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
-                }           
-                ?>
-                
-         
-	</div>
+		</p>
+      </div> -->
+    </div>  
+</div>
+</div>
 	
 		
 
