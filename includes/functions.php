@@ -96,12 +96,4 @@ $return .= " ".$iMonths . $lang['month'] . ( $iMonths>1 ? 's' : '' );}
 $return .= " ".$iYears . $lang['year'] . ( $iYears>1 ? 's' : '' );}
 return $return;
 }
-
-function getPartnerships()
-{
-	$db = new BDD();
-	$rep = $db->select("*", "partners");
-	$db->close();
-	return MVCArray("partners", $rep);
-}
 ?>

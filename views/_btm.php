@@ -15,14 +15,7 @@
       </div>
       <div class="col-md-3">
       	<h3>Partenaires</h3>
-<?php
-foreach ($partnerships as $partner)
-{
-?>
-      	<a href="<?php echo $partner['url']; ?>" target="_blank"><?php echo $partner['name']; ?></a><br />
-<?php
-}
-?>
+      	<a href="https://www.facebook.com/AdoptMusic">AdoptMusic</a><br />
       	<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a><br />
       </div>
       <div class="col-md-3">

@@ -32,11 +32,11 @@ if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm'
 	//{
 		include $model;
 		include $content;
+		
 		if (@$_GET['page'] != 'ajax')
 		{
 			include 'views/_top.php';
 			include $view;
-			$partnerships = getPartnerships();
 			include 'views/_btm.php';
 		}
 		else
