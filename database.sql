@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 15 Février 2014 à 23:27
+-- Généré le: Lun 24 Février 2014 à 22:37
 -- Version du serveur: 5.5.35
 -- Version de PHP: 5.4.25-1~dotdeb.1
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `bugs` (
   `url` varchar(255) NOT NULL,
   `resolution` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
 
 -- --------------------------------------------------------
 
@@ -59,6 +59,21 @@ INSERT INTO `config` (`key`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `contributors`
+--
+
+CREATE TABLE IF NOT EXISTS `contributors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `messages`
 --
 
@@ -70,7 +85,20 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `content` text NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`int_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=259 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=275 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `partners`
+--
+
+CREATE TABLE IF NOT EXISTS `partners` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -106,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1205 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1304 ;
 
 -- --------------------------------------------------------
 
@@ -188,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `videos_convert` (
   `sd` int(11) NOT NULL,
   `hd` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=939 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1102 ;
 
 -- --------------------------------------------------------
 
@@ -202,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18666 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29861 ;
 
 -- --------------------------------------------------------
 
