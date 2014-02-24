@@ -1,10 +1,9 @@
-                <?php
-                 if(@$session->getRank() == $config['rank_adm'] || @$session->getRank() == $config['rank_modo'])  {
-                     
-                    
-                    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
-                }           
-                ?>
+<?php
+if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->getRank() == $config['rank_modo']) )
+{
+    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
+}
+?>
                 <br /><br />
 <div style="background-color:#ecf0f1; color:#34495e;">
 <div class="container">            
