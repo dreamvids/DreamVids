@@ -22,7 +22,7 @@ foreach ($partnerships as $partner)
 <?php
 }
 ?>
-      	<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a><br />
+      	<a href="#" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a><br />
       </div>
       <div class="col-md-3">
       	<h3>DreamVids</h3>
