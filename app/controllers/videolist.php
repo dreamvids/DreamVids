@@ -3,7 +3,13 @@
 class Videolist extends Controller {
 	
 	public function index() {
-		$this->feed();
+		if(Session::isActive()) {
+			$this->feed();
+		}
+		else {
+			header('Location: '.WEBROOT.'login');
+			exit();
+		}
 	}
 
 	public function discover() {
