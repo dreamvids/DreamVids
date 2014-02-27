@@ -1,7 +1,7 @@
 <?php
 if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->getRank() == $config['rank_modo']) )
 {
-    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a></center>';
+    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a><br /><br /><a class="btn btn-danger" href="./admin">Panneau d\'administration</a></center>';
 }
 ?>
                 <br /><br />

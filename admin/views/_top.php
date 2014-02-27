@@ -50,7 +50,7 @@ if ($session->getRank() == $config['rank_adm'])
 <?php
 }
 ?>
-            <li><a target="_blank" href="http://dreamvids.fr"><i class="fa fa-external-link"></i> Site</a></li>
+            <li><a href="http://dreamvids.fr"><i class="fa fa-external-link"></i> Site</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Liens externes <b class="caret"></b></a>
               <ul class="dropdown-menu">
