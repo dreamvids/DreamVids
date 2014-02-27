@@ -30,12 +30,12 @@ if (isset($_COOKIE['lang']) )
 	switch ($_COOKIE['lang'])
 	{
 		case 'fr':
-			require 'lang/lang_fr.php';
+			require $lang_path.'/lang/lang_fr.php';
 			define('LANG', 'fr');
 		break;
 		
 		default:
-			require 'lang/lang_fr.php';
+			require $lang_path.'/lang/lang_fr.php';
 			define('LANG', 'en');
 		break;
 	}
@@ -47,12 +47,12 @@ else
 	switch ($language)
 	{
 		case 'fr':
-			require 'lang/lang_fr.php';
+			require $lang_path.'/lang/lang_fr.php';
 			define('LANG', 'fr');
 		break;
 		
 		default:
-			require 'lang/lang_fr.php';
+			require $lang_path.'/lang/lang_fr.php';
 			define('LANG', 'en');
 		break;
 	}

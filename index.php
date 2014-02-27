@@ -18,6 +18,7 @@ if(!empty($_GET['page'])) {
     }
 }
 
+$lang_path = '.';
 include 'includes/bdd.class.php';
 include 'includes/functions.php';
 include 'classes/LoggedUser.php';
