@@ -1,14 +1,17 @@
 // Variables
 var body = document.getElementById('page');
 
-var button_nav_mobile = document.getElementById('mobile-nav-icon');
-var nav = document.getElementsByTagName('nav')[0];
+var button_nav_mobile = document.getElementById('mobile-nav-icon') || document.createElement('div');
+var nav = document.getElementsByTagName('nav')[0] || document.createElement('div');
 
-var button_user_info = document.getElementById("top-nav-user-information-button");
-var user_info_menu = document.getElementById("top-nav-user-information-menu");
-var hover_subscribe = document.getElementById("hover_subscribe");
+var button_user_info = document.getElementById("top-nav-user-information-button") || document.createElement('div');
+var user_info_menu = document.getElementById("top-nav-user-information-menu") || document.createElement('div');
+var hover_subscribe = document.getElementById("hover_subscribe") || document.createElement('div');
 
 // Functions
+
+
+// Menu utilisateur
 
 button_nav_mobile.addEventListener('click', function() {
     if (button_nav_mobile.className == "open") {
@@ -39,10 +42,21 @@ hover_subscribe.addEventListener('click', function() {
         });
     } else {
         hover_subscribe.className = 'subscribed';
-        hover_subscribe.childNodes[0].innerHTML = "Abonné";
+        hover_subscribe.childNodes[0].innerHTML = "AbonnÃ©";
         ajax.post({
             action: 'subscribe',
             dr_id: hover_subscribe.dataset.vid
         });
     }
 });
+
+// "Voir plus" des chaines sur la page de flux
+
+function toogleFluxChannelVisibility(checked) {
+    var listElement = document.getElementById('list-flux-channels');
+
+    if (checked)
+        listElement.className += ' seeAll';
+    else
+        listElement.className = listElement.className.replace(' seeAll', '');
+}
