@@ -2,6 +2,7 @@
 switch (@$_GET['action'])
 {
 	case 'edit':
+		$user = new User($_GET['id']);
 		$title = 'Editer';
 		$subtitle = $user->getName();
 		if ($user->getRank() < $session->getRank() || $session->getRank() == $config['rank_adm'])
