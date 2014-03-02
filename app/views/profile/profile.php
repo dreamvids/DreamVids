@@ -11,6 +11,7 @@
 <h1 style="text-decoration: underline;">Avatar</h1><br>
 <img src="<?php echo IMG.'default_user.png'; ?>">
 <form method="post" action="" role="form" enctype="multipart/form-data">
-	<input type="file" id="avatar" name="avatar" />
+	<input type="file" id="avatarFile" name="avatarFile" />
+	<input type="submit" name="avatarSubmit" id="avatarSubmit" value="Valider" />
 </form>
 <br><br>

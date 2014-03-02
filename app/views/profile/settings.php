@@ -15,5 +15,5 @@
 	<label for="pass2">Confirmer le nouveau mot de passe</label><br>
 	<input type="password" required name="pass2" id="pass2" class="form-control" /><br><br>
 
-	<input type="submit" name="submit" style="margin-bottom:20px" />
+	<input type="submit" name="passwordSubmit" style="margin-bottom:20px" />
 </form>
