@@ -58,7 +58,10 @@
 
 	<div class="container" style="">
 		<div id="player">
-			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay><img src="img/loadervids.gif" alt="" /><br><b><?php echo $lang['loading_video']; ?></video>
+			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" autoplay>
+				<source id="srcMp4" type="video/mp4"/>
+				<source id="srcWebm" type="video/webm"/>
+			</video>
 			<div id="annotationsElement"></div>
 				<span id="repeat">
 					<span class="icon"></span>

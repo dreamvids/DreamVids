@@ -1,7 +1,7 @@
 /*
  *  DreamPlayer by DimouDev
  *  @_quadrifoglio edit: update 2
- *  @_DimouDev edit: update 3 Correction du choix de format qui n'était pas parfait :s
+ *  @_DimouDev edit: update 3 Correction du choix de format qui n'Ã©tait pas parfait :s
  *
  */
 
@@ -31,6 +31,8 @@ window.addEventListener("resize", function(event) { // Player responsive
 
 
 video = player.getElementsByTagName('video')[0];
+srcMp4 = document.getElementById('srcMp4');
+srcWebm = document.getElementById('srcWebm');
 
 controls = document.getElementById('controls');
 
@@ -49,7 +51,7 @@ annotationsElement.addEventListener("click", function(event) {
 });
 time = document.getElementById('time');
 
-function playPause() { // Fonction appelÃƒÂ©e Ãƒ  chaque play/pause effectuÃƒÂ©
+function playPause() { // Fonction appelÃƒÆ’Ã‚Â©e ÃƒÆ’  chaque play/pause effectuÃƒÆ’Ã‚Â©
     if (video.paused) {
         video.play();
         playPauseElement.style.backgroundImage = "url(dreamplayer/img/player/pause.png)";
@@ -69,7 +71,7 @@ function time2str(time) { // Transformation du temps [int] en 13:37
 
     return (hours != '00' ? hours + ':' : '') + minutes + ':' + seconds;
 }
-video.addEventListener("canplay", function() { // Au chargement de la page, on dÃƒÂ©finit le bon icone (play ou pause)
+video.addEventListener("canplay", function() { // Au chargement de la page, on dÃƒÆ’Ã‚Â©finit le bon icone (play ou pause)
     if (video.duration)
         time.innerHTML = time2str(video.currentTime) + ' / ' + time2str(video.duration);
 
@@ -132,7 +134,7 @@ progress.buffered = document.getElementById('buffered');
 progress.viewed = document.getElementById('viewed');
 progress.current = document.getElementById('current');
 
-video.addEventListener("timeupdate", function(event) { // Mise Ãƒ  jour de la progressbar
+video.addEventListener("timeupdate", function(event) { // Mise ÃƒÆ’  jour de la progressbar
     percent = video.currentTime / video.duration * 100 + "%"
     progress.viewed.style.width = percent;
     progress.current.style.left = percent;
@@ -140,7 +142,7 @@ video.addEventListener("timeupdate", function(event) { // Mise Ãƒ  jour de la 
         time.innerHTML = time2str(video.currentTime) + ' / ' + time2str(video.duration);
 });
 
-function bufferUpdate() { // Mise Ãƒ  jour du "buffer"
+function bufferUpdate() { // Mise ÃƒÆ’  jour du "buffer"
     if (video.buffered && video.duration && video.buffered.length) {
         percent = video.buffered.end(video.buffered.length - 1) / video.duration * 100;
         progress.buffered.style.width = percent >= 0 && percent <= 100 ? percent + "%" : '0%';
@@ -165,7 +167,7 @@ function getOffset(object) {
 }
 
 mouseDown = false;
-progress.addEventListener("mousedown", function(event) { // DÃƒÂ©placement de la progressbar
+progress.addEventListener("mousedown", function(event) { // DÃƒÆ’Ã‚Â©placement de la progressbar
     mouseDown = true;
     if (video.duration)
         video.currentTime = (event.clientX - getOffset(progress)) / progress.offsetWidth * video.duration;
@@ -197,7 +199,7 @@ function downPlayer() { // Les controles disparaissent
 }
 var timeout = setTimeout(downPlayer, time2down / 2);
 
-function upPlayer() { // Les controles rÃƒÂ©aparaisent
+function upPlayer() { // Les controles rÃƒÆ’Ã‚Â©aparaisent
     if (new Date().getTime() - 300 < lastTime)
         return;
 
@@ -298,7 +300,7 @@ video.addEventListener("volumechange", function(event) {
     percent = video.volume * 100 + "%";
     volume.barre.style.width = percent;
     volume.icon.style.left = percent;
-    if (video.volume <= 0.05) // GÃƒÂ©nÃƒÂ©ration de l'image
+    if (video.volume <= 0.05) // GÃƒÆ’Ã‚Â©nÃƒÆ’Ã‚Â©ration de l'image
         volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume0.png)";
     else if (video.volume <= 0.4)
         volume.icon.style.backgroundImage = "url(dreamplayer/img/player/volume1.png)";
@@ -309,7 +311,7 @@ video.addEventListener("volumechange", function(event) {
 }, false);
 
 mouseDownVolume = false;
-volume.addEventListener("mousedown", function(event) { // DÃƒÂ©placement de la "barre" de volume
+volume.addEventListener("mousedown", function(event) { // DÃƒÆ’Ã‚Â©placement de la "barre" de volume
     mouseDownVolume = true;
     newVolume = (event.clientX - getOffset(volume)) / volume.offsetWidth;
     newVolume = newVolume < 0 ? 0 : (newVolume > 1 ? 1 : newVolume);
@@ -341,7 +343,7 @@ function mouseWheelVolume(event) {
 player.addEventListener("mousewheel", mouseWheelVolume, false);
 player.addEventListener("DOMMouseScroll", mouseWheelVolume, false);
 
-repeat = document.getElementById('repeat'); // Affichage de repeat en fin de vidÃƒÂ©o
+repeat = document.getElementById('repeat'); // Affichage de repeat en fin de vidÃƒÆ’Ã‚Â©o
 
 video.addEventListener("ended", function() {
     repeat.className = 'show';
@@ -356,7 +358,7 @@ video.addEventListener("play", function() {
 }, false);
 
 /*
- *  QualitÃƒÂ©
+ *  QualitÃƒÆ’Ã‚Â©
  */
 
 var lastTime = 0;
@@ -375,11 +377,11 @@ qualityButton.addEventListener('click', function() {
         else
             setQuality(qualitys[0].format)
 
-    } else if (qualitys.length > 1) // S'il y a plusieurs qualitÃƒÂ©s...
+    } else if (qualitys.length > 1) // S'il y a plusieurs qualitÃƒÆ’Ã‚Â©s...
         qualitySelection.className = 'show';
 });
 
-function setQuality(format) { // On change la qualitÃƒÂ©
+function setQuality(format) { // On change la qualitÃƒÆ’Ã‚Â©
     qualitySelection.className = '';
     length = qualitys.length;
     if (currentQuality == format)
@@ -395,16 +397,14 @@ function setQuality(format) { // On change la qualitÃƒÂ©
                 qualityButton.innerHTML = 'Full HD';
 
             lastTime = video.currentTime || lastTime;
-            if (video.canPlayType('video/mp4') === 'probably') // Changement de l'url
-                video.src = quality.mp4;
-            else
-                video.src = quality.webm;
+            srcMp4.src = quality.mp4;
+            srcWebm.src = quality.webm;
 
             currentQuality = format;
             video.load();
 
             video.addEventListener("loadeddata", function() {
-                video.currentTime = lastTime; // On remet au mÃƒÂªme moment
+                video.currentTime = lastTime; // On remet au mÃƒÆ’Ã‚Âªme moment
                 video.play();
             });
         }
@@ -412,7 +412,7 @@ function setQuality(format) { // On change la qualitÃƒÂ©
 }
 var qualitys;
 
-function setVideo(array) { // On set toutes les qualitÃƒÂ©s au chargement de la page
+function setVideo(array) { // On set toutes les qualitÃƒÆ’Ã‚Â©s au chargement de la page
     if (array.length <= 1)
         qualityButton.style.cursor = 'default';
     else
@@ -454,7 +454,7 @@ document.getElementById('annotationsButton').addEventListener('click', function(
     }
 });
 
-function createAnnotation(id, data) { // CrÃƒÂ©ation d'une annotation
+function createAnnotation(id, data) { // CrÃƒÆ’Ã‚Â©ation d'une annotation
     element = document.createElement("span");
     element.id = 'ann' + (id + 1);
     element.className = 'annotation ' + (data.color ? data.color : '');
@@ -479,7 +479,7 @@ function createAnnotation(id, data) { // CrÃƒÂ©ation d'une annotation
     annotationsElement.appendChild(element);
 }
 
-video.addEventListener("timeupdate", function(event) { // Mise Ãƒ  jour des annotations
+video.addEventListener("timeupdate", function(event) { // Mise ÃƒÆ’  jour des annotations
     if (annotations) {
         currentTime = video.currentTime;
         children = annotationsElement.children;
@@ -527,7 +527,7 @@ document.addEventListener("keydown", function(event) {
     if (event.keyCode == 70) // [F]
         toogleFullScreen();
 
-    if (event.keyCode == 36) { // [dÃƒÂ©but]
+    if (event.keyCode == 36) { // [dÃƒÆ’Ã‚Â©but]
         video.currentTime = 0;
         video.play();
         progress.viewed.style.width = '0%';
