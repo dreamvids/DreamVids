@@ -2,8 +2,9 @@
 
 require_once SYSTEM.'Model.php';
 require_once APP.'classes/User.php';
+require_once APP.'classes/Video.php';
 
-class Profile_model extends Model {
+class Account_model extends Model {
 	
 	public function getUserPassword($userId) {
 		return User::find_by_id($userId)->pass;
@@ -13,6 +14,10 @@ class Profile_model extends Model {
 		$user = User::find_by_id($userId);
 		$user->pass = $newPassword;
 		$user->save();
+	}
+
+	public function getVideosFromUser($userId) {
+		return Video::all(array('user_id' => $userId));
 	}
 
 }

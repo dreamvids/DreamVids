@@ -7,7 +7,7 @@ $config['defaultController'] = 'videolist';
 $config['db_host'] = '127.0.0.1';
 $config['db_user'] = 'root';
 $config['db_password'] = '';
-$config['db_database'] = 'dev';
+$config['db_database'] = 'dv2';
 
 $config['rank_user'] = 1;
 $config['rank_modo'] = 3;

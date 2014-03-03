@@ -62,6 +62,8 @@ class Upload extends Controller {
 			if(isset($req['videoDescription']) && $req['videoDescription'] != '') {
 				if(isset($req['videoTags']) && $req['videoTags'] != '') {
 
+					$thumb = 'no_thumb';
+
 					if(isset($_FILES['videoThumbnail'])) {
 						$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
 						$name = $_FILES['videoThumbnail']['name'];
@@ -80,7 +82,6 @@ class Upload extends Controller {
 							$thumb = $path;	
 						}
 					}
-					else $thumb = 'no_thumb';
 
 					$userId = Session::get()->id;
 					$title = Utils::secure($req['videoTitle']);

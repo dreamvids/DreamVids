@@ -68,10 +68,16 @@ class Application {
 		}
 
 		if($action == 'nope') {
-			$ctrler = new $controller();
-			$ctrler->index();
-			$this->controller = $ctrler;
-			return;
+			if(method_exists($controller, 'index')) {
+				$ctrler = new $controller();
+				$ctrler->index();
+				$this->controller = $ctrler;
+				return;
+			}
+			else {
+				$this->throwNotFoundError();
+				return;
+			}
 		}
 		else {
 			if(method_exists($controller, $action)) {
@@ -93,9 +99,15 @@ class Application {
 				unset($request[0]);
 				
 				if($request) {
-					$ctrler = new $controller();
-					call_user_func_array(array($ctrler, 'index'), $request);
-					$this->controller = $ctrler;
+					if(method_exists($controller, 'index')) {
+						$ctrler = new $controller();
+						call_user_func_array(array($ctrler, 'index'), $request);
+						$this->controller = $ctrler;
+					}
+					else {
+						$this->throwNotFoundError();
+						return;
+					}
 				}
 				else {
 					$this->throwNotFoundError();
