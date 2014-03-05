@@ -17,11 +17,11 @@ class Watch_model extends Model {
 	}
 
 	public function getAuthorsName($videoId) {
-		return User::find_by_id(Video::find_by_id($videoId)->user_id)->username;
+		return User::find_by_id(Video::find_by_id($videoId)->poster_id)->username;
 	}
 
 	public function getAuthorsSubscribers($videoId) {
-		return User::find_by_id(Video::find_by_id($videoId)->user_id)->subscribers;
+		return User::find_by_id(Video::find_by_id($videoId)->poster_id)->subscribers;
 	}
 
 	public function getCommentsOnVideo($videoId) {
@@ -30,14 +30,14 @@ class Watch_model extends Model {
 
 	public function getCommentAuthor($comment) {
 		if(is_object($comment)) {
-			return User::find_by_id($comment->user_id)->username;
+			return User::find_by_id($comment->poster_id)->username;
 		}
 	}
 
 	public function postComment($authorId, $videoId, $commentContent) {
 		Comment::create(array(
 			'id' => Comment::generateId(6),
-			'user_id' => $authorId,
+			'poster_id' => $authorId,
 			'video_id' => $videoId,
 			'comment' => $commentContent,
 			'timestamp' => Utils::tps(),

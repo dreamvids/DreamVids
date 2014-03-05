@@ -4,12 +4,12 @@ class Channel extends Controller {
 	
 	public function index($channelId='nope') {
 		if($channelId != 'nope') {
-			if(User::exists(array('id' => $channelId))) {
+			if(User::exists(array('id' => $channelId)) || User::exists(array('username' => $channelId))) {
 				$this->member($channelId);
 				return;
 			}
-			else if(User::exists(array('username' => $channelId))) {
-				$this->member($channelId);
+			else if(MultiUserChannel::exists(array('id' => $channelId)) || MultiUserChannel::exists(array('name' => $channelId))) {
+				$this->multiuser($channelId);
 				return;
 			}
 			else {
@@ -43,14 +43,36 @@ class Channel extends Controller {
 		}
 	}
 
+	public function multiuser($channelId = 'nope') {
+		if($channelId != 'nope') {
+			$this->loadModel('channel_model');
+			$channel = MultiUserChannel::find_by_id($channelId);
+
+			if(!is_object($channel))
+				$channel = MultiUserChannel::find_by_name($channelId);
+
+			$data = array();
+			$data['name'] = $channel->name;
+			$data['subscribers'] = $channel->subscribers;
+			$data['videos'] = $this->model->getVideoesFromChannel($channel->id);
+
+			$this->renderView('channel/multiuser', $data);
+		}
+		else {
+			header('Location: '.WEBROOT);
+			exit();
+		}
+	}
+
 	public function subscribe($channelId = 'nope') {
 		if($channelId != 'nope' && Session::isActive()) {
 			$this->loadModel('channel_model');
 
-			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
-				$this->model->subscribeToUser(Session::get()->id, $channelId);
-
-				//TODO: handle subscription to multi-user channels
+			if(Session::get()->id != $channelId) {
+				if(Utils::stringStartsWith($channelId, 'c_'))
+					if($this->model->channelExists($channelId)) $this->model->subscribeToMultiUserChannel(Session::get()->id, $channelId);
+				else
+					if($this->model->channelExists($channelId)) $this->model->subscribeToUser(Session::get()->id, $channelId);
 			}
 		}
 		else {
@@ -63,10 +85,11 @@ class Channel extends Controller {
 		if($channelId != 'nope' && Session::isActive()) {
 			$this->loadModel('channel_model');
 			
-			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
-				$this->model->unsubscribeToUser(Session::get()->id, $channelId);
-
-				//TODO: handle subscription to multi-user channels
+			if(Session::get()->id != $channelId) {
+				if(Utils::stringStartsWith($channelId, 'c_'))
+					if($this->model->channelExists($channelId)) $this->model->unsubscribeToMultiUserChannel(Session::get()->id, $channelId);
+				else
+					$this->model->unsubscribeToUser(Session::get()->id, $channelId);
 			}
 		}
 		else {

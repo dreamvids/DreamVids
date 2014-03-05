@@ -3,6 +3,7 @@
 require_once SYSTEM.'Model.php';
 require_once APP.'classes/User.php';
 require_once APP.'classes/Video.php';
+require_once APP.'classes/MultiUserChannel.php';
 
 class Account_model extends Model {
 	
@@ -20,4 +21,11 @@ class Account_model extends Model {
 		return Video::all(array('user_id' => $userId));
 	}
 
+	public function getChannelsOwnedByUser($userId) {
+		$channels = array();
+
+		$channels = MultiUserChannel::all();
+
+		return $channels;
+	}
 }

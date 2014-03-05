@@ -45,7 +45,7 @@ class Watch extends Controller {
 		$data['css'] = CSS.'video.css';
 		$data['video'] = $video;
 		$data['title'] = $video->title;
-		$data['user_id'] = $video->user_id;
+		$data['poster_id'] = $video->poster_id;
 		$data['author'] = $this->model->getAuthorsName($videoId);
 		$data['description'] = $video->description;
 		$data['views'] = $video->views;

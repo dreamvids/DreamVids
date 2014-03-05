@@ -43,6 +43,21 @@ class Account extends Controller {
 		}
 	}
 
+	public function channels() {
+		if(Session::isActive()) {
+			$this->loadModel('account_model');
+			
+			$data['user'] = Session::get();
+			$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
+
+			$this->renderView('account/channels', $data);
+		}
+		else {
+			header('Location: '.WEBROOT.'login');
+			exit();
+		}
+	}
+
 	public function postRequest($request) {
 		if(is_object($request)) {
 			$this->loadModel('account_model');
@@ -73,7 +88,11 @@ class Account extends Controller {
 				}
 			}
 
-			if(isset($req['avatarSubmit'])) {
+			if(isset($req['avatarSubmit']) && Session::isActive()) {
+				
+			}
+
+			if(isset($req['createChannelSubmit']) && Session::isActive()) {
 				
 			}
 		}

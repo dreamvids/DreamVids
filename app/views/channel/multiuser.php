@@ -1,4 +1,4 @@
-<h1>Chaîne de <?php echo $data['name']; ?></h1><br><br>
+<h1>Chaîne multi-utilisateur <?php echo $data['name']; ?></h1><br><br>
 
 <h1>Abonnés: <?php echo $data['subscribers']; ?></h1><br><br>
 
