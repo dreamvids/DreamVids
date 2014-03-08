@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<link href="css/perso.php?uid=<?php echo secure($member->getId()); ?>" rel="stylesheet" />
+<link href="css/perso.php?uid=<?php echo secure($member->getId()); ?>&time=<?php echo time(); ?>" rel="stylesheet" />
 
 
 <div class="container">

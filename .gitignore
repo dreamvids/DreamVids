@@ -4,3 +4,4 @@
 uploads/
 includes/bdd.class.php
 /nbproject/private/
+vendor/

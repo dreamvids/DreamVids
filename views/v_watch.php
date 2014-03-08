@@ -204,7 +204,7 @@
 </div>
 
 <!-- video player body-->
-	<script src="dreamplayer/js/player.js"></script>
+	<script src="dreamplayer/js/player.js?time=<?php echo time(); ?>"></script>
 	<script src="utils/videoinfo.php?vid=<?php echo secure($id); ?>"></script>
 <!-- End -->
 

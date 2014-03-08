@@ -7,14 +7,14 @@
 		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 		<link rel="icon" type="image/png" href="img/favicon.png" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/style.css?time=<?php echo time(); ?>" rel="stylesheet" />
 
 		<script src="js/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/ajax.js"></script>
+		<script type="text/javascript" src="js/ajax.js?time=<?php echo time(); ?>"></script>
 
 		<!-- video player header-->
-			<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css"/>
+			<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css?time=<?php echo time(); ?>"/>
 		<!-- End -->
 	</head>
 	
