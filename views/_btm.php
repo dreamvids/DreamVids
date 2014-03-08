@@ -34,6 +34,7 @@ foreach ($partnerships as $partner)
       	<a target="_blank" href="https://facebook.com/DreamVids">Facebook</a><br />
       	<a target="_blank" href="https://twitter.com/DreamVids_">Twitter</a><br />
       	<a target="_blank" href="https://github.com/Vetiore/DreamVids">GitHub</a><br />
+      	<a target="_blank" href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a><br />
       </div>
       <!-- <div class="col-md-4">
           <h3>Remerciments</h3>

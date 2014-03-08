@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="/@<?php echo secure($author->getName() ); ?>"></a><?php echo secure($author->getName() ).User::getDisplayableRank($author->getId() ); ?></small></h1>
+			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="/@<?php echo secure($author->getName() ); ?>"><?php echo secure($author->getName() ); ?></a><?php echo User::getDisplayableRank($author->getId() ); ?></small></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
