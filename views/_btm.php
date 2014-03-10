@@ -10,7 +10,8 @@ if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->g
     <div class="row">
       <div class="col-md-3">
           <h3>Informations légales</h3>
-          dreamvids.fr - CopyLeft DeamVids 2013-<?php echo @date('Y'); ?>.<br><a href="http://github.com/vetiore/dreamvids" target="_blank">Code source</a>
+          dreamvids.fr - CopyLeft DeamVids 2013-<?php echo @date('Y'); ?>.<br><a href="http://github.com/vetiore/dreamvids" target="_blank">Code source</a><br />
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
       </div>
       <div class="col-md-3">
       	<h3>Partenaires</h3>
