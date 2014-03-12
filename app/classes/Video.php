@@ -55,20 +55,20 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public static function generateId($length) {
-	    $idExists = true;
+		$idExists = true;
 
 		while($idExists) {
 			$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		    $id = '';
+			$id = '';
 		
-		    for ($i = 0; $i < $length; $i++) {
-		        $id .= $chars[rand(0, strlen($chars) - 1)];
-		    }
+			for ($i = 0; $i < $length; $i++) {
+				$id .= $chars[rand(0, strlen($chars) - 1)];
+			}
 
 			$idExists = Video::exists(array('id' => $id));
 		}
 
-	    return $id;
+		return $id;
 	}
 
 }

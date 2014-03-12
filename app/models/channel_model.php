@@ -26,6 +26,23 @@ class Channel_model extends Model {
 		return false;
 	}
 
+	public function channelNameExists($channelName) {
+		if(MultiUserChannel::exists(array('name' => $channelName)))
+			return true;
+		else if(User::exists(array('username' => $channelName)))
+			return true;
+		else
+			return false;
+	}
+
+	public function createMultiUserChannel($name, $users) {
+		if(!$this->channelNameExists($name)) {
+			$id = MultiUserChannel::generateId(6);
+
+			MultiUserChannel::create(array('id' => $id, 'name' => $name, 'users' => $users, 'subscribers' => 0, 'views' => 0));
+		}
+	}
+
 	public function subscribeToUser($subscriber, $subscribing) {
 		$subscriberUser = User::find_by_id($subscriber);
 		$subscribingUser = User::find_by_id($subscribing);
