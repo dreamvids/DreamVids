@@ -32,6 +32,7 @@ class Channel extends Controller {
 
 			$data = array();
 			$data['name'] = $user->username;
+			$data['description'] = $user->description;
 			$data['subscribers'] = $user->subscribers;
 			$data['videos'] = $this->model->getVideoesFromUser($user->id);
 
@@ -53,6 +54,7 @@ class Channel extends Controller {
 
 			$data = array();
 			$data['name'] = $channel->name;
+			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $this->model->getVideoesFromChannel($channel->id);
 

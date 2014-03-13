@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 12 Mars 2014 à 14:30
+-- Généré le: Jeu 13 Mars 2014 à 20:38
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.3.13
 
@@ -119,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `pass` varchar(40) NOT NULL,
   `avatar` varchar(255) NOT NULL,
   `background` text NOT NULL,
+  `description` text NOT NULL,
   `subscribers` int(11) NOT NULL,
   `subscriptions` text NOT NULL,
   `reg_timestamp` bigint(20) NOT NULL,
@@ -137,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `users_channels` (
   `id` varchar(6) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
   `users` varchar(255) NOT NULL,
   `subscribers` int(11) NOT NULL,
   `views` bigint(20) NOT NULL,
@@ -168,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `tags` text NOT NULL,
-  `thumbnail` varchar(255) NOT NULL,
+  `tumbnail` varchar(255) NOT NULL,
   `duration` int(11) NOT NULL DEFAULT '0',
   `url` varchar(255) NOT NULL,
   `views` bigint(20) NOT NULL,
