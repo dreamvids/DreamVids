@@ -9,7 +9,6 @@ class Feed extends Controller {
 
 			if($fromUser != 'nope' && $this->model->userExists($fromUser) && $fromUser != Session::get()->id) {
 				$data = array();
-				$data['css'] = CSS.'flux.css';
 
 				$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
 				$data['vids'] = $this->model->getSubscriptionsVideosFromUser(Session::get()->id, $fromUser, 6);
@@ -18,7 +17,6 @@ class Feed extends Controller {
 			}
 			else {
 				$data = array();
-				$data['css'] = CSS.'flux.css';
 
 				$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
 				$data['vids'] = $this->model->getSubscriptionsVideos(Session::get()->id, 6);

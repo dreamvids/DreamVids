@@ -2,7 +2,7 @@
 
 global $config;
 
-$config['defaultController'] = 'videolist';
+$config['defaultController'] = 'home';
 
 $config['db_host'] = '127.0.0.1';
 $config['db_user'] = 'root';

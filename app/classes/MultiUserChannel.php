@@ -24,4 +24,8 @@ class MultiUserChannel extends ActiveRecord\Model {
 		return $id;
 	}
 
+	public static function getNameById($channelId) {
+		return MultiUserChannel::find_by_id($userId)->name;
+	}
+
 }

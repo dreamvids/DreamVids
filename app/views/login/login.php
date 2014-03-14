@@ -7,7 +7,7 @@ if(isset($data['error'])) {
 ?>
 
 <section id="login">
-	<h1>Connection</h1>
+	<h1>Connexion</h1>
 
 	<form method="post" action="">
 		<label for="username">Pseudo :</label>

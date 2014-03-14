@@ -8,8 +8,7 @@ var button_user_info = document.getElementById("top-nav-user-information-button"
 var user_info_menu = document.getElementById("top-nav-user-information-menu") || document.createElement('div');
 var hover_subscribe = document.getElementById("hover_subscribe") || document.createElement('div');
 
-// Functions
-
+var subscribe_button = document.getElementById("subscribe-button") || document.createElement('div');
 
 // Menu utilisateur
 
@@ -50,13 +49,20 @@ hover_subscribe.addEventListener('click', function() {
     }
 });
 
-// "Voir plus" des chaines sur la page de flux
+// S'abonner sur une page chaine
 
-function toogleFluxChannelVisibility(checked) {
-    var listElement = document.getElementById('list-flux-channels');
-
-    if (checked)
-        listElement.className += ' seeAll';
-    else
-        listElement.className = listElement.className.replace(' seeAll', '');
-}
+subscribe_button.addEventListener('click', function() {
+    if (subscribe_button.className == 'subscribed') {
+        subscribe_button.className = '';
+        subscribe_button.innerHTML = subscribe_button.dataset.text.split('|')[0];
+        ajax.post({
+            action: 'unsubscribe'
+        });
+    } else {
+        subscribe_button.className = 'subscribed';
+        subscribe_button.innerHTML = subscribe_button.dataset.text.split('|')[1];
+        ajax.post({
+            action: 'subscribe'
+        });
+    }
+});

@@ -35,6 +35,7 @@ class Channel extends Controller {
 			$data['description'] = $user->description;
 			$data['subscribers'] = $user->subscribers;
 			$data['videos'] = $this->model->getVideoesFromUser($user->id);
+			$data['description'] = $user->description;
 
 			$this->renderView('channel/member', $data);
 		}
