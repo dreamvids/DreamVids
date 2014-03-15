@@ -28,7 +28,7 @@ foreach ($partnerships as $partner)
       <div class="col-md-3">
       	<h3>DreamVids</h3>
       	<a href="index.php?page=contributors">Contributeurs</a><br />
-      	<a href="http://dreamvids.net" target="_blank">Blog de développement</a><br />
+      	<a href="http://blog.dreamvids.fr" target="_blank">Blog de développement</a><br />
       </div>
       <div class="col-md-3">
       	<h3>Suivez-nous</h3>
