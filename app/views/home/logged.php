@@ -81,17 +81,21 @@
 	<aside class="aside-channels">
 		<h3>Mes abonnements</h3>
 		<ul class="limited">
-			<?php if(sizeof($subscriptions) != 0) foreach($subscriptions as $sub) { ?>
-				<a href="<?php echo WEBROOT.'channel/'.$sub->username; ?>" class="channels">
-					<span style="background-image: url(http://lorempicsum.com/simpsons/255/200/2)" class="avatar"></span>
-					<span class="name" href="#"><?php echo $sub->username; ?></span>
-					<p class="subscribers"><b><?php echo $sub->subscribers; ?></b> Abonnés</p>
-				</a>
-			<?php } ?>
+			<?php if(sizeof($subscriptions) != 0) { ?>
+				<?php foreach($subscriptions as $sub) { ?>
+					<a href="<?php echo WEBROOT.'channel/'.$sub->username; ?>" class="channels">
+						<span style="background-image: url(http://lorempicsum.com/simpsons/255/200/2)" class="avatar"></span>
+						<span class="name" href="#"><?php echo $sub->username; ?></span>
+						<p class="subscribers"><b><?php echo $sub->subscribers; ?></b> Abonnés</p>
+					</a>
 
-			<input type="checkbox" onclick="p=this.parentNode;p.className=this.checked?p.className+' all':p.className.replace(' all','');"/>
-			<span class="ch-more">Voir tout</span>
-			<span class="ch-less">Voir moins</span>
+					<input type="checkbox" onclick="p=this.parentNode;p.className=this.checked?p.className+' all':p.className.replace(' all','');"/>
+					<span class="ch-more">Voir tout</span>
+					<span class="ch-less">Voir moins</span>
+				<?php } ?>
+			<?php } else { ?>
+				<p style="text-align: center; color: #858484;">Vous n'avez aucun abonnement !</p>
+			<?php } ?>
 		</ul>
 	</aside>
 		

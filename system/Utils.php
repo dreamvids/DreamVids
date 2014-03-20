@@ -25,7 +25,7 @@ class Utils {
 			return true;
 		}
 
-		return (substr($haystack, -$length) === $needle);
+		return substr($haystack, -$length) === $needle ? true : false;
 	}
 
 	public static function tps() {

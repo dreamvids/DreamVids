@@ -71,11 +71,11 @@ class Channel extends Controller {
 		if($channelId != 'nope' && Session::isActive()) {
 			$this->loadModel('channel_model');
 
-			if(Session::get()->id != $channelId) {
+			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
 				if(Utils::stringStartsWith($channelId, 'c_'))
-					if($this->model->channelExists($channelId)) $this->model->subscribeToMultiUserChannel(Session::get()->id, $channelId);
+					$this->model->subscribeToMultiUserChannel(Session::get()->id, $channelId);
 				else
-					if($this->model->channelExists($channelId)) $this->model->subscribeToUser(Session::get()->id, $channelId);
+					$this->model->subscribeToUser(Session::get()->id, $channelId);
 			}
 		}
 		else {
@@ -89,6 +89,7 @@ class Channel extends Controller {
 			$this->loadModel('channel_model');
 			
 			if(Session::get()->id != $channelId) {
+							var_dump(Utils::stringStartsWith($channelId, 'c_'));
 				if(Utils::stringStartsWith($channelId, 'c_'))
 					if($this->model->channelExists($channelId)) $this->model->unsubscribeToMultiUserChannel(Session::get()->id, $channelId);
 				else

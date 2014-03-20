@@ -5,7 +5,7 @@ class Video extends ActiveRecord\Model {
 	public static function createTemp($id, $userId) {
 		Video::create(array(
 			'id' => $id,
-			'user_id' => $userId,
+			'poster_id' => $userId,
 			'title' => '[no_info_provided]',
 			'description' => '[no_info_provided]',
 			'tags' => '[no_info_provided]',
@@ -35,7 +35,7 @@ class Video extends ActiveRecord\Model {
 	public static function register($vidId, $userId, $title, $desc, $tags, $thumb, $timestamp, $visibility) {
 		Video::update_all(array(
 			'set' => array(
-				'user_id' => $userId,
+				'poster_id' => $userId,
 				'title' => $title,
 				'description' => $desc,
 				'tags' => $tags,

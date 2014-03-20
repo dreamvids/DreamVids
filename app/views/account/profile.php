@@ -1,17 +1,45 @@
-<h1 style="text-decoration: underline;">
-	Mon compte <?php echo $data['username']; ?>  <a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnexion</a>
-</h1>
-<a href="<?php echo WEBROOT.'profile/settings'; ?>">Modifier mes informations</a>
-<br><br>
+<div class="content">
 
-<h1 style="text-decoration: underline;">Statistiques</h1><br>
-<p>Abonnés: <?php echo $data['user']->subscribers; ?></p>
-<br><br>
+	<section class="profile">
+		<h1>Espace membre</h1>
 
-<h1 style="text-decoration: underline;">Avatar</h1><br>
-<img src="<?php echo IMG.'default_user.png'; ?>">
-<form method="post" action="" role="form" enctype="multipart/form-data">
-	<input type="file" id="avatarFile" name="avatarFile" />
-	<input type="submit" name="avatarSubmit" id="avatarSubmit" value="Valider" />
-</form>
-<br><br>
+		<nav class="tabs four">
+			<ul>
+				<li class="current"><a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a></li>
+				<li><a href="<?php echo WEBROOT.'account/password'; ?>">Mot de passe</a></li>
+				<li><a href="<?php echo WEBROOT.'account/videos'; ?>">Mes vidéos</a></li>
+				<li><a href="<?php echo WEBROOT.'account/channels'; ?>">Chaînes</a></li>
+				<li><a href="<?php echo WEBROOT.'account/messages'; ?>">Messagerie</a></li>
+			</ul>
+		</nav>
+
+		<form method="post" action="">
+			<label for="email">Adresse email :</label>
+			<input value="<?php echo $user->email; ?>" type="text" name="email" placeholder="Adresse email"><br />
+
+			<label for="username">Pseudo :</label>
+			<input value="<?php echo $user->username; ?>" type="text" name="username" placeholder="Pseudo"><br />
+
+			<label for="avatar">
+				<img class="preview" src="https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100">
+				Avatar :
+			</label>
+			<input type="file" name="avatar" accept="image/*"><br />
+
+			<label for="backgroundChannel">
+				<img class="preview" src="http://dreamvids.fr/uploads/Dimou/background.JPG">
+				Avatar :
+			</label>
+			<input type="file" name="backgroundChannel" accept="image/*"><br />
+
+			<!--<label for="language">Langue :</label>
+			<select name="language">
+				<option value="fr">Français</option>
+				<option value="en">Anglais</option>
+			</select>-->
+
+			<input type="submit" name="profileSubmit" value="Enregistrer">
+		</form>
+	</section>
+
+</div>

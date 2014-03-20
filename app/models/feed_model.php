@@ -37,6 +37,7 @@ class Feed_model extends Model {
 			}
 		}
 
+		if(!$subscriptions[0]) $subscriptions = array();
 		return $subscriptions;
 	}
 
@@ -51,7 +52,10 @@ class Feed_model extends Model {
 		$subs = str_replace(';', ',', $subs);
 		$subs = '('.$subs.')';
 
+		if($subs == '()') return array();
+
 		if($amount != 'nope')
+			//echo "SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount;
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
 		else
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC");

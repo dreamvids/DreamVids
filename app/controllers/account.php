@@ -15,12 +15,12 @@ class Account extends Controller {
 		}
 	}
 
-	public function settings() {
+	public function password() {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;
 
-			$this->renderView('account/settings', $data);
+			$this->renderView('account/password', $data);
 		}
 		else {
 			header('Location: '.WEBROOT.'login');
@@ -63,13 +63,17 @@ class Account extends Controller {
 			$this->loadModel('account_model');
 			$req = $request->getValues();
 
-			if(isset($req['passwordSubmit']) && Session::isActive()) {
-				if(isset($req['pass1']) && isset($req['pass2']) && isset($req['actualPass'])) {
-					if($req['pass1'] == $req['pass2']) {
-						$actualPass = sha1($req['actualPass']);
-						$newPass = sha1($req['pass1']);
+			if(isset($req['profileSubmit']) && Session::isActive()) {
+				
+			}
 
-						if($actualPass == Session::get()->pass) {
+			if(isset($req['passwordSubmit']) && Session::isActive()) {
+				if(isset($req['newPass']) && isset($req['newPassConfirm']) && isset($req['currentPass'])) {
+					if($req['newPass'] == $req['newPassConfirm']) {
+						$currentPass = sha1($req['currentPass']);
+						$newPass = sha1($req['newPass']);
+
+						if($currentPass == Session::get()->pass) {
 							$this->model->setPassword(Session::get()->id, $newPass);
 						}
 						else {
