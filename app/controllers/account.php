@@ -64,7 +64,46 @@ class Account extends Controller {
 			$req = $request->getValues();
 
 			if(isset($req['profileSubmit']) && Session::isActive()) {
-				
+				$currentMail = $this->model->getUserMail(Session::get()->id);
+				$currentUsername = Session::get()->username;
+
+				if(isset($req['email']) && $req['email'] != $currentMail) {
+					$newMail = $req['email'];
+
+					if($this->validateMail($newMail)) {
+						$this->model->setMail(Session::get()->id, $newMail);
+
+						$data = array();
+						$data['success'] = 'Préférences enregistrées !';
+						$this->clearView();
+						$this->renderView('account/profile', $data);
+					}
+					else {
+						$data = array();
+						$data['error'] = 'L\'adresse mail n\'est pas valide';
+						$this->clearView();
+						$this->renderView('account/profile', $data);
+					}
+				}
+
+				if(isset($req['username']) && $req['username'] != $currentUsername) {
+					$newUsername = $req['username'];
+
+					if($this->validateUser($newUsername)) {
+						$this->model->setUsername(Session::get()->id, $newUsername);
+
+						$data = array();
+						$data['success'] = 'Préférences enregistrées !';
+						$this->clearView();
+						$this->renderView('account/profile', $data);
+					}
+					else {
+						$data = array();
+						$data['error'] = 'Le nom d\'utilisateur n\'est pas valide';
+						$this->clearView();
+						$this->renderView('account/profile', $data);
+					}
+				}
 			}
 
 			if(isset($req['passwordSubmit']) && Session::isActive()) {
@@ -75,6 +114,11 @@ class Account extends Controller {
 
 						if($currentPass == Session::get()->pass) {
 							$this->model->setPassword(Session::get()->id, $newPass);
+
+							$data = array();
+							$data['success'] = 'Préférences enregistrées !';
+							$this->clearView();
+							$this->renderView('account/profile', $data);
 						}
 						else {
 							$data = array();
@@ -96,10 +140,30 @@ class Account extends Controller {
 				
 			}
 
+			if(isset($req['backgroundSubmit']) && Session::isActive()) {
+				
+			}
+
 			if(isset($req['createChannelSubmit']) && Session::isActive()) {
 				
 			}
 		}
+	}
+
+	private function validateUser($string='') {
+		if($string != '') {
+			if(!preg_match('/[^0-9A-Za-z]/',$string)) return true;
+		}
+
+		return false;
+	}
+
+	private function validateMail($string='') {
+		if($string != '') {
+			if(filter_var($string, FILTER_VALIDATE_EMAIL)) return true;
+		}
+
+		return false;
 	}
 
 }

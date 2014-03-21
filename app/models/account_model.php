@@ -11,9 +11,25 @@ class Account_model extends Model {
 		return User::find_by_id($userId)->pass;
 	}
 
+	public function getUserMail($userId) {
+		return User::find_by_id($userId)->email;
+	}
+
 	public function setPassword($userId, $newPassword) {
 		$user = User::find_by_id($userId);
 		$user->pass = $newPassword;
+		$user->save();
+	}
+
+	public function setMail($userId, $newMail) {
+		$user = User::find_by_id($userId);
+		$user->email = $newMail;
+		$user->save();
+	}
+
+	public function setUsername($userId, $newUsername) {
+		$user = User::find_by_id($userId);
+		$user->username = $newUsername;
 		$user->save();
 	}
 
