@@ -27,6 +27,18 @@ class Account_model extends Model {
 		$user->save();
 	}
 
+	public function setUserAvatar($userId, $newAvatar) {
+		$user = User::find_by_id($userId);
+		$user->avatar = $newAvatar;
+		$user->save();
+	}
+
+	public function setUserBackground($userId, $newBackground) {
+		$user = User::find_by_id($userId);
+		$user->background = $newBackground;
+		$user->save();
+	}
+
 	public function setUsername($userId, $newUsername) {
 		$user = User::find_by_id($userId);
 		$user->username = $newUsername;

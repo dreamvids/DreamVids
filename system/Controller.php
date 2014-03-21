@@ -27,13 +27,12 @@ class Controller {
 	}
 
 	public function clearView() {
-		try {
-			ob_end_clean();
-		}
-		catch(Exception $e) {}
+		if(ob_get_contents()) ob_end_clean();
 	}
 
 	public function renderView($viewName, $data='', $renderLayout=true) {
+		if(ob_get_contents()) return;
+		
 		if($data != '' && is_array($data)) {
 			extract($data);
 		}

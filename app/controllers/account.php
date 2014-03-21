@@ -73,16 +73,10 @@ class Account extends Controller {
 					if($this->validateMail($newMail)) {
 						$this->model->setMail(Session::get()->id, $newMail);
 
-						$data = array();
-						$data['success'] = 'Préférences enregistrées !';
-						$this->clearView();
-						$this->renderView('account/profile', $data);
+						$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
-						$data = array();
-						$data['error'] = 'L\'adresse mail n\'est pas valide';
-						$this->clearView();
-						$this->renderView('account/profile', $data);
+						$this->renderViewWithError('Le mot de pass actuel n\'est pas valide');
 					}
 				}
 
@@ -92,16 +86,71 @@ class Account extends Controller {
 					if($this->validateUser($newUsername)) {
 						$this->model->setUsername(Session::get()->id, $newUsername);
 
-						$data = array();
-						$data['success'] = 'Préférences enregistrées !';
-						$this->clearView();
-						$this->renderView('account/profile', $data);
+						$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
-						$data = array();
-						$data['error'] = 'Le nom d\'utilisateur n\'est pas valide';
-						$this->clearView();
-						$this->renderView('account/profile', $data);
+						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide');
+					}
+				}
+
+				if(isset($_FILES['avatarFile'])) {
+
+					$username = Session::get()->username;
+
+					if(!file_exists('uploads/')) {
+						mkdir('uploads/');
+					}
+					if(!file_exists('uploads/'.$username)) {
+						mkdir('uploads/'.$username);
+					}
+
+					$name = $_FILES['avatarFile']['name'];
+					$exp = explode('.', $name);
+					$ext = $exp[count($exp)-1];
+					$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+					$path = 'uploads/'.$username.'/avatar.'.$ext;
+
+					if(in_array(strtolower($ext), $acceptedExts)) {
+						if(move_uploaded_file($_FILES['avatarFile']['tmp_name'], ROOT.$path)) {
+							$this->model->setUserAvatar(Session::get()->id, ROOT.$path);
+
+							$this->renderViewWithSuccess('Préférences enregistrées !');
+						}
+						else {
+							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.');
+						}
+					}
+					else {
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg');
+					}
+				}
+
+				if(isset($_FILES['channelBgFile'])) {
+					if(!file_exists('uploads/')) {
+						mkdir('uploads/');
+					}
+					if(!file_exists('uploads/'.$username)) {
+						mkdir('uploads/'.$username);
+					}
+
+					$name = $_FILES['channelBgFile']['name'];
+					$exp = explode('.', $name);
+					$ext = $exp[count($exp)-1];
+					$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+					$path = 'uploads/'.$username.'/background.'.$ext;
+
+					if(in_array(strtolower($ext), $acceptedExts)) {
+						if(move_uploaded_file($_FILES['channelBgFile']['tmp_name'], ROOT.$path)) {
+							$this->model->setUserBackground(Session::get()->id, ROOT.$path);
+
+							$this->renderViewWithSuccess('Préférences enregistrées !');
+						}
+						else {
+							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.');
+						}
+					}
+					else {
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg');
 					}
 				}
 			}
@@ -115,23 +164,14 @@ class Account extends Controller {
 						if($currentPass == Session::get()->pass) {
 							$this->model->setPassword(Session::get()->id, $newPass);
 
-							$data = array();
-							$data['success'] = 'Préférences enregistrées !';
-							$this->clearView();
-							$this->renderView('account/profile', $data);
+							$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
-							$data = array();
-							$data['error'] = 'Le mot de pass actuel n\'est pas valide';
-							$this->clearView();
-							$this->renderView('account/settings', $data);
+							$this->renderViewWithError('Le mot de pass actuel n\'est pas valide');
 						}
 					}
 					else {
-							$data = array();
-							$data['error'] = 'Les mots de passe ne sont pas identiques';
-							$this->clearView();
-							$this->renderView('account/settings', $data);
+						$this->renderViewWithError('Les mots de passe ne sont pas identiques');
 					}
 				}
 			}
@@ -164,6 +204,24 @@ class Account extends Controller {
 		}
 
 		return false;
+	}
+
+	private function renderViewWithError($error) {
+		$data = array();
+		$data['user'] = Session::get();
+		$data['username'] = Session::get()->username;
+		$data['error'] = $error;
+		$this->clearView();
+		$this->renderView('account/profile', $data);
+	}
+
+	private function renderViewWithSuccess($success) {
+		$data = array();
+		$data['user'] = Session::get();
+		$data['username'] = Session::get()->username;
+		$data['success'] = $success;
+		$this->clearView();
+		$this->renderView('account/profile', $data);
 	}
 
 }
