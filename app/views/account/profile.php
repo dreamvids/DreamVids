@@ -13,22 +13,32 @@
 			</ul>
 		</nav>
 
+		<?php if(isset($error)) { ?>
+			<p style="color: #f00;"><?php echo $error ?></p>
+			<br>
+		<?php } ?>
+
+		<?php if(isset($success)) { ?>
+			<p style="color: #0f0;"><?php echo $success ?></p>
+			<br>
+		<?php } ?>
+
 		<form method="post" action="" enctype="multipart/form-data">
 			<label for="email">Adresse email :</label>
-			<input value="<?php echo $user->email; ?>" type="text" name="email" placeholder="Adresse email"><br />
+			<input value="<?php echo $mail; ?>" type="text" name="email" placeholder="Adresse email"><br />
 
 			<label for="username">Pseudo :</label>
-			<input value="<?php echo $user->username; ?>" type="text" name="username" placeholder="Pseudo"><br />
+			<input value="<?php echo $username; ?>" type="text" name="username" placeholder="Pseudo"><br />
 
 			<label for="avatar">
-				<img class="preview" src="https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100">
+				<img class="preview" src="<?php if(isset($avatarPath) && $avatarPath != '') echo $avatarPath; ?>">
 				Avatar :
 			</label>
 			<input type="file" name="avatarFile" accept="image/*"><br />
 
 			<label for="channelBgFile">
-				<img class="preview" src="http://dreamvids.fr/uploads/Dimou/background.JPG">
-				Avatar :
+				<img class="preview" src="<?php if(isset($bgPath) && $bgPath != '') echo $bgPath; ?>">
+				Arrière-plan :
 			</label>
 			<input type="file" name="channelBgFile" accept="image/*"><br />
 

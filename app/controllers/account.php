@@ -6,6 +6,9 @@ class Account extends Controller {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;
+			$data['mail'] = Session::get()->email;
+			$data['avatarPath'] = Session::get()->avatar != '' ? Session::get()->avatar : 'https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100';
+			$data['bgPath'] = Session::get()->background != '' ? Session::get()->background : 'http://dreamvids.fr/uploads/Dimou/background.JPG';
 			
 			$this->renderView('account/profile', $data);
 		}
@@ -64,6 +67,9 @@ class Account extends Controller {
 			$req = $request->getValues();
 
 			if(isset($req['profileSubmit']) && Session::isActive()) {
+
+				var_dump($_FILES);
+
 				$currentMail = $this->model->getUserMail(Session::get()->id);
 				$currentUsername = Session::get()->username;
 
@@ -73,10 +79,11 @@ class Account extends Controller {
 					if($this->validateMail($newMail)) {
 						$this->model->setMail(Session::get()->id, $newMail);
 
-						$this->renderViewWithSuccess('Préférences enregistrées !');
+						//$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
 						$this->renderViewWithError('Le mot de pass actuel n\'est pas valide');
+						return;
 					}
 				}
 
@@ -86,15 +93,15 @@ class Account extends Controller {
 					if($this->validateUser($newUsername)) {
 						$this->model->setUsername(Session::get()->id, $newUsername);
 
-						$this->renderViewWithSuccess('Préférences enregistrées !');
+						//$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
 						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide');
+						return;
 					}
 				}
 
-				if(isset($_FILES['avatarFile'])) {
-
+				if(isset($_FILES['avatarFile']) && $_FILES['avatarFile']['size'] != 0) {
 					$username = Session::get()->username;
 
 					if(!file_exists('uploads/')) {
@@ -112,20 +119,25 @@ class Account extends Controller {
 
 					if(in_array(strtolower($ext), $acceptedExts)) {
 						if(move_uploaded_file($_FILES['avatarFile']['tmp_name'], ROOT.$path)) {
-							$this->model->setUserAvatar(Session::get()->id, ROOT.$path);
+							$this->model->setUserAvatar(Session::get()->id, $path);
 
-							$this->renderViewWithSuccess('Préférences enregistrées !');
+							//$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
 							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.');
+							return;
 						}
 					}
 					else {
-						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg');
+						echo 'XDDD';
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg.');
+						return;
 					}
 				}
 
-				if(isset($_FILES['channelBgFile'])) {
+				if(isset($_FILES['channelBgFile']) && $_FILES['channelBgFile']['size'] != 0) {
+					$username = Session::get()->username;
+					
 					if(!file_exists('uploads/')) {
 						mkdir('uploads/');
 					}
@@ -141,18 +153,22 @@ class Account extends Controller {
 
 					if(in_array(strtolower($ext), $acceptedExts)) {
 						if(move_uploaded_file($_FILES['channelBgFile']['tmp_name'], ROOT.$path)) {
-							$this->model->setUserBackground(Session::get()->id, ROOT.$path);
+							$this->model->setUserBackground(Session::get()->id, $path);
 
-							$this->renderViewWithSuccess('Préférences enregistrées !');
+							//$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
 							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.');
+							return;
 						}
 					}
 					else {
 						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg');
+						return;
 					}
 				}
+
+				$this->renderViewWithSuccess('Préférences enregistrées !');
 			}
 
 			if(isset($req['passwordSubmit']) && Session::isActive()) {
@@ -168,10 +184,12 @@ class Account extends Controller {
 						}
 						else {
 							$this->renderViewWithError('Le mot de pass actuel n\'est pas valide');
+							return;
 						}
 					}
 					else {
 						$this->renderViewWithError('Les mots de passe ne sont pas identiques');
+						return;
 					}
 				}
 			}
@@ -210,6 +228,9 @@ class Account extends Controller {
 		$data = array();
 		$data['user'] = Session::get();
 		$data['username'] = Session::get()->username;
+		$data['mail'] = Session::get()->email;
+		$data['avatarPath'] = Session::get()->avatar != '' ? Session::get()->avatar : 'https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100';
+		$data['bgPath'] = Session::get()->background != '' ? Session::get()->background : 'http://dreamvids.fr/uploads/Dimou/background.JPG';
 		$data['error'] = $error;
 		$this->clearView();
 		$this->renderView('account/profile', $data);
@@ -219,6 +240,9 @@ class Account extends Controller {
 		$data = array();
 		$data['user'] = Session::get();
 		$data['username'] = Session::get()->username;
+		$data['mail'] = Session::get()->email;
+		$data['avatarPath'] = Session::get()->avatar != '' ? Session::get()->avatar : 'https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100';
+		$data['bgPath'] = Session::get()->background != '' ? Session::get()->background : 'http://dreamvids.fr/uploads/Dimou/background.JPG';
 		$data['success'] = $success;
 		$this->clearView();
 		$this->renderView('account/profile', $data);
