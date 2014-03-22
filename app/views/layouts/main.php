@@ -18,7 +18,7 @@
 				<div id="top-nav">
 					<div id="inner-top-nav">
 						<div id="inner-top-nav-left">
-							<a href="index.php">
+							<a href="<?php echo WEBROOT; ?>">
 								<img src="<?php echo IMG.'icon_logo.png'; ?>" alt="Logo DreamVids" id="top-nav-logo-icon" class="top-nav-icon-logo" />
 								<img src="<?php echo IMG.'text_logo.png'; ?>" alt="DreamVids" id="top-nav-logo-text" class="top-nav-text-logo" />
 							</a>
