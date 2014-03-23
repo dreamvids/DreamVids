@@ -1,87 +1,48 @@
-var ajax = function(method, object, callback) {
-    url = 'index.php?page=ajax';
-    if (object) {
-        for (var key in object)
+/*
+ *  Ajax 1.3.0
+ *  Librairie pour envoyer et recevoir des informations simplement avec Ajax
+ *
+ *  [1.3.0] Callback dÃ©sormais dans des "promises"
+ *
+ *  ajax.js
+ */
+
+var ajax = function(method, url, object) {
+    if (method == 'GET') {
+        url += '?';
+        for (var key in object) {
             url += object.hasOwnProperty(key) ? '&' + key + '=' + object[key] : '';
+        }
+    } else {
+        postData = '?';
+        for (var key in object) {
+            postData += object.hasOwnProperty(key) ? '&' + key + '=' + object[key] : '';
+        }
     }
 
-    if (window.XMLHttpRequest)
-        waiting = new XMLHttpRequest();
-    else
-        waiting = new ActiveXObject("Microsoft.XMLHTTP");
+    this.xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
 
-    waiting.callback = callback ? callback : false;
-
-    waiting.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200 && this.callback)
-            this.callback(this);
+    this.then = function(callback) {
+        this.xhr.callback = callback;
     };
 
-    waiting.open(method, url, true);
-    waiting.send();
+    this.xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200 && this.callback) {
+            this.callback(this);
+        }
+    };
 
-    ajax.list.push(waiting);
+    this.xhr.open(method, url, true);
+    this.xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    this.xhr.send(typeof postData != 'undefined' ? postData : null);
+
+    return this;
 };
-ajax.list = [],
 
-ajax.get = function(object, callback) {
-    ajax('GET', object, callback);
+ajax.get = function(url, object) {
+    return ajax('GET', url, object);
 },
 
-ajax.post = function(object, callback) {
-    ajax('POST', object, callback);
+ajax.post = function(url, object) {
+    return ajax('POST', url, object);
 };
-
-function subscribe(dr_id) {
-    var button = document.getElementById('subscribe-' + dr_id);
-    button.onclick = function() {
-        unsubscribe(dr_id);
-    };
-    button.className = 'btn btn-danger';
-    button.onmouseover = function() {
-        button.innerHTML = button.getAttribute("data-onmouseover");
-    };
-    button.onmouseout = function() {
-        button.innerHTML = button.getAttribute("data-unsubscribe");
-    };
-    button.innerHTML = button.getAttribute("data-unsubscribe");
-    ajax.post({
-        action: 'subscribe',
-        dr_id: dr_id
-    });
-}
-
-function unsubscribe(dr_id) {
-    var button = document.getElementById('subscribe-' + dr_id);
-    button.onclick = function() {
-        subscribe(dr_id);
-    };
-    button.className = 'btn btn-success';
-    button.onmouseover = function() {
-        return false;
-    };
-    button.onmouseout = function() {
-        return false;
-    };
-    button.innerHTML = button.getAttribute("data-subscribe") + ' (' + button.getAttribute("data-subscribers") + ')';
-    ajax.post({
-        action: 'unsubscribe',
-        dr_id: dr_id
-    });
-}
-
-function comment(vid, username, comment) {
-    var newCom = document.getElementById('new_comments');
-    newCom.innerHTML = getCommentHTML(username, comment) + newCom.innerHTML;
-    document.getElementById('text_comment').value = '';
-    ajax.post('index.php?page=ajax&action=comment&vid=' + vid, 'comment=' + encodeURIComponent(comment));
-}
-
-function getCommentHTML(username, comment) {
-    var date = new Date();
-    return '<div class="panel panel-default" style="width: 100%;"><div class="panel-heading"><h5>' + username + ' <small>' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '</small></h5></div><div class="panel-body"><p>' + noHTML(comment) + '</p></div></div>';
-}
-
-function noHTML(str) {
-    return str.replace('<', '&lt;').replace('>', '&gt;');
-}

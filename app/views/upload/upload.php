@@ -1,43 +1,38 @@
-<h1>Mettre en ligne une vidéo</h1><br>
+<div id="upload-large-modal">
+	<div class="bgLoader" id="backgroundLoader" data-background="<?php echo IMG.'backgrounds/002.jpg'; ?>"></div>
 
-<?php
-if(isset($data['error']))
-	echo "<h1>ERROR ! ".$data['error']."</h1><br><br>";
-?>
+	<section id="uploader">
+		<span id="upload-illustration">
+			<span class="cloud">
+				<span id="arrowUpload" data-uploaded-message="Uploaded"></span>
+			</span>
+		</span>
 
-<progress id="progress-bar" value="0" max="100" style="100%;"></progress><br><br>
+		<input id="upload-input" type="file" name="video" accept="video/*">
 
-<p id="status"></p><br>
+		<div id="file-name"></div>
+	</section>
 
-<form enctype="multipart/form-data" method="post" id="videoFileForm">
-	<input type="file" name="videoFile" id="videoFile"><br>
-</form>
+	<div id="progress-upload">
+		<div id="progress-bar"></div>
+	</div>
+</div>
 
-<form id="videoInfoForm" method="post" enctype="multipart/form-data">
-	<br><br>
+<div id="upload-content">
+	<form method="post" action="">
+		<label for="video-title"><i>Titre de la vidéo :</i><input id="video-title" type="text" name="video-title" placeholder="Titre" spellcheck="false"/></label>
+		<label for="video-description"><i>Description :</i><textarea name="video-description" id="video-description" rows="4" placeholder="Description"></textarea></label>
+		<label for="video-tags"><i>Tags :</i><input id="video-tags" type="text" name="video-tags" placeholder="Tags" spellcheck="false"/></label>
+		<label for="video-tumbnail"><i>Miniature :</i><input type="file" name="video-tumbnail" id="video-tumbnail" accept="image/*"></label>
+		<label for="video-visibility">
+			<i>Visibilité :</i>
+			<select name="video-visibility" id="video-visibility">
+				<option value="2">Publique</option>
+				<option value="1">Non listée</option>
+				<option value="0">Privée</option>
+			</select>
+		</label>
 
-	Titre<br>
-	<input type="text" id="videoTitle" name="videoTitle" required><br><br>
-
-	Description<br>
-	<textarea rows="4" cols="50" required name="videoDescription" id="videoDescription" placeholder="Présentation de la vidéo"></textarea><br><br>
-
-	Tags<br>
-	<input type="text" id="videoTags" name="videoTags" required><br><br>
-
-	Miniature<br>
-	<input type="file" name="videoThumbnail" id="videoThumbnail"><br><br>
-
-	Visibilité
-	<select name="videoVisibility" id="videoVisibility">
-		<option value="2">Publique</option>
-		<option value="1">Non listée</option>
-		<option value="0">Privée</option>
-	</select>
-	<br>
-
-	<br><br><input type="button" value="Enregistrer les modifications" name="uploadDataSubmit" onclick="submitInformations()"><br><br>
-
-</form>
-
-<script src="<?php echo JS.'upload.js'; ?>"></script>
+		<input type="button" id="up-submit" disabled="disabled" name="submit" value="Valider" onclick="submitVideoInfo()">
+	</form>
+</div>

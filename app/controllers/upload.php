@@ -21,12 +21,11 @@ class Upload extends Controller {
 	}
 
 	public function process() { // called from JS upload script when the video file uploaded
-		if(isset($_FILES['videoFile']) && Session::isActive() && isset($_SESSION['VIDEO_UPLOAD_ID']) && $_SESSION['VIDEO_UPLOAD_ID'] != -1) {
-
+		if(isset($_FILES['videoInput']) && Session::isActive() && isset($_SESSION['VIDEO_UPLOAD_ID']) && $_SESSION['VIDEO_UPLOAD_ID'] != -1) {
 			$this->loadModel('upload_model');
 
 			$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
-			$name = $_FILES['videoFile']['name'];
+			$name = $_FILES['videoInput']['name'];
 			$exp = explode('.', $name);
 			$ext = $exp[count($exp)-1];
 			$username = Session::get()->username;
@@ -44,7 +43,7 @@ class Upload extends Controller {
 					mkdir('uploads/'.$username.'/videos');
 				}
 
-				if(move_uploaded_file($_FILES['videoFile']['tmp_name'], ROOT.$path)) {
+				if(move_uploaded_file($_FILES['videoInput']['tmp_name'], ROOT.$path)) {
 					$this->model->updateTempURL($vidId, $path);
 				}
 				else $this->model->updateTempURL($vidId, '[error_during_file_moving]');
