@@ -89,5 +89,23 @@ class Watch_model extends Model {
 			VideoVote::delete_all(array('conditions' => array('user_id = ? and obj_id = ?', $userId, $videoId)));
 		}
 	}
+	
+	public function addView($vidId) {
+		$video = Video::find_by_id($vidId);
+		$duration = $video->duration;
+		$hash = sha1($vidId.Session::get()->username);
+		$view = VideoView::find_by_hash($hash);
+		if (!$view || Utils::tps() > $view->date + $duration) {
+			$video->views++;
+			$video->save();
+			if ($view)
+				$view->delete();
+			VideoView::create(array(
+				'video_id' => $vidId,
+				'hash' => $hash,
+				'date' => Utils::tps()
+			));
+		}
+	}
 
 }

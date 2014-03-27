@@ -70,5 +70,4 @@ class Video extends ActiveRecord\Model {
 
 		return $id;
 	}
-
 }

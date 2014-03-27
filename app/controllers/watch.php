@@ -54,7 +54,7 @@ class Watch extends Controller {
 		$data['comments'] = $this->model->getCommentsOnVideo($videoId);
 		$data['likedByUser'] = $this->model->isVideoLikedByUser($videoId) ? true : false;
 		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
-
+		$this->model->addView($videoId);
 		$this->renderView('watch/watch', $data);
 	}
 
