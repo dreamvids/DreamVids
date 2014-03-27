@@ -21,4 +21,8 @@ class Upload_model extends Model {
 		//$_SESSION['VIDEO_UPLOAD_ID'] = -1;
 	}
 
+	public function setVideoThumbnail($vidId, $newThumb) {
+		Video::update_all(array('conditions' => array('id' => $vidId), 'set' => array('tumbnail' => $newThumb)));
+	}
+
 }
