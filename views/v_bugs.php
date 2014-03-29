@@ -33,7 +33,7 @@ foreach ($bugs as $bug)
 		<div class="panel panel-default" style="width: 100%;" id="bug-<?php echo $bug['id']; ?>">
 			<div class="panel-heading">
 <?php
-	if ($session->getRank() == $config['rank_adm'])
+	if ($session->getRank() == $config['rank_adm'] || $session->getRank() == $config['rank_dev'])
 	{
 ?>
 				<div style="float:right">
