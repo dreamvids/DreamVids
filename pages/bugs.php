@@ -27,7 +27,7 @@ if (isset($_POST['submit']) )
 		$err = $lang['bug_empty'];
 	}
 }
-elseif (isset($_GET['resolution']) && $session->getRank() == $config['rank_adm'])
+elseif (isset($_GET['resolution']) && ($session->getRank() == $config['rank_adm'] || $session->getRank() == $config['rank_dev']) )
 {
 	if (in_array($_GET['resolution'], array(0, 1, 2) ) )
 	{
