@@ -6,4 +6,4 @@ Core rework & new design for the DreamVids video sharing platform
 Dependencies
 ========
 This project is using php-activerecord as an ORM library for accessing the database.
-In case you want to use this project, download php-activerecord and place the folder in vendor/ folder.
+To install all required dependencies, just install composer and type "composer install" in a command prompt.
