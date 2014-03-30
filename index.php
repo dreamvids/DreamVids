@@ -17,14 +17,13 @@ define('CSS', WEBROOT.'assets/css/');
 define('JS', WEBROOT.'assets/js/');
 define('PANEL', WEBROOT.'assets/panel/');
 
+require 'vendor/autoload.php';
+
 include SYSTEM.'Application.php';
 include SYSTEM.'Utils.php';
 include SYSTEM.'Controller.php';
 include SYSTEM.'DataRequest.php';
 include SYSTEM.'RequestHandler.php';
-
-require_once ROOT.'vendor/php-activerecord/ActiveRecord.php';
-require_once ROOT.'vendor/php-activerecord/lib/Model.php';
 
 include CONFIG.'config.php';
 include APP.'classes/Session.php';
