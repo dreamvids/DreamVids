@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteRule ^signin$ index.php?page=reg [L]
+RewriteRule ^signup$ index.php?page=reg [L]
 RewriteRule ^login$ index.php?page=log [L]
 RewriteRule ^logout$ index.php?page=log&out [L]
 RewriteRule ^profile$ index.php?page=profile [L]

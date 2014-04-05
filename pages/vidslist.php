@@ -9,7 +9,7 @@ switch (@$_GET['mode'])
 	
 	case 'subscriptions':
 		if(!isset($session)) {
-			header('Location: /login');
+			header('Location: login');
 			exit();
 		}
 

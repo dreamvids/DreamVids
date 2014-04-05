@@ -64,17 +64,20 @@ foreach ($vids as $vid)
 	
 	$titleVid = (strlen($vid->getTitle() ) > 29) ? secure(substr($vid->getTitle(), 0, 26) ).'...' : secure($vid->getTitle() );
 	$descVid = (strlen($vid->getDescription() ) > 35) ? secure(substr($vid->getDescription(), 0, 32) ).'...' : secure($vid->getDescription() );
+	if($vid->getViews()>1){
+		$lang['views'] = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
+	}
 ?>
 
             <div class="thumbnail featuredbox">
-              <a href="/&<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></a>
+              <a href="&<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></a>
               <div class="hotfeaturedtext">
                 <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
                 <p><?php echo $descVid; ?></p>
               </div> <!--/featuredtext-->
               <div class="hotfeaturedbutton"> 
                 <hr>
-               <span><?php echo $lang['by'].' <a href="/@'.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
+               <span><?php echo $lang['by'].' <a href="@'.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
 				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
               </div>
             </div>			  

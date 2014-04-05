@@ -44,19 +44,19 @@ if (isset($session) )
 
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="/discover"><?php echo $lang['discover']; ?></a></li>
-					<li><a href="/videoslist"><?php echo $lang['news']; ?></a></li>
-					<li><a href="/subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
+					<li><a href="discover"><?php echo $lang['discover']; ?></a></li>
+					<li><a href="videoslist"><?php echo $lang['news']; ?></a></li>
+					<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/upload"><?php echo $lang['up_vid']; ?></a></li>
+					<li><a href="upload"><?php echo $lang['up_vid']; ?></a></li>
 					<?php if(isset($session)) { ?>
-					<li><a href="/profile"><?php echo $lang['member_space']; ?></a></li>
-					<li><a href="/logout"><?php echo $lang['logout']; ?></a></li>
+					<li><a href="profile"><?php echo $lang['member_space']; ?></a></li>
+					<li><a href="logout"><?php echo $lang['logout']; ?></a></li>
 					<?php } else { ?>
-					<li><a href="/login"><?php echo $lang['login']; ?></a></li>
-					<li><a href="/signup"><?php echo $lang['register']; ?></a></li>
+					<li><a href="login"><?php echo $lang['login']; ?></a></li>
+					<li><a href="signup"><?php echo $lang['register']; ?></a></li>
 					<?php } ?>
 				</ul>
 		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="/search">
