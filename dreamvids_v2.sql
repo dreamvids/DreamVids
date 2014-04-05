@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 13 Mars 2014 à 20:38
--- Version du serveur: 5.5.24-log
--- Version de PHP: 5.3.13
+-- Généré le: Sam 05 Avril 2014 à 09:58
+-- Version du serveur: 5.6.12-log
+-- Version de PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -120,14 +120,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `avatar` varchar(255) NOT NULL,
   `background` text NOT NULL,
   `description` text NOT NULL,
-  `subscribers` int(11) NOT NULL,
+  `followers` int(11) NOT NULL,
+  `followings` text NOT NULL,
   `subscriptions` text NOT NULL,
   `reg_timestamp` bigint(20) NOT NULL,
   `reg_ip` varchar(15) NOT NULL,
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,8 @@ CREATE TABLE IF NOT EXISTS `users_channels` (
   `id` varchar(6) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `users` varchar(255) NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  `admins_ids` text NOT NULL,
   `subscribers` int(11) NOT NULL,
   `views` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
@@ -240,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 

@@ -20,11 +20,13 @@ class Register_model extends Model {
 			'pass' => sha1($password),
 			'avatar' => '',
 			'background' => '',
-			'subscribers' => 0,
-			'subscriptions' => 0,
+			'followers' => 0,
+			'followings' => '',
+			'subscriptions' => '',
 			'reg_timestamp' => Utils::tps(),
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
-			'rank' => 0
+			'actual_ip' => $_SERVER['REMOTE_ADDR'],
+			'rank' => $config['rank_user']
 		));
 	}
 }
