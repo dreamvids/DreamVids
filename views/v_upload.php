@@ -13,7 +13,8 @@
 		echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
 		echo (!isset($err) && isset($_POST['submit']) ) ? '<div id="uploadDoneAlert" class="alert alert-success">'.$uploadDone.'</div>' : '';
 		?>
-		<div class="alert alert-info">Une fois le formulaire validé, vous allez être redirigé vers votre vidéo, si celle-ci ne se lance pas, attendez quelques secondes puis rechargez la page, le temps que la conversion se fasse :)</div>
+		<div class="alert alert-success">Une fois le formulaire validé, vous allez être redirigé vers votre vidéo, si celle-ci ne se lance pas, attendez quelques secondes puis rechargez la page, le temps que la conversion se fasse :)</div>
+		<div class="alert alert-info">Les formats compatibles sont: <strong>webm, mp4, mov, avi, wmv, ogg et ogv.</strong></div>
 		<form role="form" method="post" enctype="multipart/form-data" action="">
 			<label for="videoInput"><?php echo $lang['vid']; ?></label>
 			<input type="file" id="videoInput" name="videoInput">
