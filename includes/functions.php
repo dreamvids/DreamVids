@@ -91,7 +91,7 @@ $return .= " ".$iDays . $lang['day'] . ( $iDays>1 ? 's' : '' );}
         elseif( $iWeeks <4 ){
 $return .= " ".$iWeeks . $lang['week'] . ( $iWeeks>1 ? 's' : '' );}
         elseif( $iMonths<12 ){
-$return .= " ".$iMonths . $lang['month'] . ( $iMonths>1 ? 's' : '' );}
+$return .= " ".$iMonths . $lang['month'] . ( $iMonths>1 ? '' : '' );}
         else{
 $return .= " ".$iYears . $lang['year'] . ( $iYears>1 ? 's' : '' );}
 return $return;
