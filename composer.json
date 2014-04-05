@@ -14,8 +14,7 @@
         {
             "name": "Quadrifoglio",
             "email": "quadrifoglio.clement@gmail.com"
-        }
-        
+        }     
     ],
     "require": {
         "php-activerecord/php-activerecord": "dev-master"
