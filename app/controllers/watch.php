@@ -74,10 +74,6 @@ class Watch extends Controller {
 			$this->loadModel('watch_model');
 			$userId = Session::get()->id;
 
-			$f = fopen('lolike.txt', 'w');
-				fwrite($f, 'ok');
-				fclose($f);
-
 			if(!$this->model->isVideoLikedByUser($videoId, Session::get()->id)) {
 
 				if($this->model->isVideoDislikedByUser($videoId, Session::get()->id)) {
