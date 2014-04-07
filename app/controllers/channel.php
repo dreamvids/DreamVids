@@ -3,13 +3,10 @@
 class Channel extends Controller {
 	
 	public function index($channelId='nope') {
+
 		if($channelId != 'nope') {
-			if(User::exists(array('id' => $channelId)) || User::exists(array('username' => $channelId))) {
-				$this->member($channelId);
-				return;
-			}
-			else if(MultiUserChannel::exists(array('id' => $channelId)) || MultiUserChannel::exists(array('name' => $channelId))) {
-				$this->multiuser($channelId);
+			if(UserChannel::exists(array('id' => $channelId)) || UserChannel::exists(array('name' => $channelId))) {
+				$this->show($channelId);
 				return;
 			}
 			else {
@@ -22,36 +19,13 @@ class Channel extends Controller {
 		exit();
 	}
 
-	public function member($userId='nope') {
-		if($userId != 'nope') {
-			$this->loadModel('channel_model');
-			$user = User::find_by_id($userId);
-
-			if(!is_object($user))
-				$user = User::find_by_username($userId);
-
-			$data = array();
-			$data['name'] = $user->username;
-			$data['description'] = $user->description;
-			$data['subscribers'] = $user->subscribers;
-			$data['videos'] = $this->model->getVideoesFromUser($user->id);
-			$data['description'] = $user->description;
-
-			$this->renderView('channel/member', $data);
-		}
-		else {
-			header('Location: '.WEBROOT);
-			exit();
-		}
-	}
-
-	public function multiuser($channelId = 'nope') {
+	public function show($channelId = 'nope') {
 		if($channelId != 'nope') {
 			$this->loadModel('channel_model');
-			$channel = MultiUserChannel::find_by_id($channelId);
+			$channel = UserChannel::find_by_id($channelId);
 
 			if(!is_object($channel))
-				$channel = MultiUserChannel::find_by_name($channelId);
+				$channel = UserChannel::find_by_name($channelId);
 
 			$data = array();
 			$data['name'] = $channel->name;
@@ -59,7 +33,7 @@ class Channel extends Controller {
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $this->model->getVideoesFromChannel($channel->id);
 
-			$this->renderView('channel/multiuser', $data);
+			$this->renderView('channel/channel', $data);
 		}
 		else {
 			header('Location: '.WEBROOT);
@@ -74,8 +48,6 @@ class Channel extends Controller {
 			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
 				if(Utils::stringStartsWith($channelId, 'c_'))
 					$this->model->subscribeToMultiUserChannel(Session::get()->id, $channelId);
-				else
-					$this->model->subscribeToUser(Session::get()->id, $channelId);
 			}
 		}
 		else {
@@ -88,12 +60,9 @@ class Channel extends Controller {
 		if($channelId != 'nope' && Session::isActive()) {
 			$this->loadModel('channel_model');
 			
-			if(Session::get()->id != $channelId) {
-							var_dump(Utils::stringStartsWith($channelId, 'c_'));
+			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
 				if(Utils::stringStartsWith($channelId, 'c_'))
 					if($this->model->channelExists($channelId)) $this->model->unsubscribeToMultiUserChannel(Session::get()->id, $channelId);
-				else
-					$this->model->unsubscribeToUser(Session::get()->id, $channelId);
 			}
 		}
 		else {

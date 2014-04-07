@@ -2,32 +2,26 @@
 
 require_once SYSTEM.'Model.php';
 require_once APP.'classes/Video.php';
-require_once APP.'classes/MultiUserChannel.php';
+require_once APP.'classes/UserChannel.php';
 
 class Channel_model extends Model {
 
-	public function getVideoesFromUser($userId) {
-		if(User::exists(array('id' => $userId))) {
-			return Video::find('all', array('conditions' => array('poster_id = ?', $userId)));
-		}
-	}
-
 	public function getVideoesFromChannel($channelId) {
-		if(MultiUserChannel::exists(array('id' => $channelId))) {
+		if(UserChannel::exists(array('id' => $channelId))) {
 			return Video::find('all', array('conditions' => array('poster_id = ?', $channelId)));
 		}
 	}
 
 	public function channelExists($channelId) {
 		if(Utils::stringStartsWith($channelId, 'c_'))
-			return MultiUserChannel::exists(array('id' => $channelId));
+			return UserChannel::exists(array('id' => $channelId));
 
 		if(User::exists(array('id' => $channelId))) return true;
 		return false;
 	}
 
 	public function channelNameExists($channelName) {
-		if(MultiUserChannel::exists(array('name' => $channelName)))
+		if(UserChannel::exists(array('name' => $channelName)))
 			return true;
 		else if(User::exists(array('username' => $channelName)))
 			return true;
@@ -35,62 +29,17 @@ class Channel_model extends Model {
 			return false;
 	}
 
-	public function createMultiUserChannel($name, $users) {
+	public function createUserChannel($name, $users) {
 		if(!$this->channelNameExists($name)) {
-			$id = MultiUserChannel::generateId(6);
+			$id = UserChannel::generateId(6);
 
-			MultiUserChannel::create(array('id' => $id, 'name' => $name, 'users' => $users, 'subscribers' => 0, 'views' => 0));
+			UserChannel::create(array('id' => $id, 'name' => $name, 'users' => $users, 'subscribers' => 0, 'views' => 0));
 		}
 	}
 
-	public function subscribeToUser($subscriber, $subscribing) {
+	public function subscribeToChannel($subscriber, $subscribing) {
 		$subscriberUser = User::find_by_id($subscriber);
-		$subscribingUser = User::find_by_id($subscribing);
-
-		$subscriptionsStr = $subscriberUser->subscriptions;
-
-		if(Utils::stringStartsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
-
-		$subscriptionsArray = explode(';', $subscriptionsStr);
-
-		if(!in_array($subscribing, $subscriptionsArray)) {
-			$subscriptionsArray[] = $subscribing;
-
-			$subscriberUser->subscriptions = implode(';', $subscriptionsArray);
-			$subscriberUser->save();
-
-			$subscribingUser->subscribers++;
-			$subscribingUser->save();
-		}
-	}
-
-	public function unsubscribeToUser($subscriber, $subscribing) {
-		$subscriberUser = User::find_by_id($subscriber);
-		$subscribingUser = User::find_by_id($subscribing);
-
-		$subscriptionsStr = $subscriberUser->subscriptions;
-
-		if(Utils::stringStartsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
-
-		$subscriptionsArray = explode(';', $subscriptionsStr);
-
-		if(in_array($subscribing, $subscriptionsArray)) {
-			$key = array_search($subscribing, $subscriptionsArray);
-			unset($subscriptionsArray[$key]);
-
-			$subscriberUser->subscriptions = implode(';', $subscriptionsArray);
-			$subscriberUser->save();
-
-			$subscribingUser->subscribers--;
-			$subscribingUser->save();
-		}
-	}
-
-	public function subscribeToMultiUserChannel($subscriber, $subscribing) {
-		$subscriberUser = User::find_by_id($subscriber);
-		$subscribingChannel = MultiUserChannel::find_by_id($subscribing);
+		$subscribingChannel = UserChannel::find_by_id($subscribing);
 
 		$subscriptionsStr = $subscriberUser->subscriptions;
 
@@ -110,9 +59,9 @@ class Channel_model extends Model {
 		}
 	}
 
-	public function unsubscribeToMultiUserChannel($subscriber, $subscribing) {
+	public function unsubscribeToChannel($subscriber, $subscribing) {
 		$subscriberUser = User::find_by_id($subscriber);
-		$subscribingChannel = MultiUserChannel::find_by_id($subscribing);
+		$subscribingChannel = UserChannel::find_by_id($subscribing);
 
 		$subscriptionsStr = $subscriberUser->subscriptions;
 
