@@ -1,1 +1,1 @@
-<h1>Mes abonnements</h1>
+<h1 class="title">Mes abonnements</h1>

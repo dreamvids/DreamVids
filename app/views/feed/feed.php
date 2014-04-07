@@ -1,6 +1,6 @@
 <div class="content">
 	<aside class="aside-channels">
-		<h3>Mes abonnements</h3>
+		<h3 class="title">Mes abonnements</h3>
 		<ul class="limited">
 			<a href="channel" class="channels" data-new="12">
 				<span style="background-image: url(http://lorempicsum.com/simpsons/255/200/2)" class="avatar"></span>
@@ -60,7 +60,7 @@
 	</aside>
 
 	<aside class="aside-cards-list">
-		<h3>Flux d'activité</h3>
+		<h3 class="title">Flux d'activité</h3>
 		
 		<div class="card video">
 			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">

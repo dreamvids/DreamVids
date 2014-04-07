@@ -79,7 +79,7 @@
 
 <div class="content">
 	<aside class="aside-channels">
-		<h3>Mes abonnements</h3>
+		<h3 class="title">Mes abonnements</h3>
 		<ul class="limited">
 			<?php if(sizeof($subscriptions) != 0) { ?>
 				<?php foreach($subscriptions as $sub) { ?>
@@ -100,7 +100,7 @@
 	</aside>
 		
 	<aside class="aside-cards-list">
-		<h3>Vidéos de mes abonnements</h3>
+		<h3 class="title">Vidéos de mes abonnements</h3>
 		
 		<?php foreach($subscriptions_vids as $vid) { ?>
 		<div class="card video">
@@ -127,7 +127,7 @@
 	</aside>
 
 	<aside class="aside-cards-list">
-		<h3>Meilleures vidéos</h3>
+		<h3 class="title">Meilleures vidéos</h3>
 		
 		<div class="card video">
 			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/350/200/1">

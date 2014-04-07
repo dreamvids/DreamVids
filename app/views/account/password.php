@@ -1,7 +1,7 @@
 <div class="content">
 
 	<section class="profile">
-		<h1>Espace membre</h1>
+		<h1 class="title">Espace membre</h1>
 
 		<nav class="tabs four">
 			<ul>
@@ -13,7 +13,7 @@
 			</ul>
 		</nav>
 
-		<form method="post" action="">
+		<form class="form" method="post" action="">
 			<label for="currentPass">Mot de passe actuel :</label>
 			<input type="password" name="currentPass"><br />
 
