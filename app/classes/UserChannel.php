@@ -18,14 +18,14 @@ class UserChannel extends ActiveRecord\Model {
 
 			$id = 'c_'.$id;
 
-			$idExists = MultiUserChannel::exists(array('id' => $id));
+			$idExists = UserChannel::exists(array('id' => $id));
 		}
 
 		return $id;
 	}
 
 	public static function getNameById($channelId) {
-		return MultiUserChannel::find_by_id($userId)->name;
+		return UserChannel::find_by_id($userId)->name;
 	}
 
 }

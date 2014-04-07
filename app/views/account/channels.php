@@ -1,7 +1,7 @@
 <div class="content">
 
 	<section class="">
-		<h1>Chaînes</h1>
+		<h1 class="title">Chaînes</h1>
 
 		<nav class="tabs four">
 			<ul>
@@ -13,7 +13,11 @@
 			</ul>
 		</nav>
 
-		<h4 style="font-size: 150%;">Pas encore disponible !</h4>
+		<span class="buttons">
+		    <button>
+		        Ajouter une chaîne
+		    </button>
+    	</span>
 	</section>
 
 </div>

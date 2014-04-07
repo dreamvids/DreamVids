@@ -68,8 +68,6 @@ class Account extends Controller {
 
 			if(isset($req['profileSubmit']) && Session::isActive()) {
 
-				var_dump($_FILES);
-
 				$currentMail = $this->model->getUserMail(Session::get()->id);
 				$currentUsername = Session::get()->username;
 

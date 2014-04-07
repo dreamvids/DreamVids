@@ -39,9 +39,9 @@
 
 										<div id="top-nav-user-information-menu">
 											<ul>
-												<li><a href="<?php echo WEBROOT.'channel/'.Session::get()->username; ?>">Ma chaîne</a></li>
-												<li><a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a></li>
-												<li><a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnection</a></li>
+												<a href="<?php echo WEBROOT.'account/channels'; ?>">Mes chaînes</a>
+												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
+												<a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnexion</a>
 											</ul>
 										</div>
 									<?php } else { ?>
