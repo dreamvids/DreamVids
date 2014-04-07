@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0e3caf2b5728a5c69a6f2dc0e2bff2bf",
+    "hash": "3712f78b2cf52b8968b24d4bd74b3d64",
     "packages": [
         {
             "name": "php-activerecord/php-activerecord",
