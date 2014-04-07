@@ -1,11 +1,11 @@
-<section id="login">
-	<h1>Inscription</h1>
+<section class="middle">
+	<h1 class="title">Inscription <a href="login">Connexion</a></h1>
 
 	<?php
 	if(isset($data['error'])) echo '<h1>ERROR ! '.$data['error'].'</h1><br><br>';
 	?>
 
-	<form method="post" action="">
+	<form method="post" action="" class="middle form">
 		<label for="username">Nom d'utilisateur :</label>
 		<input type="text" name="username" id="username" placeholder="Pseudo" value=""/><br />
 		<label for="pass">Mot de passe :</label>

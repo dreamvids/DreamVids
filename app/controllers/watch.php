@@ -50,6 +50,7 @@ class Watch extends Controller {
 		$data['views'] = $video->views;
 		$data['likes'] = $video->likes;
 		$data['dislikes'] = $video->dislikes;
+		$data['thumbnail'] = $video->tumbnail;
 		$data['subscribers'] = $this->model->getAuthorsSubscribers($videoId);
 		$data['comments'] = $this->model->getCommentsOnVideo($videoId);
 		$data['likedByUser'] = $this->model->isVideoLikedByUser($videoId) ? true : false;

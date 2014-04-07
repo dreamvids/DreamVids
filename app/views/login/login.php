@@ -6,10 +6,10 @@ if(isset($data['error'])) {
 
 ?>
 
-<section id="login">
-	<h1>Connexion</h1>
+<section class="middle">
+	<h1 class="title">Connexion <a href="register">Inscription</a></h1>
 
-	<form method="post" action="">
+	<form method="post" action="" class="form middle">
 		<label for="username">Pseudo :</label>
 		<input type="text" name="username" id="username" placeholder="Pseudo" value=""/><br />
 		<label for="pass">Mot de passe :</label>
