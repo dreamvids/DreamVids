@@ -13,13 +13,14 @@
 			</ul>
 		</nav>
 
-		<span class="buttons">
-		    <a href="<?php echo WEBROOT.'account/channels/add'; ?>">
-			    <button>
-			        Ajouter une chaîne
-			    </button>
-			</a>
-    	</span>
+		<form class="form" method="post" action="">
+			<label for="name">Nom :</label>
+			<input type="text" name="name" id="name" placeholder="Nom de votre chaîne" /><br />
+			
+			<label for="description">Description :</label>
+			<textarea rows="8" cols="50" name="description" id="description"></textarea><br />
+			
+			<input type="submit" name="createChannelSubmit" value="Créer la chaîne" />
 	</section>
 
 </div>

@@ -15,6 +15,7 @@ class Register_model extends Model {
 	}
 
 	public function register($username, $password, $mail) {
+		global $config;
 		User::create(array(
 			'username' => $username,
 			'email' => $mail,
@@ -34,7 +35,8 @@ class Register_model extends Model {
 			'id' => UserChannel::generateId(6),
 			'name' => $username,
 			'description' => '',
-			'users' => User::getIdByName($username),
+			'owner_id' => User::getIdByName($username),
+			'admins_ids' => User::getIdByName($username),
 			'subscribers' => 0,
 			'views' => 0
 		));
