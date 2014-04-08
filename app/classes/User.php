@@ -6,4 +6,8 @@ class User extends ActiveRecord\Model {
 		return User::find_by_id($userId)->username;
 	}
 
+	public static function getIdByName($username) {
+		return User::find_by_username($username)->id;
+	}
+
 }

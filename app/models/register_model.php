@@ -2,6 +2,7 @@
 
 require_once SYSTEM.'Model.php';
 require_once APP.'classes/User.php';
+require_once APP.'classes/UserChannel.php';
 
 class Register_model extends Model {
 
@@ -27,6 +28,15 @@ class Register_model extends Model {
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
 			'actual_ip' => $_SERVER['REMOTE_ADDR'],
 			'rank' => $config['rank_user']
+		));
+
+		UserChannel::create(array(
+			'id' => UserChannel::generateId(6),
+			'name' => $username,
+			'description' => '',
+			'users' => User::getIdByName($username),
+			'subscribers' => 0,
+			'views' => 0
 		));
 	}
 }
