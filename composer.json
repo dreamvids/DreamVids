@@ -14,7 +14,14 @@
         {
             "name": "Quadrifoglio",
             "email": "quadrifoglio.clement@gmail.com"
-        }     
+        },
+        {
+            "name": "DarkWos",
+            "email": "c-dorian@hotmail.fr"
+        },
+        {
+            "name": "LowiSky"
+        }
     ],
     "require": {
         "php-activerecord/php-activerecord": "dev-master"
