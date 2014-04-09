@@ -7,3 +7,5 @@ includes/bdd.class.php
 
 vendor/
 composer.lock
+
+module_creator.php

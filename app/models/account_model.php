@@ -48,12 +48,4 @@ class Account_model extends Model {
 	public function getVideosFromUser($userId) {
 		return Video::all(array('poster_id' => $userId));
 	}
-
-	public function getChannelsOwnedByUser($userId) {
-		$channels = array();
-
-		$channels = UserChannel::all(array('owner_id' => $userId));
-
-		return $channels;
-	}
 }

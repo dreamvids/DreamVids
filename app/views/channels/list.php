@@ -12,15 +12,24 @@
 				<li><a href="<?php echo WEBROOT.'account/messages'; ?>">Messagerie</a></li>
 			</ul>
 		</nav>
+		
+		<?php if(isset($error)) { ?>
+			<p style="color: #f00;"><?php echo $error ?></p>
+			<br>
+		<?php } ?>
 
-		<form class="form" method="post" action="">
-			<label for="name">Nom :</label>
-			<input type="text" name="name" id="name" placeholder="Nom de votre chaîne" /><br />
-			
-			<label for="description">Description :</label>
-			<textarea rows="8" cols="50" name="description" id="description"></textarea><br />
-			
-			<input type="submit" name="createChannelSubmit" value="Créer la chaîne" />
+		<?php if(isset($success)) { ?>
+			<p style="color: #0f0;"><?php echo $success ?></p>
+			<br>
+		<?php } ?>
+
+		<span class="buttons">
+		    <a href="<?php echo WEBROOT.'channels/add'; ?>">
+			    <button>
+			        Ajouter une chaîne
+			    </button>
+			</a>
+    	</span>
 	</section>
 
 </div>

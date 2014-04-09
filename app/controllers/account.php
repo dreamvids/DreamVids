@@ -46,45 +46,6 @@ class Account extends Controller {
 		}
 	}
 
-	public function channels($action = 'nope') {
-		if(Session::isActive()) {
-			if ($action == 'nope') {
-				$this->loadModel('account_model');
-				
-				$data['user'] = Session::get();
-				$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
-	
-				$this->renderView('account/channels', $data);
-			}
-			else {
-				switch ($action) {
-					case 'add':
-						$this->addchannel();
-						break;
-					
-					case 'edit':
-						
-						break;
-					
-					default:
-						header('Location: '.WEBROOT);
-						exit();
-						break;
-				}
-			}
-		}
-		else {
-			header('Location: '.WEBROOT.'login');
-			exit();
-		}
-	}
-	
-	public function addchannel() {
-		
-		
-		$this->renderView('account/addchan');
-	}
-
 	public function postRequest($request) {
 		if(is_object($request)) {
 			$this->loadModel('account_model');
@@ -221,10 +182,6 @@ class Account extends Controller {
 			}
 
 			if(isset($req['backgroundSubmit']) && Session::isActive()) {
-				
-			}
-
-			if(isset($req['createChannelSubmit']) && Session::isActive()) {
 				
 			}
 		}

@@ -39,7 +39,7 @@
 
 										<div id="top-nav-user-information-menu">
 											<ul>
-												<a href="<?php echo WEBROOT.'account/channels'; ?>">Mes chaînes</a>
+												<a href="<?php echo WEBROOT.'channels'; ?>">Mes chaînes</a>
 												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
 												<a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnexion</a>
 											</ul>
