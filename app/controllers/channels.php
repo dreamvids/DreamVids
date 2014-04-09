@@ -49,9 +49,8 @@ class Channels extends Controller {
 		}
 	}
 	
-	private function renderViewWithError($error, $view, $req) {
-		$data = array();
-		foreach ($req as $key => $value) {
+	private function renderViewWithError($error, $view, $data) {
+		foreach ($data as $key => $value) {
 			$data[$key] = Utils::secure($value);
 		}
 		$data['error'] = $error;
@@ -59,9 +58,8 @@ class Channels extends Controller {
 		$this->renderView($view, $data);
 	}
 
-	private function renderViewWithSuccess($success, $view, $req) {
-		$data = array();
-		foreach ($req as $key => $value) {
+	private function renderViewWithSuccess($success, $view, $data) {
+		foreach ($data as $key => $value) {
 			$data[$key] = Utils::secure($value);
 		}
 		$data['success'] = $success;

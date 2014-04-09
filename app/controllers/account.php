@@ -6,7 +6,7 @@ class Account extends Controller {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;
-			$data['mail'] = Session::get()->email;
+			$data['email'] = Session::get()->email;
 			$data['avatarPath'] = Session::get()->avatar != '' ? Session::get()->avatar : 'https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100';
 			$data['bgPath'] = Session::get()->background != '' ? Session::get()->background : 'http://dreamvids.fr/uploads/Dimou/background.JPG';
 			
@@ -57,7 +57,7 @@ class Account extends Controller {
 				$currentUsername = Session::get()->username;
 
 				if(isset($req['email']) && $req['email'] != $currentMail) {
-					$newMail = $req['email'];
+					$newMail = Utils::secure($req['email']);
 
 					if($this->validateMail($newMail)) {
 						$this->model->setMail(Session::get()->id, $newMail);
@@ -65,13 +65,13 @@ class Account extends Controller {
 						//$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
-						$this->renderViewWithError('Le mot de pass actuel n\'est pas valide');
+						$this->renderViewWithError('L\'adresse E-Mail n\'est pas valide', 'account/password', $req);
 						return;
 					}
 				}
 
 				if(isset($req['username']) && $req['username'] != $currentUsername) {
-					$newUsername = $req['username'];
+					$newUsername = Utils::secure($req['username']);
 
 					if($this->validateUser($newUsername)) {
 						$this->model->setUsername(Session::get()->id, $newUsername);
@@ -79,7 +79,7 @@ class Account extends Controller {
 						//$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
-						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide');
+						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide', 'account/profile', $req);
 						return;
 					}
 				}
@@ -107,13 +107,12 @@ class Account extends Controller {
 							//$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
-							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.');
+							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $req);
 							return;
 						}
 					}
 					else {
-						echo 'XDDD';
-						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg.');
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg.', 'account/profile', $req);
 						return;
 					}
 				}
@@ -141,17 +140,17 @@ class Account extends Controller {
 							//$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
-							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.');
+							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $req);
 							return;
 						}
 					}
 					else {
-						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg');
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg', 'account/profile', $req);
 						return;
 					}
 				}
 
-				$this->renderViewWithSuccess('Préférences enregistrées !');
+				$this->renderViewWithSuccess('Préférences enregistrées !', 'account/profile', $req);
 			}
 
 			if(isset($req['passwordSubmit']) && Session::isActive()) {
@@ -166,12 +165,12 @@ class Account extends Controller {
 							$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
-							$this->renderViewWithError('Le mot de pass actuel n\'est pas valide');
+							$this->renderViewWithError('Le mot de passe actuel n\'est pas valide', 'account/password', $req);
 							return;
 						}
 					}
 					else {
-						$this->renderViewWithError('Les mots de passe ne sont pas identiques');
+						$this->renderViewWithError('Les mots de passe ne sont pas identiques', 'account/password', $req);
 						return;
 					}
 				}
@@ -203,7 +202,7 @@ class Account extends Controller {
 		return false;
 	}
 
-	private function renderViewWithError($error) {
+	/*private function renderViewWithError($error) {
 		$data = array();
 		$data['user'] = Session::get();
 		$data['username'] = Session::get()->username;
@@ -225,6 +224,24 @@ class Account extends Controller {
 		$data['success'] = $success;
 		$this->clearView();
 		$this->renderView('account/profile', $data);
+	}*/
+	
+	private function renderViewWithError($error, $view, $data) {
+		foreach ($data as $key => $value) {
+			$data[$key] = Utils::secure($value);
+		}
+		$data['error'] = $error;
+		$this->clearView();
+		$this->renderView($view, $data);
+	}
+
+	private function renderViewWithSuccess($success, $view, $data) {
+		foreach ($data as $key => $value) {
+			$data[$key] = Utils::secure($value);
+		}
+		$data['success'] = $success;
+		$this->clearView();
+		$this->renderView($view, $data);
 	}
 
 }

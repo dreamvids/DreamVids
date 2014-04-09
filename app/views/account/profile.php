@@ -25,7 +25,7 @@
 
 		<form class="form" method="post" action="" enctype="multipart/form-data">
 			<label for="email">Adresse email :</label>
-			<input value="<?php echo $mail; ?>" type="text" name="email" placeholder="Adresse email"><br />
+			<input value="<?php echo $email; ?>" type="text" name="email" placeholder="Adresse email"><br />
 
 			<label for="username">Pseudo :</label>
 			<input value="<?php echo $username; ?>" type="text" name="username" placeholder="Pseudo"><br />
