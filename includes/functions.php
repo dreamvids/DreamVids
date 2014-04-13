@@ -55,7 +55,7 @@ function bbcode($imput)
 
 function convert($input)
 {
-	system('sudo -u www-data convert.sh "'.$input.'"');
+	system('sudo -u www-data convert.sh "'.escapeshellcmd($input).'"');
 }
 
 function Qui_Est_Le_Meilleur_Developper() {
