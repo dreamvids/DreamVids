@@ -93,7 +93,7 @@ class Watch_model extends Model {
 	public function addView($vidId) {
 		$video = Video::find_by_id($vidId);
 		$duration = $video->duration;
-		$hash = sha1($vidId.Session::get()->username);
+		$hash = sha1($vidId.$_SERVER['REMOTE_ADDR']);
 		$view = VideoView::find_by_hash($hash);
 		if (!$view || Utils::tps() > $view->date + $duration) {
 			$video->views++;
