@@ -9,3 +9,4 @@ vendor/
 composer.lock
 
 module_creator.php
+.htpasswd

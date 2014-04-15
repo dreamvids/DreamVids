@@ -61,8 +61,6 @@ class Account extends Controller {
 
 					if($this->validateMail($newMail)) {
 						$this->model->setMail(Session::get()->id, $newMail);
-
-						//$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
 						$this->renderViewWithError('L\'adresse E-Mail n\'est pas valide', 'account/password', $req);
@@ -75,8 +73,6 @@ class Account extends Controller {
 
 					if($this->validateUser($newUsername)) {
 						$this->model->setUsername(Session::get()->id, $newUsername);
-
-						//$this->renderViewWithSuccess('Préférences enregistrées !');
 					}
 					else {
 						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide', 'account/profile', $req);
@@ -103,8 +99,6 @@ class Account extends Controller {
 					if(in_array(strtolower($ext), $acceptedExts)) {
 						if(move_uploaded_file($_FILES['avatarFile']['tmp_name'], ROOT.$path)) {
 							$this->model->setUserAvatar(Session::get()->id, $path);
-
-							//$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
 							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $req);
@@ -136,8 +130,6 @@ class Account extends Controller {
 					if(in_array(strtolower($ext), $acceptedExts)) {
 						if(move_uploaded_file($_FILES['channelBgFile']['tmp_name'], ROOT.$path)) {
 							$this->model->setUserBackground(Session::get()->id, $path);
-
-							//$this->renderViewWithSuccess('Préférences enregistrées !');
 						}
 						else {
 							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $req);
@@ -162,7 +154,7 @@ class Account extends Controller {
 						if($currentPass == Session::get()->pass) {
 							$this->model->setPassword(Session::get()->id, $newPass);
 
-							$this->renderViewWithSuccess('Préférences enregistrées !');
+							$this->renderViewWithSuccess('Préférences enregistrées !', 'account/password');
 						}
 						else {
 							$this->renderViewWithError('Le mot de passe actuel n\'est pas valide', 'account/password', $req);
@@ -225,23 +217,5 @@ class Account extends Controller {
 		$this->clearView();
 		$this->renderView('account/profile', $data);
 	}*/
-	
-	private function renderViewWithError($error, $view, $data) {
-		foreach ($data as $key => $value) {
-			$data[$key] = Utils::secure($value);
-		}
-		$data['error'] = $error;
-		$this->clearView();
-		$this->renderView($view, $data);
-	}
-
-	private function renderViewWithSuccess($success, $view, $data) {
-		foreach ($data as $key => $value) {
-			$data[$key] = Utils::secure($value);
-		}
-		$data['success'] = $success;
-		$this->clearView();
-		$this->renderView($view, $data);
-	}
 
 }

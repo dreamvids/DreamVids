@@ -32,7 +32,7 @@ class Channels extends Controller {
 				if (strlen($name) >= 3 && strlen($name) <= 40) {
 					if ($this->model->isChannelNameFree($name)) {
 						$this->model->addChannel($name, $descr);
-						$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list', $req);
+						$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list');
 					}
 					else {
 						$this->renderViewWithError('Ce nom de chaine est déjà utilisé.', 'channels/add', $req);
@@ -47,24 +47,6 @@ class Channels extends Controller {
 				$this->renderViewWithError('Tous les champs doivent être remplis.', 'channels/add', $req);
 			}
 		}
-	}
-	
-	private function renderViewWithError($error, $view, $data) {
-		foreach ($data as $key => $value) {
-			$data[$key] = Utils::secure($value);
-		}
-		$data['error'] = $error;
-		$this->clearView();
-		$this->renderView($view, $data);
-	}
-
-	private function renderViewWithSuccess($success, $view, $data) {
-		foreach ($data as $key => $value) {
-			$data[$key] = Utils::secure($value);
-		}
-		$data['success'] = $success;
-		$this->clearView();
-		$this->renderView($view, $data);
 	}
 	
 }

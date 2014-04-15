@@ -8,11 +8,11 @@ class Controller {
 
 	}
 
-	public function index() {
+	protected function index() {
 		
 	}
 
-	public function loadModel($modelName) {
+	protected function loadModel($modelName) {
 		require MODEL.$modelName.'.php';
 		$modelName = ucfirst($modelName);
 		$this->model = new $modelName;
@@ -26,11 +26,11 @@ class Controller {
 		
 	}
 
-	public function clearView() {
+	protected function clearView() {
 		if(ob_get_contents()) ob_end_clean();
 	}
 
-	public function renderView($viewName, $data='', $renderLayout=true) {
+	protected function renderView($viewName, $data='', $renderLayout=true) {
 		if(ob_get_contents()) return;
 		
 		if($data != '' && is_array($data)) {
@@ -44,5 +44,35 @@ class Controller {
 			include VIEW.$viewName.'.php';
 		}
 	}
+	
+	protected function renderViewWithError($error, $view, $data='') {
+		if ($data == '')
+			$data = array();
+		else
+		{
+			foreach ($data as $key => $value) {
+				$data[$key] = Utils::secure($value);
+			}
+		}
+		
+		$data['error'] = $error;
+		$this->clearView();
+		$this->renderView($view, $data);
+	}
 
+	protected function renderViewWithSuccess($success, $view, $data='') {
+		if ($data == '')
+			$data = array();
+		else
+		{
+			foreach ($data as $key => $value) {
+				$data[$key] = Utils::secure($value);
+			}
+		}
+		
+		$data['success'] = $success;
+		$this->clearView();
+		$this->renderView($view, $data);
+	}
+	
 }
