@@ -9,6 +9,7 @@ class Account extends Controller {
 			$data['email'] = Session::get()->email;
 			$data['avatarPath'] = Session::get()->avatar != '' ? Session::get()->avatar : 'https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100';
 			$data['bgPath'] = Session::get()->background != '' ? Session::get()->background : 'http://dreamvids.fr/uploads/Dimou/background.JPG';
+			$data['current'] = 'account';
 			
 			$this->renderView('account/profile', $data);
 		}
@@ -22,6 +23,7 @@ class Account extends Controller {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;
+			$data['current'] = 'password';
 
 			$this->renderView('account/password', $data);
 		}
@@ -37,6 +39,7 @@ class Account extends Controller {
 			
 			$data['user'] = Session::get();
 			$data['videos'] = $this->model->getVideosFromUser(Session::get()->id);
+			$data['current'] = 'videos';
 
 			$this->renderView('account/videos', $data);
 		}
@@ -55,6 +58,8 @@ class Account extends Controller {
 
 				$currentMail = $this->model->getUserMail(Session::get()->id);
 				$currentUsername = Session::get()->username;
+				$data = $req;
+				$data['current'] = 'account';
 
 				if(isset($req['email']) && $req['email'] != $currentMail) {
 					$newMail = Utils::secure($req['email']);
@@ -63,7 +68,7 @@ class Account extends Controller {
 						$this->model->setMail(Session::get()->id, $newMail);
 					}
 					else {
-						$this->renderViewWithError('L\'adresse E-Mail n\'est pas valide', 'account/password', $req);
+						$this->renderViewWithError('L\'adresse E-Mail n\'est pas valide', 'account/password', $data);
 						return;
 					}
 				}
@@ -75,7 +80,7 @@ class Account extends Controller {
 						$this->model->setUsername(Session::get()->id, $newUsername);
 					}
 					else {
-						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide', 'account/profile', $req);
+						$this->renderViewWithError('Le nom d\'utilisateur n\'est pas valide', 'account/profile', $data);
 						return;
 					}
 				}
@@ -101,12 +106,12 @@ class Account extends Controller {
 							$this->model->setUserAvatar(Session::get()->id, $path);
 						}
 						else {
-							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $req);
+							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $data);
 							return;
 						}
 					}
 					else {
-						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg.', 'account/profile', $req);
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg.', 'account/profile', $data);
 						return;
 					}
 				}
@@ -132,17 +137,17 @@ class Account extends Controller {
 							$this->model->setUserBackground(Session::get()->id, $path);
 						}
 						else {
-							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $req);
+							$this->renderViewWithError('Erreur inconnue lors du déplacement du fichier. Contactez un administrateur.', 'account/profile', $data);
 							return;
 						}
 					}
 					else {
-						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg', 'account/profile', $req);
+						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg', 'account/profile', $data);
 						return;
 					}
 				}
 
-				$this->renderViewWithSuccess('Préférences enregistrées !', 'account/profile', $req);
+				$this->renderViewWithSuccess('Préférences enregistrées !', 'account/profile', $data);
 			}
 
 			if(isset($req['passwordSubmit']) && Session::isActive()) {
@@ -150,19 +155,21 @@ class Account extends Controller {
 					if($req['newPass'] == $req['newPassConfirm']) {
 						$currentPass = sha1($req['currentPass']);
 						$newPass = sha1($req['newPass']);
-
+						$data = $req;
+						$data['current'] = 'password';
+						
 						if($currentPass == Session::get()->pass) {
 							$this->model->setPassword(Session::get()->id, $newPass);
 
-							$this->renderViewWithSuccess('Préférences enregistrées !', 'account/password');
+							$this->renderViewWithSuccess('Préférences enregistrées !', 'account/password', $data);
 						}
 						else {
-							$this->renderViewWithError('Le mot de passe actuel n\'est pas valide', 'account/password', $req);
+							$this->renderViewWithError('Le mot de passe actuel n\'est pas valide', 'account/password', $data);
 							return;
 						}
 					}
 					else {
-						$this->renderViewWithError('Les mots de passe ne sont pas identiques', 'account/password', $req);
+						$this->renderViewWithError('Les mots de passe ne sont pas identiques', 'account/password', $data);
 						return;
 					}
 				}

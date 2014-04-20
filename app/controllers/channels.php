@@ -8,6 +8,7 @@ class Channels extends Controller {
 			
 			$data['user'] = Session::get();
 			$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
+			$data['current'] = 'channels';
 			$this->renderView('channels/list', $data);
 		}
 		else {
@@ -17,13 +18,15 @@ class Channels extends Controller {
 	}
 	
 	public function add() {
+		$data['current'] = 'channels';
 		$this->renderView('channels/add');
 	}
 	
 	public function postRequest($request) {
 		$this->loadModel('channels_model');
 		$req = $request->getValues();
-		
+		$data = $req;
+		$data['current'] = 'channels';
 		$name = Utils::secure($req['name']);
 		$descr = Utils::secure($req['description']);
 		
@@ -32,19 +35,19 @@ class Channels extends Controller {
 				if (strlen($name) >= 3 && strlen($name) <= 40) {
 					if ($this->model->isChannelNameFree($name)) {
 						$this->model->addChannel($name, $descr);
-						$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list');
+						$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list', $data);
 					}
 					else {
-						$this->renderViewWithError('Ce nom de chaine est déjà utilisé.', 'channels/add', $req);
+						$this->renderViewWithError('Ce nom de chaine est déjà utilisé.', 'channels/add', $data);
 					}
 				}
 				else {
-					$this->renderViewWithError('Le nom de la chaîne doit être compris entre 3 et 40 caractères.', 'channels/add', $req);
+					$this->renderViewWithError('Le nom de la chaîne doit être compris entre 3 et 40 caractères.', 'channels/add', $data);
 				}
 			}
 			else
 			{
-				$this->renderViewWithError('Tous les champs doivent être remplis.', 'channels/add', $req);
+				$this->renderViewWithError('Tous les champs doivent être remplis.', 'channels/add', $data);
 			}
 		}
 	}
