@@ -29,6 +29,7 @@ include CONFIG.'config.php';
 include APP.'classes/Session.php';
 
 session_start();
+ob_start();
 
 $req = Utils::parseURL(key($_GET));
 $app = Application::create($req);
@@ -39,3 +40,5 @@ Session::init();
 $app->start();
 
 RequestHandler::process();
+
+ob_end_flush();
