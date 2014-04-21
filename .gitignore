@@ -7,6 +7,7 @@ includes/bdd.class.php
 
 vendor/
 composer.lock
+composer.phar
 
 module_creator.php
 .htpasswd
