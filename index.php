@@ -12,10 +12,11 @@ define('MODEL', APP.'models/');
 define('VIEW', APP.'views/');
 
 define('ASSETS', WEBROOT.'assets/');
-define('IMG', WEBROOT.'assets/img/');
-define('CSS', WEBROOT.'assets/css/');
-define('JS', WEBROOT.'assets/js/');
-define('PANEL', WEBROOT.'assets/panel/');
+
+define('IMG', ASSETS.'img/');
+define('CSS', ASSETS.'css/');
+define('JS', ASSETS.'js/');
+define('PANEL', ASSETS.'panel/');
 
 require 'vendor/autoload.php';
 
