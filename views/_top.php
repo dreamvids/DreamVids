@@ -16,6 +16,34 @@
 		<!-- video player header-->
 			<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css?time=<?php echo time(); ?>"/>
 		<!-- End -->
+
+		<meta property="og:site_name" content="<?php echo $lang['dreamvids']; ?>" />
+
+		<?php if(@$_GET['page'] == "watch") { ?>
+
+			<meta property="og:title" content="<?php echo secure($title); ?>" />
+			<meta property="og:type" content="video.movie" />
+			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
+			<meta property="og:description" content="<?php echo str_replace(CHR(13) . CHR(10), "", bbcode(nl2br(secure($desc)))); ?>" />
+			<meta property="og:image" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
+			<meta property="og:image:type" content="image/jpg" />
+
+		<?php } else if(@$_GET['page'] == "member") { ?>
+
+			<meta property="og:title" content="<?php echo secure($pseudo); ?>" />
+			<meta property="og:type" content="profile" />
+			<meta property="profile:username  " content="<?php echo secure($pseudo); ?>" />
+			<meta property="og:url" content="http://dreamvids.fr/@<?php echo secure($pseudo); ?>" />
+			<meta property="og:image" content="<?php echo $avatar; ?>" />
+
+		<?php } else { ?>
+
+			<meta property="og:title" content="<?php echo $lang['dreamvids']; ?>" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image" content="http://dreamvids.fr/uploads/Chaine%20Communautaire%20DreamVids/o50bhZ.png" />
+			<meta property="og:image:type" content="image/png" />
+
+		<?php }?>
 	</head>
 	
 	<body>
