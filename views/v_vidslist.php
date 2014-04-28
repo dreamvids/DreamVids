@@ -65,7 +65,7 @@ foreach ($vids as $vid)
 	$titleVid = (strlen($vid->getTitle() ) > 29) ? secure(substr($vid->getTitle(), 0, 26) ).'...' : secure($vid->getTitle() );
 	$descVid = (strlen($vid->getDescription() ) > 35) ? secure(substr($vid->getDescription(), 0, 32) ).'...' : secure($vid->getDescription() );
 	if($vid->getViews()>1){
-		$lang['views'] = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
+		$views = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
 	}
 ?>
 
@@ -78,7 +78,7 @@ foreach ($vids as $vid)
               <div class="hotfeaturedbutton"> 
                 <hr>
                <span><?php echo $lang['by'].' <a href="@'.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
-				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
+				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$views.'</small>'; ?></span>
               </div>
             </div>			  
 
