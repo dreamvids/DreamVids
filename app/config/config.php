@@ -10,7 +10,9 @@ $config['db_password'] = '';
 $config['db_database'] = 'dreamvids_v2';
 
 $config['rank_user'] = 1;
-$config['rank_modo'] = 3;
+$config['rank_contributor'] = 2;
+$config['rank_team'] = 3;
+$config['rank_modo'] = 4;
 $config['rank_admin'] = 5;
 
 $config['vid_visibility_private'] = 0;

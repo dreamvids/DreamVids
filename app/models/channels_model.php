@@ -14,16 +14,24 @@ class Channels_model extends Model {
 		return $channels;
 	}
 	
-	public function addChannel($name, $descr) {
+	public function addChannel($name, $descr, $avatarURL, $bannerURL, $backgroundURL) {
 		UserChannel::create(array(
 			'id' => UserChannel::generateId(6),
 			'name' => $name,
 			'description' => $descr,
 			'owner_id' => Session::get()->id,
 			'admins_ids' => Session::get()->id,
+			'avatar' => $avatarURL,
+			'banner' => $bannerURL,
+			'background' => $backgroundURL,
 			'subscribers' => 0,
 			'views' => 0
 		));
+		if(!file_exists('uploads/')) {
+					mkdir('uploads/');
+		}
+		mkdir('uploads/'.$name.'/');
+		mkdir('upload/'.$name.'/videos');
 	}
 	
 	public function isChannelNameFree($name) {

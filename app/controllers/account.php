@@ -7,8 +7,6 @@ class Account extends Controller {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;
 			$data['email'] = Session::get()->email;
-			$data['avatarPath'] = Session::get()->avatar != '' ? Session::get()->avatar : 'https://fr.gravatar.com/userimage/57826048/c82ae77d5ac9635e8ace8071f81941b9.png?size=100';
-			$data['bgPath'] = Session::get()->background != '' ? Session::get()->background : 'http://dreamvids.fr/uploads/Dimou/background.JPG';
 			$data['current'] = 'account';
 			
 			$this->renderView('account/profile', $data);
@@ -73,7 +71,7 @@ class Account extends Controller {
 					}
 				}
 
-				if(isset($req['username']) && $req['username'] != $currentUsername) {
+				/*if(isset($req['username']) && $req['username'] != $currentUsername) {
 					$newUsername = Utils::secure($req['username']);
 
 					if($this->validateUser($newUsername)) {
@@ -145,7 +143,7 @@ class Account extends Controller {
 						$this->renderViewWithError('Veuillez choisir un fichier de type jpeg, jpg, png, gif, tiff, svg', 'account/profile', $data);
 						return;
 					}
-				}
+				}*/
 
 				$this->renderViewWithSuccess('Préférences enregistrées !', 'account/profile', $data);
 			}

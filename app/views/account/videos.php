@@ -1,7 +1,7 @@
 <div class="content">
 
 	<section class="profile">
-		<h1>Espace membre</h1>
+		<h1 class="title">Espace membre</h1>
 
 		<?php
 			include VIEW.'layouts/accountMenu.php';

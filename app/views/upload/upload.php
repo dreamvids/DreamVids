@@ -26,7 +26,7 @@
 		<label for="video-title">Titre de la vidéo :<input id="video-title" type="text" name="video-title" placeholder="Titre" spellcheck="false"/></label>
 		<label for="video-description">Description :<textarea name="video-description" id="video-description" rows="4" placeholder="Description"></textarea></label>
 		<label for="video-tags">Tags :<input id="video-tags" type="text" name="video-tags" placeholder="Tags" spellcheck="false"/></label>
-		<label for="video-tumbnail">Miniature :<input type="file" name="video-tumbnail" id="video-tumbnail" accept="image/*"></label>
+		<label for="video-tumbnail">Miniature :<br /><input type="file" name="video-tumbnail" id="video-tumbnail" accept="image/*"></label><br /><br /><br /><br /><br />
 		<label for="video-visibility">
 			Visibilité :
 			<select name="video-visibility" id="video-visibility">

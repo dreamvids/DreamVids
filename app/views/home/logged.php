@@ -7,10 +7,6 @@
 					<span class="avatar bgLoader" data-background="http://lorempicsum.com/simpsons/255/200/5"></span>
 					<h3><?php echo Session::get()->username; ?></h3>
 				</a>
-				<p class="inner-text">
-					<?php if(Session::get()->description == '') echo '[Vous n\'avez pas encore de description. Rendez-vous dans vos paramètres pour y remédier]'; ?>
-					<?php echo Session::get()->description; ?>
-				</p>
 			</div>
 		</div>
 

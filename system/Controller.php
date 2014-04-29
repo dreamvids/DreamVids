@@ -48,12 +48,6 @@ class Controller {
 	protected function renderViewWithError($error, $view, $data='') {
 		if ($data == '')
 			$data = array();
-		else
-		{
-			foreach ($data as $key => $value) {
-				$data[$key] = Utils::secure($value);
-			}
-		}
 		
 		$data['error'] = $error;
 		$this->clearView();
@@ -63,12 +57,6 @@ class Controller {
 	protected function renderViewWithSuccess($success, $view, $data='') {
 		if ($data == '')
 			$data = array();
-		else
-		{
-			foreach ($data as $key => $value) {
-				$data[$key] = Utils::secure($value);
-			}
-		}
 		
 		$data['success'] = $success;
 		$this->clearView();

@@ -5,7 +5,6 @@ class Channels extends Controller {
 	public function index() {
 		if(Session::isActive()) {
 			$this->loadModel('channels_model');
-			
 			$data['user'] = Session::get();
 			$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
 			$data['current'] = 'channels';
@@ -33,12 +32,18 @@ class Channels extends Controller {
 		if(isset($req['createChannelSubmit']) && Session::isActive()) {
 			if (isset($req['name'], $req['description'])) {
 				if (strlen($name) >= 3 && strlen($name) <= 40) {
-					if ($this->model->isChannelNameFree($name)) {
-						$this->model->addChannel($name, $descr);
-						$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list', $data);
+					if (preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
+						if ($this->model->isChannelNameFree($name)) {
+							$this->model->addChannel($name, $descr, '', '', '');
+							$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
+							$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list', $data);
+						}
+						else {
+							$this->renderViewWithError('Ce nom de chaine est déjà utilisé.', 'channels/add', $data);
+						}
 					}
 					else {
-						$this->renderViewWithError('Ce nom de chaine est déjà utilisé.', 'channels/add', $data);
+						$this->renderViewWithError('Le nom de la chaîne doit contenir uniquement des lettres (majuscules et minuscules), des traits-d\'union, des _ et des points.', 'channels/add', $data);
 					}
 				}
 				else {
