@@ -9,7 +9,7 @@
 if (@$_GET['mode'] == 'subscriptions')
 {
 ?>
-<div class="container" style="margin:0">
+<div class="container" style="">
 <?php
 }
 else

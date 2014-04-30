@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo secure($title); ?><small> <?php echo $lang['by']; ?> <a href="/@<?php echo secure($author->getName() ); ?>"><?php echo secure($author->getName() ); ?></a><?php echo User::getDisplayableRank($author->getId() ); ?></small></h1>
+			<h1><?php echo secure($title); ?><small> <?php echo User::getDisplayableRank($author->getId() ); ?></small></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
@@ -92,67 +92,86 @@
 	<br />
 	
 	<div class="container">
+	<table class="watch">
 	<?php
-	if (isset($session) && $session->getId() != $author->getId() )
+	function TraduireDate($Chaine)
 	{
-		if (in_array($author->getId(), $session->getSubscriptions() ) )
-		{
-	?>
-	<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="unsubscribe(<?php echo secure($author->getId() ); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
-	<?php 
-		}
-		else
-		{
-	?>
-	<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="subscribe(<?php echo secure($author->getId() ); ?>)">S'abonner (<?php echo secure($author->getSubscribers() ); ?>)</button>
-	<?php 
-		}
+		$DateFR = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche","Janvier","Février","Mars","Avril","Mais","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
+		$DateEN = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","January","February","March","April","May","June","July","August","September","October","November","December");
+		$jour = str_replace($DateEN, $DateFR, $Chaine);
+		return $jour;
 	}
 	?>
-
-	<?php
-	$log = (isset($session) );
-		?>
-		<br /><br />
-		
+		<tr>
+			<td>
+				<div style="float:left;">
+					<?php
+					echo $lang['by']." <a href=\"/@".secure($author->getName() )."\">".secure($author->getName() )."</a><br/>";
+					echo "Le  ".TraduireDate(date('j F Y \à H\hi', $video->getTimestamp()));
+					?>
+				</div>
+				<div style="float:right;">
+				<?php
+				if (isset($session) && $session->getId() != $author->getId() )
+				{
+					if (in_array($author->getId(), $session->getSubscriptions() ) )
+					{
+				?>
+				<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-danger" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner" data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="unsubscribe(<?php echo secure($author->getId() ); ?>)" onmouseover="this.innerHTML=this.getAttribute('data-onmouseover')" onmouseout="this.innerHTML=this.getAttribute('data-unsubscribe')">Abonné</button>
+				<?php 
+					}
+					else
+					{
+				?>
+				<button id="subscribe-<?php echo secure($author->getId() ); ?>" class="btn btn-success" data-subscribe="S'abonner" data-unsubscribe="Abonné" data-onmouseover="Se désabonner"data-subscribers="<?php echo secure($author->getSubscribers() ); ?>" onclick="subscribe(<?php echo secure($author->getId() ); ?>)">S'abonner (<?php echo secure($author->getSubscribers() ); ?>)</button>
+				<?php 
+					}
+				}
+				?>
+				</div>
+			</td>
+			<td>
 		<?php
-		if($log) {
+		$log = (isset($session) );
 			?>
-			<img src="img/videos/positive.png" <?php if($log){ ?>onclick="like('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" <?php if($log){ ?>onclick="dislike('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
 			<?php
-		}
-		?>
-		<b style="margin-left:50px"><?php echo $CurView; ?> vues</b></div>
-		<br /><br />
-
-	<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title) > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-	<div id="fb-root"></div>
-	<script>
-	(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-	<div class="fb-share-button" data-href="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
-
-	<br>
-	<form method="post" role="form" action><input type="submit" value="Signaler" class="btn btn-danger" name="submitFlag"></form>
-
-	<br />
-	<div class="panel panel-primary" style="width: 56%;">
-		<div class="panel-heading">
-			<?php echo $lang['desc']; ?> (Mise en ligne le <?php echo date("d/m/Y \à H:i:s", $video->getTimestamp() ); ?>)
-		</div>
-		<div class="panel-body">
-			<?php echo bbcode(nl2br(secure($desc) ) ); ?>
-			</div>
-	</div>
-
+			if($log) {
+				?>
+				<img src="img/videos/positive.png" <?php if($log){ ?>onclick="like('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Like" /> <span <?php echo $isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" <?php if($log){ ?>onclick="dislike('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo $isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
+				<?php
+			}
+			?>
+			</td>
+			<td>
+			<?php echo $CurView; ?> vues
+			</td>
+			<td>
+				
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title) > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				<div id="fb-root"></div>
+				<script>
+				(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+				</script>
+				<div class="fb-share-button" data-href="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" data-type="button_count"></div><br />
+			</td>
+<!-- 			<td>
+				<form method="post" role="form" action><input type="submit" value="Signaler" class="btn btn-danger" name="submitFlag"></form>
+			</td> -->
+		</tr>
+		<tr>
+			<td colspan="4">
+					<?php echo "<strong class='title'>".$lang['desc']." :</strong>"; ?><br/>
+					<?php echo "<p class='description'>".bbcode(nl2br(secure($desc) ) )."</p>"; ?>
+			</td>
+		</tr>
+	</table> <!-- /////////////////////////////////////////////////////////////////// FIN DU TABLEAU -->
 	<br><h2>Commentaires</h2><br>
 	<?php if(isset($session)) { ?>
 	<script>
@@ -201,6 +220,7 @@
 	<?php
 	}
 	?>
+</div>
 </div>
 
 <!-- video player body-->
