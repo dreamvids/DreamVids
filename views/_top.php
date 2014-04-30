@@ -54,11 +54,11 @@
 if (isset($session) )
 {
 ?>
-		<div style="float:right;margin:20px"><center><a href="/@<?php echo secure($session->getName() ); ?>"><img src="<?php echo secure($session->getAvatarPath() ); ?>" alt="" width="50" /><br /><b style="color:white"><?php echo secure($session->getName() ); ?></b></a></center></div>
+		<div style="float:right;margin:20px"><center><a href="./@<?php echo secure($session->getName() ); ?>"><img src="<?php echo secure($session->getAvatarPath() ); ?>" alt="" width="50" /><br /><b style="color:white"><?php echo secure($session->getName() ); ?></b></a></center></div>
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="/"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
+		<div id="logo" class=""><a href="./"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
 
@@ -87,7 +87,7 @@ if (isset($session) )
 					<li><a href="signup"><?php echo $lang['register']; ?></a></li>
 					<?php } ?>
 				</ul>
-		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="/search">
+		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="./search">
         <div class="form-group center-block">
           <input type="search" required="required" name="q" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
         </div>
