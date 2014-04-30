@@ -43,36 +43,42 @@
  <div class="panel panel-primary" > <div class="panel-heading">
               <h3 class="panel-title"><a href="/@<?php echo secure($pseudo); ?>&all=1">Videos</a></h3>
             </div><br>
-	<div class='container' style=''>
-		
-			
+	<div class='row' style='margin:0;'>			
 		<?php
 
 		foreach ($videos as $vid) {
-			$titleVid = (strlen($vid->getTitle() ) > 18) ? secure(substr($vid->getTitle(), 0, 15) ).'...' : secure($vid->getTitle() );
-			$descVid = (strlen($vid->getDescription() ) > 35) ? secure(substr($vid->getDescription(), 0, 32) ).'...' : secure($vid->getDescription() );
+			$titleVid = (strlen($vid->getTitle() ) > 42) ? secure(substr($vid->getTitle(), 0, 39) ).'...' : secure($vid->getTitle() );
+			$descVid = (strlen($vid->getDescription() ) > 86) ? secure(substr($vid->getDescription(), 0, 83) ).'...' : secure($vid->getDescription() );
+			$userVid = (strlen(User::getNameById(secure($vid->getUserId())) ) > 23) ? secure(substr(User::getNameById(secure($vid->getUserId())), 0, 20) ).'...' : secure(User::getNameById(secure($vid->getUserId()) ));
+			if($vid->getViews()>1){
+				$views = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
+			}
+			else{
+				$views = $lang['views'];
+			}
 			?>
-				<div class="col-md-2">
- 			<div class="thumbnail featuredbox">
-              <a href="/&<?php echo secure($vid->getId() ); ?>" ><img style="width: 171px; height:90px;" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></a>
-              <div class="hotfeaturedtext">
-                <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
-                <p><?php echo $descVid; ?></p>
-              </div> <!--/featuredtext-->
-              <div class="hotfeaturedbutton"> 
-                <hr>
-               <span><?php echo $lang['by'].' <a href="/@'.User::getNameById(secure($vid->getUserId() ) ).'">'.User::getNameById(secure($vid->getUserId() ) ).'</a>'; ?><br>
-				    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$lang['views'].'</small>'; ?></span>
-              </div>
+			<div class="col-md-6" style=''>
+			<div class="thumbnail featuredbox">
+	          <div class="col-md-5">
+	            <a href="&<?php echo secure($vid->getId() ); ?>" ><img class="img-responsive" src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></a>
+	          </div>
+	          <div class="col-md-7">
+	              <div class="hotfeaturedtext">
+	                <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
+	                <p><?php echo $descVid; ?></p>
+	              </div> <!--/featuredtext-->
+	              <div class="hotfeaturedbutton"> 
+	                <hr>
+	               <span><?php echo $lang['by'].' <a href="@'.User::getNameById(secure($vid->getUserId())).'">'.$userVid.'</a>'; ?><br>
+					    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$views.'</small>'; ?></span>
+	              </div>
+              </div>			  
             </div>	
-				</div>
+            </div>	
 
 			<?php
-			
 		}
 		?>
-		
-
 </div>
 </div></div></div>
 
