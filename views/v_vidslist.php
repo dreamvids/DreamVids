@@ -55,7 +55,7 @@ foreach ($vids as $vid)
 {
 	if (@$_GET['mode'] == 'subscriptions')
 	{		 				
-		echo '<div class="col-md-3">';
+		echo '<div class="col-md-6">';
 	}
 	else
 	{
