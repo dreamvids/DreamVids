@@ -47,6 +47,11 @@ class Account extends Controller {
 		}
 	}
 
+	public function messages() {
+		$data['current'] = 'messages';
+		$this->renderView('account/messages');
+	}
+
 	public function postRequest($request) {
 		if(is_object($request)) {
 			$this->loadModel('account_model');

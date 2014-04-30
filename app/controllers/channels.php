@@ -1,6 +1,8 @@
 <?php
 
 class Channels extends Controller {
+
+	private $channelId = 'lolnop'; // used to know which channel to edit on POST request
 	
 	public function index() {
 		if(Session::isActive()) {
@@ -20,9 +22,29 @@ class Channels extends Controller {
 		$data['current'] = 'channels';
 		$this->renderView('channels/add');
 	}
+
+	public function edit($channelId = 'nope') {
+		$this->loadModel('channels_model');
+
+		if($channelId != 'nope' && UserChannel::exists(array('id' => $channelId))) {
+			$channel = $this->model->getChannelById($channelId);
+			$this->channelId = $channelId;
+
+			$data['current'] = 'channels';
+			$data['name'] = $channel->name;
+			$data['description'] = $channel->description;
+			$data['avatar'] = $channel->avatar;
+			$data['banner'] = $channel->banner;
+			$data['background'] = $channel->background;
+
+			$data['mabite'] = 'lol';
+			
+			$this->renderView('channels/edit', $data);
+		}
+	}
 	
 	public function postRequest($request) {
-		$this->loadModel('channels_model');
+		//$this->loadModel('channels_model');
 		$req = $request->getValues();
 		$data = $req;
 		$data['current'] = 'channels';
@@ -53,6 +75,35 @@ class Channels extends Controller {
 			else
 			{
 				$this->renderViewWithError('Tous les champs doivent être remplis.', 'channels/add', $data);
+			}
+		}
+
+		if(isset($req['editChannelSubmit']) && Session::isActive() && $this->channelId != 'lolnop') {
+			if (isset($req['name'], $req['description'])) {
+				if (strlen($name) >= 3 && strlen($name) <= 40) {
+					if (preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
+						if($this->model->isUserMainChannel(Session::get()->username, $this->channelId) && $this->model->getChannelName($this->channelId) != $req['name']) {
+							$data['name'] = $this->model->getChannelName($this->channelId);
+
+							$this->renderViewWithError('Vous ne pouvez pas changer le nom de votre chaîne principale !', 'channels/edit', $data);
+							return;
+						}
+
+						$this->model->editChannel($this->channelId, $name, $descr, '', '', '');
+						$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
+						$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été modifiée !', 'channels/list', $data);
+					}
+					else {
+						$this->renderViewWithError('Le nom de la chaîne doit contenir uniquement des lettres (majuscules et minuscules), des traits-d\'union, des _ et des points.', 'channels/edit', $data);
+					}
+				}
+				else {
+					$this->renderViewWithError('Le nom de la chaîne doit être compris entre 3 et 40 caractères.', 'channels/edit', $data);
+				}
+			}
+			else
+			{
+				$this->renderViewWithError('Tous les champs doivent être remplis.', 'channels/edit', $data);
 			}
 		}
 	}

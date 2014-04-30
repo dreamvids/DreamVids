@@ -10,7 +10,7 @@
 
 		<span class="buttons">
 		    <a href="<?php echo WEBROOT.'channels/add'; ?>">
-			    <button>
+			    <button class="btn btn-primary">
 			        Ajouter une chaîne
 			    </button>
 			</a>
@@ -21,7 +21,23 @@
     			<tr><th>Nom</th><th>Abonnés</th><th>Vues</th><th>Modifier</th><th>Supprimer</th></tr>
     	<?php
     		foreach ($channels as $chan) {
-    			echo '<tr><td><a href="'.WEBROOT.'channel/'.$chan->id.'">'.$chan->name.'</a></td><td>'.$chan->subscribers.'</td><td>'.$chan->views.'</td><td><input type="button" value="Modifier" /></td><td><input type="button" value="Supprimer" /></td></tr>';
+				?>
+				
+				<tr>
+					<td>
+						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><?php echo $chan->name; ?></a>
+					</td>
+					<td><?php echo $chan->subscribers; ?></td>
+					<td><?php echo $chan->views; ?></td>
+					<td>
+						<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>"><button>Modifier</button></a>
+					</td>
+					<td>
+						<input type="button" value="Supprimer" />
+					</td>
+				</tr>
+
+				<?php
     		}
     	?>
     	</table>

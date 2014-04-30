@@ -1,7 +1,7 @@
 <div class="content">
 
 	<section class="">
-		<h1 class="title">Ajouter une chaîne</h1>
+		<h1 class="title">Modifier une chaîne</h1>
 
 		<?php
 			include VIEW.'layouts/accountMenu.php';
@@ -24,7 +24,7 @@
 			<label for="background">Arrière-plan :</label><br />
 			<input type="file" name="background" id="background" value="<?php echo @$background; ?>" /><br />
 			
-			<input type="submit" name="createChannelSubmit" value="Créer la chaîne" />
+			<input type="submit" name="editChannelSubmit" value="Créer la chaîne" />
 		</form>
 	</section>
 

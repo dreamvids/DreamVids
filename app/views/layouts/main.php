@@ -22,42 +22,40 @@
 								<img src="<?php echo IMG.'icon_logo.png'; ?>" alt="Logo DreamVids" id="top-nav-logo-icon" class="top-nav-icon-logo" />
 								<img src="<?php echo IMG.'text_logo.png'; ?>" alt="DreamVids" id="top-nav-logo-text" class="top-nav-text-logo" />
 							</a>
+
+							<a class="bug-report" href="bugs">Un bug ?</a>
 						</div>
 						<div id="inner-top-nav-right">
-
 							<form method="get" action="search">
 								<input type="text" id="top-nav-search-input" name="q" placeholder="Rechercher">
 								<input type="submit" value="">
 							</form>
 
 							<div id="top-nav-user-information">
-								<a id="top-nav-user-information-button">
-									<?php if(Session::isActive()) { ?>
-										<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
-										<h4 id="top-nav-user-information-button-h4"><?php echo Session::get()->username; ?></h4>
+								<span id="top-nav-user-information-button">
+									<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
+									<h4 id="top-nav-user-information-button-h4"><?php echo Session::isActive() ? Session::get()->username : 'Bienvenue, invité'; ?></h4>
+									
+									<?php if (Session::isActive()) { ?>
 										<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
-
 										<div id="top-nav-user-information-menu">
 											<ul>
-												<a href="<?php echo WEBROOT.'channels'; ?>">Mes chaînes</a>
+												<a href="<?php echo WEBROOT.'channel/'.Session::get()->username; ?>">Ma chaîne</a>
 												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
-												<a href="<?php echo WEBROOT.'login/signout'; ?>">Déconnexion</a>
+												<a href="messages">Mes messages</a>
+												<a href="#">Déconnexion</a>
 											</ul>
 										</div>
 									<?php } else { ?>
-										<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
-										<h4 id="top-nav-user-information-button-h4">Bienvenue, invité !</h4>
-
 										<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
-
 										<div id="top-nav-user-information-menu">
 											<ul>
-												<li><a href="<?php echo WEBROOT.'login'; ?>">Connexion</a></li>
-												<li><a href="<?php echo WEBROOT.'register'; ?>">Inscription</a></li>
+												<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
+												<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
 											</ul>
 										</div>
 									<?php } ?>
-								</a>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -66,9 +64,10 @@
 					<div id="inner-bottom-nav">
 						<nav>
 							<ul>
-								<li><a href="<?php echo WEBROOT; ?>">Accueil</a></li>
+								<li class="current"><a href="index.php">Accueil</a></li>
 								<li><a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a></li>
 								<li><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
+								<li><a href="<?php echo WEBROOT.'account/messages'; ?>">Messagerie</a></li>
 								<li><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
 							</ul>
 						</nav>
