@@ -60,7 +60,7 @@ $lang = array(
 
 'avatar' => 'Avatar',
 
-'by' => 'par',
+'by' => 'Par',
 
 'loading_video' => 'Video en cours de traitement ou navigateur non supporté !',
 
@@ -158,7 +158,7 @@ $lang = array(
 
 '<min' => ' 1 minute',
 
-'there_as' => 'il y a',
+'there_as' => 'Il y a',
 
 'size_avatar' => 'L\'avatar ne doit pas peser plus de 100 Ko.',
 
