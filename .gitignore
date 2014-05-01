@@ -5,3 +5,4 @@ uploads/
 includes/bdd.class.php
 /nbproject/private/
 vendor/
+module_creator.php
