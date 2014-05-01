@@ -16,6 +16,7 @@ function MVCArray($table, $reponse, $secure=true)
 	$return = array();
 	while ($donnees = $bdd->fetch_array($reponse) )
 	{
+		echo $bdd->error();
 		array_push($return, array() );
 		$key = count($return) - 1;
 		$columns = $bdd->show_columns($table);
