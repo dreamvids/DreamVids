@@ -161,8 +161,8 @@
 		</tr>
 		<tr>
 			<td colspan="4">
-					<?php echo "<strong class='title'>".$lang['desc']." :</strong>"; ?><br/>
-					<?php echo "<p class='description'>".bbcode(nl2br(secure($desc) ) )."</p>"; ?>
+					<?php echo '<strong class="title">'.$lang['desc'].' :</strong>'; ?><br/>
+					<?php echo '<p class="description">'.bbcode(nl2br(secure($desc) ) ).'</p>'; ?>
 			</td>
 		</tr>
 	</table> <!-- /////////////////////////////////////////////////////////////////// FIN DU TABLEAU -->
