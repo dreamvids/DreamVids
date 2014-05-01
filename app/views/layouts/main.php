@@ -5,11 +5,11 @@
 
 		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.css'; ?>">
 
-		<meta name="viewport" content="width = device-width, initial-scale = 0.9, maximum-scale = 1.0, user-scalable = no">
+		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/meta.php') : include(VIEW.'layouts/pages/default/meta.php'); ?>
 
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
-		<title>DreamVids</title>
+		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle : 'DreamVids'; ?></title>
 	</head>
 
 	<body>
@@ -62,15 +62,9 @@
 				</div>
 				<div id="bottom-nav">
 					<div id="inner-bottom-nav">
-						<nav>
-							<ul>
-								<li class="current"><a href="index.php">Accueil</a></li>
-								<li><a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a></li>
-								<li><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
-								<li><a href="<?php echo WEBROOT.'account/messages'; ?>">Messagerie</a></li>
-								<li><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
-							</ul>
-						</nav>
+
+						<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/nav.php') : include(VIEW.'layouts/pages/default/nav.php'); ?>
+
 						<span id="mobile-nav-icon"><p></p></span>
 						<div id="bottom-nav-social">
 							<ul>
@@ -98,11 +92,6 @@
 			</footer>
 		</div>
 
-		<script src="<?php echo JS.'ajax.js'; ?>"></script>
-		<script src="<?php echo JS.'upload.js'; ?>"></script>
-		<script src="<?php echo JS.'interactions.js'; ?>"></script>
-		<script src="<?php echo JS.'slider.js'; ?>"></script>
-		<script src="<?php echo JS.'bgLoader.js'; ?>"></script>
-		<script src="<?php echo JS.'vote.js'; ?>"></script>
+		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
 	</body>
 </html>
