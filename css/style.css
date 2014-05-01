@@ -122,13 +122,15 @@ h1 {
 }
 
 .thumbnail a img{
-/*height: 124px;
-width: 45%;*/
+max-height: 100%;
+max-width: 100%;
+float: left;
 }
 
 .featuredbox {
   width: 100%;
   overflow: hidden;
+  height: 120px;
   display: inline-block;
   background: #ffffff;
   border: solid 1px #cbcbcb;
@@ -142,8 +144,7 @@ width: 45%;*/
 }
 
 .featuredbox img{
-	float: left;
-	width: 170px;
+	
 }
 
 
