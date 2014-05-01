@@ -29,7 +29,6 @@ class Watch {
 		$data = $db->num_rows($db->select("user_id", "videos_votes", "WHERE user_id='".$GLOBALS['session']->getId()."' AND type='video' AND action='dislike' AND obj_id='".$db->real_escape_string($vid)."'") );
 		return ($data > 0);
 	}
-
 	public static function getComments($vidId) {
 		$comments = array();
 		$db = new BDD();

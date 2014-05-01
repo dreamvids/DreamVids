@@ -21,10 +21,15 @@
 
 		<?php if(@$_GET['page'] == "watch") { ?>
 
-			<meta property="og:title" content="<?php echo secure($title); ?>" />
+			<meta property="og:title" content="<?php echo str_replace('"', secure("''"), secure($title) ); ?>" />
 			<meta property="og:type" content="video.movie" />
+<<<<<<< HEAD
 			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
-			<meta property="og:description" content="<?php echo str_replace(CHR(13) . CHR(10), "", bbcode(nl2br(secure($desc)))); ?>" />
+			<meta property="og:description" content="<?php echo secure($desc); ?>" />
+=======
+			<meta property="og:url" content="http://dreamvids.fr/&<?php echo secure($_GET['vid']); ?>" />
+			<meta property="og:description" content="<?php echo str_replace('"', secure("''"), str_replace(CHR(13) . CHR(10), "", secure($desc) ) ); ?>" />
+>>>>>>> 5b715ccc4acaedd03dbf8d64ce1250418cdf6213
 			<meta property="og:image" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
 			<meta property="og:image:type" content="image/jpg" />
 
