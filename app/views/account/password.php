@@ -8,7 +8,7 @@
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<form class="form" method="post" action="">
+		<form class="form middle" method="post" action="">
 			<label for="currentPass">Mot de passe actuel :</label>
 			<input type="password" name="currentPass"><br />
 

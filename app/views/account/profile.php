@@ -8,7 +8,7 @@
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<form class="form" method="post" action="" enctype="multipart/form-data">
+		<form class="form middle" method="post" action="" enctype="multipart/form-data">
 			<label for="email">Adresse email :</label>
 			<input value="<?php echo $email; ?>" type="text" name="email" placeholder="Adresse email"><br />
 

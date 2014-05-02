@@ -15,16 +15,17 @@
 
 			<div class="card video long">
 				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-					<!--<div class="time">12:05</div>-->
+					<!-- <div class="time">12:05</div> -->
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>" class="overlay"></a>
 				</div>
 				<div class="description">
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>"><h4><?php echo $video->title; ?></h4></a>
-					<span class="buttons">
-						<button>Paramètres</button>
-						<button>Supprimer</button>
-					</span>
-					<div><span class="view"><?php echo $video->views; ?></span><span class="plus"><?php echo $video->likes; ?></span><span class="moins"><?php echo $video->dislikes; ?></span></div>
+					<a href="#"><button>Paramètres</button></a>
+					<div>
+						<span class="view"><?php echo $video->views; ?></span>
+						<span class="plus"><?php echo $video->likes; ?></span>
+						<span class="moins"><?php echo $video->dislikes; ?></span>
+					</div>
 				</div>
 			</div>
 
