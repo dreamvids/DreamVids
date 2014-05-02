@@ -8,39 +8,35 @@
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<span class="buttons">
-		    <a href="<?php echo WEBROOT.'channels/add'; ?>">
-			    <button class="btn btn-primary">
-			        Ajouter une chaîne
-			    </button>
-			</a>
-    	</span>
+    	<div class="moderating-commands">
+    		<a href="<?php echo WEBROOT.'channels/add'; ?>">
+    			<button class="blue big" name="create-channel">Ajouter une chaîne</button>
+    		</a>		
+    	</div>
     	
-    	<table>
-    		<thead>
-    			<tr><th>Nom</th><th>Abonnés</th><th>Vues</th><th>Modifier</th><th>Supprimer</th></tr>
-    	<?php
-    		foreach ($channels as $chan) {
-				?>
-				
-				<tr>
-					<td>
-						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><?php echo $chan->name; ?></a>
-					</td>
-					<td><?php echo $chan->subscribers; ?></td>
-					<td><?php echo $chan->views; ?></td>
-					<td>
-						<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>"><button>Modifier</button></a>
-					</td>
-					<td>
-						<input type="button" value="Supprimer" />
-					</td>
-				</tr>
+    	<aside class="long-cards-list">
+    		<?php
+    			foreach ($channels as $chan) {
+					?>
 
-				<?php
-    		}
-    	?>
-    	</table>
+
+					<div class="card channel long">
+						<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>">
+							<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
+						</a>
+
+						<div class="description">
+							<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><b><?php echo $chan->name; ?></b></a>
+							<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>"><button>Paramètres</button></a>
+							<b class="principal">(Chaîne principale)</b>
+							<span class="subscriber"><b><?php echo $chan->subscribers; ?></b> Abonné(s)</span>
+						</div>
+					</div>
+	
+					<?php
+    			}
+    		?>
+    	</aside>
 	</section>
 
 </div>
