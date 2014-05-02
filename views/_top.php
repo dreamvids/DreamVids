@@ -21,20 +21,53 @@
 
 		<?php if(@$_GET['page'] == "watch") { ?>
 
-			<meta property="og:title" content="<?php echo str_replace('"', secure("''"), secure($title) ); ?>" />
+			<meta property="og:title" content="<?php echo secure($title); ?>" />
 			<meta property="og:type" content="video.movie" />
 			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
-			<meta property="og:description" content="<?php echo secure($desc); ?>" />
+			<meta property="og:description" content="<?php echo bbcode(nl2br(secure($desc))); ?>" />
 			<meta property="og:image" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
 			<meta property="og:image:type" content="image/jpg" />
+
+			<meta name="twitter:card" content="photo">
+			<meta name="twitter:site" content="@DreamVids_">
+			<meta name="twitter:creator" content="">
+			<meta name="twitter:title" content="<?php echo secure($title); ?>">
+			<meta name="twitter:image:src" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>">
+			<meta name="twitter:domain" content="dreamvids.fr">
+			<meta name="twitter:app:name:iphone" content="">
+			<meta name="twitter:app:name:ipad" content="">
+			<meta name="twitter:app:name:googleplay" content="">
+			<meta name="twitter:app:url:iphone" content="">
+			<meta name="twitter:app:url:ipad" content="">
+			<meta name="twitter:app:url:googleplay" content="">
+			<meta name="twitter:app:id:iphone" content="">
+			<meta name="twitter:app:id:ipad" content="">
+			<meta name="twitter:app:id:googleplay" content="">
 
 		<?php } else if(@$_GET['page'] == "member") { ?>
 
 			<meta property="og:title" content="<?php echo secure($pseudo); ?>" />
 			<meta property="og:type" content="profile" />
-			<meta property="profile:username  " content="<?php echo secure($pseudo); ?>" />
+			<meta property="profile:username" content="<?php echo secure($pseudo); ?>" />
 			<meta property="og:url" content="http://dreamvids.fr/@<?php echo secure($pseudo); ?>" />
 			<meta property="og:image" content="<?php echo $avatar; ?>" />
+
+			<meta name="twitter:card" content="summary">
+			<meta name="twitter:site" content="@DreamVids_">
+			<meta name="twitter:title" content="<?php echo secure($pseudo); ?>">
+			<meta name="twitter:description" content="<?php echo secure($member->getSubscribers() ); ?> abonnés">
+			<meta name="twitter:creator" content="@creator_username">
+			<meta name="twitter:image:src" content="<?php echo $avatar; ?>">
+			<meta name="twitter:domain" content="dreamvids.fr">
+			<meta name="twitter:app:name:iphone" content="">
+			<meta name="twitter:app:name:ipad" content="">
+			<meta name="twitter:app:name:googleplay" content="">
+			<meta name="twitter:app:url:iphone" content="">
+			<meta name="twitter:app:url:ipad" content="">
+			<meta name="twitter:app:url:googleplay" content="">
+			<meta name="twitter:app:id:iphone" content="">
+			<meta name="twitter:app:id:ipad" content="">
+			<meta name="twitter:app:id:googleplay" content="">
 
 		<?php } else { ?>
 
@@ -54,11 +87,11 @@
 if (isset($session) )
 {
 ?>
-		<div style="float:right;margin:20px"><center><a href="./@<?php echo secure($session->getName() ); ?>"><img src="<?php echo secure($session->getAvatarPath() ); ?>" alt="" width="50" /><br /><b style="color:white"><?php echo secure($session->getName() ); ?></b></a></center></div>
+		<div style="float:right;margin:20px"><center><a href="/@<?php echo secure($session->getName() ); ?>"><img src="<?php echo secure($session->getAvatarPath() ); ?>" alt="" width="50" /><br /><b style="color:white"><?php echo secure($session->getName() ); ?></b></a></center></div>
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="./"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
+		<div id="logo" class=""><a href="/"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
 
@@ -87,7 +120,7 @@ if (isset($session) )
 					<li><a href="signup"><?php echo $lang['register']; ?></a></li>
 					<?php } ?>
 				</ul>
-		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="./search">
+		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="/search">
         <div class="form-group center-block">
           <input type="search" required="required" name="q" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
         </div>
