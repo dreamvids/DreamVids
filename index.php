@@ -29,34 +29,19 @@ include 'includes/tasks.php';
 
 if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm']) )
 {
-	//if (isset($session) || @$_GET['page'] == 'log')
-	//{
-        if (@$_GET['page'] != 'rss_channel')
+	include $model;
+	include $content;
+	if (@$_GET['page'] != 'ajax' && @$_GET['page'] != 'rss_channel')
 	{
-		include $model;
-		include $content;
-		if (@$_GET['page'] != 'ajax')
-		{
-			include 'views/_top.php';
-			include $view;
-			$partnerships = getPartnerships();
-			include 'views/_btm.php';
-		}
-		else
-		{
-			include $view;
-		}
-        }else{
-            include $model;
-	    include $content;
-            include $view;
-        }
-	/*}
+		include 'views/_top.php';
+		include $view;
+		$partnerships = getPartnerships();
+		include 'views/_btm.php';
+	}
 	else
 	{
-		header('location:http://beta.dreamvids.fr/?page=log');
-		exit();
-	}*/
+		include $view;
+	}
 }
 else
 {

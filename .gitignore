@@ -3,8 +3,9 @@
 .project
 uploads/
 includes/bdd.class.php
-/nbproject/private/
+nbproject/
 vendor/
 module_creator.php
 img/JpFOhh.PNG
 includes/bdd.class.php
+admin/suppr.txt

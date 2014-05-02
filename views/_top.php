@@ -24,7 +24,7 @@
 			<meta property="og:title" content="<?php echo str_replace('"', secure("''"), secure($title) ); ?>" />
 			<meta property="og:type" content="video.movie" />
 			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
-			<meta property="og:description" content="<?php echo secure($desc); ?>" />
+			<meta property="og:description" content="<?php echo str_replace('"', secure("''"), secure($desc) ); ?>" />
 			<meta property="og:image" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
 			<meta property="og:image:type" content="image/jpg" />
 

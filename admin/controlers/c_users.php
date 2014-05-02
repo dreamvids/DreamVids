@@ -30,7 +30,7 @@ switch (@$_GET['action'])
 	case 'delete':
 		$user = new User($_GET['id']);
 		if ($user->getRank() == $config['rank_mbr'])
-			AdminUsers::delete($_GET['id']);
+			AdminUsers::delete($_GET['id'], $session->getName() );
 		header('location:?page=users');
 		exit();
 		break;
