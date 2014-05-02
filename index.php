@@ -31,6 +31,8 @@ if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm'
 {
 	//if (isset($session) || @$_GET['page'] == 'log')
 	//{
+        if (@$_GET['page'] != 'rss_channel')
+	{
 		include $model;
 		include $content;
 		if (@$_GET['page'] != 'ajax')
@@ -44,6 +46,11 @@ if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm'
 		{
 			include $view;
 		}
+        }else{
+            include $model;
+	    include $content;
+            include $view;
+        }
 	/*}
 	else
 	{
