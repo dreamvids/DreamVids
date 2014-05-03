@@ -32,7 +32,7 @@
 			<meta name="twitter:site" content="@DreamVids_">
 			<meta name="twitter:creator" content="">
 			<meta name="twitter:title" content="<?php echo secure($title); ?>">
-			<meta name="twitter:image:src" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>">
+			<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>">
 			<meta name="twitter:domain" content="dreamvids.fr">
 			<meta name="twitter:app:name:iphone" content="">
 			<meta name="twitter:app:name:ipad" content="">
@@ -57,7 +57,7 @@
 			<meta name="twitter:title" content="<?php echo secure($pseudo); ?>">
 			<meta name="twitter:description" content="<?php echo secure($member->getSubscribers() ); ?> abonnés">
 			<meta name="twitter:creator" content="@creator_username">
-			<meta name="twitter:image:src" content="<?php echo $avatar; ?>">
+			<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo $avatar; ?>">
 			<meta name="twitter:domain" content="dreamvids.fr">
 			<meta name="twitter:app:name:iphone" content="">
 			<meta name="twitter:app:name:ipad" content="">
