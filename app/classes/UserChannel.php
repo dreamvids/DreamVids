@@ -25,7 +25,7 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public static function getNameById($channelId) {
-		return UserChannel::find_by_id($userId)->name;
+		return UserChannel::find_by_id($channelId)->name;
 	}
 
 }

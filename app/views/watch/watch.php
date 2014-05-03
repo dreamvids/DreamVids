@@ -97,7 +97,7 @@
 					<div class="comment-head">
 						<div class="user">
 							<img src="<?php echo IMG.'avatar_user.png'; ?>" alt="Avatar de Pseudo">
-							<a href="channel"><?php echo User::getNameById($comment->poster_id); ?></a>
+							<a href="channel"><?php echo UserChannel::getNameById($comment->poster_id); ?></a>
 						</div>
 						<div class="date">
 							<p><?php echo Utils::relative_time($comment->timestamp); ?></p>

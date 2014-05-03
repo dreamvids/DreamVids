@@ -64,12 +64,9 @@ class Watch extends Controller {
 		$req = $request->getValues();
 
 		if(isset($req['commentSubmit']) && Session::isActive()) {
-
-			echo 'looool';
-
 			$content = Utils::secure($req['comment-content']);
 
-			$this->model->postComment(Session::get()->id, self::$vidId, $content);
+			$this->model->postComment(Session::get()->getMainChannel()->id, self::$vidId, $content); // TODO: Allow the user to choose the channel to post with
 		}
 	}
 

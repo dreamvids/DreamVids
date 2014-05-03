@@ -17,11 +17,11 @@ class Watch_model extends Model {
 	}
 
 	public function getAuthorsName($videoId) {
-		return User::find_by_id(Video::find_by_id($videoId)->poster_id)->username;
+		return UserChannel::find_by_id(Video::find_by_id($videoId)->poster_id)->name;
 	}
 
 	public function getAuthorsSubscribers($videoId) {
-		return User::find_by_id(Video::find_by_id($videoId)->poster_id)->subscribers;
+		return UserChannel::find_by_id(Video::find_by_id($videoId)->poster_id)->subscribers;
 	}
 
 	public function getCommentsOnVideo($videoId) {
@@ -30,7 +30,7 @@ class Watch_model extends Model {
 
 	public function getCommentAuthor($comment) {
 		if(is_object($comment)) {
-			return User::find_by_id($comment->poster_id)->username;
+			return UserChannel::find_by_id($comment->poster_id)->username;
 		}
 	}
 
