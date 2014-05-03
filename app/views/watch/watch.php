@@ -84,118 +84,36 @@
 
 <div class="content">
 	<section id="comments">
-		<form onsubmit="return false;" method="post" action="">
-			<textarea id="text_comment" required rows="4" cols="10" placeholder="Commentaire"></textarea>
-			<input id="submit_comment" type="submit" value="Envoyer">
+		<form method="post" action="" onsubmit="postComment(<?php echo $video->id; ?>, document.getElementById('text_comment').value)">
+			<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
+			<input id="commentSubmit" name="commentSubmit" type="submit" value="Envoyer">
 		</form>
 
 		<h3 class="title">Commentaires Populaires</h3>
 
 		<div id="comments-best">
-			<div class="comment">
-				<div class="comment-head">
-					<div class="user">
-						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
-						<a href="channel">Pseudo</a>
+			<?php foreach ($comments as $comment): ?>
+				<div class="comment">
+					<div class="comment-head">
+						<div class="user">
+							<img src="<?php echo IMG.'avatar_user.png'; ?>" alt="Avatar de Pseudo">
+							<a href="channel"><?php echo User::getNameById($comment->poster_id); ?></a>
+						</div>
+						<div class="date">
+							<p><?php echo Utils::relative_time($comment->timestamp); ?></p>
+						</div>
 					</div>
-					<div class="date">
-						<p>12 / 06 à 8h09</p>
+					<div class="comment-text">
+						<p><?php echo $comment->comment; ?></p>
 					</div>
-				</div>
-				<div class="comment-text">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, ad, voluptate, molestias, necessitatibus ex a rerum laudantium aperiam sit recusandae perferendis quod deleniti minima consequatur dicta vitae praesentium inventore earum mollitia cumque iste totam nostrum fugit porro sed quibusdam velit! Officiis, temporibus doloribus consequuntur debitis assumenda quidem obcaecati adipisci quaerat.</p>
-				</div>
-				<div class="comment-notation">
-					<ul>
-						<li class="plus"><a href="#">+</a>141</li>
-						<li class="moins"><a href="#">-</a>3</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="comment">
-				<div class="comment-head">
-					<div class="user">
-						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
-						<a href="channel" class="validate">Lorem</a><b class="rank" data-rank="1">Admin</b>
-					</div>
-					<div class="date">
-						<p>18 / 06 à 15h09</p>
+					<div class="comment-notation">
+						<ul>
+							<li class="plus"><a href="#">+</a><?php echo $comment->likes; ?></li>
+							<li class="moins"><a href="#">-</a><?php echo $comment->dislikes; ?></li>
+						</ul>
 					</div>
 				</div>
-				<div class="comment-text">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				</div>
-				<div class="comment-notation">
-					<ul>
-						<li class="plus"><a href="#">+</a>25</li>
-						<li class="moins"><a href="#">-</a>0</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="comment">
-				<div class="comment-head">
-					<div class="user">
-						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
-						<a href="channel">Pseudo</a>
-					</div>
-					<div class="date">
-						<p>12 / 06 à 8h09</p>
-					</div>
-				</div>
-				<div class="comment-text">
-					<p>Laudantium aperiam sit recusandae perferendis quod deleniti minima consequatur dicta vitae praesentium inventore earum mollitia cumque iste totam nostrum fugit porro sed quibusdam velit! Officiis, temporibus doloribus consequuntur debitis assumenda quidem obcaecati adipisci quaerat.</p>
-				</div>
-				<div class="comment-notation">
-					<ul>
-						<li class="plus"><a href="#">+</a>854</li>
-						<li class="moins"><a href="#">-</a>24</li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="comment">
-				<div class="comment-head">
-					<div class="user">
-						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
-						<a href="channel">Lorem</a><b class="rank" data-rank="3">Staff</b>
-					</div>
-					<div class="date">
-						<p>18 / 06 à 15h09</p>
-					</div>
-				</div>
-				<div class="comment-text">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				</div>
-				<div class="comment-notation">
-					<ul>
-						<li class="plus"><a href="#">+</a>25</li>
-						<li class="moins"><a href="#">-</a>0</li>
-					</ul>
-				</div>
-			</div>
-			
-			<div class="comment">
-				<div class="comment-head">
-					<div class="user">
-						<img src="img/avatar_user.png" alt="Avatar de Pseudo">
-						<a href="channel">Pseudo</a><b class="rank" data-rank="2">Modo</b>
-					</div>
-					<div class="date">
-						<p>12 / 06 à 8h09</p>
-					</div>
-				</div>
-				<div class="comment-text">
-					<p>Laudantium aperiam sit recusandae perferendis quod deleniti minima consequatur dicta vitae praesentium inventore earum mollitia cumque iste totam nostrum fugit porro sed quibusdam velit! Officiis, temporibus doloribus consequuntur debitis assumenda quidem obcaecati adipisci quaerat.</p>
-				</div>
-				<div class="comment-notation">
-					<ul>
-						<li class="plus"><a href="#">+</a>854</li>
-						<li class="moins"><a href="#">-</a>24</li>
-					</ul>
-				</div>
-			</div>
+			<?php endforeach ?>
 		</div>
 
 	</section>

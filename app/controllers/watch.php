@@ -51,7 +51,8 @@ class Watch extends Controller {
 		$data['likes'] = $video->likes;
 		$data['dislikes'] = $video->dislikes;
 		$data['thumbnail'] = $video->tumbnail;
-		$data['subscribers'] = $this->model->getAuthorsSubscribers($videoId);
+		//$data['subscribers'] = $this->model->getAuthorsSubscribers($videoId);
+		$data['subscribers'] = 0; //TODO: Take care of this f*cking channel
 		$data['comments'] = $this->model->getCommentsOnVideo($videoId);
 		$data['likedByUser'] = $this->model->isVideoLikedByUser($videoId) ? true : false;
 		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
@@ -63,6 +64,9 @@ class Watch extends Controller {
 		$req = $request->getValues();
 
 		if(isset($req['commentSubmit']) && Session::isActive()) {
+
+			echo 'looool';
+
 			$content = Utils::secure($req['comment-content']);
 
 			$this->model->postComment(Session::get()->id, self::$vidId, $content);

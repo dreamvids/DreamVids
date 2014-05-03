@@ -1,8 +1,6 @@
 /*
- *  Ajax 1.3.0
+ *  Ajax 1.3.1
  *  Librairie pour envoyer et recevoir des informations simplement avec Ajax
- *
- *  [1.3.0] Callback dÃ©sormais dans des "promises"
  *
  *  ajax.js
  */
@@ -22,13 +20,21 @@ var ajax = function(method, url, object) {
 
     this.xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
 
-    this.then = function(callback) {
-        this.xhr.callback = callback;
+    this.success = function(callback) {
+        this.xhr.callbackSuccess = callback;
+        return this;
+    };
+
+    this.error = function(callback) {
+        this.xhr.callbackError = callback;
+        return this;
     };
 
     this.xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200 && this.callback) {
-            this.callback(this);
+        if (this.readyState === 4 && this.status == 200 && this.callbackSuccess && typeof(this.callbackSuccess) == "function") {
+            this.callbackSuccess(this);
+        } else if (this.readyState === 4 && this.status == 404 && this.callbackError && typeof(this.callbackError) == "function") {
+            this.callbackError('404');
         }
     };
 
