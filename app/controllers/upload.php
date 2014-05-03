@@ -16,7 +16,7 @@ class Upload extends Controller {
 	public function preprocess() { // called from JS when file starts to upload
 		if(Session::isActive()) {
 			$this->loadModel('upload_model');
-			$this->model->createTempVideo(Session::get()->id);
+			$this->model->createTempVideo(Session::get()->getMainChannel()->id);
 		}
 	}
 
@@ -82,14 +82,14 @@ class Upload extends Controller {
 						}
 					}*/
 
-					$userId = Session::get()->id;
+					$channelId = Session::get()->getMainChannel()->id; //TODO: Allow the user to choose which channel to upload from
 					$title = Utils::secure($req['videoTitle']);
 					$desc = Utils::secure($req['videoDescription']);
 					$tags = Utils::secure($req['videoTags']);
 					$visibility = $req['videoVisibility'];
 					$vidId = $_SESSION['VIDEO_UPLOAD_ID'];
 
-					$this->model->registerVideo($vidId, $userId, $title, $desc, $tags, $thumb, Utils::tps(), $visibility);
+					$this->model->registerVideo($vidId, $channelId, $title, $desc, $tags, $thumb, Utils::tps(), $visibility);
 
 					echo 'Vos informations ont bien été enregistrées !'; // handled by JS, displayed in alert box (thanks Ajax)
 				}

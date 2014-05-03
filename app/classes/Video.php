@@ -2,10 +2,10 @@
 
 class Video extends ActiveRecord\Model {
 
-	public static function createTemp($id, $userId) {
+	public static function createTemp($id, $channelId) {
 		Video::create(array(
 			'id' => $id,
-			'poster_id' => $userId,
+			'poster_id' => $channelId,
 			'title' => '[no_info_provided]',
 			'description' => '[no_info_provided]',
 			'tags' => '[no_info_provided]',
@@ -32,10 +32,10 @@ class Video extends ActiveRecord\Model {
 		));
 	}
 
-	public static function register($vidId, $userId, $title, $desc, $tags, $thumb, $timestamp, $visibility) {
+	public static function register($vidId, $channelId, $title, $desc, $tags, $thumb, $timestamp, $visibility) {
 		Video::update_all(array(
 			'set' => array(
-				'poster_id' => $userId,
+				'poster_id' => $channelId,
 				'title' => $title,
 				'description' => $desc,
 				'tags' => $tags,
