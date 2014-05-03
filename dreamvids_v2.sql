@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 05 Avril 2014 à 09:58
+-- Généré le: Sam 03 Mai 2014 à 17:21
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -117,10 +117,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pass` varchar(40) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
-  `background` text NOT NULL,
-  `description` text NOT NULL,
-  `followers` int(11) NOT NULL,
   `followings` text NOT NULL,
   `subscriptions` text NOT NULL,
   `reg_timestamp` bigint(20) NOT NULL,
@@ -128,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -142,6 +138,9 @@ CREATE TABLE IF NOT EXISTS `users_channels` (
   `description` text NOT NULL,
   `owner_id` int(11) NOT NULL,
   `admins_ids` text NOT NULL,
+  `avatar` varchar(255) NOT NULL,
+  `banner` varchar(255) NOT NULL,
+  `background` varchar(255) NOT NULL,
   `subscribers` int(11) NOT NULL,
   `views` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
@@ -209,9 +208,11 @@ CREATE TABLE IF NOT EXISTS `videos_annot` (
 
 CREATE TABLE IF NOT EXISTS `videos_comments` (
   `id` varchar(6) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `poster_id` varchar(6) NOT NULL,
   `video_id` varchar(6) NOT NULL,
   `comment` text NOT NULL,
+  `likes` int(11) NOT NULL,
+  `dislikes` int(11) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -242,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
 
 -- --------------------------------------------------------
 
