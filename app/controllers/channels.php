@@ -36,8 +36,6 @@ class Channels extends Controller {
 			$data['avatar'] = $channel->avatar;
 			$data['banner'] = $channel->banner;
 			$data['background'] = $channel->background;
-
-			$data['mabite'] = 'lol';
 			
 			$this->renderView('channels/edit', $data);
 		}

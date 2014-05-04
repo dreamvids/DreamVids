@@ -45,7 +45,7 @@ class Account_model extends Model {
 		$user->save();
 	}
 
-	public function getVideosFromUser($userId) {
-		return Video::all(array('poster_id' => $userId));
+	public function getVideosFromChannel($channelId) {
+		return Video::all(array('poster_id' => $channelId));
 	}
 }

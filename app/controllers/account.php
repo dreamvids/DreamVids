@@ -36,7 +36,7 @@ class Account extends Controller {
 			$this->loadModel('account_model');
 			
 			$data['user'] = Session::get();
-			$data['videos'] = $this->model->getVideosFromUser(Session::get()->id);
+			$data['videos'] = $this->model->getVideosFromChannel(Session::get()->getMainChannel()->id);
 			$data['current'] = 'videos';
 
 			$this->renderView('account/videos', $data);
