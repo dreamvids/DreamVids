@@ -3,6 +3,7 @@
 if(isset($_GET['vid'])) {
 	$video = Video::get(htmlentities($_GET['vid']));
 	$title = $video->getTitle();
+	$html_title = secure($title);
 	$id = $video->getId();
 	$author = new User($video->getUserId());
 	$CurView = '';

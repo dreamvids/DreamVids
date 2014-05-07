@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?php echo $lang['dreamvids']; ?></title>
+		<title><?php echo (isset($html_title) ) ? $html_title.' - ' : ''; echo $lang['dreamvids']; ?></title>
 		<meta charset="utf-8" />		
 		<meta http-equiv="Content-Type" content="text/html; charset = utf-8">
 		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
@@ -82,7 +82,6 @@
 	<body>
 
 	<div id="header">
-		<a href="<?php if(isset($session)) { echo 'index.php?page=bugs'; } else { echo 'login'; } ?>"><div style="float:left;margin:20px;position:absolute;" class="btn btn-primary btn-danger">Reporter un bug</div></a>
 <?php
 if (isset($session) )
 {
@@ -91,7 +90,7 @@ if (isset($session) )
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="/"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
+		<div id="logo" class=""><a href="./"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
 		<br><br>
 	</div>
 
@@ -105,6 +104,7 @@ if (isset($session) )
 
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
+					<li><a style="color:red" href="<?php if(isset($session)) { echo 'index.php?page=bugs'; } else { echo 'login'; } ?>">Reporter un bug</a></li>
 					<li><a href="discover"><?php echo $lang['discover']; ?></a></li>
 					<li><a href="videoslist"><?php echo $lang['news']; ?></a></li>
 					<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>

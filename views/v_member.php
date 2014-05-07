@@ -4,12 +4,8 @@
 <link href="css/perso.php?uid=<?php echo secure($member->getId()); ?>&time=<?php echo time(); ?>" rel="stylesheet" />
 
 
-<div class="container">
-<div class='container'>
-<div class='container'>		
-	
-</div>
- <div class="panel panel-primary" > <div class="panel-heading">
+
+ <div class="panel panel-primary channel" > <div class="panel-heading">
               <h3 class="panel-title">Informations</h3>
             </div><br>
 	<div class="container" >
@@ -18,7 +14,7 @@
 		</div>
 		<div id="pseudo">
 			<div class='border-top'></div>
-				<h1><?php echo secure($pseudo); ?> <small><?php echo User::getDisplayableRank($id); ?> <span class="badge"><a style="text-decoration: none; color: #fff;" href="./?page=subscribers&uid=<?php echo $member->getId(); ?>"><?php echo secure($member->getSubscribers() ); ?> Abonnés</a></span></small></h1>	
+				<h2><?php echo secure($pseudo); ?> <small><?php echo User::getDisplayableRank($id); ?><br /><span class="badge"><a style="text-decoration: none; color: #fff;" href="./?page=subscribers&uid=<?php echo $member->getId(); ?>"><?php echo secure($member->getSubscribers() ); ?> Abonnés</a></span></small></h2>	
 			<div class='border-bottom'></div>
 		</div>
 		<?php
@@ -40,7 +36,7 @@
 		?>
 	</div><br>
 </div>
- <div class="panel panel-primary" > <div class="panel-heading">
+ <div class="panel panel-primary channel" > <div class="panel-heading">
               <h3 class="panel-title"><a href="/@<?php echo secure($pseudo); ?>&all=1">Videos</a></h3>
             </div><br>
 	<div class='row' style='margin:0;'>			
@@ -80,6 +76,6 @@
 		}
 		?>
 </div>
-</div></div></div>
+</div>
 
 

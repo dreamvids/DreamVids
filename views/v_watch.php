@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="container" style="">
 		<div class="border-top"></div>
-			<h1><?php echo secure($title); ?><small> <?php echo User::getDisplayableRank($author->getId() ); ?></small></h1>
+			<h1><?php echo secure($title); ?></h1>
 		<div class="border-bottom"></div>
 
 		<br><br>
@@ -106,7 +106,7 @@
 			<td>
 				<div style="float:left;">
 					<?php
-					echo $lang['by']." <a href=\"/@".secure($author->getName() )."\">".secure($author->getName() )."</a><br/>";
+					echo $lang['by']." <a href=\"/@".secure($author->getName() )."\">".secure($author->getName() )."</a> ".User::getDisplayableRank($author->getId() )."<br/>";
 					echo "Le  ".TraduireDate(date('j F Y \à H\hi', $video->getTimestamp()));
 					?>
 				</div>

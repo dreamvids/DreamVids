@@ -44,7 +44,8 @@ float:left;
 }
 #pseudo{
   display:inline-block;
-  width:300px;
+  width: 100%;
+  max-width:300px;
   float:left;
 }
 /*
