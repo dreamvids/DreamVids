@@ -1,9 +1,4 @@
 <?php
-if (!isset($session) )
-{
-	header('location:./');
-	exit();
-}
 
 //Résolution: 0: aucun;  1: bug connu;  2: en cours de résolution;  si le bug est corrigé on le supprime (3)
 $res = array('En attente', 'Pris en considération', 'En cours de correction');

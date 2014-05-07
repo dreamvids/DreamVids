@@ -104,7 +104,7 @@ if (isset($session) )
 
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a style="color:red" href="<?php if(isset($session)) { echo 'index.php?page=bugs'; } else { echo 'login'; } ?>">Reporter un bug</a></li>
+					<li><a style="color:red" href="index.php?page=bugs">Un bug ?</a></li>
 					<li><a href="discover"><?php echo $lang['discover']; ?></a></li>
 					<li><a href="videoslist"><?php echo $lang['news']; ?></a></li>
 					<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>

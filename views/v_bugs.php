@@ -11,7 +11,7 @@
 <?php echo (isset($err) ) ? '<div class="alert alert-danger">'.$err.'</div>' : '';
 echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-success">Bug reporté avec succès !</div>' : ''; ?>
 		<h3>Reporter un bug</h3>
-		<form role="form" action="" method="post">
+<?php if (isset($session) ) {?>		<form role="form" action="" method="post">
 			<div class="form-group">
 				<label for="bug">Description (précise !) du bug :</label>
 				<textarea required="required" rows="8" cols="50" name="bug" id="bug" class="form-control"></textarea>
@@ -22,6 +22,7 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 			</div>
 			<input type="submit" name="submit" value="Reporter" class="btn btn-primary btn-info" />
 		</form>
+<?php } else echo '<h4 class="text-center">Afin d\'éviter le spam, merci de vous connecter pour pouvoir reporter un bug.</h4>'; ?>
 		
 		<h3>Bugs déjà reportés</h3>
 <?php

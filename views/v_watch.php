@@ -166,7 +166,14 @@
 			</td>
 		</tr>
 	</table> <!-- /////////////////////////////////////////////////////////////////// FIN DU TABLEAU -->
-	<br><h2>Commentaires</h2><br>
+	<h2>Intégration</h2>
+	AutoPlay : <label for="autoplay_y">Oui</label><input id="autoplay_y" type="radio" name="autoplay"> <label for="autoplay_n">Non</label><input id="autoplay_n" type="radio" name="autoplay" checked></br>
+	Commencer à <input style="margin-left: 5px; margin-right: 5px; width: 50px;" id="start_min" type="number" name="start" min="0" value="0">m <input style="margin-left: 5px;width: 50px;" id="start_sec" type="number" name="start" min="0" max="60" value="0">s</br>
+	
+	<p> Code à utiliser sur votre page web : <br/>
+	<textarea id="code" cols="50" rows="5" style="width:100%;max-width:500px" readonly class="form-control"></textarea>
+	
+	<h2>Commentaires</h2>
 	<?php if(isset($session)) { ?>
 	<script>
 		window.onload = function () {
@@ -188,6 +195,17 @@
 				<p>Ou Ctrl+Enter pour envoyer</p>
 			</div>
 		</form>
+	<?php
+	}
+	else {
+	?>
+		<h3 class="text-center">
+			Vous devez être connecté pour pouvoir poster un commentaire.<br />
+			<small>
+				<a href="login">Connexion</a><br />
+				<a href="signup">Inscription</a>
+			</small>
+		</h3>
 	<?php } ?>
 	<br><br>
 	<div id="new_comments"></div>
@@ -225,5 +243,34 @@
 	<script type="text/javascript">
 		document.getElementById("text_comment").onkeydown = function(e) {
 			e.stopPropagation();
+		}
+	</script>
+	<script>
+		var vid = "<?php echo $id; ?>";
+	
+		var ap_y = document.getElementById('autoplay_y');
+		var ap_n = document.getElementById('autoplay_n');
+		ap_y.addEventListener("change", update);
+		ap_n.addEventListener("change", update);
+	
+		
+		var start_sec = document.getElementById('start_sec');
+		var start_min = document.getElementById('start_min');
+		start_sec.addEventListener("change", update);
+		start_min.addEventListener("change", update);
+	
+		var code = document.getElementById('code');
+	
+		code.innerHTML = '<iframe width="640px" height="360px" frameborder="0" src="http://stornitz.fr/DreamVids/' + vid + '-0" allowfullscreen></iframe>';
+	
+		function update()
+		{
+			var ap = "", start = "";
+			var sec = 0;
+			if(start_min.value != 0) sec += +start_min.value*60;
+			if(start_sec.value != 0) sec += +start_sec.value;
+			if(sec > 0) start = "-S" + sec;
+			if(ap_n.checked){ ap = "-0"; }
+			code.innerHTML = '<iframe width="640px" height="360px" frameborder="0" src="http://stornitz.fr/DreamVids/'+ vid + start + ap + '" allowfullscreen></iframe>';
 		}
 	</script>
