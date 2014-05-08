@@ -1,8 +1,8 @@
 <?php
 header('content-type: text/css');
 require('../includes/bdd.class.php');
-if (isset($_GET['uid'])) {
-	?>
+if (isset($_GET['uid']) && is_numeric($_GET['uid'])) {
+  ?>
 body{
   padding:0;
   height: 100%;
@@ -67,14 +67,26 @@ float:left;
   display: none;
 }
 <?php
+}else{
+  header('HTTP/1.0 403 Forbidden');
+  echo "Injection SQL sérieux ? pfff <br> on c'est jamais ça peux servir : ".GrabIP(). "<br> prochaine fois iptables -I INPUT -s ".GrabIP()." -j DROP";
+
 }
+function GrabIP(){
+  $ipAddress = $_SERVER['REMOTE_ADDR'];
+  if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+      $ipAddress = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+  }
+  return $ipAddress;
+}
+
 function getbackgroundFromID($userId) {
-	$db = new BDD();
-	$res = $db->select('background', 'users',  'WHERE id='.$userId.'');
-	$tmp = '';
-	$row = $db->fetch_array($res);
-	$tmp = $row['background'];
- 	$out = "../".$tmp;
-	return $out;  
+  $db = new BDD();
+  $res = $db->select('background', 'users',  'WHERE id='.$userId.'');
+  $tmp = '';
+  $row = $db->fetch_array($res);
+  $tmp = $row['background'];
+  $out = "../".$tmp;
+  return $out;  
 }
 ?>
