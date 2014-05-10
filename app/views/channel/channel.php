@@ -1,3 +1,5 @@
+<?php echo $subscribed; ?>
+
 <div class="content wide channel">
 	<div class="bgLoader" id="background-wide" data-background="<?php echo IMG.'backgrounds/003.jpg'; ?>"></div>
 
@@ -10,7 +12,9 @@
 		<div class="left">
 			<span class="bgLoader" data-background="http://lorempicsum.com/up/350/200/6"></span>
 			<p><?php echo $name; ?></p>
-			<button id="subscribe-button" data-text="S'abonner|Se désabonner">S'abonner</button>
+			<button <?php if($subscribed) echo 'class="subscribed"'; ?> id="subscribe-button" data-text="S'abonner|Se désabonner" onclick="subscribeAction('<?php echo $id; ?>')">
+				<?php echo $subscribed ? 'Se désabonner' : 'S\'abonner'; ?>
+			</button>
 		</div>
 
 		<?php if($description != '') { ?>
@@ -38,10 +42,10 @@
 					<a href="video" class="overlay"></a>
 				</div>
 				<div class="description">
-					<a href="video"><h4><?php echo $vid->title; ?></h4></a>
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
 					<div>
 						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.MultiUserChannel::getNameById($vid->poster_id); ?>"><?php echo User::getNameById($vid->poster_id); ?></a>
+						<a class="channel" href="<?php echo WEBROOT.'channel/'.UserChannel::getNameById($vid->poster_id); ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
 					</div>
 				</div>
 			</div>

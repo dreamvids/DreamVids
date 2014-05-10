@@ -48,9 +48,13 @@ class Feed_model extends Model {
 
 		if(Utils::stringStartsWith($subs, ';'))
 			$subs = substr_replace($subs, '', 0, 1);
+		if(Utils::stringEndsWith($subs, ';'))
+			$subs = substr_replace($subs, '', -1);
 
 		$subs = str_replace(';', ',', $subs);
 		$subs = '('.$subs.')';
+
+		echo $subs;
 
 		if($subs == '()') return array();
 
@@ -74,14 +78,16 @@ class Feed_model extends Model {
 
 		if(Utils::stringStartsWith($subs, ';'))
 			$subs = substr_replace($subs, '', 0, 1);
+		if(Utils::stringEndsWith($subs, ';'))
+			$subs = substr_replace($subs, '', -1);
 
 		$subs = str_replace(';', ',', $subs);
 		$subs = '('.$subs.')';
 
 		if($amount != 'nope')
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE user_id=? ORDER BY timestamp DESC LIMIT ".$amount, array($fromUser));
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id=? ORDER BY timestamp DESC LIMIT ".$amount, array($fromUser));
 		else
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE user_id=? ORDER BY timestamp DESC", array($fromUser));
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id=? ORDER BY timestamp DESC", array($fromUser));
 
 		foreach ($vidsToAdd as $vid) {
 			array_push($videos, $vid);

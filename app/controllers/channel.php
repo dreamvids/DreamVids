@@ -28,10 +28,12 @@ class Channel extends Controller {
 				$channel = UserChannel::find_by_name($channelId);
 
 			$data = array();
+			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $this->model->getVideoesFromChannel($channel->id);
+			$data['subscribed'] = $this->model->userSubscribedToChannel(Session::get()->id, $channel->id);
 
 			$this->renderView('channel/channel', $data);
 		}
@@ -45,9 +47,8 @@ class Channel extends Controller {
 		if($channelId != 'nope' && Session::isActive()) {
 			$this->loadModel('channel_model');
 
-			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
-				if(Utils::stringStartsWith($channelId, 'c_'))
-					$this->model->subscribeToChannel(Session::get()->id, $channelId);
+			if($this->model->channelExists($channelId) && !$this->model->userBelongsToChannel(Session::get()->id, $channelId)) {
+				$this->model->subscribeToChannel(Session::get()->id, $channelId);
 			}
 		}
 		else {
@@ -60,9 +61,8 @@ class Channel extends Controller {
 		if($channelId != 'nope' && Session::isActive()) {
 			$this->loadModel('channel_model');
 			
-			if(Session::get()->id != $channelId && $this->model->channelExists($channelId)) {
-				if(Utils::stringStartsWith($channelId, 'c_'))
-					if($this->model->channelExists($channelId)) $this->model->unsubscribeToChannel(Session::get()->id, $channelId);
+			if($this->model->channelExists($channelId) && !$this->model->userBelongsToChannel(Session::get()->id, $channelId)) {
+				$this->model->unsubscribeToChannel(Session::get()->id, $channelId);
 			}
 		}
 		else {

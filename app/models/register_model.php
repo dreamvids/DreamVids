@@ -33,7 +33,7 @@ class Register_model extends Model {
 			'name' => $username,
 			'description' => '',
 			'owner_id' => User::getIdByName($username),
-			'admins_ids' => User::getIdByName($username),
+			'admins_ids' => User::getIdByName($username).';',
 			'subscribers' => 0,
 			'views' => 0
 		));
