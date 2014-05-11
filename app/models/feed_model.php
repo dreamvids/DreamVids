@@ -14,13 +14,15 @@ class Feed_model extends Model {
 
 			if(Utils::stringStartsWith($subs, ';'))
 				$subs = substr_replace($subs, '', 0, 1);
+			if(Utils::stringEndsWith($subs, ';'))
+				$subs = substr_replace($subs, '', -1);
 
 			$subscriptionsArray = explode(';', $subs);
 
 			if(count($subscriptionsArray) > $amount) $amount = count($subscriptionsArray);
 
 			for($i = 0; $i < $amount; $i++) {
-				$subscriptions[$i] = User::find_by_id($subscriptionsArray[$i]);
+				$subscriptions[$i] = UserChannel::find_by_id($subscriptionsArray[$i]);
 			}
 		}
 		else {
@@ -29,15 +31,22 @@ class Feed_model extends Model {
 
 			if(Utils::stringStartsWith($subs, ';'))
 				$subs = substr_replace($subs, '', 0, 1);
+			if(Utils::stringEndsWith($subs, ';'))
+				$subs = substr_replace($subs, '', -1);
 
-			$subscriptionsArray = explode(';', $subs);
+			if(strpos($subs, ';') !== false) {
+				$subscriptionsArray = explode(';', $subs);
 
-			foreach ($subscriptionsArray as $sub) {
-				$subscriptions[] = User::find_by_id($sub);
+				foreach ($subscriptionsArray as $sub) {
+					$subscriptions[] = UserChannel::find_by_id($sub);
+				}
+			}
+			else if(strlen($subs) == 6) {
+				$subscriptions[0] = UserChannel::find_by_id($subs);
 			}
 		}
 
-		if(!$subscriptions[0]) $subscriptions = array();
+		if(!@$subscriptions[0]) $subscriptions = array();
 		return $subscriptions;
 	}
 
@@ -52,17 +61,15 @@ class Feed_model extends Model {
 			$subs = substr_replace($subs, '', -1);
 
 		$subs = str_replace(';', ',', $subs);
-		$subs = '('.$subs.')';
-
-		echo $subs;
+		$subs = "('".$subs."', 'lol')";
 
 		if($subs == '()') return array();
 
 		if($amount != 'nope')
-			//echo "SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount;
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
 		else
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC");
+
 
 		foreach ($vidsToAdd as $vid) {
 			array_push($videos, $vid);
@@ -98,10 +105,6 @@ class Feed_model extends Model {
 
 	public function userExists($userId) {
 		return User::exists(array('id' => $userId));
-	}
-
-	public function getNameById($userId) {
-		return User::find_by_id($userId)->username;
 	}
 
 }

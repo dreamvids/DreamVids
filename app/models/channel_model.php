@@ -55,7 +55,7 @@ class Channel_model extends Model {
 		if(Utils::stringStartsWith($subscriptionsStr, ';'))
 			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
 		if(Utils::stringEndsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($string, '', -1);
+			$subscriptionsStr = substr_replace($subscriptionsStr, '', -1);
 
 		$subscriptionsArray = explode(';', $subscriptionsStr);
 
@@ -79,15 +79,23 @@ class Channel_model extends Model {
 		if(Utils::stringStartsWith($subscriptionsStr, ';'))
 			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
 		if(Utils::stringEndsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($string, '', -1);
+			$subscriptionsStr = substr_replace($subscriptionsStr, '', -1);
 
-		$subscriptionsArray = explode(';', $subscriptionsStr);
+		if(strpos($subscriptionsStr, ';') !== false) {
+			$subscriptionsArray = explode(';', $subscriptionsStr);
+		}
+		else if(strlen($subscriptionsStr) == 6) {
+			$subscriptionsArray = array();
+			$subscriptionsArray[0] = $subscriptionsStr;
+		}
 
-		if(!in_array($subscribing, $subscriptionsArray)) {
+		echo $subscribing;
+
+		if(in_array($subscribing, $subscriptionsArray)) {
 			$key = array_search($subscribing, $subscriptionsArray);
 			unset($subscriptionsArray[$key]);
 
-			$subscriberUser->subscriptions = implode(';', $subscriptionsArray);
+			$subscriberUser->subscriptions = ';'.implode(';', $subscriptionsArray).';';
 			$subscriberUser->save();
 
 			$subscribingChannel->subscribers--;
