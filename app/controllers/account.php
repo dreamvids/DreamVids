@@ -48,8 +48,14 @@ class Account extends Controller {
 	}
 
 	public function messages() {
-		$data['current'] = 'messages';
-		$this->renderView('account/messages');
+		if(Session::isActive()) {
+			$data['current'] = 'messages';
+			$this->renderView('account/messages');
+		}
+		else {
+			header('Location: '.WEBROOT.'login');
+			exit();
+		}
 	}
 
 	public function postRequest($request) {

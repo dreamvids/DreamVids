@@ -84,9 +84,9 @@
 
 <div class="content">
 	<section id="comments">
-		<form method="post" action="" onsubmit="postComment(<?php echo $video->id; ?>, document.getElementById('text_comment').value)">
+		<form method="post" action="" onsubmit="return false;">
 			<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
-			<input id="commentSubmit" name="commentSubmit" type="submit" value="Envoyer">
+			<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value)">Envoyer</button>
 		</form>
 
 		<h3 class="title">Commentaires Populaires</h3>
@@ -121,61 +121,21 @@
 
 	<aside class="column-cards-list">
 		<h3>Recommandations</h3>
-		
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/200/3">
-				<div class="time">1:27:24</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Les Simpson, le film</h4></a>
-				<div>
-					<span class="view">401</span>
-					<a class="channel" href="channel">Home Simpson</a>
-				</div>
-			</div>
-		</div>
 
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/627/300/4">
-				<div class="time">3:27</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Nemo [Bande Annonce]</h4></a>
-				<div>
-					<span class="view">32 546</span>
-					<a class="channel" href="channel">Nemo</a>
+		<?php foreach ($recommendations as $vid): ?>
+			<div class="card video">
+				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/200/3">
+					<div class="time"><?php echo $vid->duration; ?></div>
+					<a href="video" class="overlay"></a>
+				</div>
+				<div class="description">
+					<a href="video"><h4><?php echo $vid->title; ?></h4></a>
+					<div>
+						<span class="view"><?php echo $vid->views; ?></span>
+						<a class="channel" href="<?php echo WEBROOT.'channel/'.$author; ?>"><?php echo $author; ?></a>
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/rio/350/200/1">
-				<div class="time">2:34:53</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Rio</h4></a>
-				<div>
-					<span class="view">1 752</span>
-					<a class="channel" href="channel">Hungry Bird</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/627/300/4">
-				<div class="time">2:43</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>La Haut ! Bande Annonce</h4></a>
-				<div>
-					<span class="view">513</span>
-					<a class="channel" href="channel">Pixar</a>
-				</div>
-			</div>
-		</div>
+		<?php endforeach ?>
 	</aside>
 </div>

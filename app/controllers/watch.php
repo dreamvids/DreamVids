@@ -55,6 +55,8 @@ class Watch extends Controller {
 		$data['comments'] = $this->model->getCommentsOnVideo($videoId);
 		$data['likedByUser'] = $this->model->isVideoLikedByUser($videoId) ? true : false;
 		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
+		$data['recommendations'] = $this->model->getRecommendedVideos($video->poster_id);
+
 		$this->model->addView($videoId);
 		$this->renderView('watch/watch', $data);
 	}
@@ -66,6 +68,12 @@ class Watch extends Controller {
 			$content = Utils::secure($req['comment-content']);
 
 			$this->model->postComment(Session::get()->getMainChannel()->id, self::$vidId, $content); // TODO: Allow the user to choose the channel to post with
+		}
+	}
+
+	public function comment($commentText='nope') {
+		if($commentText != 'nope' && Session::isActive()) {
+			$this->model->postComment(Session::get()->getMainChannel()->id, self::$vidId, $commentText); // TODO: Allow the user to choose the channel to post with	
 		}
 	}
 

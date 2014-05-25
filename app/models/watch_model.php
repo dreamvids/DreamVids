@@ -108,4 +108,25 @@ class Watch_model extends Model {
 		}
 	}
 
+	public function getRecommendedVideos($posterId) {
+		$vids = array();
+		$maxIndex = Video::count(array('conditions' => array('poster_id' => $posterId)));
+		$okay = false;
+
+		while(!$okay) {
+			for($i = 0; $i < $maxIndex; $i++) {
+				$indexes[$i] = rand(0, $maxIndex - 1);
+			}
+
+			$new = array_unique($indexes);
+			$okay = count($new) == count($indexes);
+			if($okay) $indexes = $new;
+		}
+
+		$allVids = Video::find('all');
+		foreach ($indexes as $index) $vids[] = $allVids[$index];
+
+		return $vids;
+	}
+
 }
