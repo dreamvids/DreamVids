@@ -62,7 +62,7 @@ class Utils {
 		elseif( $iWeeks <4 ){
 		$return .= " ".$iWeeks . ' semaine' . ( $iWeeks>1 ? 's' : '' );}
 		elseif( $iMonths<12 ){
-		$return .= " ".$iMonths . ' moi' . ( $iMonths>1 ? 's' : '' );}
+		$return .= " ".$iMonths . ' mois';}
 		else{
 		$return .= " ".$iYears . ' an' . ( $iYears>1 ? 's' : '' );}
 		return $return;
