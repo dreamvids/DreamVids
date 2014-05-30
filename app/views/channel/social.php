@@ -28,26 +28,25 @@
 <div class="content">
 	<nav class="tabs">
 		<ul>
-			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
-			<li><a href="<?php echo WEBROOT.'channel/social/'.$name; ?>">Social</a></li>
+			<li><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
+			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/social/'.$name; ?>">Social</a></li>
 		</ul>
 	</nav>
 
-	<aside class="full-cards-list">
+	<?php if ($isUsersChannel): ?>
+		<h2>Poster un message</h2>
+		<form method="post" action="">
+			<textarea rows="5" cols="65" name="post-content"></textarea><br>
+			<input type="submit" value="Envoyer le message" name="post-message-submit" />
+		</form>
 
-		<?php foreach($videos as $vid) { ?>
-			<div class="card video">
-				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-					<!--<div class="time">12:05</div>-->
-					<a href="video" class="overlay"></a>
-				</div>
-				<div class="description">
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
-					<div>
-						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.UserChannel::getNameById($vid->poster_id); ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
-					</div>
-				</div>
+		<br><br>
+	<?php endif ?>
+
+	<aside class="">
+		<?php foreach($posts as $post) { ?>
+			<div class="channel-post" style="background-color: #40a6e0; width: 50%; padding: 10px; margin-bottom: 1%;"> <!-- Please Dimou, dont kill me ;( -->
+				<?php echo $post->content; ?>
 			</div>
 		<?php } ?>
 	</aside>

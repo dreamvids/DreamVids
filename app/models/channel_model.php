@@ -3,6 +3,7 @@
 require_once SYSTEM.'Model.php';
 require_once APP.'classes/Video.php';
 require_once APP.'classes/UserChannel.php';
+require_once APP.'classes/ChannelPost.php';
 
 class Channel_model extends Model {
 
@@ -89,8 +90,6 @@ class Channel_model extends Model {
 			$subscriptionsArray[0] = $subscriptionsStr;
 		}
 
-		echo $subscribing;
-
 		if(in_array($subscribing, $subscriptionsArray)) {
 			$key = array_search($subscribing, $subscriptionsArray);
 			unset($subscriptionsArray[$key]);
@@ -100,6 +99,23 @@ class Channel_model extends Model {
 
 			$subscribingChannel->subscribers--;
 			$subscribingChannel->save();
+		}
+	}
+
+	public function postMessageOnChannel($channelId, $messageContent) {
+		if($this->channelExists($channelId) && Session::isActive()) {
+			ChannelPost::create(array(
+				'id' => ChannelPost::generateId(6),
+				'channel_id' => $channelId,
+				'content' => $messageContent,
+				'timestamp' => Utils::tps()
+			));
+		}
+	}
+
+	public function getPostsOnChannel($channelId) {
+		if($this->channelExists($channelId)) {
+			return ChannelPost::all(array('conditions' => array('channel_id = ?', $channelId)));
 		}
 	}
 
