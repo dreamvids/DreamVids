@@ -12,6 +12,7 @@ class DatabaseFiller {
 	private $dbName = 'dreamvids_v2';
 
 	private $names = array('Robert', 'Norbert', 'Roger', 'Papidabowi', 'Lawl', 'Dantresangle', 'Jean-Eude', 'Dimou', 'Peter', 'DarkWos', 'Benji', 
+		'Jerem', 'Charlie', 'Delta', 'Gwomos', 'Brezh', 'Michel', 'Kass', 'Pierre', 'Snapcube', 'Thib', 'Vincent',
 		'Quadri', 'Olivier', 'Carglass', 'Maman', 'Grmble', 'NyanCat', 'Pedobear', 'DreamMec', 'DreamTruc', 'DreamBidule');
 
 
