@@ -2,7 +2,9 @@
 if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
 {
 	$_SESSION['vid_id'] = Video::generateId(6);
-	$_SESSION['SERVER_ADDR'] = Upload::getFreestServer();
+	$serv = Upload::getFreestServer();
+	$hash = hash_hmac('sha256', $serv['addr'], $serv['priv_key']);
+	file_get_contents($serv['addr'].'incomings/?vid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&hash='.$hash);
 }
 
 $uploadDone = $lang['upload_ok'];

@@ -69,7 +69,7 @@ class Upload {
 	public static function getFreestServer() {
 		$db = new BDD();
 		$rep = $db->select("*", "storage_servers", "WHERE critical=0");
-		$best_serv = array('addr' => null, 'free' => 0);
+		$best_serv = array('addr' => null, 'free' => 0, 'priv_key' => '');
 		while ($data = $db->fetch_array($rep) )
 		{
 			$resp = file_get_contents($data['address']);
@@ -79,6 +79,7 @@ class Upload {
 				{
 					$best_serv['addr'] = $data['address'];
 					$best_serv['free'] = $resp;
+					$best_serv['priv_key'] = $data['private_key'];
 				}
 			}
 			else
@@ -87,6 +88,6 @@ class Upload {
 			}
 		}
 		$db->close();
-		return $best_serv['addr'];
+		return $best_serv;
 	}
 }
