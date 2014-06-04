@@ -151,7 +151,7 @@ class Video {
 	}
 
 	public function getTumbnail() {
-		return $this->tumbnail;
+		return $this->tumbnail.'?'.time();
 	}
 
 	public function getViews() {
