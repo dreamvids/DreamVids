@@ -8,12 +8,12 @@ class VideoProperties {
 		return Video::get($vidId);
 	}
 
-	public static function uploadTumbnail($username) {
+	public static function uploadTumbnail($username,$vidId) {
 		if(isset($_FILES['videoTumbnail']) && isset($username)) {
 			$name = $_FILES['videoTumbnail']['name'];
 			$exp = explode('.', $name);
 			$ext = $exp[count($exp)-1];
-			$path = 'uploads/'.$username.'/'.$_SESSION['vid_id'].'.'.$ext;
+			$path = 'uploads/'.$username.'/'.$vidId.'.'.$ext;
 
 			if(!file_exists('uploads/')){
 				mkdir('uploads/');

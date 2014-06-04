@@ -22,16 +22,18 @@ if($video->getUserId() == $session->getId())
 		$newVidTagsStr = $_POST['vidTags'];
 		$newVisibility = (in_array($vidVisibility, array(0,1,2) ) ) ? $_POST['vidVisibility'] : $vidvisibility;
 
-		if(isset($_POST['videoTumbnail'])) {
-			if($_FILES['videoTumbnail']['name'] != '') {
-				if ($_FILES['videoTumbnail']['size'] <= 1000000) {
-					$name = $_FILES['videoTumbnail']['name'];
-					$explode = explode(".", $name);
-					$ext = $explode[count($explode)-1];
-					$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+		if($_FILES['videoTumbnail']['name'] != '') {
+			if ($_FILES['videoTumbnail']['size'] <= 1000000) {
 
+				$name = $_FILES['videoTumbnail']['name'];
+				$explode = explode(".", $name);
+				$ext = $explode[count($explode)-1];
+				$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
+				$vidId = $_GET['vidId'];
+				$video = VideoProperties::getVideoById($vidId);
+				if($video->getUserId() == $session->getId()){
 					if (in_array(strtolower($ext), $acceptedExts)) {
-						$tumbnailPath = VideoProperties::uploadTumbnail($session->getName());
+						$tumbnailPath = VideoProperties::uploadTumbnail($session->getName(),$vidId);
 						$video->setTumbnail($tumbnailPath);
 					}
 					else {
@@ -39,10 +41,13 @@ if($video->getUserId() == $session->getId())
 						$tumbnailPath = '';
 					}
 				}
-				else {
-					$err = $lang['size_tumbnail'];
-					return;
+				else{
+					$err = "Cette vidéo n'existe pas";
 				}
+			}
+			else {
+				$err = $lang['size_tumbnail'];
+				return;
 			}
 		}
 		

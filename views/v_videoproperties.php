@@ -13,14 +13,13 @@
 	</div>
 
 	<div class='container' style='float: left; width: 50%; '>
-		<form role='form' method='post' action=''>
+		<form action="" method="post" role="form" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="vidTitle"><?php echo $lang['title']; ?></label>
 				<input type="test" required="" placeholder="<?php echo $lang['title']; ?>" name="vidTitle" value="<?php echo secure($vidTitle); ?>" class="form-control"/>
 			</div>
 			<div class="form-group">
 				<label for="vidDescription"><?php echo $lang['desc']; ?></label>
-				<!--<input type="test" required="" placeholder="<?php echo $lang['desc']; ?>" name="vidDescription" value="<?php echo secure($vidDescription); ?>" class="form-control"/>-->
 				<textarea required="" placeholder="<?php echo $lang['desc']; ?>" name="vidDescription" class="form-control"><?php echo secure($vidDescription); ?></textarea>
 			</div>
 			<div class="form-group">
