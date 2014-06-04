@@ -7,15 +7,15 @@
 		<br><br>
 	</div>
 
-	<div class="container" style="width: 40%; float: left;">
+	<div class="container">
 
 		<?php
 		echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
 		echo (!isset($err) && isset($_POST['submit']) ) ? '<div id="uploadDoneAlert" class="alert alert-success">'.$uploadDone.'</div>' : '';
 		?>
 		<div class="alert alert-success">Une fois le formulaire validé, vous allez être redirigé vers votre vidéo, si celle-ci ne se lance pas, attendez quelques secondes puis rechargez la page, le temps que la conversion se fasse :)</div>
-		<div class="alert alert-info">Les formats compatibles sont: <strong>webm, mp4, mov, avi, wmv, ogg et ogv.</strong></div>
-		<form role="form" method="post" enctype="multipart/form-data" action="">
+		<div class="alert alert-info">Les formats compatibles sont: <strong>webm, mp4, m4a, mpg, mpeg, 3gp, 3g2, asf, wma, mov, avi, wmv, ogg, ogv, flv et mkv.</strong> La taille maximum autorisée pour une vidéo est de 2Go.</div>
+		<form role="form" method="post" enctype="multipart/form-data" action="<?php echo $_SESSION['SERVER_ADDR'].'uploads/?userId='.$session->getId().'&vidId='.$_SESSION['vid_id']; ?>">
 			<label for="videoInput"><?php echo $lang['vid']; ?></label>
 			<input type="file" id="videoInput" name="videoInput">
 			<p class="help-block"><?php echo $lang['select_vid']; ?></p>
@@ -103,15 +103,19 @@ function inArray(needle, haystack) {
 function abortUpload() {
 	xhr.abort();
 	fileInput.removeAttribute('disabled');
+	document.getElementById('progress-style').className = 'progress progress-striped';
+	progress.className = 'progress-bar progress-bar-danger';
 }
 
 fileInput.onchange = function() {
+	document.getElementById('progress-style').className = 'progress progress-striped active';
+	progress.className = 'progress-bar';
 	var ext = fileInput.value.split('.');
 	ext = ext[ext.length - 1];
-	if (inArray(ext.toLowerCase(), ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv']) ) {
+	if (inArray(ext.toLowerCase(), ['webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv']) ) {
 		fileInput.setAttribute('disabled', 'disabled');
 		xhr = new XMLHttpRequest();
-		xhr.open('POST', 'index.php?page=upload');
+		xhr.open('POST', '<?php echo $_SESSION['SERVER_ADDR'].'uploads/?userId='.$session->getId().'&vidId='.$_SESSION['vid_id']; ?>');
 		xhr.upload.onprogress = function(e) {
 			updateProgress( (e.loaded/e.total)*100);
 		};

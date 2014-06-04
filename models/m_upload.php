@@ -16,24 +16,24 @@ class Upload {
 			}
 
 			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
-			$video = Video::create($_SESSION['vid_id'], $userId, '', '', '', '', $path, 0);
+			convert(getcwd().'/'.$video->getPath());
 		}
 	}
 	
-	public static function addDbInfos($tumbnailPath) {
+	public static function addDbInfos($tumbnailPath, $userId) {
 		if (isset($_POST['submit']) ) {
 			$title = $_POST['videoTitle'];
             $description = $_POST['videoDescription'];
             $tags = $_POST['videoTags'];
             $visibility = (in_array($_POST['videoVisibility'], array(0,1,2) ) ) ? $_POST['videoVisibility'] : 2;
-            $video = Video::get($_SESSION['vid_id']);
+            $video = Video::create($_SESSION['vid_id'], $userId);
             $video->setTitle($title);
             $video->setDescription($description);
             $video->setTags($tags);
             $video->setTumbnail($tumbnailPath);
+            $video->setPath($_SESSION['SERVER_ADDR'].'uploads/'.$userId.'/'.$_SESSION['vid_id'].'.'.$ext);
             $video->setVisibility($visibility);
             $video->saveDataToDatabase();
-			convert(getcwd().'/'.$video->getPath());
 			header('Location: /&'.$video->getId() );
 			exit();
 		}
@@ -65,6 +65,28 @@ class Upload {
 			return $path;
 		}
 	}
+	
+	public static function getFreestServer() {
+		$db = new BDD();
+		$rep = $db->select("*", "storage_servers", "WHERE critical=0");
+		$best_serv = array('addr' => null, 'free' => 0);
+		while ($data = $db->fetch_array($rep) )
+		{
+			$resp = file_get_contents($data['address']);
+			if ($resp != 'CRITICAL_ALERT')
+			{
+				if ($resp > $best_serv['free'])
+				{
+					$best_serv['addr'] = $data['address'];
+					$best_serv['free'] = $resp;
+				}
+			}
+			else
+			{
+				$db->update("storage_servers", "critical=1", "WHERE id='".$data['id']."'");
+			}
+		}
+		$db->close();
+		return $best_serv['addr'];
+	}
 }
-
-?>

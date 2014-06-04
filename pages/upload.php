@@ -1,6 +1,9 @@
 <?php
 if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
+{
 	$_SESSION['vid_id'] = Video::generateId(6);
+	$_SESSION['SERVER_ADDR'] = Upload::getFreestServer();
+}
 
 $uploadDone = $lang['upload_ok'];
 
@@ -69,7 +72,7 @@ if(isset($_FILES['videoInput'])) {
 		$name = $_FILES['videoInput']['name'];
 		$explode = explode(".", $name);
 		$ext = strtolower($explode[count($explode)-1]);
-		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv');
+		$acceptedExts = array('webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv');
 
 		if(in_array(strtolower($ext), $acceptedExts)) {
 			Upload::uploadVideo($session->getId(), $session->getName() );
@@ -81,5 +84,3 @@ if(isset($_FILES['videoInput'])) {
 		}
 	}
 }
-
-?>

@@ -17,7 +17,7 @@ class Video {
 	private $flagged; // the video has been flagged by a user. It will be sent to moderators
 
 	// "constructor" (kind of) for uploading
-	public static function create($id, $userId, $title, $description, $tags, $tumbnail, $path, $visibility) {
+	public static function create($id, $userId, $title='', $description='', $tags='', $tumbnail='', $path='', $visibility=0) {
 		$instance = new self();
 
 		$instance->id = $id;
