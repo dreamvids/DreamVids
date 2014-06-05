@@ -62,30 +62,31 @@
 				<source id="srcMp4" type="video/mp4"/>
 				<source id="srcWebm" type="video/webm"/>
 			</video>
+			<div id="errorLoading"><p>Erreur lors du chargement de la vidéo :(</p></div> <!-- Je sais... C'est pas bien d'utiliser des id -->
 			<div id="annotationsElement"></div>
-				<span id="repeat">
-					<span class="icon"></span>
+			<span id="repeat">
+				<span class="icon"></span>
+			</span>
+			<span id="qualitySelection" class="show"></span>
+			<span id="bigPlay"></span>
+			<span id="bigPause"></span>
+			<div id="controls">
+				<span id="progress">
+					<span id="buffered"></span>
+					<span id="viewed"></span>
+					<span id="current"></span>
 				</span>
-				<span id="qualitySelection" class="show"></span>
-				<span id="bigPlay"></span>
-				<span id="bigPause"></span>
-				<div id="controls">
-					<span id="progress">
-						<span id="buffered"></span>
-						<span id="viewed"></span>
-						<span id="current"></span>
-					</span>
-					<span id="play-pause"></span>
-					<span id="time"></span>
-					<span id="annotationsButton" style="display: none"></span>
-					<span id="qualityButton">SD</span>
-					<span id="volume">
-						<span id="barre"></span>
-						<span id="icon"></span>
-					</span>
-					<span id="widescreen"></span>
-					<span id="fullscreen"></span>
-				</div>
+				<span id="play-pause"></span>
+				<span id="time"></span>
+				<span id="annotationsButton" style="display: none"></span>
+				<span id="qualityButton">SD</span>
+				<span id="volume">
+					<span id="barre"></span>
+					<span id="icon"></span>
+				</span>
+				<span id="widescreen"></span>
+				<span id="fullscreen"></span>
+			</div>
 		</div>
 	</div>
 
@@ -167,11 +168,11 @@
 		</tr>
 	</table> <!-- /////////////////////////////////////////////////////////////////// FIN DU TABLEAU -->
 	<h2>Intégration</h2>
-	AutoPlay : <label for="autoplay_y">Oui</label><input id="autoplay_y" type="radio" name="autoplay"> <label for="autoplay_n">Non</label><input id="autoplay_n" type="radio" name="autoplay" checked></br>
-	Commencer à <input style="margin-left: 5px; margin-right: 5px; width: 50px;" id="start_min" type="number" name="start" min="0" value="0">m <input style="margin-left: 5px;width: 50px;" id="start_sec" type="number" name="start" min="0" max="60" value="0">s</br>
-	
+	AutoPlay : <label for="autoplay_y">Oui</label> <input id="autoplay_y" type="radio" name="autoplay"> <label for="autoplay_n">Non</label> <input id="autoplay_n" type="radio" name="autoplay" checked></br>
+	Commencer à <input style="margin-left: 5px; margin-right: 5px; width: 50px;" id="start_min" type="number" name="start" min="0" value="0">m <input style="margin-left: 5px;width: 40px;" id="start_sec" type="number" name="start" min="0" max="60" value="0"> s</br>
+	<br>
 	<p> Code à utiliser sur votre page web : <br/>
-	<textarea id="code" cols="50" rows="5" style="width:100%;max-width:500px" readonly class="form-control"></textarea>
+	<textarea id="code" cols="50" rows="2" style="width:100%;max-width:500px;cursor:text;" onClick="this.select();" readonly class="form-control"></textarea>
 	
 	<h2>Commentaires</h2>
 	<?php if(isset($session)) { ?>

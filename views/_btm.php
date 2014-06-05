@@ -5,13 +5,13 @@ if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->g
 }
 ?>
                 <br /><br />
-<div style="background-color:#ecf0f1; color:#34495e;">
+<div class="footer">
 <div class="container">            
     <div class="row">
       <div class="col-md-3">
           <h3>Informations légales</h3>
           dreamvids.fr - CopyLeft DreamVids 2013-<?php echo @date('Y'); ?>.<br><a href="http://github.com/vetiore/dreamvids" target="_blank">Code source</a><br />
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0;margin-bottom:15px" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
       </div>
       <div class="col-md-3">
       	<h3>Partenaires</h3>

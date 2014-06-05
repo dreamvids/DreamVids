@@ -75,7 +75,11 @@ foreach ($vids as $vid)
 
             <div class="thumbnail featuredbox">
 	          <div class="col-md-5">
-	            <a href="&<?php echo secure($vid->getId() ); ?>"><div class="max-size"><img src="<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>" alt="<?php echo $vid->getTitle(); ?>" title="<?php echo $vid->getTitle(); ?>"></div></a>
+	            <a href="&<?php echo secure($vid->getId() ); ?>">
+	            	<div class="max-size">
+	            		<span class="image" style="background-image:url(<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>)" title="<?php echo $vid->getTitle(); ?>"></span>
+	            	</div>
+	            </a>
 	          </div>
 	          <div class="col-md-7">
 	              <div class="hotfeaturedtext">

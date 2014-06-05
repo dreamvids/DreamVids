@@ -90,7 +90,7 @@ if (isset($session) )
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="./"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo" style="height: 100px;"/></a></div>
+		<div id="logo" class=""><a href="./"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo"/></a></div>
 		<br><br>
 	</div>
 
@@ -104,7 +104,7 @@ if (isset($session) )
 
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a style="color:red" href="index.php?page=bugs">Un bug ?</a></li>
+					<li><a class="bug" href="index.php?page=bugs">Un bug ?</a></li>
 					<li><a href="discover"><?php echo $lang['discover']; ?></a></li>
 					<li><a href="videoslist"><?php echo $lang['news']; ?></a></li>
 					<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
