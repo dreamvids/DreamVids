@@ -44,11 +44,6 @@
 
 	<?php
 	}
-	?>
-
-	<?php
-	if(isset($warn))
-		echo '<div class="container" style="width: 60%; float: left;"><div class="alert alert-warning">'.$warn.'</div></div>';
 
 	if(isset($err)) {
 		echo '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>';
@@ -62,7 +57,7 @@
 				<source id="srcMp4" type="video/mp4"/>
 				<source id="srcWebm" type="video/webm"/>
 			</video>
-			<div id="errorLoading"><p>Erreur lors du chargement de la vidéo :(</p></div> <!-- Je sais... C'est pas bien d'utiliser des id -->
+			<div id="errorLoading"><p>Oops ! Ça n'a pas l'air de fonctionner.<br />Réessayez plus tard ;)</p></div> <!-- Je sais... C'est pas bien d'utiliser des id -->
 			<div id="annotationsElement"></div>
 			<span id="repeat">
 				<span class="icon"></span>
@@ -138,7 +133,7 @@
 				<img src="img/videos/positive.png" <?php if($log){ ?>onclick="like('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Like" /> <span <?php echo @$isLiked; ?> id="like-<?php echo secure($_GET['vid']); ?>"><?php echo $likes; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src="img/videos/negative.png" <?php if($log){ ?>onclick="dislike('<?php echo secure($_GET['vid']); ?>')"<?php } ?> width="32" style="cursor:pointer" alt="Dislike" /> <span <?php echo @$isDisliked; ?> id="dislike-<?php echo secure($_GET['vid']); ?>"><?php echo $dislikes; ?></span>
 			</td>
 			<td>
-			<?php echo $CurView; ?> vues
+			<b><?php echo $CurView; ?> vues</b>
 			</td>
 			<td>
 				

@@ -34,7 +34,7 @@ if($video->getUserId() == $session->getId())
 				if($video->getUserId() == $session->getId()){
 					if (in_array(strtolower($ext), $acceptedExts)) {
 						$tumbnailPath = VideoProperties::uploadTumbnail($session->getName(),$vidId);
-						$video->setTumbnail($tumbnailPath);
+						$video->setTumbnail($tumbnailPath.'?'.time() );
 					}
 					else {
 						$err = $lang['size_tumbnail'];

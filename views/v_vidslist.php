@@ -77,7 +77,7 @@ foreach ($vids as $vid)
 	          <div class="col-md-5">
 	            <a href="&<?php echo secure($vid->getId() ); ?>">
 	            	<div class="max-size">
-	            		<span class="image" style="background-image:url(<?php echo ($vid->getTumbnail() != '') ? secure($vid->getTumbnail() ) : secure($vid->getPath() ).'.jpg'; ?>)" title="<?php echo $vid->getTitle(); ?>"></span>
+	            		<span class="image" style="background-image:url(<?php echo secure($vid->getTumbnail() ); ?>)" title="<?php echo $vid->getTitle(); ?>"></span>
 	            	</div>
 	            </a>
 	          </div>

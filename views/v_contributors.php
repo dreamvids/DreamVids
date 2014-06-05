@@ -9,8 +9,15 @@
 
 	<div class="container">
 <?php
+$i = 1;
+echo '<div class="row">';
 foreach ($contributors as $cont)
 {
+	if ($i > 3)
+	{
+		$i = 1;
+		echo '<div class="row">';
+	}
 ?>
 		<div class="col-lg-4">
 			<h2><?php echo $cont['username']; ?></h2>
@@ -23,6 +30,16 @@ foreach ($contributors as $cont)
 			</p>
 		</div>
 <?php
+	if ($i == 3)
+	{
+		echo '</div>';
+	}
+	$i++;
+}
+
+if ($i <= 3)
+{
+	echo '</div>';
 }
 ?>
 	</div>
