@@ -3,8 +3,6 @@
 ?>
 <link href="css/perso.php?uid=<?php echo secure($member->getId()); ?>&time=<?php echo time(); ?>" rel="stylesheet" />
 
-
-
  <div class="panel panel-primary channel" > <div class="panel-heading">
               <h3 class="panel-title">Informations</h3>
             </div><br>

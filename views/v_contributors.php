@@ -1,11 +1,6 @@
 <div class="container">
-	<div class="container">
-		<div class='border-top'></div>
-			<h1>Contributeurs</h1>
-		<div class='border-bottom'></div>
 
-		<br><br>
-	</div>
+	<h1 class="title">Contributeurs</h1>
 
 	<div class="container">
 <?php

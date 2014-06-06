@@ -4,13 +4,7 @@
 
 <div class='container'>
 
-	<div class="container" style="width: 80%; float: left;">
-		<div class='border-top'></div>
-			<h1>Modifier une vidéo<small> <?php echo '"'.$vidTitle.'"'; ?></small></h1>
-		<div class='border-bottom'></div>
-
-		<br><br>
-	</div>
+	<h1 class="title">Modifier une vidéo <a href="#"><?php echo '"'.$vidTitle.'"'; ?></a></small></h1>
 
 	<div class='container' style='float: left; width: 50%; '>
 		<form action="" method="post" role="form" enctype="multipart/form-data">

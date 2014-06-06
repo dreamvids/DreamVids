@@ -1,11 +1,6 @@
 <div class="container">
-	<div class="container">
-		<div class='border-top'></div>
-			<h1><?php echo $lang['up_vid']; ?></h1>
-		<div class='border-bottom'></div>
 
-		<br><br>
-	</div>
+	<h1 class="title"><?php echo $lang['up_vid']; ?></h1>
 
 	<div class="container" style="width: 40%; float: left;">
 

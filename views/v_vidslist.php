@@ -1,112 +1,91 @@
 <div class="container">
-	<div class="container">
-		<div class='border-top'></div>
-		<h1><?php echo $title; ?></h1>
-		<div class='border-bottom'></div>
-	</div>
-</div>
-<?php
-if (@$_GET['mode'] == 'subscriptions')
-{
-?>
-<div class="container" style="">
-<?php
-}
-else
-{
-?>
-<div class="container">
-<?php
-}
-?>
-	<br><br>
 
-	<div class="container">
-		<div class="row">
-<?php
-if (@$_GET['mode'] == 'subscriptions')
-{
-?>
-			<div class="col-md-3 visible-md visible-lg">
-				<ul class="list-group">
-<?php
-	if (count($subs) >= 1)
-	{
-		foreach ($subs as $sub)
-		{
-?>
-			<li class="list-group-item"><a href="./@<?php echo secure($sub->getName() ); ?>"><img width="24" src="<?php echo secure($sub->getAvatarPath() ); ?>" alt="" /></a>&nbsp;&nbsp;<a href="./@<?php echo secure($sub->getName() ); ?>"><?php echo secure($sub->getName() ); ?></a></li>
-<?php
-		}
-	}
-	else
-	{
-		echo '<li class="list-group-item"><b>Aucun abonnement !</b></li>';
-	}
-?>
+	<h1 class="title"><?php echo $title; ?></h1>
+
+	<!-- SUBSCRIPTION LIST -->
+
+	<?php if (@$_GET["mode"] == "subscriptions") { ?>
+		
+		<aside class="aside-channels">
+
+			<?php 
+
+			if (count($subs) >= 1) { ?>
+
+				<h3 class="title">Mes abonnements</h3>
+
+				<ul>
+
+					<?php foreach ($subs as $sub) {
+
+						$subscribers = $sub->getSubscribers() . " Abonné" . ($sub->getSubscribers() > 1 ? "s" : "");
+
+					?>
+						<a href="./@<?php echo secure($sub->getName() ); ?>" class="channels">
+							<span style="background-image: url(<?php echo secure($sub->getAvatarPath() ); ?>)" class="avatar"></span>
+							<span class="name"><?php echo secure($sub->getName() ); ?></span>
+							<p class="subscribers"><b><?php echo secure($sub->getSubscribers() ); ?></b> Abonnés</p>
+						</a>
+
+					<?php } ?>
+
 				</ul>
-			</div>
+
+			<?php }
+
+			else { ?>
+
+				<h3 class="title">Aucun abonnement</h3>
+
+			<?php } ?>
+
+		</aside>
+
+	<?php } ?>
+
+	<!-- VIDEOS LIST -->
+
+	<?php if (@$_GET["mode"] == "subscriptions") { ?>
+
+		<aside class="aside-cards-list">
+
+	<?php } else { ?>
+
+		<aside class="full-cards-list">
+
+	<?php } ?>
+
+		<?php 
+
+		foreach ($vids as $vid) {
 			
-			<div class="col-md-9">
-<?php
-}
+			$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
+			$descVid = (strlen($vid->getDescription() ) > 60) ? secure(substr($vid->getDescription(), 0, 57) ).'...' : secure($vid->getDescription() );
+			$userVid = (strlen(User::getNameById(secure($vid->getUserId())) ) > 23) ? secure(substr(User::getNameById(secure($vid->getUserId())), 0, 20) ).'...' : secure(User::getNameById(secure($vid->getUserId()) ));
+			
+			if($vid->getViews() > 1) {
+				$views = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
+			}
 
-foreach ($vids as $vid)
-{
-	if (@$_GET['mode'] == 'subscriptions')
-	{		 				
-		echo '<div class="col-md-6">';
-	}
-	else
-	{
-		echo '<div class="col-md-4">';
-	}
-	
-	$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
-	$descVid = (strlen($vid->getDescription() ) > 60) ? secure(substr($vid->getDescription(), 0, 57) ).'...' : secure($vid->getDescription() );
-	$userVid = (strlen(User::getNameById(secure($vid->getUserId())) ) > 23) ? secure(substr(User::getNameById(secure($vid->getUserId())), 0, 20) ).'...' : secure(User::getNameById(secure($vid->getUserId()) ));
-	if($vid->getViews()>1){
-		$views = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
-	}
-	else{
-		$views = $lang['views'];
-	}
-?>
+			else {
+				$views = $lang['views'];
+			}
 
-            <div class="thumbnail featuredbox">
-	          <div class="col-md-5">
-	            <a href="&<?php echo secure($vid->getId() ); ?>">
-	            	<div class="max-size">
-	            		<span class="image" style="background-image:url(<?php echo secure($vid->getTumbnail() ); ?>)" title="<?php echo $vid->getTitle(); ?>"></span>
-	            	</div>
-	            </a>
-	          </div>
-	          <div class="col-md-7">
-	              <div class="hotfeaturedtext">
-	                <strong><?php echo '<b>'.$titleVid.'</b>'; ?></strong>
-	                <p><?php echo $descVid; ?></p>
-	              </div> <!--/featuredtext-->
-	              <div class="hotfeaturedbutton"> 
-	                <hr>
-	               <span><?php echo $lang['by'].' <a href="@'.User::getNameById(secure($vid->getUserId())).'">'.$userVid.'</a>'; ?><br>
-					    <?php echo relative_time($vid->getTimestamp()).' - <small>'.$vid->getViews().' '.$views.'</small>'; ?></span>
-	              </div>
-              </div>			  
-            </div>			  
+			?>
 
-				   
-			 	</div>
+		    <div class="card video">
+		    	<div class="thumbnail" style="background-image:url(<?php echo secure($vid->getTumbnail() ); ?>)">
+		    		<a href="&<?php echo secure($vid->getId() ); ?>" class="overlay"></a>
+		    	</div>
+		    	<div class="description">
+		    		<a href="&<?php echo secure($vid->getId() ); ?>"><h4><?php echo $titleVid; ?></h4></a>
+		    		<div>
+		    			<span class="view"><?php echo $vid->getViews(); ?></span>
+		    			<a class="channel" href="@<?php echo User::getNameById(secure($vid->getUserId())); ?>"><?php echo $userVid; ?></a>
+		    		</div>
+		    	</div>
+		    </div>
 
-<?php
-}
+		<?php } ?>
 
-if (@$_GET['mode'] == 'subscriptions')
-{
-?>
-			</div>
-<?php
-}
-?>
-		</div>
-	</div>
-</div>
+	</aside>

@@ -5,7 +5,7 @@ if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->g
 }
 ?>
                 <br /><br />
-<div class="footer">
+<div class="footer" style="clear:both; width:100%;">
 <div class="container">            
     <div class="row">
       <div class="col-md-3">

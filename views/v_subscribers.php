@@ -1,13 +1,8 @@
 <?php $subscribers = Subscribers::getAll($user->getId()); ?>
 
 <div class="container">
-	<div class="container">
-		<div class='border-top'></div>
-			<h1><?php echo $user->getName(); ?><small> <?php echo count($subscribers); ?> Abonnés</small></h1>
-		<div class='border-bottom'></div>
 
-		<br><br>
-	</div>
+	<h1 class="title"><?php echo $user->getName(); ?><small> <?php echo count($subscribers); ?> Abonnés</small></h1>
 
 	<div class="container">
 		<div class="list-group">
