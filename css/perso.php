@@ -69,7 +69,7 @@ float:left;
 <?php
 }else{
   header('HTTP/1.0 403 Forbidden');
-  echo "Injection SQL sérieux ? pfff <br> on c'est jamais ça peux servir : ".GrabIP(). "<br> prochaine fois iptables -I INPUT -s ".GrabIP()." -j DROP";
+  echo "Injection SQL sérieux ? pfff <br> on ne sait jamais ça peut servir : ".GrabIP(). "<br> prochaine fois iptables -I INPUT -s ".GrabIP()." -j DROP";
 
 }
 function GrabIP(){
