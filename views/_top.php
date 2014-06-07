@@ -13,9 +13,7 @@
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/ajax.js?time=<?php echo time(); ?>"></script>
 
-		<!-- video player header-->
-			<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css?time=<?php echo time(); ?>"/>
-		<!-- End -->
+		<link rel="stylesheet" type="text/css" href="dreamplayer/css/player.css?time=<?php echo time(); ?>"/>
 
 		<meta property="og:site_name" content="<?php echo $lang['dreamvids']; ?>" />
 
@@ -25,14 +23,14 @@
 			<meta property="og:type" content="video.movie" />
 			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
 			<meta property="og:description" content="<?php echo str_replace('"', secure("''"), secure($desc) ); ?>" />
-			<meta property="og:image" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
+			<meta property="og:image" content="http://dreamvids.fr/<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
 			<meta property="og:image:type" content="image/jpg" />
 
 			<meta name="twitter:card" content="photo">
 			<meta name="twitter:site" content="@DreamVids_">
-			<meta name="twitter:creator" content="">
+			<meta name="twitter:creator" content="@DreamVids_">
 			<meta name="twitter:title" content="<?php echo secure($title); ?>">
-			<meta name="twitter:image:src" content="<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>">
+			<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>">
 			<meta name="twitter:domain" content="dreamvids.fr">
 			<meta name="twitter:app:name:iphone" content="">
 			<meta name="twitter:app:name:ipad" content="">
@@ -56,8 +54,14 @@
 			<meta name="twitter:site" content="@DreamVids_">
 			<meta name="twitter:title" content="<?php echo secure($pseudo); ?>">
 			<meta name="twitter:description" content="<?php echo secure($member->getSubscribers() ); ?> abonnés">
-			<meta name="twitter:creator" content="@creator_username">
-			<meta name="twitter:image:src" content="<?php echo $avatar; ?>">
+			<meta name="twitter:creator" content="@DreamVids_">
+
+			<?php if (preg_match("/gravatar/i", $avatar)) { ?>
+				<meta name="twitter:image:src" content="<?php echo $avatar; ?>">
+			<?php } else { ?>
+				<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo $avatar; ?>">
+			<?php } ?>
+
 			<meta name="twitter:domain" content="dreamvids.fr">
 			<meta name="twitter:app:name:iphone" content="">
 			<meta name="twitter:app:name:ipad" content="">

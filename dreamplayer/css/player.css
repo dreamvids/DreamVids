@@ -485,8 +485,8 @@ video {
 	cursor: pointer;
 
 	background-image: url(../img/player/play.png);
-	background-position: 12px 5px;
-	background-size: 14px 14px;
+	background-position: 10px 1px;
+	background-size: 22px 22px;
 	background-repeat: no-repeat;
 }
 
@@ -537,7 +537,7 @@ video {
  
 #qualityButton {
 	position: absolute;
-	bottom: 8px;
+	bottom: 6px;
 	right: 146px;
 	font-size: 16px;
 	cursor: pointer;
@@ -590,7 +590,7 @@ video {
 	cursor: pointer;
 
 	background-image: url(../img/player/widescreen.png);
-	background-position: 0 4px;
+	background-position: 0 8px;
 	background-repeat: no-repeat;
 }
 @media all and (max-width: 700px) {
@@ -622,7 +622,7 @@ video {
 	cursor: pointer;
 
 	background-image: url(../img/player/fullscreen.png);
-	background-position: 0 5px;
+	background-position: 5px 8px;
 	background-repeat: no-repeat;
 }
 

@@ -57,6 +57,9 @@ foreach ($partnerships as $partner)
     </div>  
 </div>
 </div>
+
+<script src="js/bgLoader.js"></script>
+<script src="js/filePreview.js"></script>
 	
 		
 

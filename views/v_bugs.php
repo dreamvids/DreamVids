@@ -1,11 +1,12 @@
 <div class="container">
 
-	<h1 class="title">Report de bugs</h1>
+	<div class="container">
+		<h1 class="title">Reporter un bug</h1>
+	</div>
 
 	<div class="container">
 <?php echo (isset($err) ) ? '<div class="alert alert-danger">'.$err.'</div>' : '';
 echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-success">Bug reporté avec succès !</div>' : ''; ?>
-		<h2 class="title">Reporter un bug</h2>
 <?php if (isset($session) ) {?>		<form role="form" action="" method="post">
 			<div class="form-group">
 				<label for="bug">Description du bug :</label>

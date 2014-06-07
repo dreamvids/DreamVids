@@ -3,17 +3,14 @@
 ?>
 
 <div class="container">
-	<div class="container" style="">
-		<div class="border-top"></div>
-			<h1><?php echo secure($title); ?></h1>
-		<div class="border-bottom"></div>
 
-		<br><br>
+	<div class="container">
+		<h1 class="title"><?php echo secure($title); ?></h1>
 	</div>
 
 	
 	<?php
-	if(isset($session) && Watch::isModerator($session)) {
+		if(isset($session) && Watch::isModerator($session)) {
 	?>
 
 	<div id='moderatingCommands' class='container'>

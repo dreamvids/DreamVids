@@ -1419,6 +1419,9 @@ html {
   font-weight: 300;
 
 }
+.title.no-bottom-line:after {
+  display: none;
+}
 h1.title {
 
   margin-bottom: 30px;
@@ -1499,4 +1502,549 @@ h3.title:after {
   border: none;
   content: "";
   background-color: #f1f0f0;
+}
+
+.form {
+  width: 100%;
+  margin: 0 auto 30px auto;
+  padding: 15px;
+  color: #858484;
+  background-color: #f1f0f0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 1px 2px 0px #e2e2e2;
+  -moz-box-shadow: 1px 2px 0px #e2e2e2;
+  -ms-box-shadow: 1px 2px 0px #e2e2e2;
+  -o-box-shadow: 1px 2px 0px #e2e2e2;
+  box-shadow: 1px 2px 0px #e2e2e2;
+}
+.form label {
+  display:block;
+}
+/* line 9, ../scss/partials/_forms.scss */
+.form.middle {
+  max-width: 600px;
+}
+/* line 23, ../scss/partials/_forms.scss */
+.form .preview {
+  float: left;
+  height: 60px;
+  margin-top: -3px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+/* line 32, ../scss/partials/_forms.scss */
+.form .preview.none {
+  margin: 0;
+}
+/* line 35, ../scss/partials/_forms.scss */
+.form input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 5px 0;
+  padding: 8px;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 51, ../scss/partials/_forms.scss */
+.form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active {
+  outline: none;
+}
+/* line 56, ../scss/partials/_forms.scss */
+.form input:not([type="checkbox"]),
+.form textarea,
+.form select {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0 15px 0;
+  padding: 8px;
+  border: none;
+  font-family: Arial;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 73, ../scss/partials/_forms.scss */
+.form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active,
+.form textarea:focus,
+.form textarea:active,
+.form select:focus,
+.form select:active {
+  outline: none;
+}
+/* line 76, ../scss/partials/_forms.scss */
+.form textarea {
+  resize: vertical;
+  height: 80px;
+}
+/* line 81, ../scss/partials/_forms.scss */
+.form input[type="submit"] {
+  color: white;
+  background-color: #40a6e0;
+  cursor: pointer;
+}
+.form input[type="submit"]:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+/* line 88, ../scss/partials/_forms.scss */
+.form input[type="submit"]:not(:disabled):focus, .form input[type="submit"]:not(:disabled):active, .form input[type="submit"]:not(:disabled):hover {
+  background-color: #4dace2;
+}
+/* line 90, ../scss/partials/_forms.scss */
+.form input[type="submit"]:not(:disabled):active {
+  background-color: #33a0de;
+}
+/* line 93, ../scss/partials/_forms.scss */
+.form label i {
+  margin-left: -190px;
+}
+/* line 95, ../scss/partials/_forms.scss */
+.form input[type="file"] {
+  position: relative;
+  float: left;
+  width: 200px;
+  margin: 13px 0 25px -5px;
+  cursor: pointer;
+}
+/* line 103, ../scss/partials/_forms.scss */
+.form input[type="file"] + * {
+  clear: both;
+}
+/* line 105, ../scss/partials/_forms.scss */
+.form input[type="file"]:before {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  display: block;
+  margin-left: -2px;
+  padding: 10px 10px 10px 40px;
+  content: attr(data-text);
+  background: #dddddd;
+}
+/* line 118, ../scss/partials/_forms.scss */
+.form input[type="file"]:after {
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  display: block;
+  width: 20px;
+  height: 17px;
+  content: "";
+  background: url(../img/upload.png);
+}
+/* line 132, ../scss/partials/_forms.scss */
+.form input[type="checkbox"] {
+  position: relative;
+  top: -5px;
+  width: 25px;
+  margin: 10px 5px 15px 10px;
+  cursor: pointer;
+}
+/* line 140, ../scss/partials/_forms.scss */
+.form input[type="checkbox"]:before {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  display: block;
+  margin-left: -2px;
+  padding: 12px 0px 13px 5px;
+  content: "";
+  background: #dddddd;
+}
+/* line 153, ../scss/partials/_forms.scss */
+.form input[type="checkbox"]:after {
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  content: "";
+  opacity: 0;
+  background-image: url(../img/checked.png);
+}
+@media (min-width: 640px) {
+  /* line 153, ../scss/partials/_forms.scss */
+  .form input[type="checkbox"]:after {
+    -webkit-transition: 0.1s;
+    -moz-transition: 0.1s;
+    -ms-transition: 0.1s;
+    -o-transition: 0.1s;
+    transition: 0.1s;
+  }
+}
+/* line 177, ../scss/partials/_forms.scss */
+.form input[type="checkbox"]:checked:before, .form input[type="checkbox"]:hover:before, .form input[type="checkbox"][disabled]:checked:before {
+  opacity: 1;
+}
+/* line 179, ../scss/partials/_forms.scss */
+.form input[type="checkbox"]:hover:after {
+  opacity: 0.1;
+}
+/* line 180, ../scss/partials/_forms.scss */
+.form input[type="checkbox"]:checked:after {
+  opacity: 1;
+}
+/* line 182, ../scss/partials/_forms.scss */
+.form input[type="checkbox"][disabled] {
+  cursor: default;
+}
+/* line 184, ../scss/partials/_forms.scss */
+.form input[type="checkbox"] + label {
+  display: inline;
+  cursor: pointer;
+}
+/* line 188, ../scss/partials/_forms.scss */
+.form label.checkbox-dependence,
+.form label.checkbox-dependence input {
+  opacity: 0.4;
+}
+/* line 191, ../scss/partials/_forms.scss */
+.form input:checked ~ label.checkbox-dependence,
+.form input:checked ~ label.checkbox-dependence input {
+  opacity: 1;
+}
+
+.form i {
+  font-style: normal;
+}
+#upload-large-modal {
+  position: relative;
+  height: 500px;
+  margin: auto;
+  margin-bottom: 40px;
+  margin-top: -20px;
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+}
+/* line 8, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #backgroundLoader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* line 26, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #message-upload {
+  position: relative;
+  top: 50px;
+  width: 100%;
+  height: 70px;
+  max-width: 1000px;
+  margin: auto;
+  background: rgba(107, 186, 231, 0.7);
+  color: white;
+  text-align: center;
+  cursor: default;
+}
+/* line 40, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #message-upload h3 {
+  position: relative;
+  top: 10px;
+  font-size: 28px;
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+}
+@media (max-width: 800px) {
+  /* line 40, ../scss/partials/_upload-large-modal.scss */
+  #upload-large-modal #message-upload h3 {
+    display: none;
+  }
+}
+/* line 48, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #message-upload p {
+  position: relative;
+  top: 2px;
+  font-size: 18px;
+}
+@media (max-width: 800px) {
+  /* line 48, ../scss/partials/_upload-large-modal.scss */
+  #upload-large-modal #message-upload p {
+    top: 22px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 550px) {
+  /* line 48, ../scss/partials/_upload-large-modal.scss */
+  #upload-large-modal #message-upload p {
+    top: 13px;
+    font-size: 20px;
+  }
+}
+/* line 65, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #uploader {
+  position: relative;
+  top: 50px;
+  width: 100%;
+  height: 330px;
+  max-width: 1000px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.5);
+}
+/* line 76, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #uploader input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: -5000px;
+  z-index: 300;
+  display: block;
+  width: 10000px;
+  height: 100%;
+  font-size: 350px;
+  opacity: 0;
+  cursor: pointer;
+}
+/* line 91, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #uploader #file-name {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  display: block;
+  width: 100%;
+  font-size: 40px;
+  color: #555;
+  font-weight: bold;
+  text-align: center;
+}
+/* line 106, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #progress-upload {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+}
+/* line 115, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #progress-upload #progress-bar {
+  position: relative;
+  width: 0;
+  height: 100%;
+  background: #40a6e0;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+/* line 129, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #progress-upload #progress-bar[data-restant]:before {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  float: left;
+  display: block;
+  width: 100%;
+  height: 30px;
+  content: attr(data-restant);
+  color: white;
+  text-align: right;
+  font-size: 22px;
+  line-height: 30px;
+}
+/* line 146, ../scss/partials/_upload-large-modal.scss */
+#upload-large-modal #progress-upload #progress-bar[data-percent]:after {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: block;
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+  content: attr(data-percent);
+  color: #40a6e0;
+  font-size: 25px;
+  line-height: 32px;
+}
+
+#uploader {
+  overflow: hidden;
+  cursor: pointer;
+}
+/* line 5, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration {
+  position: relative;
+  top: 80px;
+  display: block;
+  width: 300px;
+  height: 160px;
+  margin: auto;
+  overflow: hidden;
+}
+/* line 15, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration .cloud {
+  position: relative;
+  z-index: 50;
+  display: block;
+  width: 300px;
+  height: 100px;
+  margin: 0;
+  margin-top: 60px;
+  background-color: #40a6e0;
+  border-radius: 20% 20% 20%/50% 50%;
+  line-height: 60px;
+}
+/* line 30, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration .cloud:after, #uploader #upload-illustration .cloud:before {
+  z-index: -1;
+  position: absolute;
+  width: 60%;
+  content: "";
+  background-color: #40a6e0;
+}
+/* line 39, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration .cloud:after {
+  top: -50%;
+  left: 10%;
+  height: 130%;
+  border-radius: 90% 120% 0 100%;
+}
+/* line 47, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration .cloud:before {
+  top: -60%;
+  right: 8%;
+  height: 150%;
+  border-radius: 90% 100% 50% 0;
+}
+/* line 57, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration #arrowUpload {
+  position: relative;
+  top: -5%;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-style: solid;
+  border-width: 0 50px 60px 50px;
+  border-color: transparent transparent white transparent;
+  -webkit-transition: top 0.5s;
+  -moz-transition: top 0.5s;
+  -ms-transition: top 0.5s;
+  -o-transition: top 0.5s;
+  transition: top 0.5s;
+}
+/* line 76, ../scss/partials/_upload-animation.scss */
+#uploader #upload-illustration #arrowUpload:after {
+  position: relative;
+  top: 60px;
+  display: block;
+  width: 45px;
+  height: 100px;
+  margin-left: -22px;
+  content: "";
+  background-color: white;
+}
+/* line 94, ../scss/partials/_upload-animation.scss */
+#uploader:hover #upload-illustration #arrowUpload,
+#uploader .hover #upload-illustration #arrowUpload {
+  top: -20%;
+}
+/* line 100, ../scss/partials/_upload-animation.scss */
+#uploader.uploading #upload-illustration #arrowUpload {
+  position: relative;
+  left: 2px;
+  top: -25px;
+  width: 35%;
+  height: 0;
+  padding-bottom: 35%;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  -webkit-animation: uploading 0.5s ease-in-out infinite alternate;
+  -moz-animation: uploading 0.5s ease-in-out infinite alternate;
+  -ms-animation: uploading 0.5s ease-in-out infinite alternate;
+  -o-animation: uploading 0.5s ease-in-out infinite alternate;
+  animation: uploading 0.5s ease-in-out infinite alternate;
+}
+/* line 119, ../scss/partials/_upload-animation.scss */
+#uploader.uploading #upload-illustration #arrowUpload:after {
+  display: none;
+}
+/* line 126, ../scss/partials/_upload-animation.scss */
+#uploader.uploaded #upload-illustration #arrowUpload {
+  position: relative;
+  top: -20% !important;
+  left: 0;
+  display: block;
+  width: 100%;
+  border: none;
+}
+/* line 136, ../scss/partials/_upload-animation.scss */
+#uploader.uploaded #upload-illustration #arrowUpload:after {
+  position: relative;
+  top: 20px;
+  left: 0;
+  margin: auto;
+  display: block;
+  width: 100%;
+  content: attr(data-uploaded-message);
+  background: transparent;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+@-webkit-keyframes uploading {
+  /* line 157, ../scss/partials/_upload-animation.scss */
+  to {
+    width: 25%;
+    padding-bottom: 25%;
+    top: -5px;
+  }
+}
+
+@-moz-keyframes uploading {
+  /* line 164, ../scss/partials/_upload-animation.scss */
+  to {
+    width: 25%;
+    padding-bottom: 25%;
+    top: -5px;
+  }
+}
+
+@-ms-keyframes uploading {
+  /* line 171, ../scss/partials/_upload-animation.scss */
+  to {
+    width: 25%;
+    padding-bottom: 25%;
+    top: -5px;
+  }
+}
+
+@-o-keyframes uploading {
+  /* line 178, ../scss/partials/_upload-animation.scss */
+  to {
+    width: 25%;
+    padding-bottom: 25%;
+    top: -5px;
+  }
+}
+
+@keyframes uploading {
+  /* line 185, ../scss/partials/_upload-animation.scss */
+  to {
+    width: 25%;
+    padding-bottom: 25%;
+    top: -5px;
+  }
 }

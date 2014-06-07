@@ -126,7 +126,7 @@ $lang = array(
 
 'video_private' => 'Cette vidéo est privée !',
 
-'err_no_vid_db' => 'Problème lors de l\'upload; la vidéo ne s\'est pas enregistrée. Si le problème persiste, contactez l\'équipe technique',
+'err_no_vid_db' => 'Problème lors de l\'upload, la vidéo ne s\'est pas enregistrée. Si le problème persiste, contactez l\'équipe technique',
 
 'abort' => 'Annuler',
 

@@ -1,6 +1,8 @@
 <div class="container">
 
-	<h1 class="title"><?php echo $title; ?></h1>
+	<div class="container">
+		<h1 class="title"><?php echo $title; ?></h1>
+	</div>
 
 	<!-- SUBSCRIPTION LIST -->
 
@@ -20,14 +22,17 @@
 
 						$subscribers = $sub->getSubscribers() . " Abonné" . ($sub->getSubscribers() > 1 ? "s" : "");
 
-					?>
-						<a href="./@<?php echo secure($sub->getName() ); ?>" class="channels">
+						if (secure($sub->getName()) != "") { ?>
+
+						<a href="./@<?php echo secure($sub->getName()); ?>" class="channels">
 							<span style="background-image: url(<?php echo secure($sub->getAvatarPath() ); ?>)" class="avatar"></span>
 							<span class="name"><?php echo secure($sub->getName() ); ?></span>
 							<p class="subscribers"><b><?php echo secure($sub->getSubscribers() ); ?></b> Abonnés</p>
 						</a>
 
-					<?php } ?>
+						<?php }
+
+					} ?>
 
 				</ul>
 
