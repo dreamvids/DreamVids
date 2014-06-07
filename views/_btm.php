@@ -11,7 +11,7 @@ if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->g
       <div class="col-md-3">
           <h3>Informations légales</h3>
           dreamvids.fr - CopyLeft DreamVids 2013-<?php echo @date('Y'); ?>.<br><a href="http://github.com/vetiore/dreamvids" target="_blank">Code source</a><br />
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0;margin-bottom:15px" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0; opacity: 0.6;" src="http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
       </div>
       <div class="col-md-3">
       	<h3>Partenaires</h3>
@@ -23,7 +23,7 @@ foreach ($partnerships as $partner)
 <?php
 }
 ?>
-      	<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a><br />
+      	<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'\'jeremy [at] dreamvids [dot] fr\'\'')">Votre site ici ?</a><br />
       </div>
       <div class="col-md-3">
       	<h3>DreamVids</h3>
@@ -35,7 +35,7 @@ foreach ($partnerships as $partner)
       	<a target="_blank" href="https://facebook.com/DreamVids">Facebook</a><br />
       	<a target="_blank" href="https://twitter.com/DreamVids_">Twitter</a><br />
       	<a target="_blank" href="https://github.com/Vetiore/DreamVids">GitHub</a><br />
-      	<a target="_blank" href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a><br />
+      	<a target="_blank" href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a><br /><br /><br />
       </div>
       <!-- <div class="col-md-4">
           <h3>Remerciments</h3>

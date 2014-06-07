@@ -94,7 +94,7 @@ if (isset($session) )
 <?php
 }
 ?>
-		<div id="logo" class=""><a href="./"><img src="img/logo_white_beta.png" class="img-responsive" alt="logo"/></a></div>
+		<div id="logo" class=""><a href="./"><img src="img/logo_white_basic.png" class="img-responsive" alt="logo"/></a></div> <!-- C'est plus joli sans le Beta -->
 		<br><br>
 	</div>
 
@@ -133,4 +133,3 @@ if (isset($session) )
 			</div>
 		</div>
 	</div>
-            

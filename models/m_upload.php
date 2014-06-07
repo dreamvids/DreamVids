@@ -15,7 +15,48 @@ class Upload {
 				mkdir('uploads/'.$username);
 			}
 
-			move_uploaded_file($_FILES['videoInput']['tmp_name'], $path);
+			if (move_uploaded_file($_FILES['videoInput']['tmp_name'], $path)) {
+				// Genial ça a marché !
+			}
+
+			else if ($_FILES['videoInput']["error"] === 1) {
+				// La taille de la vidéo excède le upload_max_filesize dans php.ini
+			}
+
+			else if ($_FILES['videoInput']["error"] === 2) {
+				// La taille de la vidéo excède la taille maximum définie dans le formulaire html
+			}
+
+			else if ($_FILES['videoInput']["error"] === 3) {
+				// La vidéo n'a pas été uploadée entierement
+			}
+
+			else if ($_FILES['videoInput']["error"] === 4) {
+				// Aucun fichier n'a été envoyé
+			}
+
+			// Pas de 5...
+
+			else if ($_FILES['videoInput']["error"] === 6) {
+				// Le dossier temporaire n'existe pas
+			}
+
+			else if ($_FILES['videoInput']["error"] === 7) {
+				// Impossible d'enregistrer la vidéo sur le disque dur
+			}
+
+			else if ($_FILES['videoInput']["error"] === 8) {
+				// Une extension php a empêché l'upload du fichier
+			}
+
+			// Pour en savoir plus : http://www.php.net/manual/fr/features.file-upload.errors.php
+
+			// Ce serait bien  d'enregistrer  ces erreurs  dans la bdd ou même
+			// prévenir l'utilisateur qu'il peut réessayer ou tout abandonner.
+			// Mais bon, c'est pas mon boulot à moi :P
+			//
+			// Dimou.
+
 			$video = Video::create($_SESSION['vid_id'], $userId, '', '', '', '', $path, 0);
 		}
 	}

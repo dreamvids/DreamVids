@@ -77,11 +77,13 @@
 </div>
 
 <script>
+
+var uploadHttpRequest;
 	
-var uploader = document.getElementById('uploader');
-var uploadInput = document.getElementById('videoInput');
-var fileName = document.getElementById('file-name');
-var progressBar = document.getElementById('progress-bar');
+var uploader = document.getElementById('uploader'),
+	uploadInput = document.getElementById('videoInput'),
+	fileName = document.getElementById('file-name'),
+	progressBar = document.getElementById('progress-bar');
 
 var timeUpload = {
     started: 0,
@@ -138,36 +140,45 @@ uploadInput.addEventListener('change', function(event) {
         uploadInput.setAttribute('disabled', '');
         document.getElementById('up-submit').removeAttribute('disabled');
 
-        uploadHttpRequest = new XMLHttpRequest();
-        uploadHttpRequest.open('POST', 'index.php?page=upload');
+        var uploadHttpRequest = new XMLHttpRequest();
+        uploadHttpRequest.open("POST", 'index.php?page=upload');
 
         uploadHttpRequest.upload.onprogress = function(event) {
 
-            timeUpload.current = new Date().getTime();
-            var totalTime = (timeUpload.current - timeUpload.started) * event.total / event.loaded
-            time = totalTime - (timeUpload.current - timeUpload.started);
+        	if (uploader.className != 'uploaded') {
 
-            restant = tempsRestant(time);
-
-            progressBar.dataset['restant'] = restant;
-
-            percent = Math.round((event.loaded / event.total) * 100);
-            progressBar.style.width = progressBar.dataset['percent'] = percent + '%';
-
-            document.title = percent != 100 ? percent + '% | ' + restant + " restant" : 'Upload terminé';
-
-            if (percent == 100) {
-
-				document.getElementById('up-submit').removeAttribute('disabled');
-				document.body.onbeforeunload = function() {};
-
-            }
+            	timeUpload.current = new Date().getTime();
+            	var totalTime = (timeUpload.current - timeUpload.started) * event.total / event.loaded
+            	time = totalTime - (timeUpload.current - timeUpload.started);
+	
+            	restant = tempsRestant(time);
+	
+            	progressBar.dataset['restant'] = restant;
+	
+            	percent = Math.round((event.loaded / event.total) * 100);
+            	progressBar.style.width = progressBar.dataset['percent'] = percent + '%';
+	
+            	document.title = percent + '% | ' + restant + " restant";
+	
+        	}
 
         };
 
-        uploadHttpRequest.onload = function() {
+        uploadHttpRequest.upload.onload = function(event) {
+
             uploader.className = 'uploaded';
             progressBar.style.width = '100%';
+            progressBar.dataset['restant'] = "Terminé";
+            document.title = 'Upload terminé';
+            document.getElementById('up-submit').removeAttribute('disabled');
+            document.body.onbeforeunload = function() {};
+
+        };
+
+        uploadHttpRequest.upload.onerror = function(event) {
+
+        	console.alert("erreur", event)
+            
         };
 
         var form = new FormData();
@@ -180,78 +191,10 @@ uploadInput.addEventListener('change', function(event) {
 
     else {
 
-        alert("Type de fichier incorrect");
+        document.getElementById("message-upload").innerHTML = "<h3><?php echo $lang['error_video_type_incorrect']; ?></h3><p>Les formats compatibles sont: mp4, avi, webm, wmv, ogg, mov et ogv.</p>"
 
     }
 
 }, false);
 
-</script>
-
-
-
-
-<script type="text/javascript">
-/*var fileInput = document.getElementById('video-Input'),
-progress = document.getElementById('progressbar'),
-xhr = null;
-
-<?php
-if (isset($_POST['submit']) )
-{
-?>
-updateProgress(100);
-document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
-document.getElementById('progress-style').className = 'progress progress-striped';
-progress.className = 'progress-bar progress-bar-success';
-document.getElementById('up-submit').removeAttribute('disabled');
-<?php
-}
-?>
-
-function updateProgress(percent) {
-	percent = Math.round(percent*10)/10;
-    progress.style.width = percent+'%';
-    progress.setAttribute('aria-valuenow', percent);
-    document.getElementById('vid-ok').innerHTML = '<b>'+percent+' %</b>';
-}
-
-function inArray(needle, haystack) {
-    var length = haystack.length;
-    for(var i = 0; i < length; i++) {
-        if(haystack[i] == needle) return true;
-    }
-    return false;
-}
-
-function abortUpload() {
-	xhr.abort();
-	fileInput.removeAttribute('disabled');
-}
-
-fileInput.onchange = function() {
-	var ext = fileInput.value.split('.');
-	ext = ext[ext.length - 1];
-	if (inArray(ext.toLowerCase(), ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv']) ) {
-		fileInput.setAttribute('disabled', 'disabled');
-		xhr = new XMLHttpRequest();
-		xhr.open('POST', 'index.php?page=upload');
-		xhr.upload.onprogress = function(e) {
-			updateProgress( (e.loaded/e.total)*100);
-		};
-		xhr.onload = function() {
-			updateProgress(100);
-		    document.getElementById('vid-ok').innerHTML += '<br />Upload terminé !';
-		    document.getElementById('progress-style').className = 'progress progress-striped';
-		    progress.className = 'progress-bar progress-bar-success';
-		    document.getElementById('up-submit').removeAttribute('disabled');
-		};
-		var form = new FormData();
-		form.append('videoInput', fileInput.files[0]);
-		xhr.send(form);
-	}
-	else {
-		alert("<?php echo $lang['error_video_type_incorrect']; ?>");
-	}
-};*/
 </script>
