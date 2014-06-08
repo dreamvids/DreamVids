@@ -138,7 +138,6 @@ uploadInput.addEventListener('change', function(event) {
         }
 
         uploadInput.setAttribute('disabled', '');
-        document.getElementById('up-submit').removeAttribute('disabled');
 
         var uploadHttpRequest = new XMLHttpRequest();
         uploadHttpRequest.open("POST", 'index.php?page=upload');
