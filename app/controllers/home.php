@@ -18,7 +18,7 @@ class Home extends Controller {
 
 			$data = array();
 			$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
-			$data['subscriptions_vids'] = $this->model->getSubscriptionsVideos(Session::get()->id, 4);
+			$data['subscriptions_vids'] = $this->model->getSubscriptionsVideos(Session::get()->id, 6);
 
 			$this->renderView('home/logged', $data);
 		}

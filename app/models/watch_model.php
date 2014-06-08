@@ -5,6 +5,8 @@ require_once APP.'classes/User.php';
 require_once APP.'classes/Video.php';
 require_once APP.'classes/Comment.php';
 require_once APP.'classes/VideoVote.php';
+require_once APP.'classes/UserAction.php';
+require_once APP.'classes/UserChannelAction.php';
 
 class Watch_model extends Model {
 
@@ -35,14 +37,24 @@ class Watch_model extends Model {
 	}
 
 	public function postComment($authorId, $videoId, $commentContent) {
+		$timestamp = Utils::tps();
+
 		Comment::create(array(
 			'id' => Comment::generateId(6),
 			'poster_id' => $authorId,
 			'video_id' => $videoId,
 			'comment' => $commentContent,
-			'timestamp' => Utils::tps(),
+			'timestamp' => $timestamp,
 			'likes' => 0,
 			'dislikes' => 0
+		));
+
+		UserChannelAction::create(array(
+			'id' => UserChannelAction::generateId(6),
+			'channel_id' => $authorId,
+			'type' => 'comment',
+			'target' => $videoId,
+			'timestamp' => $timestamp
 		));
 	}
 
@@ -63,6 +75,14 @@ class Watch_model extends Model {
 
 		$likes = Video::find_by_id($videoId)->likes;
 		Video::update_all(array('set' => array('likes' => $likes + 1), 'conditions' => array('id' => $videoId)));
+
+		UserAction::create(array(
+			'id' => UserAction::generateId(6),
+			'user_id' => $userId,
+			'type' => 'like',
+			'target' => $videoId,
+			'timestamp' => Utils::tps()
+		));
 	}
 
 	public function dislikeVideo($videoId, $userId) {
@@ -70,6 +90,14 @@ class Watch_model extends Model {
 
 		$dislikes = Video::find_by_id($videoId)->dislikes;
 		Video::update_all(array('set' => array('dislikes' => $dislikes + 1), 'conditions' => array('id' => $videoId)));
+
+		UserAction::create(array(
+			'id' => UserAction::generateId(6),
+			'user_id' => $userId,
+			'type' => 'dislike',
+			'target' => $videoId,
+			'timestamp' => Utils::tps()
+		));
 	}
 
 	public function removeLike($videoId, $userId) {

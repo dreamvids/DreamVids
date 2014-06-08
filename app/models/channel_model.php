@@ -4,6 +4,7 @@ require_once SYSTEM.'Model.php';
 require_once APP.'classes/Video.php';
 require_once APP.'classes/UserChannel.php';
 require_once APP.'classes/ChannelPost.php';
+require_once APP.'classes/UserAction.php';
 
 class Channel_model extends Model {
 
@@ -68,6 +69,14 @@ class Channel_model extends Model {
 
 			$subscribingChannel->subscribers++;
 			$subscribingChannel->save();
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $subscriber,
+				'type' => 'subscription',
+				'target' => $subscribing,
+				'timestamp' => Utils::tps()
+			));
 		}
 	}
 
@@ -99,6 +108,14 @@ class Channel_model extends Model {
 
 			$subscribingChannel->subscribers--;
 			$subscribingChannel->save();
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $subscriber,
+				'type' => 'unsubscription',
+				'target' => $subscribing,
+				'timestamp' => Utils::tps()
+			));
 		}
 	}
 

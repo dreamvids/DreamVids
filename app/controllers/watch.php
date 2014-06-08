@@ -83,7 +83,6 @@ class Watch extends Controller {
 			$userId = Session::get()->id;
 
 			if(!$this->model->isVideoLikedByUser($videoId, Session::get()->id)) {
-
 				if($this->model->isVideoDislikedByUser($videoId, Session::get()->id)) {
 					$this->model->removeDislike($videoId, $userId);
 				}
