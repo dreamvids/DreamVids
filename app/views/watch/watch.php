@@ -5,7 +5,7 @@
 				<img src="http://dreamvids.fr/uploads/Simpleworld/avatar.png" alt="Image de la chaîne">
 				<span id="hover_subscribe" data-vid="0"><i>S'abonner</i></span>
 				<div id="video-top-channel-infos">
-					<a id="video-top-pseudo" href="channel" class="validate"><?php echo $author; ?></a>
+					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author; ?>" class="validate"><?php echo $author; ?></a>
 					<hr>
 					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
 				</div>

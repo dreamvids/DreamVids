@@ -61,8 +61,15 @@ class Feed_model extends Model {
 			$subs = substr_replace($subs, '', -1);
 
 		$subs = str_replace(';', ',', $subs);
-		$subs = "('".$subs."', 'lol')";
 
+		$subArrayTemp = explode(',', $subs);
+		$subs = "";
+		foreach ($subArrayTemp as $sub) $subs .= "'".$sub."',";
+
+		if(Utils::stringEndsWith($subs, ','))
+			$subs = substr_replace($subs, '', -1);
+
+		$subs = "(".$subs.")";
 		if($subs == '()') return array();
 
 		if($amount != 'nope')

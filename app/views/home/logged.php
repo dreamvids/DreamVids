@@ -100,19 +100,19 @@
 		<h3 class="title">Vidéos de mes abonnements</h3>
 		
 		<?php foreach($subscriptions_vids as $vid) { ?>
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-				<div class="time">12:05</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Up !</h4></a>
-				<div>
-					<span class="view">12 530</span>
-					<a class="channel" href="channel">Papy</a>
+			<div class="card video">
+				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
+					<div class="time"><?php echo $vid->duration; ?></div>
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
+				</div>
+				<div class="description">
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
+					<div>
+						<span class="view"><?php echo $vid->views; ?></span>
+						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->poster_id; ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
+					</div>
 				</div>
 			</div>
-		</div>
 		<?php } ?>
 
 		<?php if(sizeof($subscriptions_vids) == 0) { ?>
@@ -120,7 +120,7 @@
 			<p style="text-align: center; color: #858484;">Rendez-vous sur la page <a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a> pour découvrir de nouveux créateurs !</p>
 		<?php } ?>
 
-		<a href="<?php echo WEBROOT.'feed'; ?>" class="big-button">Voir mon flux d'acivité</a>
+		<!--<a href="<?php echo WEBROOT.'feed'; ?>" class="big-button">Voir mon flux d'acivité</a>-->
 	</aside>
 
 	<aside class="aside-cards-list">
