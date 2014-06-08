@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 03 Mai 2014 à 17:21
+-- Généré le: Dim 08 Juin 2014 à 11:20
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -36,6 +36,35 @@ CREATE TABLE IF NOT EXISTS `bugs` (
   `resolution` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `channels_actions`
+--
+
+CREATE TABLE IF NOT EXISTS `channels_actions` (
+  `id` varchar(6) NOT NULL,
+  `channel_id` varchar(6) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `target` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `channels_posts`
+--
+
+CREATE TABLE IF NOT EXISTS `channels_posts` (
+  `id` varchar(6) NOT NULL,
+  `channel_id` varchar(6) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -124,7 +153,22 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=152 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users_actions`
+--
+
+CREATE TABLE IF NOT EXISTS `users_actions` (
+  `id` varchar(6) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `target` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -243,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=165 ;
 
 -- --------------------------------------------------------
 
