@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 		<link rel="icon" type="image/png" href="img/favicon.png" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/style.min.css?time=<?php echo time(); ?>" rel="stylesheet" />
+		<link href="css/style.css?time=<?php echo time(); ?>" rel="stylesheet" />
 
 		<script src="js/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -85,19 +85,94 @@
 	
 	<body>
 
-	<div id="header">
-<?php
-if (isset($session) )
-{
-?>
+	<header>
+		<div id="top-nav">
+			<div id="inner-top-nav">
+				<div id="inner-top-nav-left">
+					<a href="index.php">
+						<img src="img/icon_logo.png" alt="Logo DreamVids" id="top-nav-logo-icon" class="top-nav-icon-logo" />
+						<img src="img/text_logo.png" alt="DreamVids" id="top-nav-logo-text" class="top-nav-text-logo" />
+					</a>
+				</div>
+				<div id="inner-top-nav-right">
+
+					<form method="get" action="search">
+						<input type="text" id="top-nav-search-input" name="q" placeholder="Rechercher">
+						<input type="submit" value="">
+					</form>
+
+					<div id="top-nav-user-information">
+
+						<?php if (isset($session)) { ?>						
+
+							<span id="top-nav-user-information-button">
+								<img src="<?php echo secure($session->getAvatarPath() ); ?>" id="top-nav-user-information-button-img">
+								<h4 id="top-nav-user-information-button-h4"><?php echo secure($session->getName() ); ?></h4>
+								<img src="img/arrow_top_nav.png" alt="Voir vos informations" id="top-nav-user-arrow">
+								<div id="top-nav-user-information-menu">
+									<ul>
+										<a href="/@<?php echo secure($session->getName() ); ?>">Ma chaîne</a>
+										<a href="profile"><?php echo $lang['member_space']; ?></a>
+										<a href="mail"><?php echo $lang['msg']; ?></a>
+										<a href="logout"><?php echo $lang['logout']; ?></a>
+									</ul>
+								</div>
+							</span>
+
+						<?php } else { ?>
+								
+							<div id="top-connection">
+								<a href="login"><?php echo $lang['login']; ?></a>
+								<p>/</p>
+								<a href="signup"><?php echo $lang['register']; ?></a>
+							</div>
+
+						<?php } ?>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div id="bottom-nav">
+			<div id="inner-bottom-nav">
+				<nav>
+					<ul>
+						<li><a class="bug" href="index.php?page=bugs">Un bug ?</a></li>
+						<li><a href="discover"><?php echo $lang['discover']; ?></a></li>
+						<li><a href="videoslist"><?php echo $lang['news']; ?></a></li>
+
+						<?php if (isset($session)) { ?>
+
+							<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
+							<li><a href="upload"><?php echo $lang['up_vid']; ?></a></li>
+
+						<?php } ?>
+					</ul>
+				</nav>
+				<span id="mobile-nav-icon"><p></p></span>
+				<div id="bottom-nav-social">
+					<ul>
+						<li><a href="https://www.facebook.com/dreamvids" target="_blank"><img src="img/icon_facebook.png" alt="Facebook"></a></li>
+						<li><a href="https://twitter.com/DreamVids_" target="_blank"><img src="img/icon_twitter.png" alt="Twitter"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- <div id="header">
+	<?php
+	if (isset($session) )
+	{
+	?>
 		<div style="float:right;margin:20px"><center><a href="/@<?php echo secure($session->getName() ); ?>"><img src="<?php echo secure($session->getAvatarPath() ); ?>" alt="" width="50" /><br /><b style="color:white"><?php echo secure($session->getName() ); ?></b></a></center></div>
-<?php
-}
-?>
-		<div id="logo" class=""><a href="./"><img src="img/logo_white_basic.png" class="img-responsive" alt="logo"/></a></div> <!-- C'est plus joli sans le Beta -->
+	<?php
+	}
+	?>
+		<div id="logo" class=""><a href="./"><img src="img/logo_white_basic.png" class="img-responsive" alt="logo"/></a></div>
 		<br><br>
 	</div>
-
+	
 	<div class="navbar navbar-default navbar-static-top" id="navbar" <?php if(@$_GET['page'] == 'profile' || @$_GET['page'] == 'manager' || @$_GET['page'] == 'mail' || @$_GET['page'] == 'pass') echo 'style="margin-bottom:0px;"'; ?>>
 		<div class="container">
 			<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
@@ -105,7 +180,7 @@ if (isset($session) )
 				<span class='icon-bar'></span>
 				<span class='icon-bar'></span>
 			</button>
-
+	
 			<div class="collapse navbar-collapse navHeaderCollapse">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a class="bug" href="index.php?page=bugs">Un bug ?</a></li>
@@ -113,7 +188,7 @@ if (isset($session) )
 					<li><a href="videoslist"><?php echo $lang['news']; ?></a></li>
 					<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
 				</ul>
-
+	
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="upload"><?php echo $lang['up_vid']; ?></a></li>
 					<?php if(isset($session)) { ?>
@@ -125,11 +200,11 @@ if (isset($session) )
 					<?php } ?>
 				</ul>
 		<ul class="nav navbar-nav"><li><form class="navbar-form " role="search" method="get" action="/search">
-        <div class="form-group center-block">
-          <input type="search" required="required" name="q" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
-        </div>
-        <button type="submit" style="border-radius:25px" class="btn btn-default"><img src="img/search.png" width="14"></button>
-      </form></li></ul>
+	        <div class="form-group center-block">
+	          <input type="search" required="required" name="q" size="35" class="form-control" placeholder="<?php echo $lang['search'].'...'; ?>">
+	        </div>
+	        <button type="submit" style="border-radius:25px" class="btn btn-default"><img src="img/search.png" width="14"></button>
+	      </form></li></ul>
 			</div>
 		</div>
-	</div>
+	</div> -->

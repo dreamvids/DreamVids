@@ -59,10 +59,9 @@ foreach ($partnerships as $partner)
 </div>
 
 <script src="js/bgLoader.js"></script>
+<script src="js/interactions.js"></script>
 <script src="js/filePreview.js"></script>
 	
-		
-
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
