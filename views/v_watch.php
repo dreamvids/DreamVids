@@ -4,45 +4,23 @@
 
 <div class="container">
 
-	<div class="container">
-		<h1 class="title"><?php echo secure($title); ?></h1>
+	<div id="video-top-infos">
+		<div id="video-top-title">
+			<div id="video-top-channel">
+				<img src="http://dreamvids.fr/uploads/Simpleworld/avatar.png" alt="Image de la chaîne">
+				<div id="video-top-channel-infos">
+					<a id="video-top-pseudo" href="/@<?php echo secure($author -> getName()); ?>">
+						<?php echo secure($author -> getName()); ?>
+					</a>
+					<hr>
+					<p id="video-top-abonnes"><span class="strong"><?php echo secure($author->getSubscribers() ); ?></span> abonné<?php echo (secure($author->getSubscribers()) > 1 ? "s": ""); ?></p>
+				</div>
+			</div>
+			<h1 title="<?php echo secure($title); ?>" itemprop="name"><?php echo secure($title); ?></h1>
+		</div>
 	</div>
 
-	
-	<?php
-		if(isset($session) && Watch::isModerator($session)) {
-	?>
-
-	<div id='moderatingCommands' class='container'>
-		<form method='post' action='' role='form'>
-			<?php if($video->isFlagged()) { ?>
-
-			<button class='btn btn-success' name='unflag_vid'>Annuler le flag</button>			
-
-			<?php } ?>
-
-			<?php if($video->isSuspended()) { ?>
-
-			<button class='btn btn-success' name='unsuspend_vid'>Ré-activer</button>	
-
-			<?php } else { ?>
-
-			<button class='btn btn-warning' name='suspend_vid'>Suspendre</button>
-
-			<?php } ?>
-
-			<button type='submit' class='btn btn-info' name='send_message_author'>Envoyer un message au créateur</button>
-			<button type='submit' class='btn btn-info' name='send_message_admin'>Envoyer un message à un admin</button>
-			<button type='submit' class='btn btn-danger' name='request_delete_vid'>Demander la suppression</button>
-		</form>
-	</div>
-
-	<br>
-
-	<?php
-	}
-
-	if(isset($err)) {
+	<?php if(isset($err)) {
 		echo '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>';
 	}
 	else {
@@ -82,7 +60,39 @@
 		</div>
 	</div>
 
-	<br />
+	<?php if (isset($session) && Watch::isModerator($session)) { ?>
+	
+	<br>
+
+	<form method="post" action="" role="form" class="moderating-commands">
+
+		<?php if ($video->isFlagged()) { ?>
+
+			<button class="blue" name="unflag_vid">Annuler le flag</button>			
+
+		<?php }
+
+		if ($video->isSuspended()) { ?>
+
+			<button class="orange" name="unsuspend_vid">Ré-activer</button>	
+
+		<?php } else { ?>
+
+			<button class="orange" name="suspend_vid">Suspendre</button>
+
+		<?php } ?>
+
+		<button type="submit" class="blue" name="send_message_author">Envoyer un message au créateur</button>
+		<button type="submit" class="blue" name="send_message_admin">Envoyer un message à un admin</button>
+		<button type="submit" class="red" name="request_delete_vid">Demander la suppression</button>
+
+	</form>
+
+	<br>
+
+	<?php } ?>
+
+	<br>
 	
 	<div class="container">
 	<table class="watch">
@@ -99,7 +109,7 @@
 			<td>
 				<div style="float:left;">
 					<?php
-					echo $lang['by']." <a href=\"/@".secure($author->getName() )."\">".secure($author->getName() )."</a> ".User::getDisplayableRank($author->getId() )."<br/>";
+					echo $lang["by"]." <a href=\"/@".secure($author->getName() )."\">".secure($author->getName() )."</a> ".User::getDisplayableRank($author->getId() )."<br/>";
 					echo "Le  ".TraduireDate(date('j F Y \à H\hi', $video->getTimestamp()));
 					?>
 				</div>

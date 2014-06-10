@@ -96,8 +96,8 @@
 				</div>
 				<div id="inner-top-nav-right">
 
-					<form method="get" action="search">
-						<input type="text" id="top-nav-search-input" name="q" placeholder="Rechercher">
+					<form role="search" method="get" action="search">
+						<input type="text" required="required" id="top-nav-search-input" name="q" placeholder="<?php echo $lang['search'].'...'; ?>">
 						<input type="submit" value="">
 					</form>
 

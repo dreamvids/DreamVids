@@ -19,12 +19,19 @@ switch (@$_GET['mode'])
 	break;
 	
 	case 'search':
-		$q = urldecode($_GET['q']);
-		if ($_GET['q'] != '' && !preg_match('#^\s*$#', $q) )
-		{
+	
+		$url = $_SERVER["REQUEST_URI"];
+		$q = preg_replace('/^(.+)search(.+)q=/i', "", $url);
+		$q = preg_replace('/&(.+)$/i', "", $q);
+		$q = urldecode($q);
+
+		if ($q != '' && !preg_match('#^\s*$#', $q)) {
+
 			$vids = $vidslist->getSearchVideos($q);
-			$title = $lang['search'].' - '.secure($q);
+			$title = $lang["search"] . " - " . secure($q);
+
 		}
+
 	break;
 	
 	default:
