@@ -31,7 +31,13 @@ if(isset($_GET['vid'])) {
 
 				if(isset($_POST['submitFlag'])) {
 					Watch::flagVideo($video);
-				}				
+				}
+
+				// Recommandations
+
+				$vidslist = new Vidslist();
+				$recommandations = $vidslist -> getDiscoverVideos(20);
+
 			}
 			else {
 				$err = $lang['video_private'];

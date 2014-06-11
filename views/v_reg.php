@@ -1,10 +1,7 @@
 <div class="container">
-	<div class="container">
-		<div class='border-top'></div>
-			<h1><?php echo $lang['reg']; ?></h1>
-		<div class='border-bottom'></div>
 
-		<br><br>
+	<div class="container">
+		<h1 class="title"><?php echo $lang['reg']; ?></h1>
 	</div>
 
 	<div class="container" style="width: 40%; float: left;">

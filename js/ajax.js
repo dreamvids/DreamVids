@@ -117,7 +117,7 @@ function comment(vid, username, comment) {
 
 function getCommentHTML(username, comment) {
 	var date = new Date();
-	return '<div class="panel panel-default" style="width: 100%;"><div class="panel-heading"><h5>'+username+' <small>'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</small></h5></div><div class="panel-body"><p>'+noHTML(comment)+'</p></div></div>';
+	return '<div class="comment"><div class="comment-head"><div class="user"><a href="#">' + username + '</a></div><div class="date"><p>' + date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear() + ' à ' + date.getHours() + ':' + date.getMinutes() + '</p></div></div><div class="comment-text"><p>' + noHTML(comment) + '</p></div></div>'
 }
 
 function noHTML(str) {

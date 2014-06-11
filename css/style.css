@@ -2604,6 +2604,9 @@ header a:hover {
   -o-box-sizing: border-box;
   box-sizing: border-box;
 }
+#video-top-infos #video-top-title #video-top-channel a:hover {
+  text-decoration: none!important;
+}
 /* line 53, ../scss/video/_titre.scss */
 #video-top-infos #video-top-title #video-top-channel img {
   position: relative;
@@ -2905,4 +2908,399 @@ header a:hover {
 /* line 45, ../scss/partials/_moderating-commands.scss */
 .moderating-commands button.red:active {
   background: #ce0633;
+}
+
+/* line 1, ../scss/partials/_footer.scss */
+html {
+  background-color: #f1f0f0;
+}
+
+/* line 3, ../scss/partials/_footer.scss */
+body {
+  background-color: white;
+}
+
+/* line 5, ../scss/partials/_footer.scss */
+footer {
+  position: relative;
+  top: 10px;
+  width: 100%;
+  border-top: 1px solid #d1d1d1;
+  background-color: #f1f0f0;
+}
+/* line 14, ../scss/partials/_footer.scss */
+footer #inner-footer {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px 15px 20px 15px;
+  text-align: left;
+  color: #797171;
+}
+/* line 22, ../scss/partials/_footer.scss */
+footer #inner-footer .row {
+  float: left;
+  display: block;
+  width: 30%;
+  margin: 5px 2% 30px 0;
+}
+@media (max-width: 600px) {
+  /* line 22, ../scss/partials/_footer.scss */
+  footer #inner-footer .row {
+    width: 45%;
+    margin: 5px 2% 30px 2%;
+  }
+}
+@media (max-width: 500px) {
+  /* line 22, ../scss/partials/_footer.scss */
+  footer #inner-footer .row {
+    width: 90%;
+  }
+}
+/* line 35, ../scss/partials/_footer.scss */
+footer #inner-footer .row h1 {
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 20px;
+}
+/* line 41, ../scss/partials/_footer.scss */
+footer #inner-footer .row a {
+  display: block;
+  margin-top: 3px;
+  color: #848b90;
+  text-decoration: none;
+}
+/* line 48, ../scss/partials/_footer.scss */
+footer #inner-footer .row a:hover {
+  text-decoration: underline;
+}
+/* line 52, ../scss/partials/_footer.scss */
+footer #inner-footer .rights {
+  clear: both;
+  display: block;
+  margin-top: 20px;
+  color: #848b90;
+}
+/* line 60, ../scss/partials/_footer.scss */
+footer #inner-footer .rights .license > img {
+  float: left;
+  width: 80px;
+  height: 15px;
+  margin-right: 5px;
+  background: black;
+  opacity: 0.5;
+}
+/* line 70, ../scss/partials/_footer.scss */
+footer #inner-footer .rights .license > img:hover {
+  opacity: 1;
+}
+/* line 73, ../scss/partials/_footer.scss */
+footer #inner-footer .rights a {
+  color: #848b90;
+  text-decoration: underline;
+}
+/* line 77, ../scss/partials/_footer.scss */
+footer #inner-footer .rights a:hover {
+  text-decoration: none;
+}
+/* line 80, ../scss/partials/_footer.scss */
+footer #inner-footer .rights .github {
+  margin-left: 15px;
+}
+/* line 82, ../scss/partials/_footer.scss */
+footer #inner-footer .rights .love {
+  float: right;
+}
+@media (max-width: 900px) {
+  /* line 82, ../scss/partials/_footer.scss */
+  footer #inner-footer .rights .love {
+    float: none;
+    display: block;
+    margin-bottom: 15px;
+  }
+}
+/* line 91, ../scss/partials/_footer.scss */
+footer #inner-footer .rights .love i {
+  color: #f2749b;
+  -webkit-animation: heart 2s ease-in 0s infinite normal;
+  -moz-animation: heart 2s ease-in 0s infinite normal;
+  -ms-animation: heart 2s ease-in 0s infinite normal;
+  -o-animation: heart 2s ease-in 0s infinite normal;
+  animation: heart 2s ease-in 0s infinite normal;
+}
+@-webkit-keyframes heart {
+  /* line 106, ../scss/partials/_footer.scss */
+  0% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+
+  /* line 107, ../scss/partials/_footer.scss */
+  50% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 1);
+  }
+
+  /* line 108, ../scss/partials/_footer.scss */
+  100% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+}
+
+@-moz-keyframes heart {
+  /* line 111, ../scss/partials/_footer.scss */
+  0% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+
+  /* line 112, ../scss/partials/_footer.scss */
+  50% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 1);
+  }
+
+  /* line 113, ../scss/partials/_footer.scss */
+  100% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+}
+
+@-ms-keyframes heart {
+  /* line 116, ../scss/partials/_footer.scss */
+  0% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+
+  /* line 117, ../scss/partials/_footer.scss */
+  50% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 1);
+  }
+
+  /* line 118, ../scss/partials/_footer.scss */
+  100% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+}
+
+@-o-keyframes heart {
+  /* line 121, ../scss/partials/_footer.scss */
+  0% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+
+  /* line 122, ../scss/partials/_footer.scss */
+  50% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 1);
+  }
+
+  /* line 123, ../scss/partials/_footer.scss */
+  100% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+}
+
+@keyframes heart {
+  /* line 126, ../scss/partials/_footer.scss */
+  0% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+
+  /* line 127, ../scss/partials/_footer.scss */
+  50% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 1);
+  }
+
+  /* line 128, ../scss/partials/_footer.scss */
+  100% {
+    text-shadow: 0 0 20px rgba(213, 9, 60, 0.2);
+  }
+}
+
+#comments {
+  float: left;
+  display: inline-block;
+  width: 65%;
+  margin: 30px 0 20px -3px;
+  padding-right: 20px;
+  padding-left: 10px;
+  vertical-align: top;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media (max-width: 1015px) {
+  /* line 4, ../scss/video/_comments.scss */
+  #comments {
+    width: 55%;
+  }
+}
+@media (max-width: 750px) {
+  /* line 4, ../scss/video/_comments.scss */
+  #comments {
+    width: 100%;
+  }
+}
+/* line 26, ../scss/video/_comments.scss */
+#comments form textarea {
+  width: 100%;
+  height: 150px;
+  max-height: 300px;
+  padding: 10px;
+  resize: none;
+  font-family: "Source Sans Pro", Arial;
+  font-size: 18px;
+  font-size: 16px;
+  color: #545454;
+  border: 1px solid #dedede;
+}
+@media (max-width: 750px) {
+  /* line 26, ../scss/video/_comments.scss */
+  #comments form textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+/* line 52, ../scss/video/_comments.scss */
+#comments form textarea:focus, #comments form textarea:active {
+  outline: none;
+  border-color: #cdcdcd;
+}
+/* line 58, ../scss/video/_comments.scss */
+#comments form input[type="submit"] {
+  float: right;
+  height: 35px;
+  padding: 0 30px;
+  margin: 5px 0 0 0;
+  background: #40a6e0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Source Sans Pro", Arial;
+  font-size: 16px;
+}
+@media (max-width: 750px) {
+  /* line 58, ../scss/video/_comments.scss */
+  #comments form input[type="submit"] {
+    margin-right: 0;
+  }
+}
+/* line 76, ../scss/video/_comments.scss */
+#comments form input[type="submit"]:focus, #comments form input[type="submit"]:active {
+  outline: none;
+}
+/* line 78, ../scss/video/_comments.scss */
+#comments form input[type="submit"]:hover {
+  background: #56b0e4;
+}
+/* line 79, ../scss/video/_comments.scss */
+#comments form input[type="submit"]:active {
+  background: #2a9cdc;
+}
+/* line 83, ../scss/video/_comments.scss */
+#comments .comment {
+  float: left;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 16px;
+  color: #757575;
+}
+/* line 92, ../scss/video/_comments.scss */
+#comments .comment .comment-head {
+  width: 100%;
+  margin-bottom: 5px;
+  padding-bottom: 15px;
+}
+/* line 97, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 102, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user img,
+#comments .comment .comment-head .user a {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 107, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user a {
+  margin-left: 15px;
+  color: #40a6e0;
+  font-weight: bold;
+}
+/* line 112, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user a.validate:after {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin: 0 0 -1px 5px;
+  content: "";
+  background-image: url(../img/validate.png);
+  background-size: 13px 13px;
+}
+/* line 124, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user .rank {
+  display: inline-block;
+  margin: 0 0 0 10px;
+  padding: 5px 5px 3px 5px;
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+/* line 133, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user .rank[data-rank="1"] {
+  background: #D96565;
+}
+/* line 134, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user .rank[data-rank="2"] {
+  background: #D9D865;
+}
+/* line 135, ../scss/video/_comments.scss */
+#comments .comment .comment-head .user .rank[data-rank="3"] {
+  background: #5BAADC;
+}
+/* line 138, ../scss/video/_comments.scss */
+#comments .comment .comment-head .date {
+  float: right;
+  display: inline-block;
+  vertical-align: baseline;
+}
+/* line 143, ../scss/video/_comments.scss */
+#comments .comment .comment-head .date p {
+  font-size: 15px;
+  line-height: 27px;
+}
+/* line 150, ../scss/video/_comments.scss */
+#comments .comment .comment-text {
+  margin-bottom: 5px;
+  padding-left: 25px;
+}
+/* line 155, ../scss/video/_comments.scss */
+#comments .comment .comment-notation {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+/* line 160, ../scss/video/_comments.scss */
+#comments .comment .comment-notation ul {
+  list-style: none;
+}
+/* line 162, ../scss/video/_comments.scss */
+#comments .comment .comment-notation li {
+  display: inline-block;
+  margin-right: 30px;
+}
+/* line 166, ../scss/video/_comments.scss */
+#comments .comment .comment-notation li a {
+  margin-right: 10px;
+}
+/* line 170, ../scss/video/_comments.scss */
+#comments .comment .comment-notation .plus,
+#comments .comment .comment-notation .plus a {
+  color: #48a84f;
+}
+/* line 173, ../scss/video/_comments.scss */
+#comments .comment .comment-notation .moins,
+#comments .comment .comment-notation .moins a {
+  color: #dd4e47;
 }

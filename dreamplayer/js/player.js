@@ -89,6 +89,12 @@ video.addEventListener("error", function(event) { // Detection d'une erreur
 
 }, true);
 
+video.addEventListener("play", function(event) { // Detection d'une erreur
+
+    errorLoadingElement.className = "";
+
+}, true);
+
 var time = document.getElementById('time');
 
 function playPause() { // Fonction appelée à chaque play/pause effectuée

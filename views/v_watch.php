@@ -1,13 +1,12 @@
-<?php
-
-?>
-
 <div class="container">
 
 	<div id="video-top-infos">
 		<div id="video-top-title">
 			<div id="video-top-channel">
-				<img src="http://dreamvids.fr/uploads/Simpleworld/avatar.png" alt="Image de la chaîne">
+				<a href="/@<?php echo secure($author -> getName()); ?>">
+					<img src="<?php echo secure($author -> getAvatarPath()); ?>" alt="Image de la chaîne">
+				</a>
+
 				<div id="video-top-channel-infos">
 					<a id="video-top-pseudo" href="/@<?php echo secure($author -> getName()); ?>">
 						<?php echo secure($author -> getName()); ?>
@@ -176,61 +175,112 @@
 	<p> Code à utiliser sur votre page web : <br/>
 	<textarea id="code" cols="50" rows="2" style="width:100%;max-width:500px;cursor:text;" onClick="this.select();" readonly class="form-control"></textarea>
 	
-	<h2>Commentaires</h2>
-	<?php if(isset($session)) { ?>
-	<script>
-		window.onload = function () {
-			document.getElementById("text_comment").onkeydown = function (e) {
-				if (e.keyCode == 13 && e.ctrlKey) { 
-					document.getElementById("submit_comment").click();
-				return false;
-				}
-			}
-		}
-	</script>
-		<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
-			<div class="form-group">
-				<textarea id="text_comment" class="form-control" required rows="8" cols="50" placeholder="Commentaire..."></textarea>
-				
-			</div>
-			<div class="form-group">
-				<input  id="submit_comment" class="btn btn-primary btn-success" type="submit" value="Envoyer" />
-				<p>Ou Ctrl+Enter pour envoyer</p>
-			</div>
-		</form>
-	<?php
-	}
-	else {
-	?>
-		<h3 class="text-center">
-			Vous devez être connecté pour pouvoir poster un commentaire.<br />
-			<small>
-				<a href="login">Connexion</a><br />
-				<a href="signup">Inscription</a>
-			</small>
-		</h3>
-	<?php } ?>
-	<br><br>
-	<div id="new_comments"></div>
-	<?php
-	$comms = Watch::getComments($id);
-	foreach ($comms as $comm) {
-		$date = @date('d/m/Y H:i:s', $comm->getTimestamp() );
-		?>
+	<section id="comments">
 
-		<div class="panel panel-default" style="width: 100%;">
-			<div class="panel-heading">
-				<h5><a href="@<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()).'</a>'.User::getDisplayableRank($comm->getAuthorId()); ?> <small><?php echo $date; ?></small></h5>
-			</div>
-			<div class="panel-body">
-				<p><?php echo bbcode(nl2br(secure($comm->getContent() ) ) ); ?></p>
-			</div>
+		<?php if(isset($session)) { ?>
+
+			<form onsubmit="comment(<?php echo '\''.$_GET['vid'].'\', \''.secure($session->getName() ).'\''; ?>, this.text_comment.value);return false" method="post" action="">
+				<textarea id="text_comment" required rows="4" cols="10" placeholder="Commentaire..."></textarea>
+				<input id="submit_comment" type="submit" value="Envoyer" />
+			</form>
+
+		<?php } else { ?>
+
+			<h3 class="text-center">
+				Vous devez être connecté pour pouvoir poster un commentaire.<br />
+				<small>
+					<a href="login">Connexion</a><br />
+					<a href="signup">Inscription</a>
+				</small>
+			</h3>
+
+		<?php } ?>
+
+		<h3 class="title">Commentaires</h3>
+
+		<div id="comments-best">
+
+			<div id="new_comments"></div>
+
+			<?php
+				$comms = Watch::getComments($id);
+				foreach ($comms as $comm) {
+
+					$date = @date('d / m / Y à H:i', $comm->getTimestamp() ); ?>
+
+					<?php 
+
+						$author = new User($comm->getAuthorId());
+
+					 ?>
+
+					<div class="comment">
+						<div class="comment-head">
+							<div class="user">
+								<img src="<?php echo secure($author -> getAvatarPath()); ?>" width="32">
+								<a href="@<?php echo User::getNameById($comm->getAuthorId()); ?>"><?php echo User::getNameById($comm->getAuthorId()); ?></a>
+							</div>
+							<div class="date">
+								<p><?php echo $date; ?></p>
+							</div>
+						</div>
+						<div class="comment-text">
+							<p><?php echo bbcode(nl2br(secure($comm -> getContent()))); ?></p>
+						</div>
+					</div>
+
+			<?php } ?>
+
 		</div>
 
-		<?php
-	}
-	?>
+	</section>
 
+
+	<aside class="column-cards-list">
+		<h3>Recommandations</h3>
+
+		<?php
+
+		$nb = 0;
+
+		foreach ($recommandations as $vid) {
+
+			if ($nb < 4) {
+
+				$nb++;
+			
+				$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
+				$descVid = (strlen($vid->getDescription() ) > 60) ? secure(substr($vid->getDescription(), 0, 57) ).'...' : secure($vid->getDescription() );
+				$userVid = (strlen(User::getNameById(secure($vid->getUserId())) ) > 23) ? secure(substr(User::getNameById(secure($vid->getUserId())), 0, 20) ).'...' : secure(User::getNameById(secure($vid->getUserId()) ));
+				
+				if($vid->getViews() > 1) {
+					$views = $lang['views'] . ( $vid->getViews()>1 ? 's' : '' );
+				}
+	
+				else {
+					$views = $lang['views'];
+				}
+	
+				?>
+	
+		    	<div class="card video">
+		    		<div class="thumbnail bgLoader" data-background="<?php echo secure($vid->getTumbnail() ); ?>">
+		    			<a href="&<?php echo secure($vid->getId()); ?>" class="overlay"></a>
+		    		</div>
+		    		<div class="description">
+		    			<a href="&<?php echo secure($vid->getId()); ?>"><h4><?php echo $titleVid; ?></h4></a>
+		    			<div>
+		    				<span class="view"><?php echo $vid -> getViews(); ?></span>
+		    				<a class="channel" href="@<?php echo User::getNameById(secure($vid->getUserId())); ?>"><?php echo $userVid; ?></a>
+		    			</div>
+		    		</div>
+		    	</div>
+
+			<?php }
+
+			} ?>
+
+	</aside>
 
 	<?php
 	}
@@ -238,8 +288,9 @@
 </div>
 </div>
 
+
 <!-- video player body-->
-	<script src="dreamplayer/js/player.js?time=<?php echo time(); ?>"></script>
+	<script src="dreamplayer/js/player.js?time=<?php echo round(time() / 10); ?>"></script>
 	<script src="utils/videoinfo.php?vid=<?php echo secure($id); ?>"></script>
 <!-- End -->
 

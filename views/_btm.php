@@ -1,62 +1,54 @@
-<?php
-if(isset($session) && ($session->getRank() == $config['rank_adm'] || $session->getRank() == $config['rank_modo']) )
-{
-    echo '<center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a><br /><br /><a class="btn btn-danger" href="./admin">Panneau d\'administration</a></center>';
-}
-?>
-                <br /><br />
-<div class="footer" style="clear:both; width:100%;">
-<div class="container">            
-    <div class="row">
-      <div class="col-md-3">
-          <h3>Informations légales</h3>
-          dreamvids.fr - CopyLeft DreamVids 2013-<?php echo @date('Y'); ?>.<br><a href="http://github.com/vetiore/dreamvids" target="_blank">Code source</a><br />
-          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0; opacity: 0.6;" src="http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
-      </div>
-      <div class="col-md-3">
-      	<h3>Partenaires</h3>
-<?php
-foreach ($partnerships as $partner)
-{
-?>
-      	<a href="<?php echo $partner['url']; ?>" target="_blank"><?php echo $partner['name']; ?></a><br />
-<?php
-}
-?>
-      	<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'\'jeremy [at] dreamvids [dot] fr\'\'')">Votre site ici ?</a><br />
-      </div>
-      <div class="col-md-3">
-      	<h3>DreamVids</h3>
-      	<a href="index.php?page=contributors">Contributeurs</a><br />
-      	<a href="http://blog.dreamvids.fr" target="_blank">Blog de développement</a><br />
-      </div>
-      <div class="col-md-3">
-      	<h3>Suivez-nous</h3>
-      	<a target="_blank" href="https://facebook.com/DreamVids">Facebook</a><br />
-      	<a target="_blank" href="https://twitter.com/DreamVids_">Twitter</a><br />
-      	<a target="_blank" href="https://github.com/Vetiore/DreamVids">GitHub</a><br />
-      	<a target="_blank" href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a><br /><br /><br />
-      </div>
-      <!-- <div class="col-md-4">
-          <h3>Remerciments</h3>
-          <p style="color:grey;">
-			Librement réalisé par:
-			<a href="http://twitter.com/BokoratMC" target="_blank">Bokorat</a>, 
-			<a href="http://twitter.com/JouetR" target="_blank">BrezhDev</a>, 
-			<a href="http://twitter.com/Sebraecha" target="_blank">Charlie</a>, 
-			<a href="http://twitter.com/DarkWos1" target="_blank">DarkWos</a>, 
-			<a href="http://twitter.com/jeremy__fr" target="_blank">Jeremy</a>, 
-			<a href="http://twitter.com/Dark_Tagnan" target="_blank">Jonathan</a>, 
-			<a href="http://twitter.com/oliviermis" target="_blank">Olivier</a>, 
-			<a href="http://twitter.com/p_cauty" target="_blank">PHPeter</a>, 
-			<a href="http://twitter.com/_quadrifoglio" target="_blank">Quadrifoglio</a>, 
-			<a href="http://twitter.com/VincentBanana" target="_blank">VincentBanana</a> 
-			et <a href="http://skype.com/" target="_blank">La bonne humeur</a> !
-		</p>
-      </div> -->
-    </div>  
-</div>
-</div>
+<?php if (isset($session) && ($session->getRank() == $config['rank_adm'] || $session->getRank() == $config['rank_modo'])) {
+    echo '<br><center><a class="btn btn-success" href="/?page=moderation">Centre de modération</a><br /><br /><a class="btn btn-danger" href="./admin">Panneau d\'administration</a></center>';
+} ?>
+
+<br><br>
+<footer>
+    <div id="inner-footer">
+
+        <div class="row">
+
+            <h1>DreamVids</h1>
+      
+            <a href="index.php?page=contributors">Contributeurs</a>
+            <!-- <a href="http://dreamvids.net/">Blog de développement</a> -->
+            <a href="index.php?page=bugs">Reporter un bug</a>
+
+        </div>
+
+        <div class="row">
+
+            <h1>Partenaires</h1>
+
+            <?php foreach ($partnerships as $partner) { ?>
+              <a href="<?php echo $partner['url']; ?>" target="_blank"><?php echo $partner['name']; ?></a>
+            <?php } ?>
+
+            <a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a>
+
+        </div>
+
+        <div class="row">
+
+            <h1>Social</h1>
+      
+            <a href="https://twitter.com/DreamVids_">Twitter</a>
+            <a href="https://facebook.com/DreamVids">Facebook</a>
+            <a href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a>
+
+        </div>
+
+        <div class="rights">
+
+            <span class="love">Fait avec le <i>♥</i></span>
+      
+            <a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="img/license.png" /></a>
+            dreamvids.fr - CopyLeft DeamVids 2013-2014 <a href="https://github.com/Vetiore/DreamVids" class="github">Code source sur Github</a>
+    
+        </div>
+
+    </div>
+</footer>
 
 <script src="js/bgLoader.js"></script>
 <script src="js/interactions.js"></script>

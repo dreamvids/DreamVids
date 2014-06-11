@@ -1,5 +1,7 @@
 <?php
 
+require 'm_vidslist.php';
+
 class Watch {
 	// moderator's action on the watch video page
 	public static function isModerator($user) {
