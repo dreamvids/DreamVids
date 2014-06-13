@@ -57,6 +57,8 @@ class Watch extends Controller {
 		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
 		$data['recommendations'] = $this->model->getRecommendedVideos($video->poster_id);
 
+		$data['currentPage'] = "watch";
+
 		$this->model->addView($videoId);
 		$this->renderView('watch/watch', $data);
 	}

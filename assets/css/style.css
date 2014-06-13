@@ -3586,6 +3586,47 @@ video {
 /*
  *  Annotations
  */
+#subtitlesList {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  padding: 0;
+  text-align: center;
+  -webkit-transition: bottom .15s;
+  -moz-transition: bottom .15s;
+  -ms-transition: bottom .15s;
+  -o-transition: bottom .15s;
+  transition: bottom .15s;
+}
+#player:not(.down) #subtitlesList {
+  bottom: 40px;
+}
+#subtitlesList.hide {
+  opacity: 0;
+}
+#subtitlesList.hide .subtitle {
+  display: none;
+}
+#subtitlesList .subtitle {
+  padding: 8px;
+  display: inline-block;
+  color: white;
+  font-family: 'Source Sans Pro';
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: relative;
+
+}
+#subtitlesList .subtitle.hidden {
+  display: none;
+}
+
+/*
+ *  Annotations
+ */
 /* line 742, ../scss/partials/_player.scss */
 #annotationsElement {
   width: 100%;
@@ -6802,25 +6843,25 @@ h3.title:after {
 }
 
 /* ===============================================
-               Règles de présentation
+               R?les de pr?entation
    =============================================== */
-/* Règles globales
+/* R?les globales
    ======================================= */
 /*
 
-  - Tout fichier devra désormais être correctement présenté et commenté
-  - Les indentations sont constituées de 4 espaces
-  - Les commentaires sont écrit en français courant et compréhensible
-  - L'odre des déclarations doit être respecté pour mieux se retrouver dans les nombreux fichiers (voir ci-dessous)
-  - À compléter et à adapter aux besoins ;-)
+  - Tout fichier devra d?ormais ?re correctement pr?ent?et comment?
+  - Les indentations sont constitu?s de 4 espaces
+  - Les commentaires sont ?rit en fran?is courant et compr?ensible
+  - L'odre des d?larations doit ?re respect?pour mieux se retrouver dans les nombreux fichiers (voir ci-dessous)
+  - ? compl?er et ?adapter aux besoins ;-)
 
 */
-/* Ordre des déclarations
+/* Ordre des d?larations
    ======================================= */
 /* 
   -  Positionnement
 
-  -  Modèle de zone
+  -  Mod?e de zone
 
   -  Visuel */
 /* Exemple */
