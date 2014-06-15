@@ -25,8 +25,8 @@ class User {
             $this->id = $row['id'];
             $this->name = $row['username'];
             $this->mail = $row['email'];
-            $this->avatar = $row['avatar']."?".time();
-            $this->background = $row['background']."?".time();
+            $this->avatar = $row['avatar'];
+            $this->background = $row['background'];
             $this->subscribers = $row['subscribers'];
             $this->subscriptions = explode(';', $row['subscriptions']);
             $this->reg_timestamp = $row['reg_timestamp'];

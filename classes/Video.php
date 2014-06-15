@@ -158,7 +158,7 @@ class Video {
 	}
 
 	public function getTumbnail() {
-		return ($this->tumbnail != '') ? $this->tumbnail.'?'.time() : $this->path.'.jpg';
+		return ($this->tumbnail != '') ? $this->tumbnail : $this->path.'.jpg';
 	}
 
 	public function getViews() {

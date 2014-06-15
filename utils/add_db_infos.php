@@ -22,19 +22,19 @@ if (hash_hmac("sha256", $data['address'], $data['private_key']) == @$_GET['hash'
 				$video = Video::get($_GET['fid']);
 			else
 				$video = Video::create($_GET['fid'], $_GET['uid']);
-			$video->setTumbnail(urldecode($_GET['url']) );
+			$video->setTumbnail(urldecode($_GET['url']).'?'.time() );
 			$video->saveDataToDatabase();
 			break;
 		
 		case 'avatar':
 			$user = new User($_GET['uid']);
-			$user->setAvatarPath(urldecode($_GET['url']) );
+			$user->setAvatarPath(urldecode($_GET['url']).'?'.time() );
 			$user->saveDataToDatabase();
 			break;
 		
 		case 'background':
 			$user = new User($_GET['uid']);
-			$user->setBackgroundPath(urldecode($_GET['url']) );
+			$user->setBackgroundPath(urldecode($_GET['url']).'?'.time() );
 			$user->saveDataToDatabase();
 			break;
 		

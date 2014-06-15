@@ -48,3 +48,24 @@
 	</div>
 
 </div>
+
+<script type="text/javascript">
+var thumbInput = document.getElementById('videoTumbnail'),
+xhr = null;
+
+thumbInput.onchange = function() {
+	var ext = thumbInput.value.split('.');
+	ext = ext[ext.length - 1];
+	if (inArray(ext.toLowerCase(), ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg']) ) {
+		thumbInput.setAttribute('disabled', 'disabled');
+		xhr = new XMLHttpRequest();
+		xhr.open('POST', '<?php echo $_SESSION['serv']['addr'].'uploads/?uid='.$session->getId().'&fid='.$vidId.'&tid=thumbnail'; ?>');
+		var form = new FormData();
+		form.append('fileInput', thumbInput.files[0]);
+		xhr.send(form);
+	}
+	else {
+		alert("Ceci n'est pas une image valide");
+	}
+};
+</script>

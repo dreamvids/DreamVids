@@ -61,6 +61,11 @@ if($video->getUserId() == $session->getId())
 		header('Location: ./manager');
 		exit();
 	}
+	else {
+		$_SESSION['serv'] = getFreestServer();
+		$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
+		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$vidId.'&uid='.$session->getId().'&tid=thumbnail&hash='.$hash);
+	}
 }
 else
 {
