@@ -46,7 +46,14 @@ class Video {
 		return $instance;
 	}
 	
-
+	public static function exist($id) {
+		$db = new BDD();
+		$res = $db->count("nb_vids", "videos", "WHERE id='".$db->real_escape_string($id)."'");
+		$data = $db->fetch_array($res);
+		$db->close();
+		return ($data['nb_vids'] > 0);
+	}
+	
 	private function createVideo() {
 		$db = new BDD();
 		$tagsStr = implode(' ', $this->tags);
@@ -97,7 +104,7 @@ class Video {
 	public function saveDataToDatabase() {
 		$db = new BDD();
 		$tagsStr = implode(' ', $this->tags);
-		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', visibility=".$this->visibility.", flagged=".$this->flagged, "WHERE id='".$db->real_escape_string($this->id)."'");
+		$db->update("videos", "title='".$db->real_escape_string($this->title)."', description='".$db->real_escape_string($this->description)."', tags='".$db->real_escape_string($tagsStr)."', tumbnail='".$db->real_escape_string($this->tumbnail)."', url='".$db->real_escape_string($this->path)."', visibility=".$this->visibility.", flagged=".$this->flagged, "WHERE id='".$db->real_escape_string($this->id)."'");
 	}
 
 	public function delete() {
@@ -233,7 +240,6 @@ class Video {
 		return $this->flagged == 1;
 	}
 
-
 	public function isFullyConverted() {
 		$db = new BDD();
 	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd=2 AND hd=2") or die(mysql_error());
@@ -245,26 +251,26 @@ class Video {
 	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd!=0 AND hd=0") or die(mysql_error());
 	    return $db->num_rows($result) == 1;
 	}
-	public static function GenHash()
-	{
-    $client  = @$_SERVER['HTTP_CLIENT_IP'];
-    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-    $remote  = $_SERVER['REMOTE_ADDR'];
-
-    if(filter_var($client, FILTER_VALIDATE_IP))
-    {
-        $ip = $client;
-    }
-    elseif(filter_var($forward, FILTER_VALIDATE_IP))
-    {
-        $ip = $forward;
-    }
-    else
-    {
-        $ip = $remote;
-    }
-    return md5($ip);
-}
+	
+	public static function GenHash() {
+	    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+	    $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+	    $remote  = $_SERVER['REMOTE_ADDR'];
+	
+	    if(filter_var($client, FILTER_VALIDATE_IP))
+	    {
+	        $ip = $client;
+	    }
+	    elseif(filter_var($forward, FILTER_VALIDATE_IP))
+	    {
+	        $ip = $forward;
+	    }
+	    else
+	    {
+	        $ip = $remote;
+	    }
+	    return md5($ip);
+	}
 }
 
 ?>

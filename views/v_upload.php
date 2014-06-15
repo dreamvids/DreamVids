@@ -15,7 +15,7 @@
 		?>
 		<div class="alert alert-success">Une fois le formulaire validé, vous allez être redirigé vers votre vidéo, si celle-ci ne se lance pas, attendez quelques secondes puis rechargez la page, le temps que la conversion se fasse :)</div>
 		<div class="alert alert-info">Les formats compatibles sont: <strong>webm, mp4, m4a, mpg, mpeg, 3gp, 3g2, asf, wma, mov, avi, wmv, ogg, ogv, flv et mkv.</strong> La taille maximum autorisée pour une vidéo est de 2Go.</div>
-		<form role="form" method="post" enctype="multipart/form-data" action="<?php echo $serv['addr'].'uploads/?uid='.$session->getId().'&vid='.$_SESSION['vid_id']; ?>">
+		<form role="form" method="post" enctype="multipart/form-data" action="<?php echo $_SESSION['serv']['addr'].'uploads/?uid='.$session->getId().'&fid='.$_SESSION['vid_id'].'&tid=video'; ?>>">
 			<label for="videoInput"><?php echo $lang['vid']; ?></label>
 			<input type="file" id="videoInput" name="videoInput">
 			<p class="help-block"><?php echo $lang['select_vid']; ?></p>
@@ -69,6 +69,7 @@
 
 <script type="text/javascript">
 var fileInput = document.getElementById('videoInput'),
+thumbInput = document.getElementById('videoTumbnail'),
 progress = document.getElementById('progressbar'),
 xhr = null;
 
@@ -92,14 +93,6 @@ function updateProgress(percent) {
     document.getElementById('vid-ok').innerHTML = '<b>'+percent+' %</b>';
 }
 
-function inArray(needle, haystack) {
-    var length = haystack.length;
-    for(var i = 0; i < length; i++) {
-        if(haystack[i] == needle) return true;
-    }
-    return false;
-}
-
 function abortUpload() {
 	xhr.abort();
 	fileInput.removeAttribute('disabled');
@@ -115,7 +108,7 @@ fileInput.onchange = function() {
 	if (inArray(ext.toLowerCase(), ['webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv']) ) {
 		fileInput.setAttribute('disabled', 'disabled');
 		xhr = new XMLHttpRequest();
-		xhr.open('POST', '<?php echo $_SESSION['SERVER_ADDR'].'uploads/?userId='.$session->getId().'&vidId='.$_SESSION['vid_id']; ?>');
+		xhr.open('POST', '<?php echo $_SESSION['serv']['addr'].'uploads/?uid='.$session->getId().'&fid='.$_SESSION['vid_id'].'&tid=video'; ?>');
 		xhr.upload.onprogress = function(e) {
 			updateProgress( (e.loaded/e.total)*100);
 		};
@@ -127,11 +120,27 @@ fileInput.onchange = function() {
 		    document.getElementById('up-submit').removeAttribute('disabled');
 		};
 		var form = new FormData();
-		form.append('videoInput', fileInput.files[0]);
+		form.append('fileInput', fileInput.files[0]);
 		xhr.send(form);
 	}
 	else {
 		alert("<?php echo $lang['error_video_type_incorrect']; ?>");
+	}
+};
+
+thumbInput.onchange = function() {
+	var ext = thumbInput.value.split('.');
+	ext = ext[ext.length - 1];
+	if (inArray(ext.toLowerCase(), ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg']) ) {
+		thumbInput.setAttribute('disabled', 'disabled');
+		xhr = new XMLHttpRequest();
+		xhr.open('POST', '<?php echo $_SESSION['serv']['addr'].'uploads/?uid='.$session->getId().'&fid='.$_SESSION['vid_id'].'&tid=thumbnail'; ?>');
+		var form = new FormData();
+		form.append('fileInput', thumbInput.files[0]);
+		xhr.send(form);
+	}
+	else {
+		alert("Ceci n'est pas une image valide");
 	}
 };
 </script>

@@ -61,14 +61,21 @@ foreach ($partnerships as $partner)
 		
 
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-     
-      ga('create', 'UA-34423249-4', 'dreamvids.fr');
-      ga('send', 'pageview');
-     
+	    function inArray(needle, haystack) {
+	        var length = haystack.length;
+	        for(var i = 0; i < length; i++) {
+	            if(haystack[i] == needle) return true;
+	        }
+	        return false;
+	  	}
+    
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-34423249-4', 'dreamvids.fr');
+		ga('send', 'pageview');
     </script>
 
 	

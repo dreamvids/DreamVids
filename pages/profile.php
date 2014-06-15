@@ -19,45 +19,6 @@ if (isset($_POST['submit']) )
 					{
 						$session->setUsername($_POST['username']);
 						$session->setEmailAddress($_POST['email']);
-						if ($_FILES['avatar']['name'] != '')
-						{
-							if ($_FILES['avatar']['size'] <= 100000)
-							{
-								$name = $_FILES['avatar']['name'];
-								$explode = explode(".", $name);
-								$ext = strtolower($explode[count($explode)-1]);
-								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								if (in_array(strtolower($ext), $acceptedExts) )
-								{
-									$avatarPath = Profile::uploadAvatar($session->getUsername() );
-									$session->setAvatarPath($avatarPath);
-								}
-							}
-							else
-							{
-								$err = $lang['size_avatar'];		
-							}
-						}
-						
-						if ($_FILES['background']['name'] != '')
-						{
-							if ($_FILES['background']['size'] <= 2000000)
-							{
-								$name = $_FILES['background']['name'];
-								$explode = explode(".", $name);
-								$ext = strtolower($explode[count($explode)-1]);
-								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								if (in_array(strtolower($ext), $acceptedExts) )
-								{
-									$backgroundPath = Profile::uploadBackground($session->getUsername() );
-									$session->setBackgroundPath($backgroundPath);
-								}
-							}
-							else
-							{
-								$err = $lang['size_background'];		
-							}
-						}
 						$session->saveDataToDatabase();
 					}
 					else
@@ -89,6 +50,14 @@ if (isset($_POST['submit']) )
 		$err = $lang['error_reg_empty'];
 	}
 }
+else
+{
+	$_SESSION['serv'] = getFreestServer();
+	$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
+	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid=avatar&uid='.$session->getId().'&tid=avatar&hash='.$hash);
+	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid=background&uid='.$session->getId().'&tid=background&hash='.$hash);
+}
+
 function startswith($hay, $needle) {
   return substr($hay, 0, strlen($needle)) === $needle;
 }

@@ -16,7 +16,6 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 ?>
 
 <div class='container'>
-
 	<div class='container'>
 		<div class='border-top'></div>
 		<h1><?php echo $lang['member_space']; ?><small> <?php echo secure($session->getName() ); ?></small></h1>
@@ -68,3 +67,41 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 		</div></div>
 	</div>
 </div>
+
+<script>
+var avatarInput = document.getElementById('avatar'),
+bgInput = document.getElementById('background'),
+xhr = null;
+
+avatarInput.onchange = function() {
+	var ext = avatarInput.value.split('.');
+	ext = ext[ext.length - 1];
+	if (inArray(ext.toLowerCase(), ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg']) ) {
+		avatarInput.setAttribute('disabled', 'disabled');
+		xhr = new XMLHttpRequest();
+		xhr.open('POST', '<?php echo $_SESSION['serv']['addr'].'uploads/?uid='.$session->getId().'&fid=avatar&tid=avatar'; ?>');
+		var form = new FormData();
+		form.append('fileInput', avatarInput.files[0]);
+		xhr.send(form);
+	}
+	else {
+		alert("Ceci n'est pas une image valide: "+ext);
+	}
+};
+
+bgInput.onchange = function() {
+	var ext = bgInput.value.split('.');
+	ext = ext[ext.length - 1];
+	if (inArray(ext.toLowerCase(), ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg']) ) {
+		bgInput.setAttribute('disabled', 'disabled');
+		xhr = new XMLHttpRequest();
+		xhr.open('POST', '<?php echo $_SESSION['serv']['addr'].'uploads/?uid='.$session->getId().'&fid=background&tid=background'; ?>');
+		var form = new FormData();
+		form.append('fileInput', bgInput.files[0]);
+		xhr.send(form);
+	}
+	else {
+		alert("Ceci n'est pas une image valide");
+	}
+};
+</script>
