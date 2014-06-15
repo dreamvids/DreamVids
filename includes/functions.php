@@ -115,4 +115,30 @@ function getPartnerships()
 	$db->close();
 	return MVCArray("partners", $rep);
 }
+
+function getFreestServer() {
+	$db = new BDD();
+	$rep = $db->select("*", "storage_servers", "WHERE critical=0");
+	$best_serv = array('addr' => null, 'free' => 0, 'priv_key' => '');
+	while ($data = $db->fetch_array($rep) )
+	{
+		$resp = file_get_contents($data['address']);
+		if ($resp != 'CRITICAL_ALERT')
+		{
+			if ($resp > $best_serv['free'])
+			{
+				$best_serv['id'] = $data['id'];
+				$best_serv['addr'] = $data['address'];
+				$best_serv['free'] = $resp;
+				$best_serv['priv_key'] = $data['private_key'];
+			}
+		}
+		else
+		{
+			$db->update("storage_servers", "critical=1", "WHERE id='".$data['id']."'");
+		}
+	}
+	$db->close();
+	return $best_serv;
+}
 ?>

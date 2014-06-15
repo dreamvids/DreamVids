@@ -1,6 +1,12 @@
 <?php
 if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
+{
 	$_SESSION['vid_id'] = Video::generateId(6);
+	$_SESSION['serv'] = getFreestServer();
+	$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
+	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=video&hash='.$hash);
+	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=thumbnail&hash='.$hash);
+}
 
 $uploadDone = $lang['upload_ok'];
 
@@ -15,29 +21,7 @@ if(isset($_POST['submit'])) {
 			if($_POST['videoDescription'] != '') {
 				if($_POST['videoTags'] != '') {
 					if (Upload::countVideos() == 1) {
-						if ($_FILES['videoTumbnail']['name'] != '')
-						{	
-							if ($_FILES['videoTumbnail']['size'] <= 1000000)
-							{
-								$name = $_FILES['videoTumbnail']['name'];
-								$explode = explode(".", $name);
-								$ext = strtolower($explode[count($explode)-1]);
-								$acceptedExts = array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg');
-								if (in_array(strtolower($ext), $acceptedExts) )
-								{
-									$tumbnailPath = Upload::uploadTumbnail($session->getName() );
-								}
-								Upload::addDbInfos($tumbnailPath);
-							}
-							else
-							{
-								$err = $lang['size_tumbnail'];
-							}
-						}
-						else
-						{
-							Upload::addDbInfos('');
-						}
+						Upload::addDbInfos($session->getId() );
 					}
 					else {
 						$err = $lang['err_no_vid_db'];
@@ -63,22 +47,3 @@ if(isset($_POST['submit'])) {
 		unset($_POST['videoInput']);
 	}*/
 }
-
-if(isset($_FILES['videoInput'])) {
-	if(isset($session)) {
-		$name = $_FILES['videoInput']['name'];
-		$explode = explode(".", $name);
-		$ext = strtolower($explode[count($explode)-1]);
-		$acceptedExts = array('webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv');
-
-		if(in_array(strtolower($ext), $acceptedExts)) {
-			Upload::uploadVideo($session->getId(), $session->getName() );
-		}
-		else {
-			$err = $lang['error_video_type_incorrect'];
-			unset($_POST['videoInput']);
-		}
-	}
-}
-
-?>
