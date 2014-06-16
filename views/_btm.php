@@ -11,7 +11,7 @@
             <h1>DreamVids</h1>
       
             <a href="index.php?page=contributors">Contributeurs</a>
-            <!-- <a href="http://dreamvids.net/">Blog de développement</a> -->
+            <a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
             <a href="index.php?page=bugs">Reporter un bug</a>
 
         </div>
@@ -24,7 +24,7 @@
               <a href="<?php echo $partner['url']; ?>" target="_blank"><?php echo $partner['name']; ?></a>
             <?php } ?>
 
-            <a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a>
+            <a href="javascript:void(0)" onclick="alert('Pour toute demande de partenariat, envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a>
 
         </div>
 
@@ -32,9 +32,9 @@
 
             <h1>Social</h1>
       
-            <a href="https://twitter.com/DreamVids_">Twitter</a>
-            <a href="https://facebook.com/DreamVids">Facebook</a>
-            <a href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a>
+            <a target="_blank" href="https://twitter.com/DreamVids_">Twitter</a>
+            <a target="_blank" href="https://facebook.com/DreamVids">Facebook</a>
+            <a target="_blank" href="http://github.com/DreamVids">Github</a>
 
         </div>
 
@@ -43,7 +43,7 @@
             <span class="love">Fait avec le <i>♥</i></span>
       
             <a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="img/license.png" /></a>
-            dreamvids.fr - CopyLeft DeamVids 2013-2014 <a href="https://github.com/Vetiore/DreamVids" class="github">Code source sur Github</a>
+            dreamvids.fr - CopyLeft DeamVids 2013-<?php echo date('Y'); ?> <a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
     
         </div>
 

@@ -22,21 +22,7 @@ foreach ($contributors as $cont)
 			</p>
 			<p>
 				<a class="btn btn-primary" href="<?php echo $cont['url']; ?>" target="_blank" role="button">
-					<?php
-
-						if ($cont['username'] == "Kassandra") { 
-
-							echo "Suivez-la"; // C'est plus sympa pour Kassandra d'avoir un "Suivez-la" plutôt qu'un "Suivez-le" :P
-
-						}
-
-						else {
-
-							echo "Suivez-le";
-
-						}
-
-					?>
+					<?php echo ($cont['gender']) ? 'Suivez-la' : 'Suivez-le'; ?>
 				</a>
 			</p>
 		</div>

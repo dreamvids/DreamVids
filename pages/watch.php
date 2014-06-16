@@ -31,6 +31,7 @@ if(isset($_GET['vid'])) {
 
 				if(isset($_POST['submitFlag'])) {
 					Watch::flagVideo($video);
+					echo '<script>alert("La vidéo a bien été signalée à notre équipe de modération. Votre requête sera traitée dans les plus bref délais !");</script>';
 				}
 
 				// Recommandations

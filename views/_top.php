@@ -19,18 +19,18 @@
 
 		<?php if(@$_GET['page'] == "watch") { ?>
 
-			<meta property="og:title" content="<?php echo str_replace('"', secure("''"), secure($title) ); ?>" />
+			<meta property="og:title" content="<?php echo str_replace('"', secure("''"), secure(@$title) ); ?>" />
 			<meta property="og:type" content="video.movie" />
 			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
-			<meta property="og:description" content="<?php echo str_replace('"', secure("''"), secure($desc) ); ?>" />
-			<meta property="og:image" content="http://dreamvids.fr/<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>" />
+			<meta property="og:description" content="<?php echo str_replace('"', secure("''"), secure(@$desc) ); ?>" />
+			<meta property="og:image" content="http://dreamvids.fr/<?php echo (@$tumbnail != '') ? secure(@$tumbnail) : secure(@$path).'.jpg'; ?>" />
 			<meta property="og:image:type" content="image/jpg" />
 
 			<meta name="twitter:card" content="photo">
 			<meta name="twitter:site" content="@DreamVids_">
 			<meta name="twitter:creator" content="@DreamVids_">
-			<meta name="twitter:title" content="<?php echo secure($title); ?>">
-			<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo ($tumbnail != '') ? secure($tumbnail) : secure($path).'.jpg'; ?>">
+			<meta name="twitter:title" content="<?php echo secure(@$title); ?>">
+			<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo (@$tumbnail != '') ? secure(@$tumbnail) : secure(@$path).'.jpg'; ?>">
 			<meta name="twitter:domain" content="dreamvids.fr">
 			<meta name="twitter:app:name:iphone" content="">
 			<meta name="twitter:app:name:ipad" content="">

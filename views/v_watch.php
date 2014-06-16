@@ -21,6 +21,33 @@
 
 	<?php if(isset($err)) {
 		echo '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>';
+		if (isset($session) && Watch::isModerator($session)) { ?>
+	
+	<br>
+
+	<form method="post" action="" role="form" class="moderating-commands">
+
+		<?php if ($video->isFlagged()) { ?>
+
+			<button class="blue" name="unflag_vid">Annuler le flag</button>			
+
+		<?php }
+
+		if ($video->isSuspended()) { ?>
+
+			<button class="orange" name="unsuspend_vid">Ré-activer</button>	
+
+		<?php } else { ?>
+
+			<button class="orange" name="suspend_vid">Suspendre</button>
+
+		<?php } ?>
+
+	</form>
+
+	<br>
+
+	<?php } 
 	}
 	else {
 	?>
@@ -31,7 +58,7 @@
 				<source id="srcMp4" type="video/mp4"/>
 				<source id="srcWebm" type="video/webm"/>
 			</video>
-			<div id="errorLoading"><p>Oops ! Ça n'a pas l'air de fonctionner.<br />Réessayez plus tard ;)</p></div> <!-- Je sais... C'est pas bien d'utiliser des id -->
+			<div id="errorLoading"><p>Oops ! Ça n'a pas l'air de fonctionner.<br />Réessayez plus tard ;)</p></div>
 			<div id="annotationsElement"></div>
 			<span id="repeat">
 				<span class="icon"></span>
@@ -81,29 +108,22 @@
 
 		<?php } ?>
 
-		<button type="submit" class="blue" name="send_message_author">Envoyer un message au créateur</button>
-		<button type="submit" class="blue" name="send_message_admin">Envoyer un message à un admin</button>
-		<button type="submit" class="red" name="request_delete_vid">Demander la suppression</button>
-
 	</form>
 
 	<br>
 
 	<?php } ?>
+	
+	<form method="post" action="" role="form" class="moderating-commands">
+		
+			<button class="red" name="submitFlag">Signaler la vidéo</button>
+			
+	</form>
 
 	<br>
 	
 	<div class="container">
 	<table class="watch">
-	<?php
-	function TraduireDate($Chaine)
-	{
-		$DateFR = array("Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
-		$DateEN = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","January","February","March","April","May","June","July","August","September","October","November","December");
-		$jour = str_replace($DateEN, $DateFR, $Chaine);
-		return $jour;
-	}
-	?>
 		<tr>
 			<td>
 				<div style="float:left;">
