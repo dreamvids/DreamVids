@@ -1,5 +1,5 @@
 	<div class="container">
-
+<h1 class="title">Ajouter une vidéo</h1>
 		<?php
 		echo (isset($err) ) ? '<div class="alert alert-danger">'.$lang['error'].': '.$err.'</div>' : '';
 		echo (!isset($err) && isset($_POST['submit']) ) ? '<div id="uploadDoneAlert" class="alert alert-success">'.$uploadDone.'</div>' : '';
