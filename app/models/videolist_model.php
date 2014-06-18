@@ -8,6 +8,7 @@ class Videolist_model extends Model {
 	public function getDiscoverVideos() {
 		$vids = array();
 		$maxIndex = 10;
+		$indexes = array();
 		$okay = false;
 
 		if($maxIndex > Video::count()) $maxIndex = Video::count('all');
