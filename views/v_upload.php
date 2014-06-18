@@ -77,6 +77,13 @@ document.getElementById('up-submit').removeAttribute('disabled');
 }
 ?>
 
+function updateProgress(percent) {
+	percent = Math.round(percent*10)/10;
+    progress.style.width = percent+'%';
+    progress.setAttribute('aria-valuenow', percent);
+    document.getElementById('vid-ok').innerHTML = '<b>'+percent+' %</b>';
+}
+
 function tempsRestant(timestamp) {
     var seconds = Math.round(timestamp / 1000);
     var minutes = Math.round(seconds / 60);
