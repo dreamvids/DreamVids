@@ -5,6 +5,10 @@ class UserChannel extends ActiveRecord\Model {
 
 	static $table_name = 'users_channels';
 
+	public function getPostedVideos() {
+		return Video::all(array('conditions' => array('poster_id' => $this->id)));
+	}
+
 	public static function generateId($length) {
 		$idExists = true;
 

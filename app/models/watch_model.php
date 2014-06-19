@@ -6,7 +6,7 @@ require_once APP.'classes/Video.php';
 require_once APP.'classes/Comment.php';
 require_once APP.'classes/VideoVote.php';
 require_once APP.'classes/UserAction.php';
-require_once APP.'classes/UserChannelAction.php';
+require_once APP.'classes/ChannelAction.php';
 
 class Watch_model extends Model {
 
@@ -49,8 +49,8 @@ class Watch_model extends Model {
 			'dislikes' => 0
 		));
 
-		UserChannelAction::create(array(
-			'id' => UserChannelAction::generateId(6),
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
 			'channel_id' => $authorId,
 			'type' => 'comment',
 			'target' => $videoId,

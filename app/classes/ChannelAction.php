@@ -1,6 +1,6 @@
 <?php
 
-class UserChannelAction extends ActiveRecord\Model {
+class ChannelAction extends ActiveRecord\Model {
 
 	static $table_name = 'channels_actions';
 
@@ -17,7 +17,7 @@ class UserChannelAction extends ActiveRecord\Model {
 
 			$id = 'a_'.$id;
 
-			$idExists = UserChannelAction::exists(array('id' => $id));
+			$idExists = ChannelAction::exists(array('id' => $id));
 		}
 
 		return $id;

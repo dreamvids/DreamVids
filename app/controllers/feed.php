@@ -20,6 +20,8 @@ class Feed extends Controller {
 
 				$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
 				$data['vids'] = $this->model->getSubscriptionsVideos(Session::get()->id, 6);
+				$data['subscriptionActions'] = $this->model->getSubscriptionsActions(Session::get()->id);
+				$data['personalActions'] = $this->model->getUsersPersonalActions(Session::get()->id);
 
 				$this->renderView('feed/feed', $data);
 			}

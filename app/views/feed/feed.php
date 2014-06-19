@@ -61,8 +61,54 @@
 
 	<aside class="aside-cards-list">
 		<h3 class="title">Flux d'activité</h3>
+
+		<?php foreach($subscriptionActions as $action): ?>
+			<?php if($action): ?>
+				<p>Action de la chaîne <?php echo UserChannel::getNameById($action->id).': '.$action->type; ?></p>
+			<?php endif ?>
+		<?php endforeach ?>
+
+		<?php
+			foreach($personalActions as $action) {
+				if($action) {
+					if($action->type == "subscription") {
+						?>
+							<div class='card subscribe'>
+								<a href="channel">
+									<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
+									<p><b><?php echo User::getNameById($action->user_id) ?></b> s'est abonné à votre chaîne</p>
+								</a>
+								<i><?php echo Utils::relative_time($action->timestamp) ?></i>
+							</div>
+						<?php
+					}
+					else if($action->type == 'unsubscription') {
+						?>
+							<div class="card subscribe">
+								<a href="channel">
+									<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
+									<p><b><?php echo User::getNameById($action->user_id) ?></b> s'est a annulé son abonnement à votre chaîne</p>
+								</a>
+								<i><?php echo Utils::relative_time($action->timestamp) ?></i>
+							</div>
+						<?php
+					}
+					else if($action->type == 'like') {
+						?>
+							<div class="card plus">
+								<a href="channel">
+									<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/300/4"></div>
+									<p><b><?php echo User::getNameById($action->user_id) ?></b> à aimé votre vidéo "<b><?php echo Video::find_by_id($action->target)->title; ?></b>"</p>
+								</a>
+								<i><?php echo Utils::relative_time($action->timestamp); ?></i>
+							</div>
+						<?php
+					}
+				}
+			}
+		?>
 		
-		<div class="card video">
+		<!--<div class="card video">
 			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
 				<div class="time">12:05</div>
 				<a href="video" class="overlay"></a>
@@ -74,23 +120,6 @@
 					<a class="channel" href="channel">Papy</a>
 				</div>
 			</div>
-		</div>
-
-		<div class="card subscribe">
-			<a href="channel">
-				<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
-				<p><b>Chnok</b> s'est abonné à votre chaîne</p>
-			</a>
-			<span class="subscriber"><b>64 520</b> Abonnés</span>
-			<i>Il y a 1 heure</i>
-		</div>
-
-		<div class="card plus">
-			<a href="channel">
-				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/300/4"></div>
-				<p><b>Machin</b> à aimé votre vidéo "<b>Nyan Cat</b>"</p>
-			</a>
-			<i>Il y a 1 heure</i>
 		</div>
 
 		<div class="card video">
@@ -163,7 +192,7 @@
 				</blockquote>
 			</a>
 			<i>Il y a 1 jour</i>
-		</div>
+		</div>-->
 
 	</aside>
 </div>

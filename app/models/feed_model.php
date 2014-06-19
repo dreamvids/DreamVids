@@ -2,6 +2,8 @@
 
 require_once SYSTEM.'Model.php';
 require_once APP.'classes/Video.php';
+require_once APP.'classes/UserAction.php';
+require_once APP.'classes/ChannelAction.php';
 
 class Feed_model extends Model {
 
@@ -108,6 +110,70 @@ class Feed_model extends Model {
 		}
 
 		return $videos;
+	}
+
+	// Returns the actions that concerns the subsriptions (channels)
+	public function getSubscriptionsActions($userId) {
+		$actions = array();
+		$subscriptions = $this->getSubscriptions($userId);
+
+		foreach($subscriptions as $subscription) {
+			$actions[] = ChannelAction::find_by_channel_id($subscription->id);
+		}
+
+		return $actions;
+	}
+
+	// Returns actions that concerns the user's videos/channel(s)
+	public function getUsersPersonalActions($userId) {
+		$actions = array();
+		$actionTypes = array('subscription', 'like');
+		$user = User::find_by_id($userId);
+
+		foreach($actionTypes as $type) {
+			switch ($type) {
+				case 'subscription':
+					$usersChannels = $user->getOwnedChannels();
+					$usersChannelIds = array();
+					foreach($usersChannels as $c) $usersChannelIds[] = $c->id;
+
+					$subscriptionsActions = UserAction::find('all', array('conditions' => array(
+						'type = ? AND target IN (?)', $type, $usersChannelIds
+					)));
+
+					foreach($subscriptionsActions as $sa) $actions[] = $sa;
+					break;
+
+				case 'unsubscription':
+					$usersChannels = $user->getOwnedChannels();
+					$usersChannelIds = array();
+					foreach($usersChannels as $c) $usersChannelIds[] = $c->id;
+
+					$subscriptionsActions = UserAction::find('all', array('conditions' => array(
+						'type = ? AND target IN (?)', $type, $usersChannelIds
+					)));
+
+					foreach($subscriptionsActions as $sa) $actions[] = $sa;
+					break;
+
+				case 'like':
+					$usersVideos = $user->getPostedVideos();
+					$usersVideosIds = array();
+					foreach($usersVideos as $vid) $usersVideosIds[] = $vid->id;
+
+					$likeActions = UserAction::find('all', array('conditions' => array(
+						'type = ? AND target IN (?)', $type, $usersVideosIds
+					)));
+
+					foreach($likeActions as $a) $actions[] = $a;
+					break;
+				
+				default:
+					break;
+			}
+		}
+
+		return $actions;
 	}
 
 	public function userExists($userId) {

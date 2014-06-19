@@ -43,7 +43,7 @@
 												<a href="<?php echo WEBROOT.'channel/'.Session::get()->username; ?>">Ma chaîne</a>
 												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
 												<a href="messages">Mes messages</a>
-												<a href="#">Déconnexion</a>
+												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
 											</ul>
 										</div>
 									<?php } else { ?>
