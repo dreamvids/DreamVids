@@ -19,6 +19,7 @@
 			<source id="srcMp4" type="video/mp4"/>
 			<source id="srcWebm" type="video/webm"/>
 		</video>
+		<div id="subtitlesList"></div>
 		<div id="annotationsElement"></div>
 		<span id="repeat">
 			<span class="icon"></span>
