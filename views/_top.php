@@ -159,3 +159,5 @@
 			</div>
 		</div>
 	</header>
+	
+	<div class="alert alert-success"><b>Message de l'équipe de développement :</b> Nous sommes en train de réparer la mise en ligne de vidéo (barre de progression bloquée, qui revient à 0, etc). Le correctif de ce bug est en ligne depuis le <b>19/06/2014 à 01:52</b> mais la conversion des vidéos n'est pas encore réactivée. Toutes les vidéos que vous mettrez en ligne ne seront pas lisibles tant que la conversion ne sera pas active. Dès qu'on la réactivera, toutes les vidéos mises en ligne à partir de maintenant seront accessibles ! Nous vous invitons donc à continuer de mettre en ligne des vidéos, elle seront accessibles d'ici quelques jours sans problème ;) Merci de votre patience et de la fidélité que vous portez à <b>#DreamVids</b> ! ;D</div>
