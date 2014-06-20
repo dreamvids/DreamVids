@@ -160,4 +160,4 @@
 		</div>
 	</header>
 	
-	<div class="alert alert-success"><b>Message de l'équipe de développement :</b> Nous avons le plaisir de vous informer que la mise en ligne de vidéos est maintenant fonctionnelle à <b>100%</b> ! Nous avons (normalement) corrigé tous les bugs qui y étaient liés, amusez-vous bien et un ENORME merci de toute l'équipe pour votre patience et votre compréhension ! Vous, utilisauteurs de DreamVids, êtes géniaux ;D</div>
+	<div class="alert alert-success"><b>Message de l'équipe de développement :</b> Nous avons le plaisir de vous informer que la mise en ligne de vidéos est maintenant fonctionnelle à <b>100%</b> ! Nous avons (normalement) corrigé tous les bugs qui y étaient liés, amusez-vous bien et un ENORME merci de toute l'équipe pour votre patience et votre compréhension ! Vous, utilisateurs de DreamVids, êtes géniaux ;D</div>
