@@ -84,6 +84,10 @@
 				<span id="fullscreen"></span>
 			</div>
 		</div>
+	
+		<a href="http://dreamvids.spreadshirt.fr/"><div class="spreadshirt-de-ouf">DreamVids Rules !</div></a>
+		<a href="http://dreamvids.spreadshirt.fr/"><img src="img/spreadshirt/banner.png" alt="T-shirt et produits DreamVids sur la Boutique SpreadShirt !" class="spreadshirt-de-ouf-media-query"></a>
+
 	</div>
 
 	<?php if (isset($session) && Watch::isModerator($session)) { ?>

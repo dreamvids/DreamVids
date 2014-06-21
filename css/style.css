@@ -3304,3 +3304,34 @@ footer #inner-footer .rights .love i {
 #comments .comment .comment-notation .moins a {
   color: #dd4e47;
 }
+
+.spreadshirt-de-ouf {
+
+  display: inline-block;
+  width: 342px;
+  height: 432px;
+  margin-top: -10px;
+
+  background-image: url(../img/spreadshirt/banner2.png);
+  color: transparent;
+
+}
+
+.spreadshirt-de-ouf-media-query {
+
+  display: none;
+  width: 100%;
+
+}
+
+@media (max-width: 1200px) {
+
+  .spreadshirt-de-ouf {
+    display: none;
+  }
+
+  .spreadshirt-de-ouf-media-query {
+    display: block;
+  }
+
+}

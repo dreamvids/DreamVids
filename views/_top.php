@@ -23,14 +23,14 @@
 			<meta property="og:type" content="video.movie" />
 			<meta property="og:url" content="http://dreamvids.fr/&<?php echo htmlspecialchars($_GET['vid']); ?>" />
 			<meta property="og:description" content="<?php echo str_replace('"', secure("''"), secure(@$desc) ); ?>" />
-			<meta property="og:image" content="http://dreamvids.fr/<?php echo (@$tumbnail != '') ? secure(@$tumbnail) : secure(@$path).'.jpg'; ?>" />
+			<meta property="og:image" content="<?php echo (@$tumbnail != '') ? secure(@$tumbnail) : secure(@$path).'.jpg'; ?>" />
 			<meta property="og:image:type" content="image/jpg" />
 
 			<meta name="twitter:card" content="photo">
 			<meta name="twitter:site" content="@DreamVids_">
 			<meta name="twitter:creator" content="@DreamVids_">
 			<meta name="twitter:title" content="<?php echo secure(@$title); ?>">
-			<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo (@$tumbnail != '') ? secure(@$tumbnail) : secure(@$path).'.jpg'; ?>">
+			<meta name="twitter:image:src" content="<?php echo (@$tumbnail != '') ? secure(@$tumbnail) : secure(@$path).'.jpg'; ?>">
 			<meta name="twitter:domain" content="dreamvids.fr">
 			<meta name="twitter:app:name:iphone" content="">
 			<meta name="twitter:app:name:ipad" content="">
@@ -59,7 +59,7 @@
 			<?php if (preg_match("/gravatar/i", $avatar)) { ?>
 				<meta name="twitter:image:src" content="<?php echo $avatar; ?>">
 			<?php } else { ?>
-				<meta name="twitter:image:src" content="http://dreamvids.fr/<?php echo $avatar; ?>">
+				<meta name="twitter:image:src" content="<?php echo $avatar; ?>">
 			<?php } ?>
 
 			<meta name="twitter:domain" content="dreamvids.fr">
@@ -75,10 +75,10 @@
 
 		<?php } else { ?>
 
-			<meta property="og:title" content="<?php echo $lang['dreamvids']; ?>" />
-			<meta property="og:type" content="website" />
-			<meta property="og:image" content="http://dreamvids.fr/uploads/Chaine%20Communautaire%20DreamVids/o50bhZ.png" />
-			<meta property="og:image:type" content="image/png" />
+			<meta property="og:title" content="<?php echo $lang['dreamvids']; ?>">
+			<meta property="og:type" content="website">
+			<meta property="og:image" content="http://dreamvids.fr/uploads/Chaine%20Communautaire%20DreamVids/o50bhZ.png">
+			<meta property="og:image:type" content="image/png">
 
 		<?php }?>
 	</head>
@@ -160,4 +160,4 @@
 		</div>
 	</header>
 	
-	<div class="alert alert-success"><b>Message de l'équipe de développement :</b> Nous avons le plaisir de vous informer que la mise en ligne de vidéos est maintenant fonctionnelle à <b>100%</b> ! Nous avons (normalement) corrigé tous les bugs qui y étaient liés, amusez-vous bien et un ENORME merci de toute l'équipe pour votre patience et votre compréhension ! Vous, utilisauteurs de DreamVids, êtes géniaux ;D</div>
+	<!-- <div class="alert alert-success"><b>Message de l'équipe de développement :</b> Nous avons le plaisir de vous informer que la mise en ligne de vidéos est maintenant fonctionnelle à <b>100%</b> ! Nous avons (normalement) corrigé tous les bugs qui y étaient liés, amusez-vous bien et un ENORME merci de toute l'équipe pour votre patience et votre compréhension ! Vous, utilisateurs de DreamVids, êtes géniaux ;D</div> -->
