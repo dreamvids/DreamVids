@@ -118,7 +118,11 @@ class Feed_model extends Model {
 		$subscriptions = $this->getSubscriptions($userId);
 
 		foreach($subscriptions as $subscription) {
-			$actions[] = ChannelAction::find_by_channel_id($subscription->id);
+			$subscriptionsActions = ChannelAction::find('all', array('conditions' => array('channel_id' => $subscription->id)));
+
+			foreach($subscriptionsActions as $action) {
+				$actions[] = $action;
+			}
 		}
 
 		return $actions;

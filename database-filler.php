@@ -91,6 +91,14 @@ class DatabaseFiller {
 					'2',
 					'0'
 				)");
+
+				mysql_query("INSERT INTO channels_actions VALUES (
+					'".$this->generateChannelActionId(6)."',
+					'".$posterId."',
+					'upload',
+					'".$vidId."',
+					'1398947680'
+				)");
 			}
 		}
 	}
@@ -108,13 +116,26 @@ class DatabaseFiller {
 		return $id;
 	}
 
-	public static function generateVideoId($length) {
+	private function generateVideoId($length) {
 		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$id = '';
 	
 		for ($i = 0; $i < $length; $i++) {
 			$id .= $chars[rand(0, strlen($chars) - 1)];
 		}
+
+		return $id;
+	}
+
+	private function generateChannelActionId($length) {
+		$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$id = '';
+	
+		for ($i = 0; $i < $length - 2; $i++) {
+			$id .= $chars[rand(0, strlen($chars) - 1)];
+		}
+
+		$id = 'a_'.$id;
 
 		return $id;
 	}

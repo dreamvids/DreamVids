@@ -52,6 +52,14 @@ class Video extends ActiveRecord\Model {
 				$vidId
 			)
 		));
+
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
+			'channel_id' => $channelId,
+			'type' => 'upload',
+			'target' => $vidId,
+			'timestamp' => Utils::tps()
+		));
 	}
 
 	public static function generateId($length) {
