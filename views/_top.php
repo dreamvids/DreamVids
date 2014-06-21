@@ -145,7 +145,7 @@
 
 							<li><a href="subscriptions"><?php echo $lang['subscriptions']; ?></a></li>
 							<li><a href="upload"><?php echo $lang['up_vid']; ?></a></li>
-
+							<li><a href="manager">Mes vidéos</a></li>
 						<?php } ?>
 					</ul>
 				</nav>
@@ -159,5 +159,3 @@
 			</div>
 		</div>
 	</header>
-	
-	<!-- <div class="alert alert-success"><b>Message de l'équipe de développement :</b> Nous avons le plaisir de vous informer que la mise en ligne de vidéos est maintenant fonctionnelle à <b>100%</b> ! Nous avons (normalement) corrigé tous les bugs qui y étaient liés, amusez-vous bien et un ENORME merci de toute l'équipe pour votre patience et votre compréhension ! Vous, utilisateurs de DreamVids, êtes géniaux ;D</div> -->

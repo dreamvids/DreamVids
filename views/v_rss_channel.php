@@ -3,8 +3,8 @@
     <channel>
    
         <title>DreamVids</title>
-        <link>http://dreamvids.fr/</link>
-        <description>DreamVids: Let us dream ! - New, Free, Open Source and French Videos sharing platform</description>
+        <link><a href="http://dreamvids.fr/">http://dreamvids.fr/</a></link>
+        <description>DreamVids: Let us dream ! - New, Free, Open Source and French Videos sharing platform</description><br/>
         
 <?php
 		foreach ($videos as $vid) {
@@ -19,11 +19,10 @@
 			}
 			?>
         <item>
-            <title><?php echo '<b>'.$titleVid.'</b>'; ?></title>
-            <link>http://dreamvids.fr/&<?php echo secure($vid->getId() ); ?></link>
-            <guid isPermaLink="true">http://dreamvids.fr/&<?php echo secure($vid->getId() ); ?></guid>
-            <description><?php echo $descVid; ?></description>
-            <pubDate><?php echo date('d/m/Y', $vid->getTimestamp()); ?></pubDate>
+            <title><?php echo '<b>'.$titleVid.'</b>'; ?></title><br/>
+            <link><a href="http://dreamvids.fr/&amp;<?php echo secure($vid->getId() ); ?>">http://dreamvids.fr/&amp;<?php echo secure($vid->getId() ); ?></a></link><br/>
+            <description><?php echo $descVid; ?></description><br/>
+            <pubDate>Publié le: <?php echo date('d/m/Y', $vid->getTimestamp()); ?></pubDate><br/>
         </item>
 <?php
 }

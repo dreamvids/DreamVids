@@ -166,7 +166,7 @@ class User {
             $username = $row['username'];
         }
 
-        return $username;
+        return secure($username);
     }
 
     public static function getIdByName($username) {
