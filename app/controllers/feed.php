@@ -31,4 +31,25 @@ class Feed extends Controller {
 			exit();
 		}
 	}
+
+	public function detail() {
+		if(Session::isActive()) {
+			$this->loadModel('feed_model');
+			$data = array();
+			$actions = array_merge($this->model->getSubscriptionsActions(Session::get()->id), $this->model->getUsersPersonalActions(Session::get()->id));
+
+			//TODO: Optimize
+			foreach($actions as $action) $map[] = $action->timestamp;
+
+			arsort($map);
+
+			foreach ($map as $m) {
+				foreach($actions as $a) if($a->timestamp == $m) $orderedActions[] = $a;
+			}
+
+			$data['actions'] = $orderedActions;
+
+			$this->renderView('feed/list', $data);
+		}
+	}
 }
