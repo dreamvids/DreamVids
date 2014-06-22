@@ -85,7 +85,7 @@
 			</div>
 		</div>
 	
-		<a href="http://dreamvids.spreadshirt.fr/"><div class="spreadshirt-de-ouf">DreamVids Rules !</div></a>
+		<a href="http://dreamvids.spreadshirt.fr/"><img src="img/spreadshirt/banner2.png" alt="T-shirt et produits DreamVids sur la Boutique SpreadShirt !" class="spreadshirt-de-ouf"></a>
 		<a href="http://dreamvids.spreadshirt.fr/"><img src="img/spreadshirt/banner.png" alt="T-shirt et produits DreamVids sur la Boutique SpreadShirt !" class="spreadshirt-de-ouf-media-query"></a>
 
 	</div>

@@ -20,6 +20,17 @@
 
 }
 
+@media (max-width: 1200px) {
+
+  #player {
+
+  	width: 640px;
+  	height: 360px;
+
+  }
+
+}
+
 @media all and (max-width: 700px) {
 
 	#player {
@@ -634,7 +645,7 @@ video {
 
 	position: absolute;
 	top: 0; bottom: 0; right: 0; left: 0;
-	z-index: 999;
+	z-index: 9;
 
 	display: none;
 	height: 100%;
@@ -686,7 +697,7 @@ video {
 	#errorLoading p {
 
 		font-family: sans-serif;
-		font-size: 32px;
+		font-size: 22px;
 
 	}
 

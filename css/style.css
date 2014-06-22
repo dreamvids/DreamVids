@@ -2352,7 +2352,7 @@ header a:hover {
   line-height: 42px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   /* line 382, ../scss/partials/_header.scss */
   #top-nav a {
     width: 70px!important;
@@ -3310,10 +3310,6 @@ footer #inner-footer .rights .love i {
   display: inline-block;
   width: 342px;
   height: 432px;
-  margin-top: -10px;
-
-  background-image: url(../img/spreadshirt/banner2.png);
-  color: transparent;
 
 }
 
@@ -3321,17 +3317,34 @@ footer #inner-footer .rights .love i {
 
   display: none;
   width: 100%;
+  max-width: 600px;
+  margin: auto;
 
 }
 
 @media (max-width: 1200px) {
 
   .spreadshirt-de-ouf {
+
+    width: auto;
+    height: 360px;
+
+  }
+
+}
+
+@media (max-width: 991px) {
+
+  .spreadshirt-de-ouf {
+
     display: none;
+
   }
 
   .spreadshirt-de-ouf-media-query {
+
     display: block;
+
   }
 
 }
