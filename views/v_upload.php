@@ -39,6 +39,7 @@
 			<div class="form-group">
 				<label for="videoTumbnail"><?php echo $lang['tumbnail']; ?></label>
 				<input type="file" name="videoTumbnail" id="videoTumbnail" />
+				<a href="img/maquette_thumbnail.png" target="_blank">Maquette de miniature</a>
 			</div>
 			
 			<div class="form-group">

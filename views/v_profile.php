@@ -59,6 +59,7 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 				<?php } ?>
 				
 				<input type="file" id="background" name="background" />
+				<a href="img/maquette_bg.png" target="_blank">Maquette d'arrière-plan</a>
 			</div>
 			<br /><br />
 			<input type="submit" name="submit" value="<?php echo $lang['profile_update']; ?>" class='btn btn-primary' />
