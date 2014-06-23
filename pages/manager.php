@@ -5,7 +5,6 @@ if(!isset($session)) {
 	exit();
 }
 
-$vids = Manager::getVideosFromUser($session->getId());
 if(empty($vids)) {
 	$err = $lang['error_no_videos_uploaded'];	
 }
@@ -15,4 +14,5 @@ if(isset($_GET['delVid'])) {
 	Manager::deleteVideo($vidToDelId, $session->getId());
 }
 
+$vids = Manager::getVideosFromUser($session->getId());
 ?>

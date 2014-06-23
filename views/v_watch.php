@@ -117,7 +117,7 @@
 	<br>
 
 	<?php } ?>
-	
+	<br /><br />
 	<form method="post" action="" role="form" class="moderating-commands">
 		
 			<button class="red" name="submitFlag">Signaler la vidéo</button>

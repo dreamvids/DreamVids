@@ -9,13 +9,13 @@ if (isset($_POST['submit']) )
 {
 	if ($_POST['username'] != '' && $_POST['email'] != '')
 	{
-		if (strlen($_POST['username']) <= 40)
+		if (!Profile::usernameExist($_POST['username'])  || $_POST['username'] == $session->getName() )
 		{
-			if (!Profile::usernameExist($_POST['username'])  || $_POST['username'] == $session->getName() )
+			if (preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,10}$#", $_POST['email']) )
 			{
-				if (preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-zA-Z]{2,10}$#", $_POST['email']) )
+				if (!Profile::emailExist($_POST['email']) || $_POST['email'] == $session->getEmailAddress() )
 				{
-					if (!Profile::emailExist($_POST['email']) || $_POST['email'] == $session->getEmailAddress() )
+					if (preg_match("#^[a-zA-Z0-9\-_]{1,40}$#", $_POST['username']) )
 					{
 						$session->setUsername($_POST['username']);
 						$session->setEmailAddress($_POST['email']);
@@ -23,25 +23,25 @@ if (isset($_POST['submit']) )
 					}
 					else
 					{
-						$err = $lang['error_reg_email'];
-						unset($_POST['email']);
+						$err = "Le nom d'utilisateur ne doit pas excéder 40 caractères et peut être constitué uniquement de lettres, de chiffres, de tirets (- et _) et de pont (.)";
+						unset($_POST['username']);
 					}
 				}
 				else
 				{
-					$err = $lang['error_reg_email_false'];
+					$err = $lang['error_reg_email'];
 					unset($_POST['email']);
 				}
 			}
 			else
 			{
-				$err = $lang['error_reg_username'];
-				unset($_POST['username']);
+				$err = $lang['error_reg_email_false'];
+				unset($_POST['email']);
 			}
 		}
 		else
 		{
-			$err = $lang['error_reg_userlen'];
+			$err = $lang['error_reg_username'];
 			unset($_POST['username']);
 		}
 	}

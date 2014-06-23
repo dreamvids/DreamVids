@@ -7,8 +7,8 @@
 	position: relative;
 	overflow: hidden;
 	background: black;
-	width: 768px;
-	height: 432px;
+	width: 640px;
+	height: 360px;
 	padding: 0;
 	margin: 0;
 	float: left;
@@ -17,17 +17,6 @@
 	-moz-user-select :none;
 	-ms-user-select :none;
 	user-select :none;
-
-}
-
-@media (max-width: 1200px) {
-
-  #player {
-
-  	width: 640px;
-  	height: 360px;
-
-  }
 
 }
 

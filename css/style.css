@@ -3308,8 +3308,9 @@ footer #inner-footer .rights .love i {
 .spreadshirt-de-ouf {
 
   display: inline-block;
-  width: 342px;
-  height: 432px;
+  width: 286px;
+  height: 360px;
+  float: right;
 
 }
 
@@ -3317,19 +3318,8 @@ footer #inner-footer .rights .love i {
 
   display: none;
   width: 100%;
-  max-width: 600px;
+  max-width: 640px;
   margin: auto;
-
-}
-
-@media (max-width: 1200px) {
-
-  .spreadshirt-de-ouf {
-
-    width: auto;
-    height: 360px;
-
-  }
 
 }
 
@@ -3342,9 +3332,11 @@ footer #inner-footer .rights .love i {
   }
 
   .spreadshirt-de-ouf-media-query {
-
+	clear:both;
     display: block;
-
+    float: none;
+	margin: 0;
+	margin-top: 40px;
   }
 
 }

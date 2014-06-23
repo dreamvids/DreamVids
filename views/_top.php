@@ -112,7 +112,7 @@
 								<div id="top-nav-user-information-menu">
 									<ul>
 										<a href="/@<?php echo secure($session->getName() ); ?>">Ma chaîne</a>
-										<a href="profile"><?php echo $lang['member_space']; ?></a>
+										<a href="profile">Mon compte</a>
 										<a href="mail"><?php echo $lang['msg']; ?></a>
 										<a href="logout"><?php echo $lang['logout']; ?></a>
 									</ul>
@@ -147,6 +147,7 @@
 							<li><a href="upload"><?php echo $lang['up_vid']; ?></a></li>
 							<li><a href="manager">Mes vidéos</a></li>
 						<?php } ?>
+						<li><a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a></li>
 					</ul>
 				</nav>
 				<span id="mobile-nav-icon"><p></p></span>
