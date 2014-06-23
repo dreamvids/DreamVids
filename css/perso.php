@@ -8,10 +8,11 @@ body{
   height: 100%;
   line-height:100%;
   background: url('<?php echo getbackgroundFromID($_GET['uid']); ?>') no-repeat center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-attachment: scroll;
 }
 #header{
   text-align:left;
