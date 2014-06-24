@@ -22,6 +22,15 @@ class UserChannel extends ActiveRecord\Model {
 			return false;
 	}
 
+	public function isUsersMainChannel($userId) {
+		if(User::exists($userId)) {
+			$user = User::find($userId);
+			return $user->getMainChannel()->id == $this->id;
+		}
+		else
+			return false;
+	}
+
 	public static function generateId($length) {
 		$idExists = true;
 

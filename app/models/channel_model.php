@@ -22,14 +22,6 @@ class Channel_model extends Model {
 		return UserChannel::exists(array('name' => $channelName));
 	}
 
-	public function createUserChannel($name, $users) {
-		if(!$this->channelNameExists($name)) {
-			$id = UserChannel::generateId(6);
-
-			UserChannel::create(array('id' => $id, 'name' => $name, 'users' => $users, 'subscribers' => 0, 'views' => 0));
-		}
-	}
-
 	public function userBelongsToChannel($userId, $channelId) {
 		if($this->channelExists($channelId)) {
 			$channel = UserChannel::find_by_id($channelId);

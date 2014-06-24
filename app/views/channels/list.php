@@ -1,6 +1,6 @@
 <div class="content">
 
-	<section class="">
+	<section class="profile">
 		<h1 class="title">Chaînes</h1>
 		
 		<?php
@@ -8,39 +8,32 @@
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<span class="buttons">
-		    <a href="<?php echo WEBROOT.'channels/add'; ?>">
-			    <button class="btn btn-primary">
-			        Ajouter une chaîne
-			    </button>
+		<div class="moderating-commands">
+			<a href="<?php echo WEBROOT.'channels/add'; ?>">
+				<button class="blue big" name="create-channel">Créer une nouvelle chaîne</button>
 			</a>
-    	</span>
-    	
-    	<table>
-    		<thead>
-    			<tr><th>Nom</th><th>Abonnés</th><th>Vues</th><th>Modifier</th><th>Supprimer</th></tr>
-    	<?php
-    		foreach ($channels as $chan) {
-				?>
-				
-				<tr>
-					<td>
-						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><?php echo $chan->name; ?></a>
-					</td>
-					<td><?php echo $chan->subscribers; ?></td>
-					<td><?php echo $chan->views; ?></td>
-					<td>
-						<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>"><button>Modifier</button></a>
-					</td>
-					<td>
-						<input type="button" value="Supprimer" />
-					</td>
-				</tr>
+		</div>
 
-				<?php
-    		}
-    	?>
-    	</table>
-	</section>
+		<aside class="long-cards-list">
+
+			<?php foreach ($channels as $chan): ?>
+				<div class="card channel long">
+					<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>">
+						<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
+					</a>
+
+					<div class="description">
+						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><b><?php echo $chan->name; ?></b></a>
+						<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>"><button>Paramètres</button></a>
+
+						<?php if ($chan->isUsersMainChannel(Session::get()->id)): ?>
+							<b class="principal">Chaîne principale</b>
+						<?php endif ?>
+
+						<span class="subscriber"><b><?php echo $chan->subscribers; ?></b> Abonnés</span>
+					</div>
+				</div>
+			<?php endforeach ?>
+		</aside>
 
 </div>
