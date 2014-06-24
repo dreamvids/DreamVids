@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 		<link rel="icon" type="image/png" href="img/favicon.png" />
 		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/style.css?r=2" rel="stylesheet" />
 
 		<script src="js/jquery-2.0.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
