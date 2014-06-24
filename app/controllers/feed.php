@@ -16,12 +16,21 @@ class Feed extends Controller {
 				$this->renderView('feed/feed', $data);
 			}
 			else {
+				$actions = array_merge($this->model->getSubscriptionsActions(Session::get()->id), $this->model->getUsersPersonalActions(Session::get()->id));
+
+				//TODO: Optimize
+				foreach($actions as $action) $map[] = $action->timestamp;
+
+				arsort($map);
+
+				foreach ($map as $m) {
+					foreach($actions as $a) if($a->timestamp == $m) $orderedActions[] = $a;
+				}
+
 				$data = array();
 
 				$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
-				$data['vids'] = $this->model->getSubscriptionsVideos(Session::get()->id, 6);
-				$data['subscriptionActions'] = $this->model->getSubscriptionsActions(Session::get()->id);
-				$data['personalActions'] = $this->model->getUsersPersonalActions(Session::get()->id);
+				$data['actions'] = $orderedActions;
 
 				$this->renderView('feed/feed', $data);
 			}

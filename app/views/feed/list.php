@@ -30,6 +30,19 @@
 					<br><br>
 				</div>
 			<?php endif ?>
+
+			<?php if ($action->type == 'comment' && Utils::relative_time($action->timestamp)): ?>
+				<div>
+					<p>
+						<a href="<?php echo WEBROOT.'channel/'.$action->channel_id; ?>"><?php echo UserChannel::getNameById($action->channel_id); ?></a>
+						a commenté votre vidéo <a href="<?php echo WEBROOT.'watch/'.$action->target; ?>"><?php echo Video::find($action->target)->title; ?>:</a>
+						<p>"<?php echo Comment::getByChannelAction($action)->comment; ?>"</p>
+
+					</p>
+					<p><?php echo Utils::relative_time($action->timestamp); ?></p>
+					<br><br>
+				</div>
+			<?php endif ?>
 		<?php endforeach ?>
 	</div>
 </div>

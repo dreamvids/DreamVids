@@ -26,17 +26,17 @@
 		<h3 class="title">Flux d'activité</h3>
 
 		<?php
-			foreach($subscriptionActions as $action) {
+			foreach($actions as $action) {
 				if($action) {
 					if($action->type == 'upload') {
 						?>
 							<div class="card video">
 								<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/350/200/1">
 									<div class="time"><?php echo Video::find($action->target)->duration; ?></div>
-									<a href="video" class="overlay"></a>
+									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>" class="overlay"></a>
 								</div>
 								<div class="description">
-									<a href="video"><h4><?php echo Video::find($action->target)->title; ?></h4></a>
+									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>"><h4><?php echo Video::find($action->target)->title; ?></h4></a>
 									<div>
 										<span class="view"><?php echo Video::find($action->target)->views; ?></span>
 										<a class="channel" href="<?php echo WEBROOT.'channel/'.$action->channel_id; ?>"><?php echo UserChannel::getNameById($action->channel_id); ?></a>
@@ -45,14 +45,7 @@
 							</div>
 						<?php
 					}
-				}
-			}
-		?>
-
-		<?php
-			foreach($personalActions as $action) {
-				if($action) {
-					if($action->type == "subscription") {
+					else if($action->type == "subscription") {
 						?>
 							<div class='card subscribe'>
 								<a href="channel">
@@ -80,6 +73,19 @@
 								<a href="channel">
 									<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/300/4"></div>
 									<p><b><?php echo User::getNameById($action->user_id) ?></b> à aimé votre vidéo "<b><?php echo Video::find_by_id($action->target)->title; ?></b>"</p>
+								</a>
+								<i><?php echo Utils::relative_time($action->timestamp); ?></i>
+							</div>
+						<?php
+					}
+					else if($action->type == 'comment' && Comment::getByChannelAction($action)) {
+						?>
+							<div class="card comment">
+								<a href="video">
+									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> à commenté votre vidéo "<b><?php echo Video::find($action->target)->title; ?></b>" :</p>
+									<blockquote>
+										<?php echo Comment::getByChannelAction($action)->comment; ?>
+									</blockquote>
 								</a>
 								<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 							</div>
@@ -162,16 +168,6 @@
 			</a>
 			<span class="subscriber"><b>64 520</b> Abonnés</span>
 			<i>Il y a 1 heure</i>
-		</div>
-
-		<div class="card comment">
-			<a href="video">
-				<p><b>Bidule</b> à commenté votre vidéo "<b>Nom Nom Nom</b>" :</p>
-				<blockquote>
-					J'aime trop cette vidéo parce que Nom Nom Nom Nom Nom Nom Nom Nom !
-				</blockquote>
-			</a>
-			<i>Il y a 1 jour</i>
 		</div>-->
 
 	</aside>

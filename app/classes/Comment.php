@@ -21,4 +21,17 @@ class Comment extends ActiveRecord\Model {
 	    return $id;
 	}
 
+	// Returns the comment associated with a ChannelAction object
+	public static function getByChannelAction($action) {
+		if(is_object($action) && isset($action->channel_id)) {
+			if($action->type == 'comment') {
+				return Comment::find('first', array('conditions' => array(
+					'poster_id' => $action->channel_id,
+					'timestamp' => $action->timestamp,
+					'video_id' => $action->target
+				)));
+			}
+		}
+	}
+
 }
