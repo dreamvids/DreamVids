@@ -9,22 +9,37 @@
 		?>
 
 		<form class="form" method="post" action="" enctype="multipart/form-data">
-			<label for="name">Nom :</label>
-			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" /><br />
+
+			<label for="name">
+				Nom :
+				<input value="<?php echo @$name; ?>" id="name" type="text" name="name" placeholder="Nom de votre chaîne" required="required" spellcheck="false"/>
+			</label>
+
+			<label for="description">
+				Description :
+				<textarea name="description" id="description" rows="4" required="required" placeholder="Description"><?php echo @$description; ?></textarea> <!-- Il faudrait renomer son id "description" car il modifie son style. Mais aussi le changer lors de la recuperation des données du formulaire dans le php. -->
+			</label>
 			
-			<label for="description">Description :</label>
-			<textarea rows="8" cols="50" required="required" name="description" id="description"><?php echo @$description; ?></textarea><br />
+			<label for="avatar">
+				<img class="preview none filePreview" data-input="avatar" id="preview-avatar" src="">
+				<i>Avatar :</i>
+				<input type="file" data-text="Choisir un avatar" data-preview="preview-avatar" name="avatar" id="avatar" value="<?php echo @$avatar; ?>" /><br />
+			</label>
 			
-			<label for="avatar">Avatar :</label><br />
-			<input type="file" name="avatar" id="avatar" value="<?php echo @$avatar; ?>" /><br />
+			<label for="banner">
+				<img class="preview none filePreview" data-input="banner" id="preview-banner" src="">
+				<i>Bannière :</i>
+				<input type="file" data-text="Choisir une bannière" data-preview="preview-banner" name="banner" id="banner" value="<?php echo @$banner; ?>" /><br />
+			</label>
 			
-			<label for="banner">Bannière :</label><br />
-			<input type="file" name="banner" id="banner" value="<?php echo @$banner; ?>" /><br />
-			
-			<label for="background">Arrière-plan :</label><br />
-			<input type="file" name="background" id="background" value="<?php echo @$background; ?>" /><br />
+			<label for="background">
+				<img class="preview none filePreview" data-input="background" id="preview-background" src="">
+				<i>Arrière-plan :</i>
+				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" value="<?php echo @$background; ?>" /><br />
+			</label>
 			
 			<input type="submit" name="createChannelSubmit" value="Créer la chaîne" />
+
 		</form>
 	</section>
 

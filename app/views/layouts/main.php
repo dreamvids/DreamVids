@@ -22,8 +22,6 @@
 								<img src="<?php echo IMG.'icon_logo.png'; ?>" alt="Logo DreamVids" id="top-nav-logo-icon" class="top-nav-icon-logo" />
 								<img src="<?php echo IMG.'text_logo.png'; ?>" alt="DreamVids" id="top-nav-logo-text" class="top-nav-text-logo" />
 							</a>
-
-							<a class="bug-report" href="bugs">Un bug ?</a>
 						</div>
 						<div id="inner-top-nav-right">
 							<form method="get" action="search">
@@ -32,11 +30,10 @@
 							</form>
 
 							<div id="top-nav-user-information">
-								<span id="top-nav-user-information-button">
-									<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
-									<h4 id="top-nav-user-information-button-h4"><?php echo Session::isActive() ? Session::get()->username : 'Bienvenue, invité'; ?></h4>
-									
-									<?php if (Session::isActive()) { ?>
+								<?php if (Session::isActive()) { ?>
+									<span id="top-nav-user-information-button">
+										<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
+										<h4 id="top-nav-user-information-button-h4"><?php echo Session::isActive() ? Session::get()->username : 'Bienvenue, invité'; ?></h4>
 										<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
 										<div id="top-nav-user-information-menu">
 											<ul>
@@ -46,16 +43,14 @@
 												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
 											</ul>
 										</div>
-									<?php } else { ?>
-										<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
-										<div id="top-nav-user-information-menu">
-											<ul>
-												<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
-												<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
-											</ul>
-										</div>
-									<?php } ?>
-								</span>
+									</span>
+								<?php } else { ?>
+									<div id="top-connection">
+										<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
+										<p>/</p>
+										<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
+									</div>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
