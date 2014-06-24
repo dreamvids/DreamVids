@@ -42,7 +42,7 @@ class Channels extends Controller {
 	}
 	
 	public function postRequest($request) {
-		//$this->loadModel('channels_model');
+		$this->loadModel('channels_model');
 		$req = $request->getValues();
 		$data = $req;
 		$data['current'] = 'channels';
@@ -56,7 +56,7 @@ class Channels extends Controller {
 						if ($this->model->isChannelNameFree($name)) {
 							$this->model->addChannel($name, $descr, '', '', '');
 							$data['channels'] = $this->model->getChannelsOwnedByUser(Session::get()->id);
-							$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage ;o)', 'channels/list', $data);
+							$this->renderViewWithSuccess('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage !', 'channels/list', $data);
 						}
 						else {
 							$this->renderViewWithError('Ce nom de chaine est déjà utilisé.', 'channels/add', $data);

@@ -1,3 +1,3 @@
-function postComment(vid, commentContent) {
-	ajax.post('video/' + vid, {'commentSubmit': 'lol', 'comment-content': commentContent});
+function postComment(vid, commentContent, fromChannel) {
+	ajax.post('video/' + vid, {'commentSubmit': 'lol', 'comment-content': commentContent, 'from-channel': fromChannel});
 }

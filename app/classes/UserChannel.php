@@ -9,6 +9,19 @@ class UserChannel extends ActiveRecord\Model {
 		return Video::all(array('conditions' => array('poster_id' => $this->id)));
 	}
 
+	public function belongToUser($userId) {
+		if(User::exists($userId)) {
+			$ownedChannels = User::find($userId)->getOwnedChannels();
+
+			if(in_array($this, $ownedChannels))
+				return true;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+
 	public static function generateId($length) {
 		$idExists = true;
 

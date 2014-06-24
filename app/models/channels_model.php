@@ -20,7 +20,7 @@ class Channels_model extends Model {
 			'name' => $name,
 			'description' => $descr,
 			'owner_id' => Session::get()->id,
-			'admins_ids' => Session::get()->id,
+			'admins_ids' => Session::get()->id.';',
 			'avatar' => $avatarURL,
 			'banner' => $bannerURL,
 			'background' => $backgroundURL,

@@ -56,6 +56,7 @@ class Watch extends Controller {
 		$data['likedByUser'] = $this->model->isVideoLikedByUser($videoId) ? true : false;
 		$data['dislikedByUser'] = $this->model->isVideoDislikedByUser($videoId) ? true : false;
 		$data['recommendations'] = $this->model->getRecommendedVideos($video->poster_id);
+		$data['channels'] = Session::get()->getOwnedChannels();
 
 		$data['currentPage'] = "watch";
 
@@ -66,10 +67,13 @@ class Watch extends Controller {
 	public function postRequest($request) {
 		$req = $request->getValues();
 
-		if(isset($req['commentSubmit']) && Session::isActive()) {
-			$content = Utils::secure($req['comment-content']);
+		if(isset($req['commentSubmit']) && isset($req['from-channel']) && Session::isActive()) {
+			$channelId = Utils::secure($req['from-channel']);
 
-			$this->model->postComment(Session::get()->getMainChannel()->id, self::$vidId, $content); // TODO: Allow the user to choose the channel to post with
+			if(UserChannel::exists($channelId) && UserChannel::find($channelId)->belongToUser(Session::get()->id)) {
+				$content = Utils::secure($req['comment-content']);
+				$this->model->postComment($channelId, self::$vidId, $content);
+			}
 		}
 	}
 
