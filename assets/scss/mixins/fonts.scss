@@ -1,0 +1,42 @@
+
+/* FONTS PRESETS
+   ============================= */
+
+@mixin font-italic {
+
+	font-style: italic;
+
+}
+
+@mixin font-bold {
+
+	font-weight: 800;
+
+}
+
+@mixin font-light {
+
+	font-weight: 300;
+
+}
+
+@mixin font-minecraft($size: 42px) {
+
+	font-family: $font-family-minecraft;
+	font-size: $size;
+
+}
+
+@mixin font-title($size: 34px) {
+
+	font-family: $font-family-title;
+	font-size: $size;
+
+}
+
+@mixin font-paragraph($size: 18px) {
+
+	font-family: $font-family-paragraph;
+	font-size: $size;
+
+}

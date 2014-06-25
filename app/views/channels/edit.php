@@ -15,14 +15,23 @@
 			<label for="description">Description :</label>
 			<textarea rows="8" cols="50" required="required" name="description" id="description"><?php echo @$description; ?></textarea><br />
 			
-			<label for="avatar">Avatar :</label><br />
-			<input type="file" name="avatar" id="avatar" value="<?php echo @$avatar; ?>" /><br />
+			<label for="avatar">
+				<img class="preview none filePreview" data-input="avatar" id="preview-avatar" src="">
+				<i>Avatar :</i>
+				<input type="file" data-text="Choisir un avatar" data-preview="preview-avatar" name="avatar" id="avatar" value="<?php echo @$avatar; ?>" /><br />
+			</label>
 			
-			<label for="banner">Bannière :</label><br />
-			<input type="file" name="banner" id="banner" value="<?php echo @$banner; ?>" /><br />
+			<label for="banner">
+				<img class="preview none filePreview" data-input="banner" id="preview-banner" src="">
+				<i>Bannière :</i>
+				<input type="file" data-text="Choisir une bannière" data-preview="preview-banner" name="banner" id="banner" value="<?php echo @$banner; ?>" /><br />
+			</label>
 			
-			<label for="background">Arrière-plan :</label><br />
-			<input type="file" name="background" id="background" value="<?php echo @$background; ?>" /><br />
+			<label for="background">
+				<img class="preview none filePreview" data-input="background" id="preview-background" src="">
+				<i>Arrière-plan :</i>
+				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" value="<?php echo @$background; ?>" /><br />
+			</label>
 			
 			<input type="submit" name="editChannelSubmit" value="Créer la chaîne" />
 		</form>

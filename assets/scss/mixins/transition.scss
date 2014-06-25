@@ -1,0 +1,9 @@
+
+/* TRANSITIONS
+   ============================= */
+
+@mixin transition($arguments: 0.5s) {
+
+	@include prefix(transition, $arguments);
+	
+}

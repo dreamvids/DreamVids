@@ -11,3 +11,11 @@ composer.phar
 
 module_creator.php
 .htpasswd
+
+.sass-cache
+node_modules
+.npm-debug.log
+logs
+*.log
+tmp
+.grunt

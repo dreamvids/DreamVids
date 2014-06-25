@@ -1,0 +1,80 @@
+.aside-cards-list {
+	display: block;
+	width: 70%;
+	min-height: 100px;
+
+	float: left;
+
+	@media (max-width: 850px) {
+		float: none;
+		width: 100%;
+	}
+
+	.card {
+		float: left;
+
+		width: 45%;
+		margin-left: 2%;
+		margin-right: 2%;
+
+		@media (max-width: 420px) {
+			width: 95%;
+			height: 200px;
+		}
+		
+		// Pour éviter la casse lors de l'ouverture d'une carte à commentaires
+		&:nth-child(even) { clear: both; }
+	}
+
+	.big-button {
+		position: relative;
+		left: 50%;
+		
+		display: inline-block;
+		width: 50%;
+		height: 28px;
+		margin-top: 10px;
+		margin-bottom: 15px;
+		margin-left: -25%;
+
+		@media (max-width: 850px) {
+			left: 0;
+			width: 95%;
+			margin-left: 2%;
+		}
+
+		padding-top: 12px;
+
+		text-align: center;
+		font-size: 18px;
+		color: #858484;
+		background: #f1f0f0;
+
+		-webkit-box-shadow: 1px 2px 0px #e0e0e0;
+		   -moz-box-shadow: 1px 2px 0px #e0e0e0;
+			-ms-box-shadow: 1px 2px 0px #e0e0e0;
+			 -o-box-shadow: 1px 2px 0px #e0e0e0;
+				box-shadow: 1px 2px 0px #e0e0e0;
+	}
+
+	.big-button:hover {
+		margin-top: 8px;
+		margin-bottom: 17px;
+
+		-webkit-box-shadow: 2px 4px 0px #e0e0e0;
+		   -moz-box-shadow: 2px 4px 0px #e0e0e0;
+			-ms-box-shadow: 2px 4px 0px #e0e0e0;
+			 -o-box-shadow: 2px 4px 0px #e0e0e0;
+				box-shadow: 2px 4px 0px #e0e0e0;
+	}
+	.big-button:active {
+		margin-top: 11px;
+		margin-bottom: 14px;
+
+		-webkit-box-shadow: 1px 1px 0px #e0e0e0;
+		   -moz-box-shadow: 1px 1px 0px #e0e0e0;
+			-ms-box-shadow: 1px 1px 0px #e0e0e0;
+			 -o-box-shadow: 1px 1px 0px #e0e0e0;
+				box-shadow: 1px 1px 0px #e0e0e0;
+	}
+}

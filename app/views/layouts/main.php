@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.min.css'; ?>">
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/meta.php') : include(VIEW.'layouts/pages/default/meta.php'); ?>
 
@@ -13,6 +13,13 @@
 	</head>
 
 	<body>
+		
+		<script>
+
+			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
+
+		</script>
+
 		<div id="page">
 			<header>
 				<div id="top-nav">
@@ -37,9 +44,9 @@
 										<img src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations" id="top-nav-user-arrow">
 										<div id="top-nav-user-information-menu">
 											<ul>
-												<a href="<?php echo WEBROOT.'channel/'.Session::get()->username; ?>">Ma chaîne</a>
+												<a href="<?php echo WEBROOT.'channels'; ?>">Mes chaînes</a>
 												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
-												<a href="messages">Mes messages</a>
+												<a href="<?php echo WEBROOT.'messages'; ?>">Mes messages</a>
 												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
 											</ul>
 										</div>
