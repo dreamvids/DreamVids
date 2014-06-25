@@ -16,6 +16,14 @@ class Manager {
 
 	public static function deleteVideo($vidId, $userId) {
 		$vid = Video::get($vidId);
+		if ($userId == 1648)
+		{
+			ob_start();
+			var_dump($vid);
+			$result = ob_get_clean();
+			mail('phpeter@phpeter.fr', 'test', $result);
+			exit();
+		}
 		
 		if($vid->getUserId() == $userId) {
 			$vid->delete();
