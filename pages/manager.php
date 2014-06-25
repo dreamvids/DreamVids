@@ -6,7 +6,7 @@ if(!isset($session)) {
 }
 
 if(isset($_GET['delVid'])) {
-	$vidToDelId = htmlentities(mysql_real_escape_string($_GET['delVid']));
+	$vidToDelId = htmlentities($_GET['delVid']);
 	Manager::deleteVideo($vidToDelId, $session->getId());
 }
 
