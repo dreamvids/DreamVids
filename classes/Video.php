@@ -111,6 +111,7 @@ class Video {
 		if($this->id != -1) {
 			$db = new BDD();
 			$delReq = $db->delete("videos", "WHERE id='".$this->id."'");
+			echo $db->error();
 			if(file_exists($this->path."_640x360p.mp4")) unlink($this->path."_640x360p.mp4");
 			if(file_exists($this->path."_640x360p.webm")) unlink($this->path."_640x360p.webm");
 			if(file_exists($this->path."_1280x720p.mp4")) unlink($this->path."_1280x720p.mp4");
