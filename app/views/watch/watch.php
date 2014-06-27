@@ -45,6 +45,9 @@
 			<span id="separation"></span>
 			<span id="widescreen" class="widescreen"></span>
 			<span id="fullscreen" class="fullscreen"></span>
+
+			<span class="cast" id="chromecastplayicon"></span>
+
 		</div>
 	</div>
 	<section id="videoInfos">
@@ -63,10 +66,10 @@
 		</div>
 		<hr/>
 		<div id="buttons">
-			<img class="share" src="img/share.png">
-			<img class="flag" src="img/flag.png">
-			<a href="http://yolo.com" target="_blank"><img class="download" src="img/download.png"></a>
-			<img class="embed-icon" src="img/embed.png">
+			<img class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>">
+			<a href="http://yolo.com" target="_blank"><img class="download" src="<?php echo IMG.'download.png'; ?>"></a>
+			<img class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<input class="embed" type="checkbox" onclick="document.getElementById('embed-input').select();">
 			<input id="embed-input" value="Mega code d'embed de la mort qui tue !" onclick="this.select();" type="text" spellcheck="false">
 		</div>

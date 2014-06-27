@@ -719,3 +719,155 @@ document.addEventListener("keydown", function(event) {
     if (event.keyCode == 39) // [droite]
         video.currentTime += 3;
 });
+
+/**
+ * CHROME CAST
+ */
+
+var chromecastplayicon = document.getElementById("chromecastplayicon"),
+    currentMedia = null,
+    currentSession = null;
+    mediaCurrentTime = 0,
+    chromecastTimer = null;
+
+chromecastplayicon.addEventListener("click", function() {
+
+    chrome.cast.requestSession(function(session) {
+
+        currentSession = session;
+
+        var mediaInfo = new chrome.cast.media.MediaInfo("http://dreamvids.fr/uploads/Dimou/AxRw02.webm_640x360p.mp4");
+        mediaInfo.contentType = "video/mp4";
+
+        var request = new chrome.cast.media.LoadRequest(mediaInfo);
+        request.autoplay = true;
+        request.currentTime = 0;
+        
+        //var payload = {
+        //  "title:" : mediaTitles[i],
+        //  "thumb" : mediaThumbs[i]
+        //};
+
+        //var json = {
+        //  "payload" : payload
+        //};
+
+        //request.customData = json;
+
+        currentSession.loadMedia(request, onMediaDiscovered.bind(this, "loadMedia"), function() {
+
+            console.error("Erreur lors du lancement de la vidéo.");
+
+        });
+
+    }, function() {
+
+        console.error("Erreur lors du lancement de l'application.");
+
+    });
+
+});
+
+function onMediaDiscovered(how, media) {
+
+    currentMedia = media;
+    currentMedia.addUpdateListener(onMediaStatusUpdate);
+    mediaCurrentTime = currentMedia.currentTime;
+
+    
+
+}
+
+function onMediaStatusUpdate(isAlive) {
+
+    if (currentMedia.playerState === "PLAYING") {
+
+        mediaCurrentTime = currentMedia.currentTime;
+
+        chromecastTimer = setInterval(function() {
+
+            mediaCurrentTime ++;
+            console.log(mediaCurrentTime);
+
+        }, 1000);
+
+    }
+
+    else {
+
+        clearInterval(chromecastTimer);
+
+    }
+
+}
+
+function sessionListener(event) {
+
+    console.log("New session ID: " + event.sessionId);
+    currentSession = event;
+
+    if (currentSession.media.length != 0) {
+
+        console.log("Found " + currentSession.media.length + " existing media sessions.");
+        onMediaDiscovered("sessionListener", currentSession.media[0]);
+
+    }
+
+    currentSession.addMediaListener(onMediaDiscovered.bind(this, "addMediaListener"));
+    currentSession.addUpdateListener(sessionUpdateListener.bind(this)); 
+
+}
+
+function sessionUpdateListener(isAlive) {
+
+    if (!isAlive) {
+
+        currentSession = null;
+
+        if (chromecastTimer) {
+
+            clearInterval(chromecastTimer);
+
+        }
+
+    }
+
+}
+
+function receiverListener(event) {
+
+    if (event === "available" ) {
+
+        chromecastplayicon.style.display = "block";
+
+        setTimeout(function() {
+
+            chromecastplayicon.className += " show";
+
+        }, 10);
+
+    }
+
+}
+
+window.addEventListener("load", function() {
+    
+    if (!chrome.cast || !chrome.cast.isAvailable) {
+
+        setTimeout(function() {
+
+            var applicationID = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
+            var sessionRequest = new chrome.cast.SessionRequest(applicationID);
+            var apiConfig = new chrome.cast.ApiConfig(sessionRequest, sessionListener, receiverListener);
+            
+            chrome.cast.initialize(apiConfig, function onInitSuccess() {}, function() {
+
+                console.error("Erreur lors de l'initialisation de ChromeCast.")
+
+            });
+
+        }, 1000);
+
+    }
+
+}, false);

@@ -166,6 +166,41 @@ body {
 
 /* COMPOMENTS
    ----------------------------- */
+/* === PLAYER === */
+/* CAST BUTTON
+   ============================= */
+#player .cast {
+  position: absolute;
+  top: -42px;
+  right: 8px;
+  display: none;
+  width: 32px;
+  height: 32px;
+  background: url(../img/cast/default.png);
+  background-size: 32px 32px;
+  cursor: pointer;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  transition: 0.1s;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transform: scale(0.5, 0.5);
+  -moz-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5); }
+
+#player .cast.show {
+  display: block;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  transform: scale(1, 1); }
+
+#player #controls.down .cast {
+  opacity: 0; }
+
 /* Différentes sections de pages
    ----------------------------- */
 /* NAV VARIABLES */
