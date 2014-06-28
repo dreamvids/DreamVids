@@ -31,6 +31,7 @@ class Channels extends Controller {
 			$this->channelId = $channelId;
 
 			$data['current'] = 'channels';
+			$data['mainChannel'] = UserChannel::find($channelId)->isUsersMainChannel(Session::get()->id);
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
 			$data['avatar'] = $channel->avatar;

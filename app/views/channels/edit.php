@@ -10,7 +10,12 @@
 
 		<form class="form" method="post" action="" enctype="multipart/form-data">
 			<label for="name">Nom :</label>
-			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" /><br />
+			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'disabled' : ''; ?>/>
+
+			<?php if (@$mainChannel): ?>
+				<p>Vous ne pouvez pas changer le nom de votre chaîne principale</p><br />
+			<?php endif ?>
+			<br />
 			
 			<label for="description">Description :</label>
 			<textarea rows="8" cols="50" required="required" name="description" id="description"><?php echo @$description; ?></textarea><br />
