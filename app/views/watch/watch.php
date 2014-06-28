@@ -45,31 +45,51 @@
 			<span id="separation"></span>
 			<span id="widescreen" class="widescreen"></span>
 			<span id="fullscreen" class="fullscreen"></span>
+
+			<span class="cast" id="chromecastplayicon"></span>
+
 		</div>
 	</div>
-	<section id="videoInfos">
-		<div id="videoVues"><?php echo $views; ?> vues</div>
-		<hr />
-		<div id="votes">
-			<p <?php if($likedByUser) echo "class='active'"; ?> id="votePlus" onclick="plus('<?php echo $video->id; ?>');"><?php echo $likes; ?></p>
-			<m <?php if($dislikedByUser) echo "class='active'"; ?> id="voteMoins" onclick="moins('<?php echo $video->id; ?>');"><?php echo $dislikes; ?></m>
+
+	<section class="video-infos">
+
+		<div class="views"><?php echo $views; ?> vues</div>
+
+		<hr>
+
+		<div class="votes">
+
+			<p class="plus<?php if($likedByUser) echo " active"; ?>" onclick="votePlus('<?php echo $video->id; ?>', this);"><?php echo $likes; ?></p>
+			<m class="moins<?php if($dislikedByUser) echo " active"; ?>" onclick="voteMoins('<?php echo $video->id; ?>', this);"><?php echo $dislikes; ?></m>
+
 		</div>
-		<hr/>
-		<div id="description">
-			<div id="innerDescription">
+
+		<hr>
+
+		<div class="description">
+
+			<div class="inner-description">
+
 				Ceci est une description que j'ai écrite à la main très très très longtemps pour avoir quelque chose de plus réaliste et inutile et pour pouvoir commiter quelquechose vu que je n'avais aucune idée de quoi faire.
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, laudantium, labore assumenda corporis ea dolor saepe nostrum quae molestias nobis illum accusamus magnam rerum! Velit, fuga, laborum qui ducimus nesciunt sequi necessitatibus dolores illo itaque tenetur ea cupiditate temporibus vero amet dolorem veniam possimus perferendis explicabo sed debitis delectus aliquam.
+			
 			</div>
+
 		</div>
-		<hr/>
-		<div id="buttons">
-			<img class="share" src="img/share.png">
-			<img class="flag" src="img/flag.png">
-			<a href="http://yolo.com" target="_blank"><img class="download" src="img/download.png"></a>
-			<img class="embed-icon" src="img/embed.png">
+
+		<hr>
+
+		<div class="buttons">
+
+			<img class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>">
+			<a href="http://yolo.com" target="_blank"><img class="download" src="<?php echo IMG.'download.png'; ?>"></a>
+			<img class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<input class="embed" type="checkbox" onclick="document.getElementById('embed-input').select();">
-			<input id="embed-input" value="Mega code d'embed de la mort qui tue !" onclick="this.select();" type="text" spellcheck="false">
+			<input class="embed-input" value="Mega code d'embed de la mort qui tue !" onclick="this.select();" type="text" spellcheck="false">
+
 		</div>
+
 	</section>
 
 	<form method="post" action="" role="form" class="moderating-commands">
@@ -79,7 +99,6 @@
 		<button type="submit" class="red" name="request_delete_vid">Demander la suppression</button>
 	</form>
 
-	<div class="center"><img src="http://dummyimage.com/468x60/f0f0f0/242424&text=add" width="468" height="60"></div>
 </section>
 
 

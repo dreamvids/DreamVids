@@ -1,0 +1,262 @@
+#annoTools {
+	padding: 15px;
+
+	button:not(.colorSelect) {
+		width: 100%;
+		padding: 10px;
+		border: none;
+
+		color: white;
+		background-color: #40a6e0;
+		cursor: pointer;
+
+		&:hover { background-color: #6cbae7; }
+		&:active { background-color: #2a9cdc; }
+		&:focus { outline: none; }
+	}
+
+	button:not(.colorSelect).red { background-color: #ff8830; }
+	button:not(.colorSelect).red:hover { background-color: #ffa563; }
+	button:not(.colorSelect).red:active { background-color: #ff7917; }
+
+	#selectedTools {
+		#STtitle {
+			display: block;
+			width: 100%;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+
+			text-align: center;
+			border: none;
+			background: transparent;
+			font-size: 16px;
+
+			&:focus,
+			&:active { outline: none; }
+		}
+
+		#STleft,
+		#STtop,
+		#STwidth,
+		#STheight {
+			width: 32px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			border: none;
+			
+			background: transparent;
+			text-align: center;
+			font-size: 16px;
+
+			& ~ .purcent { display: inline-block; }
+		}
+		
+		input:focus,
+		input:active { outline: none; }
+
+		#STlink {
+			display: inline-block;
+			width: 70%;
+			max-width: 300px;
+			margin-left: 10px;
+			margin-top: -5px;
+			margin-bottom: 8px;
+			padding: 5px;
+			border: none;
+			
+			background: white;
+			font-size: 16px;
+
+			&:focus,
+			&:active { outline: none; }
+		}
+
+		.colorSelect {
+			display: inline-block;
+			width: 26px;
+			height: 26px;
+			margin-left: 1px;
+			margin-top: 8px;
+			margin-bottom: 8px;
+			padding: 0;
+			border: none;
+
+			cursor: pointer;
+
+			&:focus,
+			&:active { outline: none; }
+		}
+	}
+}
+
+.colorSelect.blue,
+#annoList > li.blue { background-color: #40a6e0; }
+
+.colorSelect.orange,
+#annoList > li.orange { background-color: #df6d14; }
+
+.colorSelect.yellow,
+#annoList > li.yellow {
+	background-color: #ffff00;
+	color: #1e1e1e
+}
+
+.colorSelect.pink,
+#annoList > li.pink { background-color: #fd3f92; }
+
+.colorSelect.red,
+#annoList > li.red { background-color: #eb0000; }
+
+.colorSelect.green,
+#annoList > li.green {
+	background-color: #9efd38;
+	color: #1e1e1e;
+}
+
+.colorSelect.purple,
+#annoList > li.purple { background-color: #660099; }
+
+.colorSelect.white,
+#annoList > li.white {
+	background-color: white;
+	color: #1e1e1e;
+}
+
+.colorSelect.black,
+#annoList > li.black { background-color: black; }
+
+.colorSelect.transparent,
+#annoList > li.transparent { background-color: transparent; }
+
+.colorSelect.transparent {
+	position: relative;
+	top: -8px;
+}
+
+.colorSelect.transparent.b {
+	border: 1px solid #1e1e1e;
+	color: #1e1e1e;
+}
+
+.colorSelect.transparent.w {
+	border: 1px solid white;
+	color: #aaa;
+}
+
+#annoList > li.transparent.b { color: black; }
+
+#annoList > li.transparent.w { color: #aaa; }
+
+@media all and (min-width: 640px) {
+  	#annoTools {
+  		button:not(.colorSelect) {
+  			-webkit-transition: 0.2s;
+  			   -moz-transition: 0.2s;
+  				-ms-transition: 0.2s;
+  				 -o-transition: 0.2s;
+  					transition: 0.2s;
+  		}
+  	}
+}
+
+#annoTimeLine {
+	clear: both;
+
+	display: block;
+	max-width: 1000px;
+	height: auto;
+	min-height: 200px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	
+	background-color: #f1f0f0;
+	box-shadow: 1px 2px 0 #e2e2e2;
+
+	li {
+		position: relative;
+
+		padding: 10px;
+		display: block;
+		height: 40px;
+		overflow: hidden;
+		
+		background-color: #40a6e0;
+		color: white;
+		text-align: center;
+		opacity: 0;
+		cursor: move;
+
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+			-ms-box-sizing: border-box;
+			 -o-box-sizing: border-box;
+				box-sizing: border-box;
+
+		.resizeLeft,
+		.resizeRight {
+			position: absolute;
+			top: 0;
+
+			display: inline-block;
+			height: 100%;
+			width: 5px;
+
+			cursor: ew-resize;
+			background: white;
+			opacity: 0.5;
+		}
+
+		&.white > .resizeLeft,
+		&.white > .resizeRight,
+		&.transparent > .resizeLeft,
+		&.transparent > .resizeRight,
+		&.yellow > .resizeLeft,
+		&.yellow > .resizeRight,
+		&.green > .resizeLeft,
+		&.green > .resizeRight { background: black; }
+
+		.resizeLeft { left: 0; }
+		.resizeRight { right: 0; }
+	}
+}
+
+#player.annoted {
+	.annotation {
+		cursor: move;
+	
+		.resize {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+
+			width: 0px;
+			height: 0px;
+			margin: 0!important;
+			
+			border-style: solid;
+			border-width: 0 0 12px 12px;
+			border-color: transparent transparent #ffffff transparent;
+			cursor: nwse-resize;
+		}
+
+		.close { opacity: 1!important; }
+	}
+	.annotation > p:focus,
+	.annotation > a:focus {
+		outline: none;
+		cursor: text;
+	}
+	
+	#fullscreen,
+	#widescreen,
+	#separation,
+	#annotationsButton { display: none!important; }
+
+	#volume { right: 20px; }
+
+	#qualityButton { right: 90px; }
+}

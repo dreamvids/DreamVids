@@ -1,0 +1,11 @@
+
+/* BACKGROUND COVER
+   ============================= */
+
+%background-cover {
+
+	background-position: center;
+
+	@include prefix(background-size, cover);
+	
+}

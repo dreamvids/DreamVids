@@ -17,7 +17,7 @@
 
 			<label for="description">
 				Description :
-				<textarea name="description" id="description" rows="4" required="required" placeholder="Description"><?php echo @$description; ?></textarea> <!-- Il faudrait renomer son id "description" car il modifie son style. Mais aussi le changer lors de la recuperation des données du formulaire dans le php. -->
+				<textarea name="description" id="description" rows="4" required="required" placeholder="Description"><?php echo @$description; ?></textarea>
 			</label>
 			
 			<label for="avatar">

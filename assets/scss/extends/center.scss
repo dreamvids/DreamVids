@@ -1,0 +1,12 @@
+
+/* CENTER
+   ============================= */
+
+%center {
+	
+	position: relative;
+	left: 50%; top: 50%;
+
+	@include prefix(transform, #{"translateY(-50%) translateX(-50%)"});
+
+}

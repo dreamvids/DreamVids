@@ -46,12 +46,14 @@
 						<?php
 					}
 					else if($action->type == "subscription") {
+						$user_action_name = User::getNameById($action->user_id);
 						?>
-							<div class='card subscribe'>
-								<a href="channel">
+							<div class="card channel">
+								<a href="<?php echo WEBROOT.'channel/'.$user_action_name; ?>">
 									<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
-									<p><b><?php echo User::getNameById($action->user_id) ?></b> s'est abonné à votre chaîne</p>
+									<p><b><?php echo $user_action_name ?></b> s'est abonné à votre chaîne</p>
 								</a>
+								<!-- <span class="subscriber"><b>64 520</b> Abonnés</span> -->
 								<i><?php echo Utils::relative_time($action->timestamp) ?></i>
 							</div>
 						<?php
