@@ -18,7 +18,7 @@
 
 			<?php foreach ($channels as $chan): ?>
 				<div class="card channel long">
-					<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>">
+					<a href="<?php echo WEBROOT.'channel/'.$chan->id ?>">
 						<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
 					</a>
 
@@ -34,6 +34,7 @@
 					</div>
 				</div>
 			<?php endforeach ?>
+			
 		</aside>
 
 </div>

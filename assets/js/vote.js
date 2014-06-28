@@ -1,46 +1,94 @@
-function plus(vid) {
-    votePlus = document.getElementById('votePlus');
-    voteMoins = document.getElementById('voteMoins');
 
-    if (votePlus.className == 'active') {
-        votePlus.className = '';
-        votePlus.innerHTML = parseInt(votePlus.innerHTML) - 1;
+/**
+ * Votes
+ */
 
-        ajax.get('unlike/' + vid, {});
-    } else {
-        votePlus.className = 'active';
-        votePlus.innerHTML = parseInt(votePlus.innerHTML) + 1;
+function votePlus(vid, element) {
 
-        ajax.get('like/' + vid, {});
+    var plusElement = element,
+        moinsElement = document.createElement("div"),
+        elements = element.parentNode.childNodes;
 
-        if (voteMoins.className == 'active') {
-            voteMoins.className = '';
-            voteMoins.innerHTML = parseInt(voteMoins.innerHTML) - 1;
-            ajax.get('undislike/' + vid, {});
+    for (var i = 0; i < elements.length; i++) {
+
+        if (elements[i].className && elements[i].className.search("moins") > -1) {
+
+            moinsElement = elements[i];
+
         }
+
     }
+
+    if (plusElement.className.search("active") > -1) {
+
+        plusElement.className = plusElement.className.replace("active", "")
+        plusElement.innerHTML = parseInt(plusElement.innerHTML) - 1;
+
+        ajax.get("unlike/" + vid, {});
+
+    }
+
+    else {
+
+        plusElement.className = plusElement.className + " active";
+        plusElement.innerHTML = parseInt(plusElement.innerHTML) + 1;
+
+        ajax.get("like/" + vid, {});
+
+        if (moinsElement.className.search("active") > -1) {
+
+            moinsElement.className = moinsElement.className.replace("active", "");
+            moinsElement.innerHTML = parseInt(moinsElement.innerHTML) - 1;
+
+            ajax.get("undislike/" + vid, {});
+
+        }
+
+    }
+
 }
 
-function moins(vid) {
-    votePlus = document.getElementById('votePlus');
-    voteMoins = document.getElementById('voteMoins');
+function voteMoins(vid, element) {
 
-    if (voteMoins.className == 'active') {
-        voteMoins.className = '';
-        voteMoins.innerHTML = parseInt(voteMoins.innerHTML) - 1;
+    var moinsElement = element,
+        plusElement = document.createElement("div"),
+        elements = element.parentNode.childNodes;
 
-        ajax.get('undislike/' + vid, {});
-    } else {
-        voteMoins.className = 'active';
-        voteMoins.innerHTML = parseInt(voteMoins.innerHTML) + 1;
+    for (var i = 0; i < elements.length; i++) {
 
-        ajax.get('dislike/' + vid, {});
+        if (elements[i].className && elements[i].className.search("plus") > -1) {
 
-        if (votePlus.className == 'active') {
-            votePlus.className = '';
-            votePlus.innerHTML = parseInt(votePlus.innerHTML) - 1;
-            
-             ajax.get('unlike/' + vid, {});
+            plusElement = elements[i];
+
         }
+
     }
+
+    if (moinsElement.className.search("active") > -1) {
+
+        moinsElement.className = moinsElement.className.replace("active", "")
+        moinsElement.innerHTML = parseInt(moinsElement.innerHTML) - 1;
+
+        ajax.get("undislike/" + vid, {});
+
+    }
+
+    else {
+
+        moinsElement.className = moinsElement.className + " active";
+        moinsElement.innerHTML = parseInt(moinsElement.innerHTML) + 1;
+
+        ajax.get("dislike/" + vid, {});
+
+        if (plusElement.className.search("active") > -1) {
+
+            plusElement.className = plusElement.className.replace("active", "");
+            plusElement.innerHTML = parseInt(plusElement.innerHTML) - 1;
+
+            ajax.get("unlike/" + vid, {});
+
+        }
+
+    }
+
 }
