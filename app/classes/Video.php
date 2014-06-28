@@ -2,6 +2,10 @@
 
 class Video extends ActiveRecord\Model {
 
+	public function getAuthor() {
+		return UserChannel::find_by_id($this->poster_id);
+	}
+
 	public static function createTemp($id, $channelId) {
 		Video::create(array(
 			'id' => $id,

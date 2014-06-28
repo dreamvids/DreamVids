@@ -152,13 +152,13 @@
 			<div class="card video">
 				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/200/3">
 					<div class="time"><?php echo $vid->duration; ?></div>
-					<a href="video" class="overlay"></a>
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
 				</div>
 				<div class="description">
-					<a href="video"><h4><?php echo $vid->title; ?></h4></a>
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
 					<div>
 						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.$author; ?>"><?php echo $author; ?></a>
+						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->getAuthor()->name; ?>"><?php echo $vid->getAuthor()->name; ?></a>
 					</div>
 				</div>
 			</div>
