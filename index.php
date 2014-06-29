@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-ini_set("session.gc_maxlifetime", '36000');
+ini_set("session.gc_maxlifetime", '86400');
 session_start();
 date_default_timezone_set('Europe/Paris');
 

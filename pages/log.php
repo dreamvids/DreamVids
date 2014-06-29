@@ -14,7 +14,7 @@ if (isset($_POST['submit']) )
 		$pass = Log::getPassFromUsername($_POST['username']);
 		if (sha1($_POST['pass']) == $pass)
 		{
-			Log::connect($_POST['username'], $_POST['remember']);
+			Log::connect($_POST['username']);
 			header('location:./');
 			exit();
 		}

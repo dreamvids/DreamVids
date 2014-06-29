@@ -15,11 +15,6 @@
 				<label for="pass"><?php echo $lang['password']; ?></label>
 				<input type="password" name="pass" required="" placeholder="<?php echo $lang['password']; ?>" vaue="<?php echo @secure($_POST['pass']); ?>" class="form-control"/>
 			</div>
-			<div class="checkbox">
-				<label>
-				<input type="checkbox" value="remember" id="remember" name="remember" /> <label for="remember"><?php echo $lang['remember']; ?></label>
-				</label>
-			</div>
 			<input type="submit" name="submit" value="<?php echo $lang['login']; ?>" class="btn btn-primary" />
 		</form>
 	</diV>

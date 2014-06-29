@@ -17,14 +17,13 @@ class Log
 		return $data['pass'];
 	}
 	
-	public static function connect($username, $remember)
+	public static function connect($username)
 	{
-		$remember = ($remember == 'remember') ? 1 : 0;
 		$sessid = md5(uniqid() );
-		$expiration = ($remember) ? tps() + 365*86400 : tps() + 24*3600;
+		$expiration = tps() + 365*86400;
 		$bdd = new BDD();
 		$data = $bdd->fetch_array($bdd->select("id", "users", "WHERE username='".$bdd->real_escape_string($username)."'") );
-		$bdd->insert("users_sessions", "'".$data['id']."', '".$sessid."', '".$expiration."', '".$remember."'");
+		$bdd->insert("users_sessions", "'".$data['id']."', '".$sessid."', '".$expiration."'");
 		$bdd->close();
 		setcookie('SESSID', $sessid, $expiration);
 	}
