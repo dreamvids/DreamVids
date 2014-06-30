@@ -5,17 +5,16 @@ require_once APP.'classes/Video.php';
 
 class Videolist_model extends Model {
 
-	public function getDiscoverVideos() {
+	public function getDiscoverVideos($number = 10) {
 		$vids = array();
-		$maxIndex = 10;
 		$indexes = array();
 		$okay = false;
 
-		if($maxIndex > Video::count()) $maxIndex = Video::count('all');
+		if($number > Video::count()) $number = Video::count('all');
 
 		while(!$okay) {
-			for($i = 0; $i < $maxIndex; $i++) {
-				$indexes[$i] = rand(0, $maxIndex - 1);
+			for($i = 0; $i < $number; $i++) {
+				$indexes[$i] = rand(0, $number - 1);
 			}
 
 			$new = array_unique($indexes);

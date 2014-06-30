@@ -20,53 +20,37 @@
 			</ul>
 			
 			<section id="slider" class="slide1">
-			
 				<div id="slide">
-					<div class="card video">
-						<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/up/350/200/1"><a href="video" class="overlay"></a></div>
-						<div class="description">
-							<a href="video"><h4>Up !</h4></a>
+					<?php for($i = 0; $i < count($discoverVids) - 4; $i++): ?>
+						<div class="card video">
+							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
+							<div class="description">
+								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
+							</div>
 						</div>
-					</div>
-			
-					<div class="card video">
-						<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="video" class="overlay"></a></div>
-						<div class="description">
-							<a href="video"><h4>Nemo</h4></a>
-						</div>
-					</div>
+					<?php endfor ?>
 				</div>
-			
+
 				<div id="slide">
-					<div class="card video">
-						<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/simpsons/627/200/3"><a href="video" class="overlay"></a></div>
-						<div class="description">
-							<a href="video"><h4>Les Simpson, le film</h4></a>
+					<?php for($i = 2; $i < count($discoverVids) - 2; $i++): ?>
+						<div class="card video">
+							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
+							<div class="description">
+								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
+							</div>
 						</div>
-					</div>
-			
-					<div class="card video">
-						<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/627/300/4"><a href="video" class="overlay"></a></div>
-						<div class="description">
-							<a href="video"><h4>Nemo [Bande Annonce]</h4></a>
-						</div>
-					</div>
+					<?php endfor ?>
 				</div>
-			
+
 				<div id="slide">
-					<div class="card video">
-						<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/rio/350/200/1"><a href="video" class="overlay"></a></div>
-						<div class="description">
-							<a href="video"><h4>Rio</h4></a>
+					<?php for($i = 4; $i < count($discoverVids); $i++): ?>
+						<div class="card video">
+							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
+							<div class="description">
+								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
+							</div>
 						</div>
-					</div>
-			
-					<div class="card video">
-						<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/up/627/300/4"><a href="video" class="overlay"></a></div>
-						<div class="description">
-							<a href="video"><h4>La Haut ! Bande Annonce</h4></a>
-						</div>
-					</div>
+					<?php endfor ?>
 				</div>
 			</section>
 		</div>

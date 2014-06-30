@@ -20,6 +20,9 @@ class Home extends Controller {
 			$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
 			$data['subscriptions_vids'] = $this->model->getSubscriptionsVideos(Session::get()->id, 6);
 
+			$this->loadModel('videolist_model');
+			$data['discoverVids'] = $this->model->getDiscoverVideos(6);
+
 			$this->renderView('home/logged', $data);
 		}
 	}
