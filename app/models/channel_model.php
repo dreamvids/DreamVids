@@ -5,6 +5,7 @@ require_once APP.'classes/Video.php';
 require_once APP.'classes/UserChannel.php';
 require_once APP.'classes/ChannelPost.php';
 require_once APP.'classes/UserAction.php';
+require_once APP.'classes/ChannelAction.php';
 
 class Channel_model extends Model {
 
@@ -117,6 +118,14 @@ class Channel_model extends Model {
 				'id' => ChannelPost::generateId(6),
 				'channel_id' => $channelId,
 				'content' => $messageContent,
+				'timestamp' => Utils::tps()
+			));
+
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => $channelId,
+				'type' => 'message',
+				'target' => $messageContent,
 				'timestamp' => Utils::tps()
 			));
 		}

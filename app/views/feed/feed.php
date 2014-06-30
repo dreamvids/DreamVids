@@ -93,6 +93,19 @@
 							</div>
 						<?php
 					}
+					else if($action->type == 'message') {
+						?>
+							<div class="card comment">
+								<a href="video">
+									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> à posté un message !</p>
+									<blockquote>
+										<?php echo $action->target; ?>
+									</blockquote>
+								</a>
+								<i><?php echo Utils::relative_time($action->timestamp); ?></i>
+							</div>
+						<?php
+					}
 				}
 			}
 		?>

@@ -1,5 +1,3 @@
-<?php echo $subscribed; ?>
-
 <div class="content wide channel">
 	<div class="bgLoader" id="background-wide" data-background="<?php echo IMG.'backgrounds/003.jpg'; ?>"></div>
 
