@@ -6,7 +6,7 @@
 				<p style="text-align: center; color: #858484;">Vous n'avez aucun abonnement !</p>
 			<?php endif ?>
 
-			<?php foreach ($subscriptions as $subscription): ?>
+			<?php foreach($subscriptions as $subscription): ?>
 				<?php if ($subscription): ?>
 					<a href="<?php echo WEBROOT.'channel/'.$subscription->name; ?>" class="channels">
 						<span style="background-image: url(http://lorempicsum.com/simpsons/255/200/2)" class="avatar"></span>
@@ -26,7 +26,7 @@
 		<h3 class="title">Flux d'activité</h3>
 
 		<?php
-			foreach($actions as $action) {
+			foreach(@$actions as $action) {
 				if($action) {
 					if($action->type == 'upload') {
 						?>

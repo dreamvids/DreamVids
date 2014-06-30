@@ -18,20 +18,24 @@ class Feed extends Controller {
 			else {
 				$actions = array_merge($this->model->getSubscriptionsActions(Session::get()->id), $this->model->getUsersPersonalActions(Session::get()->id));
 
-				//TODO: Optimize
-				foreach($actions as $action) $map[] = $action->timestamp;
+				if(count($actions) > 0) {
+					//TODO: Optimize
+					foreach($actions as $action) $map[] = $action->timestamp;
 
-				arsort($map);
+					arsort($map);
 
-				foreach ($map as $m) {
-					foreach($actions as $a) if($a->timestamp == $m) $orderedActions[] = $a;
+					foreach ($map as $m) {
+						foreach($actions as $a) if($a->timestamp == $m) $orderedActions[] = $a;
+					}
+
+					$data = array();
+
+					$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
+					$data['actions'] = $orderedActions;
 				}
 
-				$data = array();
-
-				$data['subscriptions'] = $this->model->getSubscriptions(Session::get()->id);
-				$data['actions'] = $orderedActions;
-
+				$data['subscriptions'] = array();
+				$data['actions'] = array();
 				$this->renderView('feed/feed', $data);
 			}
 		}
