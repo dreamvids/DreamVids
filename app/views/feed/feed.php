@@ -83,7 +83,7 @@
 					else if($action->type == 'comment' && Comment::getByChannelAction($action)) {
 						?>
 							<div class="card comment">
-								<a href="video">
+								<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>">
 									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> à commenté votre vidéo "<b><?php echo Video::find($action->target)->title; ?></b>" :</p>
 									<blockquote>
 										<?php echo Comment::getByChannelAction($action)->comment; ?>
@@ -96,7 +96,7 @@
 					else if($action->type == 'message') {
 						?>
 							<div class="card comment">
-								<a href="video">
+								<a href="<?php echo WEBROOT.'channel/'.$action->channel_id; ?>">
 									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> à posté un message !</p>
 									<blockquote>
 										<?php echo $action->target; ?>
@@ -109,81 +109,6 @@
 				}
 			}
 		?>
-		
-		<!--<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-				<div class="time">12:05</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Up !</h4></a>
-				<div>
-					<span class="view">12 530</span>
-					<a class="channel" href="channel">Papy</a>
-				</div>
-			</div>
-
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/350/200/1">
-				<div class="time">16:17</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Nemo</h4></a>
-				<div>
-					<span class="view">10 576</span>
-					<a class="channel" href="channel">Dori</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="card comment multiple">
-			<a href="video">
-				<p><b>3 personnes</b> ont commentés votre vidéo "<b>Nyan Cat</b>" :</p>
-				<blockquote>
-					A quand une version 1 heure ?
-				</blockquote>
-				<blockquote>
-					Nyan Nyan Nyan Nyan Nyan Nyan Nyan !
-				</blockquote>
-				<blockquote>
-					C'est quoi ce chat ?
-				</blockquote>
-				<blockquote>
-					A quand une version 1 heure ?
-				</blockquote>
-				<blockquote>
-					Nyan Nyan Nyan Nyan Nyan Nyan Nyan !
-				</blockquote>
-				<blockquote>
-					C'est quoi ce chat ?
-				</blockquote>
-			</a>
-			<i>Il y a 2 minutes</i>
-		</div>
-
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/627/300/4">
-				<div class="time">3:27</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Nemo [Bande Annonce]</h4></a>
-				<div>
-					<span class="view">32 546</span>
-					<a class="channel" href="channel">Nemo</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="card subscribe">
-			<a href="#">
-				<div class="avatar bgLoader" data-background="http://lorempicsum.com/simpsons/255/200/5"></div>
-				<p><b>6 personnes</b> se sont abonnés à votre chaîne</p>
-			</a>
-			<span class="subscriber"><b>64 520</b> Abonnés</span>
-			<i>Il y a 1 heure</i>
-		</div>-->
 
 	</aside>
 </div>

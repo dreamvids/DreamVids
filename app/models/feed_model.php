@@ -121,7 +121,19 @@ class Feed_model extends Model {
 			$subscriptionsActions = ChannelAction::find('all', array('conditions' => array('channel_id' => $subscription->id)));
 
 			foreach($subscriptionsActions as $action) {
-				$actions[] = $action;
+				if($action->type == 'comment') {
+					if(!Video::exists($action->target))
+						continue;
+
+					$targetVideo = Video::find($action->target);
+
+					// If the commented video belongs to any of the user's channels
+					if($targetVideo->getAuthor()->belongToUser(Session::get()->id)) {
+						$actions[] = $action;
+					}
+				}
+				else
+					$actions[] = $action;
 			}
 		}
 
