@@ -60,7 +60,11 @@
 
 	<?php } ?>
 
-		<?php 
+		<?php
+		if (!in_array(@$_GET['mode'], array('subscriptions', 'search', 'discover') ) )
+		{
+			//TODO: Afficher un espace dédié à la "vidéo du moment" (front end uniquement)
+		}
 
 		foreach ($vids as $vid) {
 			
