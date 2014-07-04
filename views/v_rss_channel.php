@@ -1,10 +1,17 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
+<style>
+body{
+	font-family: Arial;
+}
+</style>
 <rss version="2.0">
     <channel>
-   
-        <title>DreamVids</title>
-        <link><a href="http://dreamvids.fr/">http://dreamvids.fr/</a></link>
-        <description>DreamVids: Let us dream ! - New, Free, Open Source and French Videos sharing platform</description><br/>
+   		<item>
+	        <title>DreamVids</title>
+	        <link><a href="http://dreamvids.fr/">http://dreamvids.fr/</a></link>
+	        <description>DreamVids: Let us dream ! - New, Free, Open Source and French Videos sharing platform</description><br/>
+	        <hr/>
+        </item>
         
 <?php
 		foreach ($videos as $vid) {
@@ -18,15 +25,15 @@
 				$views = $lang['views'];
 			}
 			?>
-        <item>
-            <title><?php echo '<b>'.$titleVid.'</b>'; ?></title><br/>
-            <link><a href="http://dreamvids.fr/&amp;<?php echo secure($vid->getId() ); ?>">http://dreamvids.fr/&amp;<?php echo secure($vid->getId() ); ?></a></link><br/>
-            <description><?php echo $descVid; ?></description><br/>
-            <pubDate>Publié le: <?php echo date('d/m/Y', $vid->getTimestamp()); ?></pubDate><br/>
-        </item>
-<?php
-}
-?>
+	        <item>
+	            <title style="display:inline;"><?php print_r($titleVid); ?></title><br/>
+	            <link><a href="http://dreamvids.fr/&amp;<?php echo secure($vid->getId() ); ?>">http://dreamvids.fr/&amp;<?php echo secure($vid->getId() ); ?></a></link><br/>
+	            <description><?php echo $descVid; ?></description><br/>
+	            <pubDate>Publié le: <?php echo date('d/m/Y', $vid->getTimestamp()); ?></pubDate><br/>
+	            <hr/>
+	        </item>
+		<?php
+		}
+		?>
  </channel>
 </rss>
-
