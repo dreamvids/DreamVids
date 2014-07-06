@@ -60,7 +60,8 @@ if(isset($_POST['suspend_vid'])) {
 	if(Watch::isModerator($session)) {
 		$vid = Video::get(htmlentities($_GET['vid']));
 		Watch::suspendVideo($vid->getId());
-		header('Location: /&'.$vid->getId());
+		header('Location: &'.$vid->getId());
+		exit();
 	}
 }
 
@@ -68,7 +69,8 @@ if(isset($_POST['unsuspend_vid'])) {
 	if(Watch::isModerator($session)) {
 		$vid = Video::get(htmlentities($_GET['vid']));
 		Watch::unsuspendVideo($vid->getId());
-		header('Location: /&'.$vid->getId());
+		header('Location: &'.$vid->getId());
+		exit();
 	}
 }
 
@@ -76,7 +78,8 @@ if(isset($_POST['unflag_vid'])) {
 	if(Watch::isModerator($session)) {
 		$vid = Video::get(htmlentities($_GET['vid']));
 		Watch::unflagVideo($vid);
-		header('Location: /&'.$vid->getId());
+		header('Location: &'.$vid->getId());
+		exit();
 	}
 }
 

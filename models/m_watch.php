@@ -47,12 +47,14 @@ class Watch {
 	}
 
 	public static function flagVideo($vid) {
-		$vid->setFlagged(1);
-		$vid->saveDataToDatabase();
+		if (!$vid->isUnflagged() ) {
+			$vid->setFlagged(1);
+			$vid->saveDataToDatabase();
+		}
 	}
 
 	public static function unflagVideo($vid) {
-		$vid->setFlagged(0);
+		$vid->setFlagged(2);
 		$vid->saveDataToDatabase();
 	}
 }

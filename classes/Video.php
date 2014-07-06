@@ -240,6 +240,10 @@ class Video {
 		return $this->flagged == 1;
 	}
 
+	public function isUnflagged() {
+		return $this->flagged == 2;
+	}
+
 	public function isFullyConverted() {
 		$db = new BDD();
 	    $result = $db->select("*", "videos_convert", "WHERE video_id='".$db->real_escape_string($this->id)."' AND sd=2 AND hd=2") or die(mysql_error());

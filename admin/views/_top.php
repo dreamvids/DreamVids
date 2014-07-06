@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Admin" height="50px" /></a>
+          <a class="navbar-brand" href="./"><img src="img/logo.png" alt="Admin" height="50px" /></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,8 +62,8 @@ if ($session->getRank() == $config['rank_adm'])
           </ul>
 
           <ul class="nav navbar-nav navbar-right navbar-user">
-            <li <?php echo ($_GET['page'] == 'flagged') ? 'class="active"' : ''; ?>><a href="?page=flagged"><i class="fa fa-exclamation-triangle"></i> Signalements <span class="badge">7</span></a></li>
-<?php if ($session->getRank() == $config['rank_adm']) { ?><li <?php echo ($_GET['page'] == 'bugs') ? 'class="active"' : ''; ?>><a href="?page=bugs"><i class="fa fa-bug"></i> Bugs <span class="badge">42</span></a></li><?php } ?>
+            <li <?php echo ($_GET['page'] == 'flagged') ? 'class="active"' : ''; ?>><a href="?page=moderation"><i class="fa fa-exclamation-triangle"></i> Signalements <span class="badge"><?php echo $nb_flags; ?></span></a></li>
+<?php if ($session->getRank() == $config['rank_adm']) { ?><li <?php echo ($_GET['page'] == 'bugs') ? 'class="active"' : ''; ?>><a href="../?page=bugs"><i class="fa fa-bug"></i> Bugs <span class="badge"><?php echo $nb_bugs; ?></span></a></li><?php } ?>
             <li class="dropdown user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $session->getName(); ?> <b class="caret"></b></a>
               <ul class="dropdown-menu">

@@ -6,11 +6,11 @@
 <form role="form" action="" method="post">
 	<div class="form-group">
 		<label for="username">Nom d'utilisateur</label>
-		<input class="form-control" type="text" name="username" id="username" value="<?php echo $user->getName(); ?>" />
+		<input class="form-control" required="required" type="text" name="username" id="username" value="<?php echo $user->getName(); ?>" />
 	</div>
 	<div class="form-group">
 		<label for="email">Adresse E-Mail</label>
-		<input class="form-control" type="email" name="email" id="email" value="<?php echo $user->getEmailAddress(); ?>" />
+		<input class="form-control" required="required" type="email" name="email" id="email" value="<?php echo $user->getEmailAddress(); ?>" />
 	</div>
 	<div class="form-group">
 		<label for="pass">Mot de passe (facultatif)</label>

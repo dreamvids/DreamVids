@@ -31,6 +31,11 @@ if (isset($session) && in_array($session->getRank(), array($config['rank_adm'], 
 		exit();
 	}
 	
+	$bdd = new BDD();
+	$nb_flags = $bdd->num_rows($bdd->select("id", "videos", "WHERE flagged=1") );
+	$nb_bugs = $bdd->num_rows($bdd->select("id", "bugs") );
+	$bdd->close();
+	
 	include $model;
 	include $content;
 	include 'views/_top.php';
