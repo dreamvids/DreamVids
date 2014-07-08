@@ -1,5 +1,5 @@
 <?php
-if (!$_SESSION['serv']) {
+if ($_SESSION['serv'] === false) {
 	echo '<div class="alert alert-danger"><b>Upload indisponible:</b> En raison d\'un trop grand nombre d\'uploads de vidéos sur notre plateforme, nos serveurs sont pleins (si si !). Une alerte vient d\'être envoyé à un administrateur qui va traité le problème des les heures à venir ! Merci de votre patience, en attendant vous pouvez toujours regarder les vidéos des autres Dreamers ;)</div>';
 }
 else {

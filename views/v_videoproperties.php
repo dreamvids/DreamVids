@@ -23,8 +23,8 @@
 
 			<div class="form-group">
 				<label for="videoTumbnail"><?php echo $lang['tumbnail']; ?></label>
-				<input type="file" name="videoTumbnail" id="videoTumbnail"  <?php echo (!$_SESSION['serv']) ? 'disabled="disabled" ' : ''; ?>/>
-				<?php echo (!$_SESSION['serv']) ? '<p style="color:red">Upload indisponible. <a href="upload">Plus d\'infos ici</a></p>' : ''; ?>
+				<input type="file" name="videoTumbnail" id="videoTumbnail"  <?php echo ($_SESSION['serv'] === false) ? 'disabled="disabled" ' : ''; ?>/>
+				<?php echo ($_SESSION['serv'] === false) ? '<p style="color:red">Upload indisponible. <a href="upload">Plus d\'infos ici</a></p>' : ''; ?>
 			</div>
 
 			<label for='visibility'>Visibilité de la video: </label>

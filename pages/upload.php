@@ -3,7 +3,7 @@ if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
 {
 	$_SESSION['vid_id'] = Video::generateId(6);
 	$_SESSION['serv'] = getFreestServer();
-	if (!$_SESSION['serv']) {
+	if ($_SESSION['serv'] === false) {
 		$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
 		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=video&hash='.$hash);
 		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=thumbnail&hash='.$hash);

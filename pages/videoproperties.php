@@ -63,7 +63,7 @@ if($video->getUserId() == $session->getId())
 	}
 	else {
 		$_SESSION['serv'] = getFreestServer();
-		if (!$_SESSION['serv']) {
+		if ($_SESSION['serv'] === false) {
 			$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
 			file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$vidId.'&uid='.$session->getId().'&tid=thumbnail&hash='.$hash);
 		}
