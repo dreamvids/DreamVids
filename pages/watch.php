@@ -34,6 +34,17 @@ if(isset($_GET['vid'])) {
 					echo '<script>alert("La vidéo a bien été signalée à notre équipe de modération. Votre requête sera traitée dans les plus bref délais !");</script>';
 				}
 
+				$tags = array();
+				foreach ($video->getTags() as $tag) {
+					$tag = trim($tag);
+					$tag = str_replace(',', '', $tag);
+					$tag = str_replace(';', '', $tag);
+					$tag = str_replace(':', '', $tag);
+					$tag = str_replace('.', '', $tag);
+					$tag = '<a href="search?q=%23'.$tag.'">#'.$tag.'</a>';
+					$tags[] = $tag;
+				}
+				
 				// Recommandations
 
 				$vidslist = new Vidslist();

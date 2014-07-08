@@ -191,6 +191,12 @@
 					<?php echo '<p class="description">'.bbcode(nl2br(secure($desc) ) ).'</p>'; ?>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="4">
+<?php
+echo 'Tags: '.implode(', ', $tags);
+?>
+			</td>
 	</table> <!-- /////////////////////////////////////////////////////////////////// FIN DU TABLEAU -->
 	<h2>Intégration</h2>
 	AutoPlay : <label for="autoplay_y">Oui</label> <input id="autoplay_y" type="radio" name="autoplay"> <label for="autoplay_n">Non</label> <input id="autoplay_n" type="radio" name="autoplay" checked></br>
