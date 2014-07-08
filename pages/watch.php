@@ -37,7 +37,7 @@ if(isset($_GET['vid'])) {
 				// Recommandations
 
 				$vidslist = new Vidslist();
-				$recommandations = $vidslist -> getDiscoverVideos(20);
+				$recommandations = $vidslist->getSearchVideos(str_replace(',', '', implode(' ', $video->getTags() ) ), 5);
 
 			}
 			else {

@@ -40,7 +40,7 @@ else {
 			<div class="form-group">
 				<label for="videoTags"><?php echo $lang['tags']; ?></label>
 				<input type="text" class="form-control" required name="videoTags" id="videoTags" placeholder="<?php echo $lang['tags']; ?>">
-				<div class="alert alert-info">Les tags doivent être séparés par une virgule</div>
+				<div class="alert alert-info">Les tags doivent être séparés par un espace</div>
 			</div>
 
 			<div class="form-group">

@@ -264,13 +264,7 @@
 		<h3>Recommandations</h3>
 
 		<?php
-
-		$nb = 0;
-
 		foreach ($recommandations as $vid) {
-
-			if ($nb < 4) {
-
 				$nb++;
 			
 				$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
@@ -300,9 +294,9 @@
 		    		</div>
 		    	</div>
 
-			<?php }
-
-			} ?>
+		<?php
+		}
+		?>
 
 	</aside>
 

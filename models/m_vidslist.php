@@ -64,12 +64,20 @@ class Vidslist
 		return $vids;
 	}
 	
-	public function getSearchVideos($search)
+	public function getSearchVideos($search, $nb=0)
 	{
+		$limit = ($nb != 0) ? ' LIMIT 0, '.$nb : '';
 		$vids = array();
 		$db = new BDD();
 		//$rep = $db->query("SELECT videos.id FROM videos INNER JOIN users WHERE videos.title LIKE '%".$db->real_escape_string($search)."%' OR videos.tags LIKE '%".$db->real_escape_string($search)."%' OR users.username LIKE '%".$db->real_escape_string($search)."%'");
-		$rep = $db->query("SELECT id FROM videos WHERE title LIKE '%".$db->real_escape_string($search)."%' OR description LIKE '%".$db->real_escape_string($search)."%' OR user_id=".User::getIdByName($search));
+		if (preg_match("#^\#[a-zA-Z0-9_-]+$#", trim($search) ) ) {
+			$hashtag = str_replace('#', '', $search);
+			$rep = $db->select("id", "videos", "WHERE tags LIKE '%".$hashtag."%'".$limit);
+		}
+		else {
+			$rep = $db->select("id", "videos", "WHERE title LIKE '%".$db->real_escape_string($search)."%' OR description LIKE '%".$db->real_escape_string($search)."%' OR tags LIKE '%".$db->real_escape_string($search)."%' OR user_id=".User::getIdByName($search).$limit);
+		}
+		
 		while ($data = $db->fetch_array($rep) )
 		{
 			$vid = Video::get($data['id']);
