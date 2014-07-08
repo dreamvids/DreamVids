@@ -72,7 +72,7 @@ class Vidslist
 		//$rep = $db->query("SELECT videos.id FROM videos INNER JOIN users WHERE videos.title LIKE '%".$db->real_escape_string($search)."%' OR videos.tags LIKE '%".$db->real_escape_string($search)."%' OR users.username LIKE '%".$db->real_escape_string($search)."%'");
 		if (preg_match("#^\#[a-zA-Z0-9_-]+$#", trim($search) ) ) {
 			$hashtag = str_replace('#', '', $search);
-			$rep = $db->select("id", "videos", "WHERE tags LIKE '%".$hashtag."%'".$limit);
+			$rep = $db->select("id", "videos", "WHERE tags LIKE '%".$db->real_escape_string($hashtag)."%'".$limit);
 		}
 		else {
 			$rep = $db->select("id", "videos", "WHERE title LIKE '%".$db->real_escape_string($search)."%' OR description LIKE '%".$db->real_escape_string($search)."%' OR tags LIKE '%".$db->real_escape_string($search)."%' OR user_id=".User::getIdByName($search).$limit);

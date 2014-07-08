@@ -188,7 +188,8 @@
 		<tr>
 			<td colspan="4">
 					<?php echo '<strong class="title">'.$lang['desc'].' :</strong>'; ?><br/>
-					<?php echo '<p class="description">'.bbcode(nl2br(secure($desc) ) ).'</p>'; ?>
+					<?php echo '<p class="description" id="description" style="max-height:50px">'.bbcode(nl2br(secure($desc) ) ).'</p>'; ?>
+					<a href="javascript:void(0)" onclick="showNhideDesc()" id="desc-link">Afficher plus</a>
 			</td>
 		</tr>
 		<tr>
@@ -323,6 +324,22 @@ echo 'Tags: '.implode(', ', $tags);
 			e.stopPropagation();
 		}
 	</script>
+	
+	<script>
+		var desc = document.getElementById("description");
+		var link = document.getElementById("desc-link");
+		function showNhideDesc() {
+			if (desc.getAttribute('style')) {
+				desc.removeAttribute('style');
+				link.innerHTML = 'Afficher moins';
+			}
+			else {
+				desc.setAttribute('style', 'max-height:50px');
+				link.innerHTML = 'Afficher plus';
+			}
+		}
+	</script>
+	
 	<script>
 		var vid = "<?php echo $id; ?>";
 	

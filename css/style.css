@@ -350,6 +350,12 @@ h1 {
 }
 
 .watch tr:nth-child(2) td {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
+
+.watch tr:nth-child(3) td {
   border: none;
 }
 
@@ -367,6 +373,7 @@ h1 {
 .watch .description{
   font-family: "Source Sans Pro", Arial;
   font-size: 20px;
+  overflow: hidden;
 }
 
 .channel
