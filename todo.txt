@@ -1,10 +1,6 @@
-- Panneau de modération
-
 - Garder le volume sonore/qualité en mémoire
 
 - Améliorer les chaines
-
-- Adopter un système de subbox et de vidéos relatives pour rediriger l’utilisateur vers d'autres contenus.
 
 - Officialisé les utilisateurs avec un icône ou mention "Officiel" à coté du nom (mais ça c'est pas très important).
 
@@ -18,8 +14,4 @@
 
 - Afficher le nombre total de vues sur les chaînes
 
-- Génerer automatiquement des miniatures (extraits de la vidéo)
-
 - Dans la liste des abonnées à une chaîne. Classé par ordre croissant d'abonnement à la chaîne question.
-
-- Dans la liste des vidéos dans l'espace membre. Ajouter des liens sur les miniatures, des liens qui mènent aux vidéos.

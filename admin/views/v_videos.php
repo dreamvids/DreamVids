@@ -82,7 +82,7 @@
 			for ($i = 1; $i <= $nb_pages; $i++)
 			{
 				$active = ($page == $i) ? 'class="active"' : '';
-				echo '<li '.$active.'><a href="index.php?page=users&p='.$i.'">'.$i.'</a></li>';
+				echo '<li '.$active.'><a href="index.php?page=videos&p='.$i.'">'.$i.'</a></li>';
 			}
 ?>
 	</ul>

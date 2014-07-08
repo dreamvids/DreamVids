@@ -139,7 +139,7 @@ function getFreestServer() {
 		}
 	}
 	$db->close();
-	return $best_serv;
+	return ($best_serv['addr'] != null) ? $best_serv : false;
 }
 
 function TraduireDate($Chaine)

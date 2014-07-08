@@ -3,9 +3,11 @@ if (!isset($_POST['submit']) && !isset($_FILES['videoInput']) )
 {
 	$_SESSION['vid_id'] = Video::generateId(6);
 	$_SESSION['serv'] = getFreestServer();
-	$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
-	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=video&hash='.$hash);
-	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=thumbnail&hash='.$hash);
+	if (!$_SESSION['serv']) {
+		$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
+		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=video&hash='.$hash);
+		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid='.$_SESSION['vid_id'].'&uid='.$session->getId().'&tid=thumbnail&hash='.$hash);
+	}
 }
 
 $uploadDone = $lang['upload_ok'];

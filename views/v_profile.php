@@ -49,7 +49,8 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 					<img src="<?php echo $session->getAvatarPath(); ?>" style="width: 100px;">
 				<?php } ?>
 
-				<input type="file" id="avatar" name="avatar" />
+				<input type="file" id="avatar" name="avatar" <?php echo (!$_SESSION['serv']) ? 'disabled="disabled" ' : ''; ?>/>
+				<?php echo (!$_SESSION['serv']) ? '<p style="color:red">Upload indisponible. <a href="upload">Plus d\'infos ici</a></p>' : ''; ?>
 			</div>
 			<br /><br />
 			<div class="form-group">
@@ -58,7 +59,8 @@ echo (!isset($err) && isset($_POST['submit']) ) ? '<div class="alert alert-succe
 					<img src="<?php echo $session->getBackgroundPath(); ?>" style="width: 150px;">
 				<?php } ?>
 				
-				<input type="file" id="background" name="background" />
+				<input type="file" id="background" name="background" <?php echo (!$_SESSION['serv']) ? 'disabled="disabled" ' : ''; ?>/>
+				<?php echo (!$_SESSION['serv']) ? '<p style="color:red">Upload indisponible. <a href="upload">Plus d\'infos ici</a></p>' : ''; ?>
 				<a href="img/maquette_bg.png" target="_blank">Maquette d'arrière-plan</a>
 			</div>
 			<br /><br />

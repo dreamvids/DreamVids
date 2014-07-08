@@ -53,9 +53,11 @@ if (isset($_POST['submit']) )
 else
 {
 	$_SESSION['serv'] = getFreestServer();
-	$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
-	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid=avatar&uid='.$session->getId().'&tid=avatar&hash='.$hash);
-	file_get_contents($_SESSION['serv']['addr'].'incomings/?fid=background&uid='.$session->getId().'&tid=background&hash='.$hash);
+	if (!$_SESSION['serv']) {
+		$hash = hash_hmac('sha256', $_SESSION['serv']['addr'], $_SESSION['serv']['priv_key']);
+		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid=avatar&uid='.$session->getId().'&tid=avatar&hash='.$hash);
+		file_get_contents($_SESSION['serv']['addr'].'incomings/?fid=background&uid='.$session->getId().'&tid=background&hash='.$hash);
+	}
 }
 
 function startswith($hay, $needle) {
