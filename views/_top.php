@@ -147,7 +147,7 @@
 							<li><a href="upload"><?php echo $lang['up_vid']; ?></a></li>
 							<li><a href="manager">Mes vidéos</a></li>
 						<?php } ?>
-						<li><a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a></li>
+						<!-- <li><a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a></li> -->
 					</ul>
 				</nav>
 				<span id="mobile-nav-icon"><p></p></span>

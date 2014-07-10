@@ -1,5 +1,63 @@
 <div class="container">
 
+	<?php
+
+		$staff_selection = false;
+
+		if ($staff_selection && !@$_GET["mode"]) { ?>
+
+		<div class="staff-selection">
+
+			<h2 class="title">Séléction du Staff</h2>
+
+			<div id="staff-selection-zone">
+				
+				<div class="staff-selection-thumbnails" id="staff-selection-zone--thumbnails" style="background-image:url(http://images.dailytech.com/nimage/Nyan_Cat_Wide.jpg)">
+
+					<span class="overlay"></span>
+
+				</div>
+
+				<div style="display: none;" class="staff-selection-embed" id="staff-selection-zone--embed"></div>
+
+			</div>
+
+			<a href="&t0dnj1-0"><h4>Libérée, délivrée - La Reine des Neiges</h4></a>
+
+			<div class="additionnal">
+
+				<span class="view">139</span>
+				<a class="channel" href="@dimou">Dimou</a>
+
+			</div>
+
+			<p class="desc">Parfait pour Dev :D</p>
+
+			<div class="clear-both"></div>
+
+			<script>
+
+				var SELECTIONSTAFF_VIDEO_ID = "t0dnj1-0";
+
+				var staffselection_zone = document.getElementById("staff-selection-zone"),
+					staffselection_zone_thumbnails = document.getElementById("staff-selection-zone--thumbnails"),
+					staffselection_zone_embed = document.getElementById("staff-selection-zone--embed");
+
+				staffselection_zone_thumbnails.addEventListener("click", function() {
+
+					staffselection_zone_thumbnails.style.display = "none";
+					staffselection_zone_embed.style.display = "block";
+
+					staffselection_zone_embed.innerHTML = '<iframe style="width: 100%; height: 100%;" frameborder="0" src="http://stornitz.fr/DreamVids/' + SELECTIONSTAFF_VIDEO_ID + '" allowfullscreen></iframe>';
+					
+				}, false);
+
+			</script>
+
+		</div>
+
+	<?php } ?>
+
 	<div class="container">
 		<h1 class="title"><?php echo $title; ?></h1>
 	</div>
@@ -58,9 +116,9 @@
 
 		<aside class="full-cards-list">
 
-	<?php } ?>
+	<?php } 
 
-		<?php
+
 		if (!in_array(@$_GET['mode'], array('subscriptions', 'search', 'discover') ) )
 		{
 			//TODO: Afficher un espace dédié à la "vidéo du moment" (front end uniquement)

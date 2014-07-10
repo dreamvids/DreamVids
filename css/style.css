@@ -5,6 +5,7 @@ body {
 	background-color: #fff;
 }
 
+.clear-both { clear: both; }
 
 /** HEADER **/
 #header {
@@ -3350,4 +3351,164 @@ footer #inner-footer .rights .love i {
 
 .card {
 	margin-bottom: 70px;
+}
+
+
+/* STAFF SELECTION */
+
+.staff-selection-thumbnails {
+  float: left;
+  position: relative;
+  display: block;
+  width: 400px;
+  height: 220px;
+  overflow: hidden;
+  background-color: #e9e9e9;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.staff-selection-thumbnails .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  cursor: pointer;
+}
+@media (min-width: 640px) {
+  .staff-selection-thumbnails .overlay {
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+  }
+}
+.staff-selection-thumbnails .overlay:after {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 22px;
+  height: 30px;
+  margin: auto;
+  margin-left: -11px;
+  margin-top: -15px;
+  content: "";
+  background-image: url(../img/play_icon_recomandations.png);
+  background-repeat: no-repeat;
+}
+@media (min-width: 640px) {
+  .staff-selection-thumbnails .overlay:after {
+    margin-left: -22px;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -ms-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+  }
+}
+.staff-selection-thumbnails .overlay:hover {
+  opacity: 1;
+}
+.staff-selection-thumbnails .overlay:hover:after {
+  margin-left: -11px;
+}
+
+
+.staff-selection-embed {
+  float: left;
+  position: relative;
+  display: block;
+  width: 400px;
+  height: 220px;
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.staff-selection-thumbnails,
+.staff-selection-embed {
+
+  margin: 0 16px 0 0;
+
+}
+
+.staff-selection h4 {
+
+  position: relative;
+  top: 5px;
+  display: block;
+
+}
+
+.staff-selection .additionnal {
+
+  position: relative;
+  top: 10px;
+  display: block;
+
+}
+
+.staff-selection .additionnal .view {
+
+  display: inline-block;
+
+}
+
+.staff-selection .additionnal .view:before {
+
+  display: inline-block;
+  width: 12px;
+  height: 8px;
+  margin-right: 10px;
+  content: "";
+  background-image: url(../img/view_icon_recomandation.png);
+
+}
+
+.staff-selection .additionnal .channel {
+
+  margin-left: 10px;
+
+}
+
+.staff-selection .desc {
+  
+  position: relative;
+  top: 30px;
+  display: block;
+  overflow: hidden;
+  max-height: 130px;
+
+}
+
+@media (max-width: 800px) {
+
+  .staff-selection-thumbnails,
+  .staff-selection-embed {
+    width: 100%;
+  }
+
+  .staff-selection h4 {
+    clear: both;
+    float: none;
+    top: 15px;
+  }
+
+  .staff-selection .additionnal {
+    top: 18px;
+  }
+
+  .staff-selection {
+    margin-bottom: 30px;
+  }
+
 }
