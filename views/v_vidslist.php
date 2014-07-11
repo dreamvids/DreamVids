@@ -2,7 +2,7 @@
 
 	<?php
 
-		$staff_selection = ($config['staff_select'] != 0) ? true : false;
+		$staff_selection = ($config['staff_select'] != 0) ? true : true;
 
 		if ($staff_selection && !@$_GET["mode"]) { 
 			$vid = Video::get($config['staff_select']);	
@@ -24,12 +24,12 @@
 
 			</div>
 
-			<a href="&t0dnj1-0"><h4><?php echo $vid->getTitle(); ?></h4></a>
+			<a href="&<?php echo $vid->getId(); ?>"><h4><?php echo $vid->getTitle(); ?></h4></a>
 
 			<div class="additionnal">
 
 				<span class="view"><?php echo $vid->getViews(); ?></span>
-				<a class="channel" href="@dimou"><?php echo User::getNameById($vid->getUserId() ); ?></a>
+				<a class="channel" href="@<?php echo User::getNameById($vid->getUserId() ); ?>"><?php echo User::getNameById($vid->getUserId() ); ?></a>
 
 			</div>
 
