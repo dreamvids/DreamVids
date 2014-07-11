@@ -13,7 +13,7 @@ class DatabaseFiller {
 
 	private $names = array('Robert', 'Norbert', 'Roger', 'Papidabowi', 'Lawl', 'Dantresangle', 'Jean-Eude', 'Dimou', 'Peter', 'DarkWos', 'Benji', 
 		'Jerem', 'Charlie', 'Delta', 'Gwomos', 'Brezh', 'Michel', 'Kass', 'Pierre', 'Snapcube', 'Thib', 'Vincent',
-		'Quadri', 'Olivier', 'Carglass', 'Maman', 'Grmble', 'NyanCat', 'Pedobear', 'DreamMec', 'DreamTruc', 'DreamBidule');
+		'Quadri', 'Olivier', 'Carglass', 'Maman', 'Grmble', 'NyanCat', 'Pedobear', 'PedoDream', 'DreamMec', 'DreamTruc', 'DreamBidule');
 
 
 	public function connectToDatabaseWithAnAwfulTool() {
