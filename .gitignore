@@ -1,11 +1,4 @@
-.cache/
-.settings/
-.project
-uploads/
-includes/bdd.class.php
-nbproject/
 vendor/
-module_creator.php
-img/JpFOhh.PNG
-includes/bdd.class.php
-admin/suppr.txt
+
+composer.phar
+composer.lock

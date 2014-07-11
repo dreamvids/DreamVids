@@ -1,0 +1,17 @@
+
+/* 404 ILLUSTRATION
+   ============================= */
+
+.error-404 .illustration {
+
+	float: left;
+
+	display: inline-block;
+	width: 500px;
+	height: 100%;
+
+	@media (max-width: 1015px) { width: 370px; }
+
+	@media (max-width: 350px) { height: 350px; }
+
+}

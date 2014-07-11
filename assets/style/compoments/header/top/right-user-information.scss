@@ -1,0 +1,183 @@
+
+/* TOP RIGHT HEADER
+   ============================= */
+
+.header .top .inner .right .user-information {
+
+	display: inline-block;
+	vertical-align: top;
+	text-align: right;
+
+	@media (max-width: 700px) {
+
+		text-align: right;
+
+		.user-information-button {
+
+			h4 { display: none; }
+
+			.arrow { margin-left: 15px; }
+
+		}
+
+	}
+
+	.user-information-button {
+
+		position: relative;
+
+		display: inline-block;
+		margin-left: 0;
+		padding-right: 15px;
+		
+		vertical-align: top;
+		border-right: 1px solid $nav_borders;
+
+		img:first-child {
+
+			width: 60px;
+			height: 60px;
+			border-right: 1px solid $nav_borders;
+
+		}
+
+		img,
+		h4 {
+
+			position: relative;
+
+			display: inline-block;
+
+			vertical-align: middle;
+			color: $nav_texts;
+
+		}
+
+		h4 {
+
+			position: relative;
+
+			margin-left: 20px;
+			margin-right: 20px;
+
+			font-weight: normal;
+			font-size: 14px;
+			font-weight: bold;
+
+		}
+
+		&:hover {
+
+			background-color: $nav_top_hover;
+			cursor: pointer;
+
+		}
+
+	}
+
+	.connection {
+
+		display: inline-block;
+		width: 179px;
+		height: 60px;
+		padding-top: 25px;
+		
+		border-right: 1px solid $nav_borders;
+		text-align: center;
+		font-size: 14px;
+
+		@include box-sizing;
+
+		@media (max-width: 450px) { width: 120px; }
+		@media (max-width: 350px) { width: 100px; }
+
+		p {
+
+			display: inline;
+			margin-left: 7px;
+			margin-right: 7px;
+			
+			color: #e8e8e8;
+
+		}
+
+	}
+
+	.user-information-button {
+
+		position: relative;
+
+		display: inline-block;
+		margin-left: 0;
+		padding-right: 15px;
+		
+		vertical-align: top;
+		border-right: 1px solid $nav_borders;
+
+		img,
+		h4 {
+
+			position: relative;
+
+			display: inline-block;
+
+			vertical-align: middle;
+			color: $nav_texts;
+
+		}
+
+		h4 {
+
+			position: relative;
+
+			margin-left: 20px;
+			margin-right: 20px;
+
+			font-weight: normal;
+			font-size: 14px;
+			font-weight: bold;
+
+		}
+
+	}
+
+	.user-information-button:hover {
+
+		background-color: $nav_top_hover;
+		cursor: pointer;
+
+	}
+
+	.user-information-menu {
+
+		position: absolute;
+		top: 60px;
+		right: 0;
+		z-index: 101;
+		
+		display: none;
+
+		&.show { display: inline-block; }
+
+		ul a {
+
+			position: relative;
+
+			display: block;
+			width: 210px;
+			margin-top: 2px;
+			margin-bottom: -2px;
+			padding: 10px 15px;
+			
+			background-color: #a7a7a7;
+			font-size: 14px;
+
+			@include box-sizing;
+
+			&:hover { background-color: #9c9c9c; }
+
+		}
+
+	}
+
+}

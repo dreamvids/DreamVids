@@ -1,3 +1,0 @@
-<?php
-$contributors = Contributors::fetchAll();
-?>

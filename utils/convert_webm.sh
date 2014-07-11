@@ -1,1 +1,0 @@
-ffmpeg -i $1 -c:v libvpx -minrate 345k -maxrate 345k -b:v 345k -c:a libvorbis -s $2 $1"_"$2"p.webm"

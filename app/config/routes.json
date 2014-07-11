@@ -1,0 +1,8 @@
+{
+	"default": "home",
+
+	"home": "home",
+	"discover": "discover",
+	"login": "login",
+	"register": "register"
+}

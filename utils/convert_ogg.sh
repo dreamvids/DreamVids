@@ -1,1 +1,0 @@
-ffmpeg -i $1 -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s $2 $1"_"$2"p.ogv"
