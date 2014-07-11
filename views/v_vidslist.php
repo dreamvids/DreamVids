@@ -2,7 +2,7 @@
 
 	<?php
 
-		$staff_selection = ($config['staff_select'] != 0) ? true : true;
+		$staff_selection = ($config['staff_select'] != 0) ? true : false;
 
 		if ($staff_selection && !@$_GET["mode"]) { 
 			$vid = Video::get($config['staff_select']);	
