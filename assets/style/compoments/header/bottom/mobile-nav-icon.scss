@@ -1,0 +1,104 @@
+
+/* BOTTOM MOBILE NAV ICON
+   ============================= */
+
+.header .bottom .mobile-nav-icon {
+
+	position: relative;
+	left: 15px;
+	top: 10px;
+	z-index: 101;
+	float: left;
+	
+	display: block;
+	width: 20px;
+	height: 20px;
+	
+	cursor: pointer;
+	line-height: 41px;
+
+	@media (min-width: 700px) { display: none; }
+
+	@include transition(0.2s);
+
+	p {
+
+		position: relative;
+		top: 8px;
+
+		width: 20px;
+		height: 3px;
+
+		background: #bbb;
+
+		@include transition(0.2s);
+
+		&:before,
+		&:after {
+
+			position: relative;
+
+			display: block;
+			width: 20px;
+			height: 3px;
+
+			content: "";
+			background: #bbb;
+
+			-webkit-transition: -webkit-transform 0.5s;
+			   -moz-transition: -moz-transform 0.5s;
+				-ms-transition: -ms-transform 0.5s;
+				 -o-transition: -o-transform 0.5s;
+					transition: transform 0.5s;
+
+		}
+
+		&:before { top: -6px; }
+
+		&:after {
+
+			top: 6px;
+			margin-top: -3px;
+
+		}
+
+	}
+
+	&:hover p {
+
+		background: #999;
+
+		&:before,
+		&:after { background: #999; }
+
+	}
+
+}
+
+.header .bottom .mobile-nav-icon.open {
+
+	display: block;
+	left: 210px;
+
+	@media (max-width: 350px) { left: 185px; }
+
+	p {
+
+		background: transparent;
+
+		@include transition(0);
+
+		&:before,
+		&:after {
+
+			top: 0;
+			background: white;
+
+		}
+
+		&:before { @include prefix(transform, rotate( 45deg)); }
+		&:after  { @include prefix(transform, rotate(-45deg)); }
+
+	}
+
+}

@@ -1,0 +1,24 @@
+
+/* BOTTOM NAV
+   ============================= */
+
+.header .bottom .nav-social {
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	float: right;
+
+	display: inline-block;
+	
+	vertical-align: top;
+
+	li {
+
+		display: inline-block;
+		margin-right: 10px;
+		line-height: 42px;
+
+	}
+
+}
