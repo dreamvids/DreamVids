@@ -94,4 +94,12 @@ if(isset($_POST['unflag_vid'])) {
 	}
 }
 
+if(isset($_POST['staff_select'])) {
+	if(Watch::isModerator($session)) {
+		Watch::staffSelect($_GET['vid']);
+		header('location:./');
+		exit();
+	}
+}
+
 ?>

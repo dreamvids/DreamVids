@@ -111,6 +111,8 @@
 			<button class="orange" name="suspend_vid">Suspendre</button>
 
 		<?php } ?>
+		
+		<button class="blue" name="staff_select">Définir comme Sélection du staff</button>
 
 	</form>
 

@@ -2,9 +2,11 @@
 
 	<?php
 
-		$staff_selection = false;
+		$staff_selection = ($config['staff_select'] != 0) ? true : false;
 
-		if ($staff_selection && !@$_GET["mode"]) { ?>
+		if ($staff_selection && !@$_GET["mode"]) { 
+			$vid = Video::get($config['staff_select']);	
+	?>
 
 		<div class="staff-selection">
 
@@ -12,7 +14,7 @@
 
 			<div id="staff-selection-zone">
 				
-				<div class="staff-selection-thumbnails" id="staff-selection-zone--thumbnails" style="background-image:url(http://images.dailytech.com/nimage/Nyan_Cat_Wide.jpg)">
+				<div class="staff-selection-thumbnails" id="staff-selection-zone--thumbnails" style="background-image:url(<?php echo $vid->getTumbnail(); ?>)">
 
 					<span class="overlay"></span>
 
@@ -22,22 +24,22 @@
 
 			</div>
 
-			<a href="&t0dnj1-0"><h4>Libérée, délivrée - La Reine des Neiges</h4></a>
+			<a href="&t0dnj1-0"><h4><?php echo $vid->getTitle(); ?></h4></a>
 
 			<div class="additionnal">
 
-				<span class="view">139</span>
-				<a class="channel" href="@dimou">Dimou</a>
+				<span class="view"><?php echo $vid->getViews(); ?></span>
+				<a class="channel" href="@dimou"><?php echo User::getNameById($vid->getUserId() ); ?></a>
 
 			</div>
 
-			<p class="desc">Parfait pour Dev :D</p>
+			<p class="desc"><?php echo bbcode(nl2br(secure($vid->getDescription() ) ) ); ?></p>
 
 			<div class="clear-both"></div>
 
 			<script>
 
-				var SELECTIONSTAFF_VIDEO_ID = "t0dnj1-0";
+				var SELECTIONSTAFF_VIDEO_ID = "<?php echo $vid->getId(); ?>";
 
 				var staffselection_zone = document.getElementById("staff-selection-zone"),
 					staffselection_zone_thumbnails = document.getElementById("staff-selection-zone--thumbnails"),

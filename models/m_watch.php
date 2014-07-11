@@ -57,6 +57,13 @@ class Watch {
 		$vid->setFlagged(2);
 		$vid->saveDataToDatabase();
 	}
+	
+	public static function staffSelect($vid) {
+		$db = new BDD();
+		$db->update("config", "value='".$db->real_escape_string($vid)."'", "WHERE `key`='staff_select'");
+		echo $db->error();
+		$db->close();
+	}
 }
 
 ?>
