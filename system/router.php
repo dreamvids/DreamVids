@@ -43,12 +43,13 @@ class Router {
 		$routes = Utils::objectToArray($routesConfig->getValues());
 
 		if(isset($routes[strtolower($uri)])) {
-			$file = strtolower($uri).'_controller.php';
+			$routeName = strtolower($routes[strtolower($uri)]);
+			$file = $routeName.'_controller.php';
 
 			if(file_exists(CONTROLLER.$file)) {
 				require_once CONTROLLER.$file;
 
-				$className = ucfirst($uri).'Controller';
+				$className = ucfirst($routeName).'Controller';
 
 				if(class_exists($className)) {
 					return new $className;
@@ -152,6 +153,11 @@ class Router {
 						$parameters = array();
 						parse_str(file_get_contents('php://input'), $parameters);
 						$request->setParameters($parameters);
+
+						if(empty($parameters) && !empty($_POST)) { // If the request is not a real PUT request but needs to be handled like one (html form)
+							$request->setParameters($_POST);
+						}
+
 						$response = call_user_func_array(array($controller, 'update'), array($uriParameters[1], $request));
 
 						Utils::sendResponse($response);

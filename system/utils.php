@@ -11,6 +11,24 @@ class Utils {
 		$requestURI = key($_GET);
 		$requestAcceptedData = $_SERVER['HTTP_ACCEPT'];
 
+		if(strtoupper($requestMethod) == 'POST') {
+			if(isset($_POST['_method'])) {
+				switch(strtoupper($_POST['_method'])) {
+					case Method::PUT:
+						$requestMethod = Method::PUT;
+						break;
+
+					case Method::DELETE:
+						$requestMethod = Method::DELETE;
+						break;
+					
+					default:
+						break;
+				}
+			}
+		}
+
+		echo 'Request: '.$requestMethod;
 		return new Request($requestProtocol, $requestMethod, $requestURI, $requestAcceptedData);
 	}
 

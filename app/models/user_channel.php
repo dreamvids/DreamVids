@@ -57,6 +57,10 @@ class UserChannel extends ActiveRecord\Model {
 		return UserChannel::find_by_id($channelId)->name;
 	}
 
+	public static function isNameFree($name) {
+		return !UserChannel::exists(array('name' => $name));
+	}
+
 	public static function getSubscriptions($userId, $amount='nope') {
 		$subscriptions = array();
 
@@ -100,6 +104,42 @@ class UserChannel extends ActiveRecord\Model {
 
 		if(!@$subscriptions[0]) $subscriptions = array();
 		return $subscriptions;
+	}
+
+	public static function addNew($name, $descr, $avatarURL, $bannerURL, $backgroundURL) {
+		$channelId = UserChannel::generateId(6);
+
+		UserChannel::create(array(
+			'id' => $channelId,
+			'name' => $name,
+			'description' => $descr,
+			'owner_id' => Session::get()->id,
+			'admins_ids' => Session::get()->id.';',
+			'avatar' => $avatarURL,
+			'banner' => $bannerURL,
+			'background' => $backgroundURL,
+			'subscribers' => 0,
+			'views' => 0
+		));
+
+		if(!file_exists('uploads/')) mkdir('uploads/');
+		mkdir('uploads/'.$channelId.'/');
+		mkdir('upload/'.$channelId.'/videos');
+	}
+
+	public static function edit($channelId, $name, $descr, $avatarURL, $bannerURL, $backgroundURL) {
+		$chann = $this->getChannelById($channelId);
+
+		$chann->name = $name;
+		$chann->description = $descr;
+		$chann->avatar = $avatarURL;
+		$chann->banner = $bannerURL;
+		$chann->background = $backgroundURL;
+		$chann->save();
+
+		if(!file_exists('uploads/')) mkdir('uploads/');
+		if(!file_exists('uploads/'.$channelId.'/')) mkdir('uploads/'.$channelId.'/');
+		if(!file_exists('upload/'.$channelId.'/videos')) mkdir('upload/'.$channelId.'/videos');
 	}
 
 }

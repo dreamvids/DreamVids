@@ -9,6 +9,8 @@
 		?>
 
 		<form class="form" method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" name="_method" value="put" />
+
 			<label for="name">Nom :</label>
 			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'disabled' : ''; ?>/>
 

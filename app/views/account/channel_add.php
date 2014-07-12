@@ -4,7 +4,7 @@
 		<h1 class="title">Ajouter une chaîne</h1>
 
 		<?php
-			include VIEW.'layouts/accountMenu.php';
+			include VIEW.'layouts/account_menu.php';
 			include VIEW.'layouts/messages.php';
 		?>
 

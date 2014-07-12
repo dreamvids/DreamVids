@@ -3,6 +3,10 @@
 
 	"home": "home",
 	"discover": "discover",
+
 	"login": "login",
-	"register": "register"
+	"register": "register",
+	"account": "account",
+
+	"channel": "channel"
 }

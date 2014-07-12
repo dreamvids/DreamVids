@@ -23,8 +23,26 @@ class User extends ActiveRecord\Model {
 		return $videos;
 	}
 
+	public function setEmail($newMail) {
+		$this->email = $newMail;
+		$this->save();
+	}
+
+	public function setPassword($newPassword) {
+		$this->pass = $newPassword;
+		$this->save();
+	}
+
 	public function getPassword() {
 		return $this->pass;
+	}
+
+	public function hasSubscribedToChannel($channelId) {
+		if(UserChannel::exists($channelId)) {
+			$subscriptionsStr = $this->subscriptions;
+
+			return strpos($subscriptionsStr, $channelId) !== false;
+		}
 	}
 
 	public static function getNameById($userId) {
