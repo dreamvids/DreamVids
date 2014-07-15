@@ -125,7 +125,7 @@ class Router {
 							unset($uriParameters[0]);
 							unset($uriParameters[2]);
 
-							$response = call_user_func_array(array($controller, $methodName), $uriParameters);
+							$response = call_user_func_array(array($controller, $methodName), array($uriParameters, $request));
 							Utils::sendResponse($response);
 						}
 						else {

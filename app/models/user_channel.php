@@ -128,7 +128,7 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public static function edit($channelId, $name, $descr, $avatarURL, $bannerURL, $backgroundURL) {
-		$chann = $this->getChannelById($channelId);
+		$chann = UserChannel::find($channelId);
 
 		$chann->name = $name;
 		$chann->description = $descr;
@@ -136,10 +136,6 @@ class UserChannel extends ActiveRecord\Model {
 		$chann->banner = $bannerURL;
 		$chann->background = $backgroundURL;
 		$chann->save();
-
-		if(!file_exists('uploads/')) mkdir('uploads/');
-		if(!file_exists('uploads/'.$channelId.'/')) mkdir('uploads/'.$channelId.'/');
-		if(!file_exists('upload/'.$channelId.'/videos')) mkdir('upload/'.$channelId.'/videos');
 	}
 
 }

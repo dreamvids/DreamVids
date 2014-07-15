@@ -4,15 +4,15 @@
 		<h1 class="title">Modifier une chaîne</h1>
 
 		<?php
-			include VIEW.'layouts/accountMenu.php';
+			include VIEW.'layouts/account_menu.php';
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<form class="form" method="post" action="" enctype="multipart/form-data">
+		<form class="form" method="post" action="<?php echo WEBROOT.'channel/'.$name; ?>" enctype="multipart/form-data">
 			<input type="hidden" name="_method" value="put" />
 
 			<label for="name">Nom :</label>
-			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'disabled' : ''; ?>/>
+			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'readonly' : ''; ?>/>
 
 			<?php if (@$mainChannel): ?>
 				<p>Vous ne pouvez pas changer le nom de votre chaîne principale</p><br />
@@ -40,7 +40,7 @@
 				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" value="<?php echo @$background; ?>" /><br />
 			</label>
 			
-			<input type="submit" name="editChannelSubmit" value="Créer la chaîne" />
+			<input type="submit" name="editChannelSubmit" value="Modifier la chaîne" />
 		</form>
 	</section>
 

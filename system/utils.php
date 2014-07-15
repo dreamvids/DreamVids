@@ -28,7 +28,6 @@ class Utils {
 			}
 		}
 
-		echo 'Request: '.$requestMethod;
 		return new Request($requestProtocol, $requestMethod, $requestURI, $requestAcceptedData);
 	}
 

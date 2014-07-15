@@ -159,7 +159,7 @@ class AccountController extends Controller {
 			$data['channels'] = Session::get()->getOwnedChannels();
 			$data['current'] = 'channels';
 
-			return new ViewResponse('account/channel_list', $data);
+			return new ViewResponse('account/channels', $data);
 		}
 		else
 			return new RedirectResponse(WEBROOT.'login');

@@ -24,7 +24,7 @@
 
 					<div class="description">
 						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><b><?php echo $chan->name; ?></b></a>
-						<a href="<?php echo WEBROOT.'channels/edit/'.$chan->id ?>"><button>Paramètres</button></a>
+						<a href="<?php echo WEBROOT.'channel/'.$chan->id.'/edit'; ?>"><button>Paramètres</button></a>
 
 						<?php if ($chan->isUsersMainChannel(Session::get()->id)): ?>
 							<b class="principal">Chaîne principale</b>
