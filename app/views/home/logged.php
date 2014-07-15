@@ -13,46 +13,16 @@
 		
 		<div id="boxBest">
 			<h3>Vidéos à découvrir :</h3>
-			<ul id="sliderList" class="slide1">
-				<li onclick="slideTo(1);"></li>
-				<li onclick="slideTo(2);"></li>
-				<li onclick="slideTo(3);"></li>
-			</ul>
 			
-			<section id="slider" class="slide1">
-				<div id="slide">
-					<?php for($i = 0; $i < count($discoverVids) - 4; $i++): ?>
-						<div class="card video">
-							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
-							<div class="description">
-								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
-							</div>
-						</div>
-					<?php endfor ?>
+			<?php for($i = 0; $i < count($discoverVids) - 4; $i++): ?>
+				<div class="card video">
+					<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
+					<div class="description">
+						<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
+					</div>
 				</div>
+			<?php endfor ?>
 
-				<div id="slide">
-					<?php for($i = 2; $i < count($discoverVids) - 2; $i++): ?>
-						<div class="card video">
-							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
-							<div class="description">
-								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
-							</div>
-						</div>
-					<?php endfor ?>
-				</div>
-
-				<div id="slide">
-					<?php for($i = 4; $i < count($discoverVids); $i++): ?>
-						<div class="card video">
-							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
-							<div class="description">
-								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
-							</div>
-						</div>
-					<?php endfor ?>
-				</div>
-			</section>
 		</div>
 	</section>
 </div>
