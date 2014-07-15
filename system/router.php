@@ -93,7 +93,8 @@ class Router {
 					// Example: /posts/latest --> calls the 'latest' method from controller
 					if(method_exists($controller, $uriParameters[1])) {
 						unset($uriParameters[0]);
-						$response = call_user_func_array(array($controller, $uriParameters[1]), $uriParameters);
+
+						$response = call_user_func_array(array($controller, $uriParameters[1]), array($request));
 						Utils::sendResponse($response);
 					}
 					// Exemple: /posts/42
@@ -114,7 +115,7 @@ class Router {
 						unset($uriParameters[0]);
 						unset($uriParameters[1]);
 
-						$response = call_user_func_array(array($controller, $methodName), $uriParameters);
+						$response = call_user_func_array(array($controller, $methodName), array($request, $uriParameters));
 						Utils::sendResponse($response);
 					}
 					// Example: /posts/42/edit --> call function edit (if it exists)

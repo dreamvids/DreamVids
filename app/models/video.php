@@ -2,11 +2,127 @@
 
 require_once MODEL.'user_channel.php';
 require_once MODEL.'channel_action.php';
+require_once MODEL.'video_vote.php';
+require_once MODEL.'video_view.php';
+require_once MODEL.'user_action.php';
 
 class Video extends ActiveRecord\Model {
 
+	public function addView() {
+		$duration = $this->duration;
+		$hash = sha1($this->id.$_SERVER['REMOTE_ADDR']);
+		$view = VideoView::find_by_hash($hash);
+		if (!$view || Utils::tps() > $view->date + $duration) {
+			$this->views++;
+			$this->save();
+
+			if($view)
+				$view->delete();
+
+			VideoView::create(array(
+				'video_id' => $this->id,
+				'hash' => $hash,
+				'date' => Utils::tps()
+			));
+		}
+	}
+
 	public function getAuthor() {
 		return UserChannel::find_by_id($this->poster_id);
+	}
+
+	public function getAuthorName() {
+		return $this->getAuthor()->name;
+	}
+
+	public function getComments() {
+		return Comment::all(array('conditions' => array('video_id = ?', $this->id)));
+	}
+
+	public function getAssociatedVideos() {
+		$vids = array();
+		$maxIndex = Video::count(array('conditions' => array('poster_id' => $this->poster_id)));
+		$okay = false;
+
+		while(!$okay) {
+			for($i = 0; $i < $maxIndex; $i++) {
+				$indexes[$i] = rand(0, $maxIndex - 1);
+			}
+
+			$new = array_unique($indexes);
+			$okay = count($new) == count($indexes);
+			if($okay) $indexes = $new;
+		}
+
+		$allVids = Video::find('all');
+		foreach ($indexes as $index) $vids[] = $allVids[$index];
+
+		return $vids;
+	}
+
+	public function isSuspended() {
+		$appConfig = new Config(CONFIG.'app.json');
+		$appConfig->parseFile();
+
+		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_suspended')));
+	}
+
+	public function isLikedByUser($userId) {
+		return VideoVote::exists(array('user_id' => $userId, 'obj_id' => $this->id, 'action' => 'like'));
+	}
+
+	public function isDislikedByUser($userId) {
+		return VideoVote::exists(array('user_id' => $userId, 'obj_id' => $this->id, 'action' => 'dislike'));
+	}
+
+	public function like($userId) {
+		$voteId = VideoVote::generateId(6);
+		VideoVote::create(array('id' => $voteId, 'user_id' => $userId, 'type' => 'video', 'obj_id' => $this->id, 'action' => 'like'));
+
+		$this->likes++;
+		$this->save();
+
+		UserAction::create(array(
+			'id' => UserAction::generateId(6),
+			'user_id' => $userId,
+			'type' => 'like',
+			'target' => $this->id,
+			'timestamp' => Utils::tps()
+		));
+	}
+
+	public function dislike($userId) {
+		$voteId = VideoVote::generateId(6);
+		VideoVote::create(array('id' => $voteId, 'user_id' => $userId, 'type' => 'video', 'obj_id' => $this->id, 'action' => 'dislike'));
+
+		$this->dislikes++;
+		$this->save();
+
+		UserAction::create(array(
+			'id' => UserAction::generateId(6),
+			'user_id' => $userId,
+			'type' => 'dislike',
+			'target' => $this->id,
+			'timestamp' => Utils::tps()
+		));
+	}
+
+	public function removeLike($userId) {
+		if($this->likes >= 1) {
+			$this->likes--;
+			$this->save();
+
+			VideoVote::delete_all(array('conditions' => array('user_id = ? and obj_id = ?', $userId, $this->id)));
+		}
+	}
+
+	public function removeDislike($userId) {
+		if($this->dislikes >= 1) {
+			$this->dislikes--;
+			$this->save();
+
+			VideoVote::delete_all(array('conditions' => array('user_id = ? and obj_id = ?', $userId, $this->id)));
+		}
 	}
 
 	public static function createTemp($id, $channelId) {

@@ -11,5 +11,10 @@
 	"rankContributor" :"2",
 	"rankTeam": "3",
 	"rankModo": "4",
-	"rankAdmin": "5"
+	"rankAdmin": "5",
+
+	"vid_visibility_private": "0",
+	"vid_visibility_non_listed": "1",
+	"vid_visibility_public": "2",
+	"vid_visibility_suspended": "3"
 }

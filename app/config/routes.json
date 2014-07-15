@@ -8,5 +8,6 @@
 	"register": "register",
 	"account": "account",
 
-	"channel": "channel"
+	"channel": "channel",
+	"video": "video"
 }
