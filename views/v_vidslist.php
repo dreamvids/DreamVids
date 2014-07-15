@@ -3,6 +3,7 @@
 	<?php
 
 		$staff_selection = ($config['staff_select'] != 0) ? true : false;
+		$staff_selection = ($config['staff_select'] != 0) ? true : true; // YALALALLILOUUUUU
 
 		if ($staff_selection && !@$_GET["mode"]) { 
 			$vid = Video::get($config['staff_select']);	
@@ -39,7 +40,8 @@
 
 			<script>
 
-				var SELECTIONSTAFF_VIDEO_ID = "<?php echo $vid->getId(); ?>";
+				var staffselection_video_id = "<?php echo $vid->getId(); ?>";
+					staffselection_video_id = "YL7Psl"; // YALALALLILOUUUUU
 
 				var staffselection_zone = document.getElementById("staff-selection-zone"),
 					staffselection_zone_thumbnails = document.getElementById("staff-selection-zone--thumbnails"),
@@ -50,7 +52,13 @@
 					staffselection_zone_thumbnails.style.display = "none";
 					staffselection_zone_embed.style.display = "block";
 
-					staffselection_zone_embed.innerHTML = '<iframe style="width: 100%; height: 100%;" frameborder="0" src="http://stornitz.fr/DreamVids/' + SELECTIONSTAFF_VIDEO_ID + '" allowfullscreen></iframe>';
+					staffselection_zone_embed.innerHTML = '<iframe style="width: 100%; height: 100%;" frameborder="0" src="http://stornitz.fr/DreamVids/' + staffselection_video_id + '" allowfullscreen></iframe>';
+
+					setTimeout(function() {
+
+						staffselection_zone_embed.className += " resize";
+
+					}, 50);
 					
 				}, false);
 
