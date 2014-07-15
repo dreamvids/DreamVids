@@ -3,7 +3,6 @@
 	<?php
 
 		$staff_selection = ($config['staff_select'] != 0) ? true : false;
-		$staff_selection = ($config['staff_select'] != 0) ? true : true; // YALALALLILOUUUUU
 
 		if ($staff_selection && !@$_GET["mode"]) { 
 			$vid = Video::get($config['staff_select']);	
@@ -41,7 +40,6 @@
 			<script>
 
 				var staffselection_video_id = "<?php echo $vid->getId(); ?>";
-					staffselection_video_id = "YL7Psl"; // YALALALLILOUUUUU
 
 				var staffselection_zone = document.getElementById("staff-selection-zone"),
 					staffselection_zone_thumbnails = document.getElementById("staff-selection-zone--thumbnails"),
