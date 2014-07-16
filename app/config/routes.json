@@ -9,5 +9,8 @@
 	"account": "account",
 
 	"channel": "channel",
-	"video": "video"
+	"video": "video",
+	"watch": "video",
+
+	"feed": "feed"
 }

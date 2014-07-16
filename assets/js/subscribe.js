@@ -2,9 +2,9 @@ function subscribeAction(channel) {
 	var button = document.getElementById('subscribe-button');
 
 	if(hasClass(button, 'subscribed')) {
-		ajax.get('unsubscribe/' + channel, {});
+		ajax.get(channel + '/unsubscribe/', {});
 	}
 	else {
-		ajax.get('subscribe/' + channel, {});
+		ajax.get(channel + '/subscribe/', {});
 	}
 }

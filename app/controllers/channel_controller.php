@@ -187,6 +187,42 @@ class ChannelController extends Controller {
 			return new RedirectResponse(WEBROOT.'login');
 	}
 
+	public function subscribe($id, $request) {
+		var_dump($id);
+		if(Session::isActive()) {
+			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+
+			if(is_object($channel) && !$channel->belongToUser(Session::get()->id)) {
+				$channel->subscribe(Session::get()->id);
+
+				$response = new Response(200);
+				$response->setBody('Sub ok');
+				return $response;
+			}
+		}
+		else {
+			return new Response(500);
+		}
+	}
+
+	public function unsubscribe($id, $request) {
+		if(Session::isActive()) {
+			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+
+			if(is_object($channel) && !$channel->belongToUser(Session::get()->id)) {
+				$channel->unsubscribe(Session::get()->id);
+
+				$response = new Response(200);
+				$response->setBody('Unsub ok');
+				return $response;
+			}
+
+		}
+		else {
+			return new Response(500);
+		}
+	}
+
 	public function index($request) {}
 
 }

@@ -20,7 +20,7 @@ class HomeController extends Controller {
 	public function index($request) {
 		if(Session::isActive()) {
 			$data = array();
-			$data['subscriptions'] = UserChannel::getSubscriptions(Session::get()->id);
+			$data['subscriptions'] = Session::get()->getSubscriptions();
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 6);
 			$data['discoverVids'] = Video::getDiscoverVideos(6);
 

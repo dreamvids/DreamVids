@@ -38,6 +38,79 @@ class UserChannel extends ActiveRecord\Model {
 			return false;
 	}
 
+	public function subscribe($subscriber) {
+		$subscriberUser = User::find_by_id($subscriber);
+		$subscribingChannel = $this;
+		$subscribing = $this->id;
+
+		$subscriptionsStr = $subscriberUser->subscriptions;
+
+		if(Utils::stringStartsWith($subscriptionsStr, ';'))
+			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
+		if(Utils::stringEndsWith($subscriptionsStr, ';'))
+			$subscriptionsStr = substr_replace($subscriptionsStr, '', -1);
+
+		$subscriptionsArray = explode(';', $subscriptionsStr);
+
+		if(!in_array($subscribing, $subscriptionsArray)) {
+			$subscriptionsArray[] = $subscribing;
+
+			$subscriberUser->subscriptions = implode(';', $subscriptionsArray).';';
+			$subscriberUser->save();
+
+			$subscribingChannel->subscribers++;
+			$subscribingChannel->save();
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $subscriber,
+				'type' => 'subscription',
+				'target' => $subscribing,
+				'timestamp' => Utils::tps()
+			));
+		}
+	}
+
+	public function unsubscribe($subscriber) {
+		$subscriberUser = User::find_by_id($subscriber);
+		$subscribingChannel = $this;
+		$subscribing = $this->id;
+
+		$subscriptionsStr = $subscriberUser->subscriptions;
+
+		if(Utils::stringStartsWith($subscriptionsStr, ';'))
+			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
+		if(Utils::stringEndsWith($subscriptionsStr, ';'))
+			$subscriptionsStr = substr_replace($subscriptionsStr, '', -1);
+
+		if(strpos($subscriptionsStr, ';') !== false) {
+			$subscriptionsArray = explode(';', $subscriptionsStr);
+		}
+		else if(strlen($subscriptionsStr) == 6) {
+			$subscriptionsArray = array();
+			$subscriptionsArray[0] = $subscriptionsStr;
+		}
+
+		if(in_array($subscribing, $subscriptionsArray)) {
+			$key = array_search($subscribing, $subscriptionsArray);
+			unset($subscriptionsArray[$key]);
+
+			$subscriberUser->subscriptions = ';'.implode(';', $subscriptionsArray).';';
+			$subscriberUser->save();
+
+			$subscribingChannel->subscribers--;
+			$subscribingChannel->save();
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $subscriber,
+				'type' => 'unsubscription',
+				'target' => $subscribing,
+				'timestamp' => Utils::tps()
+			));
+		}
+	}
+
 	public static function generateId($length) {
 		$idExists = true;
 
@@ -63,51 +136,6 @@ class UserChannel extends ActiveRecord\Model {
 
 	public static function isNameFree($name) {
 		return !UserChannel::exists(array('name' => $name));
-	}
-
-	public static function getSubscriptions($userId, $amount='nope') {
-		$subscriptions = array();
-
-		if($amount != 'nope') {
-			$user = User::find_by_id($userId);
-			$subs = $user->subscriptions;
-
-			if(Utils::stringStartsWith($subs, ';'))
-				$subs = substr_replace($subs, '', 0, 1);
-			if(Utils::stringEndsWith($subs, ';'))
-				$subs = substr_replace($subs, '', -1);
-
-			$subscriptionsArray = explode(';', $subs);
-
-			if(count($subscriptionsArray) > $amount) $amount = count($subscriptionsArray);
-
-			for($i = 0; $i < $amount; $i++) {
-				$subscriptions[$i] = UserChannel::find_by_id($subscriptionsArray[$i]);
-			}
-		}
-		else {
-			$user = User::find_by_id($userId);
-			$subs = $user->subscriptions;
-
-			if(Utils::stringStartsWith($subs, ';'))
-				$subs = substr_replace($subs, '', 0, 1);
-			if(Utils::stringEndsWith($subs, ';'))
-				$subs = substr_replace($subs, '', -1);
-
-			if(strpos($subs, ';') !== false) {
-				$subscriptionsArray = explode(';', $subs);
-
-				foreach ($subscriptionsArray as $sub) {
-					$subscriptions[] = UserChannel::find_by_id($sub);
-				}
-			}
-			else if(strlen($subs) == 6) {
-				$subscriptions[0] = UserChannel::find_by_id($subs);
-			}
-		}
-
-		if(!@$subscriptions[0]) $subscriptions = array();
-		return $subscriptions;
 	}
 
 	public static function addNew($name, $descr, $avatarURL, $bannerURL, $backgroundURL) {
