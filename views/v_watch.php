@@ -25,7 +25,7 @@
 	
 	<br>
 
-	<form method="post" action="" role="form" class="moderating-commands">
+	<form method="post" action="" role="form" class="moderating-commands" onsubmit="if(!confirm('Êtes-vous sur de vouloir effectuer cette action ?')){return false}">
 
 		<?php if ($video->isFlagged()) { ?>
 
@@ -94,7 +94,7 @@
 	
 	<br>
 
-	<form method="post" action="" role="form" class="moderating-commands">
+	<form method="post" action="" role="form" class="moderating-commands" onsubmit="if(!confirm('Êtes-vous sur de vouloir effectuer cette action ?')){return false}">
 
 		<?php if ($video->isFlagged()) { ?>
 
@@ -120,7 +120,7 @@
 
 	<?php } ?>
 	<br /><br />
-	<form method="post" action="" role="form" class="moderating-commands">
+	<form method="post" action="" role="form" class="moderating-commands" onsubmit="if(!confirm('Êtes-vous sur de vouloir effectuer cette action ?')){return false}">
 		
 			<button class="red" name="submitFlag">Signaler la vidéo</button>
 			
