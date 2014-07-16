@@ -2,6 +2,27 @@
     echo '<br><center><a class="btn btn-success" href="admin/?page=moderation">Centre de modération</a><br /><br /><a class="btn btn-danger" href="./admin">Panneau d\'administration</a></center>';
 } ?>
 
+<div class="chat" id="time-real-chat-element">
+    
+    <div class="content not-yet">
+    
+        Le chat en temps réel sera prochainement disponible sur DreamVids ;)
+    
+    </div>
+
+    <!-- <div class="content">
+        
+        <div class="tabs">
+            <span class="current">Chat global</span>
+            <span>Chat privé</span>
+        </div>
+    
+    </div> -->
+
+</div>
+
+<script src="js/chat.js"></script>
+
 <br><br>
 <footer>
     <div id="inner-footer">

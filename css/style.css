@@ -2451,7 +2451,7 @@ header a:hover {
     top: 8px;
     width: 20px;
     height: 3px;
-    background: #bbb;
+    background: #999;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     -ms-transition: 0.2s;
@@ -2465,7 +2465,7 @@ header a:hover {
     width: 20px;
     height: 3px;
     content: "";
-    background: #bbb;
+    background: #999;
     -webkit-transition: -webkit-transform 0.5s;
     -moz-transition: -moz-transform 0.5s;
     -ms-transition: -ms-transform 0.5s;
@@ -3548,4 +3548,204 @@ footer #inner-footer .rights .love i {
   .staff-selection-embed {
     height: 200px!important;
   }
+}
+
+
+
+
+/**
+ *  CHAT
+ */
+
+
+.chat {
+
+  -webkit-transition: .2s ease-in-out;
+     -moz-transition: .2s ease-in-out;
+          transition: .2s ease-in-out;
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+
+  width: 48px;
+  height: 48px;
+
+  background: #40a6e0;
+  cursor: pointer;
+  overflow: hidden;
+
+  -webkit-box-shadow: 0 1px 1px 1px #999;
+     -moz-box-shadow: 0 1px 1px 1px #999;
+          box-shadow: 0 1px 1px 1px #999;
+
+  -webkit-border-radius: 50% 50%;
+     -moz-border-radius: 50% 50%;
+          border-radius: 50% 50%;
+
+}
+
+.chat:not(.open) {
+
+  background-image: url(../img/feedback.png);
+  background-repeat: no-repeat;
+  background-size: 36px 36px;
+  background-position: center center;
+
+}
+
+.chat:not(.open):hover {
+
+  -webkit-transition: .1s ease-in;
+     -moz-transition: .1s ease-in;
+          transition: .1s ease-in;
+
+  -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+          transform: scale(1.2);
+
+  -webkit-transform-origin: center center;
+     -moz-transform-origin: center center;
+          transform-origin: center center;
+
+  -webkit-box-shadow: 0 1px 4px 2px #999;
+     -moz-box-shadow: 0 1px 4px 2px #999;
+          box-shadow: 0 1px 4px 2px #999;
+
+}
+
+.chat.open {
+
+  -webkit-transition: .3s cubic-bezier(.7, 0, .25, 1);
+     -moz-transition: .3s cubic-bezier(.7, 0, .25, 1);
+          transition: .3s cubic-bezier(.7, 0, .25, 1);
+
+  bottom: 0;
+
+  width: 340px;
+  height: 400px;
+
+  cursor: default;
+
+  -webkit-box-shadow: 0 1px 32px 5px #999;
+     -moz-box-shadow: 0 1px 32px 5px #999;
+          box-shadow: 0 1px 32px 5px #999;
+
+  -webkit-border-radius: 0 0;
+     -moz-border-radius: 0 0;
+          border-radius: 0 0;
+
+}
+
+@media (max-width: 450px) {
+
+  .chat.open {
+
+    bottom: 0;
+    right: 0;
+
+  }
+
+}
+
+.chat:not(.open) .content { display: none; }
+
+.chat .content.not-yet {
+
+  padding: 18px;
+
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-weight: 300;
+  font-size: 26px;
+  text-align: center;
+  color: white;
+
+}
+
+.chat .content.not-yet {
+
+  display: table-cell;
+  height: 400px;
+
+  vertical-align:middle;
+  text-align: center;
+
+}
+
+.chat .content {
+
+  display: block;
+  width: 340px;
+  height: 400px;
+
+}
+
+@media (max-width: 400px) {
+
+  .chat.open,
+  .chat .content { width: 100%; }
+
+}
+
+@media (max-height: 650px) {
+
+  .chat.open,
+  .chat .content { height: 300px; }
+
+}
+
+@media (max-height: 500px) {
+
+  .chat.open,
+  .chat .content { height: 250px; }
+
+}
+
+@media (max-height: 350px) {
+
+  .chat.open,
+  .chat .content { height: 200px; }
+
+}
+
+.chat .content .tabs {
+
+  display: block;
+  width: 100%;
+  height: 42px;
+
+  overflow: none;
+
+}
+
+.chat .content .tabs span {
+
+  float: left;
+
+  display: block;
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+
+  cursor: pointer;
+  overflow: none;
+  background: #1f86c1;
+  text-align: center;
+
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+
+}
+
+.chat .content .tabs span.current {
+
+  background: white;
+  color: black;
+
 }
