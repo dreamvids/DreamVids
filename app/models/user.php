@@ -185,14 +185,17 @@ class User extends ActiveRecord\Model {
 
 				case 'like':
 					$usersVideos = $this->getPostedVideos();
-					$usersVideosIds = array();
-					foreach($usersVideos as $vid) $usersVideosIds[] = $vid->id;
 
-					$likeActions = UserAction::find('all', array('conditions' => array(
-						'type = ? AND target IN (?)', $type, $usersVideosIds
-					)));
+					if(!empty($usersVideos)) {
+						$usersVideosIds = array();
+						foreach($usersVideos as $vid) $usersVideosIds[] = $vid->id;
 
-					foreach($likeActions as $a) $actions[] = $a;
+						$likeActions = UserAction::find('all', array('conditions' => array(
+							'type = ? AND target IN (?)', $type, $usersVideosIds
+						)));
+
+						foreach($likeActions as $a) $actions[] = $a;
+					}
 					break;
 				
 				default:

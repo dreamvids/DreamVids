@@ -12,7 +12,7 @@
 					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
 					<div>
 						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="channel"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
+						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->poster_id; ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
 					</div>
 				</div>
 			</div>

@@ -2,6 +2,7 @@
 
 require_once MODEL.'video.php';
 require_once MODEL.'user.php';
+require_once MODEL.'channel_post.php';
 
 // Used for multi-user channels
 class UserChannel extends ActiveRecord\Model {
@@ -10,6 +11,10 @@ class UserChannel extends ActiveRecord\Model {
 
 	public function getPostedVideos() {
 		return Video::all(array('conditions' => array('poster_id' => $this->id)));
+	}
+
+	public function getPostedMessages() {
+		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id)));
 	}
 
 	public function getSubscribersNumber() {
@@ -36,6 +41,23 @@ class UserChannel extends ActiveRecord\Model {
 		}
 		else
 			return false;
+	}
+
+	public function postMessage($messageContent) {
+		ChannelPost::create(array(
+			'id' => ChannelPost::generateId(6),
+			'channel_id' => $this->id,
+			'content' => $messageContent,
+			'timestamp' => Utils::tps()
+		));
+
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
+			'channel_id' => $this->id,
+			'type' => 'message',
+			'target' => $messageContent,
+			'timestamp' => Utils::tps()
+		));
 	}
 
 	public function subscribe($subscriber) {

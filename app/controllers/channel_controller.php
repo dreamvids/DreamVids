@@ -10,19 +10,15 @@ require_once MODEL.'user_channel.php';
 
 class ChannelController extends Controller {
 
-	private $channelId = '';
-
 	public function __construct() {
 		$this->denyAction(Action::INDEX);
 	}
 
 	public function get($id, $request) {
-		$channel = UserChannel::find_by_id($id);
+		$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 
 		if(!is_object($channel))
-			$channel = UserChannel::find_by_name($id);
-
-		$this->channelId = $channel->id;
+			return Utils::getNoutFoundResponse();
 
 		$data = array();
 		$data['id'] = $channel->id;
@@ -31,6 +27,7 @@ class ChannelController extends Controller {
 		$data['subscribers'] = $channel->subscribers;
 		$data['videos'] = $channel->getPostedVideos();
 		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+		$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false ;
 
 		return new ViewResponse('channel/channel', $data);
 	}
@@ -154,6 +151,27 @@ class ChannelController extends Controller {
 
 	}
 
+	// "GET /channel/:id/social"
+	public function social($id, $request) {
+		$channel = UserChannel::exists($id) ? UserChannel::find_by_id($id) : UserChannel::find_by_name($id);
+
+		if(is_object($channel)) {
+			$data = array();
+			$data['id'] = $channel->id;
+			$data['name'] = $channel->name;
+			$data['description'] = $channel->description;
+			$data['subscribers'] = $channel->subscribers;
+			$data['videos'] = $channel->getPostedVideos();
+			$data['subscribed'] = Session::get()->hasSubscribedToChannel($channel->id);
+			$data['posts'] = $channel->getPostedMessages();
+			$data['isUsersChannel'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : '';
+
+			return new ViewResponse('channel/social', $data);
+		}
+		else
+			return Utils::getNotFoundResponse();
+	}
+
 	public function add($request) {
 		if(Session::isActive()) {
 			$data = array();
@@ -196,7 +214,6 @@ class ChannelController extends Controller {
 				$channel->subscribe(Session::get()->id);
 
 				$response = new Response(200);
-				$response->setBody('Sub ok');
 				return $response;
 			}
 		}
@@ -213,7 +230,6 @@ class ChannelController extends Controller {
 				$channel->unsubscribe(Session::get()->id);
 
 				$response = new Response(200);
-				$response->setBody('Unsub ok');
 				return $response;
 			}
 

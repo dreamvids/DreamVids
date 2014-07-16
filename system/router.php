@@ -54,6 +54,20 @@ class Router {
 				if(class_exists($className)) {
 					return new $className;
 				}
+				else {
+					while($underscorePos = strpos($className, '_')) {
+						if(strlen($className) > $underscorePos + 1) {	
+							$className[$underscorePos + 1] = strtoupper($className[$underscorePos + 1]);
+							$className = str_replace('_', '', $className);
+						}
+					}
+
+					if(class_exists($className)) {
+						return new $className;
+					}
+					else
+						Utils::getNotFoundResponse()->send();
+				}
 			}
 		}
 		else if(strtolower($uri) == '' && isset($routes['default'])) {

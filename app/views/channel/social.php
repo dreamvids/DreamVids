@@ -29,14 +29,15 @@
 	<nav class="tabs">
 		<ul>
 			<li><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
-			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/social/'.$name; ?>">Social</a></li>
+			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/'.$name.'/social/'; ?>">Social</a></li>
 		</ul>
 	</nav>
 
 	<?php if ($isUsersChannel): ?>
 		<h2>Poster un message</h2>
-		<form method="post" action="">
+		<form method="post" action="<?php echo WEBROOT.'posts'; ?>">
 			<textarea rows="5" cols="65" name="post-content"></textarea><br>
+			<input type="hidden" name="channel" id="channel" value="<?php echo $id; ?>" />
 			<input type="submit" value="Envoyer le message" name="post-message-submit" />
 		</form>
 

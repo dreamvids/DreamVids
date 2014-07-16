@@ -2,7 +2,7 @@
 	<aside class="aside-channels">
 		<h3 class="title">Mes abonnements</h3>
 		<ul class="limited">
-			<?php if (empty($subscriptions)): ?>
+			<?php if(empty($subscriptions)): ?>
 				<p style="text-align: center; color: #858484;">Vous n'avez aucun abonnement !</p>
 			<?php endif ?>
 
@@ -24,6 +24,10 @@
 
 	<aside class="aside-cards-list">
 		<h3 class="title">Flux d'activité</h3>
+
+		<?php if(empty($subscriptions)): ?>
+			<p style="text-align: center; color: #858484;">Aucun évenement récent</p>
+		<?php endif ?>
 
 		<?php
 			foreach(@$actions as $action) {

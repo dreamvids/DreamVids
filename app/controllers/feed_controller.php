@@ -19,6 +19,9 @@ class FeedController extends Controller {
 	public function index($request) {
 		if(Session::isActive()) {
 			$data = array();
+			$data['actions'] = array();
+			$data['subscriptions'] = array();
+			
 			$actions = array_merge(Session::get()->getSubscriptionsActions(), Session::get()->getUsersPersonalActions());
 
 			if(count($actions) > 0) {

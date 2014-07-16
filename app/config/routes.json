@@ -9,8 +9,11 @@
 	"account": "account",
 
 	"channel": "channel",
-	"video": "video",
 	"watch": "video",
+	"feed": "feed",
 
-	"feed": "feed"
+
+	"videos": "video",
+	"posts": "channel_post",
+	"comments": "comment"
 }
