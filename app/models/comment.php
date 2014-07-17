@@ -4,6 +4,30 @@ class Comment extends ActiveRecord\Model {
 
 	static $table_name = 'videos_comments';
 
+	public static function postNew($authorId, $videoId, $commentContent) {
+		$timestamp = Utils::tps();
+
+		$comment = Comment::create(array(
+			'id' => Comment::generateId(6),
+			'poster_id' => $authorId,
+			'video_id' => $videoId,
+			'comment' => $commentContent,
+			'timestamp' => $timestamp,
+			'likes' => 0,
+			'dislikes' => 0
+		));
+
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
+			'channel_id' => $authorId,
+			'type' => 'comment',
+			'target' => $videoId,
+			'timestamp' => $timestamp
+		));
+
+		return $comment;
+	}
+
 	public static function generateId($length) {
 	    $idExists = true;
 
