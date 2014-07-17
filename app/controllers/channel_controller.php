@@ -5,6 +5,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 require_once SYSTEM.'redirect_response.php';
+require_once SYSTEM.'json_response.php';
 
 require_once MODEL.'user_channel.php';
 
@@ -20,16 +21,29 @@ class ChannelController extends Controller {
 		if(!is_object($channel))
 			return Utils::getNoutFoundResponse();
 
-		$data = array();
-		$data['id'] = $channel->id;
-		$data['name'] = $channel->name;
-		$data['description'] = $channel->description;
-		$data['subscribers'] = $channel->subscribers;
-		$data['videos'] = $channel->getPostedVideos();
-		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
-		$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false ;
+		if($request->acceptsJson()) {
+			$channelData = array(
+				'id' => $channel->id,
+				'name' => $channel->name,
+				'description' => $channel->description,
+				'subscribers' => $channel->subscribers
+			);
 
-		return new ViewResponse('channel/channel', $data);
+			return new JsonResponse($channelData);
+		}
+		else {
+			$data = array();
+			$data['id'] = $channel->id;
+			$data['name'] = $channel->name;
+			$data['description'] = $channel->description;
+			$data['subscribers'] = $channel->subscribers;
+			$data['videos'] = $channel->getPostedVideos();
+			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false ;
+
+			return new ViewResponse('channel/channel', $data);
+		}
+
 	}
 
 	public function create($request) {

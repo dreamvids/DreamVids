@@ -5,6 +5,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 require_once SYSTEM.'redirect_response.php';
+require_once SYSTEM.'json_response.php';
 
 require_once MODEL.'video.php';
 require_once MODEL.'comment.php';
@@ -22,6 +23,20 @@ public function __construct() {
 
 		$video = Video::find($id);
 		$author = UserChannel::find($video->poster_id);
+
+		if($request->acceptsJson()) {
+			$videoData = array(
+				'id' => $video->id,
+				'title' => $video->title,
+				'author' => $video->poster_id,
+				'description' => $video->description,
+				'views' => $video->views,
+				'likes' => $video->likes,
+				'dislikes' => $video->dislikes
+			);
+
+			return new JsonResponse($videoData);
+		}
 
 		if($video->isSuspended()) {
 			$data = array();

@@ -14,6 +14,7 @@
 
 
 	"videos": "video",
+	"channels": "channel",
 	"posts": "channel_post",
 	"comments": "comment"
 }
