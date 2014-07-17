@@ -2,7 +2,7 @@
     echo '<br><center><a class="btn btn-success" href="admin/?page=moderation">Centre de modération</a><br /><br /><a class="btn btn-danger" href="./admin">Panneau d\'administration</a></center>';
 } ?>
 
-<div class="chat" id="time-real-chat-element">
+<div class="chat " id="time-real-chat-element">
     
     <div class="content not-yet">
     
@@ -13,8 +13,22 @@
     <!-- <div class="content">
         
         <div class="tabs">
-            <span class="current">Chat global</span>
-            <span>Chat privé</span>
+            <span class="current">global</span>
+            <span>pv</span>
+        </div>
+    
+        <div class="close-icon" id="time-real-chat-close"></div>
+    
+        <div class="inner">
+            
+            Blabla
+    
+            <div class="chat-form">
+                
+                <input type="text" placeholder="text">
+    
+            </div>
+    
         </div>
     
     </div> -->

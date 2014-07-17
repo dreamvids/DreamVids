@@ -3593,25 +3593,50 @@ footer #inner-footer .rights .love i {
   background-size: 36px 36px;
   background-position: center center;
 
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+     -moz-transition: -moz-transform .2s ease-in-out;
+          transition: transform .2s ease-in-out;
+
 }
 
-.chat:not(.open):hover {
-
-  -webkit-transition: .1s ease-in;
-     -moz-transition: .1s ease-in;
-          transition: .1s ease-in;
-
-  -webkit-transform: scale(1.2);
-      -moz-transform: scale(1.2);
-          transform: scale(1.2);
+.chat:not(.open):hover,
+.chat:not(.open):active {
 
   -webkit-transform-origin: center center;
      -moz-transform-origin: center center;
           transform-origin: center center;
 
+}
+
+.chat:not(.open):hover {
+
+  -webkit-transition: -webkit-transform .1s ease-in;
+     -moz-transition: -moz-transform .1s ease-in;
+          transition: transform .1s ease-in;
+
+  -webkit-transform: scale(1.2);
+     -moz-transform: scale(1.2);
+          transform: scale(1.2);
+
   -webkit-box-shadow: 0 1px 4px 2px #999;
      -moz-box-shadow: 0 1px 4px 2px #999;
           box-shadow: 0 1px 4px 2px #999;
+
+}
+
+.chat:not(.open):active {
+
+  -webkit-transition: -webkit-transform .05s ease-in;
+     -moz-transition: -moz-transform .05s ease-in;
+          transition: transform .05s ease-in;
+
+  -webkit-transform: scale(0.9);
+     -moz-transform: scale(0.9);
+          transform: scale(0.9);
+
+  -webkit-box-shadow: 0 1px 1px 1px #999;
+     -moz-box-shadow: 0 1px 1px 1px #999;
+          box-shadow: 0 1px 1px 1px #999;
 
 }
 
@@ -3635,6 +3660,47 @@ footer #inner-footer .rights .love i {
   -webkit-border-radius: 0 0;
      -moz-border-radius: 0 0;
           border-radius: 0 0;
+
+}
+
+.chat.close {
+
+  -webkit-transition: .1s ease-in-out;
+     -moz-transition: .1s ease-in-out;
+          transition: .1s ease-in-out;
+
+  float: none;
+
+  position: fixed;
+  bottom: 20px!important;
+  right: 20px!important;
+  z-index: 10;
+
+  width: 48px!important;
+  height: 48px!important;
+
+  opacity: 1;
+
+  -webkit-box-shadow: 0 1px 1px 1px #999;
+     -moz-box-shadow: 0 1px 1px 1px #999;
+          box-shadow: 0 1px 1px 1px #999;
+
+  -webkit-border-radius: 50% 50%;
+     -moz-border-radius: 50% 50%;
+          border-radius: 50% 50%;
+
+}
+
+.chat.close:after {
+
+  content: "";
+
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+
+  display: block;
+
+  background: #40a6e0;
 
 }
 
@@ -3747,5 +3813,95 @@ footer #inner-footer .rights .love i {
 
   background: white;
   color: black;
+
+}
+
+.chat .content .close-icon {
+
+  position: absolute;
+  top: 9px;
+  right: 9px;
+
+  display: block;
+  width: 24px;
+  height: 24px;
+
+  background-image: url(../img/chat_close.png);
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: center center;
+
+  cursor: pointer;
+
+}
+
+.chat .content .close-icon:hover,
+.chat .content .close-icon:active {
+
+  -webkit-transform-origin: center center;
+     -moz-transform-origin: center center;
+          transform-origin: center center;
+
+}
+
+.chat .content .close-icon:hover {
+
+  -webkit-transition: .1s ease-in;
+     -moz-transition: .1s ease-in;
+          transition: .1s ease-in;
+
+  -webkit-transform: scale(1.2);
+     -moz-transform: scale(1.2);
+          transform: scale(1.2);
+
+}
+
+.chat .content .close-icon:active {
+
+  -webkit-transition: .1s ease-in;
+     -moz-transition: .1s ease-in;
+          transition: .1s ease-in;
+
+  -webkit-transform: scale(0.9);
+     -moz-transform: scale(0.9);
+          transform: scale(0.9);
+
+}
+
+.chat .content .inner {
+
+  position: absolute;
+  top: 42px; left: 0; right: 0; bottom: 0;
+
+  padding: 10px;
+
+}
+
+.chat .content .inner .chat-form {
+
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+
+  height: 48px;
+
+}
+
+.chat .content .inner .chat-form input[type="text"] {
+
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+
+  display: block;
+  border: none;
+  padding: 15px;
+
+  width: 100%;
+
+}
+
+.chat .content .inner .chat-form input[type="text"]:focus,
+.chat .content .inner .chat-form input[type="text"]:active {
+
+  outline: none;
 
 }
