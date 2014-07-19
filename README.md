@@ -1,4 +1,4 @@
-![Alt text](/assets/img/blue_logo.png "DreamVids - 2.0")
+![DreamVids](/assets/img/blue_logo.png "DreamVids - 2.0")
 ========
 
 Core rework & new design for the DreamVids video sharing platform

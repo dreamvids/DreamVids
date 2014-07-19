@@ -9,6 +9,11 @@
 <script src="<?php echo JS."player.js"; ?>"></script>
 <script src="<?php echo JS."subscribe.js"; ?>"></script>
 
+
+<!-- A remplacer par : -->
+
+<script src="<?php echo JS.'script.min.js'; ?>"></script>
+
 <script>
 	
 

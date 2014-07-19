@@ -7,3 +7,8 @@
 <script src="<?php echo JS.'comment.js'; ?>"></script>
 <script src="<?php echo JS.'subscribe.js'; ?>"></script>
 <script src="<?php echo JS.'filePreview.js'; ?>"></script>
+
+
+<!-- A remplacer par : -->
+
+<script src="<?php echo JS.'script.min.js'; ?>"></script>
