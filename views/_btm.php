@@ -6,7 +6,7 @@
     
     <div class="content not-yet">
     
-        Le chat en temps réel sera prochainement disponible sur DreamVids ;)
+        <iframe src="http://stornitz.fr/Chat/DreamVids" frameborder="0"></iframe>
     
     </div>
 

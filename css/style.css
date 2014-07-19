@@ -3717,6 +3717,11 @@ footer #inner-footer .rights .love i {
 
 .chat:not(.open) .content { display: none; }
 
+.chat.open iframe{
+  width: 100%;
+  height: 100%;
+}
+
 .chat .content.not-yet {
 
   padding: 18px;
