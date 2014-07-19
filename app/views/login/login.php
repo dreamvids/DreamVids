@@ -3,7 +3,7 @@
 
 	<?php @include $messages; ?>
 
-	<form method="post" action="" class="form middle">
+	<form method="post" action="<?php echo WEBROOT.'login'; ?>" class="form middle">
 		<label for="username">Pseudo :</label>
 		<input type="text" name="username" id="username" placeholder="Pseudo" value="<?php echo @$username; ?>"/><br />
 		<label for="pass">Mot de passe :</label>

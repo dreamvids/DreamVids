@@ -1,8 +1,72 @@
 <?php
 
+require_once MODEL.'user_action.php';
+
 class Comment extends ActiveRecord\Model {
 
 	static $table_name = 'videos_comments';
+
+	public function isLikedByUser($user) {
+		if(is_object($user)) {
+			return UserAction::exists(array('user_id' => $user->id, 'type' => 'like_comment', 'target' => $this->id));
+		}
+
+		return false;
+	}
+
+	public function isDislikedByUser($user) {
+		if(is_object($user)) {
+			return UserAction::exists(array('user_id' => $user->id, 'type' => 'dislike_comment', 'target' => $this->id));
+		}
+
+		return false;
+	}
+
+	public function like($user) {
+		if(is_object($user) && !$this->isLikedByUser($user)) {
+			if($this->isDislikedByUser($user)) {
+				$dislikeAction = UserAction::find(array('type' => 'dislike_comment', 'user_id' => $user->id, 'target' => $this->id));
+				$dislikeAction->delete();
+
+				$this->dislikes--;
+				$this->save();
+			}
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $user->id,
+				'type' => 'like_comment',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+
+			$this->likes++;
+			$this->save();
+		}
+	}
+
+	public function dislike($user) {
+		if(is_object($user) && !$this->isDislikedByUser($user)) {
+			if($this->isLikedByUser($user)) {
+				$likeAction = UserAction::find(array('type' => 'like_comment', 'user_id' => $user->id, 'target' => $this->id));
+				$likeAction->delete();
+
+				$this->likes--;
+				$this->save();
+			}
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $user->id,
+				'type' => 'dislike_comment',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+
+			$this->dislikes++;
+			$this->save();
+		}
+	}
 
 	public static function postNew($authorId, $videoId, $commentContent) {
 		$timestamp = Utils::tps();

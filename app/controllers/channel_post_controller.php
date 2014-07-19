@@ -73,9 +73,16 @@ class ChannelPostController extends Controller {
 
 			if(is_object($channel) && $channel->belongToUser(Session::get()->id)) {
 				$postContent = Utils::secure($req['post-content']);
-				$channel->postMessage($postContent);
+				$post = $channel->postMessage($postContent);
 
-				return new Response(200);
+				$postData = array(
+					'id' => $post->id,
+					'channel_id' => $post->channel_id,
+					'content' => $post->content,
+					'timestamp' => $post->timestamp
+				);
+
+				return new JsonResponse($postData);
 			}
 		}
 

@@ -33,13 +33,14 @@ class ChannelController extends Controller {
 		}
 		else {
 			$data = array();
+			$data['currentPage'] = 'channel';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $channel->getPostedVideos();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
-			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false ;
+			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 
 			return new ViewResponse('channel/channel', $data);
 		}
@@ -171,14 +172,15 @@ class ChannelController extends Controller {
 
 		if(is_object($channel)) {
 			$data = array();
+			$data['currentPage'] = 'channel';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $channel->getPostedVideos();
-			$data['subscribed'] = Session::get()->hasSubscribedToChannel($channel->id);
+			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['posts'] = $channel->getPostedMessages();
-			$data['isUsersChannel'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : '';
+			$data['isUsersChannel'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 
 			return new ViewResponse('channel/social', $data);
 		}

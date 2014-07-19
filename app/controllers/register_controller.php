@@ -44,7 +44,10 @@ class RegisterController extends Controller {
 									if(!User::find_by_username($username)) {
 										if(!User::isMailRegistered($mail)) {
 											User::register($username, $pass, $mail);
-											return new RedirectResponse(WEBROOT.'login');
+
+											$response = new ViewResponse('login/login');
+											$response->addMessage(ViewMessage::success('Inscription validée. Vous pouvez vous connecter !'));
+											return $response;
 										}
 										else {
 											$response = new ViewResponse('login/register', $data);

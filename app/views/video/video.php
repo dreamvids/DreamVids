@@ -104,16 +104,18 @@
 
 <div class="content">
 	<section id="comments">
-		<form method="post" action="" onsubmit="return false;">
-			<label for="channels">Poster au nom de: </label>
-			<select name="channsl" id="channel">
-				<?php foreach ($channels as $channel): ?>
-					<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
-				<?php endforeach ?>
-			</select>
-			<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
-			<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value)">Envoyer</button>
-		</form>
+		<?php if(Session::isActive()): ?>
+			<form method="post" action="" onsubmit="return false;">
+				<label for="channels">Poster au nom de: </label>
+				<select name="channsl" id="channel">
+					<?php foreach ($channels as $channel): ?>
+						<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
+					<?php endforeach ?>
+				</select>
+				<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
+				<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value)">Envoyer</button>
+			</form>
+		<?php endif ?>
 
 		<h3 class="title">Commentaires Populaires</h3>
 
@@ -134,8 +136,8 @@
 					</div>
 					<div class="comment-notation">
 						<ul>
-							<li class="plus"><a href="#">+</a><?php echo $comment->likes; ?></li>
-							<li class="moins"><a href="#">-</a><?php echo $comment->dislikes; ?></li>
+							<li class="plus" id="plus-<?php echo $comment->id; ?>" onclick="likeComment('<?php echo $comment->id; ?>')">+<?php echo $comment->likes; ?></li>
+							<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
 						</ul>
 					</div>
 				</div>

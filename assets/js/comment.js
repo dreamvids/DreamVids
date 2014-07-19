@@ -94,3 +94,33 @@ function postComment(vid, commentContent, fromChannel) {
 		document.getElementById('comments-best').appendChild(commentDiv);
 	});
 }
+
+function likeComment(commentId) {
+	marmottajax.get({
+		'url': '../comments/' + commentId + '/like',
+		'options': {}
+	}).then(function(result) {
+		try {
+			var json = JSON.parse(result);
+
+			document.getElementById('plus-' + json.id).innerHTML = '+' + json.likes;
+			document.getElementById('moins-' + json.id).innerHTML = '-' + json.dislikes;
+		}
+		catch(e) {}
+	});
+}
+
+function dislikeComment(commentId) {
+	marmottajax.get({
+		'url': '../comments/' + commentId + '/dislike',
+		'options': {}
+	}).then(function(result) {
+		try {
+			var json = JSON.parse(result);
+
+			document.getElementById('plus-' + json.id).innerHTML = '+' + json.likes;
+			document.getElementById('moins-' + json.id).innerHTML = '-' + json.dislikes;
+		}
+		catch(e) {}
+	});
+}

@@ -3,6 +3,7 @@
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
+require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'video.php';
 require_once MODEL.'user_channel.php';
