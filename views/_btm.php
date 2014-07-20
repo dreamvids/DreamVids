@@ -6,6 +6,8 @@
     
     <div class="content not-yet">
     
+        <div class="close-icon" id="time-real-chat-close"></div>
+    
         <iframe src="http://stornitz.fr/Chat/DreamVids" frameborder="0"></iframe>
     
     </div>
