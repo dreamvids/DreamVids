@@ -7,6 +7,7 @@
 <script src="<?php echo JS.'comment.js'; ?>"></script>
 <script src="<?php echo JS.'subscribe.js'; ?>"></script>
 <script src="<?php echo JS.'filePreview.js'; ?>"></script>
+<script src="<?php echo JS."bgLoader.js"; ?>"></script>
 
 
 <!-- A remplacer par : -->

@@ -2,6 +2,7 @@
 
 require_once SYSTEM.'methods.php';
 require_once SYSTEM.'utils.php';
+require_once CONFIG.'routes.php';
 
 class Router {
 
@@ -37,13 +38,9 @@ class Router {
 	}
 
 	private function matchRoute($uri) {
-		$routesConfig = new Config(CONFIG.'routes.json');
-		$routesConfig->parseFile();
-
-		$routes = Utils::objectToArray($routesConfig->getValues());
-
-		if(isset($routes[strtolower($uri)])) {
-			$routeName = strtolower($routes[strtolower($uri)]);
+		if(Route::getByURL($uri)) {
+			$route = Route::getByURL($uri);
+			$routeName = $route->getController();
 			$file = $routeName.'_controller.php';
 
 			if(file_exists(CONTROLLER.$file)) {
@@ -70,13 +67,13 @@ class Router {
 				}
 			}
 		}
-		else if(strtolower($uri) == '' && isset($routes['default'])) {
-			$file = strtolower($routes['default']).'_controller.php';
+		else if(strtolower($uri) == '' && ($route = Route::getByURL('default'))) {
+			$file = $route->getController().'_controller.php';
 
 			if(file_exists(CONTROLLER.$file)) {
 				require_once CONTROLLER.$file;
 
-				$className = ucfirst($routes['default']).'Controller';
+				$className = ucfirst($route->getController()).'Controller';
 
 				if(class_exists($className)) {
 					return new $className;
@@ -129,7 +126,7 @@ class Router {
 						unset($uriParameters[0]);
 						unset($uriParameters[1]);
 
-						$response = call_user_func_array(array($controller, $methodName), array($request, $uriParameters));
+						$response = call_user_func_array(array($controller, $methodName), array($uriParameters, $request));
 						Utils::sendResponse($response);
 					}
 					// Example: /posts/42/edit --> call function edit (if it exists)

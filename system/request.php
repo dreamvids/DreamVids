@@ -19,6 +19,11 @@ class Request {
 		if(Utils::stringStartsWith($uri, '/')) $uri = substr_replace($uri, '', 0, 1);
 		if(Utils::stringEndsWith($uri, '/')) $uri = substr_replace($uri, '', strlen($uri) - 1, 1);
 
+		if(Utils::stringEndsWith($uri, '.json')) {
+			$this->acceptedData .= ',application/json';
+			$uri = str_replace('.json', '', $uri);
+		}
+
 		$this->uri = $uri;
 	}
 

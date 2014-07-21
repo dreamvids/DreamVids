@@ -19,6 +19,7 @@ require 'vendor/autoload.php';
 
 require_once SYSTEM.'config.php';
 require_once SYSTEM.'utils.php';
+require_once SYSTEM.'route.php';
 require_once SYSTEM.'router.php';
 require_once SYSTEM.'database.php';
 

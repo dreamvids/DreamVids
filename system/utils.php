@@ -9,6 +9,10 @@ class Utils {
 		$requestProtocol = $_SERVER['SERVER_PROTOCOL'];
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
 		$requestURI = key($_GET);
+
+		if(strpos($requestURI, '_json'))
+			$requestURI = str_replace('_json', '.json', $requestURI);
+
 		$requestAcceptedData = $_SERVER['HTTP_ACCEPT'];
 
 		if(strtoupper($requestMethod) == 'POST') {

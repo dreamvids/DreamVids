@@ -19,7 +19,7 @@ class ChannelController extends Controller {
 		$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 
 		if(!is_object($channel))
-			return Utils::getNoutFoundResponse();
+			return Utils::getNotFoundResponse();
 
 		if($request->acceptsJson()) {
 			$channelData = array(
