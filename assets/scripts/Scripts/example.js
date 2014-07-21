@@ -13,7 +13,7 @@ var meteo = new Script({
 
 	call: function() { // Fonction appelée lorsque la page peut être manipulée
 
-		console.log("Il pleut!", "{example script}");
+		// console.log("Il pleut!", "{example script}");
 
 	}
 
