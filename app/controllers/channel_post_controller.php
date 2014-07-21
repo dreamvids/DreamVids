@@ -38,7 +38,7 @@ class ChannelPostController extends Controller {
 	}
 
 	// "GET /posts/:channel-id" -- Gets the posts on channel 'channel-id'
-	public function channel($request, $id) {
+	public function channel($id, $request) {
 		$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 
 		if(is_object($channel)) {

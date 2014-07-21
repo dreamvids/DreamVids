@@ -260,4 +260,13 @@ class Video extends ActiveRecord\Model {
 		return $videos;
 	}
 
+	public static function getReportedVideos($limit = 'nope') {
+		if($limit != 'nope') {
+			return Video::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc', 'limit' => $limit));
+		}
+		else {
+			return Video::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc'));
+		}
+	}
+
 }

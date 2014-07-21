@@ -123,6 +123,13 @@ class Utils {
 		return $response;
 	}
 
+	public static function getUnauthorizedResponse() {
+		$response = new Response(401);
+		$response->setBody('Unauthorized');
+
+		return $response;
+	}
+
 	public static function getInternalServerErrorResponse() {
 		$response = new Response(500);
 		$response->setBody('Error occurred while trying to treat the request (application error)');

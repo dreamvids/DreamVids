@@ -8,8 +8,9 @@ class ViewResponse extends Response {
 	private $data = array();
 	private $messages = array();
 	private $renderLayout = true;
+	private $layoutFile = 'layouts/main.php';
 
-	public function __construct($viewFile, $data = array(), $renderLayout = true) {
+	public function __construct($viewFile, $data = array(), $renderLayout = true, $layoutFile = 'layouts/main.php') {
 		$file = VIEW.$viewFile.'.php';
 
 		if(file_exists($file)) {
@@ -20,7 +21,9 @@ class ViewResponse extends Response {
 
 			if(is_array($data)) $this->data = $data;
 			$this->body = $file;
+
 			$this->renderLayout = $renderLayout;
+			if(file_exists(VIEW.$layoutFile)) $this->layoutFile = $layoutFile;
 		}
 	}
 
@@ -31,15 +34,10 @@ class ViewResponse extends Response {
 	}
 
 	public function send() {
-		$appConfig = new Config(CONFIG.'app.json');
-		$appConfig->parseFile();
-
 		header($this->protocol.' '.$this->statusCode.' '.$this->statusString);
 		header('Content-Type: '.$this->contentType);
 
-		if($this->renderLayout && file_exists(VIEW.$appConfig->getValue('layout').'.php')) {
-			$layoutFile = VIEW.$appConfig->getValue('layout').'.php';
-			
+		if($this->renderLayout && file_exists(VIEW.$this->layoutFile)) {
 			extract($this->data);
 			$content = $this->body;
 
@@ -48,7 +46,7 @@ class ViewResponse extends Response {
 				$messages = VIEW.'layouts/messages.php';
 			}
 
-			include $layoutFile;
+			include VIEW.$this->layoutFile;
 		}
 		else {
 			extract($this->data);

@@ -64,19 +64,17 @@ function postComment(vid, commentContent, fromChannel) {
 						li1.className = 'plus';
 						li2.className = 'moins';
 
-						var plus = document.createElement('a');
-							plus.setAttribute('href', '#');
+						li1.id = 'plus-' + comment.id;
+						li2.id = 'moins-' + comment.id;
 
-							var plusText = document.createTextNode('+');
-							plus.appendChild(plusText);
-						li1.appendChild(plus);
+						li1.setAttribute('onclick', "likeComment('" + comment.id + "')");
+						li2.setAttribute('onclick', "dislikeComment('" + comment.id + "')");;
 
-						var moins = document.createElement('a');
-							moins.setAttribute('href', '#');
+						var plusText = document.createTextNode('+');
+						li1.appendChild(plusText);
 
-							var moinsText = document.createTextNode('-');
-							moins.appendChild(moinsText);
-						li2.appendChild(moins);
+						var moinsText = document.createTextNode('-');
+						li2.appendChild(moinsText);
 
 						var plusNumber = document.createTextNode('0');
 						li1.appendChild(plusNumber);
@@ -101,10 +99,10 @@ function likeComment(commentId) {
 		'options': {}
 	}).then(function(result) {
 		try {
-			var json = JSON.parse(result);
+			var comment = JSON.parse(result);
 
-			document.getElementById('plus-' + json.id).innerHTML = '+' + json.likes;
-			document.getElementById('moins-' + json.id).innerHTML = '-' + json.dislikes;
+			document.getElementById('plus-' + comment.id).innerHTML = '+' + comment.likes;
+			document.getElementById('moins-' + comment.id).innerHTML = '-' + comment.dislikes;
 		}
 		catch(e) {}
 	});
@@ -116,10 +114,10 @@ function dislikeComment(commentId) {
 		'options': {}
 	}).then(function(result) {
 		try {
-			var json = JSON.parse(result);
+			var comment = JSON.parse(result);
 
-			document.getElementById('plus-' + json.id).innerHTML = '+' + json.likes;
-			document.getElementById('moins-' + json.id).innerHTML = '-' + json.dislikes;
+			document.getElementById('plus-' + comment.id).innerHTML = '+' + comment.likes;
+			document.getElementById('moins-' + comment.id).innerHTML = '-' + comment.dislikes;
 		}
 		catch(e) {}
 	});

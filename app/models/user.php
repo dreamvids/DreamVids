@@ -228,6 +228,23 @@ class User extends ActiveRecord\Model {
 		}
 	}
 
+	public function isModerator() {
+		$config = new Config(CONFIG.'app.json');
+		$config->parseFile();
+
+		return $this->rank == $config->getValue('rankModo');
+	}
+
+	public function isAdmin() {
+		$config = new Config(CONFIG.'app.json');
+		$config->parseFile();
+
+		return $this->rank == $config->getValue('rankAdmin');
+	}
+
+
+	// Static
+
 	public static function getNameById($userId) {
 		return User::find_by_id($userId)->username;
 	}

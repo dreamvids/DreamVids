@@ -17,4 +17,5 @@ Route::register('videos', 'video');
 Route::register('channels', 'channel');
 Route::register('posts', 'channel_post');
 Route::register('comments', 'comment');
-Route::register('channels', 'channel');
+
+Route::register('admin', 'admin');
