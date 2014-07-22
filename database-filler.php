@@ -89,7 +89,7 @@ class DatabaseFiller {
 					'0',
 					'0',
 					'0',
-					'1398947680',
+					'".$timestamp."',
 					'2',
 					'0'
 				)");
@@ -99,7 +99,7 @@ class DatabaseFiller {
 					'".$posterId."',
 					'upload',
 					'".$vidId."',
-					'1398947680'
+					'".$timestamp."'
 				)");
 
 				$timestamp++;

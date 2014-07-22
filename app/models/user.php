@@ -144,6 +144,10 @@ class User extends ActiveRecord\Model {
 						$actions[] = $action;
 					}
 				}
+				else if($action->type == 'upload') {
+					if(Video::exists($action->target))
+						$actions[] = $action;
+				}
 				else
 					$actions[] = $action;
 			}

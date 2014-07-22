@@ -160,6 +160,37 @@ class ChannelController extends Controller {
 				return $response;
 			}
 		}
+		else if(isset($req['subscribe'])) {
+			if(Session::isActive()) {
+				$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+
+				if(is_object($channel) && !$channel->belongToUser(Session::get()->id)) {
+					$channel->subscribe(Session::get()->id);
+
+					$response = new Response(200);
+					return $response;
+				}
+			}
+			else {
+				return new Response(500);
+			}
+		}
+		else if(isset($req['unsubscribe'])) {
+			if(Session::isActive()) {
+				$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+
+				if(is_object($channel) && !$channel->belongToUser(Session::get()->id)) {
+					$channel->unsubscribe(Session::get()->id);
+
+					$response = new Response(200);
+					return $response;
+				}
+
+			}
+			else {
+				return new Response(500);
+			}
+		}
 	}
 
 	public function destroy($id, $request) {
@@ -222,37 +253,11 @@ class ChannelController extends Controller {
 	}
 
 	public function subscribe($id, $request) {
-		var_dump($id);
-		if(Session::isActive()) {
-			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
-
-			if(is_object($channel) && !$channel->belongToUser(Session::get()->id)) {
-				$channel->subscribe(Session::get()->id);
-
-				$response = new Response(200);
-				return $response;
-			}
-		}
-		else {
-			return new Response(500);
-		}
+		
 	}
 
 	public function unsubscribe($id, $request) {
-		if(Session::isActive()) {
-			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
-
-			if(is_object($channel) && !$channel->belongToUser(Session::get()->id)) {
-				$channel->unsubscribe(Session::get()->id);
-
-				$response = new Response(200);
-				return $response;
-			}
-
-		}
-		else {
-			return new Response(500);
-		}
+		
 	}
 
 	public function index($request) {}
