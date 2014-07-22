@@ -25,6 +25,8 @@ require_once SYSTEM.'database.php';
 
 require_once MODEL.'session.php';
 
+require_once CONFIG.'app.php';
+
 Database::connect();
 Session::init();
 $router = new Router();

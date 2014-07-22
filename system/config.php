@@ -4,6 +4,8 @@ require_once SYSTEM.'utils.php';
 
 class Config {
 
+	private static $configValues = array();
+
 	private $file = 'nope';
 	private $values = array();
 
@@ -34,6 +36,15 @@ class Config {
 
 	public function getValues() {
 		return $this->values;
+	}
+
+	// static
+	public static function addValue($key, $value) {
+		self::$configValues[$key] = $value;
+	}
+
+	public static function getValue_($key) {
+		return isset(self::$configValues[$key]) ? self::$configValues[$key] : false;
 	}
 
 }

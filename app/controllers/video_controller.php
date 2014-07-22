@@ -74,11 +74,46 @@ public function __construct() {
 	}
 
 	public function update($id, $request) {
+		$req = $request->getParameters();
 
+		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) {
+			if($video = Video::find($id)) {
+				if(isset($req['flag']) && !empty($req['flag'])) {
+					$flag = $req['flag'];
+
+					if($flag == 'false') {
+						$video->unFlag(Session::get()->id);
+						return new Response(200);
+					}
+				}
+				else if(isset($req['suspend']) && !empty($req['suspend'])) {
+					$suspend = $req['suspend'];
+
+					if($suspend == 'false') {
+						$video->unSuspend(Session::get()->id);
+						return new Response(200);
+					}
+					else if($suspend == 'true') {
+						$video->suspend(Session::get()->id);
+						return new Response(200);
+					}
+				}
+			}
+		}
+
+		return new Response(500);
 	}
 
 	public function destroy($id, $request) {
+		if(Session::isActive() && Session::get()->isAdmin()) {
+			if($video = Video::find($id)) {
+				$video->erase(Session::get()->id);
 
+				return new Response(200);
+			}
+		}
+
+		return new Response(500);
 	}
 
 	// Called by "GET video/upload"
@@ -151,6 +186,46 @@ public function __construct() {
 
 			if($video->isDislikedByUser($userId)) {
 				$video->removeDislike($userId);
+				return new Response(200);
+			}
+		}
+
+		return new Response(500);
+	}
+
+	public function flag($id, $request) {
+		if(Session::isActive()) {
+			if($video = Video::find($id)) {
+				$video->flag();
+
+				return new Response(200);
+			}
+		}
+
+		return new Response(500);
+	}
+
+	public function unflag($id, $request) {
+		
+	}	
+
+	public function suspend($id, $request) {
+		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) {
+			if($video = Video::find($id)) {
+				$video->suspend(Session::get()->id);
+
+				return new Response(200);
+			}
+		}
+
+		return new Response(500);
+	}
+
+	public function unsuspend($id, $request) {
+		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) {
+			if($video = Video::find($id)) {
+				$video->unSuspend(Session::get()->id);
+
 				return new Response(200);
 			}
 		}

@@ -1,1 +1,232 @@
-var marmottajax=function(a){return marmottajax.get(a)};marmottajax.n=function(a){return a?"string"==typeof a?{url:a}:a:!1},marmottajax.json=function(a){return(a=marmottajax.n(a))?(a.json=!0,new marmottajax.r(a)):void 0},marmottajax.get=function(a){return new marmottajax.r(a)},marmottajax.post=function(a){return(a=marmottajax.n(a))?(a.method="POST",new marmottajax.r(a)):void 0},marmottajax.r=function(a){if(!a)return!1;if("string"==typeof a&&(a={url:a}),"POST"===a.method){var b="?";for(var c in a.options)b+=a.options.hasOwnProperty(c)?"&"+c+"="+a.options[c]:""}else{a.method="GET",a.url+=a.url.indexOf("?")<0?"?":"";for(var c in a.options)a.url+=a.options.hasOwnProperty(c)?"&"+c+"="+a.options[c]:""}this.x=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP"),this.x.o=a,this.x.c={t:[],e:[]},this.then=function(a){return this.x.c.t.push(a),this},this.error=function(a){return this.x.c.e.push(a),this},this.x.l=function(a,b){for(var c=0;c<this.c[a].length;c++)"function"==typeof this.c[a][c]&&this.c[a][c](b)},this.x.y=function(a){this.l("t",a)},this.x.z=function(a){this.l("e",a)},this.x.onreadystatechange=function(){if(4===this.readyState&&200==this.status){var a=this.responseText;if(this.o.json)try{a=JSON.parse(a)}catch(b){return this.z("invalid json"),!1}this.y(a)}else 4===this.readyState&&404==this.status?this.z("404"):4===this.readyState&&this.z("unknow")},this.x.open(a.method,a.url,!0),this.x.setRequestHeader("Content-type","application/x-www-form-urlencoded"),this.x.send("undefined"!=typeof b?b:null)};
+
+/*
+ *  Marmottajax 1.0.1
+ *  Envoyer et recevoir des informations simplement en JavaScript
+ */
+
+var marmottajax = function(options) {
+
+    return marmottajax.get(options);
+
+};
+
+marmottajax.normalize = function(parameters) {
+
+	return parameters ? (typeof parameters === "string" ? { url: parameters } : parameters) : false;
+
+};
+
+marmottajax.json = function(parameters) {
+
+    if (parameters = marmottajax.normalize(parameters)) {
+
+    	parameters.json = true;
+    	
+    	return new marmottajax.request(parameters);
+
+	}
+
+};
+
+marmottajax.get = function(options) {
+
+    return new marmottajax.request(options);
+
+};
+
+marmottajax.post = function(parameters) {
+
+    if (parameters = marmottajax.normalize(parameters)) {
+
+    	parameters.method = "POST";
+
+ 	   	return new marmottajax.request(parameters);
+
+	}
+
+};
+
+marmottajax.put = function(parameters) {
+
+    if (parameters = marmottajax.normalize(parameters)) {
+
+        parameters.method = "PUT";
+
+        return new marmottajax.request(parameters);
+
+    }
+
+};
+
+marmottajax.delete = function(parameters) {
+
+	if (parameters = marmottajax.normalize(parameters)) {
+
+    	parameters.method = "DELETE";
+
+ 	   	return new marmottajax.request(parameters);
+
+	}
+
+};
+
+marmottajax.request = function(options) {
+
+    if (!options) { return false; }
+
+    if (typeof options == "string") {
+
+        options = { url: options };
+
+    }
+
+    if (options.method === "POST") {
+
+        var post = "?";
+
+        for (var key in options.options) {
+
+            post += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
+
+        }
+
+    }
+
+    else if (options.method === "PUT") {
+
+        var post = "?";
+
+        for (var key in options.options) {
+
+            post += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
+
+        }
+
+    }
+
+    else if (options.method == "DELETE") {
+
+    	options.url += options.url.indexOf("?") < 0 ? "?" : "";
+
+        for (var key in options.options) {
+
+            options.url += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
+
+        }
+
+    }
+
+    else {
+
+        options.method = "GET";
+
+        options.url += options.url.indexOf("?") < 0 ? "?" : "";
+
+        for (var key in options.options) {
+
+            options.url += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
+
+        }
+
+    }
+
+    this.xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+
+    this.xhr.options = options;
+
+    this.xhr.callbacks = {
+
+        then: [],
+        error: []
+
+    };
+
+    this.then = function(callback) {
+
+        this.xhr.callbacks.then.push(callback);
+
+        return this;
+
+    };
+
+    this.error = function(callback) {
+
+        this.xhr.callbacks.error.push(callback);
+
+        return this;
+
+    };
+
+    this.xhr.call = function(categorie, result) {
+
+    	for (var i = 0; i < this.callbacks[categorie].length; i++) {
+
+    	    if (typeof(this.callbacks[categorie][i]) === "function") {
+
+    	        this.callbacks[categorie][i](result);
+
+    	    }
+
+    	}
+
+    }
+
+    this.xhr.returnSuccess = function(result) {
+
+    	this.call("then", result);
+
+    };
+
+    this.xhr.returnError = function(message) {
+
+    	this.call("error", message);
+
+    };
+
+    this.xhr.onreadystatechange = function() {
+
+        if (this.readyState === 4 && this.status == 200) {
+
+            var result = this.responseText;
+
+            if (this.options.json) {
+
+                try {
+
+                    result = JSON.parse(result);
+
+                }
+
+                catch (error) {
+
+                    this.returnError("invalid json");
+
+                    return false;
+
+                }
+
+            }
+
+            this.returnSuccess(result);
+
+        }
+
+        else if (this.readyState === 4 && this.status == 404) {
+
+            this.returnError("404");
+
+        }
+
+        else if (this.readyState === 4) {
+
+            this.returnError("unknow");
+
+        }
+
+    };
+
+    this.xhr.open(options.method, options.url, true);
+    this.xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    this.xhr.send(typeof post != "undefined" ? post : null);
+
+};

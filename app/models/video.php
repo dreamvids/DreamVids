@@ -5,6 +5,7 @@ require_once MODEL.'channel_action.php';
 require_once MODEL.'video_vote.php';
 require_once MODEL.'video_view.php';
 require_once MODEL.'user_action.php';
+require_once MODEL.'modo_action.php';
 
 class Video extends ActiveRecord\Model {
 
@@ -123,6 +124,74 @@ class Video extends ActiveRecord\Model {
 
 			VideoVote::delete_all(array('conditions' => array('user_id = ? and obj_id = ?', $userId, $this->id)));
 		}
+	}
+
+	// Admin/modos's actions
+	public function flag() {
+		if($this->flagged == 0) {
+			$this->flagged = 1;
+			$this->save();
+		}
+	}
+
+	public function unFlag($userId) {
+		if($this->flagged == 1) {
+			$this->flagged = 0;
+			$this->save();
+
+			ModoAction::create(array(
+				'id' => ModoAction::generateId(6),
+				'user_id' => $userId,
+				'type' => 'unflag',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+		}
+	}
+
+	public function suspend($userId) {
+		$visibility = Config::getValue_('vid_visibility_suspended');
+		$this->visibility = $visibility;
+		$this->save();
+
+		ModoAction::create(array(
+			'id' => ModoAction::generateId(6),
+			'user_id' => $userId,
+			'type' => 'suspend',
+			'target' => $this->id,
+			'timestamp' => Utils::tps()
+		));
+	}
+
+	public function unSuspend($userId) {
+		if($this->isSuspended()) {
+			$visibility = Config::getValue_('vid_visibility_public');
+			$this->visibility = $visibility;
+			$this->flagged = 0;
+			$this->save();
+
+			ModoAction::create(array(
+				'id' => ModoAction::generateId(6),
+				'user_id' => $userId,
+				'type' => 'unsuspend',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+		}
+	}
+
+	public function erase($userId) {
+		$this->delete();
+
+		//TODO: Delete file
+
+		ModoAction::create(array(
+			'id' => ModoAction::generateId(6),
+			'user_id' => $userId,
+			'type' => 'delete',
+			'target' => $this->id,
+			'timestamp' => Utils::tps()
+		));
 	}
 
 	public static function createTemp($id, $channelId) {

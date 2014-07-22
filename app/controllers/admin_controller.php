@@ -27,6 +27,25 @@ class AdminController extends Controller {
 	public function dashboard($request) {
 		if(Session::get()->isModerator() || Session::get()->isAdmin()) {
 			$data = array();
+			$data['currentPage'] = 'admin';
+
+			$data['rankStr'] = Session::get()->isModerator() ? 'Moderateur' : 'Admin';
+			$data['isModo'] = Session::get()->isModerator();
+			$data['isAdmin'] = Session::get()->isAdmin();
+			$data['user'] = Session::get();
+			$data['reportedVidsCount'] = Video::count(array('conditions' => array('flagged', 1)));
+			$data['reportedCommentsCount'] = 0; //TEMP
+
+			return new ViewResponse('admin/dashboard', $data, true, 'layouts/admin.php');
+		}
+		else
+			return Utils::getUnauthorizedResponse();
+	}
+
+	public function videos($request) {
+		if(Session::get()->isModerator() || Session::get()->isAdmin()) {
+			$data = array();
+			$data['currentPage'] = 'admin';
 
 			$data['rankStr'] = Session::get()->isModerator() ? 'Moderateur' : 'Admin';
 			$data['isModo'] = Session::get()->isModerator();
@@ -34,7 +53,7 @@ class AdminController extends Controller {
 
 			$data['reportedVids'] = Video::getReportedVideos();
 
-			return new ViewResponse('admin/dashboard', $data);
+			return new ViewResponse('admin/videos', $data, true, 'layouts/admin.php');
 		}
 		else
 			return Utils::getUnauthorizedResponse();
