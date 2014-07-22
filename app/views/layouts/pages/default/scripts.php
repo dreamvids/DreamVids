@@ -8,6 +8,7 @@
 <script src="<?php echo JS.'filePreview.js'; ?>"></script>
 <script src="<?php echo JS."bgLoader.js"; ?>"></script>
 <script src="<?php echo JS."video.js"; ?>"></script>
+<script src="<?php echo JS."admin.js"; ?>"></script>
 
 
 <!-- A remplacer par : -->

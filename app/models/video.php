@@ -80,6 +80,14 @@ class Video extends ActiveRecord\Model {
 		return VideoVote::exists(array('user_id' => $userId, 'obj_id' => $this->id, 'action' => 'dislike'));
 	}
 
+	public function updateInfo($newTitle, $newDescription, $newTags) {
+		$this->title = $newTitle;
+		$this->description = $newDescription;
+		$this->tags = $newTags;
+
+		$this->save();
+	}
+
 	public function like($userId) {
 		$voteId = VideoVote::generateId(6);
 		VideoVote::create(array('id' => $voteId, 'user_id' => $userId, 'type' => 'video', 'obj_id' => $this->id, 'action' => 'like'));

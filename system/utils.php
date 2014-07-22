@@ -162,4 +162,12 @@ class Utils {
 		return false;
 	}
 
+	public static function validateVideoInfo($title, $description, $tags) {
+		if(!empty($title) && !empty($description) && !empty($tags)) {
+			return true;
+		}
+
+		return false;
+	}
+
 }

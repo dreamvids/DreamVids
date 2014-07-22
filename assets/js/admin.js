@@ -26,10 +26,12 @@ function unSuspend(vidId) {
 }
 
 function erase(vidId) {
-	marmottajax.delete({
-		url: '../videos/' + vidId,
-		options: {}
-	}).then(function(result) {
-		window.location.reload();
-	});
+	if(confirm("Voulez-vous vraiment effacer cette video DEFINITIVEMENT ?")) {
+		marmottajax.delete({
+			url: '../videos/' + vidId,
+			options: {}
+		}).then(function(result) {
+			window.location.reload();
+		});
+	}
 }

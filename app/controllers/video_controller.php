@@ -79,7 +79,30 @@ public function __construct() {
 
 		if(Session::isActive()) {
 			if($video = Video::find($id)) {
-				if(isset($req['flag']) && !empty($req['flag'])) {
+				if(isset($req['video-edit-submit'], $req['video-title'], $req['video-description'], $req['video-tags'])) {
+					$data['video'] = $video;
+
+					$title = $req['video-title'];
+					$description = $req['video-description'];
+					$tags = $req['video-tags'];
+
+					if(Utils::validateVideoInfo($title, $description, $tags)) {
+						$video->updateInfo($title, $description, $tags);
+						$data['video'] = $video;
+
+						$response = new ViewResponse('video/edit', $data);
+						$response->addMessage(ViewMessage::success('Votre video a bien été modifitée !'));
+
+						return $response;
+					}
+					else {
+						$response = new ViewResponse('video/edit', $data);
+						$response->addMessage(ViewMessage::error('Les informations ne sont pas valides !'));
+
+						return $response;
+					}
+				}
+				else if(isset($req['flag']) && !empty($req['flag'])) {
 					$flag = $req['flag'];
 
 					if($flag == 'false' && (Session::get()->isModerator() || Session::get()->isAdmin())) {
@@ -168,76 +191,19 @@ public function __construct() {
 	}
 
 	public function edit($id, $request) {
-		
+		if(Session::isActive()) {
+			if($video = Video::find($id)) {
+				$data = array();
+
+				$data['video'] = $video;
+				return new ViewResponse('video/edit', $data);
+			}
+			else
+				return new RedirectResponse(WEBROOT.'account/videos');
+		}
+		else 
+			return new RedirectResponse(WEBROOT.'login');
 	}
-
-	// Called by "GET /video/:id/like"
-	/*public function like($id, $request) {
-		if(Session::isActive() && Video::exists(array('id' => $id))) {
-			$userId = Session::get()->id;
-			$video = Video::find($id);
-
-			if(!$video->isLikedByUser($userId)) {
-				if($video->isDislikedByUser($userId)) {
-					$video->removeDislike($userId);
-				}
-
-				$video->like($userId);
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}*/
-
-	// Called by "GET /video/:id/unlike"
-	/*public function unlike($id, $request) {
-		if(Session::isActive() && Video::exists(array('id' => $id))) {
-			$video = Video::find($id);
-			$userId = Session::get()->id;
-
-			if($video->isLikedByUser($userId)) {
-				$video->removeLike($userId);
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}*/
-
-	// Called by "GET /video/:id/dislike"
-	/*public function dislike($id, $request) {
-		if(Session::isActive() && Video::exists(array('id' => $id))) {
-			$userId = Session::get()->id;
-			$video = Video::find($id);
-
-			if(!$video->isDislikedByUser($userId)) {
-				if($video->isLikedByUser($userId)) {
-					$video->removeLike($userId);
-				}
-
-				$video->dislike($userId);
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}*/
-
-	// Called by "GET /video/:id/undislike"
-	/*public function undislike($id, $request) {
-		if(Session::isActive() && Video::exists(array('id' => $id))) {
-			$video = Video::find($id);
-			$userId = Session::get()->id;
-
-			if($video->isDislikedByUser($userId)) {
-				$video->removeDislike($userId);
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}*/
 
 	public function index($request) {}
 
