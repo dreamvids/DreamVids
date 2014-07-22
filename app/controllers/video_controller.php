@@ -62,6 +62,7 @@ public function __construct() {
 		$data['dislikedByUser'] = Session::isActive() ? $video->isDislikedByUser(Session::get()->id) : false;
 		$data['recommendations'] = $video->getAssociatedVideos();
 		$data['channels'] = Session::isActive() ? Session::get()->getOwnedChannels() : array();
+		$data['flagged'] = $video->isFlagged();
 
 		$data['currentPage'] = "watch";
 
@@ -76,17 +77,21 @@ public function __construct() {
 	public function update($id, $request) {
 		$req = $request->getParameters();
 
-		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) {
+		if(Session::isActive()) {
 			if($video = Video::find($id)) {
 				if(isset($req['flag']) && !empty($req['flag'])) {
 					$flag = $req['flag'];
 
-					if($flag == 'false') {
+					if($flag == 'false' && (Session::get()->isModerator() || Session::get()->isAdmin())) {
 						$video->unFlag(Session::get()->id);
 						return new Response(200);
 					}
+					else if($flag == 'true') {
+						$video->flag(Session::get()->id);
+						return new Response(200);
+					}
 				}
-				else if(isset($req['suspend']) && !empty($req['suspend'])) {
+				else if(isset($req['suspend']) && !empty($req['suspend']) && (Session::get()->isModerator() || Session::get()->isAdmin())) {
 					$suspend = $req['suspend'];
 
 					if($suspend == 'false') {
@@ -95,6 +100,47 @@ public function __construct() {
 					}
 					else if($suspend == 'true') {
 						$video->suspend(Session::get()->id);
+						return new Response(200);
+					}
+				}
+				else if(isset($req['like'])) {
+					$userId = Session::get()->id;
+
+					if(!$video->isLikedByUser($userId)) {
+						if($video->isDislikedByUser($userId)) {
+							$video->removeDislike($userId);
+						}
+
+						$video->like($userId);
+						return new Response(200);
+					}
+				}
+				else if(isset($req['dislike'])) {
+					$userId = Session::get()->id;
+
+					if(!$video->isDislikedByUser($userId)) {
+						if($video->isLikedByUser($userId)) {
+							$video->removeLike($userId);
+						}
+
+						$video->dislike($userId);
+						return new Response(200);
+					}
+				}
+				else if(isset($req['unlike'])) {
+					$userId = Session::get()->id;
+
+					if($video->isLikedByUser($userId)) {
+						$video->removeLike($userId);
+						return new Response(200);
+					}
+					
+				}
+				else if(isset($req['undislike'])) {
+					$userId = Session::get()->id;
+
+					if($video->isDislikedByUser($userId)) {
+						$video->removeDislike($userId);
 						return new Response(200);
 					}
 				}
@@ -126,7 +172,7 @@ public function __construct() {
 	}
 
 	// Called by "GET /video/:id/like"
-	public function like($id, $request) {
+	/*public function like($id, $request) {
 		if(Session::isActive() && Video::exists(array('id' => $id))) {
 			$userId = Session::get()->id;
 			$video = Video::find($id);
@@ -142,10 +188,10 @@ public function __construct() {
 		}
 
 		return new Response(500);
-	}
+	}*/
 
 	// Called by "GET /video/:id/unlike"
-	public function unlike($id, $request) {
+	/*public function unlike($id, $request) {
 		if(Session::isActive() && Video::exists(array('id' => $id))) {
 			$video = Video::find($id);
 			$userId = Session::get()->id;
@@ -157,10 +203,10 @@ public function __construct() {
 		}
 
 		return new Response(500);
-	}
+	}*/
 
 	// Called by "GET /video/:id/dislike"
-	public function dislike($id, $request) {
+	/*public function dislike($id, $request) {
 		if(Session::isActive() && Video::exists(array('id' => $id))) {
 			$userId = Session::get()->id;
 			$video = Video::find($id);
@@ -176,10 +222,10 @@ public function __construct() {
 		}
 
 		return new Response(500);
-	}
+	}*/
 
 	// Called by "GET /video/:id/undislike"
-	public function undislike($id, $request) {
+	/*public function undislike($id, $request) {
 		if(Session::isActive() && Video::exists(array('id' => $id))) {
 			$video = Video::find($id);
 			$userId = Session::get()->id;
@@ -191,47 +237,7 @@ public function __construct() {
 		}
 
 		return new Response(500);
-	}
-
-	public function flag($id, $request) {
-		if(Session::isActive()) {
-			if($video = Video::find($id)) {
-				$video->flag();
-
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}
-
-	public function unflag($id, $request) {
-		
-	}	
-
-	public function suspend($id, $request) {
-		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) {
-			if($video = Video::find($id)) {
-				$video->suspend(Session::get()->id);
-
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}
-
-	public function unsuspend($id, $request) {
-		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) {
-			if($video = Video::find($id)) {
-				$video->unSuspend(Session::get()->id);
-
-				return new Response(200);
-			}
-		}
-
-		return new Response(500);
-	}
+	}*/
 
 	public function index($request) {}
 

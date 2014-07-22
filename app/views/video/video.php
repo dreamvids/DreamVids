@@ -82,7 +82,7 @@
 		<div class="buttons">
 
 			<img class="share" src="<?php echo IMG.'share.png'; ?>">
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>">
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" style="cursor: pointer; cursor: hand;">
 			<a href="http://yolo.com" target="_blank"><img class="download" src="<?php echo IMG.'download.png'; ?>"></a>
 			<img class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<input class="embed" type="checkbox" onclick="document.getElementById('embed-input').select();">
@@ -92,12 +92,18 @@
 
 	</section>
 
-	<form method="post" action="" role="form" class="moderating-commands">
-		<button class="blue" name="unflag_vid">Annuler le flag</button>			
-		<a href="messages?to=Simpleworld"><button type="button" class="orange" name="send_message_author">Envoyer un message</button></a>
-		<button class="red" name="suspend_vid">Suspendre</button>
-		<button type="submit" class="red" name="request_delete_vid">Demander la suppression</button>
-	</form>
+	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())): ?>
+		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
+			<?php if ($video->isFlagged()): ?>
+				<button class="blue" onclick="unFlag('<?php echo $video->id; ?>')">Annuler le flag</button>
+			<?php endif ?>
+
+			<!--<a href="messages?to=Simpleworld"><button type="button" class="orange" name="send_message_author">Envoyer un message</button></a>-->
+
+			<button class="red" onclick="suspend('<?php echo $video->id; ?>')">Suspendre</button>
+			<button class="red" onclick="alert('Pas encore implémenté')">Demander la suppression</button>
+		</form>
+	<?php endif ?>
 
 </section>
 
@@ -120,6 +126,9 @@
 		<h3 class="title">Commentaires Populaires</h3>
 
 		<div id="comments-best">
+			<?php if (empty($comments)): ?>
+				<p>Aucun commentaire à propos de cette video</p>
+			<?php endif ?>
 			<?php foreach ($comments as $comment): ?>
 				<div class="comment">
 					<div class="comment-head">

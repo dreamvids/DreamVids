@@ -68,6 +68,10 @@ class Video extends ActiveRecord\Model {
 		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_suspended')));
 	}
 
+	public function isFlagged() {
+		return $this->flagged == 1;
+	}
+
 	public function isLikedByUser($userId) {
 		return VideoVote::exists(array('user_id' => $userId, 'obj_id' => $this->id, 'action' => 'like'));
 	}
@@ -127,10 +131,18 @@ class Video extends ActiveRecord\Model {
 	}
 
 	// Admin/modos's actions
-	public function flag() {
+	public function flag($userId) {
 		if($this->flagged == 0) {
 			$this->flagged = 1;
 			$this->save();
+
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $userId,
+				'type' => 'flag',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
 		}
 	}
 
@@ -152,6 +164,7 @@ class Video extends ActiveRecord\Model {
 	public function suspend($userId) {
 		$visibility = Config::getValue_('vid_visibility_suspended');
 		$this->visibility = $visibility;
+		$this->flagged = 1;
 		$this->save();
 
 		ModoAction::create(array(

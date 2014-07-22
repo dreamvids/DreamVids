@@ -1,5 +1,5 @@
 <div class="content">
-	<h1 class="title">Panel <?php echo $rankStr; ?> - Videos reportés</h1>
+	<h1 class="title">Panel <?php echo $rankStr; ?> - Videos reportés/suspendues</h1>
 
 	<div class="reports">
 		<table class="pure-table">

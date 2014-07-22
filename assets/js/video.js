@@ -1,6 +1,6 @@
 
 /**
- * Votes
+ * Video actions
  */
 
 function votePlus(vid, element) {
@@ -24,7 +24,11 @@ function votePlus(vid, element) {
         plusElement.className = plusElement.className.replace("active", "")
         plusElement.innerHTML = parseInt(plusElement.innerHTML) - 1;
 
-        ajax.get("unlike/" + vid, {});
+        // Unlike video
+        marmottajax.put({
+            'url': '../videos/' + vid,
+            'options': { unlike: true }
+        });
 
     }
 
@@ -33,14 +37,22 @@ function votePlus(vid, element) {
         plusElement.className = plusElement.className + " active";
         plusElement.innerHTML = parseInt(plusElement.innerHTML) + 1;
 
-        ajax.get("like/" + vid, {});
+        // Like video
+        marmottajax.put({
+            'url': '../videos/' + vid,
+            'options': { like: true }
+        });
 
         if (moinsElement.className.search("active") > -1) {
 
             moinsElement.className = moinsElement.className.replace("active", "");
             moinsElement.innerHTML = parseInt(moinsElement.innerHTML) - 1;
 
-            ajax.get("undislike/" + vid, {});
+            // Undislike video
+            marmottajax.put({
+                'url': '../videos/' + vid,
+                'options': { undislike: true }
+            });
 
         }
 
@@ -69,7 +81,11 @@ function voteMoins(vid, element) {
         moinsElement.className = moinsElement.className.replace("active", "")
         moinsElement.innerHTML = parseInt(moinsElement.innerHTML) - 1;
 
-        ajax.get("undislike/" + vid, {});
+        // Undislike video
+        marmottajax.put({
+            'url': '../videos/' + vid,
+            'options': { undislike: true }
+        });
 
     }
 
@@ -78,17 +94,40 @@ function voteMoins(vid, element) {
         moinsElement.className = moinsElement.className + " active";
         moinsElement.innerHTML = parseInt(moinsElement.innerHTML) + 1;
 
-        ajax.get("dislike/" + vid, {});
+        // Dislike video
+        marmottajax.put({
+            'url': '../videos/' + vid,
+            'options': { dislike: true }
+        });
 
         if (plusElement.className.search("active") > -1) {
 
             plusElement.className = plusElement.className.replace("active", "");
             plusElement.innerHTML = parseInt(plusElement.innerHTML) - 1;
 
-            ajax.get("unlike/" + vid, {});
+            // Unlike video
+            marmottajax.put({
+                'url': '../videos/' + vid,
+                'options': { unlike: true }
+            });
 
         }
 
     }
 
+}
+
+function flag(vid) {
+
+    if(confirm("Attention ! Cette video sera envoyée aux moderateurs ! Voulez-vous continuer ?")) {
+
+        marmottajax.put({
+
+            'url': '../videos/' + vid,
+
+            'options': { flag: true }
+
+        });
+
+    }
 }
