@@ -59,6 +59,10 @@ class Request {
 		return strpos($this->acceptedData, 'application/json') !== false;
 	}
 
+	public function getParameter($key) {
+		return isset($this->parameters[$key]) ? $this->parameters[$key] : false;
+	}
+
 	public function getParameters() {
 		return $this->parameters;
 	}
