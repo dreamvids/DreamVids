@@ -111,7 +111,7 @@ class Router {
 					// Exemple: /posts/42
 					else {
 						if($controller->isActionAllowed(Action::GET)) {
-							$response = call_user_func_array(array($controller, 'get'), array($uriParameters[1], $request));
+							$response = call_user_func_array(array($controller, 'get'), array(Utils::secure($uriParameters[1]), $request));
 							Utils::sendResponse($response);
 						}
 						else
@@ -126,7 +126,7 @@ class Router {
 						unset($uriParameters[0]);
 						unset($uriParameters[1]);
 
-						$response = call_user_func_array(array($controller, $methodName), array($uriParameters, $request));
+						$response = call_user_func_array(array($controller, $methodName), array(Utils::secureArray($uriParameters), $request));
 						Utils::sendResponse($response);
 					}
 					// Example: /posts/42/edit --> call function edit (if it exists)
@@ -137,7 +137,7 @@ class Router {
 							unset($uriParameters[0]);
 							unset($uriParameters[2]);
 
-							$response = call_user_func_array(array($controller, $methodName), array($uriParameters, $request));
+							$response = call_user_func_array(array($controller, $methodName), array(Utils::secureArray($uriParameters), $request));
 							Utils::sendResponse($response);
 						}
 						else {
@@ -170,7 +170,7 @@ class Router {
 							$request->setParameters($_POST);
 						}
 
-						$response = call_user_func_array(array($controller, 'update'), array($uriParameters[1], $request));
+						$response = call_user_func_array(array($controller, 'update'), array(Utils::secure($uriParameters[1]), $request));
 
 						Utils::sendResponse($response);
 					}
@@ -182,7 +182,7 @@ class Router {
 			case Method::DELETE:
 				if(count($uriParameters) == 2) {
 					if($controller->isActionAllowed(Action::DESTROY)) {
-						$response = call_user_func_array(array($controller, 'destroy'), array($uriParameters[1], $request));
+						$response = call_user_func_array(array($controller, 'destroy'), array(Utils::secure($uriParameters[1]), $request));
 						Utils::sendResponse($response);
 					}
 					else

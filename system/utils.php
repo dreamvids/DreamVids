@@ -72,7 +72,19 @@ class Utils {
 	}
 
 	public static function secure($str) {
-		return htmlspecialchars(strip_tags(stripslashes($str)), ENT_QUOTES, 'UTF-8');
+		return htmlentities(strip_tags(stripslashes($str)), ENT_QUOTES, 'UTF-8');
+	}
+
+	public static function secureArray($array) {
+		$secureArray = array();
+
+		foreach ($array as $key => $value) {
+			if(is_string($value)) {
+				$secureArray[$key] = Utils::secure($value);
+			}
+		}
+
+		return $secureArray;
 	}
 
 	public static function stringStartsWith($haystack, $needle) {

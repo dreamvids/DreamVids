@@ -25,6 +25,10 @@ class Video extends ActiveRecord\Model {
 				'hash' => $hash,
 				'date' => Utils::tps()
 			));
+
+			$chan = $this->getAuthor();
+			$chan->views++;
+			$chan->save();
 		}
 	}
 
