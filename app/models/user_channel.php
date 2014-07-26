@@ -39,6 +39,15 @@ class UserChannel extends ActiveRecord\Model {
 		return $adminsStr;
 	}
 
+	public function getAvatar() {
+		$avatar = Config::getValue_('default-avatar');
+
+		if(file_exists($this->avatar) || ($isUrl = Utils::isUrlValid($this->avatar)))
+			$avatar = isset($isUrl) ? $this->avatar : WEBROOT.$this->avatar;
+
+		return $avatar;
+	}
+
 	public function belongToUser($userId) {
 		if(User::exists($userId)) {
 			$ownedChannels = User::find($userId)->getOwnedChannels();

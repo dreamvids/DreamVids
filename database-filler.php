@@ -5,6 +5,8 @@
 *	Use it to fill a test DreamVids database (version 2)
 */
 
+define('WEBROOT', str_replace('database-filler.php', '', $_SERVER['SCRIPT_NAME']), true);
+
 class DatabaseFiller {
 	private $dbHost = 'localhost';
 	private $dbUser = 'root';
@@ -50,7 +52,7 @@ class DatabaseFiller {
 					'Chaine de ".$username."',
 					'".$userId."',
 					'".$userId.";',
-					'',
+					'".WEBROOT."assets/img/favicon.png',
 					'',
 					'',
 					'0',

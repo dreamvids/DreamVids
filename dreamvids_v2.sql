@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 23 Juillet 2014 à 16:16
+-- Généré le :  Sam 26 Juillet 2014 à 19:45
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -93,17 +93,30 @@ CREATE TABLE IF NOT EXISTS `contributors` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `conversations`
+--
+
+CREATE TABLE IF NOT EXISTS `conversations` (
+  `id` varchar(6) NOT NULL,
+  `object` varchar(255) NOT NULL,
+  `members_ids` varchar(255) NOT NULL,
+  `thumbnail` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `messages`
 --
 
 CREATE TABLE IF NOT EXISTS `messages` (
-  `int_id` int(11) NOT NULL AUTO_INCREMENT,
   `id` varchar(6) NOT NULL,
-  `sender` int(11) NOT NULL,
-  `recipient` int(11) NOT NULL,
-  `content` text NOT NULL,
+  `sender_id` varchar(6) NOT NULL,
+  `conversation_id` varchar(6) NOT NULL,
+  `content` varchar(255) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
-  PRIMARY KEY (`int_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

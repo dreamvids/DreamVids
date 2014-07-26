@@ -8,10 +8,6 @@ class Router {
 
 	private $customRoutes = array();
 
-	public function __construct() {
-
-	}
-
 	public function executeRequest($request) {
 		if(!is_object($request) || get_class($request) != 'Request')
 			return false;

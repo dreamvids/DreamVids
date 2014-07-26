@@ -147,7 +147,9 @@ class AccountController extends Controller {
 			$data = array();
 			$data['current'] = 'messages';
 
-			return new ViewResponse('account/messages');
+			$data['channels'] = Session::get()->getOwnedChannels();
+
+			return new ViewResponse('account/messages', $data);
 		}
 		else
 			return new RedirectResponse(WEBROOT.'login');

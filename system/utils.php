@@ -182,4 +182,9 @@ class Utils {
 		return false;
 	}
 
+	public static function isUrlValid($url) {
+		$fileHeaders = @get_headers($url);
+		return strpos($fileHeaders[0], '200 OK') !== false;
+	}
+
 }

@@ -9,6 +9,7 @@
 <script src="<?php echo JS."bgLoader.js"; ?>"></script>
 <script src="<?php echo JS."video.js"; ?>"></script>
 <script src="<?php echo JS."admin.js"; ?>"></script>
+<script src="<?php echo JS."messages.js"; ?>"></script>
 
 
 <!-- A remplacer par : -->

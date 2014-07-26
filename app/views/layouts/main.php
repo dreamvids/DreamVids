@@ -55,7 +55,7 @@
 
 									<span class="user-information-button" id="top-nav-user-information-button">
 
-										<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
+										<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar" id="top-nav-user-information-button-img">
 										<h4><?php echo Session::isActive() ? Session::get()->username : 'Bienvenue, invité'; ?></h4>
 										<img class="arrow" src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations">
 										

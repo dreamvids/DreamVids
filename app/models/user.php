@@ -285,6 +285,7 @@ class User extends ActiveRecord\Model {
 			'description' => '',
 			'owner_id' => User::getIdByName($username),
 			'admins_ids' => User::getIdByName($username).';',
+			'avatar' => Config::getValue_('default-avatar'),
 			'subscribers' => 0,
 			'views' => 0
 		));
