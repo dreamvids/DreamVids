@@ -42,8 +42,12 @@ class UserChannel extends ActiveRecord\Model {
 	public function getAvatar() {
 		$avatar = Config::getValue_('default-avatar');
 
+		if(empty($this->avatar)) return $avatar;
+
 		if(file_exists($this->avatar) || ($isUrl = Utils::isUrlValid($this->avatar)))
 			$avatar = isset($isUrl) ? $this->avatar : WEBROOT.$this->avatar;
+		else if(strpos($this->avatar, WEBROOT))
+			$avatar = $this->avatar;
 
 		return $avatar;
 	}

@@ -1,16 +1,13 @@
 <div class="content">
 	<section class="messages">
-		<h1 class="title">Messages privés
-			<button onclick="createDiscution();">Nouveau</button>
-		</h1>
-
-		
-		<small>Poster au nom de</small>
+		<h1 class="title">Messages privés de
 			<select name="channels" id="channels">
 			<?php foreach ($channels as $channel): ?>
 				<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
 			<?php endforeach ?>
-		</select>
+			</select>
+			<button onclick="createDiscution();">Nouveau</button>
+		</h1>
 
 		<aside class="list">
 			<select name="sorts-dropdown" id="sorts-dropdown">

@@ -136,7 +136,7 @@ function loadMessagesInList(sorts) {
     }
 
     marmottajax.get({
-        'url': '../conversations.json',
+        'url': '../conversations/channel/' + channelSelector.value + '.json',
     }).then(function(result) {
         messagesList.innerHTML = "";
 
@@ -249,4 +249,12 @@ createSubmit.addEventListener('click', function() {
 
 sortsDropdown.addEventListener('change', function(event) {
     loadMessagesInList(sortsDropdown.value);
+}, false);
+
+channelSelector.addEventListener('change', function(event) {
+    loadMessagesInList(sortsDropdown.value);
+    /*removeAllChilds(messageRightContent);
+    var loading = document.createTextNode('Chargement...');
+    messageRightContent.appendChild(loading);*/
+
 }, false);

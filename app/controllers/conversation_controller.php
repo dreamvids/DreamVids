@@ -50,28 +50,31 @@ class ConversationController extends Controller {
 
 				$messages = $conv->getMessages();
 				foreach ($messages as $message) {
-					$sender = UserChannel::find($message->sender_id);
-					$senderAvatar = $sender->getAvatar();
+					$sender = UserChannel::exists($message->sender_id) ? UserChannel::find($message->sender_id) : false;
 
-					$messagesData[] = array(
-						'id' => 'id',
-						'pseudo' => $sender->name,
-						'avatar' => $senderAvatar,
-						'text' => $message->content,
-						'mine' => $sender->belongToUser(Session::get()->id)
-					);
+					if(is_object($sender)) {
+						$senderAvatar = $sender->getAvatar();
+
+						$messagesData[] = array(
+							'id' => 'id',
+							'pseudo' => $sender->name,
+							'avatar' => $senderAvatar,
+							'text' => $message->content,
+							'mine' => $sender->belongToUser(Session::get()->id)
+						);
+					}
 				}
 
 				$conversationsData = array();
 
 				$avatar = $conv->thumbnail;
 
-				if(!is_array(getimagesize($avatar))) { // if the image is invalid
+				/*if(!is_array(getimagesize($avatar))) { // if the image is invalid
 					if(is_array(getimagesize(WEBROOT.$avatar)))
 						$avatar = WEBROOT.$avatar;
 					else
 						$avatar = Config::getValue_('default-avatar');
-				}
+				}*/
 
 
 				$conversationsData['infos'] = array(
@@ -103,7 +106,7 @@ class ConversationController extends Controller {
 				$creator = Utils::secure($req['creator']);
 				$subject = !empty(Utils::secure($req['subject'])) ? Utils::secure($req['subject']) : 'Sans titre';
 
-				if(($sender = UserChannel::find($creator)) && strpos($membersStr, ';')) {
+				if(($sender = UserChannel::find($creator))/* && strpos($membersStr, ';') */) {
 					if(Utils::stringStartsWith($membersStr, ';'))
 						$membersStr = substr_replace($membersStr, '', 0, 1);
 					if(Utils::stringEndsWith($membersStr, ';'))
@@ -126,6 +129,9 @@ class ConversationController extends Controller {
 							}
 						}
 					}
+					else if($chann = UserChannel::find_by_name($membersStr)) {
+						$membersIdsFinal .= $chann->id.';';
+					}
 					else {
 						$response = new Response(500);
 						$response->setBody('Error: les destinataires doivent être séparés par un \';\' !');
@@ -143,6 +149,32 @@ class ConversationController extends Controller {
 			}
 		}
 		
+		return new Response(500);
+	}
+
+	// /conversations/channel/:id
+	public function channel($id, $request) {
+		if(Session::isActive() && ($channel = UserChannel::find($id)) && ($channel->belongToUser(Session::get()->id))) {
+			if($request->acceptsJson()) {
+				$conversations = Conversation::getByChannel($channel);
+
+				$conversationsData = array();
+				foreach($conversations as $conv) {
+					$conversationsData[] = array(
+						'id' => $conv->id,
+						'title' => $conv->object,
+						'members' => $conv->getMemberChannelsName(),
+						'avatar' => $conv->getThumbnail(),
+						'text' => $conv->getLastMessage() ? $conv->getLastMessage()->content : 'Aucun message'
+					);
+				}
+
+				return new JsonResponse($conversationsData);
+			}
+		}
+		else
+			return Utils::getUnauthorizedResponse();
+
 		return new Response(500);
 	}
 

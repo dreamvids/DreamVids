@@ -30,7 +30,10 @@ class MessageController extends Controller {
 
 				$channel = UserChannel::exists($sender) ? UserChannel::find($sender) : false;
 
-				if($channel && $channel->belongToUser(Session::get()->id) && Conversation::exists($conversation)) {
+				if($channel && $channel->belongToUser(Session::get()->id) && ($conv = Conversation::find($conversation))) {
+					if(!$conv->containsChannel($channel))
+						return Utils::getUnauthorizedResponse();
+
 					$message = Message::sendNew($sender, $conversation, $content);
 
 					$messageData = array(

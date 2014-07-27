@@ -59,7 +59,7 @@ class ChannelController extends Controller {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
 						if(UserChannel::isNameFree($name)) {
-							UserChannel::addNew($name, $descr, '', '', '');
+							UserChannel::addNew($name, $descr, Config::getValue_('default-avatar'), '', '');
 							$data['channels'] = Session::get()->getOwnedChannels();
 
 							$response = new ViewResponse('accout/channel_list', $data);
