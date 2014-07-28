@@ -1,7 +1,4 @@
 function postComment(vid, commentContent, fromChannel) {
-<<<<<<< HEAD
-	ajax.post('video/' + vid, {'commentSubmit': 'lol', 'comment-content': commentContent, 'from-channel': fromChannel});
-=======
 	marmottajax.post({
 		'url': '../comments/',
 		'options': {'commentSubmit': 'lol', 'comment-content': commentContent, 'from-channel': fromChannel, 'video-id': vid}
@@ -124,5 +121,4 @@ function dislikeComment(commentId) {
 		}
 		catch(e) {}
 	});
->>>>>>> dreamvids-2.0-dev
 }

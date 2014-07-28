@@ -1,23 +1,7 @@
-<<<<<<< HEAD
-.cache/
-.settings/
-.project
-uploads/
-includes/bdd.class.php
-/nbproject/private/
-
-vendor/
-composer.lock
-composer.phar
-
-module_creator.php
-.htpasswd
-=======
 vendor/
 
 composer.phar
 composer.lock
->>>>>>> dreamvids-2.0-dev
 
 .sass-cache
 node_modules

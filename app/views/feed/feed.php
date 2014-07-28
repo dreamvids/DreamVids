@@ -2,11 +2,7 @@
 	<aside class="aside-channels">
 		<h3 class="title">Mes abonnements</h3>
 		<ul class="limited">
-<<<<<<< HEAD
-			<?php if (empty($subscriptions)): ?>
-=======
 			<?php if(empty($subscriptions)): ?>
->>>>>>> dreamvids-2.0-dev
 				<p style="text-align: center; color: #858484;">Vous n'avez aucun abonnement !</p>
 			<?php endif ?>
 
@@ -29,13 +25,10 @@
 	<aside class="aside-cards-list">
 		<h3 class="title">Flux d'activité</h3>
 
-<<<<<<< HEAD
-=======
 		<?php if(empty(@$actions)): ?>
 			<p style="text-align: center; color: #858484;">Aucun évenement récent</p>
 		<?php endif ?>
 
->>>>>>> dreamvids-2.0-dev
 		<?php
 			foreach(@$actions as $action) {
 				if($action) {
@@ -61,11 +54,7 @@
 						?>
 							<div class="card channel">
 								<a href="<?php echo WEBROOT.'channel/'.$user_action_name; ?>">
-<<<<<<< HEAD
-									<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
-=======
 									<div class="avatar bgLoader" data-background="<?php echo User::find($action->user_id)->getMainChannel()->getBackground(); ?>"></div>
->>>>>>> dreamvids-2.0-dev
 									<p><b><?php echo $user_action_name ?></b> s'est abonné à votre chaîne</p>
 								</a>
 								<!-- <span class="subscriber"><b>64 520</b> Abonnés</span> -->

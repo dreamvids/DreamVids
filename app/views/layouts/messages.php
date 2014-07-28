@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-<?php if(isset($error)) { ?>
-	<p style="color: #f00;"><?php echo $error ?></p>
-	<br>
-<?php } ?>
-
-<?php if(isset($success)) { ?>
-	<p style="color: #0f0;"><?php echo $success ?></p>
-	<br>
-<?php } ?>
-=======
 <?php foreach ($messagesArray as $message): ?>
 	<?php if ($message->isError()): ?>
 
@@ -25,4 +14,3 @@
 		
 	<?php endif ?>
 <?php endforeach ?>
->>>>>>> dreamvids-2.0-dev

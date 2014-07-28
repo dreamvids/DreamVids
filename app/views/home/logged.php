@@ -13,48 +13,6 @@
 		
 		<div id="boxBest">
 			<h3>Vidéos à découvrir :</h3>
-<<<<<<< HEAD
-			<ul id="sliderList" class="slide1">
-				<li onclick="slideTo(1);"></li>
-				<li onclick="slideTo(2);"></li>
-				<li onclick="slideTo(3);"></li>
-			</ul>
-			
-			<section id="slider" class="slide1">
-				<div id="slide">
-					<?php for($i = 0; $i < count($discoverVids) - 4; $i++): ?>
-						<div class="card video">
-							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
-							<div class="description">
-								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
-							</div>
-						</div>
-					<?php endfor ?>
-				</div>
-
-				<div id="slide">
-					<?php for($i = 2; $i < count($discoverVids) - 2; $i++): ?>
-						<div class="card video">
-							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
-							<div class="description">
-								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
-							</div>
-						</div>
-					<?php endfor ?>
-				</div>
-
-				<div id="slide">
-					<?php for($i = 4; $i < count($discoverVids); $i++): ?>
-						<div class="card video">
-							<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
-							<div class="description">
-								<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
-							</div>
-						</div>
-					<?php endfor ?>
-				</div>
-			</section>
-=======
 			
 			<?php for($i = 0; $i < count($discoverVids) - 4; $i++): ?>
 				<div class="card video">
@@ -65,7 +23,6 @@
 				</div>
 			<?php endfor ?>
 
->>>>>>> dreamvids-2.0-dev
 		</div>
 	</section>
 </div>
@@ -114,11 +71,7 @@
 
 		<?php if(sizeof($subscriptions_vids) == 0) { ?>
 			<p style="text-align: center; color: #858484;">Aucune nouvelles vidéos de vos abonnement</p>
-<<<<<<< HEAD
-			<p style="text-align: center; color: #858484;">Rendez-vous sur la page <a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a> pour découvrir de nouveux créateurs !</p>
-=======
 			<p style="text-align: center; color: #858484;">Allez <a href="<?php echo WEBROOT.'discover'; ?>">découvrir</a> de nouveux créateurs !</p>
->>>>>>> dreamvids-2.0-dev
 		<?php } ?>
 
 		<!--<a href="<?php echo WEBROOT.'feed'; ?>" class="big-button">Voir mon flux d'acivité</a>-->

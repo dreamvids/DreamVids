@@ -4,18 +4,11 @@
 		<h1 class="title">Espace membre</h1>
 
 		<?php
-<<<<<<< HEAD
-			include VIEW.'layouts/accountMenu.php';
-			include VIEW.'layouts/messages.php';
-		?>
-
-=======
 			include VIEW.'layouts/account_menu.php';
 		?>
 
 		<?php @include $messages; ?>
 
->>>>>>> dreamvids-2.0-dev
 		<aside class="long-cards-list">
 
 			<?php if(!empty($videos)) { ?>
@@ -29,13 +22,8 @@
 				<div class="description">
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>"><h4><?php echo $video->title; ?></h4></a>
 					<span class="buttons">
-<<<<<<< HEAD
-						<button>Paramètres</button>
-						<button>Supprimer</button>
-=======
 						<a href="<?php echo WEBROOT.'videos/'.$video->id.'/edit'; ?>"><button>Paramètres</button></a>
 						<button onclick="erase('<?php echo $video->id; ?>')">Supprimer</button>
->>>>>>> dreamvids-2.0-dev
 					</span>
 					<div><span class="view"><?php echo $video->views; ?></span><span class="plus"><?php echo $video->likes; ?></span><span class="moins"><?php echo $video->dislikes; ?></span></div>
 				</div>

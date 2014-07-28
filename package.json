@@ -1,11 +1,8 @@
 {
   "devDependencies": {
     "grunt": "~0.4.4",
-<<<<<<< HEAD
-=======
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-uglify": "~0.4.0",
->>>>>>> dreamvids-2.0-dev
     "grunt-contrib-sass": "~0.7.3",
     "grunt-contrib-cssmin": "~0.9.0",
     "grunt-contrib-watch": "~0.6.1"

@@ -309,10 +309,7 @@
 			}
 
 			h3 {
-<<<<<<< HEAD
-=======
 
->>>>>>> dreamvids-2.0-dev
 				margin-bottom: 10px;
 				margin-top: 70px;
 				margin-left: 30px;
@@ -321,20 +318,11 @@
 				color: white;
 
 				@media (max-width: 870px) {
-<<<<<<< HEAD
-=======
 
->>>>>>> dreamvids-2.0-dev
 					color: #858484;
 					font-size: 18px;
 
 					&:after { background-color: #f1f0f0!important; }
-<<<<<<< HEAD
-				}
-				@media (max-width: 350px) {
-					width: 60%;
-					margin-left: 10px;
-=======
 
 				}
 
@@ -343,7 +331,6 @@
 					width: 60%;
 					margin-left: 10px;
 
->>>>>>> dreamvids-2.0-dev
 				}
 
 				&:after {
@@ -360,118 +347,6 @@
 				}
 			}
 
-<<<<<<< HEAD
-			#sliderList {
-				float: right;
-				margin-top: -35px;
-				margin-right: 30px;
-
-				li {
-					display: inline-block;
-					width: 6px;
-					height: 6px;
-					margin-left: 10px;
-
-					cursor: pointer;
-					background-color: white;
-					
-					@media (max-width: 870px) { background-color: #40a6e0; }
-
-					&:hover {
-						width: 10px;
-						height: 10px;
-						margin-left: 8px;
-						margin-right: -2px;
-						margin-bottom: -2px;
-					}
-				}
-
-
-				&.slide1 > li:nth-child(1),
-				&.slide2 > li:nth-child(2),
-				&.slide3 > li:nth-child(3) {
-					width: 10px;
-					height: 10px;
-					margin-left: 8px;
-					margin-right: -2px;
-					margin-bottom: -2px;
-				}
-			}
-
-			#slider {
-				display: inline-block;
-				width: 100%;
-				height: 250px;
-				overflow: hidden;
-
-				@media (max-width: 870px) { height: 200px; }
-
-				&.slide1 {
-					#slide:nth-child(1) { left: 0%; }
-					#slide:nth-child(2) { left: 100%; }
-					#slide:nth-child(3) { left: 200%; }
-				}
-				&.slide2 {
-					#slide:nth-child(1) { left: -100%; }
-					#slide:nth-child(2) { left: 0; }
-					#slide:nth-child(3) { left: 100%; }
-				}
-				&.slide3 {
-					#slide:nth-child(1) { left: -200%; }
-					#slide:nth-child(2) { left: -100%; }
-					#slide:nth-child(3) { left: 0; }
-				}
-
-				#slide {
-					position: relative;
-					float: left;
-
-					display: block;
-					width: 100%;
-					height: 100%;
-
-					&:nth-child(2) { top: -100%; }
-					&:nth-child(3) { top: -200%; }
-
-					@media (min-width: 640px) {
-						-webkit-transition: left 0.5s;
-						   -moz-transition: left 0.5s;
-							-ms-transition: left 0.5s;
-							 -o-transition: left 0.5s;
-								transition: left 0.5s;
-					}
-
-					.video {
-						position: absolute;
-						bottom: 40px;
-
-						width: 250px;
-						height: 180px;
-						margin: 0 15px;
-
-						@media (max-width: 970px) { width: 45%;	}
-
-						@media (max-width: 870px) { bottom: 0px; }
-
-						@media (max-width: 400px) { margin: 0 10px;	}
-
-						@media (max-width: 300px) { margin: 0 5px; }
-
-						&:first-child { left: 0; }
-
-						&:nth-child(2) { right: 0; }
-					
-						.video-time { display: none; }
-					
-						.video-description {
-							.video-bottom-description { display: none; }
-						}
-					}
-				}
-			}
-		}
-	}
-=======
 			.video {
 
 				position: absolute;
@@ -516,5 +391,4 @@
 
 	}
 
->>>>>>> dreamvids-2.0-dev
 }

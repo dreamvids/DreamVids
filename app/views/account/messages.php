@@ -1,18 +1,4 @@
 <div class="content">
-<<<<<<< HEAD
-
-	<section class="profile">
-		<h1 class="title">Espace membre</h1>
-
-		<?php
-			include VIEW.'layouts/accountMenu.php';
-			include VIEW.'layouts/messages.php';
-		?>
-
-		<h3 style="color: #f00">Cette fonction n'est pas encore disponible !</h3>
-	</section>
-
-=======
 	<section class="messages">
 		<h1 class="title">Messages privés de
 			<select name="channels" id="channels">
@@ -61,5 +47,4 @@
 	</section>
 
 	<div class="center"><img src="http://dummyimage.com/468x60/f0f0f0/242424&text=ad" width="468" height="60"></div>
->>>>>>> dreamvids-2.0-dev
 </div>
