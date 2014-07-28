@@ -87,6 +87,10 @@ class UserChannel extends ActiveRecord\Model {
 			return false;
 	}
 
+	public function isVerified() {
+		return $this->verified == 1;
+	}
+
 	public function postMessage($messageContent) {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),

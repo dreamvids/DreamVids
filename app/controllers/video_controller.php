@@ -50,13 +50,14 @@ public function __construct() {
 		$data['video'] = $video;
 		$data['title'] = $video->title;
 		$data['poster_id'] = $video->poster_id;
-		$data['author'] = $video->getAuthorName();
+		$data['author'] = $author;
 		$data['description'] = $video->description;
 		$data['views'] = $video->views;
 		$data['likes'] = $video->likes;
 		$data['dislikes'] = $video->dislikes;
 		$data['thumbnail'] = $video->tumbnail;
 		$data['subscribers'] = $author->getSubscribersNumber();
+		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($author->id) : false;
 		$data['comments'] = $video->getComments();
 		$data['likedByUser'] = Session::isActive() ? $video->isLikedByUser(Session::get()->id) : false;
 		$data['dislikedByUser'] = Session::isActive() ? $video->isDislikedByUser(Session::get()->id) : false;

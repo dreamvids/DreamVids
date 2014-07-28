@@ -2,10 +2,14 @@
 	<div id="video-top-infos">
 		<div id="video-top-title">
 			<div id="video-top-channel">
-				<img src="http://dreamvids.fr/uploads/Simpleworld/avatar.png" alt="Image de la chaîne">
-				<span id="hover_subscribe" data-vid="0"><i>S'abonner</i></span>
+				<img src="<?php echo $author->getAvatar(); ?>" alt="Image de la chaîne">
+				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
+					<i><?php echo $subscribed ? 'Se desabonner': 'S\'abonner'; ?></i>
+				</span>
 				<div id="video-top-channel-infos">
-					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author; ?>" class="validate"><?php echo $author; ?></a>
+					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->name; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
+						<?php echo $author->name; ?>
+					</a>
 					<hr>
 					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
 				</div>
