@@ -48,15 +48,17 @@ var hover_subscribe = document.getElementById("hover_subscribe") || document.cre
 
 hover_subscribe.addEventListener("click", function() {
 
+    var channel = hover_subscribe.dataset.channel;
+
     if (hover_subscribe.className == "subscribed") {
 
         hover_subscribe.className = "";
         hover_subscribe.childNodes[0].innerHTML = "S'abonner";
 
-        ajax.post({
+        marmottajax.put({
 
-            action: "unsubscribe",
-            dr_id: hover_subscribe.dataset.vid
+            'url': '../channel/' + channel,
+            'options': { unsubscribe: true }
 
         });
 
@@ -67,11 +69,9 @@ hover_subscribe.addEventListener("click", function() {
         hover_subscribe.className = "subscribed";
         hover_subscribe.childNodes[0].innerHTML = "Abonné";
 
-        ajax.post({
-
-            action: "subscribe",
-            dr_id: hover_subscribe.dataset.vid
-
+       marmottajax.put({
+            'url': '../channel/' + channel,
+            'options': { subscribe: true }
         });
 
     }

@@ -4,11 +4,13 @@
 		<h1 class="title">Espace membre</h1>
 
 		<?php
-			include VIEW.'layouts/accountMenu.php';
+			include VIEW.'layouts/account_menu.php';
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<form class="form" method="post" action="">
+		<form class="form" method="post" action="<?php echo WEBROOT.'account/password'; ?>">
+			<input type="hidden" name="_method" value="put" />
+			
 			<label for="currentPass">Mot de passe actuel :</label>
 			<input type="password" name="currentPass"><br />
 

@@ -4,11 +4,13 @@
 		<h1 class="title">Espace membre</h1>
 
 		<?php
-			include VIEW.'layouts/accountMenu.php';
+			include VIEW.'layouts/account_menu.php';
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<form class="form" method="post" action="" enctype="multipart/form-data">
+		<form class="form" method="post" action="<?php echo WEBROOT.'account/mail'; ?>" enctype="multipart/form-data">
+			<input type="hidden" name="_method" value="put" />
+
 			<label for="email">Adresse email :</label>
 			<input value="<?php echo $email; ?>" type="text" name="email" placeholder="Adresse email"><br />
 

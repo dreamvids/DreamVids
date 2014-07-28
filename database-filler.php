@@ -5,6 +5,8 @@
 *	Use it to fill a test DreamVids database (version 2)
 */
 
+define('WEBROOT', str_replace('database-filler.php', '', $_SERVER['SCRIPT_NAME']), true);
+
 class DatabaseFiller {
 	private $dbHost = 'localhost';
 	private $dbUser = 'root';
@@ -50,9 +52,8 @@ class DatabaseFiller {
 					'Chaine de ".$username."',
 					'".$userId."',
 					'".$userId.";',
-					'',
-					'',
-					'',
+					'".WEBROOT."assets/img/default-avatar.png',
+					'".WEBROOT."assets/img/default-background.png',
 					'0',
 					'0'
 				)");
@@ -62,6 +63,8 @@ class DatabaseFiller {
 
 	public function generateVideos() {
 		$res = mysql_query("SELECT * FROM users_channels");
+
+		$timestamp = 1398947680;
 
 		while($data = mysql_fetch_array($res, MYSQL_ASSOC)) {
 			$channelId = $data['id'];
@@ -87,7 +90,7 @@ class DatabaseFiller {
 					'0',
 					'0',
 					'0',
-					'1398947680',
+					'".$timestamp."',
 					'2',
 					'0'
 				)");
@@ -97,8 +100,10 @@ class DatabaseFiller {
 					'".$posterId."',
 					'upload',
 					'".$vidId."',
-					'1398947680'
+					'".$timestamp."'
 				)");
+
+				$timestamp++;
 			}
 		}
 	}
