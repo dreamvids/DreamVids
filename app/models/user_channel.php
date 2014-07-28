@@ -52,6 +52,19 @@ class UserChannel extends ActiveRecord\Model {
 		return $avatar;
 	}
 
+	public function getBackground() {
+		$background = Config::getValue_('default-background');
+
+		if(empty($this->background)) return $background;
+
+		if(file_exists($this->background) || ($isUrl = Utils::isUrlValid($this->background)))
+			$background = isset($isUrl) ? $this->background : WEBROOT.$this->background;
+		else if(strpos($this->background, WEBROOT))
+			$background = $this->background;
+
+		return $background;
+	}
+
 	public function belongToUser($userId) {
 		if(User::exists($userId)) {
 			$ownedChannels = User::find($userId)->getOwnedChannels();

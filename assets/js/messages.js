@@ -55,8 +55,6 @@ function addMessageInList(message) {
     var li = document.createElement('li');
     li.id = "message-" + message.id;
 
-    console.log(message.text)
-
     li.addEventListener('click', function(event) {
         for (var i = 0; i < messagesList.childNodes.length; i++) {
             messagesList.childNodes[i].className = messagesList.childNodes[i].className.replace("current", "");
@@ -188,6 +186,13 @@ function loadDiscution(id) {
         }
         discutionInfos.appendChild(members);
 
+        discutionInfos.appendChild(document.createElement('br'));
+
+        var leaveLink = document.createElement('a');
+        leaveLink.innerHTML = 'Quitter';
+        leaveLink.setAttribute('onclick', "leaveDiscution('" + id + "')");
+        discutionInfos.appendChild(leaveLink);
+
         messages = discution.messages ? discution.messages : false;
 
         if (messages.length) {
@@ -198,6 +203,18 @@ function loadDiscution(id) {
 
         messageRightContent.className = messageRightContent.className.replace("none", "");
         scrollDown();
+    });
+}
+
+function leaveDiscution(id) {
+    marmottajax.get({
+        'method': 'DELETE',
+        'url': '../conversations/' + id,
+        'options': {
+            'channelId': channelSelector.value
+        }
+    }).then(function(result) {
+        alert('deleted');
     });
 }
 

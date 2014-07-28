@@ -52,9 +52,8 @@ class DatabaseFiller {
 					'Chaine de ".$username."',
 					'".$userId."',
 					'".$userId.";',
-					'".WEBROOT."assets/img/favicon.png',
-					'',
-					'',
+					'".WEBROOT."assets/img/default-avatar.png',
+					'".WEBROOT."assets/img/default-background.png',
 					'0',
 					'0'
 				)");

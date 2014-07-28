@@ -26,6 +26,13 @@ class Conversation extends ActiveRecord\Model {
 		return false;
 	}
 
+	public function removeChannel($channel) {
+		if(is_object($channel)) {
+			$members_ids = str_replace($channel->id.';', '', $this->members_ids);
+			echo $members_ids;
+		}
+	}
+
 	public function getMemberChannelsName() {
 		$names = array();
 		$membersStr = $this->members_ids;
@@ -55,7 +62,6 @@ class Conversation extends ActiveRecord\Model {
 			$avatar = isset($isUrl) ? $this->thumbnail : WEBROOT.$this->thumbnail;
 		else if(strpos($this->thumbnail, WEBROOT) !== false)
 			$avatar = $this->thumbnail;
-
 
 		return $avatar;
 	}

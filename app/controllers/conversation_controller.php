@@ -14,7 +14,6 @@ class ConversationController extends Controller {
 
 	public function __construct() {
 		$this->denyAction(Action::UPDATE);
-		$this->denyAction(Action::DESTROY);
 	}
 
 	public function index($request) {
@@ -152,6 +151,23 @@ class ConversationController extends Controller {
 		return new Response(500);
 	}
 
+	public function destroy($id, $request) {
+		$req = $request->getParameters();
+
+		var_dump($req);
+
+		if(Session::isActive() && isset($req['channelId']) && ($channel = UserChannel::find($req['channelId']))) {
+			$conv = Conversation::exists($id) ? Conversation::find($id) : false;
+
+			if($conv && $conv->containsChannel($channel)) {
+				$conv->removeChannel($channel);
+				return new Response(200);
+			}
+		}
+
+		return new Response(500);
+	}
+
 	// /conversations/channel/:id
 	public function channel($id, $request) {
 		if(Session::isActive() && ($channel = UserChannel::find($id)) && ($channel->belongToUser(Session::get()->id))) {
@@ -181,6 +197,5 @@ class ConversationController extends Controller {
 	
 	// Denied actions
 	public function update($id, $request) {}
-	public function destroy($id, $request) {}
 
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 26 Juillet 2014 à 19:45
+-- Généré le :  Lun 28 Juillet 2014 à 11:01
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -209,7 +209,6 @@ CREATE TABLE IF NOT EXISTS `users_channels` (
   `owner_id` int(11) NOT NULL,
   `admins_ids` text NOT NULL,
   `avatar` varchar(255) NOT NULL,
-  `banner` varchar(255) NOT NULL,
   `background` varchar(255) NOT NULL,
   `subscribers` int(11) NOT NULL,
   `views` bigint(20) NOT NULL,
@@ -315,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

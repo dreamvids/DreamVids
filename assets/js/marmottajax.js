@@ -106,11 +106,11 @@ marmottajax.request = function(options) {
 
     else if (options.method == "DELETE") {
 
-    	options.url += options.url.indexOf("?") < 0 ? "?" : "";
+    	var post = "?";
 
         for (var key in options.options) {
 
-            options.url += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
+            post += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
 
         }
 

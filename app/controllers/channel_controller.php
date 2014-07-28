@@ -36,6 +36,7 @@ class ChannelController extends Controller {
 			$data['currentPage'] = 'channel';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
+			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $channel->getPostedVideos();
@@ -206,6 +207,7 @@ class ChannelController extends Controller {
 			$data['currentPage'] = 'channel';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
+			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
 			$data['videos'] = $channel->getPostedVideos();
