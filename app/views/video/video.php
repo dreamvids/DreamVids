@@ -115,12 +115,15 @@
 	<section id="comments">
 		<?php if(Session::isActive()): ?>
 			<form method="post" action="" onsubmit="return false;">
-				<label for="channels">Poster au nom de: </label>
-				<select name="channsl" id="channel">
-					<?php foreach ($channels as $channel): ?>
-						<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
-					<?php endforeach ?>
-				</select>
+				<div class="form">
+					<label for="channels">Poster au nom de: </label>
+					
+					<select name="channsl" id="channel">
+						<?php foreach ($channels as $channel): ?>
+							<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
 				<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
 				<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value)">Envoyer</button>
 			</form>
