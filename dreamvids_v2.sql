@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Dim 08 Juin 2014 à 11:20
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Client :  127.0.0.1
+-- Généré le :  Lun 28 Juillet 2014 à 11:01
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `dreamvids_v2`
+-- Base de données :  `dreamvids_v2`
 --
-CREATE DATABASE IF NOT EXISTS `dreamvids_v2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `dreamvids_v2`;
 
 -- --------------------------------------------------------
 
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `bugs` (
   `url` varchar(255) NOT NULL,
   `resolution` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -90,7 +88,21 @@ CREATE TABLE IF NOT EXISTS `contributors` (
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `conversations`
+--
+
+CREATE TABLE IF NOT EXISTS `conversations` (
+  `id` varchar(6) NOT NULL,
+  `object` varchar(255) NOT NULL,
+  `members_ids` varchar(255) NOT NULL,
+  `thumbnail` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -99,14 +111,28 @@ CREATE TABLE IF NOT EXISTS `contributors` (
 --
 
 CREATE TABLE IF NOT EXISTS `messages` (
-  `int_id` int(11) NOT NULL AUTO_INCREMENT,
   `id` varchar(6) NOT NULL,
-  `sender` int(11) NOT NULL,
-  `recipient` int(11) NOT NULL,
-  `content` text NOT NULL,
+  `sender_id` varchar(6) NOT NULL,
+  `conversation_id` varchar(6) NOT NULL,
+  `content` varchar(255) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
-  PRIMARY KEY (`int_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `modos_actions`
+--
+
+CREATE TABLE IF NOT EXISTS `modos_actions` (
+  `id` varchar(6) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `target` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -119,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `partners` (
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -133,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `pre_inscriptions` (
   `utilisateur` tinyint(1) NOT NULL,
   `videaste` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -151,9 +177,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `reg_timestamp` bigint(20) NOT NULL,
   `reg_ip` varchar(15) NOT NULL,
   `actual_ip` varchar(15) NOT NULL,
-  `rank` int(1) NOT NULL,
+  `rank` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=152 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -183,7 +209,6 @@ CREATE TABLE IF NOT EXISTS `users_channels` (
   `owner_id` int(11) NOT NULL,
   `admins_ids` text NOT NULL,
   `avatar` varchar(255) NOT NULL,
-  `banner` varchar(255) NOT NULL,
   `background` varchar(255) NOT NULL,
   `subscribers` int(11) NOT NULL,
   `views` bigint(20) NOT NULL,
@@ -197,11 +222,13 @@ CREATE TABLE IF NOT EXISTS `users_channels` (
 --
 
 CREATE TABLE IF NOT EXISTS `users_sessions` (
-  `user_id` int(11) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
   `session_id` varchar(32) NOT NULL,
   `expiration` bigint(20) NOT NULL,
-  `remember` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `remember` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -242,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `videos_annot` (
   `time` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -273,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `videos_convert` (
   `sd` int(11) NOT NULL,
   `hd` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -287,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=165 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -296,10 +323,12 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
 --
 
 CREATE TABLE IF NOT EXISTS `videos_votes` (
+  `id` varchar(6) NOT NULL,
   `user_id` int(11) NOT NULL,
   `type` varchar(7) NOT NULL,
   `obj_id` varchar(6) NOT NULL,
-  `action` varchar(7) NOT NULL
+  `action` varchar(7) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

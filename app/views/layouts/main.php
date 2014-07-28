@@ -55,15 +55,15 @@
 
 									<span class="user-information-button" id="top-nav-user-information-button">
 
-										<img src="http://lorempicsum.com/simpsons/255/200/5" alt="Votre avatar" id="top-nav-user-information-button-img">
+										<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar" id="top-nav-user-information-button-img">
 										<h4><?php echo Session::isActive() ? Session::get()->username : 'Bienvenue, invité'; ?></h4>
 										<img class="arrow" src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations">
 										
 										<div class="user-information-menu" id="top-nav-user-information-menu">
 											<ul>
-												<a href="<?php echo WEBROOT.'channels'; ?>">Mes chaînes</a>
 												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
-												<a href="<?php echo WEBROOT.'messages'; ?>">Mes messages</a>
+												<a href="<?php echo WEBROOT.'account/channels'; ?>">Mes chaînes</a>
+												<a href="<?php echo WEBROOT.'account/messages'; ?>">Mes messages</a>
 												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
 											</ul>
 										</div>
@@ -123,7 +123,7 @@
 
 						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
 						dreamvids.fr - CopyLeft DeamVids 2013-<?php echo date('Y'); ?>
-						<a href="https://github.com/Vetiore/DreamVids" class="github">Code source sur Github</a>
+						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
 						
 					</div>
 

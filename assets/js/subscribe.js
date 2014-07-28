@@ -2,9 +2,15 @@ function subscribeAction(channel) {
 	var button = document.getElementById('subscribe-button');
 
 	if(hasClass(button, 'subscribed')) {
-		ajax.get('unsubscribe/' + channel, {});
+		marmottajax.put({
+			'url': channel,
+			'options': { unsubscribe: true }
+		});
 	}
 	else {
-		ajax.get('subscribe/' + channel, {});
+		marmottajax.put({
+			'url': channel,
+			'options': { subscribe: true }
+		});
 	}
 }

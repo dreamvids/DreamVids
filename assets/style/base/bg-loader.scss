@@ -1,0 +1,19 @@
+
+/* BACKGROUND LOADER
+   ============================= */
+
+.bgLoader { opacity: 0; }
+
+.bgLoaded { opacity: 1; }
+
+.bgLoaderTransition {
+
+	will-change: opacity;
+
+	-webkit-transition: opacity .3s ease-out;
+	   -moz-transition: opacity .3s ease-out;
+		-ms-transition: opacity .3s ease-out;
+		 -o-transition: opacity .3s ease-out;
+			transition: opacity .3s ease-out;
+
+}
