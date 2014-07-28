@@ -48,12 +48,6 @@ function votePlus(vid, element) {
             moinsElement.className = moinsElement.className.replace("active", "");
             moinsElement.innerHTML = parseInt(moinsElement.innerHTML) - 1;
 
-            // Undislike video
-            marmottajax.put({
-                'url': '../videos/' + vid,
-                'options': { undislike: true }
-            });
-
         }
 
     }
@@ -104,12 +98,6 @@ function voteMoins(vid, element) {
 
             plusElement.className = plusElement.className.replace("active", "");
             plusElement.innerHTML = parseInt(plusElement.innerHTML) - 1;
-
-            // Unlike video
-            marmottajax.put({
-                'url': '../videos/' + vid,
-                'options': { unlike: true }
-            });
 
         }
 
