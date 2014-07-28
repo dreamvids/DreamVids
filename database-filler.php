@@ -5,6 +5,11 @@
 *	Use it to fill a test DreamVids database (version 2)
 */
 
+<<<<<<< HEAD
+=======
+define('WEBROOT', str_replace('database-filler.php', '', $_SERVER['SCRIPT_NAME']), true);
+
+>>>>>>> dreamvids-2.0-dev
 class DatabaseFiller {
 	private $dbHost = 'localhost';
 	private $dbUser = 'root';
@@ -50,9 +55,14 @@ class DatabaseFiller {
 					'Chaine de ".$username."',
 					'".$userId."',
 					'".$userId.";',
+<<<<<<< HEAD
 					'',
 					'',
 					'',
+=======
+					'".WEBROOT."assets/img/default-avatar.png',
+					'".WEBROOT."assets/img/default-background.png',
+>>>>>>> dreamvids-2.0-dev
 					'0',
 					'0'
 				)");
@@ -63,6 +73,11 @@ class DatabaseFiller {
 	public function generateVideos() {
 		$res = mysql_query("SELECT * FROM users_channels");
 
+<<<<<<< HEAD
+=======
+		$timestamp = 1398947680;
+
+>>>>>>> dreamvids-2.0-dev
 		while($data = mysql_fetch_array($res, MYSQL_ASSOC)) {
 			$channelId = $data['id'];
 			$channelName = $data['name'];
@@ -87,7 +102,11 @@ class DatabaseFiller {
 					'0',
 					'0',
 					'0',
+<<<<<<< HEAD
 					'1398947680',
+=======
+					'".$timestamp."',
+>>>>>>> dreamvids-2.0-dev
 					'2',
 					'0'
 				)");
@@ -97,8 +116,15 @@ class DatabaseFiller {
 					'".$posterId."',
 					'upload',
 					'".$vidId."',
+<<<<<<< HEAD
 					'1398947680'
 				)");
+=======
+					'".$timestamp."'
+				)");
+
+				$timestamp++;
+>>>>>>> dreamvids-2.0-dev
 			}
 		}
 	}

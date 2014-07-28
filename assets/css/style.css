@@ -174,8 +174,73 @@ body {
   padding-top: 15px;
   padding-bottom: 15px; }
 
+<<<<<<< HEAD
 /* COMPOMENTS
    ----------------------------- */
+=======
+/* BACKGROUND LOADER
+   ============================= */
+.bgLoader {
+  opacity: 0; }
+
+.bgLoaded {
+  opacity: 1; }
+
+.bgLoaderTransition {
+  will-change: opacity;
+  -webkit-transition: opacity .3s ease-out;
+  -moz-transition: opacity .3s ease-out;
+  -ms-transition: opacity .3s ease-out;
+  -o-transition: opacity .3s ease-out;
+  transition: opacity .3s ease-out; }
+
+/* COMPOMENTS
+   ----------------------------- */
+/* === TYPOGRAPHY === */
+/* TITLES
+   ============================= */
+h1.title {
+  margin: 30px 0 25px 15px;
+  font-size: 25px;
+  color: #858484; }
+  @media (max-width: 630px) {
+    h1.title {
+      margin-left: 10px; } }
+  h1.title a {
+    color: #ccc;
+    font-size: 20px; }
+    h1.title a:hover {
+      color: #aaa; }
+    h1.title a:hover:before {
+      color: #ccc; }
+    h1.title a:before {
+      content: " / "; }
+
+h3.title {
+  margin-left: 5%;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 90px;
+  color: #858484; }
+
+h1.title:after,
+h3.title:after {
+  position: relative;
+  display: block;
+  height: 4px;
+  width: 25px;
+  border: none;
+  content: ""; }
+
+h1.title:after {
+  bottom: -5px;
+  background-color: #dddedd; }
+
+h3.title:after {
+  bottom: 30px;
+  background-color: #f1f0f0; }
+
+>>>>>>> dreamvids-2.0-dev
 /* === HEADER === */
 /* HEADER
    ============================= */
@@ -1906,6 +1971,7 @@ body {
     margin: auto;
     background: rgba(255, 255, 255, 0.5); }
 
+<<<<<<< HEAD
 .bgLoader {
   opacity: 0; }
   @media (min-width: 640px) {
@@ -1918,6 +1984,8 @@ body {
   .bgLoader.bgLoaded {
     opacity: 1; }
 
+=======
+>>>>>>> dreamvids-2.0-dev
 body.embeded {
   margin: 0;
   padding: 0; }
@@ -2310,6 +2378,7 @@ body.embeded {
           border: none;
           background-color: white;
           content: ""; }
+<<<<<<< HEAD
       #home-large-modal section:nth-child(2) #boxBest #sliderList {
         float: right;
         margin-top: -35px;
@@ -2405,6 +2474,45 @@ body.embeded {
               display: none; }
             #home-large-modal section:nth-child(2) #boxBest #slider #slide .video .video-description .video-bottom-description {
               display: none; }
+=======
+      #home-large-modal section:nth-child(2) #boxBest .video {
+        position: absolute;
+        bottom: 80px;
+        width: 270px;
+        height: 180px;
+        margin: 0 15px; }
+        @media (max-width: 1100px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            width: 45%; } }
+        @media (max-width: 1000px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            width: 40%; } }
+        @media (max-width: 970px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            width: 45%; } }
+        @media (max-width: 870px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            bottom: 0px; } }
+        @media (max-width: 400px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            margin: 0 10px; } }
+        @media (max-width: 300px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            margin: 0 5px; } }
+        @media (max-width: 870px) {
+          #home-large-modal section:nth-child(2) #boxBest .video {
+            position: relative;
+            top: 16px;
+            bottom: 0; } }
+        #home-large-modal section:nth-child(2) #boxBest .video:first-child {
+          left: 0; }
+        #home-large-modal section:nth-child(2) #boxBest .video:nth-child(2) {
+          right: 0; }
+        #home-large-modal section:nth-child(2) #boxBest .video .video-time {
+          display: none; }
+        #home-large-modal section:nth-child(2) #boxBest .video .video-description .video-bottom-description {
+          display: none; }
+>>>>>>> dreamvids-2.0-dev
 
 /* 
    ===========================================================================
@@ -3941,6 +4049,7 @@ nav.pagination {
   .form input:checked ~ label.checkbox-dependence input {
     opacity: 1; }
 
+<<<<<<< HEAD
 h1.title {
   margin: 30px 0 25px 15px;
   font-size: 25px;
@@ -3992,6 +4101,8 @@ h3.title {
     content: "";
     background-color: #f1f0f0; }
 
+=======
+>>>>>>> dreamvids-2.0-dev
 .messages h1 button {
   float: right;
   padding: 8px 20px;

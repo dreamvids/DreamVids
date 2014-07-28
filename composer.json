@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "dreamvids/dreamvids-2.0",
     "description": "New, free, open source and french video sharing platform",
     "license": "CC-BY-NC-SA",
@@ -27,3 +28,33 @@
         "php-activerecord/php-activerecord": "dev-master"
     }
 }
+=======
+	"name": "DreamVids",
+	"description": "New, free, open source and french video sharing platform",
+	"license": "CC-BY-NC-SA",
+	"authors": [
+		{
+			"name": "Peter Cauty",
+			"email": "phpeter@phpeter.fr"
+		},
+		{
+			"name": "Dimitri Nicolas",
+			"email": "dimitri.nicolas.cn@gmail.com"
+		},
+		{
+			"name": "Quadrifoglio",
+			"email": "quadrifoglio.clement@gmail.com"
+		},
+		{
+			"name": "DarkWos",
+			"email": "c-dorian@hotmail.fr"
+		},
+		{
+			"name": "LowiSky"
+		}
+	],
+	"require": {
+		"php-activerecord/php-activerecord": "dev-master"
+	}
+}
+>>>>>>> dreamvids-2.0-dev

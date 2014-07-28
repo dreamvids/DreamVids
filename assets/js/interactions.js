@@ -48,15 +48,27 @@ var hover_subscribe = document.getElementById("hover_subscribe") || document.cre
 
 hover_subscribe.addEventListener("click", function() {
 
+<<<<<<< HEAD
+=======
+    var channel = hover_subscribe.dataset.channel;
+
+>>>>>>> dreamvids-2.0-dev
     if (hover_subscribe.className == "subscribed") {
 
         hover_subscribe.className = "";
         hover_subscribe.childNodes[0].innerHTML = "S'abonner";
 
+<<<<<<< HEAD
         ajax.post({
 
             action: "unsubscribe",
             dr_id: hover_subscribe.dataset.vid
+=======
+        marmottajax.put({
+
+            'url': '../channel/' + channel,
+            'options': { unsubscribe: true }
+>>>>>>> dreamvids-2.0-dev
 
         });
 
@@ -67,11 +79,17 @@ hover_subscribe.addEventListener("click", function() {
         hover_subscribe.className = "subscribed";
         hover_subscribe.childNodes[0].innerHTML = "Abonné";
 
+<<<<<<< HEAD
         ajax.post({
 
             action: "subscribe",
             dr_id: hover_subscribe.dataset.vid
 
+=======
+       marmottajax.put({
+            'url': '../channel/' + channel,
+            'options': { subscribe: true }
+>>>>>>> dreamvids-2.0-dev
         });
 
     }

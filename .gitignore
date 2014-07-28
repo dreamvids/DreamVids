@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .cache/
 .settings/
 .project
@@ -11,6 +12,12 @@ composer.phar
 
 module_creator.php
 .htpasswd
+=======
+vendor/
+
+composer.phar
+composer.lock
+>>>>>>> dreamvids-2.0-dev
 
 .sass-cache
 node_modules

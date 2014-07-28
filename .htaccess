@@ -11,4 +11,8 @@ Options -indexes
 
 <IfModule !mod_rewrite.c>
     ErrorDocument 404 index.php
+<<<<<<< HEAD
 </IfModule>
+=======
+</IfModule>
+>>>>>>> dreamvids-2.0-dev

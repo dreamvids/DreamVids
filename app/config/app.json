@@ -1,0 +1,20 @@
+{
+	"name": "DreamVids",
+	"layout": "layouts/main",
+
+	"dbHost": "127.0.0.1",
+	"dbUser": "root",
+	"dbPass": "",
+	"dbName": "dreamvids_v2",
+
+	"rankUser": "1",
+	"rankContributor" :"2",
+	"rankTeam": "3",
+	"rankModo": "4",
+	"rankAdmin": "5",
+
+	"vid_visibility_private": "0",
+	"vid_visibility_non_listed": "1",
+	"vid_visibility_public": "2",
+	"vid_visibility_suspended": "3"
+}
