@@ -2,39 +2,13 @@
     echo '<br><center><a class="btn btn-success" href="admin/?page=moderation">Centre de modération</a><br /><br /><a class="btn btn-danger" href="./admin">Panneau d\'administration</a></center>';
 } ?>
 
+<!-- WEBCHAT -->
+
 <div class="chat " id="time-real-chat-element">
-    
     <div class="content not-yet">
-    
         <div class="close-icon" id="time-real-chat-close"></div>
-    
-        <iframe src="http://stornitz.fr/Chat/DreamVids" frameborder="0"></iframe>
-    
+        <iframe src="./chat/index.php" frameborder="0"></iframe>
     </div>
-
-    <!-- <div class="content">
-        
-        <div class="tabs">
-            <span class="current">global</span>
-            <span>pv</span>
-        </div>
-    
-        <div class="close-icon" id="time-real-chat-close"></div>
-    
-        <div class="inner">
-            
-            Blabla
-    
-            <div class="chat-form">
-                
-                <input type="text" placeholder="text">
-    
-            </div>
-    
-        </div>
-    
-    </div> -->
-
 </div>
 
 <script src="js/chat.js"></script>
