@@ -2,9 +2,9 @@
 
 	<?php
 
-		$staff_selection = ($config['staff_select'] != 0) ? true : false;
+		$staff_selection = ($config['staff_select'] != '0');
 
-		if ($staff_selection && !@$_GET["mode"]) { 
+		if ($staff_selection && (!isset($_GET["mode"]) || !in_array($_GET['mode'], array('discover', 'subscriptions', 'search') ) ) ) { 
 			$vid = Video::get($config['staff_select']);	
 	?>
 
