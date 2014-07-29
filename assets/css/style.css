@@ -4429,6 +4429,10 @@ nav.pagination {
     #comments form textarea:focus, #comments form textarea:active {
       outline: none;
       border-color: #cdcdcd; }
+    #comments form textarea .blue{
+      height: 45px;
+      width: 150px;
+    }
   #comments form input[type="submit"] {
     float: right;
     height: 35px;
@@ -4958,3 +4962,4 @@ nav.pagination {
 
 .video-infos .buttons * {
   margin: 0 15px; }
+

@@ -115,17 +115,19 @@
 	<section id="comments">
 		<?php if(Session::isActive()): ?>
 			<form method="post" action="" onsubmit="return false;">
-				<div class="form">
-					<label for="channels">Poster au nom de: </label>
-					
-					<select name="channsl" id="channel">
-						<?php foreach ($channels as $channel): ?>
-							<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
-						<?php endforeach ?>
-					</select>
+				<div class="form-header-container">
+					<span class="form-icn"><img src="<?php echo IMG.'/comment_icon.png'; ?>" alt="Poster un commentaire"></span>
+					<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar" id="add-comment-avatar">
+					<div class="form">					
+						<select name="channsl" id="channel">
+							<?php foreach ($channels as $channel): ?>
+								<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
+							<?php endforeach ?>
+						</select>
+					</div>
+					<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value)"><img src="<?php echo IMG.'/post_comment_icon.png'; ?>" alt="Ajouter le commentaire"></button>
 				</div>
 				<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
-				<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value)">Envoyer</button>
 			</form>
 		<?php endif ?>
 

@@ -53,6 +53,8 @@
 		<?php foreach($posts as $post) { ?>
 			<div class="channel-post" style="background-color: #40a6e0; width: 50%; padding: 10px; margin-bottom: 1%;"> <!-- Please Dimou, dont kill me ;( -->
 				<?php echo $post->content; ?>
+
+				<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar">
 			</div>
 		<?php } ?>
 	</aside>
