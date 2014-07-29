@@ -10,3 +10,8 @@ logs
 *.log
 tmp
 .grunt
+
+.project
+.cache/
+.settings/
+uploads/

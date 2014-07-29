@@ -91,6 +91,8 @@ function postComment(vid, commentContent, fromChannel) {
 
 		document.getElementById('comments-best').appendChild(commentDiv);
 	});
+	document.getElementById("text_comment").value = '';
+	document.getElementById("comments").innerHTML = '<div>Commentaire ajouté avec succès !</div>' + document.getElementById("comments").innerHTML;
 }
 
 function likeComment(commentId) {

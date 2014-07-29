@@ -17,5 +17,6 @@ function postMessage(channel, postContent) {
 		}
 		catch(e) {}
 	});
+	document.getElementById("post-content").value = '';
 
 }

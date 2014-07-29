@@ -9,6 +9,6 @@
 		<label for="pass">Mot de passe :</label>
 		<input type="password" name="pass" id="pass" placeholder="Mot de passe" vaue=""/><br />
 		<input type="checkbox" id="remember" name="remember"/><label for="remember">Se souvenir de moi</label><br />
-		<input type="submit" name="submitLogin" value="Se connecter" class="btn btn-primary" />
+		<input type="submit" name="submitLogin" value="Se connecter" />
 	</form>
 </section>

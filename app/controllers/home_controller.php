@@ -23,6 +23,7 @@ class HomeController extends Controller {
 			$data['subscriptions'] = Session::get()->getSubscriptions();
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 6);
 			$data['discoverVids'] = Video::getDiscoverVideos(6);
+			$data['bestVids'] = Video::getBestVideos(6);
 
 			return new ViewResponse('home/logged', $data);
 		}

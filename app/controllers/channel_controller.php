@@ -36,6 +36,7 @@ class ChannelController extends Controller {
 			$data['currentPage'] = 'channel';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
+			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
@@ -60,10 +61,10 @@ class ChannelController extends Controller {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
 						if(UserChannel::isNameFree($name)) {
-							UserChannel::addNew($name, $descr, Config::getValue_('default-avatar'), '', '');
+							UserChannel::addNew($name, $descr, Config::getValue_('default-avatar'), Config::getValue_('default-background'));
 							$data['channels'] = Session::get()->getOwnedChannels();
 
-							$response = new ViewResponse('accout/channel_list', $data);
+							$response = new ViewResponse('account/channels', $data);
 							$response->addMessage(ViewMessage::success('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage !'));
 
 							return $response;
@@ -132,7 +133,7 @@ class ChannelController extends Controller {
 							return $response;
 						}
 
-						UserChannel::edit($channel->id, $name, $descr, '', '', ''); //TODO: Support logo/background/banner
+						UserChannel::edit($channel->id, $name, $descr, '', ''); //TODO: Support logo/background/banner
 						$data['channels'] = Session::get()->getOwnedChannels();
 
 						$response = new ViewResponse('account/channels', $data);

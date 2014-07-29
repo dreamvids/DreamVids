@@ -353,6 +353,11 @@ class Video extends ActiveRecord\Model {
 
 		return $videos;
 	}
+	
+	public static function getBestVideos($limit = 'nope') {
+		$limit = ($limit == 'nope') ? 30 : $limit;
+		return Video::all(array('order' => 'likes/dislikes desc', 'limit' => $limit));
+	}
 
 	public static function getReportedVideos($limit = 'nope') {
 		if($limit != 'nope') {

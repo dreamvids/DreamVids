@@ -28,12 +28,6 @@
 				<input type="file" data-text="Choisir un avatar" data-preview="preview-avatar" name="avatar" id="avatar" value="<?php echo @$avatar; ?>" /><br />
 			</label>
 			
-			<label for="banner">
-				<img class="preview none filePreview" data-input="banner" id="preview-banner" src="">
-				<i>Bannière :</i>
-				<input type="file" data-text="Choisir une bannière" data-preview="preview-banner" name="banner" id="banner" value="<?php echo @$banner; ?>" /><br />
-			</label>
-			
 			<label for="background">
 				<img class="preview none filePreview" data-input="background" id="preview-background" src="">
 				<i>Arrière-plan :</i>

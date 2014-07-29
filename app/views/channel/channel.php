@@ -8,7 +8,7 @@
 		</ul>
 
 		<div class="left">
-			<span class="bgLoader" data-background="http://lorempicsum.com/up/350/200/6"></span>
+			<span class="bgLoader" data-background="<?php echo $avatar; ?>"></span>
 			<p><?php echo $name; ?></p>
 
 			<?php if(!$channelBelongsToUser): ?>

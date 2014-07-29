@@ -25,9 +25,9 @@
 	<aside class="aside-cards-list">
 		<h3 class="title">Flux d'activité</h3>
 
-		<?php if(empty(@$actions)): ?>
+		<?php if(@empty($actions)){ ?>
 			<p style="text-align: center; color: #858484;">Aucun évenement récent</p>
-		<?php endif ?>
+		<?php } ?>
 
 		<?php
 			foreach(@$actions as $action) {

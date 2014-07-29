@@ -84,9 +84,9 @@
 
 		<div class="buttons">
 
-			<img class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img class="share" src="<?php echo IMG.'share.png'; ?>" style="cursor: pointer; cursor: hand;">
 			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" style="cursor: pointer; cursor: hand;">
-			<a href="http://yolo.com" target="_blank"><img class="download" src="<?php echo IMG.'download.png'; ?>"></a>
+			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');" style="cursor: pointer; cursor: hand;">
 			<img class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<input class="embed" type="checkbox" onclick="document.getElementById('embed-input').select();">
 			<input class="embed-input" value="Mega code d'embed de la mort qui tue !" onclick="this.select();" type="text" spellcheck="false">

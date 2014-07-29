@@ -14,14 +14,14 @@
 		<div id="boxBest">
 			<h3>Vidéos à découvrir :</h3>
 			
-			<?php for($i = 0; $i < count($discoverVids) - 4; $i++): ?>
+			<?php for($i = 0; $i < count($discoverVids) - 4; $i++) { ?>
 				<div class="card video">
 					<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
 					<div class="description">
 						<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
 					</div>
 				</div>
-			<?php endfor ?>
+			<?php } ?>
 
 		</div>
 	</section>
@@ -79,33 +79,20 @@
 
 	<aside class="aside-cards-list">
 		<h3 class="title">Meilleures vidéos</h3>
-		
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/350/200/1">
-				<div class="time">12:05</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>Nemo</h4></a>
-				<div>
-					<span class="view">12 530</span>
-					<a class="channel" href="channel">Papy</a>
+		<?php foreach($bestVids as $vid) { ?>
+			<div class="card video">
+				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
+					<div class="time"><?php echo $vid->duration; ?></div>
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
+				</div>
+				<div class="description">
+					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
+					<div>
+						<span class="view"><?php echo $vid->views; ?></span>
+						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->poster_id; ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="card video">
-			<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/627/300/4">
-				<div class="time">16:17</div>
-				<a href="video" class="overlay"></a>
-			</div>
-			<div class="description">
-				<a href="video"><h4>La Haut ! Bande Annonce</h4></a>
-				<div>
-					<span class="view">10 576</span>
-					<a class="channel" href="channel">Dori</a>
-				</div>
-			</div>
-		</div>
+		<?php } ?>
 	</aside>
 </div>

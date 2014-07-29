@@ -1,0 +1,75 @@
+Back: 
+
+- Algo "Meilleures vidéos" sur l'accueil (Sondage en cours: http://strawpoll.me/2218320/r)
+
+- Algo "Découvrir" (Sondage en cours: http://strawpoll.me/2218416/r)
+
+- Upload
+
+- Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
+
+- Arrêter une date pour la bêta fermée (~15 aout)
+
+- La vidéo qui se lit est statique (Vu avec brezh: on garde le système de la V1)
+
+- Les miniatures affichées sont statiques
+
+- Regroupé les likes/abonnements et likes par jour serait mieux si on a une grosse chaine avec plusieurs centaines/milliers d'abonnés !
+
+- Clarifier DRASTIQUEMENT l'approche chaine, bcp trop confus actuellement: FAUTE A PETER !
+
+- On ne peut pas retirer son like sur un commentaire
+
+- Lien vers la chaien sur l'avatar d'accueil mort (+ avatar statique)
+
+- Le soulignement bleu est toujours sur "Accueil"
+
+- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
+
+- Apparemment "Envoyer un message au créateur" renvoi vers un lien mort
+
+- Etoffer le menu
+
+- Regrouper les vidéos par chaine
+
+- Les messages n'ont pas l'air de fonctionner
+
+- Mettre des espaces tous les trois chiffres pour les vues/abonnés
+
+- Protection anti-spam pour les commentaires
+
+- L'avatar ne s'affiche pas sur les chaines
+
+- Manque de feedbakc lors du flag
+
+- Demande de confirmation pour les actions de modos
+
+- Ajout de la possibilité d'avoir plusieurs admins pour une chaine
+
+- Pouvoir supprimer une chaine
+
+- Utiliser la base 64 pour images au lieu de les stocker
+
+
+
+
+
+Front:
+
+- Onglet "social des chaines": CSS OMG T_T
+
+- CSS des messages de succès/erreurs
+
+- Mettre un cursor: pointer quand on passe la souris sur les +/- des commentaires
+
+- Le slider marche pas
+
+- CSS du bouton "envoyer" des commentaires
+
+- CSS lors de la suspension
+
+- AJouter un dropdown lors du clic sur l'icone "partage" avec les icones des principaux réseaux sociaux
+
+- Faire un player à intégrer "maison" (pour ne plus être dépendants de Stornitz)
+
+- Ajouter le même type de dropdwn lors du clic sur l'icone "exporter" avec un textarea à l'intérieur (pour le code d'intégration)
