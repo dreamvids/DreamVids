@@ -1,0 +1,67 @@
+html,
+body {
+	height: 100%;
+}
+
+#chat{
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -50px;
+	padding: 0 0 50px;
+	background-color: rgb(228,228,228);
+}
+
+#chat .message{
+	float: left;
+	width: 95%;
+	background-color: rgb(94,180,228);
+	border-bottom: #33799f solid 2px;
+	/*border-radius: 5px;*/
+	padding: 3px;
+	margin-bottom: 5px;
+}
+
+#chat .message + .me{
+	float: right;
+}
+
+#chat .message .avatar{
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+
+#chat .message .pseudo{
+	display: inline-block;
+	padding-left: 5px;
+	border-left: 1px solid;
+	border-left-color: rgb(128,128,128);
+}
+
+#chat .message .pseudo:after{
+	content: ":\00a0";
+}
+
+#chat .message .text{
+	display: inline-block;
+}
+
+#send{
+	width: 100%;
+	height:	50px;
+	background-color: #33799f;
+}
+
+#send input{
+	float: left;
+	margin-left: 5%;
+	margin-top: 6px;
+	width: 65%;
+}
+
+#send input[type="submit"]{
+	float: right;
+	margin-right: 5%;
+	margin-top: 7px;
+	width: 15%;
+}
