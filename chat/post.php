@@ -15,24 +15,24 @@ if(isset($session)){
 }
 require_once('db.php');
 
-$last = date('c', time() - 10);
+$last = time() - 10;
 if(isset($_POST['getMsg'])){
-	$messages = $db->query("SELECT * FROM chat WHERE time > '$last' AND user_id!='$user_id' ORDER BY id LIMIT 0,30");
+	$messages = $db->query("SELECT * FROM chat WHERE time > $last AND user_id!='$user_id' ORDER BY id");
 	foreach ($messages as $message) {
 		if(strstr($message['user_id'], '-')){
 			$pseudo = "Anonyme-".substr($message['user_id'], -5);
 			echo "
 				<div class=\"message\">
-					<img src=\"http://lorempixel.com/20/20/cats/?". time() ."\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div>
+					<img src=\"http://lorempixel.com/20/20/cats/?". $message['user_id'] ."\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div>
 					<div class=\"text\">" . $message['message'] . "</div>
 				</div>
 			";
 		}
 		else{
-			$pseudo = User::getNameById($message['user_id']);
+			$user = new User($message['user_id']);
 			echo "
 				<div class=\"message\">
-					<a href=\"http://dreamvids.fr/" . $pseudo . "\" target=\"_blank\"><img src=\"" . $session->getAvatarPath() . "\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div></a>
+					<a href=\"http://dreamvids.fr/@" . $user->getUsername() . "\" target=\"_blank\"><img src=\"" . $user->getAvatarPath() . "\" class=\"avatar\" /><div class=\"pseudo\">" . $user->getUsername() . "</div></a>
 					<div class=\"text\">" . $message['message'] . "</div>
 				</div>
 			";
@@ -41,22 +41,24 @@ if(isset($_POST['getMsg'])){
 }
 if(isset($_POST['message'])){
 	$message = $_POST['message'];
-	$req = $db->prepare("INSERT INTO chat(user_id,message) VALUES(:user_id, :message)");
+	$req = $db->prepare("INSERT INTO chat(user_id,message,time) VALUES(:user_id, :message, :time)");
 	$req->bindParam(':user_id', $user_id);
 	$req->bindParam(':message', $message);
+	$time = time();
+	$req->bindParam(':time', $time);
 	$req->execute();
-	if(isset($_SESSION['user_id']) && strstr($_SESSION['user_id'], '-')){
+	if(!isset($session)){
 		$pseudo = 'Moi';
 		echo "
 			<div class=\"message me\">
-				<img src=\"http://lorempixel.com/20/20/cats/1/?". time() ."\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div>
+				<img src=\"http://lorempixel.com/20/20/cats/?". $_SESSION['user_id'] ."\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div>
 				<div class=\"text\">" . $message . "</div>
 			</div>
 		";
 	} else {
 		echo "
 			<div class=\"message me\">
-				<a href=\"http://dreamvids.fr/" . $pseudo . "\" target=\"_blank\"><img src=\"" . $session->getAvatarPath() . "\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div></a>
+				<a href=\"http://dreamvids.fr/@" . $pseudo . "\" target=\"_blank\"><img src=\"" . $session->getAvatarPath() . "\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div></a>
 				<div class=\"text\">" . $message . "</div>
 			</div>
 		";

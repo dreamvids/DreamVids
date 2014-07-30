@@ -17,6 +17,7 @@ if (isset($_COOKIE['SESSID']) )
 }
 
 $bdd->delete("users_sessions", "WHERE expiration < '".tps()."'");
+$bdd->delete("chat", "WHERE time + 3600 < '".tps()."'");
 
 $reponse = $bdd->select("*", "config");
 echo mysql_error();
