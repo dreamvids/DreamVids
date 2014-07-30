@@ -17,16 +17,7 @@ class AccountController extends Controller {
 	}
 
 	public function index($request) {
-		if(Session::isActive()) {
-			$data['user'] = Session::get();
-			$data['username'] = Session::get()->username;
-			$data['email'] = Session::get()->email;
-			$data['current'] = 'account';
-			
-			return new ViewResponse('account/profile', $data);
-		}
-		else
-			return new RedirectResponse(WEBROOT.'login');
+		return $this->channels($request);
 	}
 
 	public function update($id, $request) {
