@@ -9,3 +9,6 @@ module_creator.php
 img/JpFOhh.PNG
 includes/bdd.class.php
 admin/suppr.txt
+.flooignore
+.floo
+composer.lock
