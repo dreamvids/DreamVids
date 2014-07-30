@@ -20,9 +20,14 @@ class HomeController extends Controller {
 	public function index($request) {
 		if(Session::isActive()) {
 			$data = array();
+			$channel = Session::get()->getMainChannel();
+
 			$data['subscriptions'] = Session::get()->getSubscriptions();
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 6);
 			$data['discoverVids'] = Video::getDiscoverVideos(6);
+			$data['channelId'] = $channel->id;
+			$data['avatar'] = $channel->getAvatar();
+			$data['background'] = $channel->getBackground();
 
 			return new ViewResponse('home/logged', $data);
 		}
