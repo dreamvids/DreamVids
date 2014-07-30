@@ -28,7 +28,7 @@ body {
 .no-padding-left{ padding-left: 0}
 .no-padding-right{ padding-right: 0}
 
-#chat .message + .me{
+#chat .me{
 	float: right;
 }
 
