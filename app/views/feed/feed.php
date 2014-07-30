@@ -9,7 +9,7 @@
 			<?php foreach($subscriptions as $subscription): ?>
 				<?php if ($subscription): ?>
 					<a href="<?php echo WEBROOT.'channel/'.$subscription->name; ?>" class="channels">
-						<span style="background-image: url(http://lorempicsum.com/simpsons/255/200/2)" class="avatar"></span>
+						<span style="background-image: url(<?php echo $subscription->getAvatar(); ?>)" class="avatar"></span>
 						<span class="name"><?php echo $subscription->name; ?></span>
 						<p class="subscribers"><b><?php echo $subscription->subscribers; ?></b> Abonnés</p>
 					</a>

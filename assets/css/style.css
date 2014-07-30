@@ -2398,9 +2398,9 @@ body.embeded {
 
 /* 
    ===========================================================================
-	Ce code n'a pas été réorganisé car il est beaucoup trop long (849 lignes)
-	et  ce  qui  est  le  plus  pratique  serait  de le  refaire  entièrement
-	ce qui demande énormément de temps...
+  Ce code n'a pas été réorganisé car il est beaucoup trop long (849 lignes)
+  et  ce  qui  est  le  plus  pratique  serait  de le  refaire  entièrement
+  ce qui demande énormément de temps...
    =========================================================================== */
 #player {
   position: relative;
@@ -2443,7 +2443,7 @@ video {
   height: 100%; }
 
 /*
- *	Bouton repeat (à la fin)
+ *  Bouton repeat (à la fin)
  */
 @-webkit-keyframes rotate {
   from {
@@ -2529,7 +2529,7 @@ video {
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite; } }
 /*
- *	Sélection de qualité
+ *  Sélection de qualité
  */
 #qualitySelection {
   position: absolute;
@@ -2645,7 +2645,7 @@ video {
     -o-transition: 0.1s;
     transition: 0.1s; } }
 /*
- *	Gros icones animés (play et pause)
+ *  Gros icones animés (play et pause)
  */
 @-webkit-keyframes bigIconPlay {
   from {
@@ -2837,7 +2837,7 @@ video {
   background-image: url(../img/player/bigPause.png); }
 
 /*
- *	Barre des controles
+ *  Barre des controles
  */
 #controls {
   position: absolute;
@@ -2861,7 +2861,7 @@ video {
     -o-transition: bottom 0.3s;
     transition: bottom 0.3s; } }
 /*
- *	Barre de progression
+ *  Barre de progression
  */
 #progress {
   display: inline-block;
@@ -2917,7 +2917,7 @@ video {
   opacity: 0; }
 
 /*
- *	Petit bouton play/pause
+ *  Petit bouton play/pause
  */
 #play-pause {
   position: absolute;
@@ -2944,7 +2944,7 @@ video {
     display: block; }
 
 /*
- *	Indication du temps
+ *  Indication du temps
  */
 #time {
   position: absolute;
@@ -2954,7 +2954,7 @@ video {
   cursor: default; }
 
 /*
- *	Bouton pour "toogle" les annotations
+ *  Bouton pour "toogle" les annotations
  */
 #annotationsButton {
   display: inline-block;
@@ -2981,7 +2981,7 @@ video {
   #annotationsButton {
     display: none !important; } }
 /*
- *	Bouton pour régler la qualité
+ *  Bouton pour régler la qualité
  */
 #qualityButton {
   position: absolute;
@@ -2994,7 +2994,7 @@ video {
     text-shadow: 0 0 3px white; }
 
 /*
- *	Volume
+ *  Volume
  */
 #volume {
   position: absolute;
@@ -3033,7 +3033,7 @@ video {
     background-position: -63px 0; }
 
 /*
- *	Séparation
+ *  Séparation
  */
 #separation {
   display: block;
@@ -3046,7 +3046,7 @@ video {
   opacity: 0.5; }
 
 /*
- *	Widescreen
+ *  Widescreen
  */
 #widescreen {
   position: absolute;
@@ -3088,7 +3088,7 @@ video {
   #annotationsButton {
     right: 136px; } }
 /*
- *	Fullscreen
+ *  Fullscreen
  */
 #fullscreen {
   position: absolute;
@@ -3115,7 +3115,7 @@ video {
     display: block; }
 
 /*
- *	Annotations
+ *  Annotations
  */
 #annotationsElement {
   width: 100%;
@@ -4393,8 +4393,8 @@ nav.pagination {
   float: left;
   display: inline-block;
   width: 65%;
-  margin: 30px 0 20px -3px;
-  padding-right: 20px;
+  margin: 0px 0 20px -3px;
+  padding-right: 10px;
   padding-left: 10px;
   vertical-align: top;
   -webkit-box-sizing: border-box;
@@ -4429,6 +4429,10 @@ nav.pagination {
     #comments form textarea:focus, #comments form textarea:active {
       outline: none;
       border-color: #cdcdcd; }
+    #comments form textarea .blue{
+      height: 45px;
+      width: 150px;
+    }
   #comments form input[type="submit"] {
     float: right;
     height: 35px;
@@ -4453,15 +4457,25 @@ nav.pagination {
     float: left;
     width: 100%;
     padding-left: 10px;
-    font-size: 16px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    font-size: 14px;
     color: #757575; }
     #comments .comment .comment-head {
       width: 100%;
+      font-size: 14px;
       margin-bottom: 5px;
       padding-bottom: 15px; }
       #comments .comment .comment-head .user {
         display: inline-block;
         vertical-align: middle; }
+        #comments .comment .comment-head .user img{
+          height: 30px;
+          border-radius: 15px;
+        }
         #comments .comment .comment-head .user img,
         #comments .comment .comment-head .user a {
           display: inline-block;
@@ -4494,7 +4508,9 @@ nav.pagination {
       #comments .comment .comment-head .date {
         float: right;
         display: inline-block;
-        vertical-align: baseline; }
+        vertical-align: baseline;
+        color: #bababa; 
+        margin-right: 10px; }
         #comments .comment .comment-head .date p {
           font-size: 15px;
           line-height: 27px; }
@@ -4958,3 +4974,174 @@ nav.pagination {
 
 .video-infos .buttons * {
   margin: 0 15px; }
+
+
+/* Cadre d'ajout d'un commentaire
+--------------------------------------------------------*/
+#comments form{
+  padding: 0;
+  width: 100%;
+  margin: 0; 
+  margin-bottom: 25px;}
+  #comments form .form-header-container{
+    width: 100%;
+    height: 40px;
+    background-color: #ececec;
+    padding: 0;
+    margin: 0; }
+  #comments form .form-icn,#comments .form,#comments button{
+    display: inline-block;
+    vertical-align:top;
+    height:40px;
+    overflow:hidden; }
+  #comments form button{
+    width:40px;
+    float:right;
+    border:0;
+    background-color:#40a6e0;
+    padding-top: 2px;
+  -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;}
+    #comments form button:hover{cursor:pointer}
+  #comments form .form-icn{
+    width:40px;
+    background-color:#bfbfbf;
+    line-height:40px;
+    text-align:center;
+    padding-top:4px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; }
+  #comments form #add-comment-avatar{
+    display:inline-block;
+    height:20px;
+    margin-top:10px;
+    margin-left:15px;
+    margin-right:15px;
+    border-radius:10px; }
+  #comments form .form{
+    width:200px;
+    height:40px;
+    margin:0 auto 30px auto;
+    padding:0;
+    color:#858484;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-box-shadow:0 0 0 #000;
+    -moz-box-shadow:0 0 0 #000;
+    -ms-box-shadow:0 0 0 #000;
+    -o-box-shadow:0 0 0 #000;
+    box-shadow:0 0 0 #000;
+    position:relative;
+    line-height:45px;
+    border-left:1px dotted #bfbfbf;
+    border-right:1px dotted #bfbfbf; }
+  #comments form .form select{
+    height:40px;
+    background-color:#ececec;
+    position:relative;
+    margin:0 0 15px 0;
+    font-family:"Source Sans Pro",Arial; }
+  #comments form textarea{
+    width:100%;
+    padding:10px;
+    height: 120px;
+    font-size: 14px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    border:0;
+    background-color:#f4f4f4;
+    resize:none; }
+
+/* Messages d'erreur et succès
+------------------------------------------------------ */
+.message{
+  height: 45px;
+  width: 100%;
+  background-color: #ececec;
+}
+.message .message-icn{
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  line-height: 45px;
+  padding-top: 2px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  box-sizing:border-box;
+}
+.message p{
+  display: inline-block;
+  vertical-align: top;
+  line-height: 45px;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.error .message-icn{
+  background-color: #cb3030;
+}
+.success .message-icn{
+  background-color: #2ca03f;
+}
+
+/* Partie "sociale" d'une chaîne
+---------------------------------------------------------- */
+
+#channem-posts{
+  display: block;
+  height: auto;
+}
+.channel-post{
+  width: 100%;
+  color: #333333;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+}
+.channel-post img{
+  height: 25px;
+  border-radius: 12.5px;
+  margin-top: 12px;
+  position: relative;
+  top: -5px;
+  margin-right: 15px;
+}
+.channel-post img, .channel-post p{
+  display: inline-block;
+  vertical-align: middle;
+}
+.channel-name{
+  color: #40a6e0;
+}
+.social-message{
+  width: 95%;
+  float: right;
+  background-color: #fdfdfd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* +/- commentaires - effet hover
+------------------------------------------------- */
+#comments-best .plus:hover, #comments-best .moins:hover{
+  cursor: pointer;
+}

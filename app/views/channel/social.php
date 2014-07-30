@@ -49,10 +49,12 @@
 		<br><br>
 	<?php endif ?>
 
-	<aside class="" id="channel-posts">
+	<aside id="channel-posts">
 		<?php foreach($posts as $post) { ?>
-			<div class="channel-post" style="background-color: #40a6e0; width: 50%; padding: 10px; margin-bottom: 1%;"> <!-- Please Dimou, dont kill me ;( -->
-				<?php echo $post->content; ?>
+			<div class="channel-post"> 
+				<img src="<?php echo $avatar ?>" alt="Avatar de la chaîne">
+				<p><span class="channel-name"><?php echo $name; ?></span> a posté un message :</p>
+				<div class="social-message"><?php echo $post->content; ?></div>
 			</div>
 		<?php } ?>
 	</aside>

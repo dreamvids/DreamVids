@@ -208,6 +208,7 @@ class ChannelController extends Controller {
 			$data['currentPage'] = 'channel';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
+			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;

@@ -1,10 +1,10 @@
 <div id="home-large-modal">
-	<div id="backgroundLoader" class="bgLoader" data-background="<?php echo IMG.'backgrounds/001.jpg'; ?>"></div>
+	<div id="backgroundLoader" class="bgLoader" data-background="<?php echo $background; ?>"></div>
 	<section>
 		<div id="boxPages" class="channel">
 			<div id="pageChannel">
-				<a href="channel">
-					<span class="avatar bgLoader" data-background="http://lorempicsum.com/simpsons/255/200/5"></span>
+				<a href="<?php echo WEBROOT.'channel/'.$channelId; ?>">
+					<span class="avatar bgLoader" data-background="<?php echo $avatar; ?>"></span>
 					<h3><?php echo Session::get()->username; ?></h3>
 				</a>
 			</div>
@@ -34,7 +34,7 @@
 			<?php if(sizeof($subscriptions) != 0) { ?>
 				<?php foreach($subscriptions as $sub) { ?>
 					<a href="<?php echo WEBROOT.'channel/'.$sub->name; ?>" class="channels">
-						<span style="background-image: url(http://lorempicsum.com/simpsons/255/200/2)" class="avatar"></span>
+						<span style="background-image: url(<?php echo $sub->getAvatar(); ?>)" class="avatar"></span>
 						<span class="name" href="#"><?php echo $sub->name; ?></span>
 						<p class="subscribers"><b><?php echo $sub->subscribers; ?></b> Abonnés</p>
 					</a>
