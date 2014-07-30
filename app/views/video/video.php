@@ -113,6 +113,8 @@
 
 <div class="content">
 	<section id="comments">
+		<h3 class="title">Commentaires</h3>
+
 		<?php if(Session::isActive()): ?>
 			<form method="post" action="" onsubmit="return false;">
 				<div class="form-header-container">
@@ -130,8 +132,6 @@
 				<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
 			</form>
 		<?php endif ?>
-
-		<h3 class="title">Commentaires Populaires</h3>
 
 		<div id="comments-best">
 			<?php if (empty($comments)): ?>
