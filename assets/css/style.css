@@ -4393,8 +4393,8 @@ nav.pagination {
   float: left;
   display: inline-block;
   width: 65%;
-  margin: 30px 0 20px -3px;
-  padding-right: 20px;
+  margin: 0px 0 20px -3px;
+  padding-right: 10px;
   padding-left: 10px;
   vertical-align: top;
   -webkit-box-sizing: border-box;
@@ -4457,15 +4457,25 @@ nav.pagination {
     float: left;
     width: 100%;
     padding-left: 10px;
-    font-size: 16px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    font-size: 14px;
     color: #757575; }
     #comments .comment .comment-head {
       width: 100%;
+      font-size: 14px;
       margin-bottom: 5px;
       padding-bottom: 15px; }
       #comments .comment .comment-head .user {
         display: inline-block;
         vertical-align: middle; }
+        #comments .comment .comment-head .user img{
+          height: 30px;
+          border-radius: 15px;
+        }
         #comments .comment .comment-head .user img,
         #comments .comment .comment-head .user a {
           display: inline-block;
@@ -4498,7 +4508,9 @@ nav.pagination {
       #comments .comment .comment-head .date {
         float: right;
         display: inline-block;
-        vertical-align: baseline; }
+        vertical-align: baseline;
+        color: #bababa; 
+        margin-right: 10px; }
         #comments .comment .comment-head .date p {
           font-size: 15px;
           line-height: 27px; }
@@ -4969,30 +4981,37 @@ nav.pagination {
 #comments form{
   padding: 0;
   width: 100%;
-  margin: 0; }
+  margin: 0; 
+  margin-bottom: 25px;}
   #comments form .form-header-container{
     width: 100%;
-    height: 45px;
+    height: 40px;
     background-color: #ececec;
     padding: 0;
     margin: 0; }
   #comments form .form-icn,#comments .form,#comments button{
     display: inline-block;
     vertical-align:top;
-    height:45px;
+    height:40px;
     overflow:hidden; }
   #comments form button{
-    width:45px;
+    width:40px;
     float:right;
     border:0;
-    background-color:#40a6e0;}
+    background-color:#40a6e0;
+    padding-top: 2px;
+  -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;}
     #comments form button:hover{cursor:pointer}
   #comments form .form-icn{
-    width:45px;
+    width:40px;
     background-color:#bfbfbf;
-    line-height:45px;
+    line-height:40px;
     text-align:center;
-    padding-top:5px;
+    padding-top:4px;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     -ms-box-sizing:border-box;
@@ -5000,14 +5019,14 @@ nav.pagination {
     box-sizing:border-box; }
   #comments form #add-comment-avatar{
     display:inline-block;
-    height:25px;
-    margin-top:12px;
+    height:20px;
+    margin-top:10px;
     margin-left:15px;
     margin-right:15px;
-    border-radius:12.5px; }
+    border-radius:10px; }
   #comments form .form{
     width:200px;
-    height:45px;
+    height:40px;
     margin:0 auto 30px auto;
     padding:0;
     color:#858484;
@@ -5026,7 +5045,7 @@ nav.pagination {
     border-left:1px dotted #bfbfbf;
     border-right:1px dotted #bfbfbf; }
   #comments form .form select{
-    height:45px;
+    height:40px;
     background-color:#ececec;
     position:relative;
     margin:0 0 15px 0;
@@ -5034,6 +5053,8 @@ nav.pagination {
   #comments form textarea{
     width:100%;
     padding:10px;
+    height: 120px;
+    font-size: 14px;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     -ms-box-sizing:border-box;
@@ -5076,4 +5097,51 @@ nav.pagination {
 }
 .success .message-icn{
   background-color: #2ca03f;
+}
+
+/* Partie "sociale" d'une chaîne
+---------------------------------------------------------- */
+
+#channem-posts{
+  display: block;
+  height: auto;
+}
+.channel-post{
+  width: 100%;
+  color: #333333;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+}
+.channel-post img{
+  height: 25px;
+  border-radius: 12.5px;
+  margin-top: 12px;
+  position: relative;
+  top: -5px;
+  margin-right: 15px;
+}
+.channel-post img, .channel-post p{
+  display: inline-block;
+  vertical-align: middle;
+}
+.channel-name{
+  color: #40a6e0;
+}
+.social-message{
+  width: 95%;
+  float: right;
+  background-color: #fdfdfd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* +/- commentaires - effet hover
+------------------------------------------------- */
+#comments-best .plus:hover, #comments-best .moins:hover{
+  cursor: pointer;
 }
