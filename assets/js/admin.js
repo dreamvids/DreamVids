@@ -1,28 +1,34 @@
 function unFlagVideo(vidId) {
-	marmottajax.put({
-		url: '../videos/' + vidId,
-		options: { flag: false }
-	}).then(function(result) {
-		window.location.reload();
-	});
+	if(confirm("Voulez-vous annuler le report de cette video ?")) {
+		marmottajax.put({
+			url: '../videos/' + vidId,
+			options: { flag: false }
+		}).then(function(result) {
+			window.location.reload();
+		});
+	}
 }
 
 function suspendVideo(vidId) {
-	marmottajax.put({
-		url: '../videos/' + vidId,
-		options: { suspend: true }
-	}).then(function(result) {
-		window.location.reload();
-	});
+	if(confirm("Voulez-vous vraiment suspendre cette video ?")) {
+		marmottajax.put({
+			url: '../videos/' + vidId,
+			options: { suspend: true }
+		}).then(function(result) {
+			window.location.reload();
+		});
+	}
 }
 
 function unSuspendVideo(vidId) {
-	marmottajax.put({
-		url: '../videos/' + vidId,
-		options: { suspend: false }
-	}).then(function(result) {
-		window.location.reload();
-	});
+	if(confirm("Voulez-vous vraiment annuler la suspension de cette video ?")) {
+		marmottajax.put({
+			url: '../videos/' + vidId,
+			options: { suspend: false }
+		}).then(function(result) {
+			window.location.reload();
+		});
+	}
 }
 
 function eraseVideo(vidId) {
@@ -39,12 +45,14 @@ function eraseVideo(vidId) {
 
 
 function unflagComment(commentId) {
-	marmottajax.put({
-		url: '../comments/' + commentId,
-		options: { flag: false }
-	}).then(function(result) {
-		window.location.reload();
-	});
+	if(confirm("Voulez-vous vraiment annuler le report de ce commentaire ?")) {
+		marmottajax.put({
+			url: '../comments/' + commentId,
+			options: { flag: false }
+		}).then(function(result) {
+			window.location.reload();
+		});
+	}
 }
 
 function eraseComment(commentId) {
@@ -53,7 +61,7 @@ function eraseComment(commentId) {
 			url: '../comments/' + commentId,
 			options: {}
 		}).then(function(result) {
-			//window.location.reload();
+			window.location.reload();
 		});
 	}
 }

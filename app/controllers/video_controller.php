@@ -40,6 +40,7 @@ public function __construct() {
 
 		if($video->isSuspended()) {
 			$data = array();
+			$data['author'] = $author;
 			$data['video'] = $video;
 			
 			return new ViewResponse('video/suspended', $data);

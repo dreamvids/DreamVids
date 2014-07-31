@@ -21,8 +21,6 @@ Back:
 
 	- Avatar et BG de la home: lesquels ? pourquoi ?
 
-- On ne peut pas retirer son like sur un commentaire
-
 - Regrouper les vidéos par chaine
 
 - Les messages n'ont pas l'air de fonctionner
@@ -33,8 +31,6 @@ Back:
 
 - Manque de feedback lors du flag
 
-- Demande de confirmation pour les actions de modos
-
 - Ajout de la possibilité d'avoir plusieurs admins pour une chaine
 
 - Pouvoir supprimer une chaine
@@ -44,8 +40,6 @@ Back:
 - On peut envoyer des msg sociaux/commentaires vides
 
 - L'avatar ne s'affiche pas sur les chaines
-
-- On ne peut pas reporter de comentaire
 
 - Faire la recherche
 
