@@ -72,16 +72,9 @@ class CommentController extends Controller {
 	}
 
 	public function update($id, $request) {
+		$req = $request->getParameters();
 
-	}
-
-	public function destroy($id, $request) {
-
-	}
-
-	// "GET /comments/:id/like"
-	public function like($id, $request) {
-		if(Session::isActive() && Comment::exists($id)) {
+		if(isset($req['like']) && Session::isActive() && Comment::exists($id)) {
 			$comment = Comment::find($id);
 
 			if(!$comment->isLikedByUser(Session::get())) {
@@ -99,14 +92,23 @@ class CommentController extends Controller {
 
 				return new JsonResponse($commentData);
 			}
+			else { // The comment is already liked by the user, so we remove the like
+				$comment->unlike(Session::get());
+
+				$commentData = array(
+					'id' => $comment->id,
+					'author' => UserChannel::find($comment->poster_id)->name,
+					'video_id' => $comment->video_id,
+					'comment' => $comment->comment,
+					'relativeTime' => Utils::relative_time($comment->timestamp),
+					'likes' => $comment->likes,
+					'dislikes' => $comment->dislikes
+				);
+
+				return new JsonResponse($commentData);
+			}
 		}
-
-		return new Response(500);
-	}
-
-	// "GET /comments/:id/dislike"
-	public function dislike($id, $request) {
-		if(Session::isActive() && Comment::exists($id)) {
+		else if(isset($req['dislike']) && Session::isActive() && Comment::exists($id)) {
 			$comment = Comment::exists($id) ? Comment::find($id) : false;
 
 			if(!$comment->isDislikedByUser(Session::get())) {
@@ -124,9 +126,28 @@ class CommentController extends Controller {
 
 				return new JsonResponse($commentData);
 			}
+			else { // The comment is already disliked by the user, so we remove the dislike
+				$comment->undislike(Session::get());
+
+				$commentData = array(
+					'id' => $comment->id,
+					'author' => UserChannel::find($comment->poster_id)->name,
+					'video_id' => $comment->video_id,
+					'comment' => $comment->comment,
+					'relativeTime' => Utils::relative_time($comment->timestamp),
+					'likes' => $comment->likes,
+					'dislikes' => $comment->dislikes
+				);
+
+				return new JsonResponse($commentData);
+			}
 		}
 
 		return new Response(500);
+	}
+
+	public function destroy($id, $request) {
+
 	}
 
 	// Return all the comments on the specified video

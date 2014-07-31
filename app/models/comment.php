@@ -40,7 +40,34 @@ class Comment extends ActiveRecord\Model {
 				'timestamp' => Utils::tps()
 			));
 
+			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'unlike_comment', 'target' => $this->id)))
+				$action->delete();
+
 			$this->likes++;
+			$this->save();
+		}
+	}
+
+	public function unlike($user) {
+		if(is_object($user) && $this->isLikedByUser($user) && $this->likes > 0) {
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $user->id,
+				'type' => 'unlike_comment',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+
+			UserAction::find(array(
+				'user_id' => $user->id,
+				'type' => 'like_comment',
+				'target' => $this->id
+			))->delete();
+
+			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'like_comment', 'target' => $this->id)))
+				$action->delete();
+
+			$this->likes--;
 			$this->save();
 		}
 	}
@@ -63,7 +90,34 @@ class Comment extends ActiveRecord\Model {
 				'timestamp' => Utils::tps()
 			));
 
+			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'undislike_comment', 'target' => $this->id)))
+				$action->delete();
+
 			$this->dislikes++;
+			$this->save();
+		}
+	}
+
+	public function undislike($user) {
+		if(is_object($user) && $this->isDislikedByUser($user) && $this->dislikes > 0) {
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $user->id,
+				'type' => 'undislike_comment',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+
+			UserAction::find(array(
+				'user_id' => $user->id,
+				'type' => 'dislike_comment',
+				'target' => $this->id
+			))->delete();
+
+			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'dislike_comment', 'target' => $this->id)))
+				$action->delete();
+
+			$this->dislikes--;
 			$this->save();
 		}
 	}

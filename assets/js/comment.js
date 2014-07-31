@@ -96,9 +96,9 @@ function postComment(vid, commentContent, fromChannel) {
 }
 
 function likeComment(commentId) {
-	marmottajax.get({
-		'url': '../comments/' + commentId + '/like',
-		'options': {}
+	marmottajax.put({
+		'url': '../comments/' + commentId,
+		'options': { like: true }
 	}).then(function(result) {
 		try {
 			var comment = JSON.parse(result);
@@ -111,9 +111,9 @@ function likeComment(commentId) {
 }
 
 function dislikeComment(commentId) {
-	marmottajax.get({
-		'url': '../comments/' + commentId + '/dislike',
-		'options': {}
+	marmottajax.put({
+		'url': '../comments/' + commentId,
+		'options': { dislike: true }
 	}).then(function(result) {
 		try {
 			var comment = JSON.parse(result);
