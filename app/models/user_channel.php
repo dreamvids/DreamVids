@@ -216,7 +216,7 @@ class UserChannel extends ActiveRecord\Model {
 			'name' => $name,
 			'description' => $descr,
 			'owner_id' => Session::get()->id,
-			'admins_ids' => Session::get()->id.';',
+			'admins_ids' => ';'.Session::get()->id.';',
 			'avatar' => $avatarURL,
 			'background' => $backgroundURL,
 			'subscribers' => 0,
@@ -238,7 +238,6 @@ class UserChannel extends ActiveRecord\Model {
 		$chann->name = $name;
 		$chann->description = $descr;
 		$chann->avatar = $avatarURL;
-		$chann->banner = $bannerURL;
 		$chann->background = $backgroundURL;
 		$chann->save();
 	}

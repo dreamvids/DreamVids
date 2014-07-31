@@ -133,7 +133,7 @@ class ChannelController extends Controller {
 							return $response;
 						}
 
-						UserChannel::edit($channel->id, $name, $descr, '', ''); //TODO: Support logo/background/banner
+						UserChannel::edit($channel->id, $name, $descr, '', ''); //TODO: Support logo/backgroundr
 						$data['channels'] = Session::get()->getOwnedChannels();
 
 						$response = new ViewResponse('account/channels', $data);
@@ -238,7 +238,8 @@ class ChannelController extends Controller {
 	public function edit($id, $request) {
 		if(Session::isActive()) {
 			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
-
+			if(!$channel->belongToUser(Session::get()->id))
+				return Utils::getForbiddenResponse();
 			if(is_object($channel)) {
 				$data = array();
 				$data['current'] = 'channels';

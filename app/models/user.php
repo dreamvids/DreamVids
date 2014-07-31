@@ -10,7 +10,7 @@ class User extends ActiveRecord\Model {
 	}
 
 	public function getOwnedChannels() {
-		return UserChannel::all(array('conditions' => array('admins_ids LIKE ?', $this->id.';%'), 'order' => 'id desc'));
+		return UserChannel::all(array('conditions' => array('admins_ids LIKE ?', '%;'.$this->id.';%'), 'order' => 'id desc'));
 	}
 
 	public function getPostedVideos() {

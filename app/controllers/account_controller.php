@@ -30,8 +30,9 @@ class AccountController extends Controller {
 		$data['current'] = 'account';
 		$data['email'] = Session::get()->email;
 
-		if($id == 'mail') {
+		if($id == 'infos') {
 			if(isset($req['profileSubmit']) && Session::isActive()) {
+				$user = Session::get();
 				$currentMail = Session::get()->email;
 				$currentUsername = Session::get()->username;
 
@@ -39,21 +40,41 @@ class AccountController extends Controller {
 					$newMail = Utils::secure($req['email']);
 
 					if(Utils::validateMail($newMail)) {
-						Session::get()->setEmail($newMail);
-
+						$user->email = $newMail;
+						$user->save();
 						$data['email'] = $newMail;
-						$response = new ViewResponse('account/profile', $data);
-						$response->addMessage(ViewMessage::success('Préférences enrigistrées !'));
-
-						return $response;
 					}
 					else {
-						$response = new ViewResponse('account/mail', $data);
+						$response = new ViewResponse('account/profile', $data);
 						$response->addMessage(ViewMessage::error('L\'adresse E-Mail n\'est pas valide'));
 
 						return $response;
 					}
 				}
+			
+				if (isset($req['username']) && $req['username'] != $currentUsername) {
+					$newUsername = Utils::secure($req['username']);
+					
+					if (Utils::validateUsername($newUsername)) {
+						$channel = Session::get()->getMainChannel();
+						$user->username = $newUsername;
+						$user->save();
+						$channel->name = $newUsername;
+						$channel->save();
+						$data['username'] = $newUsername;
+					}
+					else {
+						$response = new ViewResponse('account/profile', $data);
+						$response->addMessage(ViewMessage::error('Le nom d\'utilisateur doit contenir uniquement des lettres, des chiffres, des points, des traits d\'union et des _ et doit être compris entre 3 et 40 caractères.'));
+					
+						return $response;
+					}
+				}
+					
+				$response = new ViewResponse('account/profile', $data);
+				$response->addMessage(ViewMessage::success('Préférences enregistrées !'));
+
+				return $response;
 			}
 		}
 
@@ -94,7 +115,7 @@ class AccountController extends Controller {
 			return new ViewResponse('account/profile', $data);
 	}
 
-	public function mail($request) {
+	public function infos($request) {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;

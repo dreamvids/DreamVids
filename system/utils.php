@@ -8,11 +8,7 @@ class Utils {
 	public static function getPerformedRequest() {
 		$requestProtocol = $_SERVER['SERVER_PROTOCOL'];
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
-		$requestURI = key($_GET);
-
-		if(strpos($requestURI, '_json'))
-			$requestURI = str_replace('_json', '.json', $requestURI);
-
+		$requestURI = self::getCurrentURI();
 		$requestAcceptedData = $_SERVER['HTTP_ACCEPT'];
 
 		if(strtoupper($requestMethod) == 'POST') {
@@ -33,6 +29,17 @@ class Utils {
 		}
 
 		return new Request($requestProtocol, $requestMethod, $requestURI, $requestAcceptedData);
+	}
+	
+	public static function getCurrentURI() {
+		$requestURI = key($_GET);
+		if(strpos($requestURI, '_json'))
+			$requestURI = str_replace('_json', '.json', $requestURI);
+	
+		if(Utils::stringStartsWith($requestURI, '/')) $requestURI = substr_replace($requestURI, '', 0, 1);
+		if(Utils::stringEndsWith($requestURI, '/')) $requestURI = substr_replace($requestURI, '', strlen($requestURI) - 1, 1);
+		
+		return $requestURI;
 	}
 
 	public static function tps() {
@@ -160,7 +167,7 @@ class Utils {
 
 	public static function validateUsername($string='') {
 		if($string != '') {
-			if(!preg_match('/[^0-9A-Za-z]/',$string)) return true;
+			if(preg_match("#^[a-zA-Z0-9-_\.]{3,40}$#",$string)) return true;
 		}
 
 		return false;

@@ -55,7 +55,7 @@ class FeedController extends Controller {
 			$data['subscriptions'] = Session::get()->getSubscriptions();
 			$data['vids'] = Session::get()->getSubscriptionsVideosFromChannel($subscription->id, 6);
 
-			$this->renderView('feed/feed', $data);
+			return new ViewResponse('feed/feed', $data);
 		}
 	}
 

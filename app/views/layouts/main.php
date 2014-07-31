@@ -61,7 +61,7 @@
 										
 										<div class="user-information-menu" id="top-nav-user-information-menu">
 											<ul>
-												<a href="<?php echo WEBROOT.'account'; ?>">Mon compte</a>
+												<a href="<?php echo WEBROOT.'account/infos'; ?>">Mon compte</a>
 												<a href="<?php echo WEBROOT.'account/channels'; ?>">Mes chaînes</a>
 												<a href="<?php echo WEBROOT.'account/messages'; ?>">Mes messages</a>
 												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
@@ -94,7 +94,16 @@
 
 					<div class="inner">
 
-						<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/nav.php') : include(VIEW.'layouts/pages/default/nav.php'); ?>
+						<nav>
+							<ul>
+								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="index.php">Accueil</a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'discover') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/videos'; ?>">Mes Vidéos</a></li>
+								<li><a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a></li>
+							</ul>
+						</nav>
 
 						<span class="mobile-nav-icon" id="mobile-nav-icon"><p></p></span>
 

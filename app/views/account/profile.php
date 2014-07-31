@@ -8,20 +8,20 @@
 			include VIEW.'layouts/messages.php';
 		?>
 
-		<form class="form" method="post" action="<?php echo WEBROOT.'account/mail'; ?>" enctype="multipart/form-data">
+		<form class="form" method="post" action="<?php echo WEBROOT.'account/infos'; ?>" enctype="multipart/form-data">
 			<input type="hidden" name="_method" value="put" />
 
 			<label for="email">Adresse email :</label>
 			<input value="<?php echo $email; ?>" type="text" name="email" placeholder="Adresse email"><br />
 
-			<!-- <label for="username">Pseudo :</label>
+			<label for="username">Pseudo :</label>
 			<input value="<?php echo $username; ?>" type="text" name="username" placeholder="Pseudo"><br />
 			
-			<label for="language">Langue :</label>
+			<!-- <label for="language">Langue :</label>
 			<select name="language">
 				<option value="fr">Français</option>
 				<option value="en">Anglais</option>
-			</select>-->
+			</select> -->
 
 			<input type="submit" name="profileSubmit" value="Enregistrer">
 		</form>
