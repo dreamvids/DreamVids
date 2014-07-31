@@ -79,6 +79,26 @@ class AdminController extends Controller {
 			return Utils::getUnauthorizedResponse();
 	}
 
+	public function comments($request) {
+		if(Session::get()->isModerator() || Session::get()->isAdmin()) {
+			$data = array();
+			$data['currentPage'] = 'admin';
+
+			$page = $request->getParameter('p') ? Utils::secure($request->getParameter('p')) : 1;
+			$channelNumber = UserChannel::count('all');
+
+			$data['rankStr'] = Session::get()->isModerator() ? 'Moderateur' : 'Admin';
+			$data['isModo'] = Session::get()->isModerator();
+			$data['isAdmin'] = Session::get()->isAdmin();
+			$data['user'] = Session::get();
+			$data['comments'] = Comment::getReportedComments();
+
+			return new ViewResponse('admin/comments', $data, true, 'layouts/admin.php');
+		}
+		else
+			return Utils::getUnauthorizedResponse();
+	}
+
 	// Denied actions
 	public function get($id, $request) {}
 	public function create($request) {}

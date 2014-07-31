@@ -155,6 +155,7 @@
 						<ul>
 							<li class="plus" id="plus-<?php echo $comment->id; ?>" onclick="likeComment('<?php echo $comment->id; ?>')">+<?php echo $comment->likes; ?></li>
 							<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
+							<li onclick="reportComment('<?php echo $comment->id; ?>', this)">Signaler</li>
 						</ul>
 					</div>
 				</div>

@@ -142,12 +142,31 @@ class CommentController extends Controller {
 				return new JsonResponse($commentData);
 			}
 		}
+		else if(isset($req['flag']) && Session::isActive() && Comment::exists($id)) {
+			$comment = Comment::exists($id) ? Comment::find($id) : false;
+
+			if(!$comment->isReported() && $req['flag'] == 'true') {
+				$comment->report(Session::get());
+			}
+			else if((Session::get()->isAdmin() || Session::get()->isModerator()) && $req['flag'] == 'false') {
+				$comment->unflag(Session::get());
+			}
+			
+			return new Response(200);
+		}
 
 		return new Response(500);
 	}
 
 	public function destroy($id, $request) {
+		if(Session::isActive() && Comment::exists($id) && (Session::get()->isModerator() || Session::get()->isAdmin())) {
+			$comment = Comment::exists($id) ? Comment::find($id) : false;
+			$comment->erase(Session::get());
+			
+			return new Response(200);
+		}
 
+		return new Response(500);
 	}
 
 	// Return all the comments on the specified video

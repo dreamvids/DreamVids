@@ -1,6 +1,7 @@
 <?php
 
 require_once MODEL.'user_action.php';
+require_once MODEL.'modo_action.php';
 
 class Comment extends ActiveRecord\Model {
 
@@ -122,6 +123,73 @@ class Comment extends ActiveRecord\Model {
 		}
 	}
 
+	public function report($reporterUser) {
+		if(is_object($reporterUser)) {
+			UserAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $reporterUser->id,
+				'type' => 'report_comment',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+
+			$this->flagged = 1;
+			$this->save();
+		}
+	}
+
+	public function unflag($reporterUser) {
+		if(is_object($reporterUser)) {
+			ModoAction::create(array(
+				'id' => UserAction::generateId(6),
+				'user_id' => $reporterUser->id,
+				'type' => 'unflag_comment',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+
+			UserAction::delete_all(array('conditions' => array(
+				'type' => 'report_comment',
+				'target' =>$this->id
+			)));
+
+			$this->flagged = 0;
+			$this->save();
+		}
+	}
+
+	public function erase($user) {
+		UserAction::delete_all(array('conditions' => array(
+			'target' =>$this->id
+		)));
+
+		ModoAction::delete_all(array('conditions' => array(
+			'target' =>$this->id
+		)));
+
+		ModoAction::create(array(
+			'id' => UserAction::generateId(6),
+			'user_id' => $user->id,
+			'type' => 'delete_comment',
+			'target' => $this->id,
+			'timestamp' => Utils::tps()
+		));
+
+		$this->delete();
+	}
+
+	public function isReported() {
+		return $this->flagged == 1;
+	}
+
+	public function getAuthor() {
+		return UserChannel::exists($this->poster_id) ? UserChannel::find($this->poster_id) : false;
+	}
+
+	public function getVideo() {
+		return Video::exists($this->video_id) ? Video::find($this->video_id) : false;
+	}
+
 	public static function postNew($authorId, $videoId, $commentContent) {
 		$timestamp = Utils::tps();
 
@@ -144,6 +212,15 @@ class Comment extends ActiveRecord\Model {
 		));
 
 		return $comment;
+	}
+
+	public static function getReportedComments($limit = 'nope') {
+		if($limit != 'nope') {
+			return Comment::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc', 'limit' => $limit));
+		}
+		else {
+			return Comment::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc'));
+		}
 	}
 
 	public static function generateId($length) {

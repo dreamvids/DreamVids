@@ -124,3 +124,14 @@ function dislikeComment(commentId) {
 		catch(e) {}
 	});
 }
+
+function reportComment(commentId, reportElement) {
+	if(confirm('Ce commentaire sera envoyé aux moderateurs. Voulez-vous continuer ?')) {
+		marmottajax.put({
+			'url': '../comments/' + commentId,
+			'options': { flag: true }
+		}).then(function(result) {
+			reportElement.innerHTML = 'Commentaire reporté. Merci.';
+		});
+	}
+}

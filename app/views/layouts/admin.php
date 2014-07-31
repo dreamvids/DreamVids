@@ -20,7 +20,7 @@
 						<li><a href="<?php echo WEBROOT.'admin/dashboard'; ?>">Tableau de bord</a></li>
 						<li><a href="<?php echo WEBROOT.'admin/videos'; ?>">Videos</a></li>
 						<li><a href="<?php echo WEBROOT.'admin/channels'; ?>">Chaînes</a></li>
-						<li><a href="<?php echo WEBROOT.'admin'; ?>">Commentaires</a></li>
+						<li><a href="<?php echo WEBROOT.'admin/comments'; ?>">Commentaires</a></li>
 						<li><a href="<?php echo WEBROOT.'admin'; ?>">Déconnexion</a></li>
 					</ul>
 				</div>
