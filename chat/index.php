@@ -1,14 +1,20 @@
+﻿<?php
+if(isset($_COOKIE['banned'])){
+	setcookie('banned', "", time() - 3600);
+}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 		<link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="style/chat.css">
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	</head>
 	<body onKeyPress="if (event.keyCode == 13) send()">
 		<div id="chat">
-			
 		</div>
 		<div id="send">
 			<div class="container-fluid">
@@ -23,7 +29,7 @@
 			</div>
 		</div>
 		<!-- SCRIPT -->
-			<script src="chat.js"></script>			
+			<script src="chat.js"></script>
 		<!-- END SCRIPT -->
 	</body>
 </html>
