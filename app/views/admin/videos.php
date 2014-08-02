@@ -19,7 +19,7 @@
 					<tr>
 						<td><a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><?php echo $vid->title; ?></a></td>
 						<td><?php echo UserChannel::find($vid->poster_id)->name; ?></td>
-						<td><?php echo $vid->views; ?></td>
+						<td><?php echo number_format($vid->views); ?></td>
 						<td><?php echo $vid->likes; ?></td>
 						<td><?php echo $vid->dislikes; ?></td>
 						<td>

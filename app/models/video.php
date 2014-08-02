@@ -210,13 +210,15 @@ class Video extends ActiveRecord\Model {
 
 		//TODO: Delete file
 
-		ModoAction::create(array(
-			'id' => ModoAction::generateId(6),
-			'user_id' => $userId,
-			'type' => 'delete',
-			'target' => $this->id,
-			'timestamp' => Utils::tps()
-		));
+		if (Session::get()->isModerator() || Session::get()->isAdmin()) {
+			ModoAction::create(array(
+				'id' => ModoAction::generateId(6),
+				'user_id' => $userId,
+				'type' => 'delete',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+		}
 	}
 
 	public static function createTemp($id, $channelId) {

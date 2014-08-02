@@ -49,14 +49,14 @@ class LoginController extends Controller {
 				}
 				else {
 					$response = new ViewResponse('login/login', $_POST);
-					$response->addMessage(ViewMessage::error('The password does not corresponds to the username'));
+					$response->addMessage(ViewMessage::error('Mot de passe incorrect'));
 
 					return $response;
 				}
 			}
 			else {
 				$response = new ViewResponse('login/login', $_POST);
-				$response->addMessage(ViewMessage::error('This account does not exists'));
+				$response->addMessage(ViewMessage::error('Ce nom d\'utilisateur n\'existe pas'));
 
 				return $response;
 			}

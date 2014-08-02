@@ -47,24 +47,26 @@ class CommentController extends Controller {
 
 		if(isset($req['commentSubmit'], $req['from-channel'], $req['video-id']) && Session::isActive()) {
 			$channelId = Utils::secure($req['from-channel']);
-
+			
 			if(UserChannel::exists($channelId) && UserChannel::find($channelId)->belongToUser(Session::get()->id)) {
 				$content = Utils::secure($req['comment-content']);
-				$vidId = Utils::secure($req['video-id']);
-
-				$comment = Comment::postNew($channelId, $vidId, $content);
-
-				$commentData = array(
-					'id' => $comment->id,
-					'author' => UserChannel::find($comment->poster_id)->name,
-					'video_id' => $vidId,
-					'comment' => $content,
-					'relativeTime' => Utils::relative_time($comment->timestamp),
-					'likes' => $comment->likes,
-					'dislikes' => $comment->dislikes
-				);
-
-				return new JsonResponse($commentData);
+				if (!empty(trim($content))) {
+					$vidId = Utils::secure($req['video-id']);
+	
+					$comment = Comment::postNew($channelId, $vidId, $content);
+	
+					$commentData = array(
+						'id' => $comment->id,
+						'author' => UserChannel::find($comment->poster_id)->name,
+						'video_id' => $vidId,
+						'comment' => $content,
+						'relativeTime' => Utils::relative_time($comment->timestamp),
+						'likes' => $comment->likes,
+						'dislikes' => $comment->dislikes
+					);
+	
+					return new JsonResponse($commentData);
+				}
 			}
 		}
 

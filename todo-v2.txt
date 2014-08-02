@@ -12,8 +12,6 @@ Back:
 
 - La vidéo qui se lit est statique (Vu avec brezh: on garde le système de la V1)
 
-- Les miniatures affichées sont statiques
-
 - Clarifier DRASTIQUEMENT l'approche chaine, bcp trop confus actuellement: FAUTE A PETER !
 	- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
 
@@ -21,23 +19,13 @@ Back:
 
 	- Avatar et BG de la home: lesquels ? pourquoi ?
 
-- Regrouper les vidéos par chaine
-
 - Les messages n'ont pas l'air de fonctionner
-
-- Mettre des espaces tous les trois chiffres pour les vues/abonnés
-
-- L'avatar ne s'affiche pas sur les chaines
-
-- Manque de feedback lors du flag
 
 - Ajout de la possibilité d'avoir plusieurs admins pour une chaine
 
 - Pouvoir supprimer une chaine
 
 - Utiliser la base 64 pour images au lieu de les stocker
-
-- On peut envoyer des msg sociaux/commentaires vides
 
 - L'avatar ne s'affiche pas sur les chaines
 

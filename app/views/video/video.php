@@ -97,13 +97,13 @@
 
 	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())): ?>
 		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
-			<?php if ($video->isFlagged()): ?>
-				<button class="blue" onclick="unFlag('<?php echo $video->id; ?>')">Annuler le flag</button>
-			<?php endif ?>
+			<?php if ($video->isFlagged()) { ?>
+				<button class="blue" onclick="unFlagVideo('<?php echo $video->id; ?>')">Annuler le flag</button>
+			<?php } ?>
 
 			<!--<a href="messages?to=Simpleworld"><button type="button" class="orange" name="send_message_author">Envoyer un message</button></a>-->
 
-			<button class="red" onclick="suspend('<?php echo $video->id; ?>')">Suspendre</button>
+			<button class="red" onclick="suspendVideo('<?php echo $video->id; ?>')">Suspendre</button>
 			<button class="red" onclick="alert('Pas encore implémenté')">Demander la suppression</button>
 		</form>
 	<?php endif ?>

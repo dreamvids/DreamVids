@@ -53,21 +53,9 @@
 	<aside class="aside-cards-list">
 		<h3 class="title">Vidéos de mes abonnements</h3>
 		
-		<?php foreach($subscriptions_vids as $vid) { ?>
-			<div class="card video">
-				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-					<div class="time"><?php echo $vid->duration; ?></div>
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
-				</div>
-				<div class="description">
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
-					<div>
-						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->poster_id; ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
-					</div>
-				</div>
-			</div>
-		<?php } ?>
+		<?php foreach($subscriptions_vids as $vid) {
+			echo Utils::getVideoCardHTML($vid);
+		} ?>
 
 		<?php if(sizeof($subscriptions_vids) == 0) { ?>
 			<p style="text-align: center; color: #858484;">Aucune nouvelles vidéos de vos abonnement</p>
@@ -79,20 +67,8 @@
 
 	<aside class="aside-cards-list">
 		<h3 class="title">Meilleures vidéos</h3>
-		<?php foreach($bestVids as $vid) { ?>
-			<div class="card video">
-				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-					<div class="time"><?php echo $vid->duration; ?></div>
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
-				</div>
-				<div class="description">
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
-					<div>
-						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->poster_id; ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
-					</div>
-				</div>
-			</div>
-		<?php } ?>
+		<?php foreach($bestVids as $vid) {
+			echo Utils::getVideoCardHTML($vid);
+		} ?>
 	</aside>
 </div>

@@ -33,21 +33,7 @@
 			foreach(@$actions as $action) {
 				if($action) {
 					if($action->type == 'upload') {
-						?>
-							<div class="card video">
-								<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/nemo/350/200/1">
-									<div class="time"><?php echo Video::find($action->target)->duration; ?></div>
-									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>" class="overlay"></a>
-								</div>
-								<div class="description">
-									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>"><h4><?php echo Video::find($action->target)->title; ?></h4></a>
-									<div>
-										<span class="view"><?php echo Video::find($action->target)->views; ?></span>
-										<a class="channel" href="<?php echo WEBROOT.'channel/'.$action->channel_id; ?>"><?php echo UserChannel::getNameById($action->channel_id); ?></a>
-									</div>
-								</div>
-							</div>
-						<?php
+						echo Utils::getVideoCardHTML(Video::find($action->target));
 					}
 					else if($action->type == "subscription") {
 						$user_action_name = User::getNameById($action->user_id);

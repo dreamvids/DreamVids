@@ -30,7 +30,7 @@
 							<b class="principal">Chaîne principale</b>
 						<?php endif ?>
 
-						<span class="subscriber"><b><?php echo $chan->subscribers; ?></b> Abonnés</span>
+						<span class="subscriber"><b><?php echo number_format($chan->subscribers); ?></b> Abonnés</span>
 					</div>
 				</div>
 			<?php endforeach ?>

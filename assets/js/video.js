@@ -116,6 +116,6 @@ function flag(vid) {
             'options': { flag: true }
 
         });
-
+        alert("La vidéo a bien tété signalée aux modérateurs qui traiteront votre signalement dans les meilleurs délais.");
     }
 }

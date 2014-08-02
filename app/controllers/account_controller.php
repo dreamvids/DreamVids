@@ -144,14 +144,30 @@ class AccountController extends Controller {
 
 	public function videos($request) {
 		if(Session::isActive()) {
-			$data['user'] = Session::get();
-			$data['videos'] = Session::get()->getMainChannel()->getPostedVideos();
-			$data['current'] = 'videos';
-
-			return new ViewResponse('account/videos', $data);
+			if (is_string($request)) {
+				$data['videos'] = UserChannel::find($request)->getPostedVideos();
+				
+				$response = new ViewResponse('account/videos', $data);
+				if (empty($data['videos'])) {
+					$response->addMessage(ViewMessage::error('Vous n\'avez posté aucune vidéo'));
+				}
+				return $response;
+			}
+			else {
+				$data['user'] = Session::get();
+				$data['channel'] = Session::get()->getOwnedChannels();
+				$data['current'] = 'videos';
+				
+				$response = new ViewResponse('account/channels_videos', $data);
+				if (empty($data['channel'])) {
+					$response->addMessage(ViewMessage::error('Vous n\'avez aucune chaîne'));
+				}
+				return $response;
+			}
 		}
-		else
+		else {
 			return new RedirectResponse(WEBROOT.'login');
+		}
 	}
 
 	public function messages($request) {
@@ -163,8 +179,9 @@ class AccountController extends Controller {
 
 			return new ViewResponse('account/messages', $data);
 		}
-		else
+		else {
 			return new RedirectResponse(WEBROOT.'login');
+		}
 	}
 
 	public function channels() {
@@ -175,8 +192,9 @@ class AccountController extends Controller {
 
 			return new ViewResponse('account/channels', $data);
 		}
-		else
+		else {
 			return new RedirectResponse(WEBROOT.'login');
+		}
 	}
 
 	public function get($id, $request) {}

@@ -12,4 +12,11 @@
 		<p><?php echo $author->name; ?></p>
 		<a href="<?php echo WEBROOT.'channel/'.$author->id; ?>"><div class="channel-access-btn"><img src="<?php echo IMG.'arrow_right.png'; ?>" alt="Allez sur la chaîne"></div></a>
 	</div>
+	
+	
+<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) { ?>
+	<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
+		<button class="blue" onclick="unSuspendVideo('<?php echo $video->id; ?>')">Ré-activer</button>
+	</form>
+<?php } ?>
 </div>

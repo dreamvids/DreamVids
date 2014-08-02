@@ -194,4 +194,19 @@ class Utils {
 		return strpos($fileHeaders[0], '200 OK') !== false;
 	}
 
+	public static function getVideoCardHTML($vid) {
+		return '<div class="card video">
+				<div class="thumbnail bgLoader" data-background="'.$vid->tumbnail.'">
+					<div class="time">'.$vid->duration.'</div>
+					<a href="'.WEBROOT.'watch/'.$vid->id.'" class="overlay"></a>
+				</div>
+				<div class="description">
+					<a href="'.WEBROOT.'watch/'.$vid->id.'"><h4>'.$vid->title.'</h4></a>
+					<div>
+						<span class="view">'.number_format($vid->views).'</span>
+						<a class="channel" href="'.WEBROOT.'channel/'.$vid->poster_id.'">'.UserChannel::getNameById($vid->poster_id).'</a>
+					</div>
+				</div>
+			</div>';
+	}
 }

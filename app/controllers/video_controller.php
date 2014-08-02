@@ -13,7 +13,7 @@ require_once MODEL.'user_channel.php';
 
 class VideoController extends Controller {
 
-public function __construct() {
+	public function __construct() {
 		$this->denyAction(Action::INDEX);
 	}
 

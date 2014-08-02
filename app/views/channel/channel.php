@@ -40,20 +40,8 @@
 
 	<aside class="full-cards-list">
 
-		<?php foreach($videos as $vid) { ?>
-			<div class="card video">
-				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/up/350/200/1">
-					<!--<div class="time">12:05</div>-->
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
-				</div>
-				<div class="description">
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
-					<div>
-						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.UserChannel::getNameById($vid->poster_id); ?>"><?php echo UserChannel::getNameById($vid->poster_id); ?></a>
-					</div>
-				</div>
-			</div>
-		<?php } ?>
+		<?php foreach($videos as $vid) {
+			echo Utils::getVideoCardHTML($vid);
+		} ?>
 	</aside>
 </div>
