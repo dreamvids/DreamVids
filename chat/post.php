@@ -1,13 +1,15 @@
 ﻿<?php
 session_start(); // START THE SESSION
-
+$lang_path = '../';
+include '../includes/bdd.class.php';
+include '../includes/functions.php';
+include '../classes/LoggedUser.php';
+include '../includes/tasks.php';
 require_once('db.php'); // CONNECT TO THE DATABASE USING PDO
 
 if(isset($session)){ // DREAMVID'S USER
 	$user_id = $session->getId(); // ID OF DREAMVID'S USER
 	$pseudo = $session->getName(); // PSEUDO OF DREAMVID'S USER
-
-	$user = new User($message['user_id']); // REMOTE DREAMVID'S USER
 } else { // ANONYME USER
 	if(isset($_SESSION['user_id'])) $user_id = $_SESSION['user_id']; // ID OF AN ANONYME
 	else $user_id = $_SESSION['user_id'] = '-'.uniqid(); // ID OF AN ANONYME
@@ -16,7 +18,7 @@ if(isset($session)){ // DREAMVID'S USER
 if(isset($_POST['getMsg']) || isset($_POST['message'])){
 
 	$ip = $_SERVER['REMOTE_ADDR'];
-	$req = $db->query("SELECT * FROM chat_banned WHERE ip = '$ip' ORDER BY time DESC");
+	$req = $db->query("SELECT * FROM chat_banned WHERE ip = '$ip' OR user_id= '$user_id' ORDER BY time DESC");
 	$banned = $req->fetch();
 	if(!$banned OR ($banned['time'] != -1 && $banned['time'] < time())){
 		if(isset($_COOKIE['banned'])){
@@ -30,17 +32,18 @@ if(isset($_POST['getMsg']) || isset($_POST['message'])){
 					$pseudo = "Anonyme-".substr($message['user_id'], -5);
 					echo "
 						<div class=\"message\">
-							<img src=\"http://lorempixel.com/20/20/cats/?". $message['user_id'] ."\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div>
-							<div style=\"display:none;\" class=\"admin\"><a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . $pseudo . "','" . $message['ip'] . "','temp')\">Ban 5 minutes</a> | <a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . $pseudo . "','" . $message['ip'] . "','def')\">Ban définitif</a></div>
-							" . htmlspecialchars($message['message']) . "
+							<img src=\"http://lorempixel.com/20/20/cats/?". $message['user_id'] ."\" class=\"avatar\" /><div class=\"pseudo\">" . $pseudo . "</div>";
+							echo (isset($session) && ($session->getRank() == $config['rank_modo'] || $session->getRank() == $config['rank_adm'])) ? "<div style=\"display:none;\" class=\"admin\"><a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . $pseudo . "','" . $message['ip'] . "','temp')\">Ban 5 minutes</a> | <a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . $pseudo . "','" . $message['ip'] . "','def')\">Ban définitif</a></div>" : '';
+							echo htmlspecialchars($message['message']) . "
 						</div>
 					";
 				} else {
+					$user = new User($message['user_id']); // REMOTE DREAMVID'S USER
 					echo "
 						<div class=\"message\">
-							<a href=\"http://dreamvids.fr/@" . $user->getUsername() . "\" target=\"_blank\"><img src=\"" . $user->getAvatarPath() . "\" class=\"avatar\" /><div class=\"pseudo\">" . $user->getUsername() . "</div></a>
-							<div style=\"display:none;\" class=\"admin\"><a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . $user->getUsername() . "','" . $message['ip'] . "','temp')\">Ban 5 minutes</a> | <a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . $user->getUsername() . "','" . $message['ip'] . "','def')\">Ban définitif</a></div>
-							" . htmlspecialchars($message['message']) . "
+							<a href=\"http://dreamvids.fr/@" . $user->getUsername() . "\" target=\"_blank\"><img src=\"" . $user->getAvatarPath() . "\" class=\"avatar\" /><div class=\"pseudo\">" . secure($user->getUsername() ) . "</div></a>";
+							echo (isset($session) && ($session->getRank() == $config['rank_modo'] || $session->getRank() == $config['rank_adm'])) ? "<div style=\"display:none;\" class=\"admin\"><a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . secure($user->getUsername() ) . "','" . $message['ip'] . "','temp')\">Ban 5 minutes</a> | <a href=\"#\" onclick=\"ban('" . $message['user_id'] . "','" . secure($user->getUsername() ) . "','" . $message['ip'] . "','def')\">Ban définitif</a></div>" : '';
+							echo secure($message['message']) . "
 						</div>
 					";
 				}

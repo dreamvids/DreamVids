@@ -16,7 +16,7 @@ function send(pseudo){
 		$("input[type='text']").focus();
 		$("input[type='text']").select();
 		var elem = document.getElementById("chat");
-		elem.scrollTop = elem.scrollHeight
+		elem.scrollTop = elem.scrollHeight;
 	});
 	
 }
