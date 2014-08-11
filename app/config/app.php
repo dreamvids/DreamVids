@@ -7,3 +7,5 @@ Config::addValue('vid_visibility_suspended', '3');
 
 Config::addValue('default-avatar', IMG.'default-avatar.png');
 Config::addValue('default-background', IMG.'default-background.jpg');
+
+Config::addValue('livestream-source', 'rtmp://192.168.56.101/live/');

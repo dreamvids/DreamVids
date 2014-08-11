@@ -2,9 +2,9 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Lun 28 Juillet 2014 à 21:26
--- Version du serveur :  5.6.17
+-- Client :  192.168.56.101
+-- Généré le :  Lun 11 Août 2014 à 15:41
+-- Version du serveur :  5.6.19-1~dotdeb.1
 -- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -103,6 +103,20 @@ CREATE TABLE IF NOT EXISTS `conversations` (
   `thumbnail` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `live_accesses`
+--
+
+CREATE TABLE IF NOT EXISTS `live_accesses` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `channel_id` varchar(50) NOT NULL,
+  `key` varchar(255) NOT NULL DEFAULT '0',
+  `timestamp` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -315,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `videos_view` (
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
