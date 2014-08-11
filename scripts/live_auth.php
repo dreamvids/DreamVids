@@ -1,7 +1,5 @@
 <?php
 
-file_put_contents('log.txt', 'Coucou', FILE_APPEND);
-
 try {
 	$pdo = new PDO('mysql:host=127.0.0.1;dbname=dreamvids_v2', 'root', 'root');
 
