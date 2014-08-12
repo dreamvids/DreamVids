@@ -36,6 +36,7 @@ class Comment extends ActiveRecord\Model {
 			UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $user->id,
+				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'like_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
@@ -54,6 +55,7 @@ class Comment extends ActiveRecord\Model {
 			UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $user->id,
+				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'unlike_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
@@ -86,6 +88,7 @@ class Comment extends ActiveRecord\Model {
 			UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $user->id,
+				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'dislike_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
@@ -104,6 +107,7 @@ class Comment extends ActiveRecord\Model {
 			UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $user->id,
+				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'undislike_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
@@ -125,13 +129,13 @@ class Comment extends ActiveRecord\Model {
 
 	public function report($reporterUser) {
 		if(is_object($reporterUser)) {
-			UserAction::create(array(
+			/*UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $reporterUser->id,
 				'type' => 'report_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
-			));
+			));*/
 
 			$this->flagged = 1;
 			$this->save();

@@ -24,19 +24,10 @@ class FeedController extends Controller {
 			$data['subscriptions'] = array();
 			
 			$actions = array_merge(Session::get()->getSubscriptionsActions(), Session::get()->getUsersPersonalActions());
-
+			
 			if(count($actions) > 0) {
-				//TODO: Optimize
-				foreach($actions as $action) $map[] = $action->timestamp;
-
-				arsort($map);
-
-				foreach ($map as $m) {
-					foreach($actions as $a) if($a->timestamp == $m) $orderedActions[] = $a;
-				}
-
 				$data['subscriptions'] = Session::get()->getSubscriptions();
-				$data['actions'] = $orderedActions;
+				$data['actions'] = $actions;
 			}
 
 			return new ViewResponse('feed/feed', $data);

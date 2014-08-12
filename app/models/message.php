@@ -19,6 +19,7 @@ class Message extends ActiveRecord\Model {
 		UserAction::create(array(
 			'id' => UserAction::generateId(6),
 			'user_id' => $sender,
+			'recipients_ids' => Conversation::find($conversation)->members_ids,
 			'type' => 'message',
 			'target' => $conversation,
 			'timestamp' => $timestamp

@@ -40,29 +40,11 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getAvatar() {
-		$avatar = Config::getValue_('default-avatar');
-
-		if(empty($this->avatar)) return $avatar;
-
-		if(file_exists($this->avatar) || ($isUrl = Utils::isUrlValid($this->avatar)))
-			$avatar = isset($isUrl) ? $this->avatar : WEBROOT.$this->avatar;
-		else if(strpos($this->avatar, WEBROOT))
-			$avatar = $this->avatar;
-
-		return $avatar;
+		return $this->avatar;
 	}
 
 	public function getBackground() {
-		$background = Config::getValue_('default-background');
-
-		if(empty($this->background)) return $background;
-
-		if(file_exists($this->background) || ($isUrl = Utils::isUrlValid($this->background)))
-			$background = isset($isUrl) ? $this->background : WEBROOT.$this->background;
-		else if(strpos($this->background, WEBROOT))
-			$background = $this->background;
-
-		return $background;
+		return $this->background;
 	}
 
 	public function belongToUser($userId) {
@@ -134,6 +116,7 @@ class UserChannel extends ActiveRecord\Model {
 			UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $subscriber,
+				'recipients_ids' => $subscribingChannel->admins_ids,
 				'type' => 'subscription',
 				'target' => $subscribing,
 				'timestamp' => Utils::tps()
@@ -174,6 +157,7 @@ class UserChannel extends ActiveRecord\Model {
 			UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $subscriber,
+				'recipients_ids' => $subscribingChannel->admins_ids,
 				'type' => 'unsubscription',
 				'target' => $subscribing,
 				'timestamp' => Utils::tps()
@@ -232,11 +216,12 @@ class UserChannel extends ActiveRecord\Model {
 		 */
 	}
 
-	public static function edit($channelId, $name, $descr, $avatarURL, $backgroundURL) {
+	public static function edit($channelId, $name, $descr, $admins_ids, $avatarURL, $backgroundURL) {
 		$chann = UserChannel::find($channelId);
 
 		$chann->name = $name;
 		$chann->description = $descr;
+		$chann->admins_ids = $admins_ids;
 		$chann->avatar = $avatarURL;
 		$chann->background = $backgroundURL;
 		$chann->save();

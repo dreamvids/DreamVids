@@ -6,11 +6,13 @@
 		<?php
 			include VIEW.'layouts/account_menu.php';
 			include VIEW.'layouts/messages.php';
+			//TODO: Cool UX for channel admins managment
 		?>
 
-		<form class="form" method="post" action="<?php echo WEBROOT.'channel/'.$name; ?>" enctype="multipart/form-data">
+		<form onsubmit="document.getElementById('_admins').value=JSON.stringify(admins);" class="form" method="post" action="<?php echo WEBROOT.'channel/'.$name; ?>" enctype="multipart/form-data">
 			<input type="hidden" name="_method" value="put" />
-
+			<input type="hidden" id="_admins" name="_admins" value="" />
+			
 			<label for="name">Nom :</label>
 			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'readonly' : ''; ?>/>
 
@@ -37,8 +39,22 @@
 				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" value="<?php echo @$background; ?>" /><br />
 			</label>
 			
+			<label>Administrateurs :</label>
+				<div id="adm">
+<?php
+foreach ($admins as $key => $adm) {
+	$is_creator = ($adm->id == $id);
+	$creator = ($is_creator) ? ' (Créateur)' : '';
+	$delete = (!$is_creator) ? '<img class="delete-admin" src="'.IMG.'message_error_icon.png" onclick="remove_adm('.$adm->owner_id.')" />' : '';
+	echo '<div id="adm_'.$adm->owner_id.'" class="channel-admin"><img class="admin-avatar" src="'.$adm->avatar.'" />'.$adm->name.$creator.$delete.'</div>';
+}
+?>
+				</div>
+
+			<input style="margin-bottom:0" type="text" id="add_admin" onkeyup="autocompletion(this)" placeholder="Ajouter un administrateur..." autocomplete="off" />
+			<div id="autocomplete"></div>
+			
 			<input type="submit" name="editChannelSubmit" value="Modifier la chaîne" />
 		</form>
 	</section>
-
 </div>

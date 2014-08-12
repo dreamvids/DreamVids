@@ -72,6 +72,13 @@ class Video extends ActiveRecord\Model {
 		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_suspended')));
 	}
 
+	public function isPrivate() {
+		$appConfig = new Config(CONFIG.'app.json');
+		$appConfig->parseFile();
+
+		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_private')));
+	}
+
 	public function isFlagged() {
 		return $this->flagged == 1;
 	}
@@ -102,6 +109,7 @@ class Video extends ActiveRecord\Model {
 		UserAction::create(array(
 			'id' => UserAction::generateId(6),
 			'user_id' => $userId,
+			'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 			'type' => 'like',
 			'target' => $this->id,
 			'timestamp' => Utils::tps()
@@ -118,6 +126,7 @@ class Video extends ActiveRecord\Model {
 		UserAction::create(array(
 			'id' => UserAction::generateId(6),
 			'user_id' => $userId,
+			'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 			'type' => 'dislike',
 			'target' => $this->id,
 			'timestamp' => Utils::tps()
@@ -148,13 +157,14 @@ class Video extends ActiveRecord\Model {
 			$this->flagged = 1;
 			$this->save();
 
-			UserAction::create(array(
+			/*UserAction::create(array(
 				'id' => UserAction::generateId(6),
 				'user_id' => $userId,
+				'recepients_ids' => '',
 				'type' => 'flag',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
-			));
+			));*/
 		}
 	}
 

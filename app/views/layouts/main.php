@@ -5,7 +5,7 @@
 
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.min.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.css'; ?>">
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/meta.php') : include(VIEW.'layouts/pages/default/meta.php'); ?>
 
@@ -100,7 +100,7 @@
 								<li <?php echo (Utils::getCurrentURI() == 'discover') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/videos'; ?>">Mes Vidéos</a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channelslist'; ?>">Mes Vidéos</a></li>
 								<li><a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a></li>
 							</ul>
 						</nav>

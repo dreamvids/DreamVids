@@ -19,5 +19,6 @@ Route::register('posts', 'channel_post');
 Route::register('comments', 'comment');
 Route::register('messages', 'message');
 Route::register('conversations', 'conversation');
+Route::register('users', 'user');
 
 Route::register('admin', 'admin');

@@ -17,7 +17,7 @@ class AccountController extends Controller {
 	}
 
 	public function index($request) {
-		return $this->channels($request);
+		return $this->infos($request);
 	}
 
 	public function update($id, $request) {
@@ -120,6 +120,7 @@ class AccountController extends Controller {
 			$data['user'] = Session::get();
 			$data['username'] = Session::get()->username;
 			$data['email'] = Session::get()->email;
+			$data['settings'] = Session::get()->getSettings();
 			$data['current'] = 'account';
 			
 			return new ViewResponse('account/profile', $data);
@@ -141,29 +142,34 @@ class AccountController extends Controller {
 			exit();
 		}
 	}
-
-	public function videos($request) {
+	
+	public function channelslist($request) {
 		if(Session::isActive()) {
-			if (is_string($request)) {
-				$data['videos'] = UserChannel::find($request)->getPostedVideos();
-				
-				$response = new ViewResponse('account/videos', $data);
-				if (empty($data['videos'])) {
-					$response->addMessage(ViewMessage::error('Vous n\'avez posté aucune vidéo'));
-				}
-				return $response;
+			$data['user'] = Session::get();
+			$data['channel'] = Session::get()->getOwnedChannels();
+			$data['current'] = 'videos';
+			
+			$response = new ViewResponse('account/channels_videos', $data);
+			if (empty($data['channel'])) {
+				$response->addMessage(ViewMessage::error('Vous n\'avez aucune chaîne'));
 			}
-			else {
-				$data['user'] = Session::get();
-				$data['channel'] = Session::get()->getOwnedChannels();
-				$data['current'] = 'videos';
-				
-				$response = new ViewResponse('account/channels_videos', $data);
-				if (empty($data['channel'])) {
-					$response->addMessage(ViewMessage::error('Vous n\'avez aucune chaîne'));
-				}
-				return $response;
+			return $response;
+		}
+		else {
+			return new RedirectResponse(WEBROOT.'login');
+		}
+	}
+
+	public function videos($id, $request) {
+		if(Session::isActive()) {
+			$data['videos'] = UserChannel::find($id)->getPostedVideos();
+			$data['current'] = 'videos';
+			
+			$response = new ViewResponse('account/videos', $data);
+			if (empty($data['videos'])) {
+				$response->addMessage(ViewMessage::error('Vous n\'avez posté aucune vidéo'));
 			}
+			return $response;
 		}
 		else {
 			return new RedirectResponse(WEBROOT.'login');
@@ -184,7 +190,7 @@ class AccountController extends Controller {
 		}
 	}
 
-	public function channels() {
+	public function channels($request) {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['channels'] = Session::get()->getOwnedChannels();

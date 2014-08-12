@@ -26,7 +26,13 @@ class ChannelController extends Controller {
 				'id' => $channel->id,
 				'name' => $channel->name,
 				'description' => $channel->description,
-				'subscribers' => $channel->subscribers
+				'owner_id' => $channel->owner_id,
+				'admins_ids' => $channel->admins_id,
+				'avatar' => $channel->avatar,
+				'background' => $channel->background,
+				'subscribers' => $channel->subscribers,
+				'views' => $channel->views,
+				'verified' => $channel->verified
 			);
 
 			return new JsonResponse($channelData);
@@ -108,6 +114,7 @@ class ChannelController extends Controller {
 		$data['current'] = 'channels';
 		$name = @Utils::secure($req['name']);
 		$descr = @Utils::secure($req['description']);
+		$admins = json_decode($req['_admins']);
 
 		if(isset($req['editChannelSubmit']) && Session::isActive()) {
 			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
@@ -124,16 +131,54 @@ class ChannelController extends Controller {
 			if(isset($req['name'], $req['description'])) {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
-						if($channel->isUsersMainChannel(Session::get()->id) && $channel->name != $req['name']) {
-							$data['name'] = $channel->name;
-
-							$response = new ViewResponse('channel/edit', $data);
-							$response->addMessage(ViewMessage::error('Vous ne pouvez pas changer le nom de votre chaîne principale !'));
-
-							return $response;
+						$adm = $channel->admins_ids;
+						if($channel->isUsersMainChannel(Session::get()->id)) {
+							if ($channel->name != $req['name']) {
+								$data['name'] = $channel->name;
+	
+								$response = new ViewResponse('channel/edit', $data);
+								$response->addMessage(ViewMessage::error('Vous ne pouvez pas changer le nom de votre chaîne principale !'));
+	
+								return $response;
+							}
 						}
-
-						UserChannel::edit($channel->id, $name, $descr, '', ''); //TODO: Support logo/backgroundr
+						else {
+							$adm = trim($adm, ';');
+							$adm = explode(';', $adm);
+							foreach ($admins as $admin) {
+								if ($admin > 0) {
+									if (!in_array($admin, $adm)) {
+										$adm[] = $admin;
+										UserAction::create(array(
+											'id' => UserAction::generateId(6),
+											'user_id' => $subscriber,
+											'recipients_ids' => ';'.$admin.';',
+											'type' => 'admin',
+											'target' => $subscribing,
+											'timestamp' => Utils::tps()
+										));
+									}
+								}
+								else {
+									$value = -1 * $admin;
+									if (in_array($value, $adm) && $channel->owner_id != $value) {
+										$id = array_keys($adm, $value);
+										unset($adm[$id[0]]);
+										UserAction::create(array(
+											'id' => UserAction::generateId(6),
+											'user_id' => $subscriber,
+											'recipients_ids' => ';'.$admin.';',
+											'type' => 'unadmin',
+											'target' => $subscribing,
+											'timestamp' => Utils::tps()
+										));
+									}
+								}
+							}
+							$adm = ';'.implode(';', $adm).';';
+						}
+						
+						UserChannel::edit($channel->id, $name, $descr, $adm, '', ''); //TODO: Support logo/background
 						$data['channels'] = Session::get()->getOwnedChannels();
 
 						$response = new ViewResponse('account/channels', $data);
@@ -196,7 +241,7 @@ class ChannelController extends Controller {
 	}
 
 	public function destroy($id, $request) {
-
+		//TODO: Code the channel destruction
 	}
 
 	// "GET /channel/:id/social"
@@ -242,12 +287,19 @@ class ChannelController extends Controller {
 				return Utils::getForbiddenResponse();
 			if(is_object($channel)) {
 				$data = array();
+				$data['currentPage'] = 'channel';
 				$data['current'] = 'channels';
-
+				$data['id'] = $channel->id;
 				$data['mainChannel'] = $channel->isUsersMainChannel(Session::get()->id);
 				$data['name'] = $channel->name;
 				$data['description'] = $channel->description;
-
+				$admins = explode(';', trim($channel->admins_ids, ';'));
+				$data['admins_ids'] = $admins;
+				$data['admins'] = array();
+				foreach ($admins as $adm) {
+					$data['admins'][] = User::find_by_id($adm)->getMainChannel();
+				}
+								
 				return new ViewResponse('channel/edit', $data);
 			}
 			else
@@ -263,6 +315,25 @@ class ChannelController extends Controller {
 
 	public function unsubscribe($id, $request) {
 		
+	}
+	
+	public function autocomplete($prefix, $request) {
+		if (strlen($prefix) >= 3) {
+			$channels = UserChannel::find_by_sql("SELECT * FROM users_channels WHERE name LIKE ?", array($prefix.'%'));
+			$array = array();
+			foreach ($channels as $chan) {
+				$array[] = array(
+					'user_id' => $chan->owner_id,
+					'name' => $chan->name,
+					'avatar' => $chan->avatar
+				);
+			}
+			
+			return new JsonResponse($array);
+		}
+		else {
+			return new JsonResponse(array());
+		}
 	}
 
 	public function index($request) {}

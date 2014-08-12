@@ -50,10 +50,10 @@
 					}
 					else if($action->type == 'unsubscription') {
 						?>
-							<div class="card subscribe">
+							<div class="card channel">
 								<a href="channel">
 									<div class="avatar bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
-									<p><b><?php echo User::getNameById($action->user_id) ?></b> s'est a annulé son abonnement à votre chaîne</p>
+									<p><b><?php echo User::getNameById($action->user_id) ?></b> a annulé son abonnement à votre chaîne</p>
 								</a>
 								<i><?php echo Utils::relative_time($action->timestamp) ?></i>
 							</div>
@@ -64,7 +64,7 @@
 							<div class="card plus">
 								<a href="channel">
 									<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/300/4"></div>
-									<p><b><?php echo User::getNameById($action->user_id) ?></b> à aimé votre vidéo "<b><?php echo Video::find_by_id($action->target)->title; ?></b>"</p>
+									<p><b><?php echo User::getNameById($action->user_id) ?></b> a aimé votre vidéo "<b><?php echo Video::find_by_id($action->target)->title; ?></b>"</p>
 								</a>
 								<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 							</div>
@@ -74,7 +74,7 @@
 						?>
 							<div class="card comment">
 								<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>">
-									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> à commenté votre vidéo "<b><?php echo Video::find($action->target)->title; ?></b>" :</p>
+									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> a commenté votre vidéo "<b><?php echo Video::find($action->target)->title; ?></b>" :</p>
 									<blockquote>
 										<?php echo Comment::getByChannelAction($action)->comment; ?>
 									</blockquote>
@@ -87,7 +87,7 @@
 						?>
 							<div class="card comment">
 								<a href="<?php echo WEBROOT.'channel/'.$action->channel_id; ?>">
-									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> à posté un message !</p>
+									<p><b><?php echo UserChannel::getNameById($action->channel_id); ?></b> a posté un message !</p>
 									<blockquote>
 										<?php echo $action->target; ?>
 									</blockquote>

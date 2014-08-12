@@ -152,61 +152,13 @@ class User extends ActiveRecord\Model {
 					$actions[] = $action;
 			}
 		}
-
+		
 		return $actions;
 	}
 
 	// Returns actions that concerns the user's videos/channel(s)
 	public function getUsersPersonalActions() {
-		$actions = array();
-		$actionTypes = array('subscription', 'like');
-
-		foreach($actionTypes as $type) {
-			switch ($type) {
-				case 'subscription':
-					$usersChannels = $this->getOwnedChannels();
-					$usersChannelIds = array();
-					foreach($usersChannels as $c) $usersChannelIds[] = $c->id;
-
-					$subscriptionsActions = UserAction::find('all', array('conditions' => array(
-						'type = ? AND target IN (?)', $type, $usersChannelIds
-					)));
-
-					foreach($subscriptionsActions as $sa) $actions[] = $sa;
-					break;
-
-				case 'unsubscription':
-					$usersChannels = $this->getOwnedChannels();
-					$usersChannelIds = array();
-					foreach($usersChannels as $c) $usersChannelIds[] = $c->id;
-
-					$subscriptionsActions = UserAction::find('all', array('conditions' => array(
-						'type = ? AND target IN (?)', $type, $usersChannelIds
-					)));
-
-					foreach($subscriptionsActions as $sa) $actions[] = $sa;
-					break;
-
-				case 'like':
-					$usersVideos = $this->getPostedVideos();
-
-					if(!empty($usersVideos)) {
-						$usersVideosIds = array();
-						foreach($usersVideos as $vid) $usersVideosIds[] = $vid->id;
-
-						$likeActions = UserAction::find('all', array('conditions' => array(
-							'type = ? AND target IN (?)', $type, $usersVideosIds
-						)));
-
-						foreach($likeActions as $a) $actions[] = $a;
-					}
-					break;
-				
-				default:
-					break;
-			}
-		}
-
+		$actions = UserAction::find_by_sql("SELECT * FROM users_actions WHERE recipients_ids LIKE ? ORDER BY timestamp DESC", array('%;'.Session::get()->id.';%'));
 		return $actions;
 	}
 
@@ -222,6 +174,10 @@ class User extends ActiveRecord\Model {
 
 	public function getPassword() {
 		return $this->pass;
+	}
+	
+	public function getSettings() {
+		return json_decode($this->settings);
 	}
 
 	public function hasSubscribedToChannel($channelId) {
@@ -276,7 +232,8 @@ class User extends ActiveRecord\Model {
 			'reg_timestamp' => Utils::tps(),
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
 			'actual_ip' => $_SERVER['REMOTE_ADDR'],
-			'rank' => $userRank
+			'rank' => $userRank,
+			'settings' => json_encode(array())
 		));
 
 		UserChannel::create(array(
