@@ -49,21 +49,14 @@ Admin:
 
 
 
-
 Front:
 
-- AJouter un dropdown lors du clic sur l'icone "partage" avec les icones des principaux réseaux sociaux
+- Ajouter un dropdown lors du clic sur l'icone "partage" avec les icones des principaux réseaux sociaux
 
 - Faire un player à intégrer "maison" (pour ne plus être dépendants de Stornitz)
 
-- Ajouter le même type de dropdwn lors du clic sur l'icone "exporter" avec un textarea à l'intérieur (pour le code d'intégration)
+- Ajouter le même type de dropdown lors du clic sur l'icone "exporter" avec un textarea à l'intérieur (pour le code d'intégration)
 
 - Interface pour le live
-
-- Le menu latéral ne s'affiche pas (version mobile)
-
-- Front-end des notifications
-
-- Page 404
 
 - Video card pour les réseaux au lieu d'images

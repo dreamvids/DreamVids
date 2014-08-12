@@ -94,7 +94,7 @@
 
 					<div class="inner">
 
-						<nav>
+						<nav id="header-menu-nav">
 							<ul>
 								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="index.php">Accueil</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'discover') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a></li>
