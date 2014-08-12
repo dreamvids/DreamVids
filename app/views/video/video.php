@@ -2,7 +2,7 @@
 	<div id="video-top-infos">
 		<div id="video-top-title">
 			<div id="video-top-channel">
-				<img src="<?php echo $author->getAvatar(); ?>" alt="Image de la chaîne">
+				<img src="<?php echo $author->getAvatar(); ?>">
 				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
 					<i><?php echo $subscribed ? 'Se desabonner': 'S\'abonner'; ?></i>
 				</span>
@@ -70,7 +70,7 @@
 
 		<hr>
 
-		<div class="description">
+		<div class="description" id="video-info-description">
 
 			<div class="inner-description">
 
@@ -84,7 +84,28 @@
 
 		<div class="buttons">
 
-			<img class="share" src="<?php echo IMG.'share.png'; ?>" style="cursor: pointer; cursor: hand;">
+			<div id="share-video-block" class="share-video-block">
+								
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title)  > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				
+				<div id="fb-root"></div>
+
+				<script>
+					(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				</script>
+
+				<div class="fb-share-button" data-href="http://dreamvids.fr/&<?php echo $video->id; ?>" data-type="button_count"></div>
+			
+			</div>
+
+			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>" style="cursor: pointer; cursor: hand;">
 			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" style="cursor: pointer; cursor: hand;">
 			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');" style="cursor: pointer; cursor: hand;">
 			<img class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">

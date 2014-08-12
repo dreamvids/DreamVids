@@ -24,6 +24,8 @@
    ============================= */
 /* PREFIXER
    ============================= */
+/* TRANSFORM
+   ============================= */
 /* TRANSITIONS
    ============================= */
 /* USER SELECT
@@ -1571,6 +1573,25 @@ body {
     @media (max-width: 800px) {
       .long-cards-list .card {
         width: 95%; } }
+
+/* === WATCH === */
+/* SHARE VIDEO BLOCK
+   ============================= */
+.share-video-block {
+  display: none; }
+
+.share-video-block.show {
+  float: right;
+  display: block;
+  width: 100%; }
+  .share-video-block.show .twitter-share-button,
+  .share-video-block.show .fb-share-button {
+    float: left;
+    margin: 5px 0 15px 25px; }
+  .share-video-block.show .twitter-share-button {
+    margin-right: -15px; }
+  .share-video-block.show .fb-share-button {
+    margin-left: -15px; }
 
 .aside-channels {
   float: left;
@@ -5162,6 +5183,8 @@ nav.pagination {
   height: 150px;
   margin: auto;
   padding: 20px 20px; }
+  .video-infos .description.little {
+    height: 110px; }
 
 .video-infos .description .inner-description {
   height: 155px;
@@ -5195,6 +5218,16 @@ nav.pagination {
 .video-infos .buttons {
   padding: 15px 30px;
   text-align: left; }
+  .video-infos .buttons img,
+  .video-infos .buttons .embed {
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    transition: 0.2s; }
+  .video-infos .buttons img:hover,
+  .video-infos .buttons .embed:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    transform: scale(1.2); }
   .video-infos .buttons * {
     margin: 0 15px; }
   .video-infos .buttons a {
