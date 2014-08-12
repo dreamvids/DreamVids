@@ -1,7 +1,6 @@
 <?php
 
 require_once MODEL.'video.php';
-require_once MODEL.'user.php';
 require_once MODEL.'channel_post.php';
 
 // Used for multi-user channels
