@@ -2398,9 +2398,9 @@ body.embeded {
 
 /* 
    ===========================================================================
-  Ce code n'a pas été réorganisé car il est beaucoup trop long (849 lignes)
-  et  ce  qui  est  le  plus  pratique  serait  de le  refaire  entièrement
-  ce qui demande énormément de temps...
+	Ce code n'a pas été réorganisé car il est beaucoup trop long (849 lignes)
+	et  ce  qui  est  le  plus  pratique  serait  de le  refaire  entièrement
+	ce qui demande énormément de temps...
    =========================================================================== */
 #player {
   position: relative;
@@ -2443,7 +2443,7 @@ video {
   height: 100%; }
 
 /*
- *  Bouton repeat (à la fin)
+ *	Bouton repeat (à la fin)
  */
 @-webkit-keyframes rotate {
   from {
@@ -2529,7 +2529,7 @@ video {
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite; } }
 /*
- *  Sélection de qualité
+ *	Sélection de qualité
  */
 #qualitySelection {
   position: absolute;
@@ -2645,7 +2645,7 @@ video {
     -o-transition: 0.1s;
     transition: 0.1s; } }
 /*
- *  Gros icones animés (play et pause)
+ *	Gros icones animés (play et pause)
  */
 @-webkit-keyframes bigIconPlay {
   from {
@@ -2837,7 +2837,7 @@ video {
   background-image: url(../img/player/bigPause.png); }
 
 /*
- *  Barre des controles
+ *	Barre des controles
  */
 #controls {
   position: absolute;
@@ -2861,7 +2861,7 @@ video {
     -o-transition: bottom 0.3s;
     transition: bottom 0.3s; } }
 /*
- *  Barre de progression
+ *	Barre de progression
  */
 #progress {
   display: inline-block;
@@ -2917,7 +2917,7 @@ video {
   opacity: 0; }
 
 /*
- *  Petit bouton play/pause
+ *	Petit bouton play/pause
  */
 #play-pause {
   position: absolute;
@@ -2944,7 +2944,7 @@ video {
     display: block; }
 
 /*
- *  Indication du temps
+ *	Indication du temps
  */
 #time {
   position: absolute;
@@ -2954,7 +2954,7 @@ video {
   cursor: default; }
 
 /*
- *  Bouton pour "toogle" les annotations
+ *	Bouton pour "toogle" les annotations
  */
 #annotationsButton {
   display: inline-block;
@@ -2981,7 +2981,7 @@ video {
   #annotationsButton {
     display: none !important; } }
 /*
- *  Bouton pour régler la qualité
+ *	Bouton pour régler la qualité
  */
 #qualityButton {
   position: absolute;
@@ -2994,7 +2994,7 @@ video {
     text-shadow: 0 0 3px white; }
 
 /*
- *  Volume
+ *	Volume
  */
 #volume {
   position: absolute;
@@ -3033,7 +3033,7 @@ video {
     background-position: -63px 0; }
 
 /*
- *  Séparation
+ *	Séparation
  */
 #separation {
   display: block;
@@ -3046,7 +3046,7 @@ video {
   opacity: 0.5; }
 
 /*
- *  Widescreen
+ *	Widescreen
  */
 #widescreen {
   position: absolute;
@@ -3088,7 +3088,7 @@ video {
   #annotationsButton {
     right: 136px; } }
 /*
- *  Fullscreen
+ *	Fullscreen
  */
 #fullscreen {
   position: absolute;
@@ -3115,7 +3115,7 @@ video {
     display: block; }
 
 /*
- *  Annotations
+ *	Annotations
  */
 #annotationsElement {
   width: 100%;
@@ -4389,6 +4389,264 @@ nav.pagination {
       .bug-large-modal form input[type="submit"], .bug-large-modal form input[type="submit"]:hover, .bug-large-modal form input[type="submit"]:active, .bug-large-modal form input[type="submit"]:focus {
         background: white; }
 
+/* Messages d'erreur et succès
+------------------------------------------------------ */
+.message {
+  height: 45px;
+  width: 100%;
+  background-color: #ececec; }
+
+.message .message-icn {
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  line-height: 45px;
+  padding-top: 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.message p {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 45px;
+  font-size: 14px;
+  padding-left: 15px; }
+
+.error .message-icn {
+  background-color: #cb3030; }
+
+.success .message-icn {
+  background-color: #2ca03f; }
+
+/* Partie "sociale" d'une chaîne
+---------------------------------------------------------- */
+#channem-posts {
+  display: block;
+  height: auto; }
+
+.channel-post {
+  width: 100%;
+  color: #333333;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px; }
+
+.channel-post img {
+  height: 25px;
+  border-radius: 12.5px;
+  margin-top: 12px;
+  position: relative;
+  top: -5px;
+  margin-right: 15px; }
+
+.channel-post img, .channel-post p {
+  display: inline-block;
+  vertical-align: middle; }
+
+.channel-name {
+  color: #40a6e0; }
+
+.social-message {
+  width: 95%;
+  float: right;
+  background-color: #fdfdfd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px; }
+
+/* Style vidéo "suspendue"
+-------------------------------------------------- */
+#suspended-icn {
+  width: 48%;
+  height: 350px;
+  padding-top: 10%;
+  display: inline-block; }
+
+#cross {
+  float: right;
+  position: relative;
+  top: 50px;
+  right: 75px;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg); }
+
+#cross .cross-bar {
+  width: 275px;
+  height: 50px;
+  background-color: #40a6e0; }
+
+#cross #cross-bar-1 {
+  position: relative;
+  top: 50px; }
+
+#cross #cross-bar-2 {
+  display: block;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+#suspended-text {
+  display: inline-block;
+  width: 48%;
+  overflow: hidden;
+  vertical-align: top;
+  padding-top: 10%; }
+
+#suspended-text h2 {
+  margin-top: 75px;
+  font-size: 16px;
+  color: #40a6e0; }
+
+#suspended-text h2 .video-name {
+  font-weight: bold; }
+
+#suspended-text p {
+  margin-top: 5px;
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 20px; }
+
+#suspended-text .channel-access p, #suspended-text .channel-access img, #suspended-text .channel-access div {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 45px; }
+
+#suspended-text .channel-access {
+  height: 45px;
+  background-color: #f4f4f4;
+  max-width: 500px; }
+
+#suspended-text .channel-access img {
+  height: 25px;
+  border-radius: 12.5px;
+  margin-top: -25px;
+  margin-left: 10px;
+  margin-right: 10px; }
+
+#suspended-text .channel-access p {
+  position: relative;
+  top: -5px;
+  font-style: normal; }
+
+#suspended-text .channel-access-btn {
+  width: 45px;
+  height: 45px;
+  background-color: #40a6e0;
+  float: right;
+  line-height: 45px;
+  text-align: center; }
+
+#suspended-text .channel-access-btn img {
+  height: auto;
+  margin-top: 0px; }
+
+@media (max-width: 800px) {
+  #suspended-text {
+    width: 59%; }
+
+  #suspended-icn {
+    width: 39%; }
+
+  #cross {
+    position: relative;
+    top: 85px;
+    right: 25px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg); }
+
+  #cross .cross-bar {
+    width: 175px;
+    height: 30px;
+    background-color: #40a6e0; }
+
+  #cross #cross-bar-1 {
+    position: relative;
+    top: 27px; }
+
+  #cross #cross-bar-2 {
+    display: block;
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg); } }
+@media (max-width: 500px) {
+  #suspended-text {
+    width: 100%;
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box; }
+
+  #cross {
+    float: none;
+    position: relative;
+    top: 50px; }
+
+  #cross div {
+    margin: auto; }
+
+  #suspended-icn {
+    width: 100%;
+    display: block;
+    height: 125px; } }
+/*------------------- UI des admins de chaines -------------------*/
+.channel-admin {
+  background-color: #dfdfdf;
+  margin-bottom: 5px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px; }
+
+.delete-admin {
+  float: right;
+  margin: auto;
+  padding: 12px;
+  cursor: pointer; }
+
+.admin-avatar {
+  height: 100%;
+  width: 45px;
+  height: 100%;
+  float: left;
+  display: block;
+  margin-right: 10px; }
+
+#autocomplete {
+  margin: 0;
+  margin-bottom: 15px; }
+
+#autocomplete .channel-admin {
+  margin: 0;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer; }
+
+#autocomplete .channel-admin:last-child {
+  border: none; }
+
+#autocomplete .channel-admin:first-child {
+  border-top: 1px solid #ccc; }
+
 #comments {
   float: left;
   display: inline-block;
@@ -4429,10 +4687,9 @@ nav.pagination {
     #comments form textarea:focus, #comments form textarea:active {
       outline: none;
       border-color: #cdcdcd; }
-    #comments form textarea .blue{
+    #comments form textarea.blue {
       height: 45px;
-      width: 150px;
-    }
+      width: 150px; }
   #comments form input[type="submit"] {
     float: right;
     height: 35px;
@@ -4457,25 +4714,19 @@ nav.pagination {
     float: left;
     width: 100%;
     padding-left: 10px;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-    font-size: 14px;
+    font-size: 16px;
     color: #757575; }
     #comments .comment .comment-head {
       width: 100%;
-      font-size: 14px;
       margin-bottom: 5px;
-      padding-bottom: 15px; }
+      padding-bottom: 15px;
+      font-size: 14px; }
       #comments .comment .comment-head .user {
         display: inline-block;
         vertical-align: middle; }
-        #comments .comment .comment-head .user img{
+        #comments .comment .comment-head .user img {
           height: 30px;
-          border-radius: 15px;
-        }
+          border-radius: 15px; }
         #comments .comment .comment-head .user img,
         #comments .comment .comment-head .user a {
           display: inline-block;
@@ -4508,9 +4759,9 @@ nav.pagination {
       #comments .comment .comment-head .date {
         float: right;
         display: inline-block;
-        vertical-align: baseline;
-        color: #bababa; 
-        margin-right: 10px; }
+        color: #bababa;
+        margin-right: 10px;
+        vertical-align: baseline; }
         #comments .comment .comment-head .date p {
           font-size: 15px;
           line-height: 27px; }
@@ -4534,6 +4785,9 @@ nav.pagination {
       #comments .comment .comment-notation .moins,
       #comments .comment .comment-notation .moins a {
         color: #dd4e47; }
+      #comments .comment .comment-notation .plus:hover,
+      #comments .comment .comment-notation .moins:hover {
+        cursor: pointer; }
 
 #video-top-infos {
   position: relative;
@@ -4975,373 +5229,101 @@ nav.pagination {
 .video-infos .buttons * {
   margin: 0 15px; }
 
-
 /* Cadre d'ajout d'un commentaire
 --------------------------------------------------------*/
-#comments form{
+#comments form {
   padding: 0;
   width: 100%;
-  margin: 0; 
-  margin-bottom: 25px;}
-  #comments form .form-header-container{
-    width: 100%;
-    height: 40px;
-    background-color: #ececec;
-    padding: 0;
-    margin: 0; }
-  #comments form .form-icn,#comments .form,#comments button{
-    display: inline-block;
-    vertical-align:top;
-    height:40px;
-    overflow:hidden; }
-  #comments form button{
-    width:40px;
-    float:right;
-    border:0;
-    background-color:#40a6e0;
-    padding-top: 2px;
-  -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;}
-    #comments form button:hover{cursor:pointer}
-  #comments form .form-icn{
-    width:40px;
-    background-color:#bfbfbf;
-    line-height:40px;
-    text-align:center;
-    padding-top:4px;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box; }
-  #comments form #add-comment-avatar{
-    display:inline-block;
-    height:20px;
-    margin-top:10px;
-    margin-left:15px;
-    margin-right:15px;
-    border-radius:10px; }
-  #comments form .form{
-    width:200px;
-    height:40px;
-    margin:0 auto 30px auto;
-    padding:0;
-    color:#858484;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-    -webkit-box-shadow:0 0 0 #000;
-    -moz-box-shadow:0 0 0 #000;
-    -ms-box-shadow:0 0 0 #000;
-    -o-box-shadow:0 0 0 #000;
-    box-shadow:0 0 0 #000;
-    position:relative;
-    line-height:45px;
-    border-left:1px dotted #bfbfbf;
-    border-right:1px dotted #bfbfbf; }
-  #comments form .form select{
-    height:40px;
-    background-color:#ececec;
-    position:relative;
-    margin:0 0 15px 0;
-    font-family:"Source Sans Pro",Arial; }
-  #comments form textarea{
-    width:100%;
-    padding:10px;
-    height: 120px;
-    font-size: 14px;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-    margin:0;
-    border:0;
-    background-color:#f4f4f4;
-    resize:none; }
+  margin: 0;
+  margin-bottom: 25px; }
 
-/* Messages d'erreur et succès
------------------------------------------------------- */
-.message{
-  height: 45px;
+#comments form .form-header-container {
   width: 100%;
+  height: 40px;
   background-color: #ececec;
-}
-.message .message-icn{
+  padding: 0;
+  margin: 0; }
+
+#comments form .form-icn, #comments .form, #comments button {
   display: inline-block;
-  height: 45px;
-  width: 45px;
-  text-align: center;
-  line-height: 45px;
+  vertical-align: top;
+  height: 40px;
+  overflow: hidden; }
+
+#comments form button {
+  width: 40px;
+  float: right;
+  border: 0;
+  background-color: #40a6e0;
   padding-top: 2px;
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -ms-box-sizing:border-box;
-  -o-box-sizing:border-box;
-  box-sizing:border-box;
-}
-.message p{
-  display: inline-block;
-  vertical-align: top;
-  line-height: 45px;
-  font-size: 14px;
-  padding-left: 15px;
-}
-.error .message-icn{
-  background-color: #cb3030;
-}
-.success .message-icn{
-  background-color: #2ca03f;
-}
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
 
-/* Partie "sociale" d'une chaîne
----------------------------------------------------------- */
+#comments form button:hover {
+  cursor: pointer; }
 
-#channem-posts{
-  display: block;
-  height: auto;
-}
-.channel-post{
-  width: 100%;
-  color: #333333;
-  width: 100%;
-  height: 45px;
-  line-height: 45px;
-  font-size: 14px;
-}
-.channel-post img{
-  height: 25px;
-  border-radius: 12.5px;
-  margin-top: 12px;
-  position: relative;
-  top: -5px;
-  margin-right: 15px;
-}
-.channel-post img, .channel-post p{
-  display: inline-block;
-  vertical-align: middle;
-}
-.channel-name{
-  color: #40a6e0;
-}
-.social-message{
-  width: 95%;
-  float: right;
-  background-color: #fdfdfd;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 10px;
-  font-size: 14px;
-  line-height: 18px;
-}
-
-/* +/- commentaires - effet hover
-------------------------------------------------- */
-#comments-best .plus:hover, #comments-best .moins:hover{
-  cursor: pointer;
-}
-
-/* Style vidéo "suspendue"
--------------------------------------------------- */
-#suspended-icn{
-  width: 48%;
-  height: 350px;
-  padding-top: 10%;
-  display: inline-block;
-}
-#cross{
-  float: right;
-  position: relative;
-  top: 50px;
-  right: 75px;
-  -moz-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-#cross .cross-bar{
-  width: 275px;
-  height: 50px;
-  background-color: #40a6e0;
-}
-#cross #cross-bar-1{
-  position: relative;
-  top: 50px;
-}
-#cross #cross-bar-2{
-  display: block;
-  -moz-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-#suspended-text{
-  display: inline-block;
-  width: 48%;
-  overflow: hidden;
-  vertical-align: top;
-  padding-top: 10%;
-}
-#suspended-text h2{
-  margin-top: 75px;
-  font-size: 16px;
-  color: #40a6e0;
-}
-#suspended-text h2 .video-name{
-  font-weight: bold;
-}
-#suspended-text p{
-  margin-top: 5px;
-  font-size: 14px;
-  font-style: italic;
-  margin-bottom: 20px;
-}
-#suspended-text .channel-access p, #suspended-text .channel-access img, #suspended-text .channel-access div{
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 45px;
-}
-#suspended-text .channel-access{
-  height: 45px;
-  background-color: #f4f4f4;
-  max-width: 500px;
-}
-#suspended-text .channel-access img{
-  height: 25px;
-  border-radius: 12.5px;
-  margin-top: -25px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-#suspended-text .channel-access p{
-  position: relative;
-  top: -5px;
-  font-style: normal;
-}
-#suspended-text .channel-access-btn{
-  width: 45px;
-  height: 45px;
-  background-color: #40a6e0;
-  float: right;
-  line-height: 45px;
+#comments form .form-icn {
+  width: 40px;
+  background-color: #bfbfbf;
+  line-height: 40px;
   text-align: center;
-}
+  padding-top: 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
 
-#suspended-text .channel-access-btn img{
-  height: auto;
-  margin-top: 0px;
-}
-@media (max-width: 800px) {
-  #suspended-text{
-    width: 59%;
-  }
-  #suspended-icn{
-    width: 39%;
-  }
-  #cross{
-    position: relative;
-    top: 85px;
-    right: 25px;
-    -moz-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-  #cross .cross-bar{
-    width: 175px;
-    height: 30px;
-    background-color: #40a6e0;
-  }
-  #cross #cross-bar-1{
-    position: relative;
-    top: 27px;
-  }
-  #cross #cross-bar-2{
-    display: block;
-    -moz-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-  }
-}
-@media (max-width: 500px){
-  #suspended-text{
-    width: 100%;
-    display: block;
-    padding-left: 15px;
-    padding-right: 15px;
-    -webkit-box-sizing:border-box;
-      -moz-box-sizing:border-box;
-      -ms-box-sizing:border-box;
-      -o-box-sizing:border-box;
-      box-sizing:border-box;
-  }
-  #cross{
-    float: none;
-    position: relative;
-    top: 50px;
-  }
-  #cross div{
-    margin: auto;
-  }
-  #suspended-icn{
-    width: 100%;
-    display: block;
-    height: 125px;
-  }
-}
+#comments form #add-comment-avatar {
+  display: inline-block;
+  height: 20px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 10px; }
 
+#comments form .form {
+  width: 200px;
+  height: 40px;
+  margin: 0 auto 30px auto;
+  padding: 0;
+  color: #858484;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 0 0 #000;
+  -moz-box-shadow: 0 0 0 #000;
+  -ms-box-shadow: 0 0 0 #000;
+  -o-box-shadow: 0 0 0 #000;
+  box-shadow: 0 0 0 #000;
+  position: relative;
+  line-height: 45px;
+  border-left: 1px dotted #bfbfbf;
+  border-right: 1px dotted #bfbfbf; }
 
-/*------------------- UI des admins de chaines -------------------*/
-.channel-admin {
-	background-color: #dfdfdf;
-	margin-bottom: 5px;
-	width: 100%;
-	height: 40px;
-	line-height: 40px;
-}
+#comments form .form select {
+  height: 40px;
+  background-color: #ececec;
+  position: relative;
+  margin: 0 0 15px 0;
+  font-family: "Source Sans Pro",Arial; }
 
-.delete-admin {
-	float: right;
-	margin: auto;
-	padding: 12px;
-	cursor: pointer;
-}
-
-.admin-avatar {
-	height: 100%;
-	width: 45px;
-	height: 100%;
-	float: left;
-	display: block;
-	margin-right: 10px;
-}
-
-#autocomplete {
-	margin: 0;
-	margin-bottom: 15px;
-}
-
-#autocomplete .channel-admin {
-	margin: 0;
-	background-color: white;
-	border-bottom: 1px solid #ccc;
-	cursor: pointer;
-}
-
-#autocomplete .channel-admin:last-child {
-	border: none;
-}
-
-#autocomplete .channel-admin:first-child {
-	border-top: 1px solid #ccc;
-}
+#comments form textarea {
+  width: 100%;
+  padding: 10px;
+  height: 120px;
+  font-size: 14px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  background-color: #f4f4f4;
+  resize: none; }

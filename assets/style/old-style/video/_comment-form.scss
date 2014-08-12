@@ -1,0 +1,88 @@
+/* Cadre d'ajout d'un commentaire
+--------------------------------------------------------*/
+#comments form{
+  padding: 0;
+  width: 100%;
+  margin: 0; 
+  margin-bottom: 25px;}
+  #comments form .form-header-container{
+    width: 100%;
+    height: 40px;
+    background-color: #ececec;
+    padding: 0;
+    margin: 0; }
+  #comments form .form-icn,#comments .form,#comments button{
+    display: inline-block;
+    vertical-align:top;
+    height:40px;
+    overflow:hidden; }
+  #comments form button{
+    width:40px;
+    float:right;
+    border:0;
+    background-color:#40a6e0;
+    padding-top: 2px;
+  -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;}
+    #comments form button:hover{cursor:pointer}
+  #comments form .form-icn{
+    width:40px;
+    background-color:#bfbfbf;
+    line-height:40px;
+    text-align:center;
+    padding-top:4px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box; }
+  #comments form #add-comment-avatar{
+    display:inline-block;
+    height:20px;
+    margin-top:10px;
+    margin-left:15px;
+    margin-right:15px;
+    border-radius:10px; }
+  #comments form .form{
+    width:200px;
+    height:40px;
+    margin:0 auto 30px auto;
+    padding:0;
+    color:#858484;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-box-shadow:0 0 0 #000;
+    -moz-box-shadow:0 0 0 #000;
+    -ms-box-shadow:0 0 0 #000;
+    -o-box-shadow:0 0 0 #000;
+    box-shadow:0 0 0 #000;
+    position:relative;
+    line-height:45px;
+    border-left:1px dotted #bfbfbf;
+    border-right:1px dotted #bfbfbf; }
+  #comments form .form select{
+    height:40px;
+    background-color:#ececec;
+    position:relative;
+    margin:0 0 15px 0;
+    font-family:"Source Sans Pro",Arial; }
+  #comments form textarea{
+    width:100%;
+    padding:10px;
+    height: 120px;
+    font-size: 14px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    border:0;
+    background-color:#f4f4f4;
+    resize:none; }
