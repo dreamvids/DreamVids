@@ -1,6 +1,6 @@
 
 /**
- * Scripts/share.js
+ * Scripts/share-video.js
  *
  * SHARE
  */

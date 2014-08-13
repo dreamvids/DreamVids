@@ -1,6 +1,6 @@
 
 /**
- * Scripts/example.js
+ * Scripts/model.js
  *
  * EXAMPLE SCRIPT
  */

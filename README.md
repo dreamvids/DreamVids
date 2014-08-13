@@ -76,10 +76,6 @@ To Do
 
 ###Front
 
-- Faire un player à intégrer "maison" (pour ne plus être dépendants de Stornitz)
-
-- Système de code d'éxportation
-
 - Video card pour les réseaux au lieu d'images
 
 - Interface pour le live

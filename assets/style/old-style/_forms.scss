@@ -1,4 +1,5 @@
-.form {
+.form:not(.no-style) {
+
 	width: 100%;
 	margin: 0 auto 30px auto;
 	padding: 15px;
@@ -19,6 +20,10 @@
 		-ms-box-shadow: 1px 2px 0px #e2e2e2;
 		 -o-box-shadow: 1px 2px 0px #e2e2e2;
 			box-shadow: 1px 2px 0px #e2e2e2;
+
+}
+
+.form {
 
 	.preview {
 		float: left;
@@ -137,6 +142,14 @@
 		margin: 10px 5px 15px 10px;
 		cursor: pointer;
 
+		&.for-checkbox-dependence {
+
+			float: left;
+
+			margin-top: 0;
+
+		}
+
 		&:before {
 		    position: relative;
 		    bottom: 0;
@@ -181,12 +194,37 @@
 
 		&[disabled] { cursor: default; }
 		
-		+ label { cursor: pointer; }
 	}
 
-	label.checkbox-dependence,
-	label.checkbox-dependence input { opacity: 0.2; }
+	input[type="checkbox"] + label,
+	label + input[type="checkbox"] {
 
-	input:checked ~ label.checkbox-dependence,
-	input:checked ~ label.checkbox-dependence input { opacity: 1; }
+		cursor: pointer;
+
+	}
+
+	label.checkbox-dependence {
+
+		opacity: 0.2;
+
+		input {
+
+			opacity: 0.2;
+
+		}
+
+	}
+
+	input:checked + label.checkbox-dependence {
+
+		opacity: 1;
+
+		input {
+
+			opacity: 1;
+
+		}
+
+	}
+
 }
