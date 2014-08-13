@@ -50,7 +50,10 @@
 			<option value="0">Privée</option>
 		</select>
 
-		<input type="checkbox" id="late" name="late"/><label for="late">Mise en ligne tardive</label><br />
+		<br>
+		<label for="late">Mise en ligne tardive</label>
+		<input type="checkbox" class="for-checkbox-dependence" id="late"/>
+
 		<label for="video-tags" class="checkbox-dependence">
 			<input type="datetime-local" id="datetime" name="datetime">
 		</label>

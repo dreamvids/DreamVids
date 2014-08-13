@@ -280,7 +280,8 @@
 
 }
 
-.video-infos .description .inner-description {
+.video-infos .description .inner-description,
+.video-infos .description .inner-export {
 
 	height: 155px;
 	max-height: 100%;
@@ -290,6 +291,38 @@
 	text-align: left;
 	font-size: 16px;
 	color: #959595;
+
+}
+
+.video-infos .description .inner-description {
+
+	display: block;
+
+}
+
+.video-infos .description .inner-export {
+
+	display: none;
+
+}
+
+.video-infos .description.export .inner-description {
+
+	display: none;
+
+}
+
+.video-infos .description.export .inner-export {
+
+	display: block;
+
+}
+
+.video-infos .description .inner-export input[type="text"] {
+
+	width: 90%;
+	padding: 8px;
+	margin: auto;
 
 }
 
@@ -320,15 +353,15 @@
 	padding: 15px 30px;
 	text-align: left;
 
-	img,
-	.embed {
+	img {
+
+		cursor: pointer;
 
 		@include transition(0.2s);
 
 	}
 
-	img:hover,
-	.embed:hover {
+	img:hover {
 
 		@include transform(scale(1.2));
 
@@ -336,38 +369,6 @@
 
 	* { margin: 0 15px; }
 	a { margin: 0; }
-
-	.embed {
-		position: relative;
-		left: -35px;
-
-		width: 18px;
-		height: 18px;
-		margin: 0!important;
-		
-		opacity: 0;
-		cursor: pointer;
-
-		@media (max-width: 420px) { left: -30px; }
-
-		@media (max-width: 300px) { left: -22px; }
-
-		&:checked + .embed-input { display: inline-block; }
-	}
-
-	.embed-input {
-		position: relative;
-		top: -4px;
-
-		display: none;
-		width: 60px;
-		margin: -20px 0 -20px -20px;
-		padding: 5px;
-
-		border: 1px solid #ccc;
-		
-		&:focus { outline: none; }
-	}
 
 }
 

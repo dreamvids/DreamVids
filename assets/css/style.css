@@ -3803,7 +3803,7 @@ nav.pagination {
     content: "";
     background: #ddd; }
 
-.form {
+.form:not(.no-style) {
   width: 100%;
   margin: 0 auto 30px auto;
   padding: 15px;
@@ -3819,137 +3819,144 @@ nav.pagination {
   -ms-box-shadow: 1px 2px 0px #e2e2e2;
   -o-box-shadow: 1px 2px 0px #e2e2e2;
   box-shadow: 1px 2px 0px #e2e2e2; }
-  .form.middle {
+  .form:not(.no-style).middle {
     max-width: 600px; }
-  .form .preview {
-    float: left;
-    height: 60px;
-    margin-top: -3px;
-    margin-right: 10px;
-    cursor: pointer; }
-    .form .preview.none {
-      margin: 0; }
-  .form input:not([type="checkbox"]) {
-    display: block;
-    width: 100%;
-    height: 40px;
-    margin: 5px 0;
-    padding: 8px;
-    border: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box; }
-    .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active {
-      outline: none; }
-  .form input:not([type="checkbox"]),
-  .form textarea,
-  .form select {
-    display: block;
-    width: 100%;
-    height: 40px;
-    margin: 10px 0 15px 0;
-    padding: 8px;
-    border: none;
-    font-family: Arial;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box; }
-    .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active,
-    .form textarea:focus,
-    .form textarea:active,
-    .form select:focus,
-    .form select:active {
-      outline: none; }
-  .form textarea {
-    resize: vertical;
-    height: 80px; }
-  .form input[type="submit"] {
-    color: white;
-    background-color: #40a6e0;
-    cursor: pointer; }
-    .form input[type="submit"]:focus, .form input[type="submit"]:active, .form input[type="submit"]:hover {
-      background-color: #4dace2; }
-    .form input[type="submit"]:active {
-      background-color: #33a0de; }
-  .form label i {
-    margin-left: -190px; }
-  .form input[type="file"] {
+
+.form .preview {
+  float: left;
+  height: 60px;
+  margin-top: -3px;
+  margin-right: 10px;
+  cursor: pointer; }
+  .form .preview.none {
+    margin: 0; }
+.form input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 5px 0;
+  padding: 8px;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+  .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active {
+    outline: none; }
+.form input:not([type="checkbox"]),
+.form textarea,
+.form select {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0 15px 0;
+  padding: 8px;
+  border: none;
+  font-family: Arial;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+  .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active,
+  .form textarea:focus,
+  .form textarea:active,
+  .form select:focus,
+  .form select:active {
+    outline: none; }
+.form textarea {
+  resize: vertical;
+  height: 80px; }
+.form input[type="submit"] {
+  color: white;
+  background-color: #40a6e0;
+  cursor: pointer; }
+  .form input[type="submit"]:focus, .form input[type="submit"]:active, .form input[type="submit"]:hover {
+    background-color: #4dace2; }
+  .form input[type="submit"]:active {
+    background-color: #33a0de; }
+.form label i {
+  margin-left: -190px; }
+.form input[type="file"] {
+  position: relative;
+  float: left;
+  width: 200px;
+  margin: 13px 0 25px -5px;
+  cursor: pointer; }
+  .form input[type="file"] + * {
+    clear: both; }
+  .form input[type="file"]:before {
     position: relative;
+    bottom: 0;
+    right: 0;
+    display: block;
+    margin-left: -2px;
+    padding: 10px 10px 10px 40px;
+    content: attr(data-text);
+    background: #dddddd; }
+  .form input[type="file"]:after {
+    position: absolute;
+    top: 18px;
+    left: 15px;
+    display: block;
+    width: 20px;
+    height: 17px;
+    content: "";
+    background: url(../img/upload.png); }
+.form input[type="checkbox"] {
+  position: relative;
+  top: -5px;
+  width: 25px;
+  margin: 10px 5px 15px 10px;
+  cursor: pointer; }
+  .form input[type="checkbox"].for-checkbox-dependence {
     float: left;
-    width: 200px;
-    margin: 13px 0 25px -5px;
-    cursor: pointer; }
-    .form input[type="file"] + * {
-      clear: both; }
-    .form input[type="file"]:before {
-      position: relative;
-      bottom: 0;
-      right: 0;
-      display: block;
-      margin-left: -2px;
-      padding: 10px 10px 10px 40px;
-      content: attr(data-text);
-      background: #dddddd; }
-    .form input[type="file"]:after {
-      position: absolute;
-      top: 18px;
-      left: 15px;
-      display: block;
-      width: 20px;
-      height: 17px;
-      content: "";
-      background: url(../img/upload.png); }
-  .form input[type="checkbox"] {
+    margin-top: 0; }
+  .form input[type="checkbox"]:before {
     position: relative;
-    top: -5px;
-    width: 25px;
-    margin: 10px 5px 15px 10px;
-    cursor: pointer; }
-    .form input[type="checkbox"]:before {
-      position: relative;
-      bottom: 0;
-      right: 0;
-      display: block;
-      margin-left: -2px;
-      padding: 12px 0px 13px 5px;
-      content: "";
-      background: #dddddd; }
-    .form input[type="checkbox"]:after {
-      position: absolute;
-      top: 4px;
-      left: 3px;
-      display: block;
-      width: 16px;
-      height: 16px;
-      content: "";
-      opacity: 0;
-      background-image: url(../img/checked.png); }
-      @media (min-width: 640px) {
-        .form input[type="checkbox"]:after {
-          -webkit-transition: 0.1s;
-          -moz-transition: 0.1s;
-          -ms-transition: 0.1s;
-          -o-transition: 0.1s;
-          transition: 0.1s; } }
-    .form input[type="checkbox"]:checked:before, .form input[type="checkbox"]:hover:before, .form input[type="checkbox"][disabled]:checked:before {
-      opacity: 1; }
-    .form input[type="checkbox"]:hover:after {
-      opacity: 0.1; }
-    .form input[type="checkbox"]:checked:after {
-      opacity: 1; }
-    .form input[type="checkbox"][disabled] {
-      cursor: default; }
-    .form input[type="checkbox"] + label {
-      cursor: pointer; }
-  .form label.checkbox-dependence,
+    bottom: 0;
+    right: 0;
+    display: block;
+    margin-left: -2px;
+    padding: 12px 0px 13px 5px;
+    content: "";
+    background: #dddddd; }
+  .form input[type="checkbox"]:after {
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    content: "";
+    opacity: 0;
+    background-image: url(../img/checked.png); }
+    @media (min-width: 640px) {
+      .form input[type="checkbox"]:after {
+        -webkit-transition: 0.1s;
+        -moz-transition: 0.1s;
+        -ms-transition: 0.1s;
+        -o-transition: 0.1s;
+        transition: 0.1s; } }
+  .form input[type="checkbox"]:checked:before, .form input[type="checkbox"]:hover:before, .form input[type="checkbox"][disabled]:checked:before {
+    opacity: 1; }
+  .form input[type="checkbox"]:hover:after {
+    opacity: 0.1; }
+  .form input[type="checkbox"]:checked:after {
+    opacity: 1; }
+  .form input[type="checkbox"][disabled] {
+    cursor: default; }
+.form input[type="checkbox"] + label,
+.form label + input[type="checkbox"] {
+  cursor: pointer; }
+.form label.checkbox-dependence {
+  opacity: 0.2; }
   .form label.checkbox-dependence input {
     opacity: 0.2; }
-  .form input:checked ~ label.checkbox-dependence,
-  .form input:checked ~ label.checkbox-dependence input {
+.form input:checked + label.checkbox-dependence {
+  opacity: 1; }
+  .form input:checked + label.checkbox-dependence input {
     opacity: 1; }
 
 .messages h1 button {
@@ -5186,7 +5193,8 @@ nav.pagination {
   .video-infos .description.little {
     height: 110px; }
 
-.video-infos .description .inner-description {
+.video-infos .description .inner-description,
+.video-infos .description .inner-export {
   height: 155px;
   max-height: 100%;
   padding-right: 10px;
@@ -5194,6 +5202,23 @@ nav.pagination {
   text-align: left;
   font-size: 16px;
   color: #959595; }
+
+.video-infos .description .inner-description {
+  display: block; }
+
+.video-infos .description .inner-export {
+  display: none; }
+
+.video-infos .description.export .inner-description {
+  display: none; }
+
+.video-infos .description.export .inner-export {
+  display: block; }
+
+.video-infos .description .inner-export input[type="text"] {
+  width: 90%;
+  padding: 8px;
+  margin: auto; }
 
 .video-infos .description .inner-description::-webkit-scrollbar {
   width: 4px; }
@@ -5218,13 +5243,12 @@ nav.pagination {
 .video-infos .buttons {
   padding: 15px 30px;
   text-align: left; }
-  .video-infos .buttons img,
-  .video-infos .buttons .embed {
+  .video-infos .buttons img {
+    cursor: pointer;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     transition: 0.2s; }
-  .video-infos .buttons img:hover,
-  .video-infos .buttons .embed:hover {
+  .video-infos .buttons img:hover {
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
     transform: scale(1.2); }
@@ -5232,32 +5256,6 @@ nav.pagination {
     margin: 0 15px; }
   .video-infos .buttons a {
     margin: 0; }
-  .video-infos .buttons .embed {
-    position: relative;
-    left: -35px;
-    width: 18px;
-    height: 18px;
-    margin: 0 !important;
-    opacity: 0;
-    cursor: pointer; }
-    @media (max-width: 420px) {
-      .video-infos .buttons .embed {
-        left: -30px; } }
-    @media (max-width: 300px) {
-      .video-infos .buttons .embed {
-        left: -22px; } }
-    .video-infos .buttons .embed:checked + .embed-input {
-      display: inline-block; }
-  .video-infos .buttons .embed-input {
-    position: relative;
-    top: -4px;
-    display: none;
-    width: 60px;
-    margin: -20px 0 -20px -20px;
-    padding: 5px;
-    border: 1px solid #ccc; }
-    .video-infos .buttons .embed-input:focus {
-      outline: none; }
 
 .video-infos .buttons * {
   margin: 0 15px; }
