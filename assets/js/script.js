@@ -298,8 +298,6 @@ function set_exporter_input_value() {
 
 		for (var i = 0; i < times.length; i++) {
 
-			console.log(times[i], time_url_format[i]);
-
 			url += i === 0 & !autoplay ? "?" : "&";
 
 			url += time_url_format[i] + "=" + times[i];
