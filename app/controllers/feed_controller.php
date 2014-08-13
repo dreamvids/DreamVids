@@ -19,14 +19,18 @@ class FeedController extends Controller {
 
 	public function index($request) {
 		if(Session::isActive()) {
+			$sess = Session::get();
 			$data = array();
 			$data['actions'] = array();
 			$data['subscriptions'] = array();
+			$data['last_visit'] = $sess->last_visit;
+			$sess->last_visit = Utils::tps();
+			$sess->save();
 			
-			$actions = array_merge(Session::get()->getSubscriptionsActions(), Session::get()->getUsersPersonalActions());
+			$actions = Session::get()->getNotifications();
 			
+			$data['subscriptions'] = Session::get()->getSubscriptions();
 			if(count($actions) > 0) {
-				$data['subscriptions'] = Session::get()->getSubscriptions();
 				$data['actions'] = $actions;
 			}
 

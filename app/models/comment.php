@@ -1,6 +1,6 @@
 <?php
 
-require_once MODEL.'user_action.php';
+require_once MODEL.'channel_action.php';
 require_once MODEL.'modo_action.php';
 
 class Comment extends ActiveRecord\Model {
@@ -9,7 +9,7 @@ class Comment extends ActiveRecord\Model {
 
 	public function isLikedByUser($user) {
 		if(is_object($user)) {
-			return UserAction::exists(array('user_id' => $user->id, 'type' => 'like_comment', 'target' => $this->id));
+			return ChannelAction::exists(array('user_id' => $user->id, 'type' => 'like_comment', 'target' => $this->id));
 		}
 
 		return false;
@@ -17,7 +17,7 @@ class Comment extends ActiveRecord\Model {
 
 	public function isDislikedByUser($user) {
 		if(is_object($user)) {
-			return UserAction::exists(array('user_id' => $user->id, 'type' => 'dislike_comment', 'target' => $this->id));
+			return ChannelAction::exists(array('user_id' => $user->id, 'type' => 'dislike_comment', 'target' => $this->id));
 		}
 
 		return false;
@@ -26,24 +26,18 @@ class Comment extends ActiveRecord\Model {
 	public function like($user) {
 		if(is_object($user) && !$this->isLikedByUser($user)) {
 			if($this->isDislikedByUser($user)) {
-				$dislikeAction = UserAction::find(array('type' => 'dislike_comment', 'user_id' => $user->id, 'target' => $this->id));
-				$dislikeAction->delete();
-
 				$this->dislikes--;
 				$this->save();
 			}
 
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $user->id,
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => $user->getMainChannel()->id,
 				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'like_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
 			));
-
-			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'unlike_comment', 'target' => $this->id)))
-				$action->delete();
 
 			$this->likes++;
 			$this->save();
@@ -52,23 +46,14 @@ class Comment extends ActiveRecord\Model {
 
 	public function unlike($user) {
 		if(is_object($user) && $this->isLikedByUser($user) && $this->likes > 0) {
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $user->id,
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => $user->getMainChannel()->id,
 				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'unlike_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
 			));
-
-			UserAction::find(array(
-				'user_id' => $user->id,
-				'type' => 'like_comment',
-				'target' => $this->id
-			))->delete();
-
-			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'like_comment', 'target' => $this->id)))
-				$action->delete();
 
 			$this->likes--;
 			$this->save();
@@ -78,24 +63,18 @@ class Comment extends ActiveRecord\Model {
 	public function dislike($user) {
 		if(is_object($user) && !$this->isDislikedByUser($user)) {
 			if($this->isLikedByUser($user)) {
-				$likeAction = UserAction::find(array('type' => 'like_comment', 'user_id' => $user->id, 'target' => $this->id));
-				$likeAction->delete();
-
 				$this->likes--;
 				$this->save();
 			}
 
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $user->id,
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => $user->getMainChannel()->id,
 				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'dislike_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
 			));
-
-			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'undislike_comment', 'target' => $this->id)))
-				$action->delete();
 
 			$this->dislikes++;
 			$this->save();
@@ -104,23 +83,14 @@ class Comment extends ActiveRecord\Model {
 
 	public function undislike($user) {
 		if(is_object($user) && $this->isDislikedByUser($user) && $this->dislikes > 0) {
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $user->id,
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => $user->getMainChannel()->id,
 				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 				'type' => 'undislike_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
 			));
-
-			UserAction::find(array(
-				'user_id' => $user->id,
-				'type' => 'dislike_comment',
-				'target' => $this->id
-			))->delete();
-
-			if($action = UserAction::find(array('user_id' => $user->id, 'type' => 'dislike_comment', 'target' => $this->id)))
-				$action->delete();
 
 			$this->dislikes--;
 			$this->save();
@@ -129,14 +99,6 @@ class Comment extends ActiveRecord\Model {
 
 	public function report($reporterUser) {
 		if(is_object($reporterUser)) {
-			/*UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $reporterUser->id,
-				'type' => 'report_comment',
-				'target' => $this->id,
-				'timestamp' => Utils::tps()
-			));*/
-
 			$this->flagged = 1;
 			$this->save();
 		}
@@ -145,17 +107,12 @@ class Comment extends ActiveRecord\Model {
 	public function unflag($reporterUser) {
 		if(is_object($reporterUser)) {
 			ModoAction::create(array(
-				'id' => UserAction::generateId(6),
+				'id' => ModoAction::generateId(6),
 				'user_id' => $reporterUser->id,
 				'type' => 'unflag_comment',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
 			));
-
-			UserAction::delete_all(array('conditions' => array(
-				'type' => 'report_comment',
-				'target' =>$this->id
-			)));
 
 			$this->flagged = 0;
 			$this->save();
@@ -163,16 +120,9 @@ class Comment extends ActiveRecord\Model {
 	}
 
 	public function erase($user) {
-		UserAction::delete_all(array('conditions' => array(
-			'target' =>$this->id
-		)));
-
-		ModoAction::delete_all(array('conditions' => array(
-			'target' =>$this->id
-		)));
 
 		ModoAction::create(array(
-			'id' => UserAction::generateId(6),
+			'id' => ModoAction::generateId(6),
 			'user_id' => $user->id,
 			'type' => 'delete_comment',
 			'target' => $this->id,
@@ -210,6 +160,7 @@ class Comment extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $authorId,
+			'recipients_ids' => UserChannel::find(Video::find($videoId)->poster_id)->admins_ids,
 			'type' => 'comment',
 			'target' => $videoId,
 			'timestamp' => $timestamp
@@ -250,8 +201,7 @@ class Comment extends ActiveRecord\Model {
 			if($action->type == 'comment') {
 				return Comment::find('first', array('conditions' => array(
 					'poster_id' => $action->channel_id,
-					'timestamp' => $action->timestamp,
-					'video_id' => $action->target
+					'timestamp' => $action->timestamp
 				)));
 			}
 		}

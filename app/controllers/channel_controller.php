@@ -149,12 +149,12 @@ class ChannelController extends Controller {
 								if ($admin > 0) {
 									if (!in_array($admin, $adm)) {
 										$adm[] = $admin;
-										UserAction::create(array(
-											'id' => UserAction::generateId(6),
-											'user_id' => $subscriber,
+										ChannelAction::create(array(
+											'id' => ChannelAction::generateId(6),
+											'channel_id' => Session::get()->getMainChannel()->id,
 											'recipients_ids' => ';'.$admin.';',
 											'type' => 'admin',
-											'target' => $subscribing,
+											'target' => $channel->id,
 											'timestamp' => Utils::tps()
 										));
 									}
@@ -164,12 +164,12 @@ class ChannelController extends Controller {
 									if (in_array($value, $adm) && $channel->owner_id != $value) {
 										$id = array_keys($adm, $value);
 										unset($adm[$id[0]]);
-										UserAction::create(array(
-											'id' => UserAction::generateId(6),
-											'user_id' => $subscriber,
+										ChannelAction::create(array(
+											'id' => ChannelAction::generateId(6),
+											'channel_id' => Session::get()->getMainChannel()->id,
 											'recipients_ids' => ';'.$admin.';',
 											'type' => 'unadmin',
-											'target' => $subscribing,
+											'target' => $channel->id,
 											'timestamp' => Utils::tps()
 										));
 									}
@@ -291,6 +291,7 @@ class ChannelController extends Controller {
 				$data['current'] = 'channels';
 				$data['id'] = $channel->id;
 				$data['mainChannel'] = $channel->isUsersMainChannel(Session::get()->id);
+				$data['owner_id'] = $channel->owner_id;
 				$data['name'] = $channel->name;
 				$data['description'] = $channel->description;
 				$admins = explode(';', trim($channel->admins_ids, ';'));

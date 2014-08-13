@@ -124,41 +124,8 @@ class User extends ActiveRecord\Model {
 		return $videos;
 	}
 
-	// Returns the actions that concerns the subsriptions (channels)
-	public function getSubscriptionsActions() {
-		$actions = array();
-		$subscriptions = $this->getSubscriptions();
-
-		foreach($subscriptions as $subscription) {
-			$subscriptionsActions = ChannelAction::find('all', array('conditions' => array('channel_id' => $subscription->id)));
-
-			foreach($subscriptionsActions as $action) {
-				if($action->type == 'comment') {
-					if(!Video::exists($action->target))
-						continue;
-
-					$targetVideo = Video::find($action->target);
-
-					// If the commented video belongs to any of the user's channels
-					if($targetVideo->getAuthor()->belongToUser($this->id)) {
-						$actions[] = $action;
-					}
-				}
-				else if($action->type == 'upload') {
-					if(Video::exists($action->target))
-						$actions[] = $action;
-				}
-				else
-					$actions[] = $action;
-			}
-		}
-		
-		return $actions;
-	}
-
-	// Returns actions that concerns the user's videos/channel(s)
-	public function getUsersPersonalActions() {
-		$actions = UserAction::find_by_sql("SELECT * FROM users_actions WHERE recipients_ids LIKE ? ORDER BY timestamp DESC", array('%;'.Session::get()->id.';%'));
+	public function getNotifications() {
+		$actions = ChannelAction::find_by_sql("SELECT * FROM channels_actions WHERE recipients_ids LIKE ? ORDER BY timestamp DESC", array('%;'.Session::get()->id.';%'));
 		return $actions;
 	}
 
@@ -227,7 +194,6 @@ class User extends ActiveRecord\Model {
 			'username' => $username,
 			'email' => $mail,
 			'pass' => sha1($password),
-			'followings' => '',
 			'subscriptions' => '',
 			'reg_timestamp' => Utils::tps(),
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
@@ -244,6 +210,7 @@ class User extends ActiveRecord\Model {
 			'admins_ids' => User::getIdByName($username).';',
 			'avatar' => Config::getValue_('default-avatar'),
 			'subscribers' => 0,
+			'subs_list' => 0,
 			'views' => 0
 		));
 	}
