@@ -39,11 +39,12 @@
 				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" value="<?php echo @$background; ?>" /><br />
 			</label>
 			
+			<?php if (@!$mainChannel) { ?>
 			<label>Administrateurs :</label>
 				<div id="adm">
 <?php
 foreach ($admins as $key => $adm) {
-	$is_creator = ($adm->id == $id);
+	$is_creator = ($adm->owner_id == $owner_id);
 	$creator = ($is_creator) ? ' (Créateur)' : '';
 	$delete = (!$is_creator) ? '<img class="delete-admin" src="'.IMG.'message_error_icon.png" onclick="remove_adm('.$adm->owner_id.')" />' : '';
 	echo '<div id="adm_'.$adm->owner_id.'" class="channel-admin"><img class="admin-avatar" src="'.$adm->avatar.'" />'.$adm->name.$creator.$delete.'</div>';
@@ -53,6 +54,7 @@ foreach ($admins as $key => $adm) {
 
 			<input style="margin-bottom:0" type="text" id="add_admin" onkeyup="autocompletion(this)" placeholder="Ajouter un administrateur..." autocomplete="off" />
 			<div id="autocomplete"></div>
+			<?php } ?>
 			
 			<input type="submit" name="editChannelSubmit" value="Modifier la chaîne" />
 		</form>

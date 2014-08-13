@@ -13,7 +13,7 @@
 					<i><?php echo $subscribed ? 'Se desabonner': 'S\'abonner'; ?></i>
 				</span>
 				<div id="video-top-channel-infos">
-					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->name; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
+					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->id; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
 						<?php echo $author->name; ?>
 					</a>
 					<hr>

@@ -27,17 +27,15 @@ Back:
 
 - Ajouter les playlists
 
-- Notifications (Colonne "read" dans users_actions, ya juste à comtper le nombre d'unread et à l'afficher par dessus l'item flux du menu, et afficher d'un autre style/couleur des actions unread dans le flux)
-
-- LiveStream
-
 - Mot de passe oublié
 
 - Footer
 
 - Trouver un moyen d'avoir la durée de la vidéo !!!!!!!!
 
-- Les messages sociaux ne se postent plus...
+- Les messages sociaux ne se postent plus (tout comme les commentaires et les likes de commentaires)...
+
+- avatars de commentaires statiques
 
 
 
