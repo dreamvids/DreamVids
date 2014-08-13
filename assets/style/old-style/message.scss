@@ -1,0 +1,75 @@
+
+/* Messages d'erreur et succès
+------------------------------------------------------ */
+.message{
+  height: 45px;
+  width: 100%;
+  background-color: #ececec;
+}
+.message .message-icn{
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  line-height: 45px;
+  padding-top: 2px;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  -o-box-sizing:border-box;
+  box-sizing:border-box;
+}
+.message p{
+  display: inline-block;
+  vertical-align: top;
+  line-height: 45px;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.error .message-icn{
+  background-color: #cb3030;
+}
+.success .message-icn{
+  background-color: #2ca03f;
+}
+
+/* Partie "sociale" d'une chaîne
+---------------------------------------------------------- */
+
+#channem-posts{
+  display: block;
+  height: auto;
+}
+.channel-post{
+  width: 100%;
+  color: #333333;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+}
+.channel-post img{
+  height: 25px;
+  border-radius: 12.5px;
+  margin-top: 12px;
+  position: relative;
+  top: -5px;
+  margin-right: 15px;
+}
+.channel-post img, .channel-post p{
+  display: inline-block;
+  vertical-align: middle;
+}
+.channel-name{
+  color: #40a6e0;
+}
+.social-message{
+  width: 95%;
+  float: right;
+  background-color: #fdfdfd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px;
+}

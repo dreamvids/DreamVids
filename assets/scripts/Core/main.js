@@ -5,6 +5,8 @@
  * MAIN CORE FILE
  */
 
+var Application = {};
+
 var _scripts_ = [];
 
 var Script = function(script) {

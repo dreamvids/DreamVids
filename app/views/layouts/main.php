@@ -94,7 +94,7 @@
 
 					<div class="inner">
 
-						<nav>
+						<nav id="header-menu-nav">
 							<ul>
 							<?php $nb_notifs = ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'"));
 							$notifs = ($nb_notifs > 0) ? 'data-new="'.$nb_notifs.'"' : ''; ?>

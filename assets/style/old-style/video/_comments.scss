@@ -6,8 +6,8 @@ $comment-color: #959595;
 
 	display: inline-block;
 	width: 65%;
-	margin: 30px 0 20px -3px;
-	padding-right: 20px;
+	margin: 0px 0 20px -3px;
+	padding-right: 10px;
 	padding-left: 10px;
 	
 	vertical-align: top;
@@ -53,6 +53,11 @@ $comment-color: #959595;
 				outline: none;
 				border-color: #cdcdcd;
 			}
+
+			&.blue{
+			 	height: 45px;
+			 	width: 150px;
+			}
 		}
 
 		input[type="submit"] {
@@ -94,9 +99,18 @@ $comment-color: #959595;
 			margin-bottom: 5px;
 			padding-bottom: 15px;
 
+			font-size: 14px;
+
 			.user {
 				display: inline-block;
 				vertical-align: middle;
+
+				img {
+
+					height: 30px;
+          			border-radius: 15px;
+
+				}
 
 				img,
 				a {
@@ -138,6 +152,8 @@ $comment-color: #959595;
 			.date {
 				float: right;
 				display: inline-block;
+				color: #bababa; 
+	        	margin-right: 10px;
 				vertical-align: baseline;
 
 				p {
@@ -171,6 +187,10 @@ $comment-color: #959595;
 
 			.moins,
 			.moins a { color: #dd4e47; }
+
+			.plus:hover,
+			.moins:hover { cursor: pointer; }
+
 		}
 	}
 }

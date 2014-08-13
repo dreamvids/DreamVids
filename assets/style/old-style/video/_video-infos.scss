@@ -272,6 +272,12 @@
 	margin: auto;
 	padding: 20px 20px;
 
+	&.little {
+	
+		height: 110px;
+
+	}
+
 }
 
 .video-infos .description .inner-description {
@@ -313,6 +319,20 @@
 
 	padding: 15px 30px;
 	text-align: left;
+
+	img,
+	.embed {
+
+		@include transition(0.2s);
+
+	}
+
+	img:hover,
+	.embed:hover {
+
+		@include transform(scale(1.2));
+
+	}
 
 	* { margin: 0 15px; }
 	a { margin: 0; }

@@ -14,7 +14,7 @@ function background_loader(element) {
      this.imgLoader = new Image();
      this.imgLoader.src = this.src;
 
-     this.imgLoader.addEventListener("load", function(event) {
+     on(this.imgLoader, "load", function(event) {
 
          element.className = element.className.replace("bgLoader", "");
          element.className = element.className.replace("bg-loader", "");
@@ -32,11 +32,11 @@ function background_loader(element) {
 
          }(element), 300);
 
-     }, false);
+     });
 
  }
 
-var bg_loader = new Script({
+new Script({
 
 	call: function() {
 

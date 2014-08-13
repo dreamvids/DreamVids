@@ -13,12 +13,12 @@
 
 <!-- A remplacer par : -->
 
-<!--<script src="<?php echo JS.'script.min.js'; ?>"></script>-->
+<script src="<?php echo JS.'script.min.js'; ?>"></script>
 
 <script>
 	
 
-	setVideo([
+	/*setVideo([
 
 		{
 			format: 360,
@@ -32,8 +32,24 @@
 			webm: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.webm"
 		}
 
-	]);
+	]);*/
 
+	setVideo([
+
+		{
+			format: 360,
+			mp4: "4044444444.mp4",
+			webm: "4044444444.webm"
+		},
+
+		{
+			format: 720,
+			mp4: "4044444444.mp4",
+			webm: "4044444444.webm"
+		}
+
+	]);
+	
 	setSubTitles([
 
 		{
