@@ -99,7 +99,7 @@
 
 							<?php 
 
-								if (Session::get() != -1) {
+								if (Session::isActive()) {
 
 									$nb_notifs = ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'"));
 
