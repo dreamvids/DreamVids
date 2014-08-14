@@ -103,7 +103,8 @@ class ConversationController extends Controller {
 			if(isset($req['members'], $req['creator'], $req['subject']) && !empty($req['members']) && !empty($req['creator'])) {
 				$membersStr = Utils::secure($req['members']);
 				$creator = Utils::secure($req['creator']);
-				$subject = !empty(Utils::secure($req['subject'])) ? Utils::secure($req['subject']) : 'Sans titre';
+				$subject = Utils::secure($req['subject']);
+				$subject = !empty($subject) ? $subject : 'Sans titre';
 
 				if(($sender = UserChannel::find($creator))/* && strpos($membersStr, ';') */) {
 					if(Utils::stringStartsWith($membersStr, ';'))

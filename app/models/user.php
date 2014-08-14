@@ -10,7 +10,9 @@ class User extends ActiveRecord\Model {
 	}
 
 	public function getOwnedChannels() {
-		return UserChannel::all(array('conditions' => array('admins_ids LIKE ?', '%;'.$this->id.';%'), 'order' => 'id desc'));
+		$first = array($this->getMainChannel());
+		$others = UserChannel::all(array('conditions' => array('admins_ids LIKE ? AND name != ?', '%;'.$this->id.';%', $this->username), 'order' => 'id desc'));
+		return array_merge($first, $others);
 	}
 
 	public function getPostedVideos() {

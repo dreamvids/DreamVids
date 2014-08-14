@@ -12,6 +12,6 @@
 <script src="<?php echo JS."live.js"; ?>"></script>
 
 
-<!-- A remplacer par : -->
+<!-- A remplacer par :
 
-<script src="<?php echo JS.'script.min.js'; ?>"></script>
+<script src="<?php echo JS.'script.min.js'; ?>"></script> -->

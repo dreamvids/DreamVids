@@ -343,6 +343,10 @@ class Video extends ActiveRecord\Model {
 
 		return $vids;
 	}
+	
+	public static function getLastVideos($number = 10) {
+		return Video::all(array('order' => 'timestamp', 'limit' => $number));
+	}
 
 	public static function getSubscriptionsVideos($userId, $amount='nope') {
 		$videos = array();

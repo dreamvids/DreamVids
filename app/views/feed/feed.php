@@ -107,7 +107,7 @@
 						?>
 							<div class="card plus <?php echo $supp_class; ?>">
 								<a href="channel">
-									<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/350/200/6"></div>
+									<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
 									<p>Vous n'êtes plus administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
 								</a>
 								<i><?php echo Utils::relative_time($action->timestamp); ?></i>

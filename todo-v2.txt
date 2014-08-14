@@ -12,12 +12,7 @@ Back:
 
 - La vidéo qui se lit est statique (Vu avec brezh: on garde le système de la V1)
 
-- Clarifier DRASTIQUEMENT l'approche chaine, bcp trop confus actuellement: FAUTE A PETER !
-	- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
-
-- Les messages n'ont pas l'air de fonctionner
-
-- Pouvoir supprimer une chaine
+- modifier l'url de suppression de chaine (/edit -> ?)
 
 - Utiliser la base 64 pour images au lieu de les stocker
 
@@ -33,13 +28,9 @@ Back:
 
 - Trouver un moyen d'avoir la durée de la vidéo !!!!!!!!
 
-- Les messages sociaux ne se postent plus (tout comme les commentaires et les likes de commentaires)...
-
-- avatars de commentaires statiques
-
-- Augmenter le nombre de vidéos d'abonnements sur l'accueil
-
 - Ne lister que les vidéos publiques (va de paire avec les notifs d'upload)
+
+- Dynamaiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
 
 
 
@@ -53,4 +44,12 @@ Admin:
 
 Front:
 
+- Video card pour les réseaux au lieu d'images
+
 - Interface pour le live
+
+- Style du message social après envoi via ajax
+
+- Correction du style du code pour l'embed: il y a la description à cet endroit normalement x)
+
+- Interface playlist
