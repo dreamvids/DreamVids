@@ -26,6 +26,7 @@ class LiveController extends Controller {
 				$data['liveChannel'] = $liveChannel;
 			}
 			else {
+				$data['accessGranted'] = false;
 				$data['channels'] = Session::get()->getOwnedChannels();
 			}
 
