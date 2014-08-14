@@ -14,4 +14,4 @@
 
 <!-- A remplacer par : -->
 
-<!--<script src="<?php echo JS.'script.min.js'; ?>"></script>--> <!-- TODO: Make this working. lol. -->
+<script src="<?php echo JS.'script.min.js'; ?>"></script>

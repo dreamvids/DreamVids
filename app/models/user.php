@@ -124,89 +124,8 @@ class User extends ActiveRecord\Model {
 		return $videos;
 	}
 
-	// Returns the actions that concerns the subsriptions (channels)
-	public function getSubscriptionsActions() {
-		$actions = array();
-		$subscriptions = $this->getSubscriptions();
-
-		foreach($subscriptions as $subscription) {
-			$subscriptionsActions = ChannelAction::find('all', array('conditions' => array('channel_id' => $subscription->id)));
-
-			foreach($subscriptionsActions as $action) {
-				if($action->type == 'comment') {
-					if(!Video::exists($action->target))
-						continue;
-
-					$targetVideo = Video::find($action->target);
-
-					// If the commented video belongs to any of the user's channels
-					if($targetVideo->getAuthor()->belongToUser($this->id)) {
-						$actions[] = $action;
-					}
-				}
-				else if($action->type == 'upload') {
-					if(Video::exists($action->target))
-						$actions[] = $action;
-				}
-				else
-					$actions[] = $action;
-			}
-		}
-
-		return $actions;
-	}
-
-	// Returns actions that concerns the user's videos/channel(s)
-	public function getUsersPersonalActions() {
-		$actions = array();
-		$actionTypes = array('subscription', 'like');
-
-		foreach($actionTypes as $type) {
-			switch ($type) {
-				case 'subscription':
-					$usersChannels = $this->getOwnedChannels();
-					$usersChannelIds = array();
-					foreach($usersChannels as $c) $usersChannelIds[] = $c->id;
-
-					$subscriptionsActions = UserAction::find('all', array('conditions' => array(
-						'type = ? AND target IN (?)', $type, $usersChannelIds
-					)));
-
-					foreach($subscriptionsActions as $sa) $actions[] = $sa;
-					break;
-
-				case 'unsubscription':
-					$usersChannels = $this->getOwnedChannels();
-					$usersChannelIds = array();
-					foreach($usersChannels as $c) $usersChannelIds[] = $c->id;
-
-					$subscriptionsActions = UserAction::find('all', array('conditions' => array(
-						'type = ? AND target IN (?)', $type, $usersChannelIds
-					)));
-
-					foreach($subscriptionsActions as $sa) $actions[] = $sa;
-					break;
-
-				case 'like':
-					$usersVideos = $this->getPostedVideos();
-
-					if(!empty($usersVideos)) {
-						$usersVideosIds = array();
-						foreach($usersVideos as $vid) $usersVideosIds[] = $vid->id;
-
-						$likeActions = UserAction::find('all', array('conditions' => array(
-							'type = ? AND target IN (?)', $type, $usersVideosIds
-						)));
-
-						foreach($likeActions as $a) $actions[] = $a;
-					}
-					break;
-				
-				default:
-					break;
-			}
-		}
-
+	public function getNotifications() {
+		$actions = ChannelAction::find_by_sql("SELECT * FROM channels_actions WHERE recipients_ids LIKE ? ORDER BY timestamp DESC", array('%;'.Session::get()->id.';%'));
 		return $actions;
 	}
 
@@ -222,6 +141,10 @@ class User extends ActiveRecord\Model {
 
 	public function getPassword() {
 		return $this->pass;
+	}
+	
+	public function getSettings() {
+		return json_decode($this->settings);
 	}
 
 	public function hasSubscribedToChannel($channelId) {
@@ -271,12 +194,12 @@ class User extends ActiveRecord\Model {
 			'username' => $username,
 			'email' => $mail,
 			'pass' => sha1($password),
-			'followings' => '',
 			'subscriptions' => '',
 			'reg_timestamp' => Utils::tps(),
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
 			'actual_ip' => $_SERVER['REMOTE_ADDR'],
-			'rank' => $userRank
+			'rank' => $userRank,
+			'settings' => json_encode(array())
 		));
 
 		UserChannel::create(array(
@@ -287,6 +210,7 @@ class User extends ActiveRecord\Model {
 			'admins_ids' => User::getIdByName($username).';',
 			'avatar' => Config::getValue_('default-avatar'),
 			'subscribers' => 0,
+			'subs_list' => 0,
 			'views' => 0
 		));
 	}

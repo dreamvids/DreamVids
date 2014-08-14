@@ -16,7 +16,7 @@
 			
 			<?php for($i = 0; $i < count($discoverVids) - 4; $i++) { ?>
 				<div class="card video">
-					<div class="thumbnail bgLoader" style="height: 75%;" data-background="http://lorempicsum.com/nemo/350/200/1"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
+					<div class="thumbnail bgLoader" style="height: 75%;" data-background="<?php echo $disvocerVids[$i]->tumbnail ?>"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
 					<div class="description">
 						<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
 					</div>

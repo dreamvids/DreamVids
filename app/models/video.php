@@ -4,7 +4,6 @@ require_once MODEL.'user_channel.php';
 require_once MODEL.'channel_action.php';
 require_once MODEL.'video_vote.php';
 require_once MODEL.'video_view.php';
-require_once MODEL.'user_action.php';
 require_once MODEL.'modo_action.php';
 
 class Video extends ActiveRecord\Model {
@@ -85,6 +84,13 @@ class Video extends ActiveRecord\Model {
 		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_suspended')));
 	}
 
+	public function isPrivate() {
+		$appConfig = new Config(CONFIG.'app.json');
+		$appConfig->parseFile();
+
+		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_private')));
+	}
+
 	public function isFlagged() {
 		return $this->flagged == 1;
 	}
@@ -112,9 +118,10 @@ class Video extends ActiveRecord\Model {
 		$this->likes++;
 		$this->save();
 
-		UserAction::create(array(
-			'id' => UserAction::generateId(6),
-			'user_id' => $userId,
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
+			'channel_id' => User::find($userId)->getMainChannel()->id,
+			'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 			'type' => 'like',
 			'target' => $this->id,
 			'timestamp' => Utils::tps()
@@ -128,9 +135,10 @@ class Video extends ActiveRecord\Model {
 		$this->dislikes++;
 		$this->save();
 
-		UserAction::create(array(
-			'id' => UserAction::generateId(6),
-			'user_id' => $userId,
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
+			'channel_id' => User::find($userId)->getMainChannel()->id,
+			'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
 			'type' => 'dislike',
 			'target' => $this->id,
 			'timestamp' => Utils::tps()
@@ -161,13 +169,14 @@ class Video extends ActiveRecord\Model {
 			$this->flagged = 1;
 			$this->save();
 
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $userId,
+			/*ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => User::find($userId)->getMainChannel()->id,
+				'recepients_ids' => '',
 				'type' => 'flag',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
-			));
+			));*/
 		}
 	}
 
@@ -288,6 +297,7 @@ class Video extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $channelId,
+			'recipients_ids' => ';'.trim(Channel::find($channelId)->subs_list, ';').';',
 			'type' => 'upload',
 			'target' => $vidId,
 			'timestamp' => Utils::tps()

@@ -1,13 +1,13 @@
 
 /**
- * Scripts/example.js
+ * Scripts/model.js
  *
  * EXAMPLE SCRIPT
  */
 
-var meteo = new Script({
+new Script({
 
-	pages: ["default", "watch"], // Pages 
+	pages: ["default", "watch"], // Pages
 
 	// OU // pages: "all", // OU ne pas spécifier
 

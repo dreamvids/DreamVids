@@ -1,13 +1,19 @@
+<script>
+	
+	var _VIDEO_ID_ = "llgZw6-0";
+
+</script>
+
 <section class="content">
 	<div id="video-top-infos">
 		<div id="video-top-title">
 			<div id="video-top-channel">
-				<img src="<?php echo $author->getAvatar(); ?>" alt="Image de la chaîne">
+				<img src="<?php echo $author->getAvatar(); ?>">
 				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
 					<i><?php echo $subscribed ? 'Se desabonner': 'S\'abonner'; ?></i>
 				</span>
 				<div id="video-top-channel-infos">
-					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->name; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
+					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->id; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
 						<?php echo $author->name; ?>
 					</a>
 					<hr>
@@ -70,11 +76,37 @@
 
 		<hr>
 
-		<div class="description">
+		<div class="description export" id="video-info-description">
 
 			<div class="inner-description">
 
 				<?php echo $description; ?>
+			
+			</div>
+
+			<div class="inner-export">
+
+				<input id="exporter-input" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//dreamvids.fr/embed/llgZw6-0" allowfullscreen frameborder="0"></iframe>'>
+
+				<div class="form no-style">
+					
+					<select id="exporter-quality">
+						<option value="0">1280x720</option>
+						<option value="1" selected>640x360</option>
+						<option value="2">320x180</option>
+					</select>
+
+					<input type="checkbox" checked id="exporter-autoplay"/><label for="exporter-autoplay">Autoplay</label><br>
+					
+					<br>
+					<label for="exporter-time-checkbox">Démarrer à</label>
+					<input type="checkbox" class="for-checkbox-dependence" id="exporter-time-checkbox"/>
+
+					<label for="exporter-time-input" class="checkbox-dependence">
+						<input type="time" id="exporter-time-input" value="00:00" min="00:00">
+					</label>
+
+				</div>
 			
 			</div>
 
@@ -84,12 +116,33 @@
 
 		<div class="buttons">
 
-			<img class="share" src="<?php echo IMG.'share.png'; ?>" style="cursor: pointer; cursor: hand;">
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" style="cursor: pointer; cursor: hand;">
-			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');" style="cursor: pointer; cursor: hand;">
-			<img class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
-			<input class="embed" type="checkbox" onclick="document.getElementById('embed-input').select();">
-			<input class="embed-input" value="Mega code d'embed de la mort qui tue !" onclick="this.select();" type="text" spellcheck="false">
+			<div id="share-video-block" class="share-video-block">
+								
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title)  > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				
+				<div id="fb-root"></div>
+
+				<script>
+
+					(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+
+				</script>
+
+				<div class="fb-share-button" data-href="http://dreamvids.fr/&<?php echo $video->id; ?>" data-type="button_count"></div>
+			
+			</div>
+
+			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');">
+			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');">
+			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 
 		</div>
 

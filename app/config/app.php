@@ -1,4 +1,8 @@
 <?php
+Config::addValue('dbHost', '127.0.0.1');
+Config::addValue('dbUser', 'root');
+Config::addValue('dbPass', '');
+Config::addValue('dbName', 'dreamvids_v2');
 
 Config::addValue('vid_visibility_private', '0');
 Config::addValue('vid_visibility_non_listed', '1');

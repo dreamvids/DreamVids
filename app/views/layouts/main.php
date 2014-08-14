@@ -5,7 +5,7 @@
 
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.min.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.css'; ?>">
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/meta.php') : include(VIEW.'layouts/pages/default/meta.php'); ?>
 
@@ -94,13 +94,30 @@
 
 					<div class="inner">
 
-						<nav>
+						<nav id="header-menu-nav">
 							<ul>
+
+							<?php 
+
+								if (Session::get() != -1) {
+
+									$nb_notifs = ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'"));
+
+								}
+
+								else {
+
+									$nb_notifs = 0;
+
+								}
+
+								$notifs = ($nb_notifs > 0) ? 'data-new="'.$nb_notifs.'"' : ''; ?>
+						
 								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="index.php">Accueil</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'discover') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'discover'; ?>">Découvrir</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
+								<li <?php echo $notifs; echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/videos'; ?>">Mes Vidéos</a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channelslist'; ?>">Mes Vidéos</a></li>
 								<li><a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a></li>
 							</ul>
 						</nav>

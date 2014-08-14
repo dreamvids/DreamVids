@@ -8,6 +8,8 @@ module.exports = function(grunt) {
 
 				src: [
 
+					"assets/scripts/Core/main.js",
+
 					"assets/scripts/Utils/librairy/**/*.js",
 					"assets/scripts/Utils/**/*.js",
 

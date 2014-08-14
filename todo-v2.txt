@@ -15,13 +15,7 @@ Back:
 - Clarifier DRASTIQUEMENT l'approche chaine, bcp trop confus actuellement: FAUTE A PETER !
 	- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
 
-	- Modifier l'UX pour le Pseudo et le nom de chaine principale: bcp trop confus
-
-	- Avatar et BG de la home: lesquels ? pourquoi ?
-
 - Les messages n'ont pas l'air de fonctionner
-
-- Ajout de la possibilité d'avoir plusieurs admins pour une chaine
 
 - Pouvoir supprimer une chaine
 
@@ -31,16 +25,28 @@ Back:
 
 - Faire la recherche
 
+- Ajouter les playlists
 
+- Mot de passe oublié
+
+- Footer
+
+- Trouver un moyen d'avoir la durée de la vidéo !!!!!!!!
+
+- Les messages sociaux ne se postent plus (tout comme les commentaires et les likes de commentaires)...
+
+- avatars de commentaires statiques
+
+
+
+Admin:
+
+- Instaurer une licence pour les vidéos
+
+- Page "qui sommes-nous", "Contributeurs", "Equipe"
 
 
 
 Front:
 
-- Le slider marche pas
-
-- AJouter un dropdown lors du clic sur l'icone "partage" avec les icones des principaux réseaux sociaux
-
-- Faire un player à intégrer "maison" (pour ne plus être dépendants de Stornitz)
-
-- Ajouter le même type de dropdwn lors du clic sur l'icone "exporter" avec un textarea à l'intérieur (pour le code d'intégration)
+- Interface pour le live

@@ -39,29 +39,11 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getAvatar() {
-		$avatar = Config::getValue_('default-avatar');
-
-		if(empty($this->avatar)) return $avatar;
-
-		if(file_exists($this->avatar) || ($isUrl = Utils::isUrlValid($this->avatar)))
-			$avatar = isset($isUrl) ? $this->avatar : WEBROOT.$this->avatar;
-		else if(strpos($this->avatar, WEBROOT))
-			$avatar = $this->avatar;
-
-		return $avatar;
+		return $this->avatar;
 	}
 
 	public function getBackground() {
-		$background = Config::getValue_('default-background');
-
-		if(empty($this->background)) return $background;
-
-		if(file_exists($this->background) || ($isUrl = Utils::isUrlValid($this->background)))
-			$background = isset($isUrl) ? $this->background : WEBROOT.$this->background;
-		else if(strpos($this->background, WEBROOT))
-			$background = $this->background;
-
-		return $background;
+		return $this->background;
 	}
 
 	public function belongToUser($userId) {
@@ -94,6 +76,7 @@ class UserChannel extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $this->id,
+			'recipients_ids' => ';'.trim($this->subs_list, ';').';',
 			'type' => 'message',
 			'target' => $messageContent,
 			'timestamp' => Utils::tps()
@@ -112,27 +95,27 @@ class UserChannel extends ActiveRecord\Model {
 		$subscribingChannel = $this;
 		$subscribing = $this->id;
 
-		$subscriptionsStr = $subscriberUser->subscriptions;
+		$subscriptionsStrUser = trim($subscriberUser->subscriptions, ';');
+		$subscriptionsStrChannel = trim($subscribingChannel->subs_list, ';');
 
-		if(Utils::stringStartsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
-		if(Utils::stringEndsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($subscriptionsStr, '', -1);
+		$subscriptionsArrayUser = explode(';', $subscriptionsStrUser);
+		$subscriptionsArrayChannel = explode(';', $subscriptionsStrChannel);
 
-		$subscriptionsArray = explode(';', $subscriptionsStr);
+		if(!in_array($subscribing, $subscriptionsArrayUser)) {
+			$subscriptionsArrayUser[] = $subscribing;
+			$subscriptionsArrayChannel[] = $subscriberUser->id;
 
-		if(!in_array($subscribing, $subscriptionsArray)) {
-			$subscriptionsArray[] = $subscribing;
-
-			$subscriberUser->subscriptions = implode(';', $subscriptionsArray).';';
+			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
 			$subscriberUser->save();
 
 			$subscribingChannel->subscribers++;
+			$subscribingChannel->subs_list = implode(';', $subscriptionsArrayChannel).';';
 			$subscribingChannel->save();
 
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $subscriber,
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => User::find($subscriber)->getMainChannel()->id,
+				'recipients_ids' => $subscribingChannel->admins_ids,
 				'type' => 'subscription',
 				'target' => $subscribing,
 				'timestamp' => Utils::tps()
@@ -145,34 +128,37 @@ class UserChannel extends ActiveRecord\Model {
 		$subscribingChannel = $this;
 		$subscribing = $this->id;
 
-		$subscriptionsStr = $subscriberUser->subscriptions;
+		$subscriptionsStrUser = trim($subscriberUser->subscriptions, ';');
+		$subscriptionsStrChannel = trim($subscribingChannel->subs_list, ';');
+		$subscriptionsArrayUser = explode(';', $subscriptionsStrUser);
+		$subscriptionsArrayChannel = explode(';', $subscriptionsStrChannel);
+	ob_start();
+	var_dump($subscriptionsArrayChannel);
+	$result = ob_get_clean();
+	file_put_contents('test1.txt', $result);
 
-		if(Utils::stringStartsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($subscriptionsStr, '', 0, 1);
-		if(Utils::stringEndsWith($subscriptionsStr, ';'))
-			$subscriptionsStr = substr_replace($subscriptionsStr, '', -1);
+		if(in_array($subscribing, $subscriptionsArrayUser)) {
+			$key = array_search($subscribing, $subscriptionsArrayUser);
+			unset($subscriptionsArrayUser[$key]);
+			$key = array_search($subscriber, $subscriptionsArrayChannel);
+	file_put_contents('test2.txt', $key);
+			unset($subscriptionsArrayChannel[$key]);
+	ob_start();
+	var_dump($subscriptionsArrayChannel);
+	$result = ob_get_clean();
+	file_put_contents('test3.txt', $result);
 
-		if(strpos($subscriptionsStr, ';') !== false) {
-			$subscriptionsArray = explode(';', $subscriptionsStr);
-		}
-		else if(strlen($subscriptionsStr) == 6) {
-			$subscriptionsArray = array();
-			$subscriptionsArray[0] = $subscriptionsStr;
-		}
-
-		if(in_array($subscribing, $subscriptionsArray)) {
-			$key = array_search($subscribing, $subscriptionsArray);
-			unset($subscriptionsArray[$key]);
-
-			$subscriberUser->subscriptions = ';'.implode(';', $subscriptionsArray).';';
+			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
 			$subscriberUser->save();
 
 			$subscribingChannel->subscribers--;
+			$subscribingChannel->subs_list = implode(';', $subscriptionsArrayChannel).';';
 			$subscribingChannel->save();
 
-			UserAction::create(array(
-				'id' => UserAction::generateId(6),
-				'user_id' => $subscriber,
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => User::find($subscriber)->getMainChannel()->id,
+				'recipients_ids' => $subscribingChannel->admins_ids,
 				'type' => 'unsubscription',
 				'target' => $subscribing,
 				'timestamp' => Utils::tps()
@@ -219,6 +205,7 @@ class UserChannel extends ActiveRecord\Model {
 			'avatar' => $avatarURL,
 			'background' => $backgroundURL,
 			'subscribers' => 0,
+			'subs_list' => 0,
 			'views' => 0,
 			'verified' => 0
 		));
@@ -231,11 +218,12 @@ class UserChannel extends ActiveRecord\Model {
 		 */
 	}
 
-	public static function edit($channelId, $name, $descr, $avatarURL, $backgroundURL) {
+	public static function edit($channelId, $name, $descr, $admins_ids, $avatarURL, $backgroundURL) {
 		$chann = UserChannel::find($channelId);
 
 		$chann->name = $name;
 		$chann->description = $descr;
+		$chann->admins_ids = $admins_ids;
 		$chann->avatar = $avatarURL;
 		$chann->background = $backgroundURL;
 		$chann->save();
