@@ -76,6 +76,4 @@ To Do
 
 ###Front
 
-- Video card pour les réseaux au lieu d'images
-
 - Interface pour le live
