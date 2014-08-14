@@ -96,7 +96,7 @@
 
 						<nav id="header-menu-nav">
 							<ul>
-							<?php $nb_notifs = ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'"));
+							<?php $nb_notifs = (Session::isActive()) ? ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'")) : 0;
 							$notifs = ($nb_notifs > 0) ? 'data-new="'.$nb_notifs.'"' : ''; ?>
 						
 								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="index.php">Accueil</a></li>

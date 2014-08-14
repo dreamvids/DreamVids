@@ -194,7 +194,7 @@
 				<div class="comment">
 					<div class="comment-head">
 						<div class="user">
-							<img src="<?php echo IMG.'avatar_user.png'; ?>" alt="Avatar de Pseudo">
+							<img src="<?php echo UserChannel::find($comment->poster_id)->avatar; ?>" alt="[Avatar]">
 							<a href="channel"><?php echo UserChannel::getNameById($comment->poster_id); ?></a>
 						</div>
 						<div class="date">

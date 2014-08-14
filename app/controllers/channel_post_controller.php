@@ -73,7 +73,8 @@ class ChannelPostController extends Controller {
 
 			if(is_object($channel) && $channel->belongToUser(Session::get()->id)) {
 				$postContent = Utils::secure($req['post-content']);
-				if (!empty(trim($postContent))) {
+				$postContent = trim($postContent);
+				if (!empty($postContent)) {
 					$post = $channel->postMessage($postContent);
 	
 					$postData = array(

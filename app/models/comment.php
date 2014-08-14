@@ -152,9 +152,9 @@ class Comment extends ActiveRecord\Model {
 			'poster_id' => $authorId,
 			'video_id' => $videoId,
 			'comment' => $commentContent,
-			'timestamp' => $timestamp,
 			'likes' => 0,
-			'dislikes' => 0
+			'dislikes' => 0,
+			'timestamp' => $timestamp,
 		));
 
 		ChannelAction::create(array(

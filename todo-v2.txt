@@ -37,6 +37,10 @@ Back:
 
 - avatars de commentaires statiques
 
+- Augmenter le nombre de vidéos d'abonnements sur l'accueil
+
+- Ne lister que les vidéos publiques (va de paire avec les notifs d'upload)
+
 
 
 Admin:

@@ -205,13 +205,15 @@ class User extends ActiveRecord\Model {
 		UserChannel::create(array(
 			'id' => UserChannel::generateId(6),
 			'name' => $username,
-			'description' => '',
+			'description' => 'Chaîne de '.$username,
 			'owner_id' => User::getIdByName($username),
-			'admins_ids' => User::getIdByName($username).';',
+			'admins_ids' => ';'.User::getIdByName($username).';',
 			'avatar' => Config::getValue_('default-avatar'),
+			'background' => Config::getValue_('default-background'),
 			'subscribers' => 0,
 			'subs_list' => 0,
-			'views' => 0
+			'views' => 0,
+			'verified' => 0
 		));
 	}
 
