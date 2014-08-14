@@ -44,6 +44,19 @@ class Video extends ActiveRecord\Model {
 		return Comment::all(array('conditions' => array('video_id = ?', $this->id)));
 	}
 
+	public function getThumbnail() {
+		$thumbnail = Config::getValue_('default-thumbnail');
+
+		if(empty($this->thumbnail)) return $thumbnail;
+
+		if(file_exists($this->thumbnail) || ($isUrl = Utils::isUrlValid($this->thumbnail)))
+			$thumbnail = isset($isUrl) ? $this->thumbnail : WEBROOT.$this->thumbnail;
+		else if(strpos($this->thumbnail, WEBROOT))
+			$thumbnail = $this->thumbnail;
+
+		return $thumbnail;
+	}
+
 	public function getAssociatedVideos() {
 		$vids = array();
 		$maxIndex = Video::count(array('conditions' => array('poster_id' => $this->poster_id)));
