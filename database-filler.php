@@ -8,7 +8,9 @@
 define('WEBROOT', str_replace('database-filler.php', '', $_SERVER['SCRIPT_NAME']), true);
 
 class DatabaseFiller {
-	private $dbHost = 'localhost';
+
+	private $pdo = null;
+	private $dbHost = '127.0.0.1';
 	private $dbUser = 'root';
 	private $dbPass = '';
 	private $dbName = 'dreamvids_v2';
@@ -18,35 +20,34 @@ class DatabaseFiller {
 		'Quadri', 'Olivier', 'Carglass', 'Maman', 'Grmble', 'NyanCat', 'Pedobear', 'DreamMec', 'DreamTruc', 'DreamBidule');
 
 
-	public function connectToDatabaseWithAnAwfulTool() {
-		mysql_connect($this->dbHost, $this->dbUser, $this->dbPass);
-		mysql_select_db($this->dbName);
+	public function connectToDatabase() {
+		$this->pdo = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->dbName, $this->dbUser, $this->dbPass);
 	}
 
 	public function generateUsersAndChannels() {
 		foreach ($this->names as $username) {
-			mysql_query("INSERT INTO users VALUES (
+			$this->pdo->query("INSERT INTO users VALUES (
 				'',
 				'".$username."',
 				'mail@wtf.com',
 				'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',
 				'',
-				'',
 				'1398787741',
 				'lol.lol.lol.lol',
 				'lol.lol.lol.lol',
-				'0'
+				'0',
+				'',
+				0
 			)");
 
 			$channelId = $this->generateChannelId(6);
 			$userId = -1;
-			$res = mysql_query("SELECT * FROM users WHERE username='".$username."'");
-			while($data = mysql_fetch_array($res, MYSQL_ASSOC)) {
-				$userId = $data['id'];
-			}
+			$rows = $this->pdo->prepare("SELECT id FROM users WHERE username=?");
+			$rows->execute(array($username));
+			$userId = $rows->fetch()['id'];
 
 			if($userId != -1) {
-				mysql_query("INSERT INTO users_channels VALUES (
+				$this->pdo->query("INSERT INTO users_channels VALUES (
 					'".$channelId."',
 					'".$username."',
 					'Chaine de ".$username."',
@@ -55,6 +56,7 @@ class DatabaseFiller {
 					'".WEBROOT."assets/img/default-avatar.png',
 					'".WEBROOT."assets/img/default-background.png',
 					'0',
+					'',
 					'0',
 					'0'
 				)");
@@ -63,11 +65,11 @@ class DatabaseFiller {
 	}
 
 	public function generateVideos() {
-		$res = mysql_query("SELECT * FROM users_channels");
+		$res = $this->pdo->query("SELECT * FROM users_channels");
 
 		$timestamp = 1398947680;
 
-		while($data = mysql_fetch_array($res, MYSQL_ASSOC)) {
+		foreach($res as $data) {
 			$channelId = $data['id'];
 			$channelName = $data['name'];
 			$vidsPerUser = 3;
@@ -79,7 +81,7 @@ class DatabaseFiller {
 				$vidDesc = 'Description de la video: '.$vidTitle;
 				$vidTags = 'lol lol2';
 
-				mysql_query("INSERT INTO videos VALUES (
+				$this->pdo->query("INSERT INTO videos VALUES (
 					'".$vidId."',
 					'".$posterId."',
 					'".$vidTitle."',
@@ -96,7 +98,7 @@ class DatabaseFiller {
 					'0'
 				)");
 
-				mysql_query("INSERT INTO channels_actions VALUES (
+				$this->pdo->query("INSERT INTO channels_actions VALUES (
 					'".$this->generateChannelActionId(6)."',
 					'".$posterId."',
 					'upload',
@@ -151,7 +153,7 @@ class DatabaseFiller {
 function letsDoThisMotherFucker() {
 	$lawl = new DatabaseFiller();
 
-	$lawl->connectToDatabaseWithAnAwfulTool();
+	$lawl->connectToDatabase();
 	$lawl->generateUsersAndChannels();
 	$lawl->generateVideos();
 }
