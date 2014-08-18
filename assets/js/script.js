@@ -26,7 +26,7 @@ Script.prototype.call = function() {
 };
 
 /*
- *  Marmottajax 1.0.1
+ *  Marmottajax 1.0.3
  *  Envoyer et recevoir des informations simplement en JavaScript
  */
 
@@ -38,7 +38,7 @@ var marmottajax = function(options) {
 
 marmottajax.normalize = function(parameters) {
 
-	return parameters ? (typeof parameters === "string" ? { url: parameters } : parameters) : false;
+    return parameters ? (typeof parameters === "string" ? { url: parameters } : parameters) : false;
 
 };
 
@@ -46,11 +46,11 @@ marmottajax.json = function(parameters) {
 
     if (parameters = marmottajax.normalize(parameters)) {
 
-    	parameters.json = true;
-    	
-    	return new marmottajax.request(parameters);
+        parameters.json = true;
 
-	}
+        return new marmottajax.request(parameters);
+
+    }
 
 };
 
@@ -64,11 +64,11 @@ marmottajax.post = function(parameters) {
 
     if (parameters = marmottajax.normalize(parameters)) {
 
-    	parameters.method = "POST";
+        parameters.method = "POST";
 
- 	   	return new marmottajax.request(parameters);
+        return new marmottajax.request(parameters);
 
-	}
+    }
 
 };
 
@@ -86,13 +86,13 @@ marmottajax.put = function(parameters) {
 
 marmottajax.delete = function(parameters) {
 
-	if (parameters = marmottajax.normalize(parameters)) {
+    if (parameters = marmottajax.normalize(parameters)) {
 
-    	parameters.method = "DELETE";
+        parameters.method = "DELETE";
 
- 	   	return new marmottajax.request(parameters);
+        return new marmottajax.request(parameters);
 
-	}
+    }
 
 };
 
@@ -106,33 +106,9 @@ marmottajax.request = function(options) {
 
     }
 
-    if (options.method === "POST") {
+    if (options.method === "POST" || options.method === "PUT" || options.method == "DELETE") {
 
         var post = "?";
-
-        for (var key in options.options) {
-
-            post += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
-
-        }
-
-    }
-
-    else if (options.method === "PUT") {
-
-        var post = "?";
-
-        for (var key in options.options) {
-
-            post += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
-
-        }
-
-    }
-
-    else if (options.method == "DELETE") {
-
-    	var post = "?";
 
         for (var key in options.options) {
 
@@ -185,27 +161,27 @@ marmottajax.request = function(options) {
 
     this.xhr.call = function(categorie, result) {
 
-    	for (var i = 0; i < this.callbacks[categorie].length; i++) {
+        for (var i = 0; i < this.callbacks[categorie].length; i++) {
 
-    	    if (typeof(this.callbacks[categorie][i]) === "function") {
+            if (typeof(this.callbacks[categorie][i]) === "function") {
 
-    	        this.callbacks[categorie][i](result);
+                this.callbacks[categorie][i](result);
 
-    	    }
+            }
 
-    	}
+        }
 
     }
 
     this.xhr.returnSuccess = function(result) {
 
-    	this.call("then", result);
+        this.call("then", result);
 
     };
 
     this.xhr.returnError = function(message) {
 
-    	this.call("error", message);
+        this.call("error", message);
 
     };
 
@@ -463,6 +439,12 @@ new Script({
 		if (elements.length) {
 
 			console.error(elements.length + " éléments possedent la classe bgLoader qui n'est plus utilisée.");
+
+		}
+
+		else {
+
+			elements = [];
 
 		}
 

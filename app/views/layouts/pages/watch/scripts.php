@@ -14,7 +14,7 @@
 <script>
 	
 
-	/*setVideo([
+	setVideo([
 
 		{
 			format: 360,
@@ -26,22 +26,6 @@
 			format: 720,
 			mp4: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.mp4",
 			webm: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.webm"
-		}
-
-	]);*/
-
-	setVideo([
-
-		{
-			format: 360,
-			mp4: "4044444444.mp4",
-			webm: "4044444444.webm"
-		},
-
-		{
-			format: 720,
-			mp4: "4044444444.mp4",
-			webm: "4044444444.webm"
 		}
 
 	]);

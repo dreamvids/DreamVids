@@ -724,6 +724,7 @@ document.addEventListener("keydown", function(event) {
  * CHROME CAST
  */
 
+/*
 var chromecastplayicon = document.getElementById("chromecastplayicon"),
     currentMedia = null,
     currentSession = null;
@@ -742,17 +743,6 @@ chromecastplayicon.addEventListener("click", function() {
         var request = new chrome.cast.media.LoadRequest(mediaInfo);
         request.autoplay = true;
         request.currentTime = 0;
-        
-        //var payload = {
-        //  "title:" : mediaTitles[i],
-        //  "thumb" : mediaThumbs[i]
-        //};
-
-        //var json = {
-        //  "payload" : payload
-        //};
-
-        //request.customData = json;
 
         currentSession.loadMedia(request, onMediaDiscovered.bind(this, "loadMedia"), function() {
 
@@ -870,4 +860,4 @@ window.addEventListener("load", function() {
 
     }
 
-}, false);
+}, false);*/

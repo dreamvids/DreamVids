@@ -8,7 +8,7 @@ function postMessage(channel, postContent) {
 			
 			var postDiv = document.createElement('div');
 			postDiv.className = 'channel-post';
-			postDiv.setAttribute('style', 'background-color: #40a6e0; width: 50%; padding: 10px; margin-bottom: 1%;'); // Sorry...
+			postDiv.setAttribute('style', 'background-color: #40a6e0; width: 50%; padding: 10px; margin-bottom: 1%;'); // Sorry...mdr...Bientôt les components de Marmwork arriveront ;-)
 
 			var content = document.createTextNode(json.content);
 			postDiv.appendChild(content);
