@@ -26,7 +26,7 @@
 						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><b><?php echo $chan->name; ?></b></a>
 						<a href="<?php echo WEBROOT.'channel/'.$chan->id.'/edit'; ?>"><button>Paramètres</button></a>
 						<?php if (!$chan->isUsersMainChannel(Session::get()->id) && Session::get()->id == $chan->owner_id) { ?>
-						<a href="<?php /*TODO: modifier l'url pour la suppression*/ echo WEBROOT.'channel/'.$chan->id.'/edit'; ?>" onclick="if(!confirm('Êtes-vosu sur de vouloir supprimer cette chaine ? Cette action est irréversible !')){return false;}"><button>Supprimer</button></a>
+						<button onclick="eraseChannel('<?php echo $chan->id; ?>')">Supprimer</button>
 						<?php }
 						if ($chan->isUsersMainChannel(Session::get()->id)) { ?>
 							<b class="principal">Chaîne principale</b>

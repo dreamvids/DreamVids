@@ -37,3 +37,14 @@ function remove_adm(user_id) {
 	document.getElementById("adm").removeChild(document.getElementById("adm_"+user_id));
 	admins.push(-1 * user_id);
 }
+
+function eraseChannel(chanId) {
+	if(confirm('Voulez-vous vraiment supprimer cette chaîne ainsi que toutes les vidéos qui lui sont associées de façon DEFINITIVE ?')) {
+		marmottajax.delete({
+			'url': '../channels/' + chanId,
+			'options': {}
+		}).then(function(result) {
+			//window.location.reload();
+		});
+	}
+}

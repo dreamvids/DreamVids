@@ -322,26 +322,7 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public static function getDiscoverVideos($number = 10) {
-		$vids = array();
-		$indexes = array();
-		$okay = false;
-
-		if($number > Video::count()) $number = Video::count('all');
-
-		while(!$okay) {
-			for($i = 0; $i < $number; $i++) {
-				$indexes[$i] = rand(0, $number - 1);
-			}
-
-			$new = array_unique($indexes);
-			$okay = count($new) == count($indexes);
-			if($okay) $indexes = $new;
-		}
-
-		$allVids = Video::find('all');
-		foreach ($indexes as $index) $vids[] = $allVids[$index];
-
-		return $vids;
+		return Video::all(array('conditions' => 'discover != 0', 'order' => 'discover desc', 'limit' => $number));
 	}
 	
 	public static function getLastVideos($number = 10) {
@@ -385,7 +366,7 @@ class Video extends ActiveRecord\Model {
 	
 	public static function getBestVideos($limit = 'nope') {
 		$limit = ($limit == 'nope') ? 30 : $limit;
-		return Video::all(array('order' => 'likes/dislikes desc', 'limit' => $limit));
+		return Video::all(array('order' => 'likes/(dislikes+1) desc', 'limit' => $limit));
 	}
 
 	public static function getReportedVideos($limit = 'nope') {

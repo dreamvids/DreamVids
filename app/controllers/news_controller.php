@@ -6,7 +6,7 @@ require_once SYSTEM.'view_response.php';
 
 require_once MODEL.'video.php';
 
-class DiscoverController extends Controller {
+class NewsController extends Controller {
 
 	public function __construct() {
 		$this->denyAction(Action::GET);
@@ -17,9 +17,9 @@ class DiscoverController extends Controller {
 
 	public function index($request) {
 		$data = array();
-		$data['vids'] = Video::getDiscoverVideos();
+		$data['vids'] = Video::getLastVideos(50);
 
-		return new ViewResponse('discover/discover', $data);
+		return new ViewResponse('news/news', $data);
 	}
 
 	// Denied actions

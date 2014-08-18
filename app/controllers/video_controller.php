@@ -176,6 +176,10 @@ class VideoController extends Controller {
 						return new Response(200);
 					}
 				}
+				else if(isset($req['discover'])) {
+					$video->discover = Utils::tps();
+					$video->save();
+				}
 			}
 		}
 

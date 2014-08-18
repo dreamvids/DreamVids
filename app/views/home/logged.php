@@ -12,7 +12,7 @@
 
 		
 		<div id="boxBest">
-			<h3>Dernières vidéos postées :</h3>
+			<h3>Vidéos à découvrir :</h3>
 			
 			<?php for($i = 0; $i < count($discoverVids); $i++) { ?>
 				<div class="card video">

@@ -157,7 +157,7 @@
 			<!--<a href="messages?to=Simpleworld"><button type="button" class="orange" name="send_message_author">Envoyer un message</button></a>-->
 
 			<button class="red" onclick="suspendVideo('<?php echo $video->id; ?>')">Suspendre</button>
-			<button class="red" onclick="alert('Pas encore implémenté')">Demander la suppression</button>
+			<button class="blue" onclick="setToDiscover('<?php echo $video->id; ?>')">Mettre en avant</button>
 		</form>
 	<?php endif ?>
 

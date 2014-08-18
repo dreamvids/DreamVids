@@ -3,7 +3,7 @@
 Route::register('default', 'home');
 
 Route::register('home', 'home');
-Route::register('discover', 'discover');
+Route::register('news', 'news');
 
 Route::register('login', 'login');
 Route::register('register', 'register');

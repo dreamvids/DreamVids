@@ -1,22 +1,15 @@
 Back: 
 
-- Algo "Meilleures vidéos" sur l'accueil (Sondage en cours: http://strawpoll.me/2218320/r)
+- Upload:
+	- Système d'upload + convertion sur le front puis déplacement (scp) sur le store
 
-- Algo "Découvrir" (Sondage en cours: http://strawpoll.me/2218416/r)
+	- Réintégrer le système de lecture de la V1
 
-- Upload
+	- Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
+
+	- Utiliser la base 64 en base pour images au lieu de les stocker
 
 - Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
-
-- Arrêter une date pour la bêta fermée (~15 aout)
-
-- La vidéo qui se lit est statique (Vu avec brezh: on garde le système de la V1)
-
-- modifier l'url de suppression de chaine (/edit -> ?)
-
-- Utiliser la base 64 pour images au lieu de les stocker
-
-- L'avatar ne s'affiche pas sur les chaines
 
 - Faire la recherche
 
@@ -25,8 +18,6 @@ Back:
 - Mot de passe oublié
 
 - Footer
-
-- Trouver un moyen d'avoir la durée de la vidéo !!!!!!!!
 
 - Ne lister que les vidéos publiques (va de paire avec les notifs d'upload)
 
@@ -46,12 +37,14 @@ Admin:
 
 Front:
 
-- Video card pour les réseaux au lieu d'images
-
 - Interface pour le live
 
-- Correction du style du code pour l'embed: il y a la description à cet endroit normalement x)
+- Debug firefox des boutons partage et intégration
 
 - Interface playlist
 
 - Design de la creation de messages sociaux
+
+- Ajouter un macaron "Sélection du staff" à afficher sur la page de visionnage
+
+- L'avatar ne s'affiche pas sur les chaines

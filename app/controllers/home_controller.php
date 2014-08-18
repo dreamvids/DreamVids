@@ -24,7 +24,7 @@ class HomeController extends Controller {
 
 			$data['subscriptions'] = Session::get()->getSubscriptions();
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 20);
-			$data['discoverVids'] = Video::getLastVideos(2);
+			$data['discoverVids'] = Video::getDiscoverVideos(2);
 			$data['bestVids'] = Video::getBestVideos(6);
 			$data['channelId'] = $channel->id;
 			$data['avatar'] = $channel->getAvatar();

@@ -242,12 +242,13 @@ class ChannelController extends Controller {
 
 	public function destroy($id, $request) {
 		$channel = UserChannel::find($id);
-		if ($channel->owner_id == Session::get()->id && $channel->id != Session::getMainChannel()->id) {
+		if ($channel->owner_id == Session::get()->id && $channel->id != Session::get()->getMainChannel()->id) {
 			$channel->delete();
+			Video::delete_all(array('conditions' => 'poster_id = ?'), $channel->id);
 			return new Response(200);
 		}
 		else {
-			return new Reponse(500);
+			return new Response(500);
 		}
 	}
 
