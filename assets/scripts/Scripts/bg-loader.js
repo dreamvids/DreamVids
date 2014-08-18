@@ -48,6 +48,12 @@ new Script({
 
 		}
 
+		else {
+
+			elements = [];
+
+		}
+
 		var new_class_elements = document.getElementsByClassName("bg-loader");
 
 		for (var i = 0; i < new_class_elements.length; i++) {
