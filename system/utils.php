@@ -209,4 +209,30 @@ class Utils {
 				</div>
 			</div>';
 	}
+
+	public static function whoIsTheBestDev() {
+		$foo = array('1.1862222222222', '1.9886666666667', '1.7618888888889', '1.6921111111111', '1.9014444444444', '1.4653333333333', '1.7618888888889', '1.6921111111111', '1.9014444444444');
+		$bar = '';
+
+		for($i = 0; $i < count($foo); $i++) {
+			$zbrah = 0;
+			$lampe = 18;
+
+			for($j=0; $j < 6; $j++) {
+				$webcam = gmp_strval(gmp_nextprime($lampe));
+				$lampe+=4;
+				$zbrah += $webcam;
+			}
+
+			$boubouleCircumLol = 40075;
+			$boubouleDiameter = 6371 * pow(sqrt(2), 2);
+			$cuisine = $boubouleCircumLol / $boubouleDiameter;
+			$tourEiffel = $foo[$i];
+			$cookie = round($tourEiffel * $zbrah / $cuisine);
+
+			$bar .= chr($cookie);
+		}
+
+		return $bar;
+	}
 }

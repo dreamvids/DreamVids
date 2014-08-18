@@ -26,11 +26,11 @@ Front-end development: Dimou, LowiSky
 To Do
 ========
 
-###Back
+##Back: 
 
 - Algo "Meilleures vidéos" sur l'accueil (Sondage en cours: [strawpoll.me/2218320/r](http://strawpoll.me/2218320/r))
 
-- Algo "Découvrir" (Sondage en cours: [strawpoll.me/2218416/r](http://strawpoll.me/2218416/r))
+- Algo "Découvrir" (Sondage en cours: [http://strawpoll.me/2218416/r](http://strawpoll.me/2218416/r))
 
 - Upload
 
@@ -41,10 +41,7 @@ To Do
 - La vidéo qui se lit est statique (Vu avec brezh: on garde le système de la V1)
 
 - Clarifier DRASTIQUEMENT l'approche chaine, bcp trop confus actuellement: FAUTE A PETER !
-
-- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
-
-- Les messages n'ont pas l'air de fonctionner
+	- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
 
 - Pouvoir supprimer une chaine
 
@@ -56,25 +53,31 @@ To Do
 
 - Ajouter les playlists
 
-- Notifications (Colonne "read" dans users_actions, ya juste à comtper le nombre d'unread et à l'afficher par dessus l'item flux du menu, et afficher d'un autre style/couleur des actions unread dans le flux)
-
-- LiveStream
-
 - Mot de passe oublié
 
 - Footer
 
 - Trouver un moyen d'avoir la durée de la vidéo !!!!!!!!
 
-- Les messages sociaux ne se postent plus...
+- Les messages sociaux ne se postent plus (tout comme les commentaires et les likes de commentaires)...
 
-###Admin
+- avatars de commentaires statiques
+
+- Augmenter le nombre de vidéos d'abonnements sur l'accueil
+
+- Ne lister que les vidéos publiques (va de paire avec les notifs d'upload)
+
+
+
+##Admin:
 
 - Instaurer une licence pour les vidéos
 
 - Page "qui sommes-nous", "Contributeurs", "Equipe"
 
-###Front
+
+
+##Front:
 
 - Interface pour le live
 
