@@ -76,7 +76,7 @@
 
 		<hr>
 
-		<div class="description export" id="video-info-description">
+		<div class="description" id="video-info-description">
 
 			<div class="inner-description">
 

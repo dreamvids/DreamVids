@@ -77,3 +77,5 @@ To Do
 ###Front
 
 - Interface pour le live
+
+- Design de la creation de messages sociaux

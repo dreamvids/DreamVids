@@ -68,7 +68,7 @@ Application.onTapObject = function(element, callback) {
 
 	on(this.element, "click", function(eventListener) {
 
-		return function() {
+		return function(event) {
 
 	        if (!("ontouchstart" in window)) {
 
