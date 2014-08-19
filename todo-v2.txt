@@ -9,9 +9,9 @@ Back:
 
 	- Utiliser la base 64 en base pour images au lieu de les stocker
 
-- Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
+	- Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: onajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
 
-- Faire la recherche
+- Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
 
 - Ajouter les playlists
 
@@ -19,11 +19,11 @@ Back:
 
 - Footer
 
-- Ne lister que les vidéos publiques (va de paire avec les notifs d'upload)
-
 - Dynamaiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
 
 - Pouvoir répondre aux commentaires
+
+- Faire les "settings"
 
 
 
@@ -43,8 +43,4 @@ Front:
 
 - Interface playlist
 
-- Design de la creation de messages sociaux
-
-- Ajouter un macaron "Sélection du staff" à afficher sur la page de visionnage
-
-- L'avatar ne s'affiche pas sur les chaines
+- Responsive du menu déroulant

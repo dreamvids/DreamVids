@@ -322,11 +322,11 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public static function getDiscoverVideos($number = 10) {
-		return Video::all(array('conditions' => 'discover != 0', 'order' => 'discover desc', 'limit' => $number));
+		return Video::all(array('conditions' => 'discover != 0 AND visibility=2', 'order' => 'discover desc', 'limit' => $number));
 	}
 	
 	public static function getLastVideos($number = 10) {
-		return Video::all(array('order' => 'timestamp', 'limit' => $number));
+		return Video::all(array('conditions' => 'visibility=2', 'order' => 'timestamp', 'limit' => $number));
 	}
 
 	public static function getSubscriptionsVideos($userId, $amount='nope') {
@@ -352,9 +352,9 @@ class Video extends ActiveRecord\Model {
 		if($subs == '()') return array();
 
 		if($amount != 'nope')
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." AND visibility=2 ORDER BY timestamp DESC LIMIT ".$amount);
 		else
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC");
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." AND visibility=2 ORDER BY timestamp DESC");
 
 
 		foreach ($vidsToAdd as $vid) {
@@ -366,7 +366,7 @@ class Video extends ActiveRecord\Model {
 	
 	public static function getBestVideos($limit = 'nope') {
 		$limit = ($limit == 'nope') ? 30 : $limit;
-		return Video::all(array('order' => 'likes/(dislikes+1) desc', 'limit' => $limit));
+		return Video::all(array('conditions' => 'visibility=2', 'order' => 'likes/(dislikes+1) desc', 'limit' => $limit));
 	}
 
 	public static function getReportedVideos($limit = 'nope') {
@@ -375,6 +375,19 @@ class Video extends ActiveRecord\Model {
 		}
 		else {
 			return Video::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc'));
+		}
+	}
+	
+	public static function getSearchVideos($query = '') {
+		$query = trim(urldecode($query));
+		if ($query != '') {
+			if ($query[0] == '#') {
+				$query = trim($query, '#');
+				return Video::all(array('conditions' => array('tags LIKE ?', '%'.$query.'%'), 'order' => 'timestamp desc'));
+			}
+			else {
+				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query))));
+			}
 		}
 	}
 

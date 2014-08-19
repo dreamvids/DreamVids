@@ -20,15 +20,15 @@
 					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
 				</div>
 			</div>
-			<h1 class="staff-selected"><?php echo $title; ?></h1>
+			<h1 class="<?php echo ($discover != 0) ? 'staff-selected' : ''; ?>"><?php echo $title; ?></h1>
 		</div>
 	</div>
 	
 	<div id="player">
 
 
-		<!-- RETIRER LE `MUTED` QUAND LES VIDEOS FONCTIONNERONT !!! -->
-		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail != 'no_thumb' ? $thumbnail : 'http://dreamvids.fr/uploads/Simpleworld/cI1e5r.png'; ?>">
+		<!--TODO: RETIRER LE `MUTED` QUAND LES VIDEOS FONCTIONNERONT !!! -->
+		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
 			<source id="srcMp4" type="video/mp4" src="">
 			<source id="srcWebm" type="video/webm" src="">
 		</video>
@@ -83,8 +83,7 @@
 
 			<div class="inner-description">
 
-				<?php echo $description; ?>
-			
+				<?php echo $description.'<br /><br />Tags: '.implode(' ', $tags); ?>
 			</div>
 
 			<div class="inner-export">

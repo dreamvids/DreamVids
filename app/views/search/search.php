@@ -1,8 +1,8 @@
 <div class="content">
 	<aside class="aside-cards-list">
-		<h3 class="title">Dernières vidéos postées</h3>
+		<h3 class="title">Rechercher - "<?php echo $search; ?>"</h3>
 		
-		<?php foreach ($vids as $vid) {
+		<?php foreach ($videos as $vid) {
 			echo Utils::getVideoCardHTML($vid);
 		} ?>
 	</aside>

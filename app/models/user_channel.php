@@ -189,6 +189,10 @@ class UserChannel extends ActiveRecord\Model {
 		return UserChannel::find_by_id($channelId)->name;
 	}
 
+	public static function getIdByName($channelName) {
+		return @UserChannel::find_by_name($channelName)->id;
+	}
+
 	public static function isNameFree($name) {
 		return !UserChannel::exists(array('name' => $name));
 	}

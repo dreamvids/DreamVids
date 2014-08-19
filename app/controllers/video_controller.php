@@ -57,13 +57,24 @@ class VideoController extends Controller {
 
 		$data['video'] = $video;
 		$data['title'] = $video->title;
+		$data['tags'] = array();
+		$tags = explode(' ', $video->tags);
+		foreach ($tags as $tag) {
+			$tag = trim($tag);
+			$tag = str_replace(',', '', $tag);
+			$tag = str_replace(';', '', $tag);
+			$tag = str_replace(':', '', $tag);
+			$tag = str_replace('.', '', $tag);
+			$tag = '<a href="search?q=%23'.$tag.'">#'.$tag.'</a>';
+			$date['tags'][] = $tag;
+		}
 		$data['poster_id'] = $video->poster_id;
 		$data['author'] = $author;
 		$data['description'] = $video->description;
 		$data['views'] = $video->views;
 		$data['likes'] = $video->likes;
 		$data['dislikes'] = $video->dislikes;
-		$data['thumbnail'] = $video->tumbnail;
+		$data['thumbnail'] = $video->getThumbnail();
 		$data['subscribers'] = $author->getSubscribersNumber();
 		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($author->id) : false;
 		$data['comments'] = $video->getComments();
@@ -72,6 +83,7 @@ class VideoController extends Controller {
 		$data['recommendations'] = $video->getAssociatedVideos();
 		$data['channels'] = Session::isActive() ? Session::get()->getOwnedChannels() : array();
 		$data['flagged'] = $video->isFlagged();
+		$data['discover'] = $video->discover;
 
 		$data['currentPage'] = "watch";
 

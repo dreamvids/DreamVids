@@ -42,9 +42,9 @@
 
 						<div class="right">
 
-							<form method="get" action="search">
+							<form method="get" action="<?php echo WEBROOT.'search'; ?>">
 
-								<input type="text" id="top-nav-search-input" name="q" placeholder="Rechercher">
+								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$search; ?>">
 								<input type="submit" value="">
 
 							</form>
