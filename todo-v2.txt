@@ -13,7 +13,7 @@ Back:
 
 - Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
 
-- Ajouter les playlists
+- Ajouter les playlists (need front)
 
 - Mot de passe oublié
 
