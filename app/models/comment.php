@@ -9,7 +9,7 @@ class Comment extends ActiveRecord\Model {
 
 	public function isLikedByUser($user) {
 		if(is_object($user)) {
-			return ChannelAction::exists(array('user_id' => $user->id, 'type' => 'like_comment', 'target' => $this->id));
+			return ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'like_comment', 'target' => $this->id));
 		}
 
 		return false;
@@ -17,7 +17,7 @@ class Comment extends ActiveRecord\Model {
 
 	public function isDislikedByUser($user) {
 		if(is_object($user)) {
-			return ChannelAction::exists(array('user_id' => $user->id, 'type' => 'dislike_comment', 'target' => $this->id));
+			return ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'dislike_comment', 'target' => $this->id));
 		}
 
 		return false;
@@ -26,8 +26,7 @@ class Comment extends ActiveRecord\Model {
 	public function like($user) {
 		if(is_object($user) && !$this->isLikedByUser($user)) {
 			if($this->isDislikedByUser($user)) {
-				$this->dislikes--;
-				$this->save();
+				$this->undislike($user);
 			}
 
 			ChannelAction::create(array(
@@ -55,6 +54,12 @@ class Comment extends ActiveRecord\Model {
 				'timestamp' => Utils::tps()
 			));
 
+			ChannelAction::find(array(
+				'channel_id' => $user->getMainChannel()->id,
+				'type' => 'like_comment',
+				'target' => $this->id
+			))->delete();
+
 			$this->likes--;
 			$this->save();
 		}
@@ -63,8 +68,7 @@ class Comment extends ActiveRecord\Model {
 	public function dislike($user) {
 		if(is_object($user) && !$this->isDislikedByUser($user)) {
 			if($this->isLikedByUser($user)) {
-				$this->likes--;
-				$this->save();
+				$this->unlike($user);
 			}
 
 			ChannelAction::create(array(
@@ -91,6 +95,12 @@ class Comment extends ActiveRecord\Model {
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
 			));
+
+			ChannelAction::find(array(
+				'channel_id' => $user->getMainChannel()->id,
+				'type' => 'dislike_comment',
+				'target' => $this->id
+			))->delete();
 
 			$this->dislikes--;
 			$this->save();
