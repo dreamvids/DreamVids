@@ -20,14 +20,17 @@
 					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
 				</div>
 			</div>
-			<h1 title="<?php echo $title; ?>"><?php echo $title; ?></h1>
+			<h1 class="<?php echo ($discover != 0) ? 'staff-selected' : ''; ?>"><?php echo $title; ?></h1>
 		</div>
 	</div>
 	
 	<div id="player">
-		<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail != 'no_thumb' ? $thumbnail : 'http://dreamvids.fr/uploads/Simpleworld/cI1e5r.png'; ?>">
-			<source id="srcMp4" type="video/mp4"/>
-			<source id="srcWebm" type="video/webm"/>
+
+
+		<!--TODO: RETIRER LE `MUTED` QUAND LES VIDEOS FONCTIONNERONT !!! -->
+		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
+			<source id="srcMp4" type="video/mp4" src="">
+			<source id="srcWebm" type="video/webm" src="">
 		</video>
 		<div id="subtitlesList"></div>
 		<div id="annotationsElement"></div>
@@ -80,8 +83,7 @@
 
 			<div class="inner-description">
 
-				<?php echo $description; ?>
-			
+				<?php echo $description.'<br /><br />Tags: '.implode(' ', $tags); ?>
 			</div>
 
 			<div class="inner-export">
@@ -157,7 +159,7 @@
 			<!--<a href="messages?to=Simpleworld"><button type="button" class="orange" name="send_message_author">Envoyer un message</button></a>-->
 
 			<button class="red" onclick="suspendVideo('<?php echo $video->id; ?>')">Suspendre</button>
-			<button class="red" onclick="alert('Pas encore implémenté')">Demander la suppression</button>
+			<button class="blue" onclick="setToDiscover('<?php echo $video->id; ?>')">Mettre en avant</button>
 		</form>
 	<?php endif ?>
 
@@ -223,7 +225,7 @@
 
 		<?php foreach ($recommendations as $vid): ?>
 			<div class="card video">
-				<div class="thumbnail bgLoader" data-background="http://lorempicsum.com/simpsons/627/200/3">
+				<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/simpsons/627/200/3">
 					<div class="time"><?php echo $vid->duration; ?></div>
 					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
 				</div>

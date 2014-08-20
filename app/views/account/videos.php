@@ -15,7 +15,7 @@
 				foreach($videos as $video) {
 			?>
 			<div class="card video long">
-				<div class="thumbnail bgLoader" data-background="<?php echo $video->tumbnail; ?>">
+				<div class="thumbnail bgLoader" data-background="<?php echo $video->getThumbnail(); ?>">
 					<!--<div class="time">12:05</div>-->
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>" class="overlay"></a>
 				</div>
@@ -23,7 +23,7 @@
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>"><h4><?php echo $video->title; ?></h4></a>
 					<span class="buttons">
 						<a href="<?php echo WEBROOT.'videos/'.$video->id.'/edit'; ?>"><button>Paramètres</button></a>
-						<button onclick="erase('<?php echo $video->id; ?>')">Supprimer</button>
+						<button onclick="eraseVideo('<?php echo $video->id; ?>')">Supprimer</button>
 					</span>
 					<div><span class="view"><?php echo $video->views; ?></span><span class="plus"><?php echo $video->likes; ?></span><span class="moins"><?php echo $video->dislikes; ?></span></div>
 				</div>

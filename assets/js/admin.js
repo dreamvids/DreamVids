@@ -34,7 +34,7 @@ function unSuspendVideo(vidId) {
 function eraseVideo(vidId) {
 	if(confirm("Voulez-vous vraiment effacer cette video DEFINITIVEMENT ?")) {
 		marmottajax.delete({
-			url: '../videos/' + vidId,
+			url: '../../videos/' + vidId,
 			options: {}
 		}).then(function(result) {
 			window.location.reload();
@@ -62,6 +62,17 @@ function eraseComment(commentId) {
 			options: {}
 		}).then(function(result) {
 			window.location.reload();
+		});
+	}
+}
+
+function setToDiscover(vidId) {
+	if(confirm('Voulez-vous vraiment mettre cette vidéo on avant sur la page d\'accueil ?')) {
+		marmottajax.put({
+			url: '../videos/' + vidId,
+			options: { discover: true }
+		}).then(function(result) {
+			document.location.href = '../';
 		});
 	}
 }

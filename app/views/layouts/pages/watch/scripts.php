@@ -1,7 +1,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 
 <script src="<?php echo JS."utils.js"; ?>"></script>
-<script src="<?php echo JS."marmottajax.js"; ?>"></script>
 <script src="<?php echo JS."interactions.js"; ?>"></script>
 <script src="<?php echo JS."bgLoader.js"; ?>"></script>
 <script src="<?php echo JS."video.js"; ?>"></script>
@@ -10,15 +9,12 @@
 <script src="<?php echo JS."subscribe.js"; ?>"></script>
 <script src="<?php echo JS.'admin.js'; ?>"></script>
 
-
-<!-- A remplacer par : -->
-
 <script src="<?php echo JS.'script.js'; ?>"></script>
 
 <script>
 	
 
-	/*setVideo([
+	setVideo([
 
 		{
 			format: 360,
@@ -30,22 +26,6 @@
 			format: 720,
 			mp4: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.mp4",
 			webm: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.webm"
-		}
-
-	]);*/
-
-	setVideo([
-
-		{
-			format: 360,
-			mp4: "4044444444.mp4",
-			webm: "4044444444.webm"
-		},
-
-		{
-			format: 720,
-			mp4: "4044444444.mp4",
-			webm: "4044444444.webm"
 		}
 
 	]);

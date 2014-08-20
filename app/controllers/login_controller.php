@@ -40,11 +40,7 @@ class LoginController extends Controller {
 				$realPass = User::find_by_username($username)->getPassword();
 
 				if(sha1($password) == $realPass) {
-					if(isset($data['remember']))
-						User::connect($username, 1);
-					else
-						User::connect($username, 0);
-
+					User::connect($username, 1);
 					return new RedirectResponse(WEBROOT);
 				}
 				else {

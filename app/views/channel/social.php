@@ -39,11 +39,17 @@
 	</nav>
 
 	<?php if ($isUsersChannel): ?>
-		<h2>Poster un message</h2>
-		<form method="post" action="<?php echo WEBROOT.'posts'; ?>" onsubmit="return false;">
-			<textarea rows="5" cols="65" id="post-content"></textarea><br>
+
+		<form class="social-message-form" method="post" action="<?php echo WEBROOT.'posts'; ?>" onsubmit="return false;">
+
 			<input type="hidden" name="channel" id="channel" value="<?php echo $id; ?>" />
-			<button class="blue" onclick="postMessage('<?php echo $id; ?>', document.getElementById('post-content').value)">Envoyer</button>
+			<div class="form-header-container">
+				<span class="form-icn"><img src="<?php echo IMG.'/comment_icon.png'; ?>"></span>
+				<span class="text">Poster un message</span>
+				<button class="blue" onclick="postMessage('<?php echo $id; ?>', document.getElementById('post-content').value)"><img src="<?php echo IMG.'/post_comment_icon.png'; ?>" alt="Poster le message"></button>
+			</div>
+			<textarea id="post-content" rows="4" cols="10" placeholder="Message"></textarea>
+
 		</form>
 
 		<br><br>
