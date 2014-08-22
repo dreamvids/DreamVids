@@ -106,6 +106,11 @@
 
         @import "compoments/watch/video-infos/share-video-block.scss";
 
+        @import "compoments/watch/playlist/playlist.scss";
+        @import "compoments/watch/playlist/title.scss";
+        @import "compoments/watch/playlist/videos.scss";
+        @import "compoments/watch/playlist/video.scss";
+
     /* === CHANNEL === */
 
         @import "compoments/channel/content/social-message-form.scss";

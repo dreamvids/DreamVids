@@ -28,44 +28,31 @@ To Do
 
 ##Back: 
 
-- Algo "Meilleures vidéos" sur l'accueil (Sondage en cours: [strawpoll.me/2218320/r](http://strawpoll.me/2218320/r))
+- Upload:
 
-- Algo "Découvrir" (Sondage en cours: [http://strawpoll.me/2218416/r](http://strawpoll.me/2218416/r))
+- Système d'upload + convertion sur le front puis déplacement (scp) sur le store
 
-- Upload
+- Réintégrer le système de lecture de la V1
+
+- Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
+
+- Utiliser la base 64 en base pour images au lieu de les stocker
+
+- Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: onajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
 
 - Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
 
-- Arrêter une date pour la bêta fermée (~15 aout)
-
-- La vidéo qui se lit est statique (Vu avec brezh: on garde le système de la V1)
-
-- Clarifier DRASTIQUEMENT l'approche chaine, bcp trop confus actuellement: FAUTE A PETER !
-	- L'inscription en deux étapes: user puis chaine serait un plus non négligeable
-
-- Pouvoir supprimer une chaine
-
-- Utiliser la base 64 pour images au lieu de les stocker
-
-- L'avatar ne s'affiche pas sur les chaines
-
-- Faire la recherche
-
-- Ajouter les playlists
+- Ajouter les playlists (need front)
 
 - Mot de passe oublié
 
 - Footer
 
-- Trouver un moyen d'avoir la durée de la vidéo !!!!!!!!
+- Dynamiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
 
-- Les messages sociaux ne se postent plus (tout comme les commentaires et les likes de commentaires)...
+- Pouvoir répondre aux commentaires
 
-- avatars de commentaires statiques
-
-- Augmenter le nombre de vidéos d'abonnements sur l'accueil
-
-- Ne lister que les vidéos publiques (va de paire avec les notifs d'upload)
+- Faire les "settings"
 
 
 
@@ -80,3 +67,5 @@ To Do
 ##Front:
 
 - Interface pour le live
+
+- Debug firefox des boutons partage et intégration **Wtf is this shit**

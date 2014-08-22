@@ -1,4 +1,6 @@
-function background_loader(element) {
+// NOUVELLE ORGANISATION
+
+/*function background_loader(element) {
 
 
      this.element = element;
@@ -89,4 +91,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
- }, false);
+ }, false);*/

@@ -19,7 +19,7 @@ Back:
 
 - Footer
 
-- Dynamaiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
+- Dynmaiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
 
 - Pouvoir répondre aux commentaires
 
@@ -39,8 +39,4 @@ Front:
 
 - Interface pour le live
 
-- Debug firefox des boutons partage et intégration
-
-- Interface playlist
-
-- Responsive du menu déroulant
+- Debug firefox des boutons partage et intégration (Wtf is this shit)
