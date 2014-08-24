@@ -33,7 +33,7 @@ class HomeController extends Controller {
 			return new ViewResponse('home/logged', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'discover');
+			return new RedirectResponse(WEBROOT.'news');
 		}
 	}
 

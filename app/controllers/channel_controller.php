@@ -29,7 +29,7 @@ class ChannelController extends Controller {
 				'owner_id' => $channel->owner_id,
 				'admins_ids' => $channel->admins_id,
 				'avatar' => $channel->avatar,
-				'background' => $channel->background,
+				'background' => $channel->getBackground(),
 				'subscribers' => $channel->subscribers,
 				'views' => $channel->views,
 				'verified' => $channel->verified

@@ -39,11 +39,33 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getAvatar() {
-		return $this->avatar;
+		$avatar = Config::getValue_('default-avatar');
+
+		if(empty($this->avatar)) return $avatar;
+
+		if(!file_exists($this->avatar)) {
+			if(Utils::isUrlValid($this->avatar))
+				$avatar = $this->avatar;
+		}
+		else
+			$avatar = WEBROOT.$this->avatar;
+		
+		return $avatar;
 	}
 
 	public function getBackground() {
-		return $this->background;
+		$background = Config::getValue_('default-background');
+
+		if(empty($this->background)) return $background;
+
+		if(!file_exists($this->background)) {
+			if(Utils::isUrlValid($this->background))
+				$background = $this->background;
+		}
+		else
+			$background = WEBROOT.$this->background;
+		
+		return $background;
 	}
 
 	public function belongToUser($userId) {
@@ -132,21 +154,11 @@ class UserChannel extends ActiveRecord\Model {
 		$subscriptionsStrChannel = trim($subscribingChannel->subs_list, ';');
 		$subscriptionsArrayUser = explode(';', $subscriptionsStrUser);
 		$subscriptionsArrayChannel = explode(';', $subscriptionsStrChannel);
-	ob_start();
-	var_dump($subscriptionsArrayChannel);
-	$result = ob_get_clean();
-	file_put_contents('test1.txt', $result);
 
 		if(in_array($subscribing, $subscriptionsArrayUser)) {
 			$key = array_search($subscribing, $subscriptionsArrayUser);
 			unset($subscriptionsArrayUser[$key]);
 			$key = array_search($subscriber, $subscriptionsArrayChannel);
-	file_put_contents('test2.txt', $key);
-			unset($subscriptionsArrayChannel[$key]);
-	ob_start();
-	var_dump($subscriptionsArrayChannel);
-	$result = ob_get_clean();
-	file_put_contents('test3.txt', $result);
 
 			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
 			$subscriberUser->save();
