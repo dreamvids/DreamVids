@@ -33,8 +33,8 @@
 <div class="content">
 	<nav class="tabs">
 		<ul>
-			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
-			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/'.$name.'/social/'; ?>">Social</a></li>
+			<li class="current"><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
+			<li class="channel"><a href="<?php echo WEBROOT.'channel/'.$name.'/social/'; ?>">Social</a></li>
 		</ul>
 	</nav>
 
