@@ -1,10 +1,10 @@
 <div id="home-large-modal">
-	<div id="backgroundLoader" class="bgLoader" data-background="<?php echo $background; ?>"></div>
+	<div id="backgroundLoader" class="bg-loader" data-background="<?php echo $background; ?>"></div>
 	<section>
 		<div id="boxPages" class="channel">
 			<div id="pageChannel">
 				<a href="<?php echo WEBROOT.'channel/'.$channelId; ?>">
-					<span class="avatar bgLoader" data-background="<?php echo $avatar; ?>"></span>
+					<span class="avatar bg-loader" data-background="<?php echo $avatar; ?>"></span>
 					<h3><?php echo Session::get()->username; ?></h3>
 				</a>
 			</div>
@@ -16,7 +16,7 @@
 			
 			<?php for($i = 0; $i < count($discoverVids); $i++) { ?>
 				<div class="card video">
-					<div class="thumbnail bgLoader" style="height: 75%;" data-background="<?php echo $discoverVids[$i]->getThumbnail(); ?>"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
+					<div class="thumbnail bg-loader" style="height: 75%;" data-background="<?php echo $discoverVids[$i]->getThumbnail(); ?>"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
 					<div class="description">
 						<a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>"><h4><?php echo $discoverVids[$i]->title; ?></h4></a>
 					</div>

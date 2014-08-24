@@ -26,46 +26,44 @@ Front-end development: Dimou, LowiSky
 To Do
 ========
 
-##Back: 
+##Back
 
-- Upload:
+Upload :
 
-- Système d'upload + convertion sur le front puis déplacement (scp) sur le store
+- [ ] Système d'upload + convertion sur le front puis déplacement (scp) sur le store
 
-- Réintégrer le système de lecture de la V1
+- [ ] Réintégrer le système de lecture de la V1
 
-- Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
+- [ ] Durée de la vidéo: [www.posteet.com/view/2052](http://www.posteet.com/view/2052) (ffmpeg -i {filepath} 2>&1)
 
-- Utiliser la base 64 en base pour images au lieu de les stocker
+- [ ] Utiliser la base 64 en base pour images au lieu de les stocker
 
-- Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: onajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
+- [ ] Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: onajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
 
-- Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
+Autres :
 
-- Ajouter les playlists (need front)
+- [ ] Boutons de partage/téléchargement/intégration non codés
 
-- Mot de passe oublié
+- [ ] Ajouter les playlists
 
-- Footer
+- [ ] Mot de passe oublié
 
-- Dynamiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
+- [ ] Pouvoir répondre aux commentaires
 
-- Pouvoir répondre aux commentaires
+- [ ] Faire les "settings"
 
-- Faire les "settings"
+- [ ] Impossible de quitter un conversation privée
 
+- [ ] Footer
 
+##Admin
 
-##Admin:
+- [ ] Instaurer une licence pour les vidéos
 
-- Instaurer une licence pour les vidéos
+- [ ] Page "qui sommes-nous", "Contributeurs", "Equipe"
 
-- Page "qui sommes-nous", "Contributeurs", "Equipe"
+##Front
 
+- [ ] Interface pour le live
 
-
-##Front:
-
-- Interface pour le live
-
-- Debug firefox des boutons partage et intégration **Wtf is this shit**
+- [ ] Debug firefox des boutons partage et intégration **Wtf is this shit** Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s

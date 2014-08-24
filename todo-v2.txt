@@ -1,42 +1,48 @@
-Back: 
+ï»¿Back
+================
 
-- Upload:
-	- Système d'upload + convertion sur le front puis déplacement (scp) sur le store
+- Upload: {
 
-	- Réintégrer le système de lecture de la V1
+	- SystÃ¨me d'upload + convertion sur le front puis dÃ©placement (scp) sur le store
 
-	- Intégrer le système de lecture au lecteur embed (et vérifier l'exactitude de l'url iframe sur watch)
+	- RÃ©intÃ©grer le systÃ¨me de lecture de la V1
 
-	- Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
+	- IntÃ©grer le systÃ¨me de lecture au lecteur embed (et vÃ©rifier l'exactitude de l'url iframe sur watch)
+
+	- DurÃ©e de la vidÃ©o: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
 
 	- Utiliser la base 64 en base pour images au lieu de les stocker
 
-	- Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: onajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
+	- Ne pas ajouter de notif d'upload si vidÃ©o non publique: l'ajouter lors de la mise en publique: VÃ©rifier si une notif a dÃ©jÃ  Ã©tÃ© publiÃ©e: NON: on ajoute la notif; OUI: on se contente de passer la vidÃ©o en public sans aucune autre action.
 
-- Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
-
-- Ajouter les playlists (need front)
+}
 
 - Footer
 
-- Dynmaiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
+- Boutons de partage/tÃ©lÃ©chargement/intÃ©gration non codÃ©s
 
-- Pouvoir répondre aux commentaires
+- Ajouter les playlists
+
+- Pouvoir rÃ©pondre aux commentaires
 
 - Faire les "settings"
 
 - Page "qui sommes-nous", "Contributeurs", "Equipe"
 
-
-
-Admin:
-
-- Instaurer une licence pour les vidéos
+- Impossible de quitter un conversation privÃ©e
 
 
 
-Front:
+Admin
+================
+
+- Instaurer une licence pour les vidÃ©os
+
+
+
+Front
+================
 
 - Interface pour le live
 
-- Debug firefox des boutons partage et intégration (Wtf is this shit)
+- Debug firefox des boutons partage et intÃ©gration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s

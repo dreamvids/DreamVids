@@ -1,5 +1,5 @@
 <div class="content wide channel">
-	<div class="bgLoader" id="background-wide" data-background="<?php echo $background; ?>"></div>
+	<div class="bg-loader" id="background-wide" data-background="<?php echo $background; ?>"></div>
 
 	<section class="inner">
 		<ul class="top">
@@ -8,7 +8,7 @@
 		</ul>
 
 		<div class="left">
-			<span class="bgLoader" data-background="<?php echo $avatar; ?>"></span>
+			<span class="bg-loader" data-background="<?php echo $avatar; ?>"></span>
 			<p><?php echo $name; ?></p>
 
 			<?php if(!$channelBelongsToUser): ?>

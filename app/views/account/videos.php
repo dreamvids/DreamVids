@@ -15,7 +15,7 @@
 				foreach($videos as $video) {
 			?>
 			<div class="card video long">
-				<div class="thumbnail bgLoader" data-background="<?php echo $video->getThumbnail(); ?>">
+				<div class="thumbnail bg-loader" data-background="<?php echo $video->getThumbnail(); ?>">
 					<!--<div class="time">12:05</div>-->
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>" class="overlay"></a>
 				</div>

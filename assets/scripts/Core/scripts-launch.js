@@ -1,16 +1,16 @@
 
 /**
- * Core/launch.js
+ * Core/scripts-launch.js
  *
- * CORE LAUNCH
+ * SCRIPTS LAUNCH
  */
 
-document.addEventListener("DOMContentLoaded", function() {
+$(function() {
 
-	for (var i = 0; i < _scripts_.length; i++) {
+	for (var i = 0; i < Application.scripts.length; i++) {
 
 		var can_call = false,
-			script = _scripts_[i];
+			script = Application.scripts[i];
 
 		if (script.pages === "*" || script.pages === "all" || !script.pages) {
 
@@ -40,4 +40,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	}
 
-}, false);
+});

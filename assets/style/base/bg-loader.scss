@@ -2,11 +2,11 @@
 /* BACKGROUND LOADER
    ============================= */
 
-.bgLoader { opacity: 0; }
+.bg-loader { opacity: 0; }
 
-.bgLoaded { opacity: 1; }
+.bg-loaded { opacity: 1; }
 
-.bgLoaderTransition {
+.bg-loader-transition {
 
 	will-change: opacity;
 
