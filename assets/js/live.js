@@ -13,7 +13,7 @@ function createLive(channelId) {
 
 function revokeLive(accessId) {
 	marmottajax.delete({
-		'url': './' + accessId,
+		'url': './lives/' + accessId,
 		'options': {}
 	}) .then(function(result) {
 		document.getElementById('access').innerHTML = 'Accès supprimé';
