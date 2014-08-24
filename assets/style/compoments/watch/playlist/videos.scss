@@ -1,0 +1,18 @@
+
+/* PLAYLIST VIDEOS
+   ============================= */
+
+.playlist__videos {
+
+	position: absolute;
+	bottom: 0;
+
+	display: block;
+	height: 137px;
+	max-width: 100%;
+
+	white-space: nowrap;
+	overflow-y: hidden;
+	overflow-x: scroll;
+
+}

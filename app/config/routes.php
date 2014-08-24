@@ -21,5 +21,6 @@ Route::register('comments', 'comment');
 Route::register('messages', 'message');
 Route::register('conversations', 'conversation');
 Route::register('lives', 'live');
+Route::register('password', 'password');
 
 Route::register('admin', 'admin');

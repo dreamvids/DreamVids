@@ -1,4 +1,3 @@
-@charset "CP850";
 /**
  * main.scss
  *
@@ -34,7 +33,7 @@
    ----------------------------- */
 /* BACKGROUND COVER
    ============================= */
-.card.video .thumbnail, .card.plus a .thumbnail, .card.channel a .avatar {
+.card.video .thumbnail, .card.plus a .thumbnail, .card.channel a .avatar, .playlist__video {
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -50,19 +49,7 @@
    ----------------------------- */
 /* RESET
    ============================= */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -70,12 +57,7 @@ time, mark, audio, video {
   font-size: 100%;
   vertical-align: baseline; }
 
-input:focus,
-input:active,
-textarea:focus,
-textarea:active,
-button:focus,
-button:active {
+input:focus, input:active, textarea:focus, textarea:active, button:focus, button:active {
   outline: none; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -100,8 +82,7 @@ caption, th, td {
 q, blockquote {
   quotes: none; }
 
-q:before, q:after,
-blockquote:before, blockquote:after {
+q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none; }
 
@@ -116,10 +97,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   -moz-overflow-scrolling: touch;
   overflow-scrolling: touch; }
 
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-results-button, input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; }
@@ -139,13 +117,13 @@ a {
   font-style: normal;
   src: url("../fonts/sourcesanspro-light-webfont.eot");
   src: url("../fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/sourcesanspro-light-webfont.woff") format("woff"), url("../fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg"); }
+
 b {
   font-weight: bold; }
 
 /* DEFAULT STYLE OF THE BODY
    ============================= */
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: "Source Sans Pro", Arial, sans-serif; }
@@ -186,11 +164,11 @@ body {
 
 .bgLoaderTransition {
   will-change: opacity;
-  -webkit-transition: opacity .3s ease-out;
-  -moz-transition: opacity .3s ease-out;
-  -ms-transition: opacity .3s ease-out;
-  -o-transition: opacity .3s ease-out;
-  transition: opacity .3s ease-out; }
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -ms-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out; }
 
 /* COMPOMENTS
    ----------------------------- */
@@ -221,8 +199,7 @@ h3.title {
   line-height: 90px;
   color: #858484; }
 
-h1.title:after,
-h3.title:after {
+h1.title:after, h3.title:after {
   position: relative;
   display: block;
   height: 4px;
@@ -252,10 +229,8 @@ h3.title:after {
   background-color: #40a6e0;
   border-bottom: 2px solid #33799f; }
   @media (max-width: 700px) {
-    .header .top a {
-      width: 70px !important; }
-      .header .top a #top-nav-logo-text {
-        display: none; } }
+    .header .top a #top-nav-logo-text {
+      display: none; } }
 
 .header .top .inner {
   position: relative;
@@ -308,7 +283,7 @@ h3.title:after {
     border: 0;
     padding-left: 20px;
     background-color: #40a6e0;
-    color: white; }
+    color: #fff; }
     @media (max-width: 450px) {
       .header .top .inner .right form input[type="text"] {
         width: 100px;
@@ -360,8 +335,7 @@ h3.title:after {
     border: none;
     vertical-align: top;
     cursor: pointer; }
-  .header .top .inner .right form input[type="submit"]:focus,
-  .header .top .inner .right form input[type="text"]:focus {
+  .header .top .inner .right form input[type="submit"]:focus, .header .top .inner .right form input[type="text"]:focus {
     outline: none; }
 
 /* TOP RIGHT HEADER
@@ -388,12 +362,11 @@ h3.title:after {
       width: 60px;
       height: 60px;
       border-right: 1px solid #33799f; }
-    .header .top .inner .right .user-information .user-information-button img,
-    .header .top .inner .right .user-information .user-information-button h4 {
+    .header .top .inner .right .user-information .user-information-button img, .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       display: inline-block;
       vertical-align: middle;
-      color: white; }
+      color: #fff; }
     .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       margin-left: 20px;
@@ -433,12 +406,11 @@ h3.title:after {
     padding-right: 15px;
     vertical-align: top;
     border-right: 1px solid #33799f; }
-    .header .top .inner .right .user-information .user-information-button img,
-    .header .top .inner .right .user-information .user-information-button h4 {
+    .header .top .inner .right .user-information .user-information-button img, .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       display: inline-block;
       vertical-align: middle;
-      color: white; }
+      color: #fff; }
     .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       margin-left: 20px;
@@ -475,7 +447,7 @@ h3.title:after {
 /* BOTTOM HEADER
    ============================= */
 .header .bottom {
-  height: 40px;
+  height: 45px;
   background-color: #f1f0f0; }
   .header .bottom .inner {
     position: relative;
@@ -488,7 +460,7 @@ h3.title:after {
   position: relative;
   left: -10px;
   display: inline-block; }
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     .header .bottom nav {
       position: fixed;
       top: 0;
@@ -513,21 +485,20 @@ h3.title:after {
 .header .bottom nav li {
   position: relative;
   display: inline-block;
-  width: 120px;
+  width: 110px;
   margin-left: 10px;
-  line-height: 41px;
+  line-height: 46px;
   text-transform: uppercase;
   font-size: 14px;
   text-align: center; }
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     .header .bottom nav li {
       display: block;
       width: 200px;
-      margin-left: 5px; } }
-  @media (max-width: 700px) and (max-width: 350px) {
-    .header .bottom nav li {
-      width: 170px; } }
-  @media (max-width: 700px) {
+      margin-left: 5px; }
+      @media (max-width: 350px) {
+        .header .bottom nav li {
+          width: 170px; } }
       .header .bottom nav li:after {
         position: absolute;
         top: 2px;
@@ -556,7 +527,7 @@ h3.title:after {
   .header .bottom nav li:hover:after, .header .bottom nav li.current:after {
     width: 100%;
     opacity: 1; }
-    @media (max-width: 700px) {
+    @media (max-width: 800px) {
       .header .bottom nav li:hover:after, .header .bottom nav li.current:after {
         left: 0;
         width: 80%; } }
@@ -616,7 +587,7 @@ h3.title:after {
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
   transition: 0.2s; }
-  @media (min-width: 700px) {
+  @media (min-width: 800px) {
     .header .bottom .mobile-nav-icon {
       display: none; } }
   .header .bottom .mobile-nav-icon p {
@@ -772,6 +743,7 @@ body {
 
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
+
 @-moz-keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
@@ -781,6 +753,7 @@ body {
 
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
+
 @keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
@@ -790,6 +763,7 @@ body {
 
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
+
 /* === 404 === */
 /* 404
    ============================= */
@@ -881,7 +855,7 @@ body {
   left: 75px;
   margin: 100px 30px 0 0;
   background-color: #40a6e0;
-  border-radius: 20% 20% 20% / 50% 50%;
+  border-radius: 20% 20% 20%/50% 50%;
   line-height: 60px;
   text-align: center;
   font-size: 100px;
@@ -1014,18 +988,21 @@ body {
 
   to {
     top: 100%; } }
+
 @-moz-keyframes rain-drop-404-animation {
   from {
     top: -40px; }
 
   to {
     top: 100%; } }
+
 @keyframes rain-drop-404-animation {
   from {
     top: -40px; }
 
   to {
     top: 100%; } }
+
 /* === PLAYER === */
 /* CAST BUTTON
    ============================= */
@@ -1189,9 +1166,9 @@ body {
       cursor: pointer;
       background: #40a6e0; }
       .card.video.long .description button:hover {
-        background: #6cbae7; }
+        background: #6cbce7; }
       .card.video.long .description button:active {
-        background: #2a9cdc; }
+        background: #2a9edc; }
       .card.video.long .description button:focus, .card.video.long .description button:active {
         outline: none; }
     .card.video.long .description .visibility {
@@ -1207,11 +1184,9 @@ body {
       bottom: 10px;
       left: 5px;
       right: 5px; }
-      .card.video.long .description div .plus,
-      .card.video.long .description div .moins {
+      .card.video.long .description div .plus, .card.video.long .description div .moins {
         display: inline-block; }
-        .card.video.long .description div .plus:before,
-        .card.video.long .description div .moins:before {
+        .card.video.long .description div .plus:before, .card.video.long .description div .moins:before {
           display: inline-block;
           margin-left: 14px;
           margin-right: 2px;
@@ -1376,9 +1351,9 @@ body {
       cursor: pointer;
       background: #40a6e0; }
       .card.channel.long .description button:hover {
-        background: #6cbae7; }
+        background: #6cbce7; }
       .card.channel.long .description button:active {
-        background: #2a9cdc; }
+        background: #2a9edc; }
       .card.channel.long .description button:focus, .card.channel.long .description button:active {
         outline: none; }
     .card.channel.long .description .principal {
@@ -1390,11 +1365,9 @@ body {
       bottom: 10px;
       left: 5px;
       right: 5px; }
-      .card.channel.long .description div .plus,
-      .card.channel.long .description div .moins {
+      .card.channel.long .description div .plus, .card.channel.long .description div .moins {
         display: inline-block; }
-        .card.channel.long .description div .plus:before,
-        .card.channel.long .description div .moins:before {
+        .card.channel.long .description div .plus:before, .card.channel.long .description div .moins:before {
           display: inline-block;
           margin-left: 14px;
           margin-right: 2px;
@@ -1584,14 +1557,84 @@ body {
   float: right;
   display: block;
   width: 100%; }
-  .share-video-block.show .twitter-share-button,
-  .share-video-block.show .fb-share-button {
+  .share-video-block.show .twitter-share-button, .share-video-block.show .fb-share-button {
     float: left;
     margin: 5px 0 15px 25px; }
   .share-video-block.show .twitter-share-button {
     margin-right: -15px; }
   .share-video-block.show .fb-share-button {
     margin-left: -15px; }
+
+/* PLAYLIST
+   ============================= */
+.playlist {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 185px;
+  margin: -18px 0 0 0;
+  background: #153b5c; }
+
+/* PLAYLIST TITLE
+   ============================= */
+.playlist__title {
+  position: relative;
+  top: 10px;
+  clear: both;
+  display: block;
+  margin: 0 0 10px 10px;
+  font-size: 22px;
+  color: white; }
+
+/* PLAYLIST VIDEOS
+   ============================= */
+.playlist__videos {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  height: 137px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll; }
+
+/* PLAYLIST VIDEO
+   ============================= */
+.playlist__video {
+  position: relative;
+  display: inline-block;
+  width: 240px;
+  height: 120px;
+  margin: 0; }
+
+.playlist__videos a {
+  display: inline-block;
+  padding: 0;
+  margin: 0; }
+
+.playlist__video--playing:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  background: rgba(0, 0, 0, 0.8); }
+
+.playlist__video--playing:after {
+  content: "";
+  position: relative;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 22px;
+  height: 30px;
+  margin: auto;
+  margin-left: -11px;
+  margin-top: -15px;
+  background-image: url(../img/play_icon_recomandations.png);
+  background-repeat: no-repeat; }
 
 /* === CHANNEL === */
 /* SOCIAL MESSAGE FORM
@@ -1680,15 +1723,14 @@ body {
     @media (max-width: 850px) {
       .aside-channels ul .channels {
         float: left;
-        width: 40%; } }
-  @media (max-width: 850px) and (max-width: 420px) {
-    .aside-channels ul .channels {
-      float: none;
-      display: none;
-      width: auto; }
-      .aside-channels ul .channels:nth-child(-n+8) {
-        display: block; } }
-
+        width: 40%; }
+        @media (max-width: 420px) {
+          .aside-channels ul .channels {
+            float: none;
+            display: none;
+            width: auto; }
+            .aside-channels ul .channels:nth-child(-n+8) {
+              display: block; } } }
     .aside-channels ul .channels[data-new]:after {
       position: absolute;
       top: 5px;
@@ -1722,8 +1764,7 @@ body {
       -ms-background-size: cover;
       -o-background-size: cover;
       background-size: cover; }
-    .aside-channels ul .channels .name,
-    .aside-channels ul .channels .subscribers {
+    .aside-channels ul .channels .name, .aside-channels ul .channels .subscribers {
       display: block;
       margin-top: 4px;
       font-size: 15px; }
@@ -1834,10 +1875,7 @@ body {
     font-size: 16px; }
     #annoTools #selectedTools #STtitle:focus, #annoTools #selectedTools #STtitle:active {
       outline: none; }
-  #annoTools #selectedTools #STleft,
-  #annoTools #selectedTools #STtop,
-  #annoTools #selectedTools #STwidth,
-  #annoTools #selectedTools #STheight {
+  #annoTools #selectedTools #STleft, #annoTools #selectedTools #STtop, #annoTools #selectedTools #STwidth, #annoTools #selectedTools #STheight {
     width: 32px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -1845,13 +1883,9 @@ body {
     background: transparent;
     text-align: center;
     font-size: 16px; }
-    #annoTools #selectedTools #STleft ~ .purcent,
-    #annoTools #selectedTools #STtop ~ .purcent,
-    #annoTools #selectedTools #STwidth ~ .purcent,
-    #annoTools #selectedTools #STheight ~ .purcent {
+    #annoTools #selectedTools #STleft ~ .purcent, #annoTools #selectedTools #STtop ~ .purcent, #annoTools #selectedTools #STwidth ~ .purcent, #annoTools #selectedTools #STheight ~ .purcent {
       display: inline-block; }
-  #annoTools #selectedTools input:focus,
-  #annoTools #selectedTools input:active {
+  #annoTools #selectedTools input:focus, #annoTools #selectedTools input:active {
     outline: none; }
   #annoTools #selectedTools #STlink {
     display: inline-block;
@@ -1879,47 +1913,37 @@ body {
     #annoTools #selectedTools .colorSelect:focus, #annoTools #selectedTools .colorSelect:active {
       outline: none; }
 
-.colorSelect.blue,
-#annoList > li.blue {
+.colorSelect.blue, #annoList > li.blue {
   background-color: #40a6e0; }
 
-.colorSelect.orange,
-#annoList > li.orange {
+.colorSelect.orange, #annoList > li.orange {
   background-color: #df6d14; }
 
-.colorSelect.yellow,
-#annoList > li.yellow {
+.colorSelect.yellow, #annoList > li.yellow {
   background-color: #ffff00;
   color: #1e1e1e; }
 
-.colorSelect.pink,
-#annoList > li.pink {
+.colorSelect.pink, #annoList > li.pink {
   background-color: #fd3f92; }
 
-.colorSelect.red,
-#annoList > li.red {
+.colorSelect.red, #annoList > li.red {
   background-color: #eb0000; }
 
-.colorSelect.green,
-#annoList > li.green {
+.colorSelect.green, #annoList > li.green {
   background-color: #9efd38;
   color: #1e1e1e; }
 
-.colorSelect.purple,
-#annoList > li.purple {
+.colorSelect.purple, #annoList > li.purple {
   background-color: #660099; }
 
-.colorSelect.white,
-#annoList > li.white {
+.colorSelect.white, #annoList > li.white {
   background-color: white;
   color: #1e1e1e; }
 
-.colorSelect.black,
-#annoList > li.black {
+.colorSelect.black, #annoList > li.black {
   background-color: black; }
 
-.colorSelect.transparent,
-#annoList > li.transparent {
+.colorSelect.transparent, #annoList > li.transparent {
   background-color: transparent; }
 
 .colorSelect.transparent {
@@ -1947,6 +1971,7 @@ body {
     -ms-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s; } }
+
 #annoTimeLine {
   clear: both;
   display: block;
@@ -1975,8 +2000,7 @@ body {
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box; }
-    #annoTimeLine li .resizeLeft,
-    #annoTimeLine li .resizeRight {
+    #annoTimeLine li .resizeLeft, #annoTimeLine li .resizeRight {
       position: absolute;
       top: 0;
       display: inline-block;
@@ -2007,14 +2031,10 @@ body {
     cursor: nwse-resize; }
   #player.annoted .annotation .close {
     opacity: 1 !important; }
-#player.annoted .annotation > p:focus,
-#player.annoted .annotation > a:focus {
+#player.annoted .annotation > p:focus, #player.annoted .annotation > a:focus {
   outline: none;
   cursor: text; }
-#player.annoted #fullscreen,
-#player.annoted #widescreen,
-#player.annoted #separation,
-#player.annoted #annotationsButton {
+#player.annoted #fullscreen, #player.annoted #widescreen, #player.annoted #separation, #player.annoted #annotationsButton {
   display: none !important; }
 #player.annoted #volume {
   right: 20px; }
@@ -2117,10 +2137,7 @@ body.embeded {
           -ms-box-sizing: border-box;
           -o-box-sizing: border-box;
           box-sizing: border-box; } }
-      #home-large-modal section:nth-child(2) #boxPages #pageHome,
-      #home-large-modal section:nth-child(2) #boxPages #pageLogin,
-      #home-large-modal section:nth-child(2) #boxPages #pageRegister,
-      #home-large-modal section:nth-child(2) #boxPages #pageChannel {
+      #home-large-modal section:nth-child(2) #boxPages #pageHome, #home-large-modal section:nth-child(2) #boxPages #pageLogin, #home-large-modal section:nth-child(2) #boxPages #pageRegister, #home-large-modal section:nth-child(2) #boxPages #pageChannel {
         display: none;
         width: 100%;
         height: 350px;
@@ -2130,10 +2147,7 @@ body.embeded {
         color: white;
         text-align: center; }
         @media (max-width: 870px) {
-          #home-large-modal section:nth-child(2) #boxPages #pageHome,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome, #home-large-modal section:nth-child(2) #boxPages #pageLogin, #home-large-modal section:nth-child(2) #boxPages #pageRegister, #home-large-modal section:nth-child(2) #boxPages #pageChannel {
             max-width: 100%;
             margin: 0;
             padding: 20px;
@@ -2142,77 +2156,35 @@ body.embeded {
             -ms-box-sizing: border-box;
             -o-box-sizing: border-box;
             box-sizing: border-box; } }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome button,
-        #home-large-modal section:nth-child(2) #boxPages #pageHome input[type=submit],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin button,
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin input[type=submit],
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister button,
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister input[type=submit],
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel button,
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel input[type=submit] {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome button, #home-large-modal section:nth-child(2) #boxPages #pageHome input[type=submit], #home-large-modal section:nth-child(2) #boxPages #pageLogin button, #home-large-modal section:nth-child(2) #boxPages #pageLogin input[type=submit], #home-large-modal section:nth-child(2) #boxPages #pageRegister button, #home-large-modal section:nth-child(2) #boxPages #pageRegister input[type=submit], #home-large-modal section:nth-child(2) #boxPages #pageChannel button, #home-large-modal section:nth-child(2) #boxPages #pageChannel input[type=submit] {
           padding: 10px 40px;
           background-color: white;
           color: #33799f;
           cursor: pointer;
           border: 0; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome button:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome button:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageHome input[type=submit]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageHome input[type=submit]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin button:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin button:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin input[type=submit]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin input[type=submit]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister button:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister button:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister input[type=submit]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister input[type=submit]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel button:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel button:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel input[type=submit]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel input[type=submit]:active {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome button:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome button:active, #home-large-modal section:nth-child(2) #boxPages #pageHome input[type=submit]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome input[type=submit]:active, #home-large-modal section:nth-child(2) #boxPages #pageLogin button:focus, #home-large-modal section:nth-child(2) #boxPages #pageLogin button:active, #home-large-modal section:nth-child(2) #boxPages #pageLogin input[type=submit]:focus, #home-large-modal section:nth-child(2) #boxPages #pageLogin input[type=submit]:active, #home-large-modal section:nth-child(2) #boxPages #pageRegister button:focus, #home-large-modal section:nth-child(2) #boxPages #pageRegister button:active, #home-large-modal section:nth-child(2) #boxPages #pageRegister input[type=submit]:focus, #home-large-modal section:nth-child(2) #boxPages #pageRegister input[type=submit]:active, #home-large-modal section:nth-child(2) #boxPages #pageChannel button:focus, #home-large-modal section:nth-child(2) #boxPages #pageChannel button:active, #home-large-modal section:nth-child(2) #boxPages #pageChannel input[type=submit]:focus, #home-large-modal section:nth-child(2) #boxPages #pageChannel input[type=submit]:active {
             outline: none; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome h3,
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin h3,
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister h3,
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel h3 {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome h3, #home-large-modal section:nth-child(2) #boxPages #pageLogin h3, #home-large-modal section:nth-child(2) #boxPages #pageRegister h3, #home-large-modal section:nth-child(2) #boxPages #pageChannel h3 {
           margin-bottom: 10px;
           font-size: 22px; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome .inner-text,
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin .inner-text,
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister .inner-text,
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel .inner-text {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome .inner-text, #home-large-modal section:nth-child(2) #boxPages #pageLogin .inner-text, #home-large-modal section:nth-child(2) #boxPages #pageRegister .inner-text, #home-large-modal section:nth-child(2) #boxPages #pageChannel .inner-text {
           padding: 5px;
           padding-top: 0;
           line-height: 18px;
           font-size: 16px; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome a,
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin a,
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister a,
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel a {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome a, #home-large-modal section:nth-child(2) #boxPages #pageLogin a, #home-large-modal section:nth-child(2) #boxPages #pageRegister a, #home-large-modal section:nth-child(2) #boxPages #pageChannel a {
           color: white;
           display: block;
           margin-top: 15px;
           cursor: pointer; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome form label,
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form label,
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister form label,
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel form label {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome form label, #home-large-modal section:nth-child(2) #boxPages #pageLogin form label, #home-large-modal section:nth-child(2) #boxPages #pageRegister form label, #home-large-modal section:nth-child(2) #boxPages #pageChannel form label {
           display: inline-block;
           width: 40%;
           margin: 0;
           margin-left: -15px;
           margin-right: 10px;
           text-align: right; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="text"], #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="email"], #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="password"],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="text"],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="email"],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="password"],
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="text"],
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="email"],
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="password"],
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="text"],
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="email"],
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="password"] {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="text"], #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="email"], #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="password"], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="text"], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="email"], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="password"], #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="text"], #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="email"], #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="password"], #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="text"], #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="email"], #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="password"] {
           display: inline-block;
           width: 60%;
           height: 40px;
@@ -2224,39 +2196,15 @@ body.embeded {
           -ms-box-sizing: border-box;
           -o-box-sizing: border-box;
           box-sizing: border-box; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="text"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="text"]:active, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="email"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="email"]:active, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="password"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="password"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="text"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="text"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="email"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="email"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="password"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="password"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="text"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="text"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="email"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="email"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="password"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="password"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="text"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="text"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="email"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="email"]:active,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="password"]:focus,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="password"]:active {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="text"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="text"]:active, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="email"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="email"]:active, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="password"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="password"]:active, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="text"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="text"]:active, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="email"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="email"]:active, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="password"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="password"]:active, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="text"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="text"]:active, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="email"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="email"]:active, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="password"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="password"]:active, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="text"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="text"]:active, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="email"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="email"]:active, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="password"]:focus, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="password"]:active {
             outline: none; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"],
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"],
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"] {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"], #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"], #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"] {
           position: relative;
           top: -5px;
           width: 25px;
           margin: 0 2px 0 0;
           cursor: pointer; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:before {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:before, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:before, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:before, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:before {
             position: relative;
             bottom: 0;
             right: 0;
@@ -2265,10 +2213,7 @@ body.embeded {
             padding: 12px 0px 13px 5px;
             content: "";
             background: #dddddd; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:after {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:after, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:after, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:after, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:after {
             position: absolute;
             top: 4px;
             left: 3px;
@@ -2279,50 +2224,23 @@ body.embeded {
             opacity: 0;
             background-image: url(../img/checked.png); }
             @media (min-width: 640px) {
-              #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:after,
-              #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:after,
-              #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:after,
-              #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:after {
+              #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:after, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:after, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:after, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:after {
                 -webkit-transition: 0.1s;
                 -moz-transition: 0.1s;
                 -ms-transition: 0.1s;
                 -o-transition: 0.1s;
                 transition: 0.1s; } }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:hover:before, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"][disabled]:checked:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:checked:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:hover:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"][disabled]:checked:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:checked:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:hover:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"][disabled]:checked:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:checked:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:hover:before,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"][disabled]:checked:before {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:hover:before, #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"][disabled]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:hover:before, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"][disabled]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:hover:before, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"][disabled]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:checked:before, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:hover:before, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"][disabled]:checked:before {
             opacity: 1; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:hover:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:hover:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:hover:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:hover:after {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:hover:after, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:hover:after, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:hover:after, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:hover:after {
             opacity: 0.2; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:checked:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:checked:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:checked:after,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:checked:after {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"]:checked:after, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"]:checked:after, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"]:checked:after, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"]:checked:after {
             opacity: 1; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"][disabled],
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"][disabled],
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"][disabled],
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"][disabled] {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"][disabled], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"][disabled], #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"][disabled], #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"][disabled] {
             cursor: default; }
-          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"] + label,
-          #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"] + label,
-          #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"] + label,
-          #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"] + label {
+          #home-large-modal section:nth-child(2) #boxPages #pageHome form input[type="checkbox"] + label, #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type="checkbox"] + label, #home-large-modal section:nth-child(2) #boxPages #pageRegister form input[type="checkbox"] + label, #home-large-modal section:nth-child(2) #boxPages #pageChannel form input[type="checkbox"] + label {
             cursor: pointer; }
-        #home-large-modal section:nth-child(2) #boxPages #pageHome:after,
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin:after,
-        #home-large-modal section:nth-child(2) #boxPages #pageRegister:after,
-        #home-large-modal section:nth-child(2) #boxPages #pageChannel:after {
+        #home-large-modal section:nth-child(2) #boxPages #pageHome:after, #home-large-modal section:nth-child(2) #boxPages #pageLogin:after, #home-large-modal section:nth-child(2) #boxPages #pageRegister:after, #home-large-modal section:nth-child(2) #boxPages #pageChannel:after {
           position: absolute;
           top: 0;
           right: 0;
@@ -2371,12 +2289,9 @@ body.embeded {
         margin-top: 30px; }
         #home-large-modal section:nth-child(2) #boxPages #pageLogin form label {
           width: 30%; }
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type=text],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type=email],
-        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type=password] {
+        #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type=text], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type=email], #home-large-modal section:nth-child(2) #boxPages #pageLogin form input[type=password] {
           width: 70%; }
-      #home-large-modal section:nth-child(2) #boxPages #pageLogin input
-      [type="submit"] {
+      #home-large-modal section:nth-child(2) #boxPages #pageLogin input [type="submit"] {
         margin-top: 30px; }
       #home-large-modal section:nth-child(2) #boxPages #pageChannel .avatar {
         display: block;
@@ -2493,7 +2408,6 @@ body.embeded {
   padding: 0;
   float: left;
   height: auto;
-  box-shadow: 1px 2px 0 #e2e2e2;
   z-index: 1;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2521,6 +2435,7 @@ body.embeded {
 @media all and (max-width: 700px) {
   #player {
     width: 100%; } }
+
 video {
   width: 100%;
   height: 100%; }
@@ -2534,30 +2449,35 @@ video {
 
   to {
     -webkit-transform: rotate(-360deg); } }
+
 @-moz-keyframes rotate {
   from {
     -moz-transform: rotate(0deg); }
 
   to {
     -moz-transform: rotate(-360deg); } }
+
 @-ms-keyframes rotate {
   from {
     -ms-transform: rotate(0deg); }
 
   to {
     -ms-transform: rotate(-360deg); } }
+
 @-o-keyframes rotate {
   from {
     -o-transform: rotate(0deg); }
 
   to {
     -o-transform: rotate(-360deg); } }
+
 @keyframes rotate {
   from {
     transform: rotate(0deg); }
 
   to {
     transform: rotate(-360deg); } }
+
 #repeat {
   position: absolute;
   top: 0;
@@ -2594,6 +2514,7 @@ video {
     -ms-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s; } }
+
 @media all and (min-width: 640px) {
   #repeat > .icon {
     -webkit-transform-origin: 50% 50%;
@@ -2611,6 +2532,7 @@ video {
     -ms-animation-iteration-count: infinite;
     -o-animation-iteration-count: infinite;
     animation-iteration-count: infinite; } }
+
 /*
  *	Sélection de qualité
  */
@@ -2671,6 +2593,7 @@ video {
     -ms-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s; } }
+
 @media all and (max-width: 550px) {
   #qualitySelection > * {
     width: 154px;
@@ -2678,19 +2601,16 @@ video {
     margin-left: -77px;
     margin-top: -38px;
     background-size: 103px 50px; }
-
   #qualitySelection > *[data-format="360"] {
     background-image: url(../img/player/cloudQ1m.png); }
-
   #qualitySelection > *[data-format="720"] {
     margin-left: -50px;
     background-image: url(../img/player/cloudQ2m.png); }
-
   #qualitySelection[data-number="1"] > *[data-format="720"], #qualitySelection[data-number="2"] > *[data-format="720"] {
     background-image: url(../img/player/cloudQ2lisse.png); }
-
   #qualitySelection > *[data-format="1080"] {
     background-image: url(../img/player/cloudQ3m.png); } }
+
 #waitForPlay {
   position: absolute;
   left: 50%;
@@ -2720,13 +2640,13 @@ video {
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s; }
-
   #waitForPlay:active {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     -ms-transition: 0.1s;
     -o-transition: 0.1s;
     transition: 0.1s; } }
+
 /*
  *	Gros icones animés (play et pause)
  */
@@ -2746,6 +2666,7 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; } }
+
 @-moz-keyframes bigIconPlay {
   from {
     top: 53%;
@@ -2762,6 +2683,7 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; } }
+
 @-ms-keyframes bigIconPlay {
   from {
     top: 53%;
@@ -2778,6 +2700,7 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; } }
+
 @-o-keyframes bigIconPlay {
   from {
     top: 53%;
@@ -2794,6 +2717,7 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; } }
+
 @keyframes bigIconPlay {
   from {
     top: 44%;
@@ -2810,6 +2734,7 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; } }
+
 #bigPlay, #bigPause {
   position: absolute;
   left: 50%;
@@ -2833,6 +2758,7 @@ video {
     display: none;
     width: 0;
     height: 0; } }
+
 #bigPlay {
   background-image: url(../img/player/bigPlay.png); }
 
@@ -2852,6 +2778,7 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; } }
+
 @-moz-keyframes bigIconPause {
   from {
     top: 47%;
@@ -2868,6 +2795,7 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; } }
+
 @-ms-keyframes bigIconPause {
   from {
     top: 47%;
@@ -2884,6 +2812,7 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; } }
+
 @-o-keyframes bigIconPause {
   from {
     top: 47%;
@@ -2900,6 +2829,7 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; } }
+
 @keyframes bigIconPause {
   from {
     top: 47%;
@@ -2916,6 +2846,7 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; } }
+
 #bigPause {
   background-image: url(../img/player/bigPause.png); }
 
@@ -2943,6 +2874,7 @@ video {
     -ms-transition: bottom 0.3s;
     -o-transition: bottom 0.3s;
     transition: bottom 0.3s; } }
+
 /*
  *	Barre de progression
  */
@@ -2993,6 +2925,7 @@ video {
     -ms-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s; } }
+
 #controls.down > #progress > #viewed {
   background-color: #40a6e0; }
 
@@ -3063,6 +2996,7 @@ video {
 @media all and (max-width: 300px) {
   #annotationsButton {
     display: none !important; } }
+
 /*
  *	Bouton pour régler la qualité
  */
@@ -3158,18 +3092,15 @@ video {
 @media all and (max-width: 700px) {
   #widescreen {
     display: none; }
-
   #volume {
     right: 50px; }
-
   #separation {
     right: 30px; }
-
   #qualityButton {
     right: 116px; }
-
   #annotationsButton {
     right: 136px; } }
+
 /*
  *	Fullscreen
  */
@@ -3407,7 +3338,7 @@ nav.pagination {
       margin: 0;
       margin-top: 60px;
       background-color: #40a6e0;
-      border-radius: 20% 20% 20% / 50% 50%;
+      border-radius: 20% 20% 20%/50% 50%;
       line-height: 60px; }
       #uploader #upload-illustration .cloud:after, #uploader #upload-illustration .cloud:before {
         z-index: -1;
@@ -3449,8 +3380,7 @@ nav.pagination {
         margin-left: -22px;
         content: "";
         background-color: white; }
-  #uploader:hover #upload-illustration #arrowUpload,
-  #uploader .hover #upload-illustration #arrowUpload {
+  #uploader:hover #upload-illustration #arrowUpload, #uploader .hover #upload-illustration #arrowUpload {
     top: -20%; }
   #uploader.uploading #upload-illustration #arrowUpload {
     position: relative;
@@ -3494,26 +3424,31 @@ nav.pagination {
     width: 25%;
     padding-bottom: 25%;
     top: -5px; } }
+
 @-moz-keyframes uploading {
   to {
     width: 25%;
     padding-bottom: 25%;
     top: -5px; } }
+
 @-ms-keyframes uploading {
   to {
     width: 25%;
     padding-bottom: 25%;
     top: -5px; } }
+
 @-o-keyframes uploading {
   to {
     width: 25%;
     padding-bottom: 25%;
     top: -5px; } }
+
 @keyframes uploading {
   to {
     width: 25%;
     padding-bottom: 25%;
     top: -5px; } }
+
 #upload-large-modal {
   position: relative;
   height: 500px;
@@ -3718,17 +3653,17 @@ nav.pagination {
     -o-transition: background-color 0.2s;
     transition: background-color 0.2s; }
     .content.wide.channel > .inner .left button:hover {
-      background-color: #6cbae7; }
+      background-color: #6cbce7; }
     .content.wide.channel > .inner .left button:active {
-      background-color: #2a9cdc; }
+      background-color: #2a9edc; }
     @media (max-width: 400px) {
       .content.wide.channel > .inner .left button {
         width: 100%;
         font-size: 16px; } }
     .content.wide.channel > .inner .left button.subscribed {
-      background-color: #666666; }
+      background-color: #666; }
       .content.wide.channel > .inner .left button.subscribed:hover {
-        background-color: gray; }
+        background-color: #808080; }
       .content.wide.channel > .inner .left button.subscribed:active {
         background-color: #595959; }
     .content.wide.channel > .inner .left button:active, .content.wide.channel > .inner .left button:focus {
@@ -3736,15 +3671,14 @@ nav.pagination {
   @media (max-width: 900px) {
     .content.wide.channel > .inner .left {
       height: 80%;
-      text-align: center; } }
-  @media (max-width: 900px) and (max-width: 600px) {
-    .content.wide.channel > .inner .left {
-      left: 20px; } }
-  @media (max-width: 900px) and (max-width: 400px) {
-    .content.wide.channel > .inner .left {
-      left: 8px;
-      width: 40%; } }
-  @media (max-width: 900px) {
+      text-align: center; }
+      @media (max-width: 600px) {
+        .content.wide.channel > .inner .left {
+          left: 20px; } }
+      @media (max-width: 400px) {
+        .content.wide.channel > .inner .left {
+          left: 8px;
+          width: 40%; } }
       .content.wide.channel > .inner .left .bgLoader {
         float: none;
         display: block;
@@ -3853,9 +3787,9 @@ nav.pagination {
     .contributors li .button.twitter {
       background: #55acee; }
       .contributors li .button.twitter:hover {
-        background: #6cb7f0; }
+        background: #6cb9f0; }
       .contributors li .button.twitter:active {
-        background: #3ea1ec; }
+        background: #3ea3ec; }
   .contributors li:after {
     position: relative;
     top: 30px;
@@ -3906,9 +3840,7 @@ nav.pagination {
   box-sizing: border-box; }
   .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active {
     outline: none; }
-.form input:not([type="checkbox"]),
-.form textarea,
-.form select {
+.form input:not([type="checkbox"]), .form textarea, .form select {
   display: block;
   width: 100%;
   height: 40px;
@@ -3921,11 +3853,7 @@ nav.pagination {
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box; }
-  .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active,
-  .form textarea:focus,
-  .form textarea:active,
-  .form select:focus,
-  .form select:active {
+  .form input:not([type="checkbox"]):focus, .form input:not([type="checkbox"]):active, .form textarea:focus, .form textarea:active, .form select:focus, .form select:active {
     outline: none; }
 .form textarea {
   resize: vertical;
@@ -3935,9 +3863,9 @@ nav.pagination {
   background-color: #40a6e0;
   cursor: pointer; }
   .form input[type="submit"]:focus, .form input[type="submit"]:active, .form input[type="submit"]:hover {
-    background-color: #4dace2; }
+    background-color: #4daee2; }
   .form input[type="submit"]:active {
-    background-color: #33a0de; }
+    background-color: #33a2de; }
 .form label i {
   margin-left: -190px; }
 .form input[type="file"] {
@@ -4009,8 +3937,7 @@ nav.pagination {
     opacity: 1; }
   .form input[type="checkbox"][disabled] {
     cursor: default; }
-.form input[type="checkbox"] + label,
-.form label + input[type="checkbox"] {
+.form input[type="checkbox"] + label, .form label + input[type="checkbox"] {
   cursor: pointer; }
 .form label.checkbox-dependence {
   opacity: 0.2; }
@@ -4031,13 +3958,12 @@ nav.pagination {
   border: none;
   cursor: pointer; }
   .messages h1 button:hover {
-    background: #56b0e4; }
+    background: #56b2e4; }
   .messages h1 button:active {
-    background: #2a9cdc; }
+    background: #2a9edc; }
   .messages h1 button:focus, .messages h1 button:active {
     outline: none; }
-.messages .list,
-.messages .message {
+.messages .list, .messages .message {
   position: relative;
   float: left;
   display: block;
@@ -4056,8 +3982,7 @@ nav.pagination {
 .messages .list {
   position: relative;
   width: 30%; }
-  .messages .list select,
-  .messages .list button {
+  .messages .list select, .messages .list button {
     display: block;
     width: 100%;
     height: 40px;
@@ -4065,9 +3990,7 @@ nav.pagination {
     padding: 8px;
     border: none;
     background: #F1F0F0; }
-    .messages .list select:focus, .messages .list select:active,
-    .messages .list button:focus,
-    .messages .list button:active {
+    .messages .list select:focus, .messages .list select:active, .messages .list button:focus, .messages .list button:active {
       outline: none; }
   .messages .list select {
     border-bottom: 1px solid #ccc; }
@@ -4091,15 +4014,13 @@ nav.pagination {
         transition: 0.1s; } }
     .messages .list ul li.current {
       background: #40a6e0; }
-      .messages .list ul li.current, .messages .list ul li.current h3,
-      .messages .list ul li.current .members {
+      .messages .list ul li.current, .messages .list ul li.current h3, .messages .list ul li.current .members {
         color: white; }
     .messages .list ul li:hover:not(.current) {
       background: #f5f5f5; }
     .messages .list ul li:active:not(.current) {
       background: #80c4ea; }
-      .messages .list ul li:active:not(.current), .messages .list ul li:active:not(.current) h3,
-      .messages .list ul li:active:not(.current) .members {
+      .messages .list ul li:active:not(.current), .messages .list ul li:active:not(.current) h3, .messages .list ul li:active:not(.current) .members {
         color: white; }
     .messages .list ul li .avatar {
       position: relative;
@@ -4146,9 +4067,7 @@ nav.pagination {
   width: 70%;
   border-left: none;
   overflow: hidden; }
-  .messages .message .title,
-  .messages .message .content,
-  .messages .message .answer {
+  .messages .message .title, .messages .message .content, .messages .message .answer {
     position: absolute;
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -4213,9 +4132,9 @@ nav.pagination {
       border: none;
       cursor: pointer; }
       .messages .message .create-form .submit:hover, .messages .message .create-form .submit:focus {
-        background: #56b0e4; }
+        background: #56b2e4; }
       .messages .message .create-form .submit:active {
-        background: #2a9cdc; }
+        background: #2a9edc; }
       .messages .message .create-form .submit:focus, .messages .message .create-form .submit:active {
         outline: none; }
     .messages .message .create-form.none {
@@ -4303,8 +4222,7 @@ nav.pagination {
         -ms-transition: top 0.3s;
         -o-transition: top 0.3s;
         transition: top 0.3s; } }
-    .messages .message .answer textarea,
-    .messages .message .answer button {
+    .messages .message .answer textarea, .messages .message .answer button {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       -ms-box-sizing: border-box;
@@ -4336,9 +4254,9 @@ nav.pagination {
       border: none;
       cursor: pointer; }
       .messages .message .answer .submit:hover, .messages .message .answer .submit:focus {
-        background: #56b0e4; }
+        background: #56b2e4; }
       .messages .message .answer .submit:active {
-        background: #2a9cdc; }
+        background: #2a9edc; }
       .messages .message .answer .submit:focus, .messages .message .answer .submit:active {
         outline: none; }
   .messages .message.none .answer {
@@ -4373,21 +4291,21 @@ nav.pagination {
     .moderating-commands button.blue {
       background: #40A6E0; }
       .moderating-commands button.blue:hover {
-        background: #56b0e4; }
+        background: #56b2e4; }
       .moderating-commands button.blue:active {
-        background: #2a9cdc; }
+        background: #2a9edc; }
     .moderating-commands button.orange {
       background: #FC7F3C; }
       .moderating-commands button.orange:hover {
-        background: #fc8f55; }
+        background: #fc8d55; }
       .moderating-commands button.orange:active {
-        background: #fc6f23; }
+        background: #fc6b23; }
     .moderating-commands button.red {
       background: #E70739; }
       .moderating-commands button.red:hover {
-        background: #f81044; }
+        background: #f81046; }
       .moderating-commands button.red:active {
-        background: #ce0633; }
+        background: #ce0635; }
 
 .bug-content li {
   position: relative;
@@ -4398,7 +4316,7 @@ nav.pagination {
   .bug-content li .link {
     display: block;
     margin: 10px 0 40px 0;
-    color: #4eace1; }
+    color: #4eaee1; }
     .bug-content li .link:hover {
       text-decoration: underline; }
   .bug-content li .infos {
@@ -4409,8 +4327,7 @@ nav.pagination {
     display: block;
     padding: 10px;
     background: #64b6e5; }
-    .bug-content li .infos,
-    .bug-content li .infos a {
+    .bug-content li .infos, .bug-content li .infos a {
       color: white; }
     .bug-content li .infos a:hover {
       text-decoration: underline; }
@@ -4645,10 +4562,8 @@ nav.pagination {
 @media (max-width: 800px) {
   #suspended-text {
     width: 59%; }
-
   #suspended-icn {
     width: 39%; }
-
   #cross {
     position: relative;
     top: 85px;
@@ -4658,16 +4573,13 @@ nav.pagination {
     -o-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg); }
-
   #cross .cross-bar {
     width: 175px;
     height: 30px;
     background-color: #40a6e0; }
-
   #cross #cross-bar-1 {
     position: relative;
     top: 27px; }
-
   #cross #cross-bar-2 {
     display: block;
     -moz-transform: rotate(90deg);
@@ -4675,6 +4587,7 @@ nav.pagination {
     -o-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg); } }
+
 @media (max-width: 500px) {
   #suspended-text {
     width: 100%;
@@ -4686,19 +4599,17 @@ nav.pagination {
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box; }
-
   #cross {
     float: none;
     position: relative;
     top: 50px; }
-
   #cross div {
     margin: auto; }
-
   #suspended-icn {
     width: 100%;
     display: block;
     height: 125px; } }
+
 /*------------------- UI des admins de chaines -------------------*/
 .channel-admin {
   background-color: #dfdfdf;
@@ -4774,6 +4685,7 @@ nav.pagination {
         -ms-box-sizing: border-box;
         -o-box-sizing: border-box;
         box-sizing: border-box; } }
+    @media (max-width: 500px) { }
     #comments form textarea:focus, #comments form textarea:active {
       outline: none;
       border-color: #cdcdcd; }
@@ -4797,9 +4709,9 @@ nav.pagination {
     #comments form input[type="submit"]:focus, #comments form input[type="submit"]:active {
       outline: none; }
     #comments form input[type="submit"]:hover {
-      background: #56b0e4; }
+      background: #56b2e4; }
     #comments form input[type="submit"]:active {
-      background: #2a9cdc; }
+      background: #2a9edc; }
   #comments .comment {
     float: left;
     width: 100%;
@@ -4817,8 +4729,7 @@ nav.pagination {
         #comments .comment .comment-head .user img {
           height: 30px;
           border-radius: 15px; }
-        #comments .comment .comment-head .user img,
-        #comments .comment .comment-head .user a {
+        #comments .comment .comment-head .user img, #comments .comment .comment-head .user a {
           display: inline-block;
           vertical-align: middle; }
         #comments .comment .comment-head .user a {
@@ -4869,14 +4780,11 @@ nav.pagination {
         margin-right: 30px; }
         #comments .comment .comment-notation li a {
           margin-right: 10px; }
-      #comments .comment .comment-notation .plus,
-      #comments .comment .comment-notation .plus a {
+      #comments .comment .comment-notation .plus, #comments .comment .comment-notation .plus a {
         color: #48a84f; }
-      #comments .comment .comment-notation .moins,
-      #comments .comment .comment-notation .moins a {
+      #comments .comment .comment-notation .moins, #comments .comment .comment-notation .moins a {
         color: #dd4e47; }
-      #comments .comment .comment-notation .plus:hover,
-      #comments .comment .comment-notation .moins:hover {
+      #comments .comment .comment-notation .plus:hover, #comments .comment .comment-notation .moins:hover {
         cursor: pointer; }
 
 #video-top-infos {
@@ -5086,17 +4994,18 @@ nav.pagination {
             left: 20px;
             display: inline-block;
             vertical-align: middle; } }
+
 /* VIDEO INFOS
    ============================= */
 .video-infos {
   position: relative;
+  bottom: -1px;
   z-index: 2;
   display: block;
   width: 360px;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
   overflow: hidden;
-  background: #f1f0f0;
-  box-shadow: 1px 2px 0 #e2e2e2; }
+  background: #f1f0f0; }
 
 .video-infos:before {
   position: absolute;
@@ -5111,14 +5020,13 @@ nav.pagination {
   #player {
     float: none !important;
     margin: 0 auto 0 auto; }
-
   .video-infos {
     width: 640px;
     margin: 0 auto 0 auto; }
-
   #player.wide ~ .video-infos {
     width: 100%;
     margin: 0 auto 0 auto; } }
+
 @media (min-width: 640px) and (max-width: 1015px) {
   .video-infos {
     -webkit-transition: width 0;
@@ -5126,6 +5034,7 @@ nav.pagination {
     -ms-transition: width 0;
     -o-transition: width 0;
     transition: width 0; } }
+
 #player.wide ~ .video-infos {
   width: 100%;
   margin: 0 auto 0 auto; }
@@ -5137,27 +5046,29 @@ nav.pagination {
     -ms-transition: width 0.4s;
     -o-transition: width 0.4s;
     transition: width 0.4s; } }
+
 @media (max-width: 654px) {
   .video-infos {
     margin: 0;
     width: 100% !important;
     height: auto !important; }
-
   .video-infos .buttons {
     text-align: center !important; }
-
   .video-infos .buttons * {
     margin: 0 30px !important; } }
+
 @media (max-width: 420px) {
   .video-infos .buttons * {
     margin: 0 10px !important; } }
+
 @media (max-width: 300px) {
   .video-infos .buttons * {
     margin: 0 2px !important; } }
+
 @media (max-width: 320px) {
-  .plus:before,
-  .moins:before {
+  .plus:before, .moins:before {
     margin-left: 20px !important; } }
+
 .video-infos hr {
   height: 0;
   margin: 0 20px 0 20px;
@@ -5179,8 +5090,7 @@ nav.pagination {
   padding: 20px 30px;
   text-align: center; }
 
-.video-infos .votes .plus,
-.video-infos .votes .moins {
+.video-infos .votes .plus, .video-infos .votes .moins {
   display: inline-block;
   width: 45%;
   padding: 0;
@@ -5188,8 +5098,7 @@ nav.pagination {
   text-align: center;
   cursor: pointer; }
 
-.video-infos .votes .plus:before,
-.video-infos .votes .moins:before {
+.video-infos .votes .plus:before, .video-infos .votes .moins:before {
   position: absolute;
   display: inline-block;
   width: 25px;
@@ -5202,20 +5111,19 @@ nav.pagination {
   text-align: center; }
 
 @media (min-width: 640px) {
-  .video-infos .votes .plus:before,
-  .video-infos .votes .moins:before {
+  .video-infos .votes .plus:before, .video-infos .votes .moins:before {
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
     -ms-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s; } }
+
 .video-infos .votes .plus:before {
   left: 0;
   content: "+";
   border: 1px solid #48a84f; }
 
-.video-infos .votes .plus:hover:before,
-.video-infos .votes .plus.active:before {
+.video-infos .votes .plus:hover:before, .video-infos .votes .plus.active:before {
   background-color: #48a84f;
   color: white; }
 
@@ -5224,8 +5132,7 @@ nav.pagination {
   content: "-";
   border: 1px solid #dd4e47; }
 
-.video-infos .votes .moins:hover:before,
-.video-infos .votes .moins.active:before {
+.video-infos .votes .moins:hover:before, .video-infos .votes .moins.active:before {
   background-color: #dd4e47;
   color: white; }
 
@@ -5235,19 +5142,18 @@ nav.pagination {
 .video-infos .votes .moins:active:before {
   border: 3px solid #dd4e47; }
 
-.video-infos .votes .plus:active:before,
-.video-infos .votes .moins:active:before {
+.video-infos .votes .plus:active:before, .video-infos .votes .moins:active:before {
   margin-top: -5px;
   margin-left: 38px; }
 
 @media (min-width: 640px) {
-  .video-infos .votes .plus:active:before,
-  .video-infos .votes .moins:active:before {
+  .video-infos .votes .plus:active:before, .video-infos .votes .moins:active:before {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
     -ms-transition: 0.1s;
     -o-transition: 0.1s;
     transition: 0.1s; } }
+
 .video-infos .votes .plus {
   color: #48a84f; }
 
@@ -5262,8 +5168,7 @@ nav.pagination {
   .video-infos .description.little {
     height: 110px; }
 
-.video-infos .description .inner-description,
-.video-infos .description .inner-export {
+.video-infos .description .inner-description, .video-infos .description .inner-export {
   height: 155px;
   max-height: 100%;
   padding-right: 10px;
@@ -5411,7 +5316,7 @@ nav.pagination {
   background-color: #ececec;
   position: relative;
   margin: 0 0 15px 0;
-  font-family: "Source Sans Pro",Arial; }
+  font-family: "Source Sans Pro", Arial; }
 
 #comments form textarea {
   width: 100%;

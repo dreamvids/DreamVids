@@ -150,6 +150,23 @@
 
 	</section>
 
+	<section class="playlist">
+		
+		<div class="playlist__title">Playlist "Animaux trop Choupis"</div>
+
+		<div class="playlist__videos">
+			
+			<div class="playlist__video playlist__video--playing bg-loader" data-background="<?php echo $thumbnail; ?>"></div>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/simpsons/627/200/3"></div></a>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
+
+		</div>
+
+	</section>
+
 	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())): ?>
 		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
 			<?php if ($video->isFlagged()) { ?>
