@@ -5,6 +5,8 @@ Back:
 
 	- Réintégrer le système de lecture de la V1
 
+	- Intégrer le système de lecture au lecteur embed (et vérifier l'exactitude de l'url iframe sur watch)
+
 	- Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
 
 	- Utiliser la base 64 en base pour images au lieu de les stocker
