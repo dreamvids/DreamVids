@@ -1,6 +1,6 @@
 function createLive(channelId) {
 	marmottajax.post({
-		'url': './',
+		'url': './lives',
 		'options': { 'channel-id': channelId }
 	}) .then(function(result) {
 		try {

@@ -23,13 +23,13 @@ Back:
 
 - Faire les "settings"
 
+- Page "qui sommes-nous", "Contributeurs", "Equipe"
+
 
 
 Admin:
 
 - Instaurer une licence pour les vidéos
-
-- Page "qui sommes-nous", "Contributeurs", "Equipe"
 
 
 
