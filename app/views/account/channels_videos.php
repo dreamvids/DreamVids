@@ -16,7 +16,7 @@
 				foreach($channel as $chan) { ?>
 
 			<div class="card video">
-				<div class="thumbnail bgLoader" data-background="<?php echo $chan->getBackground(); ?>">
+				<div class="thumbnail bg-loader" data-background="<?php echo $chan->getBackground(); ?>">
 					<div class="time">0</div>
 					<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>" class="overlay"></a>
 				</div>

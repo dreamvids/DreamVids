@@ -1,6 +1,6 @@
 
 /*
- *  Marmottajax 1.0.3
+ *  Marmottajax 1.0.4
  *  Envoyer et recevoir des informations simplement en JavaScript
  */
 
@@ -12,7 +12,7 @@ var marmottajax = function(options) {
 
 marmottajax.normalize = function(parameters) {
 
-    return parameters ? (typeof parameters === "string" ? { url: parameters } : parameters) : false;
+    return parameters ? typeof parameters === "string" ? { url: parameters } : parameters : null;
 
 };
 
@@ -58,7 +58,7 @@ marmottajax.put = function(parameters) {
 
 };
 
-marmottajax.delete = function(parameters) {
+marmottajax.delete_ = function(parameters) {
 
     if (parameters = marmottajax.normalize(parameters)) {
 
@@ -74,13 +74,13 @@ marmottajax.request = function(options) {
 
     if (!options) { return false; }
 
-    if (typeof options == "string") {
+    if (typeof options === "string") {
 
         options = { url: options };
 
     }
 
-    if (options.method === "POST" || options.method === "PUT" || options.method == "DELETE") {
+    if (options.method === "POST" || options.method === "PUT" || options.method === "DELETE") {
 
         var post = "?";
 
@@ -145,18 +145,6 @@ marmottajax.request = function(options) {
 
         }
 
-    }
-
-    this.xhr.returnSuccess = function(result) {
-
-        this.call("then", result);
-
-    };
-
-    this.xhr.returnError = function(message) {
-
-        this.call("error", message);
-
     };
 
     this.xhr.onreadystatechange = function() {
@@ -175,7 +163,7 @@ marmottajax.request = function(options) {
 
                 catch (error) {
 
-                    this.returnError("invalid json");
+                    this.call("error", "invalid json");
 
                     return false;
 
@@ -183,19 +171,19 @@ marmottajax.request = function(options) {
 
             }
 
-            this.returnSuccess(result);
+            this.call("then", result);
 
         }
 
         else if (this.readyState === 4 && this.status == 404) {
 
-            this.returnError("404");
+            this.call("error", "404");
 
         }
 
         else if (this.readyState === 4) {
 
-            this.returnError("unknow");
+            this.call("error", "unknow");
 
         }
 

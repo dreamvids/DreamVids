@@ -1,6 +1,8 @@
-Back: 
+Back
+================
 
-- Upload:
+- Upload: {
+
 	- Système d'upload + convertion sur le front puis déplacement (scp) sur le store
 
 	- Réintégrer le système de lecture de la V1
@@ -11,23 +13,26 @@ Back:
 
 	- Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: onajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
 
-- Boutons de partage/dl/intégration non codés (Partage/intégration: need du front end. Téléchargement: terminé.)
+}
 
-- Ajouter les playlists (need front)
+- Boutons de partage/téléchargement/intégration non codés
+
+- Ajouter les playlists
 
 - Mot de passe oublié
-
-- Footer
-
-- Dynmaiser (JS) les messages: pas de feedback à l'envoi et obligé de F5 pour voir les nouveaux
 
 - Pouvoir répondre aux commentaires
 
 - Faire les "settings"
 
+- Impossible de quitter un conversation privée
+
+- Footer
 
 
-Admin:
+
+Admin
+================
 
 - Instaurer une licence pour les vidéos
 
@@ -35,8 +40,9 @@ Admin:
 
 
 
-Front:
+Front
+================
 
 - Interface pour le live
 
-- Debug firefox des boutons partage et intégration (Wtf is this shit)
+- Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s

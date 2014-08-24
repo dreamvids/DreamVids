@@ -155,7 +155,11 @@
 
 				.members { color: #777; }
 
-				p { margin-top: 2px; }
+				p {
+
+					margin-top: 2px;
+
+				}
 			}
 		}
 	}
@@ -306,6 +310,8 @@
 					p {
 						clear: both;
 						color: #333;
+						padding-left: 0;
+						line-height: 5px;
 					}
 				}
 

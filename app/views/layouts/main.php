@@ -21,6 +21,17 @@
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
 
+			var _logged_ = false;
+
+			<?php if (Session::isActive()) { ?>
+
+			_logged_ = true;
+
+			var _my_pseudo_ = "<?php echo Session::get()->username ?>",
+				_my_avatar_ = "<?php echo Session::get()->getMainChannel()->getAvatar() ?>";
+
+			<?php } ?>
+
 		</script>
 
 		<div id="page">

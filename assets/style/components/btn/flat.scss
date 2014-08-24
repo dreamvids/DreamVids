@@ -1,0 +1,61 @@
+
+/* FLAT BTN
+   ============================= */
+
+.btn--flat {
+
+	overflow: hidden;
+   	
+   	@include transition(#{"outline 0.1s, outline-offset 0.1s"});
+
+	@include outline(transparent);
+
+}
+
+.btn--flat:focus {
+
+	@include outline;
+
+}
+
+@each $name, $color in $colors {
+
+	.btn--flat.btn--#{$name} {
+	
+		color: $color;
+
+	}
+
+	.btn--flat.btn--#{$name} .ripple {
+
+		background-color: $color;
+
+	}
+
+	.btn--flat.btn--#{$name}:focus {
+
+		@include outline($color);
+
+	}
+
+	.btn--flat.btn--outline-#{$name}:focus {
+
+		@include outline($color);
+
+	}
+
+	.btn--flat.btn--ripple-#{$name} .ripple {
+
+		background-color: $color;
+
+	}
+
+}
+
+.btn--flat.disabled {
+
+	color: $grey;
+	background: $light-grey;
+	outline: none!important;
+
+}
