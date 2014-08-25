@@ -6,3 +6,4 @@
 <script src="<?php echo JS.'filePreview.js'; ?>"></script>
 <script src="<?php echo JS.'channel_social.js'; ?>"></script>
 <script src="<?php echo JS.'channel_edit.js'; ?>"></script>
+<script src="<?php echo JS.'marmottajax.js'; ?>"></script>

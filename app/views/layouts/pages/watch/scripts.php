@@ -9,6 +9,7 @@
 <script src="<?php echo JS."player.js"; ?>"></script>
 <script src="<?php echo JS."subscribe.js"; ?>"></script>
 <script src="<?php echo JS.'admin.js'; ?>"></script>
+<script src="<?php echo JS.'marmottajax.js'; ?>"></script>
 
 <script>
 	

@@ -1355,7 +1355,7 @@ function set_exporter_input_value() {
 
 	if (autoplay) {
 
-		url += "?autoplay";
+		url += "/autoplay";
 
 	}
 
@@ -1368,12 +1368,10 @@ function set_exporter_input_value() {
 		var start_time = exporter_time_input.value,
 			times = start_time.split(":").reverse();
 
+		url += '/';
+		
 		for (var i = 0; i < times.length; i++) {
-
-			url += i === 0 & !autoplay ? "?" : "&";
-
-			url += time_url_format[i] + "=" + times[i];
-
+			url += times[i] + '/';
 		}
 
 	}

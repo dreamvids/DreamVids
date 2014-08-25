@@ -39,7 +39,7 @@
 		</ul>
 	</nav>
 
-	<?php if ($isUsersChannel): ?>
+	<?php if ($isUsersChannel) { ?>
 
 		<form class="social-message-form" method="post" action="<?php echo WEBROOT.'posts'; ?>" onsubmit="return false;">
 
@@ -54,12 +54,12 @@
 		</form>
 
 		<br><br>
-	<?php endif ?>
+	<?php } ?>
 
 	<aside id="channel-posts">
 		<?php foreach($posts as $post) { ?>
 			<div class="channel-post"> 
-				<img src="<?php echo $avatar ?>" alt="Avatar de la chaîne">
+				<img src="<?php echo $avatar ?>" alt="Avatar" />
 				<p><span class="channel-name"><?php echo $name; ?></span> a posté un message :</p>
 				<div class="social-message"><?php echo $post->content; ?></div>
 			</div>

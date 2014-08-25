@@ -8,3 +8,4 @@
 <script src="<?php echo JS."video.js"; ?>"></script>
 <script src="<?php echo JS."admin.js"; ?>"></script>
 <script src="<?php echo JS."live.js"; ?>"></script>
+<script src="<?php echo JS.'marmottajax.js'; ?>"></script>

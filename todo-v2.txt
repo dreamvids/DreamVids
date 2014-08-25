@@ -17,9 +17,7 @@
 
 }
 
-- Footer
-
-- Boutons de partage/téléchargement/intégration non codés
+- Footer (need front)
 
 - Ajouter les playlists
 
@@ -46,3 +44,5 @@ Front
 - Interface pour le live
 
 - Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
+
+- diviser le footer en 3 colonnes (en laissant tel quel ce qui y figure déjà)

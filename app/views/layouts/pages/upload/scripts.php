@@ -4,3 +4,4 @@
 <script src="<?php echo JS.'upload.js'; ?>"></script>
 <script src="<?php echo JS.'interactions.js'; ?>"></script>
 <script src="<?php echo JS.'filePreview.js'; ?>"></script>
+<script src="<?php echo JS.'marmottajax.js'; ?>"></script>
