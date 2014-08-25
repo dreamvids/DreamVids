@@ -233,11 +233,11 @@ function loadDiscution(id) {
         createForm.className += " none";
 
         var h1 = document.createElement('h1');
-        h1.innerHTML = infos.title;
-        discutionInfos.appendChild(h1);
+        h1.innerHTML = '<b>' + infos.title + '</b>';
 
         var members = document.createElement('span');
         members.className = "members";
+        members.innerHTML = ' - ';
 
         for (var m = 0; m < infos.members.length; m++) {
 
@@ -261,19 +261,21 @@ function loadDiscution(id) {
 
         }
 
-        discutionInfos.appendChild(members);
+        h1.appendChild(members);
+        discutionInfos.appendChild(h1);
 
         discutionInfos.appendChild(document.createElement('br'));
 
         var leaveLink = document.createElement('a');
-        leaveLink.innerHTML = 'Quitter';
+        leaveLink.innerHTML = '<span style="color:red;font-weight:bold;cursor:pointer">Quitter</span>';
 
         leaveLink.addEventListener("click", function(id) {
 
             return function() {
-
-                leaveDiscution(id);
-
+            	if (confirm("Êtes-vous sur de vouloir quitter cette conversaton ?")) {
+            		
+            		leaveDiscution(id);
+            	}
             };
             
         }(id), false);
@@ -301,9 +303,8 @@ function loadDiscution(id) {
 
 function leaveDiscution(id) {
 
-    marmottajax({
+    marmottajax.delete_({
 
-        method: 'DELETE',
         url: '../conversations/' + id,
         
         options: {
@@ -314,7 +315,7 @@ function leaveDiscution(id) {
 
     }).then(function(result) {
 
-        console.info('deleted');
+        window.location.reload();
 
     });
 
@@ -486,4 +487,4 @@ setInterval(function() {
 
     }
 
-}, 4000);
+}, 10000);

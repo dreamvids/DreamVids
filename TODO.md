@@ -27,7 +27,7 @@
 
 - Page "qui sommes-nous", "Contributeurs", "Equipe"
 
-- Impossible de quitter un conversation privée
+- Petits bugs dans les notifications (images, liens) + ajouter les notifs de new MP
 
 
 
