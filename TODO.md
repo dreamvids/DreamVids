@@ -46,3 +46,5 @@ Front
 - Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
 
 - diviser le footer en 3 colonnes (en laissant tel quel ce qui y figure déjà)
+
+- Bouton "s'abonner" sur la page watch bugger: la couleur et le texte ne s'adapte pas lors du click sur le bouton
