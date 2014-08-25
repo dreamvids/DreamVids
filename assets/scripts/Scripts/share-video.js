@@ -11,26 +11,21 @@ new Script({
 
 	call: function() {
 
-		var share_video_icon = document.getElementById("share-video-icon") || document.createElement("div");
+		if (!document.getElementById("share-video-icon")) {
 
-		on(share_video_icon, "CLICK", function() {
+			return false;
 
-			var share_video_block = document.getElementById("share-video-block") || document.createElement("div"),
-				video_info_description = document.getElementById("video-info-description") || document.createElement("div");
+		}
 
-			if (share_video_block.className.search("show") > -1) {
+		var share_video_icon = El("#share-video-icon");
 
-				share_video_block.className = share_video_block.className.replace("show", "");
-				video_info_description.className = video_info_description.className.replace("little", "");
+		share_video_icon.on("CLICK", function() {
 
-			}
+			var share_video_block = El("#share-video-block"),
+				video_info_description = El("#video-info-description");
 
-			else {
-
-				share_video_block.className += " show";
-				video_info_description.className += " little";
-
-			}
+			share_video_block.toogle_class("show");
+			video_info_description.toogle_class("little");
 
 		});
 

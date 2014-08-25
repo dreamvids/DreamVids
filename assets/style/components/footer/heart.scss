@@ -40,6 +40,22 @@
 
 }
 
+@-ms-keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}
+
+@-o-keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}
+
 @keyframes footer-heart-animation {
 
     0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }

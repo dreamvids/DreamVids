@@ -198,7 +198,7 @@ function Element(name, settings) {
 
 		return function(name) {
 
-			element.className = (" " + element.className + " ").replace( " " + name + " ", "");;
+			element.className = (" " + element.className + " ").replace(" " + name + " ", " ");
 
 			return El(element);
 

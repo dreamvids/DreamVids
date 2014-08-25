@@ -10,18 +10,6 @@
  * lanceur de taches Grunt. Pour plus d'infos,
  * rendez-vous dans le README du dossier `assets`
  */
-/**
- * ATTENTION ! IL EST INUTILE DE MODIFIER CE FICHIER
- * CAR  VOS  MODIFICATIONS SERONT  ECRASÉES  PAR  LE
- * PROCHAIN COMMIT
- *
- * Pour modifier le contenu de ce fichier, il faut
- * modifier ses sources qui se situent soit dans
- * le dossier `style`, le dossier `scripts` selon
- * vos besoin. Il faut ensuite compiler à l'aide du
- * lanceur de taches Grunt. Pour plus d'infos,
- * rendez-vous dans le README du dossier `assets`
- */
 /*(function(win, doc){
 
 var window = win,
@@ -799,7 +787,7 @@ function Element(name, settings) {
 
 		return function(name) {
 
-			element.className = (" " + element.className + " ").replace( " " + name + " ", "");;
+			element.className = (" " + element.className + " ").replace(" " + name + " ", " ");
 
 			return El(element);
 
@@ -1114,9 +1102,11 @@ var DOM = Component.generate = Component.gen = function(html, parameters) {
 
 	html = html.replace(/^\s+|\s+$/g, "");
 
-	html = html.replace(/<(\w*)( (.+?))?\/>/g,'<$1$2></$1>');
+	html = html.replace(/<([-\w]*)( (.+?))?\/>/g,'<$1$2></$1>');
 
-	html = html.replace(/<(\w*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,'</div>');
+	html = html.replace(/<([-\w]*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,'</div>');
+
+	console.log(html);
 
 	var element = document.createElement("div");
 	element.innerHTML = html;
@@ -1387,6 +1377,45 @@ c_card.render = function(component, $) {
 };
 
 /**
+ * Components/channel-post/main.js
+ *
+ * Channel social post component
+ */
+
+var c_channel_post = new Component("channel-post");
+
+c_channel_post.render = function(component, $) {
+
+	var channel_post = component.add(new Element("div.channel-post"));
+
+		var avatar = channel_post.add(new Element("img"));
+		avatar.src = $.avatar;
+
+		var p = channel_post.add(new Element("p"));
+
+			var channel_name = p.add(new Element("span.channel-name"));
+			channel_name.innerHTML = $.channel;
+
+		p.innerHTML += " a posté un message :";
+
+		var message = channel_post.add(new Element("div.social-message"));
+		message.innerHTML = $.message;
+
+	component.inner(channel_post);
+
+};
+
+/* TEMPLATE
+
+<div class="channel-post">
+
+	<img src="${avatar}">
+	<p><span class="channel-name">${name}</span> a posté un message :</p>
+	<div class="social-message">${message}</div>
+
+</div> */
+
+/**
  * Components/ripple/main.js
  *
  * Ripple component
@@ -1444,30 +1473,31 @@ c_ripple.render = function(component, $) {
 
 function background_loader(element) {
 
-     this.element = element;
-     this.src = this.element.getAttribute("data-background");;
-     this.element.style.backgroundImage = "url(" + this.src + ")";
+    this.element = El(element);
+    this.src = this.element.getAttribute("data-background");;
+    this.element.style.backgroundImage = "url(" + this.src + ")";
 
-     this.imgLoader = new Image();
-     this.imgLoader.src = this.src;
+    this.imgLoader = new Image();
+    this.imgLoader.src = this.src;
 
-     on(this.imgLoader, "load", function(event) {
+    on(this.imgLoader, "load", function(event, element) {
 
-         element.className = element.className.replace("bg-loader", "");
+        element.remove_class("bg-loader");
 
-         element.className += " bg-loader-transition bg-loaded";
+        element.add_class("bg-loader-transition");
+        element.add_class("bg-loaded");
 
-         setTimeout(function(element) {
+        setTimeout(function(element) {
 
-             return function() {
+            return function() {
 
-                 element.className = element.className.replace("bg-loader-transition", "");
+                element.remove_class("bg-loader-transition");
 
-             }
+            }
 
-         }(element), 300);
+        }(element), 300);
 
-     });
+    }, element);
 
  }
 
@@ -1497,66 +1527,60 @@ new Script({
  * TEST SCRIPT
  */
 
+function postMessage() {
+
+ 	marmottajax.post({
+
+ 		url: "../../../posts",
+ 		json: true,
+
+ 		options: {
+
+ 			"post-message-submit": "lol",
+ 			channel: El("#channel-social-message-submit").getAttribute("data-channel-id"),
+ 			"post-content": El("#post-content").value
+
+ 		}
+
+ 	}).then(function(channel) {
+
+ 		return function(result) {
+	
+ 			El("#channel-posts").add_first(DOM('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
+	
+ 				avatar: _my_avatar_,
+ 				channel: channel,
+ 				message: result.content
+	
+ 			}));
+
+ 		}
+
+ 	}(El("#channel-social-message-submit").getAttribute("data-channel-id")));
+
+ 	El("#post-content").value = "";
+
+}
+
 new Script({
 
 	pages: ["channel"],
 
 	call: function() {
 
-		console.log('test');
+		El("#channel-social-message-submit").on("click", postMessage);
+
+		El("#post-content").on("keydown", function(event) {
+
+		    if (event.keyCode === 13 && event.ctrlKey) {
+
+		        postMessage();
+
+		    }
+
+		});
 
 	}
-
-});
-
-function postMessage() {
-
-	marmottajax.post({
-
-		url: "../../../posts",
-
-		options: {
-
-			"post-message-submit": "lol",
-			channel: El("#channel-social-message-submit").getAttribute("data-channel-id"),
-			"post-content": El("#post-content").value
-
-		}
-
-	}).then(function(result) {
-
-		try {
-
-			var json = JSON.parse(result);
-			
-			var postDiv = document.createElement('div');
-			postDiv.className = 'channel-post';
-			postDiv.setAttribute('style', 'background-color: #40a6e0; width: 50%; padding: 10px; margin-bottom: 1%;');
-
-			var content = document.createTextNode(json.content);
-			postDiv.appendChild(content);
-
-			El("#channel-posts").add_first(postDiv);
-
-		}
-
-		catch(e) {}
-
-	});
-
-	document.getElementById("post-content").value = '';
-
-}
-
-El("#channel-social-message-submit").on("click", postMessage);
-
-El("#post-content").on("keydown", function(event) {
-
-    if (event.keyCode === 13 && event.ctrlKey) {
-
-        postMessage();
-
-    }
 
 });
 
@@ -1568,12 +1592,18 @@ El("#post-content").on("keydown", function(event) {
 
 function set_exporter_input_value() {
 
-	var exporter_input = document.getElementById("exporter-input") || document.createElement("div"),
+	if (!document.getElementById("exporter-input")) {
 
-		exporter_quality = document.getElementById("exporter-quality") || document.createElement("div"),
-		exporter_autoplay = document.getElementById("exporter-autoplay") || document.createElement("div"),
-		exporter_time_checkbox = document.getElementById("exporter-time-checkbox") || document.createElement("div"),
-		exporter_time_input = document.getElementById("exporter-time-input") || document.createElement("div");
+		return false;
+
+	}
+
+	var exporter_input = El("#exporter-input"),
+
+		exporter_quality = El("#exporter-quality"),
+		exporter_autoplay = El("#exporter-autoplay"),
+		exporter_time_checkbox = El("#exporter-time-checkbox"),
+		exporter_time_input = El("#exporter-time-input");
 
 	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
 
@@ -1621,41 +1651,38 @@ new Script({
 
 	call: function() {
 
-		var embed_video_icon = document.getElementById("embed-video-icon") || document.createElement("div");
+		if (!document.getElementById("embed-video-icon")) {
+
+			return false;
+
+		}
+
+		var embed_video_icon = El("#embed-video-icon");
 
 		on(embed_video_icon, "CLICK", function() {
 
-			var video_info_description = document.getElementById("video-info-description") || document.createElement("div");
+			var video_info_description = El("#video-info-description");
 
-			if (video_info_description.className.search("export") > -1) {
+			if (video_info_description.has_class("export")) {
 
-				video_info_description.className = video_info_description.className.replace("export", "");
+				video_info_description.remove_class("export");
 
 			}
 
 			else {
 
-				video_info_description.className += " export";
+				video_info_description.add_class("export");
 
-				var exporter_input = document.getElementById("exporter-input") || document.createElement("div");
-
-				exporter_input.select();
+				El("#exporter-input").select();
 
 			}
 
 		});
 
-		var exporter_input = document.getElementById("exporter-input") || document.createElement("div"),
-
-			exporter_quality = document.getElementById("exporter-quality") || document.createElement("div"),
-			exporter_autoplay = document.getElementById("exporter-autoplay") || document.createElement("div"),
-			exporter_time_checkbox = document.getElementById("exporter-time-checkbox") || document.createElement("div"),
-			exporter_time_input = document.getElementById("exporter-time-input") || document.createElement("div");
-
-		on(exporter_quality, "change", set_exporter_input_value);
-		on(exporter_autoplay, "change", set_exporter_input_value);
-		on(exporter_time_checkbox, "change", set_exporter_input_value);
-		on(exporter_time_input, "change", set_exporter_input_value);
+		El("#exporter-quality").on("change", set_exporter_input_value),
+		El("#exporter-autoplay").on("change", set_exporter_input_value),
+		El("#exporter-time-checkbox").on("change", set_exporter_input_value),
+		El("#exporter-time-input").on("change", set_exporter_input_value);
 
 		set_exporter_input_value();
 
@@ -1695,26 +1722,21 @@ new Script({
 
 	call: function() {
 
-		var share_video_icon = document.getElementById("share-video-icon") || document.createElement("div");
+		if (!document.getElementById("share-video-icon")) {
 
-		on(share_video_icon, "CLICK", function() {
+			return false;
 
-			var share_video_block = document.getElementById("share-video-block") || document.createElement("div"),
-				video_info_description = document.getElementById("video-info-description") || document.createElement("div");
+		}
 
-			if (share_video_block.className.search("show") > -1) {
+		var share_video_icon = El("#share-video-icon");
 
-				share_video_block.className = share_video_block.className.replace("show", "");
-				video_info_description.className = video_info_description.className.replace("little", "");
+		share_video_icon.on("CLICK", function() {
 
-			}
+			var share_video_block = El("#share-video-block"),
+				video_info_description = El("#video-info-description");
 
-			else {
-
-				share_video_block.className += " show";
-				video_info_description.className += " little";
-
-			}
+			share_video_block.toogle_class("show");
+			video_info_description.toogle_class("little");
 
 		});
 

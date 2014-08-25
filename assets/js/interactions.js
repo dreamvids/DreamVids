@@ -81,7 +81,7 @@ hover_subscribe.addEventListener("click", function() {
 
             if (hover_subscribe.childNodes[i].tagName === "I") {
 
-                hover_subscribe.childNodes[i].innerHTML = "Se désabonner";
+                hover_subscribe.childNodes[i].innerHTML = "Abonné";
 
             }
 

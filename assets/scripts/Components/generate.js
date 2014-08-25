@@ -15,9 +15,11 @@ var DOM = Component.generate = Component.gen = function(html, parameters) {
 
 	html = html.replace(/^\s+|\s+$/g, "");
 
-	html = html.replace(/<(\w*)( (.+?))?\/>/g,'<$1$2></$1>');
+	html = html.replace(/<([-\w]*)( (.+?))?\/>/g,'<$1$2></$1>');
 
-	html = html.replace(/<(\w*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,'</div>');
+	html = html.replace(/<([-\w]*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,'</div>');
+
+	console.log(html);
 
 	var element = document.createElement("div");
 	element.innerHTML = html;
