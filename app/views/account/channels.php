@@ -19,7 +19,7 @@
 			<?php foreach ($channels as $chan): ?>
 				<div class="card channel long">
 					<a href="<?php echo WEBROOT.'channel/'.$chan->id ?>">
-						<div class="avatar bgLoader" data-background="<?php echo $chan->getAvatar(); ?>"></div>
+						<div class="avatar bg-loader" data-background="<?php echo $chan->getAvatar(); ?>"></div>
 					</a>
 
 					<div class="description">

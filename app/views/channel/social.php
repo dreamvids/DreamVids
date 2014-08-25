@@ -1,5 +1,5 @@
 <div class="content wide channel">
-	<div class="bgLoader" id="background-wide" data-background="<?php echo $background; ?>"></div>
+	<div class="bg-loader" id="background-wide" data-background="<?php echo $background; ?>"></div>
 
 	<section class="inner">
 		<ul class="top">
@@ -8,7 +8,8 @@
 		</ul>
 
 		<div class="left">
-			<span class="bgLoader" data-background="http://lorempicsum.com/up/350/200/6"></span>
+			<span class="bg-loader" data-background="<?php echo $avatar; ?>"></span>
+
 			<p><?php echo $name; ?></p>
 
 			<?php if(!$isUsersChannel): ?>
@@ -33,12 +34,12 @@
 <div class="content">
 	<nav class="tabs">
 		<ul>
-			<li><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
-			<li class="channel/current"><a href="<?php echo WEBROOT.'channel/'.$name.'/social/'; ?>">Social</a></li>
+			<li class="channel"><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
+			<li class="current"><a href="<?php echo WEBROOT.'channel/'.$name.'/social/'; ?>">Social</a></li>
 		</ul>
 	</nav>
 
-	<?php if ($isUsersChannel): ?>
+	<?php if ($isUsersChannel) { ?>
 
 		<form class="social-message-form" method="post" action="<?php echo WEBROOT.'posts'; ?>" onsubmit="return false;">
 
@@ -53,12 +54,12 @@
 		</form>
 
 		<br><br>
-	<?php endif ?>
+	<?php } ?>
 
 	<aside id="channel-posts">
 		<?php foreach($posts as $post) { ?>
 			<div class="channel-post"> 
-				<img src="<?php echo $avatar ?>" alt="Avatar de la chaîne">
+				<img src="<?php echo $avatar ?>" alt="Avatar" />
 				<p><span class="channel-name"><?php echo $name; ?></span> a posté un message :</p>
 				<div class="social-message"><?php echo $post->content; ?></div>
 			</div>

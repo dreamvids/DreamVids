@@ -8,12 +8,27 @@ module.exports = function(grunt) {
 
 				src: [
 
-					"assets/scripts/Core/main.js",
+					"assets/scripts/intro.js",
+					"assets/scripts/main.js",
 
-					"assets/scripts/Utils/librairy/**/*.js",
-					"assets/scripts/Utils/**/*.js",
+					"assets/scripts/Events/main.js",
+					"assets/scripts/Events/**/*.js",
+					
+					"assets/scripts/Core/**/*.js",
+
+					"assets/scripts/Element/main.js",
+					"assets/scripts/Element/**/*.js",
+
+					"assets/scripts/Components/main.js",
+					"assets/scripts/Components/*.js",
+					"assets/scripts/Components/*/main.js",
+					"assets/scripts/Components/**/*.js",
+
+					"assets/scripts/Emitters/*/main.js",
+					"assets/scripts/Emitters/**/*.js",
 
 					"assets/scripts/**/*.js",
+					"assets/scripts/outro.js"
 
 				],
 
@@ -83,7 +98,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 
-	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
 
 	grunt.loadNpmTasks("grunt-contrib-watch");

@@ -21,6 +21,17 @@
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
 
+			var _logged_ = false;
+
+			<?php if (Session::isActive()) { ?>
+
+			_logged_ = true;
+
+			var _my_pseudo_ = "<?php echo Session::get()->username ?>",
+				_my_avatar_ = "<?php echo Session::get()->getMainChannel()->getAvatar() ?>";
+
+			<?php } ?>
+
 		</script>
 
 		<div id="page">
@@ -133,7 +144,7 @@
 						<span class="love">Fait avec le <i>♥</i></span>
 
 						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
-						dreamvids.fr - CopyLeft DeamVids 2013-<?php echo date('Y'); ?>
+						DreamVids 2013-<?php echo date('Y'); ?>
 						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
 						
 					</div>

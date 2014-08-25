@@ -40,27 +40,7 @@ new Script({
 
 	call: function() {
 
-		var elements = document.getElementsByClassName("bgLoader");
-
-		if (elements.length) {
-
-			console.error(elements.length + " éléments possedent la classe bgLoader qui n'est plus utilisée.");
-
-		}
-
-		else {
-
-			elements = [];
-
-		}
-
-		var new_class_elements = document.getElementsByClassName("bg-loader");
-
-		for (var i = 0; i < new_class_elements.length; i++) {
-
-			elements.push(new_class_elements[i]);
-			
-		}
+		var elements = document.getElementsByClassName("bg-loader");
 
 		if (elements && elements.length) {
 

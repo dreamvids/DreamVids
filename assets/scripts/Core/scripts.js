@@ -1,13 +1,11 @@
 
 /**
- * Core/main.js
+ * Core/scripts.js
  *
- * MAIN CORE FILE
+ * MAIN SCRIPT SCRIPT
  */
 
-var Application = {};
-
-var _scripts_ = [];
+Application.scripts = [];
 
 var Script = function(script) {
 
@@ -15,7 +13,7 @@ var Script = function(script) {
 
 	this.to_call = script.call;
 
-	_scripts_.push(this);
+	Application.scripts.push(this);
 
 };
 

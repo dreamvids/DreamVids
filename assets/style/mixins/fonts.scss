@@ -20,13 +20,6 @@
 
 }
 
-@mixin font-minecraft($size: 42px) {
-
-	font-family: $font-family-minecraft;
-	font-size: $size;
-
-}
-
 @mixin font-title($size: 34px) {
 
 	font-family: $font-family-title;

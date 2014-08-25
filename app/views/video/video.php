@@ -1,6 +1,6 @@
 <script>
 	
-	var _VIDEO_ID_ = "llgZw6-0";
+	var _VIDEO_ID_ = "<?php echo $video->id; ?>";
 
 </script>
 
@@ -88,7 +88,7 @@
 
 			<div class="inner-export">
 
-				<input id="exporter-input" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//dreamvids.fr/embed/llgZw6-0" allowfullscreen frameborder="0"></iframe>'>
+				<input id="exporter-input" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//dreamvids.fr/embed/<?php echo $video->id; ?>" allowfullscreen frameborder="0"></iframe>'>
 
 				<div class="form no-style">
 					
@@ -137,14 +137,14 @@
 
 				</script>
 
-				<div class="fb-share-button" data-href="http://dreamvids.fr/&<?php echo $video->id; ?>" data-type="button_count"></div>
+				<div class="fb-share-button" data-href="http://dreamvids.fr/watch/<?php echo $video->id; ?>" data-type="button_count"></div>
 			
 			</div>
 
-			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');">
-			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');">
-			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
+			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>" />
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" />
+			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');" />
+			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>" />
 
 		</div>
 

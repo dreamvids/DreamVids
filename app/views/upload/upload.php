@@ -1,5 +1,5 @@
 <div id="upload-large-modal">
-	<div class="bgLoader" id="backgroundLoader" data-background="<?php echo IMG.'backgrounds/002.jpg'; ?>"></div>
+	<div class="bg-loader" id="backgroundLoader" data-background="<?php echo IMG.'backgrounds/002.jpg'; ?>"></div>
 	<section id="message-upload">
 		<h3>Déposez votre fichier vidéo dans cette zone pour l'uploader</h3>
 		<p>(Pour selectionner votre fichier manuellement cliquez sur le nuage)</p>

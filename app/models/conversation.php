@@ -29,7 +29,8 @@ class Conversation extends ActiveRecord\Model {
 	public function removeChannel($channel) {
 		if(is_object($channel)) {
 			$members_ids = str_replace($channel->id.';', '', $this->members_ids);
-			echo $members_ids;
+			$this->members_ids = $members_ids;
+			$this->save();
 		}
 	}
 

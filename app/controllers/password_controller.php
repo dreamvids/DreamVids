@@ -10,6 +10,7 @@ class PasswordController extends Controller {
 	
 	public function __construct() {
 		$this->denyAction(Action::UPDATE);
+		$this->denyAction(Action::DESTROY);
 	}
 	
 	public function index($request) {
@@ -63,22 +64,35 @@ class PasswordController extends Controller {
 			$message = 'Vous avez demandé la réinitialisation de votre mot de passe DreamVids. Clique sur le lien ci-dessous pour accéder à votre nouveau mot de passe :<br /><br />
 			<a href="http://localhost/DreamVids/password/'.$key.'">http://dreamvids.fr/password/'.$key.'</a>';
 			mail($email, 'DreamVids - Mot de passe oublié', $message, $headers);
-			$resp->addMessage(ViewMessage::success('Un E-Mail vient de vous être envoyé. Cliquez sur le lien qu\'il contient !'));
+			$resp->addMessage(ViewMessage::success('Vous allez recevoir un E-Mail à l\'adresse '.$email.', suivez-en les instructions.'));
 		}
 		else {
 			$resp->addMessage(ViewMessage::error('Merci de renseigner une Adresse E-Mail OU un Pseudo.'));
 		}
 		return $resp;
 	}
-	// je kiff cette musique les gens <3 20/08/2014 18:37 #LiveCoding #Wesh
-	public function destroy($id, $request) {
-		
-	}
 	
+	// je kiff cette musique les gens <3 20/08/2014 18:37 #LiveCoding #Wesh (KDrew - Bullseye)
 
-	public function get($id, $request){
-		
+	public function get($key, $request){
+		if (Password::exists(array('key' => $key))) {
+			$pass = Password::find_by_key($key);
+			$user = User::find($pass->user_id);
+			$pass->delete();
+			$pass = Password::generatePass(9);
+			$user->pass = sha1($pass);
+			$user->save();
+			$resp = new ViewResponse('login/login');
+			$resp->addMessage(ViewMessage::success('Voici votre nouveau mot de passe: <b>'.$pass.'</b>. Connectez-vous dès maintenant !'));
+			return $resp;
+		}
+		else {
+			$resp = new ViewResponse('password/password');
+			$resp->addMessage(ViewMessage::error('Clé invalide ou expirée, merci de recommencer la procédure'));
+			return $resp;
+		}
 	}
 	
 	public function update($id, $request){}
+	public function destroy($id, $request){}
 }

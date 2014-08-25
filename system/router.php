@@ -178,6 +178,14 @@ class Router {
 			case Method::DELETE:
 				if(count($uriParameters) == 2) {
 					if($controller->isActionAllowed(Action::DESTROY)) {
+						$parameters = array();
+						parse_str(file_get_contents('php://input'), $parameters);
+						$request->setParameters($parameters);
+
+						if(empty($parameters) && !empty($_POST)) { // If the request is not a real DELETE request but needs to be handled like one (html form)
+							$request->setParameters($_POST);
+						}
+						
 						$response = call_user_func_array(array($controller, 'destroy'), array(Utils::secure($uriParameters[1]), $request));
 						Utils::sendResponse($response);
 					}
