@@ -1,4 +1,4 @@
-
+/*
 window.Application = Application;
 
-})(window, document);
+})(window, document);*/

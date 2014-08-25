@@ -16,10 +16,8 @@ function background_loader(element) {
 
      on(this.imgLoader, "load", function(event) {
 
-         element.className = element.className.replace("bgLoader", "");
          element.className = element.className.replace("bg-loader", "");
 
-         element.className += " bgLoaderTransition bgLoaded";
          element.className += " bg-loader-transition bg-loaded";
 
          setTimeout(function(element) {

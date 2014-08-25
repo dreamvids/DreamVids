@@ -1,6 +1,5 @@
 <script src="<?php echo JS.'script.js'; ?>"></script>
 
-<script src="<?php echo JS.'marmottajax.js'; ?>"></script>
 <script src="<?php echo JS.'utils.js'; ?>"></script>
 <script src="<?php echo JS.'interactions.js'; ?>"></script>
 <script src="<?php echo JS.'comment.js'; ?>"></script>

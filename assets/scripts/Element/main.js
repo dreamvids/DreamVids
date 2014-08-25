@@ -78,6 +78,61 @@ function Element(name, settings) {
 
 	}(element);
 
+	element.add_first = function(element) {
+
+		return function(child) {
+
+			if (child.nodeName === "#document-fragment") {
+
+				var array = [],
+					childs = child.childNodes,
+					length = childs.length;
+
+				for (var i = 0; i < length; i++) {
+
+					element.insertBefore(childs[0], element.firstChild);
+
+					array.push(element.childNodes[element.childNodes.length - 1]);
+
+				}
+
+				return array;
+
+			}
+
+			else if (child.length) {
+
+				for (var i = 0; i < child.length; i++) {
+					
+					var array = [],
+						length = child.length;
+
+					for (var i = 0; i < length; i++) {
+
+						element.insertBefore(child[0], element.firstChild);
+
+						array.push(element.childNodes[element.childNodes.length - 1]);
+
+					}
+
+					return array;
+
+				}
+
+			}
+
+			else {
+
+				element.insertBefore(child, element.firstChild);
+
+				return El(child);
+
+			}
+			
+		}
+
+	}(element);
+
 	element.on = function(element) {
 
 		return function(event, callback, binding) {

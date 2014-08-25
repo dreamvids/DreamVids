@@ -25,7 +25,7 @@ function set_exporter_input_value() {
 
 	if (autoplay) {
 
-		url += "?autoplay";
+		url += "/autoplay";
 
 	}
 
@@ -40,9 +40,11 @@ function set_exporter_input_value() {
 
 		for (var i = 0; i < times.length; i++) {
 
-			url += i === 0 & !autoplay ? "?" : "&";
+			/*url += i === 0 & !autoplay ? "?" : "&";
 
-			url += time_url_format[i] + "=" + times[i];
+			url += time_url_format[i] + "=" + times[i];*/
+
+			url += times[i] + '/';
 
 		}
 

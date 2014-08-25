@@ -1,3 +1,15 @@
+/**
+ * ATTENTION ! IL EST INUTILE DE MODIFIER CE FICHIER
+ * CAR  VOS  MODIFICATIONS SERONT  ECRASÉES  PAR  LE
+ * PROCHAIN COMMIT
+ *
+ * Pour modifier le contenu de ce fichier, il faut
+ * modifier ses sources qui se situent soit dans
+ * le dossier `style`, le dossier `scripts` selon
+ * vos besoin. Il faut ensuite compiler à l'aide du
+ * lanceur de taches Grunt. Pour plus d'infos,
+ * rendez-vous dans le README du dossier `assets`
+ */
 @charset "CP850";
 /**
  * main.scss
@@ -5445,7 +5457,7 @@ nav.pagination {
 
 /* Partie "sociale" d'une chaîne
 ---------------------------------------------------------- */
-#channem-posts {
+#channel-posts {
   display: block;
   height: auto; }
 
@@ -5455,7 +5467,8 @@ nav.pagination {
   width: 100%;
   height: 45px;
   line-height: 45px;
-  font-size: 14px; }
+  font-size: 14px;
+  clear: both; }
 
 .channel-post img {
   height: 25px;

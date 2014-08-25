@@ -58,7 +58,7 @@ marmottajax.put = function(parameters) {
 
 };
 
-marmottajax.delete_ = function(parameters) {
+marmottajax.destroy = marmottajax.remove = marmottajax.delete_ = function(parameters) {
 
     if (parameters = marmottajax.normalize(parameters)) {
 
