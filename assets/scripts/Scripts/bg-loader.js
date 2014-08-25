@@ -7,32 +7,31 @@
 
 function background_loader(element) {
 
-     this.element = element;
-     this.src = this.element.getAttribute("data-background");;
-     this.element.style.backgroundImage = "url(" + this.src + ")";
+    this.element = El(element);
+    this.src = this.element.getAttribute("data-background");;
+    this.element.style.backgroundImage = "url(" + this.src + ")";
 
-     this.imgLoader = new Image();
-     this.imgLoader.src = this.src;
+    this.imgLoader = new Image();
+    this.imgLoader.src = this.src;
 
-     on(this.imgLoader, "load", function(event) {
+    on(this.imgLoader, "load", function(event, element) {
 
-         element.className = element.className.replace("bgLoader", "");
-         element.className = element.className.replace("bg-loader", "");
+        element.remove_class("bg-loader");
 
-         element.className += " bgLoaderTransition bgLoaded";
-         element.className += " bg-loader-transition bg-loaded";
+        element.add_class("bg-loader-transition");
+        element.add_class("bg-loaded");
 
-         setTimeout(function(element) {
+        setTimeout(function(element) {
 
-             return function() {
+            return function() {
 
-                 element.className = element.className.replace("bg-loader-transition", "");
+                element.remove_class("bg-loader-transition");
 
-             }
+            }
 
-         }(element), 300);
+        }(element), 300);
 
-     });
+    }, element);
 
  }
 

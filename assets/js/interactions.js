@@ -53,12 +53,21 @@ hover_subscribe.addEventListener("click", function() {
     if (hover_subscribe.className == "subscribed") {
 
         hover_subscribe.className = "";
-        hover_subscribe.childNodes[0].innerHTML = "S'abonner";
+
+        for (var i = 0; i < hover_subscribe.childNodes.length; i++) {
+
+            if (hover_subscribe.childNodes[i].tagName === "I") {
+
+                hover_subscribe.childNodes[i].innerHTML = "S'abonner";
+
+            }
+
+        }
 
         marmottajax.put({
 
-            'url': '../channel/' + channel,
-            'options': { unsubscribe: true }
+            url: "../channel/" + channel,
+            options: { unsubscribe: true }
 
         });
 
@@ -67,11 +76,22 @@ hover_subscribe.addEventListener("click", function() {
     else {
 
         hover_subscribe.className = "subscribed";
-        hover_subscribe.childNodes[0].innerHTML = "Abonné";
 
-       marmottajax.put({
-            'url': '../channel/' + channel,
-            'options': { subscribe: true }
+        for (var i = 0; i < hover_subscribe.childNodes.length; i++) {
+
+            if (hover_subscribe.childNodes[i].tagName === "I") {
+
+                hover_subscribe.childNodes[i].innerHTML = "Abonné";
+
+            }
+
+        }
+
+        marmottajax.put({
+
+            url: "../channel/" + channel,
+            options: { subscribe: true }
+
         });
 
     }

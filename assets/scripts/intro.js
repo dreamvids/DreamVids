@@ -1,4 +1,4 @@
-(function(win, doc){
+/*(function(win, doc){
 
 var window = win,
-	document = doc;
+	document = doc;*/

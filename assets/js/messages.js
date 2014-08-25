@@ -321,7 +321,7 @@ function leaveDiscution(id) {
 
 }
 
-messageSubmit.addEventListener("click", function(event) {
+function submitMessage() {
 
     marmottajax.post({
 
@@ -384,6 +384,18 @@ messageSubmit.addEventListener("click", function(event) {
 
     messageText.value = "";
     messageText.focus();
+
+}
+
+messageSubmit.addEventListener("click", submitMessage, false);
+
+messageText.addEventListener("keydown", function(event) {
+
+    if (event.keyCode === 13 && event.ctrlKey) {
+
+        submitMessage();
+
+    }
 
 }, false);
 

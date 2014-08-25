@@ -7,12 +7,18 @@
 
 function set_exporter_input_value() {
 
-	var exporter_input = document.getElementById("exporter-input") || document.createElement("div"),
+	if (!document.getElementById("exporter-input")) {
 
-		exporter_quality = document.getElementById("exporter-quality") || document.createElement("div"),
-		exporter_autoplay = document.getElementById("exporter-autoplay") || document.createElement("div"),
-		exporter_time_checkbox = document.getElementById("exporter-time-checkbox") || document.createElement("div"),
-		exporter_time_input = document.getElementById("exporter-time-input") || document.createElement("div");
+		return false;
+
+	}
+
+	var exporter_input = El("#exporter-input"),
+
+		exporter_quality = El("#exporter-quality"),
+		exporter_autoplay = El("#exporter-autoplay"),
+		exporter_time_checkbox = El("#exporter-time-checkbox"),
+		exporter_time_input = El("#exporter-time-input");
 
 	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
 
@@ -25,7 +31,7 @@ function set_exporter_input_value() {
 
 	if (autoplay) {
 
-		url += "?autoplay";
+		url += "/autoplay";
 
 	}
 
@@ -40,9 +46,11 @@ function set_exporter_input_value() {
 
 		for (var i = 0; i < times.length; i++) {
 
-			url += i === 0 & !autoplay ? "?" : "&";
+			/*url += i === 0 & !autoplay ? "?" : "&";
 
-			url += time_url_format[i] + "=" + times[i];
+			url += time_url_format[i] + "=" + times[i];*/
+
+			url += times[i] + '/';
 
 		}
 
@@ -58,41 +66,38 @@ new Script({
 
 	call: function() {
 
-		var embed_video_icon = document.getElementById("embed-video-icon") || document.createElement("div");
+		if (!document.getElementById("embed-video-icon")) {
+
+			return false;
+
+		}
+
+		var embed_video_icon = El("#embed-video-icon");
 
 		on(embed_video_icon, "CLICK", function() {
 
-			var video_info_description = document.getElementById("video-info-description") || document.createElement("div");
+			var video_info_description = El("#video-info-description");
 
-			if (video_info_description.className.search("export") > -1) {
+			if (video_info_description.has_class("export")) {
 
-				video_info_description.className = video_info_description.className.replace("export", "");
+				video_info_description.remove_class("export");
 
 			}
 
 			else {
 
-				video_info_description.className += " export";
+				video_info_description.add_class("export");
 
-				var exporter_input = document.getElementById("exporter-input") || document.createElement("div");
-
-				exporter_input.select();
+				El("#exporter-input").select();
 
 			}
 
 		});
 
-		var exporter_input = document.getElementById("exporter-input") || document.createElement("div"),
-
-			exporter_quality = document.getElementById("exporter-quality") || document.createElement("div"),
-			exporter_autoplay = document.getElementById("exporter-autoplay") || document.createElement("div"),
-			exporter_time_checkbox = document.getElementById("exporter-time-checkbox") || document.createElement("div"),
-			exporter_time_input = document.getElementById("exporter-time-input") || document.createElement("div");
-
-		on(exporter_quality, "change", set_exporter_input_value);
-		on(exporter_autoplay, "change", set_exporter_input_value);
-		on(exporter_time_checkbox, "change", set_exporter_input_value);
-		on(exporter_time_input, "change", set_exporter_input_value);
+		El("#exporter-quality").on("change", set_exporter_input_value),
+		El("#exporter-autoplay").on("change", set_exporter_input_value),
+		El("#exporter-time-checkbox").on("change", set_exporter_input_value),
+		El("#exporter-time-input").on("change", set_exporter_input_value);
 
 		set_exporter_input_value();
 

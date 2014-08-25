@@ -139,6 +139,35 @@
 
 				<div class="inner">
 
+					<div class="row">
+
+						<h1>DreamVids</h1>
+						
+						<a href="contributors">Contributeurs</a>
+						<a href="http://dreamvids.net/">Blog de développement</a>
+						<a href="bugs">Reporter un bug</a>
+
+					</div>
+
+					<div class="row">
+
+						<h1>Partenaires</h1>
+						
+						<a href="http://yolo.fr/" target="_blank">yolo.fr</a>
+						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a>
+
+					</div>
+
+					<div class="row">
+
+						<h1>Social</h1>
+						
+						<a href="https://twitter.com/DreamVids_">Twitter</a>
+						<a href="https://facebook.com/DreamVids">Facebook</a>
+						<a href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a>
+
+					</div>
+
 					<div class="rights">
 
 						<span class="love">Fait avec le <i>♥</i></span>

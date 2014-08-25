@@ -36,7 +36,7 @@
 /* Partie "sociale" d'une chaîne
 ---------------------------------------------------------- */
 
-#channem-posts{
+#channel-posts{
   display: block;
   height: auto;
 }
@@ -47,6 +47,7 @@
   height: 45px;
   line-height: 45px;
   font-size: 14px;
+  clear: both;
 }
 .channel-post img{
   height: 25px;

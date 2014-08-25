@@ -50,6 +50,28 @@
 
 		}
 
+		h1.live {
+
+			color: $red;
+
+		}
+
+		h1.live:before {
+
+			content: "";
+	
+			float: left;
+
+			display: block;
+			width: 12px;
+			height: 12px;
+			margin: 11px 8px 0 6px;
+			background: $red;
+
+			@include border-radius;
+
+		}
+
 		#video-top-channel {
 			position: relative;
 			top: -5px;

@@ -31,6 +31,12 @@
 
 }
 
+.video-infos.live:before {
+
+	background: $red;
+
+}
+
 @media (max-width: 1015px) {
 
   	#player {

@@ -5,12 +5,14 @@
 </script>
 
 <section class="content">
+
+	<!--
 	<div id="video-top-infos">
 		<div id="video-top-title">
 			<div id="video-top-channel">
 				<img src="<?php echo $author->getAvatar(); ?>">
 				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
-					<i><?php echo $subscribed ? 'Se desabonner': 'S\'abonner'; ?></i>
+					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
 				</span>
 				<div id="video-top-channel-infos">
 					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->id; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
@@ -25,9 +27,6 @@
 	</div>
 	
 	<div id="player">
-
-
-		<!--TODO: RETIRER LE `MUTED` QUAND LES VIDEOS FONCTIONNERONT !!! -->
 		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
 			<source id="srcMp4" type="video/mp4" src="">
 			<source id="srcWebm" type="video/webm" src="">
@@ -166,6 +165,124 @@
 		</div>
 
 	</section>
+
+	-->
+
+	<div id="video-top-infos">
+		<div id="video-top-title">
+			<div id="video-top-channel">
+				<img src="<?php echo $author->getAvatar(); ?>">
+				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
+					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
+				</span>
+				<div id="video-top-channel-infos">
+					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->id; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
+						<?php echo $author->name; ?>
+					</a>
+					<hr>
+					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
+				</div>
+			</div>
+			<h1 class="live"><?php echo $title; ?></h1>
+		</div>
+	</div>
+	
+	<div id="player">
+		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
+			<source id="srcMp4" type="video/mp4" src="">
+			<source id="srcWebm" type="video/webm" src="">
+		</video>
+		<div id="subtitlesList"></div>
+		<div id="annotationsElement"></div>
+		<span id="repeat">
+			<span class="icon"></span>
+		</span>
+		<span id="qualitySelection" class="show"></span>
+		<span id="waitForPlay" style="display: none;"></span>
+		<span id="bigPlay"></span>
+		<span id="bigPause"></span>
+		<div id="controls">
+			<span id="progress">
+				<span id="buffered"></span>
+				<span id="viewed"></span>
+				<span id="current"></span>
+			</span>
+			<span id="play-pause" class="play"></span>
+			<span id="time"></span>
+			<span id="annotationsButton" style="display: none"></span>
+			<span id="qualityButton">SD</span>
+			<span id="volume">
+				<span id="barre"></span>
+				<span id="icon"></span>
+			</span>
+			<span id="separation"></span>
+			<span id="widescreen" class="widescreen"></span>
+			<span id="fullscreen" class="fullscreen"></span>
+
+			<span class="cast" id="chromecastplayicon"></span>
+
+		</div>
+	</div>
+
+	<section class="video-infos live">
+
+		<div class="views"><?php echo $views; ?> vues</div>
+
+		<hr>
+
+		<div class="votes">
+
+			<p class="plus<?php if($likedByUser) echo " active"; ?>" onclick="votePlus('<?php echo $video->id; ?>', this);"><?php echo $likes; ?></p>
+			<m class="moins<?php if($dislikedByUser) echo " active"; ?>" onclick="voteMoins('<?php echo $video->id; ?>', this);"><?php echo $dislikes; ?></m>
+
+		</div>
+
+		<hr>
+
+		<div class="description" id="video-info-description">
+
+			<div class="inner-description">
+
+				<?php echo $description.'<br /><br />Tags: '.implode(' ', $tags); ?>
+				
+			</div>
+
+		</div>
+
+		<hr>
+
+		<div class="buttons">
+
+			<div id="share-video-block" class="share-video-block">
+								
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title)  > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				
+				<div id="fb-root"></div>
+
+				<script>
+
+					(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) return;
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+
+				</script>
+
+				<div class="fb-share-button" data-href="http://dreamvids.fr/watch/<?php echo $video->id; ?>" data-type="button_count"></div>
+			
+			</div>
+
+			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>" />
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" />
+
+		</div>
+
+	</section>
+
 
 	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())): ?>
 		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">

@@ -3,7 +3,7 @@
  *  Marmottajax 1.0.4
  *  Envoyer et recevoir des informations simplement en JavaScript
  */
-
+/*
 var marmottajax = function(options) {
 
     return marmottajax.get(options);
@@ -193,4 +193,4 @@ marmottajax.request = function(options) {
     this.xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     this.xhr.send(typeof post != "undefined" ? post : null);
 
-};
+};*/

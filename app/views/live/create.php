@@ -9,7 +9,7 @@
 		</select>
 		<br />
 
-		<button class="blue" onclick="createLive(document.getElementById('channel').value)">Commencer un live</button>
+		<button class="btn btn--raised btn--blue" onclick="createLive(document.getElementById('channel').value)">Commencer un live</button>
 
 		<p id="live-key"></p>
 	<?php } else { ?>
@@ -19,7 +19,7 @@
 		<br />
 
 		<div id="access">
-			<button onclick="revokeLive('<?php echo $access->id; ?>')">Révoquer l'accès live</button>
+			<button class="btn btn--raised btn--red" onclick="revokeLive('<?php echo $access->id; ?>')">Révoquer l'accès live</button>
 		</div>
 	<?php } ?>
 </div>
