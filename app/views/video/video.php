@@ -214,9 +214,9 @@
 			function displayComments($video, $parent, $i) {
 				$comments = $video->getComments($parent);
 				foreach ($comments as $comment) {
-					$margin = $i * 50;
+					$margin = $i * 5;
 			?>
-					<div style="margin-left:<?php echo $margin; ?>px" class="comment" id="c-<?php echo $comment->id; ?>">
+					<div style="margin-left:<?php echo $margin; ?>%" class="comment" id="c-<?php echo $comment->id; ?>">
 						<div class="comment-head">
 							<div class="user">
 								<img src="<?php echo UserChannel::find($comment->poster_id)->getAvatar(); ?>" alt="[Avatar]">

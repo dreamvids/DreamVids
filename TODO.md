@@ -64,3 +64,5 @@ Front
 - Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
 
 - L'affichage des commantaires juste après le post 'donc en js) doit être amélioré
+
+- Responsive de mes réponses de commentaires: faisable ? stp dimou ! :)
