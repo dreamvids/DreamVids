@@ -19,8 +19,6 @@
 
 - Ajouter les playlists (et dynamiser la page de watch)
 
-- Pouvoir répondre aux commentaires
-
 - Faire les "settings"
 
 - Pages: {
