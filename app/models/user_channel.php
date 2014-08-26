@@ -13,7 +13,7 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getPostedMessages() {
-		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id)));
+		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id), 'order' => 'timestamp desc'));
 	}
 
 	public function getSubscribersNumber() {
@@ -39,7 +39,7 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getAvatar() {
-		return $this->avatar;
+		return ($this->avatar != '') ? $this->avatar : Config::getValue_('default-avatar');
 	}
 
 	public function getBackground() {
@@ -135,18 +135,12 @@ class UserChannel extends ActiveRecord\Model {
 	ob_start();
 	var_dump($subscriptionsArrayChannel);
 	$result = ob_get_clean();
-	file_put_contents('test1.txt', $result);
 
 		if(in_array($subscribing, $subscriptionsArrayUser)) {
 			$key = array_search($subscribing, $subscriptionsArrayUser);
 			unset($subscriptionsArrayUser[$key]);
 			$key = array_search($subscriber, $subscriptionsArrayChannel);
-	file_put_contents('test2.txt', $key);
 			unset($subscriptionsArrayChannel[$key]);
-	ob_start();
-	var_dump($subscriptionsArrayChannel);
-	$result = ob_get_clean();
-	file_put_contents('test3.txt', $result);
 
 			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
 			$subscriberUser->save();

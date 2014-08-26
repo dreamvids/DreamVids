@@ -17,19 +17,31 @@
 
 }
 
-- Footer (need front)
-
-- Ajouter les playlists
+- Ajouter les playlists (et dynamiser la page de watch)
 
 - Pouvoir répondre aux commentaires
 
 - Faire les "settings"
 
-- Page "qui sommes-nous", "Contributeurs", "Equipe"
+- Pages: {
 
-- Petits bugs dans les notifications (images, liens) + ajouter les notifs de new MP
+	- "qui sommes-nous" (intègrera aussi l'équipe)
 
-- Afficher les messages sociaux dans l'ordre de leur envoie (<- pas français)
+	- "Contributeurs"
+
+	- CGU
+
+	- Mentions légales
+
+}
+
+- bug tracker
+
+- Intégrer les lives dans l'UI
+
+- Améliorer l'UX de création de live
+
+- PROTEGER LA CLE DU LIVE (actuellement visible dans le src="" de la source ^^")
 
 
 
@@ -43,6 +55,14 @@ Admin
 Front
 ================
 
-- Interface pour le live
+- Interface pour le live: {
+
+	- Interface du chat
+
+	- Interface lorsque pas de live actif
+
+}
 
 - Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
+
+- L'affichage des commantaires juste après le post 'donc en js) doit être amélioré

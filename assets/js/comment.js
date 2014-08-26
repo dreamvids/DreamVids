@@ -1,7 +1,7 @@
-function postComment(vid, commentContent, fromChannel) {
+function postComment(vid, commentContent, fromChannel, parent) {
 	marmottajax.post({
 		'url': '../comments/',
-		'options': {'commentSubmit': 'lol', 'comment-content': commentContent, 'from-channel': fromChannel, 'video-id': vid}
+		'options': {'commentSubmit': 'lol', 'comment-content': commentContent, 'from-channel': fromChannel, 'video-id': vid, 'parent': parent}
 	}).then(function(result) {
 		var comment = JSON.parse(result);
 

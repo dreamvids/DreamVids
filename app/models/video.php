@@ -39,8 +39,8 @@ class Video extends ActiveRecord\Model {
 		return $this->getAuthor()->name;
 	}
 
-	public function getComments() {
-		return Comment::all(array('conditions' => array('video_id = ?', $this->id)));
+	public function getComments($parent) {
+		return Comment::all(array('conditions' => array('video_id = ? AND parent = ?', $this->id, $parent)));
 	}
 
 	public function getThumbnail() {

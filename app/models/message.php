@@ -15,12 +15,22 @@ class Message extends ActiveRecord\Model {
 			'content' => $content,
 			'timestamp' => $timestamp
 		));
+		
+		$recep = array();
+		$members = explode(';', trim(Conversation::find($conversation)->members_ids, ';'));
+		foreach ($members  as $id) {
+			if ($id != $sender) {
+				$recep[] = trim(UserChannel::find($id)->admins_ids, ';');
+			}
+		}
+		$recep = ';'.implode(';', $recep).';';
+		
 
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
-			'channel_id' => User::find($sender)->getMainChannel()->id,
-			'recipients_ids' => Conversation::find($conversation)->members_ids,
-			'type' => 'message',
+			'channel_id' => userChannel::find($sender)->id,
+			'recipients_ids' => $recep,
+			'type' => 'pm',
 			'target' => $conversation,
 			'timestamp' => $timestamp
 		));

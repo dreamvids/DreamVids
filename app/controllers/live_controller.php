@@ -47,6 +47,8 @@ class LiveController extends Controller {
 			$data['currentPage'] = 'live';
 
 			$data['channel'] = $channel;
+			$data['subscribers'] = $channel->subscribers;
+			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['onAir'] = is_object($access);
 			$data['liveKey'] = is_object($access) ? $access->key : '';
 
