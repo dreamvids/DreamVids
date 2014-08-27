@@ -6,7 +6,6 @@
 
 <section class="content">
 
-	<!--
 	<div id="video-top-infos">
 		<div id="video-top-title">
 			<div id="video-top-channel">
@@ -166,123 +165,6 @@
 
 	</section>
 
-	-->
-
-	<div id="video-top-infos">
-		<div id="video-top-title">
-			<div id="video-top-channel">
-				<img src="<?php echo $author->getAvatar(); ?>">
-				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
-					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
-				</span>
-				<div id="video-top-channel-infos">
-					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->id; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
-						<?php echo $author->name; ?>
-					</a>
-					<hr>
-					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
-				</div>
-			</div>
-			<h1 class="live"><?php echo $title; ?></h1>
-		</div>
-	</div>
-	
-	<div id="player">
-		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
-			<source id="srcMp4" type="video/mp4" src="">
-			<source id="srcWebm" type="video/webm" src="">
-		</video>
-		<div id="subtitlesList"></div>
-		<div id="annotationsElement"></div>
-		<span id="repeat">
-			<span class="icon"></span>
-		</span>
-		<span id="qualitySelection" class="show"></span>
-		<span id="waitForPlay" style="display: none;"></span>
-		<span id="bigPlay"></span>
-		<span id="bigPause"></span>
-		<div id="controls">
-			<span id="progress">
-				<span id="buffered"></span>
-				<span id="viewed"></span>
-				<span id="current"></span>
-			</span>
-			<span id="play-pause" class="play"></span>
-			<span id="time"></span>
-			<span id="annotationsButton" style="display: none"></span>
-			<span id="qualityButton">SD</span>
-			<span id="volume">
-				<span id="barre"></span>
-				<span id="icon"></span>
-			</span>
-			<span id="separation"></span>
-			<span id="widescreen" class="widescreen"></span>
-			<span id="fullscreen" class="fullscreen"></span>
-
-			<span class="cast" id="chromecastplayicon"></span>
-
-		</div>
-	</div>
-
-	<section class="video-infos live">
-
-		<div class="views"><?php echo $views; ?> vues</div>
-
-		<hr>
-
-		<div class="votes">
-
-			<p class="plus<?php if($likedByUser) echo " active"; ?>" onclick="votePlus('<?php echo $video->id; ?>', this);"><?php echo $likes; ?></p>
-			<m class="moins<?php if($dislikedByUser) echo " active"; ?>" onclick="voteMoins('<?php echo $video->id; ?>', this);"><?php echo $dislikes; ?></m>
-
-		</div>
-
-		<hr>
-
-		<div class="description" id="video-info-description">
-
-			<div class="inner-description">
-
-				<?php echo $description.'<br /><br />Tags: '.implode(' ', $tags); ?>
-				
-			</div>
-
-		</div>
-
-		<hr>
-
-		<div class="buttons">
-
-			<div id="share-video-block" class="share-video-block">
-								
-				<a href="https://twitter.com/share" class="twitter-share-button" data-text="''<?php echo (strlen($title)  > 50) ? substr($title, 0, 50).'...' : $title; ?>'' sur @DreamVids_ ! Check this out !" data-lang="fr">Tweeter</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-				
-				<div id="fb-root"></div>
-
-				<script>
-
-					(function(d, s, id) {
-						var js, fjs = d.getElementsByTagName(s)[0];
-						if (d.getElementById(id)) return;
-						js = d.createElement(s); js.id = id;
-						js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-						fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));
-
-				</script>
-
-				<div class="fb-share-button" data-href="http://dreamvids.fr/watch/<?php echo $video->id; ?>" data-type="button_count"></div>
-			
-			</div>
-
-			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>" />
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" />
-
-		</div>
-
-	</section>
-
 
 	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())): ?>
 		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
@@ -303,9 +185,11 @@
 <div class="content">
 	<section id="comments">
 		<h3 class="title">Commentaires</h3>
-
-		<?php if(Session::isActive()): ?>
+		<div id="response" class="comment"></div>
+		<br /><br /><br />
+		<?php if(Session::isActive()) { ?>
 			<form method="post" action="" onsubmit="return false;">
+				<input type="hidden" value="" name="parent" id="parent" />
 				<div class="form-header-container">
 					<span class="form-icn"><img src="<?php echo IMG.'/comment_icon.png'; ?>" alt="Poster un commentaire"></span>
 					<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar" id="add-comment-avatar">
@@ -316,39 +200,52 @@
 							<?php endforeach ?>
 						</select>
 					</div>
-					<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value)"><img src="<?php echo IMG.'/post_comment_icon.png'; ?>" alt="Ajouter le commentaire"></button>
+					<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value, document.getElementById('parent').value)"><img src="<?php echo IMG.'/post_comment_icon.png'; ?>" alt="Ajouter le commentaire"></button>
 				</div>
 				<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
 			</form>
-		<?php endif ?>
+		<?php } ?>
 
 		<div id="comments-best">
-			<?php if (empty($comments)): ?>
+			<?php if (empty($comments)) { ?>
 				<p>Aucun commentaire à propos de cette video</p>
-			<?php endif ?>
-			<?php foreach ($comments as $comment): ?>
-				<div class="comment">
-					<div class="comment-head">
-						<div class="user">
-							<img src="<?php echo UserChannel::find($comment->poster_id)->avatar; ?>" alt="[Avatar]">
-							<a href="channel"><?php echo UserChannel::getNameById($comment->poster_id); ?></a>
+			<?php }
+			
+			function displayComments($video, $parent, $i) {
+				$comments = $video->getComments($parent);
+				foreach ($comments as $comment) {
+					$margin = $i * 5;
+			?>
+					<div style="margin-left:<?php echo $margin; ?>%" class="comment" id="c-<?php echo $comment->id; ?>">
+						<div class="comment-head">
+							<div class="user">
+								<img src="<?php echo UserChannel::find($comment->poster_id)->getAvatar(); ?>" alt="[Avatar]">
+								<a href="<?php echo WEBROOT.'channel/'.$comment->poster_id; ?>"><?php echo UserChannel::getNameById($comment->poster_id); ?></a>
+							</div>
+							<div class="date">
+								<p><?php echo Utils::relative_time($comment->timestamp); ?></p>
+							</div>
 						</div>
-						<div class="date">
-							<p><?php echo Utils::relative_time($comment->timestamp); ?></p>
+						<div class="comment-text">
+							<p><?php echo $comment->comment; ?></p>
+						</div>
+						<div class="comment-notation">
+							<ul>
+								<li class="plus" id="plus-<?php echo $comment->id; ?>" onclick="likeComment('<?php echo $comment->id; ?>')">+<?php echo $comment->likes; ?></li>
+								<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
+								<li onclick="reportComment('<?php echo $comment->id; ?>', this)" style="cursor:pointer">Signaler</li>
+								<li onclick="document.getElementById('response').innerHTML='<b>Répondre à <?php echo UserChannel::getNameById($comment->poster_id); ?> :</b>';document.getElementById('text_comment').focus();document.getElementById('parent').value='<?php echo $comment->id; ?>';" style="cursor:pointer">Répondre</li>
+							</ul>
 						</div>
 					</div>
-					<div class="comment-text">
-						<p><?php echo $comment->comment; ?></p>
-					</div>
-					<div class="comment-notation">
-						<ul>
-							<li class="plus" id="plus-<?php echo $comment->id; ?>" onclick="likeComment('<?php echo $comment->id; ?>')">+<?php echo $comment->likes; ?></li>
-							<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
-							<li onclick="reportComment('<?php echo $comment->id; ?>', this)">Signaler</li>
-						</ul>
-					</div>
-				</div>
-			<?php endforeach ?>
+			<?php
+					if (Comment::count(array('conditions' => array('parent = ?', $comment->id))) >= 1) {
+						displayComments($video, $comment->id, $i+1);
+					}
+				}
+			}
+			displayComments($video, '', 0);
+			?>
 		</div>
 
 	</section>

@@ -77,7 +77,6 @@ class VideoController extends Controller {
 		$data['thumbnail'] = $video->getThumbnail();
 		$data['subscribers'] = $author->getSubscribersNumber();
 		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($author->id) : false;
-		$data['comments'] = $video->getComments();
 		$data['likedByUser'] = Session::isActive() ? $video->isLikedByUser(Session::get()->id) : false;
 		$data['dislikedByUser'] = Session::isActive() ? $video->isDislikedByUser(Session::get()->id) : false;
 		$data['recommendations'] = $video->getAssociatedVideos();

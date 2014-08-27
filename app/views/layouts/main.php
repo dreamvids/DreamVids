@@ -139,35 +139,6 @@
 
 				<div class="inner">
 
-					<div class="row">
-
-						<h1>DreamVids</h1>
-						
-						<a href="contributors">Contributeurs</a>
-						<a href="http://dreamvids.net/">Blog de développement</a>
-						<a href="bugs">Reporter un bug</a>
-
-					</div>
-
-					<div class="row">
-
-						<h1>Partenaires</h1>
-						
-						<a href="http://yolo.fr/" target="_blank">yolo.fr</a>
-						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a>
-
-					</div>
-
-					<div class="row">
-
-						<h1>Social</h1>
-						
-						<a href="https://twitter.com/DreamVids_">Twitter</a>
-						<a href="https://facebook.com/DreamVids">Facebook</a>
-						<a href="http://webchat.freenode.net/?channels=%23DreamVids">Chat IRC</a>
-
-					</div>
-
 					<div class="rights">
 
 						<span class="love">Fait avec le <i>♥</i></span>
@@ -176,6 +147,44 @@
 						DreamVids 2013-<?php echo date('Y'); ?>
 						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
 						
+					</div>
+
+					<div class="row">
+
+						<h1>DreamVids</h1>
+						
+						<a href="about">Qui sommes nous ?</a>
+						<a href="contributors">Contributeurs</a>
+						<a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
+						<a href="bugs">Reporter un bug</a>
+						<a href="tos">CGU</a>
+						<a href="legals">Mentions légales</a>
+
+					</div>
+
+					<div class="row">
+
+						<h1>Partenaires</h1>
+						
+						<?php
+						$partners = Partners::all();
+						foreach ($partners as $part) {	
+							echo '<a href="'.$part->url.'" target="_blank">'.$part->name.'</a>';
+						}
+						
+						?>
+						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'antoine [arobase] dreamvids [point] fr\'')">Votre site ici ?</a>
+
+					</div>
+
+					<div class="row">
+
+						<h1>Social</h1>
+						
+						<a href="https://twitter.com/DreamVids_" target="_blank">Twitter</a>
+						<a href="https://facebook.com/DreamVids" target="_blank">Facebook</a>
+						<a href="https://github.com/DreamVids" target="_blank">GitHub</a>
+
 					</div>
 
 				</div>

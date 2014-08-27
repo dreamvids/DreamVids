@@ -13,7 +13,7 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getPostedMessages() {
-		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id)));
+		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id), 'order' => 'timestamp desc'));
 	}
 
 	public function getSubscribersNumber() {
@@ -51,6 +51,7 @@ class UserChannel extends ActiveRecord\Model {
 			$avatar = WEBROOT.$this->avatar;
 		
 		return $avatar;
+		//return ($this->avatar != '') ? $this->avatar : Config::getValue_('default-avatar');
 	}
 
 	public function getBackground() {
@@ -159,6 +160,8 @@ class UserChannel extends ActiveRecord\Model {
 			$key = array_search($subscribing, $subscriptionsArrayUser);
 			unset($subscriptionsArrayUser[$key]);
 			$key = array_search($subscriber, $subscriptionsArrayChannel);
+
+			unset($subscriptionsArrayChannel[$key]);
 
 			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
 			$subscriberUser->save();

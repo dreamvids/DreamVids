@@ -154,7 +154,7 @@ class Comment extends ActiveRecord\Model {
 		return Video::exists($this->video_id) ? Video::find($this->video_id) : false;
 	}
 
-	public static function postNew($authorId, $videoId, $commentContent) {
+	public static function postNew($authorId, $videoId, $commentContent, $parent) {
 		$timestamp = Utils::tps();
 
 		$comment = Comment::create(array(
@@ -165,6 +165,7 @@ class Comment extends ActiveRecord\Model {
 			'likes' => 0,
 			'dislikes' => 0,
 			'timestamp' => $timestamp,
+			'parent' => $parent
 		));
 
 		ChannelAction::create(array(

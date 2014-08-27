@@ -51,10 +51,11 @@ class CommentController extends Controller {
 			if(UserChannel::exists($channelId) && UserChannel::find($channelId)->belongToUser(Session::get()->id)) {
 				$content = Utils::secure($req['comment-content']);
 				$content = trim($content);
+				$parent = (isset($req['parent'])) ? Utils::secure($req['parent']) : '';
 				if (!empty($content)) {
 					$vidId = Utils::secure($req['video-id']);
 	
-					$comment = Comment::postNew($channelId, $vidId, $content);
+					$comment = Comment::postNew($channelId, $vidId, $content, $parent);
 	
 					$commentData = array(
 						'id' => $comment->id,
