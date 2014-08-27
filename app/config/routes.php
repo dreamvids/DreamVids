@@ -15,6 +15,7 @@ Route::register('watch', 'video');
 Route::register('feed', 'feed');
 
 Route::register('videos', 'video');
+Route::register('playlists', 'playlist');
 Route::register('channels', 'channel');
 Route::register('posts', 'channel_post');
 Route::register('comments', 'comment');

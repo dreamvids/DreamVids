@@ -22,6 +22,7 @@ class DatabaseFiller {
 
 	public function connectToDatabase() {
 		$this->pdo = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->dbName, $this->dbUser, $this->dbPass);
+		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 
 	public function generateUsersAndChannels() {
@@ -95,12 +96,14 @@ class DatabaseFiller {
 					'0',
 					'".$timestamp."',
 					'2',
+					'0',
 					'0'
 				)");
 
 				$this->pdo->query("INSERT INTO channels_actions VALUES (
 					'".$this->generateChannelActionId(6)."',
 					'".$posterId."',
+					';',
 					'upload',
 					'".$vidId."',
 					'".$timestamp."'

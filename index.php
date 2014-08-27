@@ -31,5 +31,6 @@ Database::connect();
 Session::init();
 $router = new Router();
 
+
 $request = Utils::getPerformedRequest();
 $router->executeRequest($request);

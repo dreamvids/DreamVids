@@ -10,6 +10,18 @@
  * lanceur de taches Grunt. Pour plus d'infos,
  * rendez-vous dans le README du dossier `assets`
  */
+/**
+ * ATTENTION ! IL EST INUTILE DE MODIFIER CE FICHIER
+ * CAR  VOS  MODIFICATIONS SERONT  ECRASÉES  PAR  LE
+ * PROCHAIN COMMIT
+ *
+ * Pour modifier le contenu de ce fichier, il faut
+ * modifier ses sources qui se situent soit dans
+ * le dossier `style`, le dossier `scripts` selon
+ * vos besoin. Il faut ensuite compiler à l'aide du
+ * lanceur de taches Grunt. Pour plus d'infos,
+ * rendez-vous dans le README du dossier `assets`
+ */
 /*(function(win, doc){
 
 var window = win,
