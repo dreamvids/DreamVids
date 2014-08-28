@@ -5,7 +5,7 @@
  * BACKGROUND LOADER
  */
 
-function background_loader(element) {
+function backgroundLoader(element) {
 
     this.element = El(element);
     this.src = this.element.getAttribute("data-background");;
@@ -14,24 +14,24 @@ function background_loader(element) {
     this.imgLoader = new Image();
     this.imgLoader.src = this.src;
 
-    on(this.imgLoader, "load", function(event, element) {
+    El(this.imgLoader).on("load", function(event, element) {
 
-        element.remove_class("bg-loader");
+        element.removeClass("bg-loader");
 
-        element.add_class("bg-loader-transition");
-        element.add_class("bg-loaded");
+        element.addClass("bg-loader-transition");
+        element.addClass("bg-loaded");
 
         setTimeout(function(element) {
 
             return function() {
 
-                element.remove_class("bg-loader-transition");
+                element.removeClass("bg-loader-transition");
 
             }
 
         }(element), 300);
 
-    }, element);
+    }, this.element);
 
  }
 
@@ -45,7 +45,7 @@ new Script({
 
 		    for (var i = 0, length = elements.length; i < length; i++) {
 
-		        new background_loader(elements[i]);
+		        new backgroundLoader(elements[i]);
 
 		    }
 

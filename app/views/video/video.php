@@ -189,34 +189,35 @@
 		<br /><br /><br />
 		<?php if(Session::isActive()) { ?>
 			<form method="post" action="" onsubmit="return false;">
-				<input type="hidden" value="" name="parent" id="parent" />
+				<input type="hidden" value="" name="parent" id="parent-comment">
 				<div class="form-header-container">
 					<span class="form-icn"><img src="<?php echo IMG.'/comment_icon.png'; ?>" alt="Poster un commentaire"></span>
 					<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar" id="add-comment-avatar">
 					<div class="form">					
-						<select name="channsl" id="channel">
+						<select name="channel" id="channel-selector">
 							<?php foreach ($channels as $channel): ?>
 								<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
 							<?php endforeach ?>
 						</select>
 					</div>
-					<button class="blue" onclick="postComment('<?php echo $video->id; ?>', document.getElementById('text_comment').value, document.getElementById('channel').value, document.getElementById('parent').value)"><img src="<?php echo IMG.'/post_comment_icon.png'; ?>" alt="Ajouter le commentaire"></button>
+					<button id="post-comment-button" data-vid-id="<?php echo $video->id; ?>" class="blue"><img src="<?php echo IMG.'/post_comment_icon.png'; ?>" alt="Ajouter le commentaire"></button>
 				</div>
-				<textarea id="text_comment" name="comment-content" required rows="4" cols="10" placeholder="Commentaire"></textarea>
+				<textarea id="textarea-comment" name="comment-content" rows="4" cols="10" placeholder="Commentaire"></textarea>
 			</form>
 		<?php } ?>
 
 		<div id="comments-best">
-			<?php if (empty($comments)) { ?>
-				<p>Aucun commentaire à propos de cette video</p>
-			<?php }
+			<?php
 			
 			function displayComments($video, $parent, $i) {
 				$comments = $video->getComments($parent);
+				if (empty($comments)) { ?>
+					<p>Aucun commentaire à propos de cette video</p>
+				<?php }
 				foreach ($comments as $comment) {
-					$margin = $i * 5;
-			?>
-					<div style="margin-left:<?php echo $margin; ?>%" class="comment" id="c-<?php echo $comment->id; ?>">
+					$margin = $i * 8;
+				?>
+					<div style="width: <?php echo 100 - $margin; ?>%; margin-left:<?php echo $margin; ?>%" class="comment" id="c-<?php echo $comment->id; ?>">
 						<div class="comment-head">
 							<div class="user">
 								<img src="<?php echo UserChannel::find($comment->poster_id)->getAvatar(); ?>" alt="[Avatar]">

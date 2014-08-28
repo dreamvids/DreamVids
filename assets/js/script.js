@@ -10,18 +10,6 @@
  * lanceur de taches Grunt. Pour plus d'infos,
  * rendez-vous dans le README du dossier `assets`
  */
-/**
- * ATTENTION ! IL EST INUTILE DE MODIFIER CE FICHIER
- * CAR  VOS  MODIFICATIONS SERONT  ECRASÉES  PAR  LE
- * PROCHAIN COMMIT
- *
- * Pour modifier le contenu de ce fichier, il faut
- * modifier ses sources qui se situent soit dans
- * le dossier `style`, le dossier `scripts` selon
- * vos besoin. Il faut ensuite compiler à l'aide du
- * lanceur de taches Grunt. Pour plus d'infos,
- * rendez-vous dans le README du dossier `assets`
- */
 /*(function(win, doc){
 
 var window = win,
@@ -38,304 +26,7 @@ var Application = {
 	name: "MarmWork"
 
 };
-
-/**
- * Events/main.js
- *
- * Add event to an element
- */
-
-Application.Events = {
-
-	list: {}
-
-};
-
-Application.Events.add = function(name, fn) {
-
-	Application.Events.list[name] = fn;
-
-};
-
-function on(element, event, callback, binding) {
-
-	if (element.length) {
-
-		for (var i = 0; i < element.length; i++) {
-
-			on(element[i], event, callback, binding);
-
-		}
-
-		return;
-
-	}
-
-	if (element.nodeName === "#document-fragment") {
-
-		on(element.childNodes, event, callback, binding)
-
-		return;
-
-	}
-
-	if (typeof Application.Events.list[event] === "function") {
-
-		Application.Events.list[event](element, function() {
-
-			return function(event) {
-
-				callback(event, binding);
-
-			};
-
-		}(callback, binding));
-
-	}
-
-	else {
-
-		if (isset(element.addEventListener)) {
-
-			element.addEventListener(event, function() {
-
-				return function(event) {
-
-					callback(event, binding);
-
-				}
-
-			}(callback, binding), false);
-
-		}
-
-		else {
-
-			element.attachEvent("on" + event, function() {
-
-				return function(event) {
-
-					callback(event, binding);
-
-				}
-
-			}(callback, binding));
-			
-		}
-
-	}
-
-	return element;
-
-}
-
-/**
- * Events/CLICK.js
- *
- * CLICK event
- */
-
-Application.Events.on_tap_events_list = [];
-
-Application.Events.add("CLICK", function(element, callback) {
-
-	var event_listener = new Application.Events.on_tap_object(element, callback);
-
-	Application.Events.on_tap_events_list.push(event_listener);
-
-});
-
-Application.Events.on_tap_object = function(element, callback) {
-
-	this.callback = callback;
-	this.element = element;
-
-	this.touchstart = function(event_listener) {
-
-		return function(event) {
-
-			event_listener.moved = false;
-
-			event_listener.startX = event.touches[0].clientX;
-			event_listener.startY = event.touches[0].clientY;
-
-		}
-
-	}(this);
-
-	this.touchmove = function(event_listener) {
-
-		return function(event) {
-
-			if (Math.abs(event.touches[0].clientX - event_listener.startX) > 10 || Math.abs(event.touches[0].clientY - event_listener.startY) > 10) {
-			    
-			    event_listener.moved = true;
-
-			}
-
-		}
-
-	}(this);
-
-	this.touchend = function(event_listener) {
-
-		return function(event) {
-
-			if (!event_listener.moved) {
-
-				event_listener.callback(event);
-
-			}
-
-		}
-
-	}(this);
-
-	on(this.element, "touchstart", this.touchstart);
-	on(this.element, "touchmove", this.touchmove);
-	on(this.element, "touchend", this.touchend);
-	on(this.element, "touchcancel", this.touchend);
-
-	on(this.element, "click", function(event, event_listener) {
-
-	    if (!("ontouchstart" in window)) {
-
-	        event_listener.callback(event);
-
-	    }
-
-	}, this);
-
-};
-
-/**
- * Core/$.js
- *
- * DOM Content Loaded function
- */
-
-Application.dom_load_event_listeners = [];
-
-function $(callback) {
-
-	if (typeof callback === "function") {
-
-		Application.dom_load_event_listeners.push(callback);
-
-	}
-
-}
-
-Application.dom_content_loaded = false;
-
-Application.on_dom_content_loaded = function(event) {
-
-	if (!Application.dom_content_loaded) {
-
-		Application.dom_content_loaded = true;
-
-		for (var i = 0; i < Application.dom_load_event_listeners.length; i++) {
-
-			var fn = Application.dom_load_event_listeners[i]
-
-			if (typeof fn === "function") {
-
-				fn();
-
-			}
-			
-		}
-
-	}
-
-};
-
-on(document, "DOMContentLoaded", Application.on_dom_content_loaded);
-on(window, "load", Application.on_dom_content_loaded);
-
-window.onload = function() {
-
-    Application.on_dom_content_loaded();
-
-};
-
-/**
- * Core/child-node-list.js
- *
- * Generate a list of childs of an element
- */
-
-function child_node_list(element) {
-
-	var array = [];
-
-	for (var i = 0; i < element.childNodes.length; i++) {
-
-		array.push(element.childNodes[i]);
-
-		if (element.childNodes[i].childNodes) {
-
-			var sub_childs = child_node_list(element.childNodes[i]);
-
-			for (var c = 0; c < sub_childs.length; c++) {
-
-				array.push(sub_childs[c]);
-
-			}
-
-		}
-
-	}
-
-	return array;
-
-}
-
-/**
- * Core/complete-vars.js
- *
- * Completer une chaine de caractère avec une variable objet
- */
-
-function complete_vars(query, object, path) {
-
-    add = path ? path + '.' : '';
-
-    if (object instanceof Array) {
-
-        for (var id = 0, length = object.length; id < length; id++) {
-
-            query = object[id] instanceof Object ? query.complete(object[id], add + id) : query.replace('${' + add + id + '}', object[id]);
-
-        }
-
-    }
-
-    else if (object instanceof Object) {
-
-        for (var id in object) {
-
-            query = object.hasOwnProperty(id) && object[id] instanceof Object ? query.complete(object[id], add + id) : query.replace('${' + add + id + '}', object[id]);
-
-        }
-
-    }
-
-    return query;
-
-}
-
-/**
- * Core/isset.js
- *
- * Test if a variable is not `undefined`
- */
-
-function isset(variable) {
-
-	return typeof variable !== "undefined";
-
-}
+!function(win,doc){function on(element,event,callback,binding){if(!element.length)return"#document-fragment"===element.nodeName?void on(element.childNodes,event,callback,binding):("function"==typeof elAndCoEvents.list[event]?elAndCoEvents.list[event](element,function(){return function(event){"string"==typeof callback?eval(callback):callback(event,binding)}}(callback,binding)):isset(element.addEventListener)?element.addEventListener(event,function(){return function(a){callback(a,binding)}}(callback,binding),!1):element.attachEvent("on"+event,function(){return function(a){callback(a,binding)}}(callback,binding)),element);for(var i=0;i<element.length;i++)on(element[i],event,callback,binding)}function childNodeList(a){for(var b=[],c=0;c<a.childNodes.length;c++)if(b.push(a.childNodes[c]),a.childNodes[c].childNodes)for(var d=childNodeList(a.childNodes[c]),e=0;e<d.length;e++)b.push(d[e]);return b}function isset(a){return"undefined"!=typeof a}var window=win,document=doc,ELCO_MAX_COMPONENTS_GENERATED=2048,elAndCoEvents={list:{}};elAndCoEvents.add=function(a,b){elAndCoEvents.list[a]=b},elAndCoEvents.onClickEventsList=[],elAndCoEvents.add("CLICK",function(a,b){var c=new elAndCoEvents.onClickObject(a,b);elAndCoEvents.onClickEventsList.push(c)}),elAndCoEvents.onClickObject=function(a,b){this.callback=b,this.element=a,this.touchstart=function(a){return function(b){a.moved=!1,a.startX=b.touches[0].clientX,a.startY=b.touches[0].clientY}}(this),this.touchmove=function(a){return function(b){(Math.abs(b.touches[0].clientX-a.startX)>10||Math.abs(b.touches[0].clientY-a.startY)>10)&&(a.moved=!0)}}(this),this.touchend=function(a){return function(b){a.moved||a.callback(b)}}(this),on(this.element,"touchstart",this.touchstart),on(this.element,"touchmove",this.touchmove),on(this.element,"touchend",this.touchend),on(this.element,"touchcancel",this.touchend),on(this.element,"click",function(a,b){"ontouchstart"in window||b.callback(a)},this)};var El=Element=function(a,b){if(this!==window)var c=Element.create(a,b);else var c=Element.select(a,b);if(c)return c.childs=c.childNodes,c.parent=c.parentNode,c.clone=c.cloneNode,c.add=function(a){return function(b){if("#document-fragment"===b.nodeName){for(var c=[],d=b.childNodes,e=d.length,f=0;e>f;f++)a.appendChild(d[0]),c.push(a.childNodes[a.childNodes.length-1]);return c}if(!b.length)return a.appendChild(b),El(b);for(var f=0;f<b.length;f++){for(var c=[],e=b.length,f=0;e>f;f++)a.appendChild(b[0]),c.push(a.childNodes[a.childNodes.length-1]);return c}}}(c),c.addFirst=function(a){return function(b){if("#document-fragment"===b.nodeName){for(var c=[],d=b.childNodes,e=d.length,f=0;e>f;f++)a.insertBefore(d[0],a.firstChild),c.push(a.childNodes[a.childNodes.length-1]);return c}if(!b.length)return a.insertBefore(b,a.firstChild),El(b);for(var f=0;f<b.length;f++){for(var c=[],e=b.length,f=0;e>f;f++)a.insertBefore(b[0],a.firstChild),c.push(a.childNodes[a.childNodes.length-1]);return c}}}(c),c.on=function(a){return function(b,c,d){on(a,b,c,d)}}(c),c.offset=function(a){return function(){for(var b={x:0,y:0};a;)b.x+=a.offsetLeft-(a==document.body?0:a.scrollLeft)+a.clientLeft,b.y+=a.offsetTop-(a==document.body?0:a.scrollTop)+a.clientTop,a=a.offsetParent;return b}}(c),c.hasClass=function(a){return function(b){return(" "+a.className+" ").indexOf(" "+b+" ")>-1}}(c),c.addClass=function(a){return function(b){return El(a).hasClass(b)||(a.className+=" "+b),El(a)}}(c),c.removeClass=function(a){return function(b){return a.className=(" "+a.className+" ").replace(" "+b+" "," "),El(a)}}(c),c.toggleClass=function(a){return function(b){return El(a).hasClass(b)?El(a).removeClass(b):El(a).addClass(b),El(a)}}(c),c};Element.create=function(a,b){var c,d=/[-\w]+/.exec(a)[0];if(c=document.createElement(d),"object"==typeof b)for(attribute in b)b.hasOwnProperty(attribute)&&!c.getAttribute(attribute)&&c.setAttribute(attribute,b[attribute]);var e=a.replace(/#([a-z-_]+)/i,"").replace(/\w+/,"").split(".");if(e.length>1){c.className="";for(var f=1;f<e.length;f++)c.className+=" "+e[f]}var g=/([a-z-_]+)(#([a-z-_]+))/i.exec(a);return g&&(c.id=g[3]),c},Element.select=function(a){var b;return"string"!=typeof a?b=a:"#"==a[0]&&(b=document.getElementById(a.substring(1))),b};var Co=Component=function(a,b){if(this===window)return Co.generate(a,b);if(a.name&&(Co.components[a.name]=this,"object"==typeof a))for(variable in a)a.hasOwnProperty(variable)&&(isset(this[variable])||(this[variable]=a[variable]))};Co.components={},Component.attributesParser=function(a,b){for(var c={},d=0;d<a.length;d++)if(c[a[d].name]=a[d].value,"string"==typeof a[d].value&&"$"==a[d].value[0]&&b)for(parameter in b)a[d].value==="${"+parameter+"}"&&b.hasOwnProperty(parameter)&&(c[a[d].name]=b[parameter]);return c},Component.prototype.create=function(a){var b=this.render(a),c=childNodeList(b);if(isset(a._CHILDNODES_)&&a._CHILDNODES_.length){for(var d=!1,e=0;e<c.length;e++){var f=c[e];if("_inner_"===f.getAttribute("tag-name")){for(;a._CHILDNODES_.length;)f.parentNode.insertBefore(a._CHILDNODES_[0],f);f.parentNode.removeChild(f),d=!0;break}}if(!d)for(;a._CHILDNODES_.length;)b.appendChild(a._CHILDNODES_[0])}return isset(this.created)&&this.created(b),b},Component.generate=function(a,b){if("string"!=typeof a)return document.createElement("div");a=a.replace(/^\s+|\s+$/g,""),a=a.replace(/<([-\w]*)( (.+?))?\/>/g,"<$1$2></$1>"),a=a.replace(/<([-\w]*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,"</div>");var c=document.createElement("div");c.innerHTML=a;var d=!1,e=!1;for(componentsCreated=0;!d;){e=!1,ELCO_MAX_COMPONENTS_GENERATED&&componentsCreated>ELCO_MAX_COMPONENTS_GENERATED&&(console.error("el & co erreur 001\nUne boucle de création de components a été détectée.\nLa génération des components a alors été arrêtée."),d=!0);for(var f=childNodeList(c),g=0;g<f.length;g++){var h=f[g],i="";if(h.getAttribute&&(i=h.getAttribute("tag-name")||""),Co.components[i]){var j=Component.attributesParser(h.attributes,b);j._CHILDNODES_=h.childNodes;var k=Co.components[i].create(j);for(attribute in j)j.hasOwnProperty(attribute)&&null===k.getAttribute(attribute)&&"string"==typeof j[attribute]&&k.setAttribute(attribute,j[attribute]);k.removeAttribute("tag-name"),h.parentNode.insertBefore(k,h),h.parentNode.removeChild(h),e=!0,componentsCreated++;break}}e||(d=!0)}return c.childNodes},Component.inner=function(a){var b=document.createElement("div");return b.setAttribute("tag-name","_inner_"),a.appendChild(b),a},window.Co=window.Component,window.El=window.Element,window.ELCO_MAX_COMPONENTS_GENERATED=ELCO_MAX_COMPONENTS_GENERATED}(window,document);
 
 /*
  *  Marmottajax 1.0.4
@@ -534,6 +225,69 @@ marmottajax.request = function(options) {
 };
 
 /**
+ * core/$.js
+ *
+ * DOM Content Loaded function
+ */
+
+Application.dom_load_event_listeners = [];
+
+function $(callback) {
+
+	if (typeof callback === "function") {
+
+		Application.dom_load_event_listeners.push(callback);
+
+	}
+
+}
+
+Application.dom_content_loaded = false;
+
+Application.on_dom_content_loaded = function(event) {
+
+	if (!Application.dom_content_loaded) {
+
+		Application.dom_content_loaded = true;
+
+		for (var i = 0; i < Application.dom_load_event_listeners.length; i++) {
+
+			var fn = Application.dom_load_event_listeners[i]
+
+			if (typeof fn === "function") {
+
+				fn();
+
+			}
+			
+		}
+
+	}
+
+};
+
+El(document).on("DOMContentLoaded", Application.on_dom_content_loaded);
+El(window).on("load", Application.on_dom_content_loaded);
+
+window.onload = function() {
+
+    Application.on_dom_content_loaded();
+
+};
+
+/**
+ * Core/isset.js
+ *
+ * Test if a variable is not `undefined`
+ */
+
+function isset(variable) {
+
+	return typeof variable !== "undefined";
+
+}
+
+/**
  * Core/scripts-launch.js
  *
  * SCRIPTS LAUNCH
@@ -601,821 +355,212 @@ Script.prototype.call = function() {
 };
 
 /**
- * Element/main.js
- *
- * Element model
- */
-
-function Element(name, settings) {
-
-	if (this !== window) {
-
-		var element = Element.create(name, settings);
-
-	}
-
-	else {
-
-		var element = Element.select(name, settings);
-
-	}
-
-	element.childs = element.childNodes;
-	element.parent = element.parentNode;
-	element.clone = element.cloneNode;
-
-	element.add = function(element) {
-
-		return function(child) {
-
-			if (child.nodeName === "#document-fragment") {
-
-				var array = [],
-					childs = child.childNodes,
-					length = childs.length;
-
-				for (var i = 0; i < length; i++) {
-
-					element.appendChild(childs[0]);
-
-					array.push(element.childNodes[element.childNodes.length - 1]);
-
-				}
-
-				return array;
-
-			}
-
-			else if (child.length) {
-
-				for (var i = 0; i < child.length; i++) {
-					
-					var array = [],
-						length = child.length;
-
-					for (var i = 0; i < length; i++) {
-
-						element.appendChild(child[0]);
-
-						array.push(element.childNodes[element.childNodes.length - 1]);
-
-					}
-
-					return array;
-
-				}
-
-			}
-
-			else {
-
-				element.appendChild(child);
-
-				return El(child);
-
-			}
-			
-		}
-
-	}(element);
-
-	element.add_first = function(element) {
-
-		return function(child) {
-
-			if (child.nodeName === "#document-fragment") {
-
-				var array = [],
-					childs = child.childNodes,
-					length = childs.length;
-
-				for (var i = 0; i < length; i++) {
-
-					element.insertBefore(childs[0], element.firstChild);
-
-					array.push(element.childNodes[element.childNodes.length - 1]);
-
-				}
-
-				return array;
-
-			}
-
-			else if (child.length) {
-
-				for (var i = 0; i < child.length; i++) {
-					
-					var array = [],
-						length = child.length;
-
-					for (var i = 0; i < length; i++) {
-
-						element.insertBefore(child[0], element.firstChild);
-
-						array.push(element.childNodes[element.childNodes.length - 1]);
-
-					}
-
-					return array;
-
-				}
-
-			}
-
-			else {
-
-				element.insertBefore(child, element.firstChild);
-
-				return El(child);
-
-			}
-			
-		}
-
-	}(element);
-
-	element.on = function(element) {
-
-		return function(event, callback, binding) {
-
-			on(element, event, callback, binding);
-
-		}
-
-	}(element);
-
-	element.offset = function(element) {
-
-		return function() {
-
-			var offsets = {
-
-				x: 0,
-				y: 0
-
-			}
-
-			while (element) {
-
-			    offsets.x += (element.offsetLeft - (element == document.body ? 0 : element.scrollLeft) + element.clientLeft);
-			    offsets.y += (element.offsetTop - (element == document.body ? 0 : element.scrollTop) + element.clientTop);
-			    element = element.offsetParent;
-
-			}
-
-			return offsets;
-
-		}
-
-	}(element);
-
-	element.has_class = function(element) {
-
-		return function(name) {
-
-			return (" " + element.className + " ").indexOf(" " + name + " ") > -1;
-
-		}
-
-	}(element);
-
-	element.add_class = function(element) {
-
-		return function(name) {
-
-			if (!El(element).has_class(name)) {
-
-				element.className += " " + name;
-
-			}
-
-			return El(element);
-
-		}
-
-	}(element);
-
-	element.remove_class = function(element) {
-
-		return function(name) {
-
-			element.className = (" " + element.className + " ").replace(" " + name + " ", " ");
-
-			return El(element);
-
-		}
-
-	}(element);
-
-	element.toogle_class = function(element) {
-
-		return function(name) {
-
-			if (El(element).has_class(name)) {
-
-				El(element).remove_class(name);
-
-			}
-
-			else {
-
-				El(element).add_class(name);
-
-			}
-
-			return El(element);
-
-		}
-
-	}(element);
-
-	element.is_disabled = function(element) {
-
-		return function() {
-
-			return El(element).has_class("disabled");
-
-		}
-
-	}(element);
-
-	element.is_not_disabled = function(element) {
-
-		return function() {
-
-			return !El(element).has_class("disabled");
-
-		}
-
-	}(element);
-
-	element.disable = function(element) {
-
-		return function() {
-
-			element.tabIndex = 0;
-
-			return El(element).add_class("disabled");
-
-		}
-
-	}(element);
-
-	element.undisable = function(element) {
-
-		return function() {
-
-			element.tabIndex = 0;
-
-			return El(element).remove_class("disabled");
-
-		}
-
-	}(element);
-
-	element.inner = function(element) {
-
-		var inner_element = document.createElement("div");
-
-		inner_element.setAttribute("tag-name", "_inner_");
-
-		element.appendChild(inner_element);
-
-		return element;
-
-	};
-
-	return element;
-
-};
-
-Application.Element = Element;
-
-var El = Element;
-
-/**
- * Element/create.js
- *
- * Element create
- */
-
-Element.create = function(name, settings) {
-
-	var element,
-		tag_name = /\w+/.exec(name)[0];
-
-	if (Application.components[tag_name]) {
-
-		var attributes = typeof settings === "object" ? settings : {};
-
-		var component = Application.components[tag_name].create(attributes);
-
-		child.parentNode.insertBefore(component, child);
-		child.parentNode.removeChild(child);
-
-	}
-
-	else {
-
-		element = document.createElement(tag_name);
-
-	}
-
-	var class_names = name.replace(/#([a-z-_]+)/i, "").replace(/\w+/, "").split(".");
-
-	if (class_names.length > 1) {
-
-		element.className = "";
-
-		for (var i = 1; i < class_names.length; i++) {
-
-			element.className += " " + class_names[i];
-
-		}
-
-	}
-
-	var id = /([a-z-_]+)(#([a-z-_]+))/i.exec(name);
-
-	if (id) {
-
-		element.id = id[3];
-
-	}
-
-	return element;
-
-};
-
-/**
- * Element/select.js
- *
- * Element select
- */
-
-Element.select = function(name, settings) {
-
-	var element;
-
-	if (typeof name !== "string") {
-
-		element = name;
-
-	}
-
-	else if (name[0] == "#") {
-
-		element = document.getElementById(name.substring(1)) || new El("div");
-
-	}
-	
-	return element;
-
-};
-
-/**
- * Components/main.js
- *
- * Component model
- */
-
-Application.components = {};
-
-function Component(name) {
-
-	this.name = name;
-
-	Application.components[name] = this;
-
-};
-
-var Co = Component;
-
-Application.Component = Component;
-
-/**
- * Components/attributes.js
- *
- * Transform attributes in an object
- */
-
-Component.attributes_parser = function(attributes, parameters) {
-
-	var result = {};
-
-	for (var i = 0; i < attributes.length; i++) {
-
-		result[attributes[i].name] = attributes[i].value;
-
-		if (typeof attributes[i].value === "string" && attributes[i].value[0] == "$" && parameters) {
-
-			for (parameter in parameters) {
-
-				if (attributes[i].value === "${" + parameter + "}" && parameters.hasOwnProperty(parameter)) {
-
-					result[attributes[i].name] = parameters[parameter];
-
-				}
-
-			}
-
-		}
-		
-	}
-
-	return result;
-
-}
-
-/**
- * Components/create.js
- *
- * Création d'un componenent
- */
-
-Component.prototype.create = function(values) {
-
-	var componenent = Element(document.createDocumentFragment());
-
-	this.render(componenent, values);
-
-	var DOM = document.createElement("div");
-	DOM.appendChild(componenent);
-
-	var childs = child_node_list(DOM);
-
-	if (values._CHILDNODES_.length) {
-
-		var inner_set = false;
-
-		for (var i = 0; i < childs.length; i++) {
-
-			var child = childs[i];
-
-			if (child.getAttribute("tag-name") === "_inner_") {
-
-				var length = values._CHILDNODES_.length;
-
-				for (var i = 0; i < length; i++) {
-
-					child.parentNode.insertBefore(values._CHILDNODES_[0], child);
-					
-				}
-
-				child.parentNode.removeChild(child);
-
-				inner_set = true;
-
-				break;
-
-			}
-
-		}
-
-		if (!inner_set) {
-
-			console.error("L'intérieur du Component \"" + this.name + "\" n'est pas défini.");
-
-			for (var i = 0; i < values._CHILDNODES_.length; i++) {
-
-				DOM.firstChild.appendChild(values._CHILDNODES_[i]);
-				
-			}
-
-		}
-
-	}
-
-	var fragment = document.createDocumentFragment();
-
-	while (DOM.childNodes.length) {
-
-		fragment.appendChild(DOM.childNodes[0]);
-
-	}
-
-	return fragment;
-
-};
-
-/**
- * Components/generate.js
- *
- * Components fragment generation
- */
-
-var DOM = Component.generate = Component.gen = function(html, parameters) {
-
-	if ("string" != typeof html) {
-
-		return document.createElement("div");
-
-	}
-
-	html = html.replace(/^\s+|\s+$/g, "");
-
-	html = html.replace(/<([-\w]*)( (.+?))?\/>/g,'<$1$2></$1>');
-
-	html = html.replace(/<([-\w]*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,'</div>');
-
-	console.log(html);
-
-	var element = document.createElement("div");
-	element.innerHTML = html;
-
-	var no_more_conponent = false,
-		element_generated = false;
-		loops = 0;
-
-	while (!no_more_conponent) {
-
-		element_generated = false;
-
-		loops ++;
-
-		if (loops > 10) {
-
-			console.error("Une boucle de création de component a été détéctée");
-
-			no_more_conponent = true;
-
-		}
-		
-		var childs = child_node_list(element);
-
-		for (var i = 0; i < childs.length; i++) {
-
-			var child = childs[i];
-
-			var tag_name = "";
-			
-			if (child.getAttribute) {
-
-				tag_name = child.getAttribute("tag-name") || "";
-
-			}
-
-			if (Application.components[tag_name]) {
-
-				var attributes = Component.attributes_parser(child.attributes, parameters);
-				attributes._CHILDNODES_ = child.childNodes;
-
-				var component = Application.components[tag_name].create(attributes);
-
-				var element_created = component.firstChild;
-
-				for (attribute in attributes) {
-
-					if (attributes.hasOwnProperty(attribute) && element_created.getAttribute(attribute) === null && typeof attributes[attribute] === "string") {
-
-						element_created.setAttribute(attribute, attributes[attribute]);
-
-					}
-
-				}
-
-				element_created.removeAttribute("tag-name");
-
-				child.parentNode.insertBefore(component, child);
-				child.parentNode.removeChild(child);
-
-				element_generated = true;
-
-				break;
-
-			}
-
-		}
-
-		if (!element_generated) {
-
-			no_more_conponent = true;
-
-		}
-
-	}
-
-	return element.childNodes;
-
-}
-
-/**
- * Components/inner.js
- *
- * Set the Component inner place
- */
-
-Component.inner = function(element) {
-
-	var inner_element = document.createElement("div");
-
-	inner_element.setAttribute("tag-name", "_inner_")
-
-	element.appendChild(inner_element);
-
-	return element;
-
-};
-
-/**
- * Components/btn/main.js
+ * components/main.js
  *
  * Button component
  */
 
-var c_btn = new Component("btn");
+new Component({
 
-c_btn.render = function(component, $) {
+	name: "btn",
 
-	var type = $.type === "raised" ? "raised" : "flat",
-		color = $.color ? ".btn--" + $.color : "",
-		outline_color = $.outline ? ".btn--outline-" + $.outline : "",
-		ripple_color = $.ripple ? ".btn--ripple-" + $.ripple : "",
-		disabled = isset($.disable) ? ".disabled" : "";
+	render: function($) {
 
-	var btn = component.add(new Element("div.btn.btn--" + type + color + outline_color + ripple_color + disabled));
+		var type = $.type === "raised" ? "raised" : "flat",
+			color = $.color ? ".btn--" + $.color : "",
+			outline_color = $.outline ? ".btn--outline-" + $.outline : "",
+			ripple_color = $.ripple ? ".btn--ripple-" + $.ripple : "",
+			disabled = isset($.disable) ? ".disabled" : "";
+	
+		var btn = new Element("div.btn.btn--" + type + color + outline_color + ripple_color + disabled);
+	
+		if (!disabled) {
+	
+			btn.tabIndex = 0;
+	
+		}
 
-	if (!disabled) {
+		if (typeof $.click === "function") {
 
-		btn.tabIndex = 0;
+			El(btn).on("CLICK", $.click, btn);
 
+		}
+	
+		if (!$["no-ripple"]) {
+	
+			El(btn).add(Co('<ripple parent="${parent}"/>', {
+	
+				parent: btn
+	
+			}));
+	
+		}
+
+		return btn;
+	
 	}
 
-	component.inner(btn);
-
-	if ($.click) {
-
-		on(btn, "CLICK", $.click, btn);
-
-	}
-
-	if (!$["no-ripple"]) {
-
-		El(btn).add(DOM('<ripple parent="${parent}"/>', {
-
-			parent: btn
-
-		}));
-
-	}
-
-};
+});
 
 /* TEMPLATE
 
 <btn type="flat|raised" color? click? no-ripple?>@{inner}</btn> */
 
 /**
- * Components/card/main.js
+ * Components/card.js
  *
  * Card component
  */
 
-var c_card = new Component("card");
+new Co({
 
-c_card.render = function(component, $) {
+	name: "card",
 
-	var type = isset($.type) ? $.type : "video";
+	render: function($) {
 
-	if (type === "video") {
-
-		var card = component.add(new El("div.card.video"));
-
-			var thumbnail = card.add(new El("div.thumbnail"));
-			thumbnail.style.backgroundImage = "url(" + $.thumbnail + ")";
-
-				var time = thumbnail.add(new El("div.time"));
-				time.innerHTML = $.duration;
-
-				var overlay = thumbnail.add(new El("a.overlay"));
-				overlay.href = "watch/" + $["vid-id"];
-
-			var description = card.add(new El("div.description"));
-
-				var title = description.add(new El("a"));
-				title.href = "watch/" + $["vid-id"];
-
-					var title_inner = title.add(new El("h4"));
-					title_inner.innerHTML = $.title;
-
-				var div = description.add(new El("div"));
-
-					var views = div.add(new El("div.view"));
-					views.innerHTML = $.views;
-
-					var channel = div.add(new El("a.channel"));
-					channel.href = "channel/" + $.channel;
-					channel.innerHTML = $["channel-name"];
-
-	}
-
-	else if (type == "plus") {
-
-		var card = component.add(new El("div.card.plus"));
-
-			var a = card.add(new El("a"));
-			a.href = "watch/" + $["vid-id"];
-
-				var thumbnail = a.add(new El("div.thumbnail"));
-				thumbnail.style.backgroundImage = "url(" + $.thumbnail + ")";
-
-				var p = a.add(new El("p"));
-
-					var channel_name = p.add(new El("b"));
-					channel_name.innerHTML = $["channel-name"];
-
-					p.innerHTML += " a aimé votre vidéo \"<b>" + $["vid-name"] + "</b>\"";
-
-			var i = card.add(new El("i"));
-			i.innerHTML = $["relative-time"];
-
-	}
-
-	else if (type == "comment") {
-
-		var card = component.add(new El("div.card.comment"));
-
-			var a = card.add(new El("a"));
-			a.href = "watch/" + $["vid-id"];
-
-				var p = a.add(new El("p"));
-
-					var channel_name = p.add(new El("b"));
-					channel_name.innerHTML = $["channel-name"];
-
-					p.innerHTML += " a commenté votre vidéo \"<b>" + $["vid-name"] + "</b>\"";
-
-				var blockquote = a.add(new El("blockquote"));
-				blockquote.innerHTML = $.comment
-
-			var i = card.add(new El("i"));
-			i.innerHTML = $["relative-time"];
-
-	}
-
-	else if (type == "channel") {
-
-		var card = component.add(new El("div.card.channel"));
-
-			var a = card.add(new El("a"));
-			a.href = "watch/" + $.channel;
-
-				var avatar = a.add(new El("div.avatar"));
-				avatar.style.backgroundImage = "url(" + $.avatar + ")";
-
-				var p = a.add(new El("p"));
-
-					var channel_name = p.add(new El("b"));
-					channel_name.innerHTML = $["channel-name"];
+		var type = isset($.type) ? $.type : "video";
 	
-					p.innerHTML += " s'est abonné à votre chaîne \"<b>" + $["my-channel-name"] + "</b>\"";
+		if (type === "video") {
+	
+			var card = new El("div.card.video");
+	
+				var thumbnail = card.add(new El("div.thumbnail"));
+				thumbnail.style.backgroundImage = "url(" + $.thumbnail + ")";
+	
+					var time = thumbnail.add(new El("div.time"));
+					time.innerHTML = $.duration;
+	
+					var overlay = thumbnail.add(new El("a.overlay"));
+					overlay.href = "watch/" + $["vid-id"];
+	
+				var description = card.add(new El("div.description"));
+	
+					var title = description.add(new El("a"));
+					title.href = "watch/" + $["vid-id"];
+	
+						var title_inner = title.add(new El("h4"));
+						title_inner.innerHTML = $.title;
+	
+					var div = description.add(new El("div"));
+	
+						var views = div.add(new El("div.view"));
+						views.innerHTML = $.views;
+	
+						var channel = div.add(new El("a.channel"));
+						channel.href = "channel/" + $.channel;
+						channel.innerHTML = $["channel-name"];
+	
+		}
+	
+		else if (type == "plus") {
+	
+			var card = new El("div.card.plus");
+	
+				var a = card.add(new El("a"));
+				a.href = "watch/" + $["vid-id"];
+	
+					var thumbnail = a.add(new El("div.thumbnail"));
+					thumbnail.style.backgroundImage = "url(" + $.thumbnail + ")";
+	
+					var p = a.add(new El("p"));
+	
+						var channel_name = p.add(new El("b"));
+						channel_name.innerHTML = $["channel-name"];
+	
+						p.innerHTML += " a aimé votre vidéo \"<b>" + $["vid-name"] + "</b>\"";
+	
+				var i = card.add(new El("i"));
+				i.innerHTML = $["relative-time"];
+	
+		}
+	
+		else if (type == "comment") {
+	
+			var card = new El("div.card.comment");
+	
+				var a = card.add(new El("a"));
+				a.href = "watch/" + $["vid-id"];
+	
+					var p = a.add(new El("p"));
+	
+						var channel_name = p.add(new El("b"));
+						channel_name.innerHTML = $["channel-name"];
+	
+						p.innerHTML += " a commenté votre vidéo \"<b>" + $["vid-name"] + "</b>\"";
+	
+					var blockquote = a.add(new El("blockquote"));
+					blockquote.innerHTML = $.comment
+	
+				var i = card.add(new El("i"));
+				i.innerHTML = $["relative-time"];
+	
+		}
+	
+		else if (type == "channel") {
+	
+			var card = new El("div.card.channel");
+	
+				var a = card.add(new El("a"));
+				a.href = "watch/" + $.channel;
+	
+					var avatar = a.add(new El("div.avatar"));
+					avatar.style.backgroundImage = "url(" + $.avatar + ")";
+	
+					var p = a.add(new El("p"));
+	
+						var channel_name = p.add(new El("b"));
+						channel_name.innerHTML = $["channel-name"];
+		
+						p.innerHTML += " s'est abonné à votre chaîne \"<b>" + $["my-channel-name"] + "</b>\"";
+	
+				var subscribers = card.add(new El("span.subscribers"));
+				subscribers.innerHTML = "<b>" + $.subscribers + "</b> Abonnés";
+	
+				var i = card.add(new El("i"));
+				i.innerHTML = $["relative-time"];
+	
+		}
+	
+		card.on( "CLICK", $.click, card);
 
-			var subscribers = card.add(new El("span.subscribers"));
-			subscribers.innerHTML = "<b>" + $.subscribers + "</b> Abonnés";
-
-			var i = card.add(new El("i"));
-			i.innerHTML = $["relative-time"];
-
+		return card;
+	
 	}
 
-	component.inner(card);
-
-	if ($.click) {
-
-		on(btn, "CLICK", $.click, btn);
-
-	}
-
-};
+});
 
 /**
- * Components/channel-post/main.js
+ * Components/channel-post.js
  *
  * Channel social post component
  */
 
-var c_channel_post = new Component("channel-post");
+new Co({
 
-c_channel_post.render = function(component, $) {
+	name: "channel-post",
 
-	var channel_post = component.add(new Element("div.channel-post"));
+	render: function($) {
 
-		var avatar = channel_post.add(new Element("img"));
-		avatar.src = $.avatar;
+		var channel_post = new Element("div.channel-post");
+	
+			var avatar = channel_post.add(new Element("img"));
+			avatar.src = $.avatar;
+	
+			var p = channel_post.add(new Element("p"));
+	
+				var channel_name = p.add(new Element("span.channel-name"));
+				channel_name.innerHTML = $.channel;
+	
+			p.innerHTML += " a posté un message :";
+	
+			var message = channel_post.add(new Element("div.social-message"));
+			message.innerHTML = $.message;
+	
+		return channel_post;
+	
+	}
 
-		var p = channel_post.add(new Element("p"));
-
-			var channel_name = p.add(new Element("span.channel-name"));
-			channel_name.innerHTML = $.channel;
-
-		p.innerHTML += " a posté un message :";
-
-		var message = channel_post.add(new Element("div.social-message"));
-		message.innerHTML = $.message;
-
-	component.inner(channel_post);
-
-};
+});
 
 /* TEMPLATE
 
@@ -1428,50 +573,130 @@ c_channel_post.render = function(component, $) {
 </div> */
 
 /**
- * Components/ripple/main.js
+ * components/comment.js
+ *
+ * Comment component
+ */
+
+new Co({
+
+	name: "comment",
+
+	render: function($) {
+
+		if (!$.data) {
+
+			return;
+
+		}
+
+		var comment = $.data;
+
+		var commentDiv = new El("div.comment");
+
+			var headDiv = commentDiv.add(new El("div.comment-head"));
+
+				var userDiv = headDiv.add(new El("div.user"));
+
+					var avatar = userDiv.add(new El("img"));
+					avatar.src = _my_avatar_;
+
+					var a = userDiv.add(new El("a"));
+					a.href  = "../channel/" + comment.channelUrl;
+					a.innerHTML = comment.author;
+
+				var dateDiv = headDiv.add(new El("div.date"));
+
+					var p = dateDiv.add(new El("p"));
+					p.innerHTML = comment.date;
+
+			var textDiv = commentDiv.add(new El("div.comment-text"));
+
+				var p1 = textDiv.add(new El("p"));
+				p1.innerHTML = comment.comment;
+
+			var noteDiv = commentDiv.add(new El("div.comment-notation"));
+
+				var ul = noteDiv.add(new El("ul"));
+
+					var li1 = ul.add(new El("li.plus"));
+					var li2 = ul.add(new El("li.moins"));
+
+					li1.id = "plus-" + comment.id;
+					li2.id = "moins-" + comment.id;
+
+					li1.on("CLICK", function(event, commentId) {
+
+						likeComment(commentId);
+
+					}, comment.id);
+
+					li2.on("CLICK", function(event, commentId) {
+
+						dislikeComment(commentId)
+
+					}, comment.id),
+
+					li1.innerHTML = "+" + comment.plusNumber;
+					li2.innerHTML = "-" + comment.moinsNumber;
+
+		return commentDiv;
+	
+	}
+
+});
+
+/**
+ * components/ripple.js
  *
  * Ripple component
  */
 
-var c_ripple = new Component("ripple");
+new Component({
 
-c_ripple.render = function(component, $) {
+	name: "ripple",
 
-	var ripple = component.add(new Element("div.ripple"));
+	render: function($) {
 
-	component.inner(ripple);
+		var ripple = new Element("div.ripple");
+	
+		if ($.parent) {
 
-	if ($.parent) {
+			var event = "ontouchstart" in window ? "touchstart" : "mousedown";
+	
+			El($.parent).on(event, function(event, elements) {
+	
+				var ripple = elements.ripple,
+					parent = elements.parent;
 
-		on($.parent, "mousedown", function(event, elements) {
+				if (!El(parent).hasClass("disabled")) {
+	
+					var circle = ripple.add(new El("div.ripple__circle.ripple__circle--animate"));
+	
+					var parentOffset = El(parent).offset();
+	
+					var clickX = event.changedTouches ? event.changedTouches[0].pageX : event.pageX,
+						clickY = event.changedTouches ? event.changedTouches[0].pageY : event.pageY;
+	
+					circle.style.left = clickX - parentOffset.x + "px";
+					circle.style.top = clickY - parentOffset.y + "px";
+	
+				}
+	
+			}, {
+	
+				ripple: ripple,
+				parent: $.parent
+	
+			});
+	
+		}
 
-			var ripple = elements.ripple,
-				parent = elements.parent;
-
-			if (El(parent).is_not_disabled()) {
-
-				var circle = ripple.add(new El("div.ripple__circle.ripple__circle--animate"));
-
-				var parent_offset = El(parent).offset();
-
-				var click_x = event.changedTouches ? event.changedTouches[0].pageX : event.pageX,
-					click_y = event.changedTouches ? event.changedTouches[0].pageY : event.pageY;
-
-				circle.style.left = click_x - parent_offset.x + "px";
-				circle.style.top = click_y - parent_offset.y + "px";
-
-			}
-
-		}, {
-
-			ripple: ripple,
-			parent: $.parent
-
-		});
-
+		return ripple;
+	
 	}
 
-};
+});
 
 /* TEMPLATE
 
@@ -1483,7 +708,7 @@ c_ripple.render = function(component, $) {
  * BACKGROUND LOADER
  */
 
-function background_loader(element) {
+function backgroundLoader(element) {
 
     this.element = El(element);
     this.src = this.element.getAttribute("data-background");;
@@ -1492,24 +717,24 @@ function background_loader(element) {
     this.imgLoader = new Image();
     this.imgLoader.src = this.src;
 
-    on(this.imgLoader, "load", function(event, element) {
+    El(this.imgLoader).on("load", function(event, element) {
 
-        element.remove_class("bg-loader");
+        element.removeClass("bg-loader");
 
-        element.add_class("bg-loader-transition");
-        element.add_class("bg-loaded");
+        element.addClass("bg-loader-transition");
+        element.addClass("bg-loaded");
 
         setTimeout(function(element) {
 
             return function() {
 
-                element.remove_class("bg-loader-transition");
+                element.removeClass("bg-loader-transition");
 
             }
 
         }(element), 300);
 
-    }, element);
+    }, this.element);
 
  }
 
@@ -1523,11 +748,68 @@ new Script({
 
 		    for (var i = 0, length = elements.length; i < length; i++) {
 
-		        new background_loader(elements[i]);
+		        new backgroundLoader(elements[i]);
 
 		    }
 
 		}
+
+	}
+
+});
+
+/**
+ * Scripts/test.js
+ *
+ * TEST SCRIPT
+ */
+
+new Script({
+
+	call: function() {
+
+		/*console.log(El(document.body).add(Co('<card vid-id="${vid_id}" title="${title}" thumbnail="${thumbnail}" duration="${duration}" views="${views}" channel="${channel}" channel-name="${channel_name}"/>', {
+
+			vid_id: "000000",
+			title: "Très le titre",
+			thumbnail: "//lorempicsum.com/up/255/200/2",
+			duration: "12:18",
+			views: "37",
+			channel: "bla",
+			channel_name: "Bla"
+
+		}))[0]);*/
+
+		/*console.log(El(document.body).add(Co('<card type="plus" vid-id="${vid_id}" thumbnail="${thumbnail}" relative-time="${relative_time}" vid-name="${vid_name}" channel-name="${channel_name}"/>', {
+
+			vid_id: "000000",
+			thumbnail: "//lorempicsum.com/up/255/200/2",
+			relative_time: "il y a 2 minutes",
+			vid_name: "Nom",
+			channel_name: "Bla"
+
+		}))[0]);*/
+
+		/*console.log(El(document.body).add(Co('<card type="comment" vid-id="${vid_id}" comment="${comment}" relative-time="${relative_time}" vid-name="${vid_name}" channel-name="${channel_name}"/>', {
+
+			vid_id: "000000",
+			comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, laboriosam, nobis mollitia, autem similique atque repellendus beatae qui cum minima voluptas earum aliquid! Possimus aliquid delectus, illum laborum recusandae cum.",
+			relative_time: "il y a 2 minutes",
+			vid_name: "Nom",
+			channel_name: "Bla"
+
+		}))[0]);*/
+
+		/*console.log(El(document.body).add(Co('<card type="channel" avatar="${avatar}" subscribers="${subscribers}" relative-time="${relative_time}" my-channel-name="${my_channel_name}" channel="${channel}" channel-name="${channel_name}"/>', {
+
+			avatar: "//lorempicsum.com/up/255/200/2",
+			relative_time: "il y a 2 minutes",
+			subscribers: 13,
+			my_channel_name: "Me",
+			channel: "Bla",
+			channel_name: "Bla"
+
+		}))[0]);*/
 
 	}
 
@@ -1558,10 +840,10 @@ function postMessage() {
 
  		return function(result) {
 	
- 			El("#channel-posts").add_first(DOM('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
+ 			El("#channel-posts").addFirst(Co('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
 	
  				avatar: _my_avatar_,
- 				channel: channel,
+ 				channel: _my_pseudo_,
  				message: result.content
 	
  			}));
@@ -1597,12 +879,80 @@ new Script({
 });
 
 /**
+ * scripts/comment.js
+ *
+ * COMMENT
+ */
+
+new Script({
+
+	pages: ["watch"],
+
+	call: function() {
+
+		if (!El("#post-comment-button")) {
+
+			return false;
+
+		}
+
+		var postCommentButton = El("#post-comment-button");
+
+		postCommentButton.on("CLICK", function(event, postCommentButton) {
+
+			postComment(postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value)
+
+		}, postCommentButton);
+
+	}
+
+});
+
+function postComment(vid, commentContent, fromChannel, parent) {
+
+	marmottajax.post({
+
+		url: "../comments/",
+
+		options: {
+
+			commentSubmit: "lol",
+			"comment-content": commentContent,
+			"from-channel": fromChannel,
+			"video-id": vid,
+			parent: parent
+
+		}
+
+	}).then(function(fromChannel) {
+
+		return function(result) {
+
+			var comment = JSON.parse(result);
+
+			comment.channelUrl = fromChannel;
+			comment.avatar = _my_avatar_;
+			comment.plusNumber = 0;
+			comment.moinsNumber = 0;
+			comment.date = "À l'instant";
+
+			El("#comments-best").addFirst(Co('<comment data="${data}"/>', { data: comment }));
+
+		}
+
+	}(fromChannel));
+
+	El("#textarea-comment").value = "";
+
+}
+
+/**
  * Scripts/embed-video.js
  *
  * SHARE
  */
 
-function set_exporter_input_value() {
+function setExporterInputValue() {
 
 	if (!document.getElementById("exporter-input")) {
 
@@ -1610,21 +960,21 @@ function set_exporter_input_value() {
 
 	}
 
-	var exporter_input = El("#exporter-input"),
+	var exporterInput = El("#exporter-input"),
 
-		exporter_quality = El("#exporter-quality"),
-		exporter_autoplay = El("#exporter-autoplay"),
-		exporter_time_checkbox = El("#exporter-time-checkbox"),
-		exporter_time_input = El("#exporter-time-input");
+		exporterQuality = El("#exporter-quality"),
+		exporterAutoplay = El("#exporter-autoplay"),
+		exporterTimeCheckbox = El("#exporter-time-checkbox"),
+		exporterTimeInput = El("#exporter-time-input");
 
 	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
 
-	var quality = exporter_quality.options[exporter_quality.value].innerHTML || "640x360",
+	var quality = exporterQuality.options[exporterQuality.value].innerHTML || "640x360",
 		qualitys = quality.split("x");
 		width = qualitys[0],
 		height = qualitys[1];
 
-	var autoplay = exporter_autoplay.checked || false;
+	var autoplay = exporterAutoplay.checked || false;
 
 	if (autoplay) {
 
@@ -1632,20 +982,20 @@ function set_exporter_input_value() {
 
 	}
 
-	var start_at = exporter_time_checkbox.checked || false;
+	var startAt = exporterTimeCheckbox.checked || false;
 
-	if (start_at) {
+	if (startAt) {
 
-		var time_url_format = ["s", "m", "h"];
+		var timeUrlFormat = ["s", "m", "h"];
 
-		var start_time = exporter_time_input.value,
-			times = start_time.split(":").reverse();
+		var startTime = exporterTimeInput.value,
+			times = startTime.split(":").reverse();
 
 		for (var i = 0; i < times.length; i++) {
 
 			/*url += i === 0 & !autoplay ? "?" : "&";
 
-			url += time_url_format[i] + "=" + times[i];*/
+			url += timeUrlFormat[i] + "=" + times[i];*/
 
 			url += times[i] + '/';
 
@@ -1653,7 +1003,7 @@ function set_exporter_input_value() {
 
 	}
 
-	exporter_input.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
+	exporterInput.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
 
 }
 
@@ -1663,27 +1013,25 @@ new Script({
 
 	call: function() {
 
-		if (!document.getElementById("embed-video-icon")) {
+		if (!El("#embed-video-icon")) {
 
 			return false;
 
 		}
 
-		var embed_video_icon = El("#embed-video-icon");
+		El("#embed-video-icon").on("CLICK", function() {
 
-		on(embed_video_icon, "CLICK", function() {
+			var videoInfoDescription = El("#video-info-description");
 
-			var video_info_description = El("#video-info-description");
+			if (videoInfoDescription.hasClass("export")) {
 
-			if (video_info_description.has_class("export")) {
-
-				video_info_description.remove_class("export");
+				videoInfoDescription.removeClass("export");
 
 			}
 
 			else {
 
-				video_info_description.add_class("export");
+				videoInfoDescription.addClass("export");
 
 				El("#exporter-input").select();
 
@@ -1691,12 +1039,12 @@ new Script({
 
 		});
 
-		El("#exporter-quality").on("change", set_exporter_input_value),
-		El("#exporter-autoplay").on("change", set_exporter_input_value),
-		El("#exporter-time-checkbox").on("change", set_exporter_input_value),
-		El("#exporter-time-input").on("change", set_exporter_input_value);
+		El("#exporter-quality").on("change", setExporterInputValue),
+		El("#exporter-autoplay").on("change", setExporterInputValue),
+		El("#exporter-time-checkbox").on("change", setExporterInputValue),
+		El("#exporter-time-input").on("change", setExporterInputValue);
 
-		set_exporter_input_value();
+		setExporterInputValue();
 
 	}
 
@@ -1734,80 +1082,23 @@ new Script({
 
 	call: function() {
 
-		if (!document.getElementById("share-video-icon")) {
+		if (!El("#share-video-icon")) {
 
 			return false;
 
 		}
 
-		var share_video_icon = El("#share-video-icon");
+		var shareVideoIcon = El("#share-video-icon");
 
-		share_video_icon.on("CLICK", function() {
+		shareVideoIcon.on("CLICK", function() {
 
-			var share_video_block = El("#share-video-block"),
-				video_info_description = El("#video-info-description");
+			var shareVideoBlock = El("#share-video-block"),
+				videoInfoDescription = El("#video-info-description");
 
-			share_video_block.toogle_class("show");
-			video_info_description.toogle_class("little");
+			shareVideoBlock.toggleClass("show");
+			videoInfoDescription.toggleClass("little");
 
 		});
-
-	}
-
-});
-
-/**
- * Scripts/test.js
- *
- * TEST SCRIPT
- */
-
-new Script({
-
-	call: function() {
-
-		/*console.log(El(document.body).add(DOM('<card vid-id="${vid_id}" title="${title}" thumbnail="${thumbnail}" duration="${duration}" views="${views}" channel="${channel}" channel-name="${channel_name}"/>', {
-
-			vid_id: "000000",
-			title: "Très le titre",
-			thumbnail: "//lorempicsum.com/up/255/200/2",
-			duration: "12:18",
-			views: "37",
-			channel: "bla",
-			channel_name: "Bla"
-
-		}))[0]);*/
-
-		/*console.log(El(document.body).add(DOM('<card type="plus" vid-id="${vid_id}" thumbnail="${thumbnail}" relative-time="${relative_time}" vid-name="${vid_name}" channel-name="${channel_name}"/>', {
-
-			vid_id: "000000",
-			thumbnail: "//lorempicsum.com/up/255/200/2",
-			relative_time: "il y a 2 minutes",
-			vid_name: "Nom",
-			channel_name: "Bla"
-
-		}))[0]);*/
-
-		/*console.log(El(document.body).add(DOM('<card type="comment" vid-id="${vid_id}" comment="${comment}" relative-time="${relative_time}" vid-name="${vid_name}" channel-name="${channel_name}"/>', {
-
-			vid_id: "000000",
-			comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, laboriosam, nobis mollitia, autem similique atque repellendus beatae qui cum minima voluptas earum aliquid! Possimus aliquid delectus, illum laborum recusandae cum.",
-			relative_time: "il y a 2 minutes",
-			vid_name: "Nom",
-			channel_name: "Bla"
-
-		}))[0]);*/
-
-		/*console.log(El(document.body).add(DOM('<card type="channel" avatar="${avatar}" subscribers="${subscribers}" relative-time="${relative_time}" my-channel-name="${my_channel_name}" channel="${channel}" channel-name="${channel_name}"/>', {
-
-			avatar: "//lorempicsum.com/up/255/200/2",
-			relative_time: "il y a 2 minutes",
-			subscribers: 13,
-			my_channel_name: "Me",
-			channel: "Bla",
-			channel_name: "Bla"
-
-		}))[0]);*/
 
 	}
 

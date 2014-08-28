@@ -1,68 +1,57 @@
 ﻿Back
 ================
 
-- Upload: {
+###Upload
 
-	- Système d'upload + convertion sur le front puis déplacement (scp) sur le store
+- [ ] Système d'upload + convertion sur le front puis déplacement (scp) sur le store
 
-	- Réintégrer le système de lecture de la V1
+- [ ] Réintégrer le système de lecture de la V1
 
-	- Intégrer le système de lecture au lecteur embed (et vérifier l'exactitude de l'url iframe sur watch)
+- [ ] Intégrer le système de lecture au lecteur embed (et vérifier l'exactitude de l'url iframe sur watch)
 
-	- Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
+- [ ] Durée de la vidéo: http://www.posteet.com/view/2052 (ffmpeg -i {filepath} 2>&1)
 
-	- Utiliser la base 64 en base pour images au lieu de les stocker
+- [ ] Utiliser la base 64 en base pour images au lieu de les stocker
 
-	- Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: on ajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
+- [ ] Ne pas ajouter de notif d'upload si vidéo non publique: l'ajouter lors de la mise en publique: Vérifier si une notif a déjà été publiée: NON: on ajoute la notif; OUI: on se contente de passer la vidéo en public sans aucune autre action.
 
-}
+###Pages
 
-- Ajouter les playlists (et dynamiser la page de watch)
+- [ ] "qui sommes-nous" (intègrera aussi l'équipe)
 
-- Faire les "settings"
+- [ ] "Contributeurs"
 
-- Pages: {
+- [ ] CGU
 
-	- "qui sommes-nous" (intègrera aussi l'équipe)
+- [ ] Mentions légales
 
-	- "Contributeurs"
+###Autre
 
-	- CGU
+- [ ] Ajouter les playlists (et dynamiser la page de watch)
 
-	- Mentions légales
+- [ ] Faire les "settings"
 
-}
+- [ ] bug tracker
 
-- bug tracker
+- [ ] Intégrer les lives dans l'UI
 
-- Intégrer les lives dans l'UI
+- [ ] Améliorer l'UX de création de live
 
-- Améliorer l'UX de création de live
-
-- PROTEGER LA CLE DU LIVE (actuellement visible dans le src="" de la source ^^")
-
-
+- [ ] PROTEGER LA CLE DU LIVE (actuellement visible dans le src="" de la source ^^")
 
 Admin
 ================
 
-- Instaurer une licence pour les vidéos
-
+- [ ] Instaurer une licence pour les vidéos
 
 
 Front
 ================
 
-- Interface pour le live: {
+- [ ] Debug firefox des boutons partage et intégration (**Wtf is this shit**) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
 
-	- Interface du chat
+###Interface de live
 
-	- Interface lorsque pas de live actif
+- [ ] Interface du chat
 
-}
-
-- Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
-
-- L'affichage des commantaires juste après le post 'donc en js) doit être amélioré
-
-- Responsive de mes réponses de commentaires: faisable ? stp dimou ! :)
+- [ ] Interface lorsque pas de live actif

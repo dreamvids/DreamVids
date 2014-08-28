@@ -5,7 +5,7 @@
  * SHARE
  */
 
-function set_exporter_input_value() {
+function setExporterInputValue() {
 
 	if (!document.getElementById("exporter-input")) {
 
@@ -13,21 +13,21 @@ function set_exporter_input_value() {
 
 	}
 
-	var exporter_input = El("#exporter-input"),
+	var exporterInput = El("#exporter-input"),
 
-		exporter_quality = El("#exporter-quality"),
-		exporter_autoplay = El("#exporter-autoplay"),
-		exporter_time_checkbox = El("#exporter-time-checkbox"),
-		exporter_time_input = El("#exporter-time-input");
+		exporterQuality = El("#exporter-quality"),
+		exporterAutoplay = El("#exporter-autoplay"),
+		exporterTimeCheckbox = El("#exporter-time-checkbox"),
+		exporterTimeInput = El("#exporter-time-input");
 
 	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
 
-	var quality = exporter_quality.options[exporter_quality.value].innerHTML || "640x360",
+	var quality = exporterQuality.options[exporterQuality.value].innerHTML || "640x360",
 		qualitys = quality.split("x");
 		width = qualitys[0],
 		height = qualitys[1];
 
-	var autoplay = exporter_autoplay.checked || false;
+	var autoplay = exporterAutoplay.checked || false;
 
 	if (autoplay) {
 
@@ -35,20 +35,20 @@ function set_exporter_input_value() {
 
 	}
 
-	var start_at = exporter_time_checkbox.checked || false;
+	var startAt = exporterTimeCheckbox.checked || false;
 
-	if (start_at) {
+	if (startAt) {
 
-		var time_url_format = ["s", "m", "h"];
+		var timeUrlFormat = ["s", "m", "h"];
 
-		var start_time = exporter_time_input.value,
-			times = start_time.split(":").reverse();
+		var startTime = exporterTimeInput.value,
+			times = startTime.split(":").reverse();
 
 		for (var i = 0; i < times.length; i++) {
 
 			/*url += i === 0 & !autoplay ? "?" : "&";
 
-			url += time_url_format[i] + "=" + times[i];*/
+			url += timeUrlFormat[i] + "=" + times[i];*/
 
 			url += times[i] + '/';
 
@@ -56,7 +56,7 @@ function set_exporter_input_value() {
 
 	}
 
-	exporter_input.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
+	exporterInput.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
 
 }
 
@@ -66,27 +66,25 @@ new Script({
 
 	call: function() {
 
-		if (!document.getElementById("embed-video-icon")) {
+		if (!El("#embed-video-icon")) {
 
 			return false;
 
 		}
 
-		var embed_video_icon = El("#embed-video-icon");
+		El("#embed-video-icon").on("CLICK", function() {
 
-		on(embed_video_icon, "CLICK", function() {
+			var videoInfoDescription = El("#video-info-description");
 
-			var video_info_description = El("#video-info-description");
+			if (videoInfoDescription.hasClass("export")) {
 
-			if (video_info_description.has_class("export")) {
-
-				video_info_description.remove_class("export");
+				videoInfoDescription.removeClass("export");
 
 			}
 
 			else {
 
-				video_info_description.add_class("export");
+				videoInfoDescription.addClass("export");
 
 				El("#exporter-input").select();
 
@@ -94,12 +92,12 @@ new Script({
 
 		});
 
-		El("#exporter-quality").on("change", set_exporter_input_value),
-		El("#exporter-autoplay").on("change", set_exporter_input_value),
-		El("#exporter-time-checkbox").on("change", set_exporter_input_value),
-		El("#exporter-time-input").on("change", set_exporter_input_value);
+		El("#exporter-quality").on("change", setExporterInputValue),
+		El("#exporter-autoplay").on("change", setExporterInputValue),
+		El("#exporter-time-checkbox").on("change", setExporterInputValue),
+		El("#exporter-time-input").on("change", setExporterInputValue);
 
-		set_exporter_input_value();
+		setExporterInputValue();
 
 	}
 

@@ -1,6 +1,6 @@
 
 /**
- * Core/$.js
+ * core/$.js
  *
  * DOM Content Loaded function
  */
@@ -41,8 +41,8 @@ Application.on_dom_content_loaded = function(event) {
 
 };
 
-on(document, "DOMContentLoaded", Application.on_dom_content_loaded);
-on(window, "load", Application.on_dom_content_loaded);
+El(document).on("DOMContentLoaded", Application.on_dom_content_loaded);
+El(window).on("load", Application.on_dom_content_loaded);
 
 window.onload = function() {
 

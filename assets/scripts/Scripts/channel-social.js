@@ -24,10 +24,10 @@ function postMessage() {
 
  		return function(result) {
 	
- 			El("#channel-posts").add_first(DOM('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
+ 			El("#channel-posts").addFirst(Co('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
 	
  				avatar: _my_avatar_,
- 				channel: channel,
+ 				channel: _my_pseudo_,
  				message: result.content
 	
  			}));
