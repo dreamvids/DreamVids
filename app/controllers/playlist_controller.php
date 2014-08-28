@@ -10,8 +10,10 @@ require_once MODEL.'playlist.php';
 
 class PlaylistController extends Controller {
 
-	public function __construct() {
-		$this->denyAction(Action::INDEX);
+	public function __construct() {}
+	
+	public function index($request) {
+		
 	}
 
 	public function get($id, $request) {
@@ -46,6 +48,8 @@ class PlaylistController extends Controller {
 					'videos' => $videosData,
 					'timestamp' => $playlist->timestamp
 				);
+				
+				return new JsonResponse($playlistData);
 			}
 			else {
 				$data = array();
@@ -59,8 +63,9 @@ class PlaylistController extends Controller {
 				return new ViewResponse('playlist/playlist', $data);
 			}
 		}
-		else
+		else {
 			return Utils::getNotFoundResponse();
+		}
 	}
 
 	public function create($request) {
@@ -74,8 +79,5 @@ class PlaylistController extends Controller {
 	public function destroy($id, $request) {
 
 	}
-
-	// Denied actions
-	public function index($request) {}
 
 }
