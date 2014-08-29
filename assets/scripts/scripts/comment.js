@@ -11,6 +11,8 @@ new Script({
 
 	call: function() {
 
+		DEBUG(["comment Script called", 'El("#post-comment-button") :', El("#post-comment-button").nodeName]);
+
 		if (!El("#post-comment-button")) {
 
 			return false;
@@ -21,7 +23,11 @@ new Script({
 
 		postCommentButton.on("CLICK", function(event, postCommentButton) {
 
-			postComment(postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value)
+			DEBUG(["postCommentButton clicked", event, postCommentButton]);
+			DEBUG(["postComment", postComment]);
+			DEBUG([postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value]);
+
+			postComment(postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value);
 
 		}, postCommentButton);
 
@@ -30,6 +36,15 @@ new Script({
 });
 
 function postComment(vid, commentContent, fromChannel, parent) {
+
+	DEBUG(["postComment called", {
+
+		vid: vid,
+		commentContent: commentContent,
+		fromChannel: fromChannel,
+		parent: parent
+
+	}]);
 
 	marmottajax.post({
 

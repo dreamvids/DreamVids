@@ -1,19 +1,3 @@
-/**
- * ATTENTION ! IL EST INUTILE DE MODIFIER CE FICHIER
- * CAR  VOS  MODIFICATIONS SERONT  ECRASÉES  PAR  LE
- * PROCHAIN COMMIT
- *
- * Pour modifier le contenu de ce fichier, il faut
- * modifier ses sources qui se situent soit dans
- * le dossier `style`, le dossier `scripts` selon
- * vos besoin. Il faut ensuite compiler à l'aide du
- * lanceur de taches Grunt. Pour plus d'infos,
- * rendez-vous dans le README du dossier `assets`
- */
-/*(function(win, doc){
-
-var window = win,
-	document = doc;*/
 
 /**
  * main.js
@@ -890,6 +874,8 @@ new Script({
 
 	call: function() {
 
+		DEBUG(["comment Script called", 'El("#post-comment-button") :', El("#post-comment-button").nodeName]);
+
 		if (!El("#post-comment-button")) {
 
 			return false;
@@ -900,7 +886,11 @@ new Script({
 
 		postCommentButton.on("CLICK", function(event, postCommentButton) {
 
-			postComment(postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value)
+			DEBUG(["postCommentButton clicked", event, postCommentButton]);
+			DEBUG(["postComment", postComment]);
+			DEBUG([postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value]);
+
+			postComment(postCommentButton.getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value);
 
 		}, postCommentButton);
 
@@ -909,6 +899,15 @@ new Script({
 });
 
 function postComment(vid, commentContent, fromChannel, parent) {
+
+	DEBUG(["postComment called", {
+
+		vid: vid,
+		commentContent: commentContent,
+		fromChannel: fromChannel,
+		parent: parent
+
+	}]);
 
 	marmottajax.post({
 
@@ -1103,7 +1102,3 @@ new Script({
 	}
 
 });
-/*
-window.Application = Application;
-
-})(window, document);*/

@@ -8,7 +8,6 @@ module.exports = function(grunt) {
 
 				src: [
 
-					"assets/scripts/intro.js",
 					"assets/scripts/main.js",
 
 					"assets/scripts/vendor/**/*.js",
@@ -20,8 +19,7 @@ module.exports = function(grunt) {
 
 					"assets/scripts/scripts/**/*.js",
 
-					"assets/scripts/**/*.js",
-					"assets/scripts/outro.js"
+					"assets/scripts/**/*.js"
 
 				],
 
@@ -60,39 +58,6 @@ module.exports = function(grunt) {
 			}
 
 		},
-
-		"usebanner": {
-
-		    dist: {
-
-		      	options: {
-
-		        	position: "top",
-		        	linebreak: true,
-
-		        	banner: "/**\n"
-		        	      + " * ATTENTION ! IL EST INUTILE DE MODIFIER CE FICHIER\n"
-		        		  + " * CAR  VOS  MODIFICATIONS SERONT  ECRASÉES  PAR  LE\n"
-		        		  + " * PROCHAIN COMMIT\n"
-		        		  + " *\n"
-		        		  + " * Pour modifier le contenu de ce fichier, il faut\n"
-		        		  + " * modifier ses sources qui se situent soit dans\n"
-		        		  + " * le dossier `style`, le dossier `scripts` selon\n"
-		        		  + " * vos besoin. Il faut ensuite compiler à l'aide du\n"
-		        		  + " * lanceur de taches Grunt. Pour plus d'infos,\n"
-		        		  + " * rendez-vous dans le README du dossier `assets`\n"
-		        		  + " */"
-
-		      	},
-
-		      	files: {
-
-		        	src: [ "assets/css/style.css", "assets/js/script.js" ]
-
-		      	}
-		    }
-		},
-
 
 		"concurrent": {
 
@@ -171,8 +136,6 @@ module.exports = function(grunt) {
 
 	});
 
-	grunt.loadNpmTasks("grunt-banner");
-
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 
@@ -184,8 +147,8 @@ module.exports = function(grunt) {
 
 	grunt.registerTask("default", ["scripts", "styles"]);
 
-	grunt.registerTask("scripts", ["concat:dist", "uglify:dist", "usebanner:dist"]);
-	grunt.registerTask("styles", ["sass:dist", "cssmin:dist", "usebanner:dist"]);
+	grunt.registerTask("scripts", ["concat:dist", "uglify:dist"]);
+	grunt.registerTask("styles", ["sass:dist", "cssmin:dist"]);
 
 	grunt.registerTask("auto", ["concurrent:auto"]);
 	grunt.registerTask("auto-scripts", ["watch:scripts"]);
