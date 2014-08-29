@@ -53,18 +53,12 @@ Admin
 Front
 ================
 
-- Interface pour le live: {
-
-	- Interface du chat
-
-	- Interface lorsque pas de live actif
-
-}
-
-- Ajout d'un petit bouton "+" sur les vidéos (à côté de partage etc) pour ajouter la vidéo à une playlist
-
 - Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
 
-- L'affichage des commantaires juste après le post (donc en js) doit être amélioré
-
 - Post de commentaire planté
+
+###Live
+
+- Interface du chat
+
+- Interface lorsque pas de live actif

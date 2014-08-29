@@ -123,10 +123,13 @@
 			
 			</div>
 
-			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>" />
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');" />
-			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');" />
-			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>" />
+			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');">
+			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');">
+			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
+			<?php if(Session::isActive()) { ?>
+				<a href="playlists/add/<?php echo $video->id; ?>"><img title="Ajouter à une playlist" src="<?php echo IMG.'plus.png'; ?>"></a>
+			<?php } ?>
 
 		</div>
 
