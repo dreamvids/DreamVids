@@ -139,16 +139,21 @@
 		
 		<div class="playlist__title">Playlist "Animaux trop Choupis"</div>
 
-		<div class="playlist__videos">
-			
-			<div class="playlist__video playlist__video--playing bg-loader" data-background="<?php echo $thumbnail; ?>"></div>
+		<img id="playlist-button-scroll-left" class="playlist__button playlist__button--left" src="<?php echo IMG.'/playlist-button-left.png'; ?>">
+
+		<div id="playlist-videos" class="playlist__videos">
+
 			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
 			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
 			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/simpsons/627/200/3"></div></a>
 			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
 			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
+			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
 
 		</div>
+
+		<img id="playlist-button-scroll-right" class="playlist__button playlist__button--right" src="<?php echo IMG.'/playlist-button-right.png'; ?>">
 
 	</section>
 

@@ -1,0 +1,30 @@
+
+/* PLAYLIST BUTTON
+   ============================= */
+
+.playlist__button {
+
+	position: absolute;
+	top: 91px;
+	z-index: 2;
+
+	display: block;
+	width: 48px;
+	height: 48px;
+
+	opacity: .85;
+	cursor: pointer;
+
+}
+
+.playlist__button--left {
+
+	left: 36px;
+
+}
+
+.playlist__button--right {
+
+	right: 36px;
+
+}

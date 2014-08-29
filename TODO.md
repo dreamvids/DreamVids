@@ -53,9 +53,9 @@ Admin
 Front
 ================
 
-- Debug firefox des boutons partage et intégration (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
+- Debug firefox des boutons partage et intégration et de commentaire (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
 
-- Post de commentaire planté
+- Smooth scroll sur les playlists (j'aime pas les calculs compliqués...)
 
 ###Live
 
