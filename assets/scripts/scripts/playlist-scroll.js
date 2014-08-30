@@ -26,21 +26,13 @@ new Script({
 		var buttonLeft = El("#playlist-button-scroll-left"),
             buttonRight = El("#playlist-button-scroll-right");
 
-		buttonLeft.on("CLICK", function(event, elements) {
-
-            var buttonLeft = El("#playlist-button-scroll-left"),
-                buttonRight = El("#playlist-button-scroll-right"),
-                playlistVideos = El("#playlist-videos");
+        new Hammer(buttonLeft).on("tap", function() {
 
             playListScroll(-300);
 
         });
 
-        buttonRight.on("CLICK", function(event, elements) {
-
-            var buttonLeft = El("#playlist-button-scroll-left"),
-                buttonRight = El("#playlist-button-scroll-right"),
-                playlistVideos = El("#playlist-videos");
+        new Hammer(buttonRight).on("tap", function() {
 
             playListScroll(200);
 

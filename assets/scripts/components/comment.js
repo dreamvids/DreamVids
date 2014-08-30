@@ -52,17 +52,25 @@ new Co({
 					li1.id = "plus-" + comment.id;
 					li2.id = "moins-" + comment.id;
 
-					li1.on("CLICK", function(event, commentId) {
+					new Hammer(li1).on("tap", function(commentId) {
 
-						likeComment(commentId);
+						return function() {
 
-					}, comment.id);
+							likeComment(commentId);
 
-					li2.on("CLICK", function(event, commentId) {
+						}
 
-						dislikeComment(commentId)
+					}(comment.id));
 
-					}, comment.id),
+					new Hammer(li2).on("tap", function(commentId) {
+
+						return function() {
+
+							dislikeComment(commentId)
+
+						}
+
+					}(comment.id));
 
 					li1.innerHTML = "+" + comment.plusNumber;
 					li2.innerHTML = "-" + comment.moinsNumber;

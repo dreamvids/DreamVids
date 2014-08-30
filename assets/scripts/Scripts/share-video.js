@@ -17,9 +17,7 @@ new Script({
 
 		}
 
-		var shareVideoIcon = El("#share-video-icon");
-
-		/*shareVideoIcon.on("CLICK", function() {
+		new Hammer(El("#share-video-icon")).on("tap", function() {
 
 			var shareVideoBlock = El("#share-video-block"),
 				videoInfoDescription = El("#video-info-description");
@@ -27,17 +25,7 @@ new Script({
 			shareVideoBlock.toggleClass("show");
 			videoInfoDescription.toggleClass("little");
 
-		});*/
-
-		shareVideoIcon.addEventListener("click", function() {
-
-			var shareVideoBlock = El("#share-video-block"),
-				videoInfoDescription = El("#video-info-description");
-
-			shareVideoBlock.toggleClass("show");
-			videoInfoDescription.toggleClass("little");
-			
-		}, false);
+		});
 
 	}
 

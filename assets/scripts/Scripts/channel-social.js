@@ -46,7 +46,7 @@ new Script({
 
 	call: function() {
 
-		El("#channel-social-message-submit").on("click", postMessage);
+		new Hammer(El("#channel-social-message-submit")).on("tap", postMessage);
 
 		El("#post-content").on("keydown", function(event) {
 

@@ -57,20 +57,5 @@
 		DEBUG_VARIABLES.push(variable);
 
 	}
-	
-	alert("Ok ! Salut Peter !");
-
-	if (confirm("Premièrement, es-tu connecté ?\n\nOk = Oui\nAnnuler = Non")) {
-
-		alert("Génial ! Maintenant essaye de poster un commentaire, puis ne quitte surtout pas cette page et previens Dimou quand tu as fini ;-)");
-
-	}
-
-	else {
-
-		alert("Alors je vais t'inviter à te connecter ;-)");
-		document.location = "../login";
-
-	}
 
 </script>
