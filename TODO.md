@@ -39,7 +39,7 @@
 
 - Améliorer l'UX de création de live
 
-- PROTEGER LA CLE DU LIVE (actuellement visible dans le src="" de la source ^^")
+- Implémenter le protocol RFC6455, pour le chat du live (très bien avancé)
 
 
 
