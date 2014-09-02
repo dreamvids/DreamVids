@@ -72,7 +72,7 @@ new Script({
 
 		}
 
-		El("#embed-video-icon").on("CLICK", function() {
+		new Hammer(El("#embed-video-icon")).on("tap", function() {
 
 			var videoInfoDescription = El("#video-info-description");
 

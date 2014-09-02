@@ -53,8 +53,6 @@ Admin
 Front
 ================
 
-- Debug firefox des boutons partage et intégration et de commentaire (Wtf is this shit) Si je pouvais avoir plus d'infos ce serait cool, car chez moi tout fonctionne :s
-
 - Smooth scroll sur les playlists (j'aime pas les calculs compliqués...)
 
 ###Live
