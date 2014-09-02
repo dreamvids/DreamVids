@@ -13,4 +13,4 @@ Config::addValue('default-avatar', IMG.'default-avatar.png');
 Config::addValue('default-background', IMG.'default-background.png');
 Config::addValue('default-thumbnail', IMG.'default-thumbnail.png');
 
-Config::addValue('livestream-source', 'rtmp://192.168.56.101/live/');
+Config::addValue('livestream-source', 'rtmp://192.168.33.10/stream/');

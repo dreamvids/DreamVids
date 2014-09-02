@@ -73,7 +73,7 @@ class LiveController extends Controller {
 						'timestamp' => time()
 					));
 
-					return new JsonResponse(array('key' => $access->key));
+					return new JsonResponse(array('key' => $channel->name.'?key='.$access->key));
 				}
 				else
 					return new Response(500);

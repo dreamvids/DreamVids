@@ -21,7 +21,7 @@
 	<?php if ($onAir) { ?>
 	<div id="player">
 		<video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" data-setup='{ "techOrder": ["flash"] }'>
-			<source src="<?php echo Config::getValue_('livestream-source').$liveKey; ?>" type='rtmp/flv' />
+			<source src="<?php echo Config::getValue_('livestream-source').$channel->name; ?>" type='rtmp/flv' />
 		</video>
 	</div>
 	<?php } ?>
