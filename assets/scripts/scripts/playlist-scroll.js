@@ -26,17 +26,17 @@ new Script({
 		var buttonLeft = El("#playlist-button-scroll-left"),
             buttonRight = El("#playlist-button-scroll-right");
 
-        new Hammer(buttonLeft).on("tap", function() {
+        buttonLeft.onclick = function() {
 
             playListScroll(-300);
 
-        });
+        };
 
-        new Hammer(buttonRight).on("tap", function() {
+        buttonRight.onclick = function() {
 
             playListScroll(200);
 
-        });
+        };
 
 	}
 

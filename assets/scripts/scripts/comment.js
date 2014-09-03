@@ -17,11 +17,11 @@ new Script({
 
 		}
 
-		new Hammer(El("#post-comment-button")).on("tap", function() {
+		El("#post-comment-button").onclick = function() {
 
 			postComment(El("#post-comment-button").getAttribute("data-vid-id"), El("#textarea-comment").value, El("#channel-selector").value, El("#parent-comment").value);
 
-		});
+		};
 
 	}
 

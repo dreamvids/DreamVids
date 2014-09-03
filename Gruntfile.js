@@ -151,6 +151,7 @@ module.exports = function(grunt) {
 	grunt.registerTask("styles", ["sass:dist", "cssmin:dist"]);
 
 	grunt.registerTask("auto", ["concurrent:auto"]);
+	grunt.registerTask("dev", ["auto"]);
 	grunt.registerTask("auto-scripts", ["watch:scripts"]);
 	grunt.registerTask("auto-style", ["watch:style"]);
 

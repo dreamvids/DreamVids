@@ -46,17 +46,23 @@ new Script({
 
 	call: function() {
 
-		new Hammer(El("#channel-social-message-submit")).on("tap", postMessage);
+		var channelSocialMessageSubmit = El("#channel-social-message-submit");
 
-		El("#post-content").on("keydown", function(event) {
+		if (channelSocialMessageSubmit) {
 
-		    if (event.keyCode === 13 && event.ctrlKey) {
+			channelSocialMessageSubmit.onclick = postMessage;
 
-		        postMessage();
+			El("#post-content").on("keydown", function(event) {
 
-		    }
+			    if (event.keyCode === 13 && event.ctrlKey) {
 
-		});
+			        postMessage();
+
+			    }
+
+			});
+
+		}
 
 	}
 

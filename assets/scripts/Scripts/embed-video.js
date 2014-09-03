@@ -72,7 +72,7 @@ new Script({
 
 		}
 
-		new Hammer(El("#embed-video-icon")).on("tap", function() {
+		El("#embed-video-icon").onclick = function() {
 
 			var videoInfoDescription = El("#video-info-description");
 
@@ -90,7 +90,7 @@ new Script({
 
 			}
 
-		});
+		};
 
 		El("#exporter-quality").on("change", setExporterInputValue),
 		El("#exporter-autoplay").on("change", setExporterInputValue),

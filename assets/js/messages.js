@@ -209,7 +209,11 @@ function loadMessagesInList(sorts) {
 
 }
 
-loadMessagesInList(sortsDropdown.value);
+if (sortsDropdown) {
+
+    loadMessagesInList(sortsDropdown.value);
+
+}
 
 function loadDiscution(id) {
 
@@ -387,17 +391,21 @@ function submitMessage() {
 
 }
 
-messageSubmit.addEventListener("click", submitMessage, false);
+if (messageSubmit) {
 
-messageText.addEventListener("keydown", function(event) {
+    messageSubmit.addEventListener("click", submitMessage, false);
 
-    if (event.keyCode === 13 && event.ctrlKey) {
+    messageText.addEventListener("keydown", function(event) {
 
-        submitMessage();
+        if (event.keyCode === 13 && event.ctrlKey) {
 
-    }
+            submitMessage();
 
-}, false);
+        }
+
+    }, false);
+
+}
 
 function createDiscution(members) {
 
@@ -409,48 +417,52 @@ function createDiscution(members) {
 
 }
 
-createSubmit.addEventListener("click", function() {
+if (createSubmit && sortsDropdown && channelSelector) {
 
-    discutionInfos.className = discutionInfos.className.replace("none", "");
-    createForm.className += " none";
-
-    var creator = channelSelector.value;
-
-    createInputTitle = document.getElementById("create-input-title").value;
-    var members = createInputMembers.value;
-
-    marmottajax.post({
-
-        url: '../conversations',
-
-        options: {
-
-            subject: createInputTitle,
-            members: members,
-            creator: creator
-
-        }
-
-    }).then(function(result) {
-
-        loadDiscution(result);
+    createSubmit.addEventListener("click", function() {
+    
+        discutionInfos.className = discutionInfos.className.replace("none", "");
+        createForm.className += " none";
+    
+        var creator = channelSelector.value;
+    
+        createInputTitle = document.getElementById("create-input-title").value;
+        var members = createInputMembers.value;
+    
+        marmottajax.post({
+    
+            url: '../conversations',
+    
+            options: {
+    
+                subject: createInputTitle,
+                members: members,
+                creator: creator
+    
+            }
+    
+        }).then(function(result) {
+    
+            loadDiscution(result);
+            loadMessagesInList(sortsDropdown.value);
+    
+        });
+    
+    }, false);
+    
+    sortsDropdown.addEventListener("change", function(event) {
+    
         loadMessagesInList(sortsDropdown.value);
+    
+    }, false);
+    
+    channelSelector.addEventListener("change", function(event) {
+    
+        loadMessagesInList(sortsDropdown.value);
+    
+    }, false);
 
-    });
-
-}, false);
-
-sortsDropdown.addEventListener("change", function(event) {
-
-    loadMessagesInList(sortsDropdown.value);
-
-}, false);
-
-channelSelector.addEventListener("change", function(event) {
-
-    loadMessagesInList(sortsDropdown.value);
-
-}, false);
+}
 
 function loadMessagesInDiscution(id) {
 

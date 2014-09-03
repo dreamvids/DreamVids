@@ -52,7 +52,7 @@ new Co({
 					li1.id = "plus-" + comment.id;
 					li2.id = "moins-" + comment.id;
 
-					new Hammer(li1).on("tap", function(commentId) {
+					li1.onclick = function(commentId) {
 
 						return function() {
 
@@ -60,9 +60,9 @@ new Co({
 
 						}
 
-					}(comment.id));
+					}(comment.id);
 
-					new Hammer(li2).on("tap", function(commentId) {
+					li2.onclick = function(commentId) {
 
 						return function() {
 
@@ -70,7 +70,7 @@ new Co({
 
 						}
 
-					}(comment.id));
+					}(comment.id);
 
 					li1.innerHTML = "+" + comment.plusNumber;
 					li2.innerHTML = "-" + comment.moinsNumber;

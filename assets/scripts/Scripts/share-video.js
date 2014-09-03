@@ -17,7 +17,7 @@ new Script({
 
 		}
 
-		new Hammer(El("#share-video-icon")).on("tap", function() {
+		El("#share-video-icon").onclick = function() {
 
 			var shareVideoBlock = El("#share-video-block"),
 				videoInfoDescription = El("#video-info-description");
@@ -25,7 +25,7 @@ new Script({
 			shareVideoBlock.toggleClass("show");
 			videoInfoDescription.toggleClass("little");
 
-		});
+		};
 
 	}
 
