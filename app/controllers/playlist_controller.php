@@ -80,6 +80,8 @@ class PlaylistController extends Controller {
 							'videos_ids' => '',
 							'timestamp' => Utils::tps() 
 						));
+						// Oui cette ligne est dupliquée mais ce n'est pas une erreur, ne pas supprimer SVP
+							$resp = $this->index($request);
 						$resp->addMessage(ViewMessage::success('Playlist ajoutée avec succès !'));
 					}
 					else {
