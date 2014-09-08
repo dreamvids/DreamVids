@@ -2,7 +2,7 @@
 /**
  * Scripts/embed-video.js
  *
- * SHARE
+ * EMBED VIDEO
  */
 
 function setExporterInputValue() {
@@ -78,12 +78,14 @@ new Script({
 
 			if (videoInfoDescription.hasClass("export")) {
 
+				videoInfoDescription.removeClass("playlist");
 				videoInfoDescription.removeClass("export");
 
 			}
 
 			else {
 
+				videoInfoDescription.removeClass("playlist");
 				videoInfoDescription.addClass("export");
 
 				El("#exporter-input").select();

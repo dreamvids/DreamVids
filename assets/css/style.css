@@ -6255,12 +6255,18 @@ nav.pagination {
   width: 80%;
   height: 150px;
   margin: auto;
-  padding: 20px 20px; }
+  padding: 20px 20px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important; }
   .video-infos .description.little {
     height: 110px; }
 
 .video-infos .description .inner-description,
-.video-infos .description .inner-export {
+.video-infos .description .inner-export,
+.video-infos .description .inner-playlist {
   height: 155px;
   max-height: 100%;
   padding-right: 10px;
@@ -6272,19 +6278,49 @@ nav.pagination {
 .video-infos .description .inner-description {
   display: block; }
 
-.video-infos .description .inner-export {
+.video-infos .description .inner-export,
+.video-infos .description .inner-playlist {
   display: none; }
 
-.video-infos .description.export .inner-description {
+.video-infos .description.export .inner-description,
+.video-infos .description.playlist .inner-description {
   display: none; }
 
 .video-infos .description.export .inner-export {
+  display: block; }
+
+.video-infos .description.playlist .inner-playlist {
   display: block; }
 
 .video-infos .description .inner-export input[type="text"] {
   width: 90%;
   padding: 8px;
   margin: auto; }
+
+.video-infos .description .inner-playlist input[type="text"] {
+  float: left;
+  width: 78%;
+  padding: 10px;
+  margin: 5px auto 0 auto;
+  border: none; }
+
+.video-infos .description .inner-playlist button {
+  width: 35px;
+  height: 35px;
+  padding: 8px;
+  margin: 5px auto 0 auto;
+  border: none;
+  background: #40A6E0;
+  color: white;
+  cursor: pointer;
+  line-height: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 24px; }
+
+.video-infos .description .inner-playlist h3 {
+  margin-bottom: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px; }
 
 .video-infos .description .inner-description::-webkit-scrollbar {
   width: 4px; }

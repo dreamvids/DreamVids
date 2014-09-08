@@ -110,6 +110,22 @@
 			
 			</div>
 
+			<div class="inner-playlist">
+
+				<h3>Ajouter à une playlist :</h3>
+
+				<div class="form no-style" id="playlist-add-form-list">
+
+					<input type="checkbox" checked data-playlist-id="1" id="playlist-add-checkbox-1"/><label for="playlist-add-checkbox-1">Bla</label><br>
+					<input type="checkbox" data-playlist-id="2" id="playlist-add-checkbox-2"/><label for="playlist-add-checkbox-2">Yolo</label><br>
+
+				</div>
+
+				<input id="playlist-create-input" type="text" placeholder="Créer une playlist">
+				<button id="playlist-create-button">+</button>
+			
+			</div>
+
 		</div>
 
 		<hr>
@@ -128,7 +144,7 @@
 			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo $video->url; ?>');">
 			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<?php if(Session::isActive()) { ?>
-				<a href="playlists/add/<?php echo $video->id; ?>"><img title="Ajouter à une playlist" src="<?php echo IMG.'plus.png'; ?>"></a>
+				<img data-vidid="<?php echo $video->id; ?>" id="add-playlist-icon" src="<?php echo IMG.'plus.png'; ?>" title="Ajouter à une playlist">
 			<?php } ?>
 
 		</div>
