@@ -18,7 +18,7 @@ class PlaylistController extends Controller {
 			$data['playlists'] = array();
 			$data['channels'] = Session::get()->getOwnedChannels();
 			foreach ($data['channels'] as $chan) {
-				$data['playlists'][$chan->id] = Playlist::all(array('conditions' => array('channel_id = ?', $chan->id)));
+				$data['playlists'][$chan->id] = Playlist::all(array('conditions' => array('channel_id = ?', $chan->id), 'order' => 'timestamp desc'));
 			}
 			
 			return new ViewResponse('playlists/playlists', $data);
@@ -73,19 +73,24 @@ class PlaylistController extends Controller {
 			$resp = $this->index($request);
 			if ($req['name'] != '' && $req['channel_id'] != '') {
 				if (UserChannel::exists($req['channel_id'])) {
-					if (!Playlist::exists(array('conditions' => array('name = ? AND channel_id = ?', $req['name'], $req['channel_id'])))) {
-						Playlist::create(array(
-							'name' => $req['name'],
-							'channel_id' => $req['channel_id'],
-							'videos_ids' => '',
-							'timestamp' => Utils::tps() 
-						));
-						// Oui cette ligne est dupliquée mais ce n'est pas une erreur, ne pas supprimer SVP
-							$resp = $this->index($request);
-						$resp->addMessage(ViewMessage::success('Playlist ajoutée avec succès !'));
+					if (UserChannel::find($req['channel_id'])->belongToUser(Session::get()->id)) {
+						if (!Playlist::exists(array('conditions' => array('name = ? AND channel_id = ?', $req['name'], $req['channel_id'])))) {
+							Playlist::create(array(
+								'name' => $req['name'],
+								'channel_id' => $req['channel_id'],
+								'videos_ids' => json_encode(array()),
+								'timestamp' => Utils::tps() 
+							));
+							// Oui cette ligne est dupliquée mais ce n'est pas une erreur, ne pas supprimer SVP
+								$resp = $this->index($request);
+							$resp->addMessage(ViewMessage::success('Playlist ajoutée avec succès !'));
+						}
+						else {
+							$resp->addMessage(ViewMessage::error('Une playlist du même nom existe déjà sur cette chaîne.'));
+						}
 					}
 					else {
-						$resp->addMessage(ViewMessage::error('Une playlist du même nom existe déjà sur cette chaîne.'));
+						$resp->addMessage(ViewMessage::error('Cette chaîne ne vous appartient pas.'));
 					}
 				}
 				else {
@@ -100,7 +105,28 @@ class PlaylistController extends Controller {
 	}
 
 	public function update($id, $request) {
-
+		if (Session::isActive() ) {
+			$req = $request->getParameters();
+			$playlist = Playlist::find($req['playlist_id']);
+			if (Playlist::exists($req['playlist_id']) && UserChannel::find(Playlist::find($req['playlist_id'])->channel_id)->belongToUser(Session::get()->id)) {
+				$videos = json_decode($playlist->video);
+				switch ($req['action']) {
+					case 'add':
+						$videos[] = $req['video_id'];
+						break;
+					
+					case 'remove':
+						foreach ($videos as $key => $value) {
+							if ($key == $req['video_id']) {
+								unset($videos[$key]);
+							}
+						}
+						break;
+				}
+				$playlist->video = json_encode($videos);
+				$playlist->save();
+			}
+		}
 	}
 
 	public function destroy($id, $request) {

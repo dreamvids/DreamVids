@@ -56,6 +56,11 @@ class VideoController extends Controller {
 		$data = array();
 
 		$data['video'] = $video;
+		$data['playlists'] = array();
+		$data['channels'] = Session::get()->getOwnedChannels();
+		foreach ($data['channels'] as $chan) {
+			$data['playlists'][$chan->id] = Playlist::all(array('conditions' => array('channel_id = ?', $chan->id), 'order' => 'timestamp desc'));
+		}
 		$data['title'] = $video->title;
 		$data['tags'] = array();
 		$tags = explode(' ', $video->tags);

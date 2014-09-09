@@ -115,10 +115,14 @@
 				<h3>Ajouter à une playlist :</h3>
 
 				<div class="form no-style" id="playlist-add-form-list">
-
-					<input type="checkbox" checked data-playlist-id="1" id="playlist-add-checkbox-1"/><label for="playlist-add-checkbox-1">Bla</label><br>
-					<input type="checkbox" data-playlist-id="2" id="playlist-add-checkbox-2"/><label for="playlist-add-checkbox-2">Yolo</label><br>
-
+				<?php
+				foreach ($channels as $chan) {
+					echo '<h4>'.$chan->name.'</h4>';
+					foreach ($playlists[$chan->id] as $play) {
+						echo '<input type="checkbox" data-playlist-id="'.$play->id.'" id="playlist-add-checkbox-'.$play->id.'"/><label for="playlist-add-checkbox-'.$play->id.'">'.$play->name.'</label><br>';
+					}
+				}
+				?>
 				</div>
 
 				<input id="playlist-create-input" type="text" placeholder="Créer une playlist">
