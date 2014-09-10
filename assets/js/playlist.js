@@ -31,13 +31,21 @@ function createPlaylist(name, callback) {
 }
 
 function addVideoToPlaylist(playlistid, vidid) {
-
-	console.log("Add video \"" + vidid + "\" to playlist \"" + playlistid + "\"");
-
+	marmottajax.put({
+		'url': '../playlists/'+playlistid,
+		'options': {
+			action: 'add',
+			video_id: vidid
+		}
+	});
 }
 
 function removeVideoFromPlaylist(playlistid, vidid) {
-
-	console.log("Remove video \"" + vidid + "\" from playlist \"" + playlistid + "\"");
-	
+	marmottajax.put({
+		url: '../playlists/'+playlistid,
+		options: {
+			action: 'remove',
+			video_id: vidid
+		}
+	});
 }

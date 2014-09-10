@@ -105,27 +105,36 @@ class PlaylistController extends Controller {
 	}
 
 	public function update($id, $request) {
-		if (Session::isActive() ) {
+		if (Session::isActive()) {
 			$req = $request->getParameters();
-			$playlist = Playlist::find($req['playlist_id']);
-			if (Playlist::exists($req['playlist_id']) && UserChannel::find(Playlist::find($req['playlist_id'])->channel_id)->belongToUser(Session::get()->id)) {
-				$videos = json_decode($playlist->video);
+			$playlist = Playlist::find($id);
+			if (Playlist::exists($id) && UserChannel::find(Playlist::find($id)->channel_id)->belongToUser(Session::get()->id)) {
+				$videos = json_decode($playlist->videos_ids);
 				switch ($req['action']) {
 					case 'add':
-						$videos[] = $req['video_id'];
+						if (!in_array($req['video_id'], $videos)) {
+							$videos[] = $req['video_id'];
+						}
 						break;
 					
 					case 'remove':
-						foreach ($videos as $key => $value) {
-							if ($key == $req['video_id']) {
-								unset($videos[$key]);
-							}
+						if (in_array($req['video_id'], $videos)) {
+							$key = array_search($req['video_id'], $videos);
+							unset($videos[$key]);
 						}
 						break;
 				}
-				$playlist->video = json_encode($videos);
+				$playlist->videos_ids = json_encode($videos);
 				$playlist->save();
+				
+				return new JsonResponse(array('ok'));
 			}
+			else {
+				return new Response(500);
+			}
+		}
+		else {
+			return new Response(500);
 		}
 	}
 

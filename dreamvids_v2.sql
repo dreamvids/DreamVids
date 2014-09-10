@@ -110,10 +110,10 @@ CREATE TABLE `partners` (
 
 DROP TABLE IF EXISTS `playlists`;
 CREATE TABLE `playlists` (
-  `id` varchar(6) NOT NULL,
+  `id` varchar(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
-  `videoes_ids` varchar(255) NOT NULL DEFAULT ';',
+  `videos_ids` varchar(255) NOT NULL DEFAULT ';',
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

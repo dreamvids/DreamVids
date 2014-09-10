@@ -11,16 +11,15 @@
 			}
 		?>
 		</select>
-		<input type="hidden" name="channel_id" value="c_8CG5" />
 		<input type="submit" class="blue" value="Créer" />
 	</form>
 </section>
 
 <div class="content">
-	<aside class="aside-cards-list">
 <?php
 foreach ($channels as $chan) {
-	echo '<h3 class="title">'.$chan->name.'</h3>';
+	echo '<aside class="aside-cards-list">
+	<h3 class="title">'.$chan->name.'</h3>';
 	foreach ($playlists[$chan->id] as $play) {
 	?>
 		<div class="card video long">
@@ -37,7 +36,7 @@ foreach ($channels as $chan) {
 		</div>
 	<?php
 	}
+	echo '</aside>';
 }
 ?>
-	</aside>
 </div>

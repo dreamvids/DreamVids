@@ -57,7 +57,7 @@ class VideoController extends Controller {
 
 		$data['video'] = $video;
 		$data['playlists'] = array();
-		$data['channels'] = Session::get()->getOwnedChannels();
+		$data['channels'] = (Session::isActive()) ? Session::get()->getOwnedChannels() : array();
 		foreach ($data['channels'] as $chan) {
 			$data['playlists'][$chan->id] = Playlist::all(array('conditions' => array('channel_id = ?', $chan->id), 'order' => 'timestamp desc'));
 		}

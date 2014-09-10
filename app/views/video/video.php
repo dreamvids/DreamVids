@@ -119,7 +119,8 @@
 				foreach ($channels as $chan) {
 					echo '<h4>'.$chan->name.'</h4>';
 					foreach ($playlists[$chan->id] as $play) {
-						echo '<input type="checkbox" data-playlist-id="'.$play->id.'" id="playlist-add-checkbox-'.$play->id.'"/><label for="playlist-add-checkbox-'.$play->id.'">'.$play->name.'</label><br>';
+						$checked = (in_array($video->id, json_decode($play->videos_ids))) ? 'checked="checked"' : '';
+						echo '<input type="checkbox" '.$checked.' data-playlist-id="'.$play->id.'" id="playlist-add-checkbox-'.$play->id.'"/><label for="playlist-add-checkbox-'.$play->id.'">'.$play->name.'</label><br>';
 					}
 				}
 				?>
@@ -178,7 +179,7 @@
 	</section>
 
 
-	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())): ?>
+	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) { ?>
 		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
 			<?php if ($video->isFlagged()) { ?>
 				<button class="blue" onclick="unFlagVideo('<?php echo $video->id; ?>')">Annuler le flag</button>
@@ -189,7 +190,7 @@
 			<button class="red" onclick="suspendVideo('<?php echo $video->id; ?>')">Suspendre</button>
 			<button class="blue" onclick="setToDiscover('<?php echo $video->id; ?>')">Mettre en avant</button>
 		</form>
-	<?php endif ?>
+	<?php } ?>
 
 </section>
 
