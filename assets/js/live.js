@@ -5,7 +5,7 @@ function createLive(channelId) {
 	}) .then(function(result) {
 		try {
 			var json = JSON.parse(result);
-			document.getElementById('live-key').innerHTML = 'Votre clé: ' + json.key;
+			document.getElementById('live-key').innerHTML = 'Votre clé: ' + json.key + '<br />Lien du live: <a href="'+_webroot_+'lives/'+json.channel+'">http://dreamvids.fr/lives/'+json.channel+'</a>';
 		}
 		catch(e) {}
 	});

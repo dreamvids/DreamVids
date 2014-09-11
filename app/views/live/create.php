@@ -14,7 +14,8 @@
 		<p id="live-key"></p>
 	<?php } else { ?>
 		<p>Accès a votre live disponible (chaîne: <?php echo $liveChannel->name; ?>)</p>
-		<p>Clé de live: <?php echo $access->key; ?></p>
+		<p>Clé de live: <?php echo $access->key; ?><br />
+		Lien du live: <a href="<?php echo WEBROOT.'lives/'.$liveChannel->name; ?>">http://dreamvids.fr/lives/<?php echo $liveChannel->name; ?></a></p>
 
 		<br />
 
