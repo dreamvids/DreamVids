@@ -8,6 +8,8 @@ require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'playlist.php';
 
+require_once CONTROLLER.'video_controller.php';
+
 class PlaylistController extends Controller {
 
 	public function __construct() {}
@@ -63,7 +65,8 @@ class PlaylistController extends Controller {
 			return new JsonResponse($playlistData);
 		}
 		else {
-			return Utils::getNotFoundResponse();
+			header('location:'.WEBROOT.'playlists/'.$id.'/watch');
+			exit();
 		}
 	}
 
@@ -139,7 +142,42 @@ class PlaylistController extends Controller {
 	}
 
 	public function destroy($id, $request) {
-
+		if (Session::isActive() && UserChannel::find(Playlist::find($id)->channel_id)->belongToUser(Session::get()->id)) {
+			Playlist::find($id)->delete();
+			Playlist::delete_all(array('conditions' => 'id = ?'), $id);
+			return new Response(200);
+		}
+		else {
+			ob_clean();
+			return new Response(500);
+		}
+	}
+	
+	public function watch($parameters, $request) {
+		$playlist_id = $parameters[1];
+		
+		if (Playlist::exists($playlist_id) ) {
+			$playlist = Playlist::find($playlist_id);
+			
+			if (isset($parameters[3])) {
+				$video_id = $parameters[3];
+			}
+			else {
+				$video_id = json_decode($playlist->videos_ids);
+				$video_id = $video_id[0];
+			}
+			
+			if (in_array($video_id, json_decode($playlist->videos_ids))) {
+				$resp = new VideoController();
+				return $resp->get($video_id, $request, $playlist);
+			}
+			else {
+				return new Response(500);
+			}
+		}
+		else {
+			return new Response(500);
+		}
 	}
 
 }

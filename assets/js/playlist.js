@@ -32,7 +32,7 @@ function createPlaylist(name, callback) {
 
 function addVideoToPlaylist(playlistid, vidid) {
 	marmottajax.put({
-		'url': '../playlists/'+playlistid,
+		'url': _webroot_+'playlists/'+playlistid,
 		'options': {
 			action: 'add',
 			video_id: vidid
@@ -42,10 +42,20 @@ function addVideoToPlaylist(playlistid, vidid) {
 
 function removeVideoFromPlaylist(playlistid, vidid) {
 	marmottajax.put({
-		url: '../playlists/'+playlistid,
+		url: _webroot_+'playlists/'+playlistid,
 		options: {
 			action: 'remove',
 			video_id: vidid
 		}
 	});
+}
+
+function erasePlaylist(playlistid) {
+	if (confirm('Êtes-vous sur de vouloir supprimer cette playlist ? Cela n\'effacera pas physiquement les vidéos qu\'elle contient.')) {
+		marmottajax.destroy({
+			url: 'playlists/'+playlistid,
+		}).then(function(result) {
+			window.location.reload();
+		});
+	}
 }

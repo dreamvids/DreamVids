@@ -10,3 +10,4 @@
 <script src="<?php echo JS."messages.js"; ?>"></script>
 <script src="<?php echo JS."channel_edit.js"; ?>"></script>
 <script src="<?php echo JS.'marmottajax.js'; ?>"></script>
+<script src="<?php echo JS."playlist.js"; ?>"></script>

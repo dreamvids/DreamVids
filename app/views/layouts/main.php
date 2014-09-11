@@ -23,6 +23,8 @@
 
 			var _logged_ = false;
 
+			var _webroot_ = "<?php echo WEBROOT ?>";
+
 			<?php if (Session::isActive()) { ?>
 
 			_logged_ = true;
@@ -74,6 +76,7 @@
 											<ul>
 												<a href="<?php echo WEBROOT.'account/infos'; ?>">Mon compte</a>
 												<a href="<?php echo WEBROOT.'account/channels'; ?>">Mes chaînes</a>
+												<a href="<?php echo WEBROOT.'playlists'; ?>">Mes playlists</a>
 												<a href="<?php echo WEBROOT.'account/messages'; ?>">Mes messages</a>
 												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
 											</ul>

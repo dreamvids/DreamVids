@@ -25,10 +25,10 @@ foreach ($channels as $chan) {
 		<div class="card video long">
 			<div class="thumbnail bg-loader" data-background="<?php echo Config::getValue_('default-thumbnail'); ?>">
 				<div class="time"><?php echo count(json_decode($play->videos_ids)); ?> Vidéos</div>
-				<a href="#" class="overlay"></a>
+				<a href="<?php echo WEBROOT.'playlists/'.$play->id.'/watch'; ?>" class="overlay"></a>
 			</div>
 			<div class="description">
-				<a href="#"><h4><?php echo $play->name; ?></h4></a>
+				<a href="<?php echo WEBROOT.'playlists/'.$play->id.'/watch'; ?>"><h4><?php echo $play->name; ?></h4></a>
 				<span class="buttons">
 					<button onclick="erasePlaylist('<?php echo $play->id; ?>')">Supprimer</button>
 				</span>

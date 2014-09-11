@@ -17,9 +17,10 @@ class VideoController extends Controller {
 		$this->denyAction(Action::INDEX);
 	}
 
-	public function get($id, $request) {
-		if(!Video::exists($id))
+	public function get($id, $request, $playlist = false) {
+		if(!Video::exists($id)) {
 			return Utils::getNotFoundResponse();
+		}
 
 		$video = Video::find($id);
 		$author = UserChannel::find($video->poster_id);
@@ -55,6 +56,7 @@ class VideoController extends Controller {
 
 		$data = array();
 
+		$data['playlist'] = $playlist;
 		$data['video'] = $video;
 		$data['playlists'] = array();
 		$data['channels'] = (Session::isActive()) ? Session::get()->getOwnedChannels() : array();

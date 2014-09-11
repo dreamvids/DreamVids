@@ -155,29 +155,27 @@
 		</div>
 
 	</section>
-
+<?php if ($playlist !== false) { ?>
 	<section class="playlist">
 		
-		<div class="playlist__title">Playlist "Animaux trop Choupis"</div>
+		<div class="playlist__title">Playlist "<?php echo $playlist->name; ?>"</div>
 
 		<img id="playlist-button-scroll-left" class="playlist__button playlist__button--left" src="<?php echo IMG.'/playlist-button-left.png'; ?>">
 
 		<div id="playlist-videos" class="playlist__videos">
-
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/simpsons/627/200/3"></div></a>
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/nemo/350/200/1"></div></a>
-			<a href="#"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div></a>
-
+<?php
+$videos_ids = json_decode($playlist->videos_ids);
+foreach ($videos_ids as $vid) {
+	$video = Video::find($vid);
+	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="'.$video->getThumbnail().'"></div></a>';
+}
+?>
 		</div>
 
 		<img id="playlist-button-scroll-right" class="playlist__button playlist__button--right" src="<?php echo IMG.'/playlist-button-right.png'; ?>">
 
 	</section>
-
+<?php } ?>
 
 	<?php if (Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin())) { ?>
 		<form method="post" action="" role="form" class="moderating-commands" onsubmit="return false">
