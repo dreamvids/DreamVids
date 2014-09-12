@@ -23,5 +23,10 @@ Route::register('messages', 'message');
 Route::register('conversations', 'conversation');
 Route::register('lives', 'live');
 Route::register('password', 'password');
+Route::register('pages', 'page');
 
 Route::register('admin', 'admin');
+
+/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
+Route::register('bugs', 'bug');
+/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */

@@ -16,8 +16,32 @@
 	</head>
 
 	<body>
+	
+	<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
+		<form method="post" onsubmit="sendBug(this);return false;">
+			<input required="required" id="bug" name="bug" type="text" style="box-shadow:0px -2px 5px grey;position:fixed;bottom:0;background-color:#f44;color:white;font-weight:bold;font-size:24px;border:none;border-radius:0px;height:40px;width:100%;z-index:1000000000000;" placeholder="Un bug ? une suggestion ? Ecrivez ici ! (Entrée pour envoyer)" />
+		</form>
+	<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
 		
 		<script>
+
+			/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
+				function sendBug(form) {
+					marmottajax.post({
+						url: _webroot_+'bugs',
+
+						options: {
+							bug: form.bug.value,
+							url: document.location.href
+						}
+					}).then(function(result) {
+						form.bug.value = 'Envoyé !';
+						setTimeout(function() {
+							form.bug.value = '';
+						}, 1000);
+					});
+				}
+			/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
 
@@ -157,12 +181,11 @@
 
 						<h1>DreamVids</h1>
 						
-						<a href="about">Qui sommes nous ?</a>
-						<a href="contributors">Contributeurs</a>
+						<a href="<?php echo WEBROOT.'pages/about'; ?>">Qui sommes nous ?</a>
+						<a href="<?php echo WEBROOT.'pages/contributors'; ?>">Contributeurs</a>
 						<a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
-						<a href="bugs">Reporter un bug</a>
-						<a href="tos">CGU</a>
-						<a href="legals">Mentions légales</a>
+						<a href="<?php echo WEBROOT.'pages/tos'; ?>">CGU</a>
+						<a href="<?php echo WEBROOT.'pages/legal'; ?>">Mentions légales</a>
 
 					</div>
 
