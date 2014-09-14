@@ -7,6 +7,6 @@
 
 var Application = {
 
-	name: "MarmWork"
+	name: "DreamVids"
 
 };

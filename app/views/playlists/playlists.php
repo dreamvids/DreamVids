@@ -1,5 +1,7 @@
-<h1 class="title">Playlists</h1>
+
 <section class="middle">
+	<h1 class="title">Playlists</h1>
+
 	<?php @include $messages; ?>
 	<form method="post" action="" class="middle form">
 		<label for="name">Nouvelle Playlist :</label>

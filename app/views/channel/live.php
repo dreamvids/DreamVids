@@ -24,17 +24,37 @@
 			<source src="<?php echo Config::getValue_('livestream-source').$channel->name; ?>" type='rtmp/flv' />
 		</video>
 	</div>
+
+	<section class="video-infos live">
+
+		<div class="views">128 viewers</div>
+
+		<hr>
+
+		<div class="live-chat">
+
+			<div class="live-chat__messages">
+				
+				<div class="live-chat__messages__message">Lol</div>
+				<div class="live-chat__messages__message">Yolo</div>
+				<div class="live-chat__messages__message">Swag</div>
+
+			</div>
+			
+			<form class="live-chat__form" method="post" onsubmit="return false;" onclick="document.getElementById('live-chat-input').focus();">
+
+				<input class="live-chat__form__input" id="live-chat-input" type="text" placeholder="Message">
+
+			</form>
+
+		</div>
+
+	</section>
 	<?php } ?>
 
 	<?php if (!$onAir) { ?>
 		<p>Aucun live sur cette chaîne</p>
 	<?php } ?>
-
-	<section class="video-infos live">
-
-		<b>CHAT</b>
-
-	</section>
 	
 </div>
 
