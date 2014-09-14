@@ -40,6 +40,7 @@ class ChannelController extends Controller {
 		else {
 			$data = array();
 			$data['currentPage'] = 'channel';
+			$data['current'] = 'videos';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
 			$data['avatar'] = $channel->getAvatar();
@@ -259,18 +260,41 @@ class ChannelController extends Controller {
 		if(is_object($channel)) {
 			$data = array();
 			$data['currentPage'] = 'channel';
+			$data['current'] = 'social';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
 			$data['subscribers'] = $channel->subscribers;
-			$data['videos'] = $channel->getPostedVideos();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['posts'] = $channel->getPostedMessages();
-			$data['isUsersChannel'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 
 			return new ViewResponse('channel/social', $data);
+		}
+		else
+			return Utils::getNotFoundResponse();
+	}
+	
+	public function playlists($id, $request) {
+		$channel = UserChannel::exists($id) ? UserChannel::find_by_id($id) : UserChannel::find_by_name($id);
+
+		if(is_object($channel)) {
+			$data = array();
+			$data['currentPage'] = 'channel';
+			$data['current'] = 'playlists';
+			$data['id'] = $channel->id;
+			$data['name'] = $channel->name;
+			$data['avatar'] = $channel->getAvatar();
+			$data['background'] = $channel->getBackground();
+			$data['description'] = $channel->description;
+			$data['subscribers'] = $channel->subscribers;
+			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+			$data['playlists'] = Playlist::all(array('conditions' => array('channel_id = ?', $channel->id)));
+			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+
+			return new ViewResponse('channel/playlists', $data);
 		}
 		else
 			return Utils::getNotFoundResponse();

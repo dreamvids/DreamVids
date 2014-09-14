@@ -185,7 +185,6 @@
 						<a href="<?php echo WEBROOT.'pages/contributors'; ?>">Contributeurs</a>
 						<a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
 						<a href="<?php echo WEBROOT.'pages/tos'; ?>">CGU</a>
-						<a href="<?php echo WEBROOT.'pages/legal'; ?>">Mentions légales</a>
 
 					</div>
 

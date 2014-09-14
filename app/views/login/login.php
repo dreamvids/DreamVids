@@ -8,6 +8,7 @@
 		<input type="text" name="username" id="username" placeholder="Pseudo" value="<?php echo @$username; ?>"/><br />
 		<label for="pass">Mot de passe :</label>
 		<input type="password" name="pass" id="pass" placeholder="Mot de passe" vaue=""/><br />
+		<a href="<?php echo WEBROOT.'password'; ?>">Mot de passe oublié ?</a>
 		<input type="submit" name="submitLogin" value="Se connecter" />
 	</form>
 </section>
