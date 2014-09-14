@@ -142,15 +142,25 @@
 
 				<div class="inner">
 
+					<div class="rights">
+
+						<span class="love">Fait avec le <i>♥</i></span>
+
+						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
+						DreamVids 2013-<?php echo date('Y'); ?>
+						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
+						
+					</div>
+
 					<div class="row">
 
 						<h1>DreamVids</h1>
 						
 						<a href="<?php echo WEBROOT.'pages/about'; ?>">Qui sommes nous ?</a>
-						<a href="http://dreamvids.spreadshirt.fr/" target="_blank">SpreadShirt</a>
 						<a href="<?php echo WEBROOT.'pages/contributors'; ?>">Contributeurs</a>
-						<a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
 						<a href="<?php echo WEBROOT.'pages/tos'; ?>">CGU</a>
+						<a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a>
+						<a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
 
 					</div>
 
@@ -177,16 +187,6 @@
 						<a href="https://facebook.com/DreamVids" target="_blank">Facebook</a>
 						<a href="https://github.com/DreamVids" target="_blank">GitHub</a>
 
-					</div>
-
-					<div class="rights">
-
-						<span class="love">Fait avec le <i>♥</i></span>
-
-						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
-						DreamVids 2013-<?php echo date('Y'); ?>
-						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
-						
 					</div>
 
 				</div>

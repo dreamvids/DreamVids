@@ -18,7 +18,7 @@ class BugController extends Controller {
 	public function create($request) {
 		$req = $request->getParameters();
 		if (!empty($req['bug']) && !empty($req['url'])) {
-			$username = (Session::isActive()) ? Session::get()->username : 'Invité';
+			$username = (Session::isActive()) ? Session::get()->username : '[Anonyme]';
 			Bug::create(array(
 				'username' => $username,
 				'description' => $req['bug'],
