@@ -13,7 +13,6 @@
 <script src="<?php echo JS.'marmottajax.js'; ?>"></script>
 
 <script>
-	
 
 	setVideo([
 
@@ -31,7 +30,7 @@
 
 	]);
 	
-	setSubTitles([
+	/*setSubTitles([
 
 		{
 			text: "Nom Nom Nom Nom",
@@ -45,18 +44,8 @@
 			end: 6
 		}
 
-	]);
+	]);*/
 
-</script>
-
-<script>
-
-	var DEBUG_VARIABLES = [];
-
-	function DEBUG(variable) {
-
-		DEBUG_VARIABLES.push(variable);
-
-	}
+	var _redirectAtEnd = "http://dreamvids.fr/&AxRw02";
 
 </script>

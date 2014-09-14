@@ -26,7 +26,7 @@
 	</div>
 	
 	<div id="player">
-		<video muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
+		<video id="video-tag" muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
 			<source id="srcMp4" type="video/mp4" src="">
 			<source id="srcWebm" type="video/webm" src="">
 		</video>
@@ -58,8 +58,8 @@
 			<span id="fullscreen" class="fullscreen"></span>
 
 			<span class="cast" id="chromecastplayicon"></span>
-
 		</div>
+		<span id="redirect-at-end" class="video__redirect-at-end" data-message='Prochaine vidéo dans {time}' data-cancel-message="Annuler"></span>
 	</div>
 
 	<section class="video-infos">
@@ -82,6 +82,7 @@
 			<div class="inner-description">
 
 				<?php echo $description.'<br /><br />Tags: '.implode(' ', $tags); ?>
+				
 			</div>
 
 			<div class="inner-export">
@@ -116,18 +117,32 @@
 
 				<div class="form no-style" id="playlist-add-form-list">
 				<?php
+				$playlistsCount = 0;
+
 				foreach ($channels as $chan) {
-					echo '<h4>'.$chan->name.'</h4>';
-					foreach ($playlists[$chan->id] as $play) {
-						$checked = (in_array($video->id, json_decode($play->videos_ids))) ? 'checked="checked"' : '';
-						echo '<input type="checkbox" '.$checked.' data-playlist-id="'.$play->id.'" id="playlist-add-checkbox-'.$play->id.'"/><label for="playlist-add-checkbox-'.$play->id.'">'.$play->name.'</label><br>';
+
+					if (count($playlists[$chan->id]) > 0) {
+
+						$playlistsCount ++;
+
+						echo '<h4>'.$chan->name.'</h4>';
+						
+						foreach ($playlists[$chan->id] as $play) {
+							$checked = (in_array($video->id, json_decode($play->videos_ids))) ? 'checked="checked"' : '';
+							echo '<input type="checkbox" '.$checked.' data-playlist-id="'.$play->id.'" id="playlist-add-checkbox-'.$play->id.'"/><label for="playlist-add-checkbox-'.$play->id.'">'.$play->name.'</label><br>';
+						}
+
 					}
+
+				}
+
+				if (!$playlistsCount) {
+
+					echo "Vous n'avez pas encore de playlist.<br><a href=\"" . WEBROOT . "playlists/\">Créez-en une</a>";
+
 				}
 				?>
 				</div>
-
-				<input id="playlist-create-input" type="text" placeholder="Créer une playlist">
-				<button id="playlist-create-button">+</button>
 			
 			</div>
 

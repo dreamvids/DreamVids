@@ -5,29 +5,6 @@
  * ADD VIDEO TO PLAYLIST
  */
 
-function createPlaylistEvent() {
-
-	createPlaylist(El("#playlist-create-input").value, function(name, id) {
-
-		var newPlayListCheckbox = El("#playlist-add-form-list").add(new El("input"));
-		newPlayListCheckbox.type = "checkbox";
-		newPlayListCheckbox.setAttribute("data-playlist-id", id);
-		newPlayListCheckbox.id = "playlist-add-checkbox-" + id;
-
-		var newPlayListCheckboxLabel = El("#playlist-add-form-list").add(new El("label"));
-		newPlayListCheckboxLabel.for = "playlist-add-checkbox-" + id;
-		newPlayListCheckboxLabel.innerHTML = name;
-
-		El("#playlist-add-form-list").add(new El("br"));
-
-		initPlaylistCheckbox(newPlayListCheckbox);
-
-	});
-
-	El("#playlist-create-input").value = "";
-
-}
-
 function initPlaylistCheckbox(checkbox) {
 
 	El(checkbox).on("change", function(checkbox) {
@@ -83,18 +60,6 @@ new Script({
 			}
 
 		};
-
-		El("#playlist-create-button").onclick = createPlaylistEvent;
-
-		El("#playlist-create-input").on("keyup", function(event) {
-
-			if(event.keyCode == 13) {
-
-				createPlaylistEvent();
-
-			}
-
-		});
 
 		var childs = El("#playlist-add-form-list").childNodes;
 

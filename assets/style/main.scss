@@ -99,7 +99,8 @@
     
 	/* === PLAYER === */
     
-	    @import "components/player/cast.scss";
+        @import "components/player/cast.scss";
+	    @import "components/player/redirect-at-end.scss";
 
     /* === CARDS === */
 
@@ -118,17 +119,30 @@
     
     /* === WATCH === */
 
-        @import "components/watch/video-infos/share-video-block.scss";
-
         @import "components/watch/playlist/playlist.scss";
         @import "components/watch/playlist/title.scss";
         @import "components/watch/playlist/videos.scss";
         @import "components/watch/playlist/video.scss";
         @import "components/watch/playlist/button.scss";
 
+        /* === VIDEO INFOS === */
+
+        @import "components/watch/video-infos/share-video-block.scss";
+
+            /* === LIVE CHAT === */
+
+            @import "components/watch/video-infos/live-chat/live-chat.scss";
+            @import "components/watch/video-infos/live-chat/input.scss";
+            @import "components/watch/video-infos/live-chat/messages.scss";
+            @import "components/watch/video-infos/live-chat/message.scss";
+
     /* === CHANNEL === */
 
         @import "components/channel/content/social-message-form.scss";
+
+    /* === BUG === */
+
+    @import "components/bug/bug.scss";
 
 
 
