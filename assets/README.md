@@ -10,7 +10,12 @@ Si NodeJs n'est pas déjà installé sur votre ordinateur : [nodejs.org](http://
 
 Si Ruby n'est pas installé sur votre ordinateur sous Windows : [rubyinstaller.org](http://rubyinstaller.org/) Attention ! Il faut absolument cocher la case "Add Ruby executables to your PATH".
 
-*Ruby est normalement déjà installé sur Mac et Linux*
+Si Ruby n'est pas installé sur GNU/Linux : 
+
+```shell
+apt-get install ruby
+```
+*Ruby est normalement déjà installé sur Mac.*
 
 ###Sass
 
