@@ -4,8 +4,13 @@ Le développement du style et des scripts nécessite des dépendances, pour les 
 
 ###NodeJs
 
-Si NodeJs n'est pas déjà installé sur votre ordinateur : [nodejs.org](http://nodejs.org/)
+Si NodeJs n'est pas déjà installé sur votre ordinateur sous Windows et Mac : [nodejs.org](http://nodejs.org/)
 
+Pour GNU/Linux on installe NodeJs comme ceci : 
+
+```shell
+apt-get install nodejs
+```
 ###Ruby
 
 Si Ruby n'est pas installé sur votre ordinateur sous Windows : [rubyinstaller.org](http://rubyinstaller.org/) Attention ! Il faut absolument cocher la case "Add Ruby executables to your PATH".
