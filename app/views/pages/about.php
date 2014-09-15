@@ -32,7 +32,7 @@
 	<h3 class="title">L'équipe</h3>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="http://img11.hostingpics.net/pics/303239darkwoss.png" style="height:50px;width:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/dorian.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
 				<b>Dorian</b><br />
@@ -42,7 +42,7 @@
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="https://pbs.twimg.com/profile_images/489585405768245248/L6qJtra6.jpeg" style="height:50px;width:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/jerem.jpeg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
 				<b>Jeremy</b><br />
@@ -52,18 +52,18 @@
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="http://dreamvids.fr/uploads/lyonsuper/avatar.jpg" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/lyonsuper.jpg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
 				<b>Pierre alias Lyonsuper</b><br />
 				Hello moi c'est Pierre, je suis sous le pseudo Lyonsuper, je suis modérateur chez Dreamvids
 				je suis un grand fan des Sims comme on le remarque sur mon avatar et j'ai des compétences
-				en téléphonie mobiles si vous souhaiter discuter avec moi pas de soucis I'm Open !
+				en téléphonie mobile si vous souhaitez discuter avec moi pas de soucis I'm Open !
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="http://snapcube.fr/avatar/avatar.jpeg" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/snapcube.jpeg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
 				<b>Snapcube</b><br />
@@ -74,7 +74,7 @@
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="https://pbs.twimg.com/profile_images/503533082465828864/UC55u98R_400x400.jpeg" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/louis.jpeg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
 				<b>Louis A.</b><br />
@@ -84,110 +84,133 @@
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/antoine.jpg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Antoine</b><br />
+				Salut à tous, donc moi c'est Antoine, 16 ans, actuellement en terminal STI2D et je suis
+				aussi le directeur Marketing de Dreamvids !
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/benji.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Benjamin ROBINET</b><br />
+				Je suis passionné d'informatique depuis que j'ai les doigts sur un PC et plus
+				particulièrement du développement web. Je suis développeur web pour DreamVids depuis la
+				première version.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/brezh.jpeg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>JOUET Roman (BrezhDev)</b><br />
+				J'ai 17 ans, je suis passionné d'aéronautique et d'informatique, plus particulièrement
+				dans la recherche & développement (Web N' Soft).
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/charlie.jpg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Charlie</b><br />
+				je suis passionné de vidéo et de photo depuis maintenant plusieurs années, mais je suis
+				aussi un foutraque de tout ce qui touche à l'électronique et à l'informatique. Présent
+				depuis le début de DreamVids, que j'ai vu grandir et s'affirmer au fil du temps.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/delta.jpg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Deltawhois</b><br />
+				Chris pour les intimes ;) Avec 16 ans au compteur j'ai pour hobbies la sonorisation et la
+				lumière, l’électronique et l'électricité industrielle ainsi qu'une pointe d'informatique.
+				Bricoleur dans l’âme je passe mes journées à observer et bidouiller ce qui m'entoure dans
+				le but d'assouvir ma curiosité grandissante. J'ai toujours été intéressé par des projets
+				visant a faire bouger les choses, c'est pour ça que je suis là, avec la fierté de faire
+				partie de cette aventure !
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/dimou.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Dimou</b><br />
+				Jeune marmotte développeur front-end. Je m'occupe de l'interface et du côté client de
+				DreamVids. Maniaque de l'organisation de son code.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/gwomos.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
+				<b>Léo / Gwomos</b><br />
+				Je m’appelle Léo , mais je suis plus connu sous le pseudo de Gwomos et je suis Modéarteur.
+				J'ai 13 ans je suis passionné par l'informatique et l'audio visuel. J'adore bidouiller et
+				créer plein de choses plus ou moins utiles.
 				
+				N’hésitez pas à me dire si quelque chose ne va pas :)
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/quadrifoglio.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Quadrifoglio</b><br />
+				Quadrifoglio, ou quadri c'est quand même plus prononçable, 16 ans, développeur DreamVids
+				et dévoreur de pizzas compulsif.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/vincent.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Vincent</b><br />
+				17 ans, passionné par le cinéma, en études d'électronicien, directeur de la photographie
+				au sein de la prod "WalnutPowder", ainsi que co-fondateur de DreamVids.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/zerss.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Zerss</b><br />
+				Moi, c'est Zerss ! CM de DreamVids, je m'occupe de vous ! Je suis avant tout un passionné,
+				que ce soit dans l'électronique, dans l'audiovisuel ou dans le chant !
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/olivier.jpeg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Olivier MIS</b><br />
+				[Cet homme a trop de swagg pour pouvoir donner une description. Tentez d'établir le
+				contact avec lui si vous voulez le connaitre, nous on a pas encore réussi. #OverBooké]
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="" style="height:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/peter.jpg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
-				<b></b><br />
-				
+				<b>Peter CAUTY</b><br />
+				On ferme la marche avec moi: Peter, 19 ans, Co-fondateur, chef de projet et développeur chez
+				DreamVids. J'étudie	un étrange truc nommé "Informatique" en L3. J'aime ce que je fais et
+				j'aime mon équipe. Je termine cette page à 22:12, le 15/09/2014. Cette information est
+				inutile.
 			</p>
 		</div>
 </div>

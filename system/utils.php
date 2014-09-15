@@ -1,7 +1,7 @@
 <?php
 
 require_once SYSTEM.'request.php';
-require_once SYSTEM.'response.php';
+require_once SYSTEM.'view_response.php';
 
 class Utils {
 
@@ -129,31 +129,19 @@ class Utils {
 	}
 
 	public static function getNotFoundResponse() {
-		$response = new Response(404);
-		$response->setBody('The document that you are looking for does not exists !');
-
-		return $response;
+		return new ViewResponse('error/404', array(), true, 'layouts/main.php', 404);
 	}
 
 	public static function getForbiddenResponse() {
-		$response = new Response(403);
-		$response->setBody('Forbidden');
-
-		return $response;
+		return new ViewResponse('error/403', array(), true, 'layouts/main.php', 403);
 	}
 
 	public static function getUnauthorizedResponse() {
-		$response = new Response(401);
-		$response->setBody('Unauthorized');
-
-		return $response;
+		return new ViewResponse('error/401', array(), true, 'layouts/main.php', 401);
 	}
 
 	public static function getInternalServerErrorResponse() {
-		$response = new Response(500);
-		$response->setBody('Error occurred while trying to treat the request (application error)');
-
-		return $response;
+		return new ViewResponse('error/500', array(), true, 'layouts/main.php', 500);
 	}
 
 	public static function sendResponse($response) {

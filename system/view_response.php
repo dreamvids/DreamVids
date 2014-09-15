@@ -10,12 +10,12 @@ class ViewResponse extends Response {
 	private $renderLayout = true;
 	private $layoutFile = 'layouts/main.php';
 
-	public function __construct($viewFile, $data = array(), $renderLayout = true, $layoutFile = 'layouts/main.php') {
+	public function __construct($viewFile, $data = array(), $renderLayout = true, $layoutFile = 'layouts/main.php', $statusCode = 200) {
 		$file = VIEW.$viewFile.'.php';
 
 		if(file_exists($file)) {
 			$this->protocol = 'HTTP/1.1';
-			$this->statusCode = '200';
+			$this->statusCode = $statusCode;
 			$this->statusString = 'OK';
 			$this->contentType = 'text/html';
 
