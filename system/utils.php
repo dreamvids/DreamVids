@@ -78,10 +78,6 @@ class Utils {
 		return $return;
 	}
 
-	public static function secure($str) {
-		return htmlentities(strip_tags(stripslashes($str)), ENT_QUOTES, 'UTF-8');
-	}
-
 	public static function secureArray($array) {
 		$secureArray = array();
 
@@ -222,5 +218,66 @@ class Utils {
 		}
 
 		return $bar;
+	}
+
+	public static function secure($str) {
+		return (is_string($str) && json_decode($str) == null) ? htmlentities(strip_tags(stripslashes($str)), ENT_QUOTES, 'UTF-8') : $str;
+	}
+	
+	public static function securingData($data) {
+		foreach ($data as $key => $value) {
+			if (is_subclass_of($value, "ActiveRecord\Model")) {
+				$data[$key] = self::secureActiveRecordModel($value);
+			}
+			else if (is_array($value)) {
+				$data[$key] = self::securingData($value);
+			}
+			else {
+				$data[$key] = self::secure($value);
+			}
+		}
+		return $data;
+	}
+	
+	public static function secureActiveRecordModel($obj) {
+		foreach ($obj->attributes() as $key => $value) {
+			$obj->$key = self::secure($value);
+		}
+		return $obj;
+	}
+	
+	public static function upload($file, $type, $fileId, $channelId, $default = '') {
+		if (!file_exists(ROOT.'uploads/')) {
+			mkdir(ROOT.'uploads');
+		}
+		if (!file_exists(ROOT.'uploads/'.$channelId.'/')) {
+			mkdir(ROOT.'uploads/'.$channelId);
+			mkdir(ROOT.'uploads/'.$channelId.'/videos');
+		}
+		
+		if ($file['name'] != '') {
+			$name = $file['name'];
+			$ext = explode('.', $name);
+			$ext = $ext[count($ext)-1];
+			switch ($type) {
+				case 'vid':
+					if (in_array($ext, array('webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'))) {
+						$path = 'uploads/'.$channelId.'/videos/'.$fileId.'.'.$ext;
+						move_uploaded_file($file['tmp_name'], ROOT.$path);
+						return WEBROOT.$path;
+					}
+				break;
+				
+				case 'img':
+					if (in_array($ext, array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'))) {
+						$path = 'uploads/'.$channelId.'/'.$fileId.'.'.$ext;
+						move_uploaded_file($file['tmp_name'], ROOT.$path);
+						return WEBROOT.$path;
+					}
+				break;
+			}
+			return $default;
+		}
+		return $default;
 	}
 }

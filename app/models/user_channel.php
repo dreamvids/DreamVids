@@ -39,34 +39,11 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getAvatar() {
-		$avatar = Config::getValue_('default-avatar');
-
-		if(empty($this->avatar)) return $avatar;
-
-		if(!file_exists($this->avatar)) {
-			if(Utils::isUrlValid($this->avatar))
-				$avatar = $this->avatar;
-		}
-		else
-			$avatar = WEBROOT.$this->avatar;
-		
-		return $avatar;
-		//return ($this->avatar != '') ? $this->avatar : Config::getValue_('default-avatar');
+		return (!empty($this->avatar)) ? $this->avatar : Config::getValue_('default-avatar');
 	}
 
 	public function getBackground() {
-		$background = Config::getValue_('default-background');
-
-		if(empty($this->background)) return $background;
-
-		if(!file_exists($this->background)) {
-			if(Utils::isUrlValid($this->background))
-				$background = $this->background;
-		}
-		else
-			$background = WEBROOT.$this->background;
-		
-		return $background;
+		return (!empty($this->background)) ? $this->background : Config::getValue_('default-background');
 	}
 
 	public function belongToUser($userId) {
@@ -212,8 +189,10 @@ class UserChannel extends ActiveRecord\Model {
 		return !UserChannel::exists(array('name' => $name));
 	}
 
-	public static function addNew($name, $descr, $avatarURL, $backgroundURL) {
+	public static function addNew($name, $descr, $avatar, $background) {
 		$channelId = UserChannel::generateId(6);
+		$avatar = Utils::upload($avatar, 'img', 'avatar', $channelId, Config::getValue_('default-avatar'));
+		$background = Utils::upload($background, 'img', 'background', $channelId, Config::getValue_('default-background'));
 
 		UserChannel::create(array(
 			'id' => $channelId,
@@ -221,30 +200,25 @@ class UserChannel extends ActiveRecord\Model {
 			'description' => $descr,
 			'owner_id' => Session::get()->id,
 			'admins_ids' => ';'.Session::get()->id.';',
-			'avatar' => $avatarURL,
-			'background' => $backgroundURL,
+			'avatar' => $avatar,
+			'background' => $background,
 			'subscribers' => 0,
 			'subs_list' => 0,
 			'views' => 0,
 			'verified' => 0
 		));
-
-		// TODO: decentralized upload
-		/*
-		 * if(!file_exists('uploads/')) mkdir('uploads/');
-		 * mkdir('uploads/'.$channelId.'/');
-		 * mkdir('uploads/'.$channelId.'/videos');
-		 */
 	}
 
-	public static function edit($channelId, $name, $descr, $admins_ids, $avatarURL, $backgroundURL) {
+	public static function edit($channelId, $name, $descr, $admins_ids, $avatar, $background) {
 		$chann = UserChannel::find($channelId);
+		$avatar = Utils::upload($avatar, 'img', 'avatar', $channelId, $chann->getAvatar());
+		$background = Utils::upload($background, 'img', 'background', $channelId, $chann->getBackground());
 
 		$chann->name = $name;
 		$chann->description = $descr;
 		$chann->admins_ids = $admins_ids;
-		$chann->avatar = $avatarURL;
-		$chann->background = $backgroundURL;
+		$chann->avatar = $avatar;
+		$chann->background = $background;
 		$chann->save();
 	}
 

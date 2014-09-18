@@ -38,6 +38,7 @@ class ViewResponse extends Response {
 		header('Content-Type: '.$this->contentType);
 
 		if($this->renderLayout && file_exists(VIEW.$this->layoutFile)) {
+			$this->data = Utils::securingData($this->data);
 			extract($this->data);
 			$content = $this->body;
 

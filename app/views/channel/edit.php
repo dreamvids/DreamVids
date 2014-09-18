@@ -6,7 +6,6 @@
 		<?php
 			include VIEW.'layouts/account_menu.php';
 			include VIEW.'layouts/messages.php';
-			//TODO: Cool UX for channel admins managment
 		?>
 
 		<form onsubmit="document.getElementById('_admins').value=JSON.stringify(admins);" class="form" method="post" action="<?php echo WEBROOT.'channel/'.$name; ?>" enctype="multipart/form-data">
@@ -28,15 +27,15 @@
 			<textarea rows="8" cols="50" required="required" name="description" id="description"><?php echo @$description; ?></textarea><br />
 			
 			<label for="avatar">
-				<img class="preview none filePreview" data-input="avatar" id="preview-avatar" src="">
+				<img class="preview none filePreview" data-input="avatar" id="preview-avatar" src="<?php echo $avatar; ?>">
 				<i>Avatar :</i>
-				<input type="file" data-text="Choisir un avatar" data-preview="preview-avatar" name="avatar" id="avatar" value="<?php echo @$avatar; ?>" /><br />
+				<input type="file" data-text="Choisir un avatar" data-preview="preview-avatar" name="avatar" id="avatar" /><br />
 			</label>
 			
 			<label for="background">
-				<img class="preview none filePreview" data-input="background" id="preview-background" src="">
+				<img class="preview none filePreview" data-input="background" id="preview-background" src="<?php echo $background; ?>">
 				<i>Arrière-plan :</i>
-				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" value="<?php echo @$background; ?>" /><br />
+				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" /><br />
 			</label>
 			
 			<?php if (@!$mainChannel) { ?>

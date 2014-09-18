@@ -24,6 +24,7 @@ Route::register('conversations', 'conversation');
 Route::register('lives', 'live');
 Route::register('password', 'password');
 Route::register('pages', 'page');
+Route::register('upload', 'upload');
 
 Route::register('admin', 'admin');
 

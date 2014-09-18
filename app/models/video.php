@@ -44,16 +44,7 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public function getThumbnail() {
-		$thumbnail = Config::getValue_('default-thumbnail');
-
-		if(empty($this->thumbnail)) return $thumbnail;
-
-		if(file_exists($this->thumbnail) || ($isUrl = Utils::isUrlValid($this->thumbnail)))
-			$thumbnail = isset($isUrl) ? $this->thumbnail : WEBROOT.$this->thumbnail;
-		else if(strpos($this->thumbnail, WEBROOT))
-			$thumbnail = $this->thumbnail;
-
-		return $thumbnail;
+		return $thumbnail = (!empty($this->tumbnail)) ? $this->tumbnail : Config::getValue_('default-thumbnail');
 	}
 
 	public function getAssociatedVideos() {
@@ -103,10 +94,11 @@ class Video extends ActiveRecord\Model {
 		return VideoVote::exists(array('user_id' => $userId, 'obj_id' => $this->id, 'action' => 'dislike'));
 	}
 
-	public function updateInfo($newTitle, $newDescription, $newTags) {
+	public function updateInfo($newTitle, $newDescription, $newTags, $newThumbnail) {
 		$this->title = $newTitle;
 		$this->description = $newDescription;
 		$this->tags = $newTags;
+		$this->tumbnail = Utils::upload($newThumbnail, 'img', $this->id, $this->poster_id, $this->getThumbnail());
 
 		$this->save();
 	}

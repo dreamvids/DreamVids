@@ -114,7 +114,7 @@ class VideoController extends Controller {
 					$tags = $req['video-tags'];
 
 					if(Utils::validateVideoInfo($title, $description, $tags)) {
-						$video->updateInfo($title, $description, $tags);
+						$video->updateInfo($title, $description, $tags, $req['_FILES_']['tumbnail']);
 						$data['video'] = $video;
 
 						$response = new ViewResponse('video/edit', $data);

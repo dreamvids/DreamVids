@@ -68,7 +68,7 @@ class ChannelController extends Controller {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
 						if(UserChannel::isNameFree($name)) {
-							UserChannel::addNew($name, $descr, Config::getValue_('default-avatar'), Config::getValue_('default-background'));
+							UserChannel::addNew($name, $descr, $req['_FILES_']['avatar'], $req['_FILES_']['background']);
 							$data['channels'] = Session::get()->getOwnedChannels();
 
 							$response = new ViewResponse('account/channels', $data);
@@ -179,7 +179,7 @@ class ChannelController extends Controller {
 							$adm = ';'.implode(';', $adm).';';
 						}
 						
-						UserChannel::edit($channel->id, $name, $descr, $adm, '', ''); //TODO: Support logo/background
+						UserChannel::edit($channel->id, $name, $descr, $adm, $req['_FILES_']['avatar'], $req['_FILES_']['background']); //TODO: Support logo/background
 						$data['channels'] = Session::get()->getOwnedChannels();
 
 						$response = new ViewResponse('account/channels', $data);
@@ -326,6 +326,8 @@ class ChannelController extends Controller {
 				$data['owner_id'] = $channel->owner_id;
 				$data['name'] = $channel->name;
 				$data['description'] = $channel->description;
+				$data['avatar'] = $channel->getAvatar();
+				$data['background'] = $channel->getBackground();
 				$admins = explode(';', trim($channel->admins_ids, ';'));
 				$data['admins_ids'] = $admins;
 				$data['admins'] = array();

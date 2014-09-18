@@ -145,7 +145,7 @@ class Router {
 
 			case Method::POST:
 				if($controller->isActionAllowed(Action::CREATE)) {
-					$request->setParameters($_POST);
+					$request->setParameters(array_merge($_POST, array('_FILES_' => $_FILES)));
 					$response = call_user_func_array(array($controller, 'create'), array($request));
 
 					Utils::sendResponse($response);
@@ -163,7 +163,7 @@ class Router {
 						$request->setParameters($parameters);
 
 						if(empty($parameters) && !empty($_POST)) { // If the request is not a real PUT request but needs to be handled like one (html form)
-							$request->setParameters($_POST);
+							$request->setParameters(array_merge($_POST, array('_FILES_' => $_FILES)));
 						}
 
 						$response = call_user_func_array(array($controller, 'update'), array(Utils::secure($uriParameters[1]), $request));

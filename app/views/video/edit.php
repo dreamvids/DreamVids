@@ -5,7 +5,7 @@
 
 		<?php @include $messages; ?>
 
-		<form class="form" method="post" action="<?php echo WEBROOT.'videos/'.$video->id; ?>">
+		<form class="form" method="post" action="<?php echo WEBROOT.'videos/'.$video->id; ?>" enctype="multipart/form-data">
 			<input type="hidden" name="_method" value="put" />
 
 			<label for="video-title">Titre de la vidéo :</label>
@@ -18,9 +18,9 @@
 			<input value="<?php echo $video->tags; ?>" id="video-tags" type="text" name="video-tags" placeholder="Tags" spellcheck="false"/>
 
 			<label for="tumbnail">
-				<img class="preview filePreview" data-input="tumbnail" id="preview-thumbnail" src="http://dreamvids.fr/uploads/Plasma/h8WjOG.jpg">
+				<img class="preview filePreview" data-input="tumbnail" id="preview-thumbnail" src="<?php echo $video->getThumbnail(); ?>">
 				<i>Miniature :</i>
-				<input type="file" data-text="Choisir un fichier" data-preview="preview-thumbnail" name="tumbnail" id="tumbnail" accept="image/*"><br />
+				<input type="file" data-text="Choisir un fichier" data-preview="preview-thumbnail" name="tumbnail" id="tumbnail" /><br />
 			</label>
 
 			<label for="video-visibility">
