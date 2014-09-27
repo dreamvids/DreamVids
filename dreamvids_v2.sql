@@ -3,9 +3,6 @@
 SET NAMES utf8;
 SET time_zone = '+00:00';
 
-CREATE DATABASE `dreamvids_v2` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `dreamvids_v2`;
-
 DROP TABLE IF EXISTS `bugs`;
 CREATE TABLE `bugs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -34,6 +31,15 @@ CREATE TABLE `channels_posts` (
   `id` varchar(6) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `content` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `chat_bans`;
+CREATE TABLE `chat_bans` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -110,7 +116,7 @@ CREATE TABLE `partners` (
 
 DROP TABLE IF EXISTS `playlists`;
 CREATE TABLE `playlists` (
-  `id` varchar(6) NOT NULL AUTO_INCREMENT,
+  `id` varchar(6) NOT NULL,
   `name` varchar(255) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `videos_ids` varchar(255) NOT NULL DEFAULT ';',
@@ -252,4 +258,4 @@ CREATE TABLE `videos_votes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2014-08-27 20:33:25
+-- 2014-09-27 13:00:17
