@@ -208,11 +208,8 @@ new Script({
 	pages: ["live"],
 
 	call: function() {
-		console.log("blaaaa");
-        console.log(liveChatOptions);
-		console.log(initChat);		
 
-		initChat(liveChatOptions);
+		initChat(chatLiveOptions);
 				 
 	}
 

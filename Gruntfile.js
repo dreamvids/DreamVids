@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
 					"assets/scripts/main.js",
 
-					"assets/scripts/vendor/**/*.js",
+					"assets/scripts/libs/**/*.js",
 
 					"assets/scripts/core/**/*.js",
 
