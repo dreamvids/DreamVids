@@ -60,3 +60,14 @@
 	
 </div>
 
+<script>
+
+	var chatLiveOptions = {
+		ip: "192.168.33.10",
+		port: 8081,
+		channel: '<?php echo $channel->name; ?>',
+		username: '<?php echo Session::get()->username; ?>',
+		sessionId: '<?php echo Session::getId(); ?>'
+	};
+
+</script>

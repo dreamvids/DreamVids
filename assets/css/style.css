@@ -1,4 +1,4 @@
-@charset "CP850";
+@charset "UTF-8";
 /**
  * main.scss
  *
@@ -312,7 +312,7 @@ h3.title:after {
     border: 0;
     padding-left: 20px;
     background-color: #40a6e0;
-    color: white; }
+    color: #fff; }
     @media (max-width: 450px) {
       .header .top .inner .right form input[type="text"] {
         width: 100px;
@@ -397,7 +397,7 @@ h3.title:after {
       position: relative;
       display: inline-block;
       vertical-align: middle;
-      color: white; }
+      color: #fff; }
     .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       margin-left: 20px;
@@ -442,7 +442,7 @@ h3.title:after {
       position: relative;
       display: inline-block;
       vertical-align: middle;
-      color: white; }
+      color: #fff; }
     .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       margin-left: 20px;
@@ -770,46 +770,36 @@ body {
 @-webkit-keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
-
   50% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 1.0); }
-
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
 @-moz-keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
-
   50% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 1.0); }
-
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
 @-ms-keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
-
   50% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 1.0); }
-
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
 @-o-keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
-
   50% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 1.0); }
-
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
 @keyframes footer-heart-animation {
   0% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); }
-
   50% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 1.0); }
-
   100% {
     text-shadow: 0 0 20px rgba(213, 9, 60, 0.2); } }
 /* === 404 === */
@@ -1033,19 +1023,16 @@ body {
 @-webkit-keyframes rain-drop-404-animation {
   from {
     top: -40px; }
-
   to {
     top: 100%; } }
 @-moz-keyframes rain-drop-404-animation {
   from {
     top: -40px; }
-
   to {
     top: 100%; } }
 @keyframes rain-drop-404-animation {
   from {
     top: -40px; }
-
   to {
     top: 100%; } }
 /* === BUTTONS === */
@@ -1487,27 +1474,27 @@ body {
 .btn--flat.btn--ripple-brown .ripple {
   background-color: #795548; }
 
-.btn--flat.btn--gray {
+.btn--flat.btn--grey {
   color: #9e9e9e; }
 
-.btn--flat.btn--gray .ripple {
+.btn--flat.btn--grey .ripple {
   background-color: #9e9e9e; }
 
-.btn--flat.btn--gray:focus {
+.btn--flat.btn--grey:focus {
   outline: #9e9e9e solid 2px;
   outline-offset: 2px;
   -webkit-outline-radius: 3px;
   -moz-outline-radius: 3px;
   outline-radius: 3px; }
 
-.btn--flat.btn--outline-gray:focus {
+.btn--flat.btn--outline-grey:focus {
   outline: #9e9e9e solid 2px;
   outline-offset: 2px;
   -webkit-outline-radius: 3px;
   -moz-outline-radius: 3px;
   outline-radius: 3px; }
 
-.btn--flat.btn--ripple-gray .ripple {
+.btn--flat.btn--ripple-grey .ripple {
   background-color: #9e9e9e; }
 
 .btn--flat.btn--light-grey {
@@ -1534,27 +1521,27 @@ body {
   background-color: #eaeaea; }
 
 .btn--flat.btn--dark-grey {
-  color: dimgray; }
+  color: #696969; }
 
 .btn--flat.btn--dark-grey .ripple {
-  background-color: dimgray; }
+  background-color: #696969; }
 
 .btn--flat.btn--dark-grey:focus {
-  outline: dimgray solid 2px;
+  outline: #696969 solid 2px;
   outline-offset: 2px;
   -webkit-outline-radius: 3px;
   -moz-outline-radius: 3px;
   outline-radius: 3px; }
 
 .btn--flat.btn--outline-dark-grey:focus {
-  outline: dimgray solid 2px;
+  outline: #696969 solid 2px;
   outline-offset: 2px;
   -webkit-outline-radius: 3px;
   -moz-outline-radius: 3px;
   outline-radius: 3px; }
 
 .btn--flat.btn--ripple-dark-grey .ripple {
-  background-color: dimgray; }
+  background-color: #696969; }
 
 .btn--flat.btn--blue-grey {
   color: #607d8b; }
@@ -1767,13 +1754,13 @@ body {
 .btn--raised.btn--brown .ripple {
   background-color: white; }
 
-.btn--raised.btn--gray {
+.btn--raised.btn--grey {
   background-color: #9e9e9e; }
 
-.btn--raised.btn--gray {
+.btn--raised.btn--grey {
   color: white; }
 
-.btn--raised.btn--gray .ripple {
+.btn--raised.btn--grey .ripple {
   background-color: white; }
 
 .btn--raised.btn--light-grey {
@@ -1786,7 +1773,7 @@ body {
   background-color: white; }
 
 .btn--raised.btn--dark-grey {
-  background-color: dimgray; }
+  background-color: #696969; }
 
 .btn--raised.btn--dark-grey {
   color: white; }
@@ -1858,7 +1845,6 @@ body {
 @-webkit-keyframes ripple {
   from {
     height: 100px; }
-
   to {
     height: 100px;
     opacity: 0;
@@ -1868,7 +1854,6 @@ body {
 @-moz-keyframes ripple {
   from {
     height: 100px; }
-
   to {
     height: 100px;
     opacity: 0;
@@ -1878,7 +1863,6 @@ body {
 @-ms-keyframes ripple {
   from {
     height: 100px; }
-
   to {
     height: 100px;
     opacity: 0;
@@ -1888,7 +1872,6 @@ body {
 @-o-keyframes ripple {
   from {
     height: 100px; }
-
   to {
     height: 100px;
     opacity: 0;
@@ -1898,7 +1881,6 @@ body {
 @keyframes ripple {
   from {
     height: 100px; }
-
   to {
     height: 100px;
     opacity: 0;
@@ -3650,31 +3632,26 @@ video {
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotate(0deg); }
-
   to {
     -webkit-transform: rotate(-360deg); } }
 @-moz-keyframes rotate {
   from {
     -moz-transform: rotate(0deg); }
-
   to {
     -moz-transform: rotate(-360deg); } }
 @-ms-keyframes rotate {
   from {
     -ms-transform: rotate(0deg); }
-
   to {
     -ms-transform: rotate(-360deg); } }
 @-o-keyframes rotate {
   from {
     -o-transform: rotate(0deg); }
-
   to {
     -o-transform: rotate(-360deg); } }
 @keyframes rotate {
   from {
     transform: rotate(0deg); }
-
   to {
     transform: rotate(-360deg); } }
 #repeat {
@@ -3854,13 +3831,10 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 47%;
     opacity: 0;
@@ -3870,13 +3844,10 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 47%;
     opacity: 0;
@@ -3886,13 +3857,10 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 47%;
     opacity: 0;
@@ -3902,13 +3870,10 @@ video {
     top: 53%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 47%;
     opacity: 0;
@@ -3918,13 +3883,10 @@ video {
     top: 44%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 47%;
     opacity: 0;
@@ -3960,13 +3922,10 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 53%;
     opacity: 0;
@@ -3976,13 +3935,10 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 53%;
     opacity: 0;
@@ -3992,13 +3948,10 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 53%;
     opacity: 0;
@@ -4008,13 +3961,10 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 53%;
     opacity: 0;
@@ -4024,13 +3974,10 @@ video {
     top: 47%;
     opacity: 0;
     width: 128px; }
-
   10% {
     opacity: 1; }
-
   60% {
     opacity: 1; }
-
   to {
     top: 53%;
     opacity: 0;
@@ -4845,7 +4792,7 @@ nav.pagination {
         width: 100%;
         font-size: 16px; } }
     .content.wide.channel > .inner .left button.subscribed {
-      background-color: #666666; }
+      background-color: #666; }
       .content.wide.channel > .inner .left button.subscribed:hover {
         background-color: gray; }
       .content.wide.channel > .inner .left button.subscribed:active {
@@ -6604,3 +6551,5 @@ nav.pagination {
   border: 0;
   background-color: #f4f4f4;
   resize: none; }
+
+/*# sourceMappingURL=style.css.map */

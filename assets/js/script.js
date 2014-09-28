@@ -10,266 +10,6 @@ var Application = {
 	name: "DreamVids"
 
 };
-!function(win,doc){function on(element,event,callback,binding){if(!element.length)return"#document-fragment"===element.nodeName?void on(element.childNodes,event,callback,binding):("function"==typeof elAndCoEvents.list[event]?elAndCoEvents.list[event](element,function(){return function(event){"string"==typeof callback?eval(callback):callback(event,binding)}}(callback,binding)):isset(element.addEventListener)?element.addEventListener(event,function(){return function(a){callback(a,binding)}}(callback,binding),!1):element.attachEvent("on"+event,function(){return function(a){callback(a,binding)}}(callback,binding)),element);for(var i=0;i<element.length;i++)on(element[i],event,callback,binding)}function childNodeList(a){for(var b=[],c=0;c<a.childNodes.length;c++)if(b.push(a.childNodes[c]),a.childNodes[c].childNodes)for(var d=childNodeList(a.childNodes[c]),e=0;e<d.length;e++)b.push(d[e]);return b}function isset(a){return"undefined"!=typeof a}var window=win,document=doc,ELCO_MAX_COMPONENTS_GENERATED=2048,elAndCoEvents={list:{}};elAndCoEvents.add=function(a,b){elAndCoEvents.list[a]=b},elAndCoEvents.onClickEventsList=[],elAndCoEvents.add("CLICK",function(a,b){var c=new elAndCoEvents.onClickObject(a,b);elAndCoEvents.onClickEventsList.push(c)}),elAndCoEvents.onClickObject=function(a,b){this.callback=b,this.element=a,this.touchstart=function(a){return function(b){a.moved=!1,a.startX=b.touches[0].clientX,a.startY=b.touches[0].clientY}}(this),this.touchmove=function(a){return function(b){(Math.abs(b.touches[0].clientX-a.startX)>10||Math.abs(b.touches[0].clientY-a.startY)>10)&&(a.moved=!0)}}(this),this.touchend=function(a){return function(b){a.moved||a.callback(b)}}(this),on(this.element,"touchstart",this.touchstart),on(this.element,"touchmove",this.touchmove),on(this.element,"touchend",this.touchend),on(this.element,"touchcancel",this.touchend),on(this.element,"click",function(a,b){"ontouchstart"in window||b.callback(a)},this)};var El=Element=function(a,b){if(this!==window)var c=Element.create(a,b);else var c=Element.select(a,b);if(c)return c.childs=c.childNodes,c.parent=c.parentNode,c.clone=c.cloneNode,c.add=function(a){return function(b){if("#document-fragment"===b.nodeName){for(var c=[],d=b.childNodes,e=d.length,f=0;e>f;f++)a.appendChild(d[0]),c.push(a.childNodes[a.childNodes.length-1]);return c}if(!b.length)return a.appendChild(b),El(b);for(var f=0;f<b.length;f++){for(var c=[],e=b.length,f=0;e>f;f++)a.appendChild(b[0]),c.push(a.childNodes[a.childNodes.length-1]);return c}}}(c),c.addFirst=function(a){return function(b){if("#document-fragment"===b.nodeName){for(var c=[],d=b.childNodes,e=d.length,f=0;e>f;f++)a.insertBefore(d[0],a.firstChild),c.push(a.childNodes[a.childNodes.length-1]);return c}if(!b.length)return a.insertBefore(b,a.firstChild),El(b);for(var f=0;f<b.length;f++){for(var c=[],e=b.length,f=0;e>f;f++)a.insertBefore(b[0],a.firstChild),c.push(a.childNodes[a.childNodes.length-1]);return c}}}(c),c.on=function(a){return function(b,c,d){on(a,b,c,d)}}(c),c.offset=function(a){return function(){for(var b={x:0,y:0};a;)b.x+=a.offsetLeft-(a==document.body?0:a.scrollLeft)+a.clientLeft,b.y+=a.offsetTop-(a==document.body?0:a.scrollTop)+a.clientTop,a=a.offsetParent;return b}}(c),c.hasClass=function(a){return function(b){return(" "+a.className+" ").indexOf(" "+b+" ")>-1}}(c),c.addClass=function(a){return function(b){return El(a).hasClass(b)||(a.className+=" "+b),El(a)}}(c),c.removeClass=function(a){return function(b){return a.className=(" "+a.className+" ").replace(" "+b+" "," "),El(a)}}(c),c.toggleClass=function(a){return function(b){return El(a).hasClass(b)?El(a).removeClass(b):El(a).addClass(b),El(a)}}(c),c};Element.create=function(a,b){var c,d=/[-\w]+/.exec(a)[0];if(c=document.createElement(d),"object"==typeof b)for(attribute in b)b.hasOwnProperty(attribute)&&!c.getAttribute(attribute)&&c.setAttribute(attribute,b[attribute]);var e=a.replace(/#([a-z-_]+)/i,"").replace(/\w+/,"").split(".");if(e.length>1){c.className="";for(var f=1;f<e.length;f++)c.className+=" "+e[f]}var g=/([a-z-_]+)(#([a-z-_]+))/i.exec(a);return g&&(c.id=g[3]),c},Element.select=function(a){var b;return"string"!=typeof a?b=a:"#"==a[0]&&(b=document.getElementById(a.substring(1))),b};var Co=Component=function(a,b){if(this===window)return Co.generate(a,b);if(a.name&&(Co.components[a.name]=this,"object"==typeof a))for(variable in a)a.hasOwnProperty(variable)&&(isset(this[variable])||(this[variable]=a[variable]))};Co.components={},Component.attributesParser=function(a,b){for(var c={},d=0;d<a.length;d++)if(c[a[d].name]=a[d].value,"string"==typeof a[d].value&&"$"==a[d].value[0]&&b)for(parameter in b)a[d].value==="${"+parameter+"}"&&b.hasOwnProperty(parameter)&&(c[a[d].name]=b[parameter]);return c},Component.prototype.create=function(a){var b=this.render(a),c=childNodeList(b);if(isset(a._CHILDNODES_)&&a._CHILDNODES_.length){for(var d=!1,e=0;e<c.length;e++){var f=c[e];if("_inner_"===f.getAttribute("tag-name")){for(;a._CHILDNODES_.length;)f.parentNode.insertBefore(a._CHILDNODES_[0],f);f.parentNode.removeChild(f),d=!0;break}}if(!d)for(;a._CHILDNODES_.length;)b.appendChild(a._CHILDNODES_[0])}return isset(this.created)&&this.created(b),b},Component.generate=function(a,b){if("string"!=typeof a)return document.createElement("div");a=a.replace(/^\s+|\s+$/g,""),a=a.replace(/<([-\w]*)( (.+?))?\/>/g,"<$1$2></$1>"),a=a.replace(/<([-\w]*)( (.+?))?>/g,'<div tag-name="$1"$2>').replace(/<\/(.+?)>/g,"</div>");var c=document.createElement("div");c.innerHTML=a;var d=!1,e=!1;for(componentsCreated=0;!d;){e=!1,ELCO_MAX_COMPONENTS_GENERATED&&componentsCreated>ELCO_MAX_COMPONENTS_GENERATED&&(console.error("el & co erreur 001\nUne boucle de création de components a été détectée.\nLa génération des components a alors été arrêtée."),d=!0);for(var f=childNodeList(c),g=0;g<f.length;g++){var h=f[g],i="";if(h.getAttribute&&(i=h.getAttribute("tag-name")||""),Co.components[i]){var j=Component.attributesParser(h.attributes,b);j._CHILDNODES_=h.childNodes;var k=Co.components[i].create(j);for(attribute in j)j.hasOwnProperty(attribute)&&null===k.getAttribute(attribute)&&"string"==typeof j[attribute]&&k.setAttribute(attribute,j[attribute]);k.removeAttribute("tag-name"),h.parentNode.insertBefore(k,h),h.parentNode.removeChild(h),e=!0,componentsCreated++;break}}e||(d=!0)}return c.childNodes},Component.inner=function(a){var b=document.createElement("div");return b.setAttribute("tag-name","_inner_"),a.appendChild(b),a},window.Co=window.Component,window.El=window.Element,window.ELCO_MAX_COMPONENTS_GENERATED=ELCO_MAX_COMPONENTS_GENERATED}(window,document);
-
-/*
- *  Marmottajax 1.0.4
- *  Envoyer et recevoir des informations simplement en JavaScript
- */
-
-var marmottajax = function(options) {
-
-    return marmottajax.get(options);
-
-};
-
-marmottajax.normalize = function(parameters) {
-
-    return parameters ? typeof parameters === "string" ? { url: parameters } : parameters : null;
-
-};
-
-marmottajax.json = function(parameters) {
-
-    if (parameters = marmottajax.normalize(parameters)) {
-
-        parameters.json = true;
-
-        return new marmottajax.request(parameters);
-
-    }
-
-};
-
-marmottajax.get = function(options) {
-
-    return new marmottajax.request(options);
-
-};
-
-marmottajax.post = function(parameters) {
-
-    if (parameters = marmottajax.normalize(parameters)) {
-
-        parameters.method = "POST";
-
-        return new marmottajax.request(parameters);
-
-    }
-
-};
-
-marmottajax.put = function(parameters) {
-
-    if (parameters = marmottajax.normalize(parameters)) {
-
-        parameters.method = "PUT";
-
-        return new marmottajax.request(parameters);
-
-    }
-
-};
-
-marmottajax.destroy = marmottajax.remove = marmottajax.delete_ = function(parameters) {
-
-    if (parameters = marmottajax.normalize(parameters)) {
-
-        parameters.method = "DELETE";
-
-        return new marmottajax.request(parameters);
-
-    }
-
-};
-
-marmottajax.request = function(options) {
-
-    if (!options) { return false; }
-
-    if (typeof options === "string") {
-
-        options = { url: options };
-
-    }
-
-    if (options.method === "POST" || options.method === "PUT" || options.method === "DELETE") {
-
-        var post = "?";
-
-        for (var key in options.options) {
-
-            post += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
-
-        }
-
-    }
-
-    else {
-
-        options.method = "GET";
-
-        options.url += options.url.indexOf("?") < 0 ? "?" : "";
-
-        for (var key in options.options) {
-
-            options.url += options.options.hasOwnProperty(key) ? "&" + key + "=" + options.options[key] : "";
-
-        }
-
-    }
-
-    this.xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-
-    this.xhr.options = options;
-
-    this.xhr.callbacks = {
-
-        then: [],
-        error: []
-
-    };
-
-    this.then = function(callback) {
-
-        this.xhr.callbacks.then.push(callback);
-
-        return this;
-
-    };
-
-    this.error = function(callback) {
-
-        this.xhr.callbacks.error.push(callback);
-
-        return this;
-
-    };
-
-    this.xhr.call = function(categorie, result) {
-
-        for (var i = 0; i < this.callbacks[categorie].length; i++) {
-
-            if (typeof(this.callbacks[categorie][i]) === "function") {
-
-                this.callbacks[categorie][i](result);
-
-            }
-
-        }
-
-    };
-
-    this.xhr.onreadystatechange = function() {
-
-        if (this.readyState === 4 && this.status == 200) {
-
-            var result = this.responseText;
-
-            if (this.options.json) {
-
-                try {
-
-                    result = JSON.parse(result);
-
-                }
-
-                catch (error) {
-
-                    this.call("error", "invalid json");
-
-                    return false;
-
-                }
-
-            }
-
-            this.call("then", result);
-
-        }
-
-        else if (this.readyState === 4 && this.status == 404) {
-
-            this.call("error", "404");
-
-        }
-
-        else if (this.readyState === 4) {
-
-            this.call("error", "unknow");
-
-        }
-
-    };
-
-    this.xhr.open(options.method, options.url, true);
-    this.xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    this.xhr.send(typeof post != "undefined" ? post : null);
-
-};
-
-/**
- * core/$.js
- *
- * DOM Content Loaded function
- */
-
-Application.dom_load_event_listeners = [];
-
-function $(callback) {
-
-	if (typeof callback === "function") {
-
-		Application.dom_load_event_listeners.push(callback);
-
-	}
-
-}
-
-Application.dom_content_loaded = false;
-
-Application.on_dom_content_loaded = function(event) {
-
-	if (!Application.dom_content_loaded) {
-
-		Application.dom_content_loaded = true;
-
-		for (var i = 0; i < Application.dom_load_event_listeners.length; i++) {
-
-			var fn = Application.dom_load_event_listeners[i]
-
-			if (typeof fn === "function") {
-
-				fn();
-
-			}
-			
-		}
-
-	}
-
-};
-
-El(document).on("DOMContentLoaded", Application.on_dom_content_loaded);
-El(window).on("load", Application.on_dom_content_loaded);
-
-window.onload = function() {
-
-    Application.on_dom_content_loaded();
-
-};
-
-/**
- * Core/isset.js
- *
- * Test if a variable is not `undefined`
- */
-
-function isset(variable) {
-
-	return typeof variable !== "undefined";
-
-}
 
 /**
  * core/request-animation-frame.js
@@ -290,73 +30,6 @@ window.requestAnimationFrame = (function() {
     	};
 
 })();
-
-/**
- * Core/scripts-launch.js
- *
- * SCRIPTS LAUNCH
- */
-
-$(function() {
-
-	for (var i = 0; i < Application.scripts.length; i++) {
-
-		var can_call = false,
-			script = Application.scripts[i];
-
-		if (script.pages === "*" || script.pages === "all" || !script.pages) {
-
-			can_call = true;
-
-		}
-
-		else {
-
-			for (var p = 0; p < script.pages.length; p++) {
-				
-				if (script.pages[p] === _currentpage_) {
-
-					can_call = true;
-
-				}
-
-			}
-			
-		}
-
-		if (can_call) {
-
-			script.call();
-
-		}
-
-	}
-
-});
-
-/**
- * Core/scripts.js
- *
- * MAIN SCRIPT SCRIPT
- */
-
-Application.scripts = [];
-
-var Script = function(script) {
-
-	this.pages = script.pages;
-
-	this.to_call = script.call;
-
-	Application.scripts.push(this);
-
-};
-
-Script.prototype.call = function() {
-	
-	this.to_call();
-
-};
 
 /**
  * components/main.js
@@ -797,62 +470,6 @@ new Script({
 });
 
 /**
- * Scripts/bg-loader.js
- *
- * BACKGROUND LOADER
- */
-
-function backgroundLoader(element) {
-
-    this.element = El(element);
-    this.src = this.element.getAttribute("data-background");;
-    this.element.style.backgroundImage = "url(" + this.src + ")";
-
-    this.imgLoader = new Image();
-    this.imgLoader.src = this.src;
-
-    El(this.imgLoader).on("load", function(event, element) {
-
-        element.removeClass("bg-loader");
-
-        element.addClass("bg-loader-transition");
-        element.addClass("bg-loaded");
-
-        setTimeout(function(element) {
-
-            return function() {
-
-                element.removeClass("bg-loader-transition");
-
-            }
-
-        }(element), 300);
-
-    }, this.element);
-
- }
-
-new Script({
-
-	call: function() {
-
-		var elements = document.getElementsByClassName("bg-loader");
-
-		if (elements && elements.length) {
-
-		    for (var i = 0, length = elements.length; i < length; i++) {
-
-		        new backgroundLoader(elements[i]);
-
-		    }
-
-		}
-
-	}
-
-});
-
-/**
  * Scripts/test.js
  *
  * TEST SCRIPT
@@ -908,75 +525,227 @@ new Script({
 	}
 
 });
+function ChatMessage() {
+	var that = this;
 
-/**
- * Scripts/test.js
- *
- * TEST SCRIPT
- */
+	this.data = '';
+	this.sender = '';
+	this.content = '';
+	this.messageType = 'text';
+	this.channel = Chat.channel;
+	this.timestamp = Math.round(+new Date() / 1000);
 
-function postMessage() {
+	this.construct = function(sender, content, sessionId) {
+		that.sender = sender;
+		that.content = content;
 
- 	marmottajax.post({
+		if(content.lastIndexOf('/', 0) == 0) {
+			that.messageType = 'command';
+		}
 
- 		url: "../../../posts",
- 		json: true,
+		var dataArray = {
+			"sender_name": that.sender,
+			"content": that.content,
+			"messageType": that.messageType,
+			"channel": that.channel,
+			"timestamp": that.timestamp
+		};
 
- 		options: {
+		if(sessionId.length > 0) {
+			dataArray.sessionId = sessionId;
+		}
 
- 			"post-message-submit": "lol",
- 			channel: El("#channel-social-message-submit").getAttribute("data-channel-id"),
- 			"post-content": El("#post-content").value
+		that.data = JSON.stringify(dataArray);
+	};
 
- 		}
+	this.parse = function(jsonData) {
+		try {
+			var json = JSON.parse(jsonData);
 
- 	}).then(function(channel) {
+			that.sender = json.sender_name;
+			that.content = json.content;
+			that.messageType = json.messageType;
+			that.timestamp = json.timestamp;
+		}
+		catch(e) { alert(e);  }
+	};
 
- 		return function(result) {
-	
- 			El("#channel-posts").addFirst(Co('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
-	
- 				avatar: _my_avatar_,
- 				channel: _my_pseudo_,
- 				message: result.content
-	
- 			}));
+};
 
- 		}
+var Screen = {
+	pushInfo: function(text) {
+		var panel = document.getElementById('messages-panel');
 
- 	}(El("#channel-social-message-submit").getAttribute("data-channel-id")));
+		var el = document.createElement('div');
+		el.className = 'info';
 
- 	El("#post-content").value = "";
+		var contentSpan = document.createElement('span');
+		contentSpan.className = 'info';
 
+		var contentText = document.createTextNode('Info: ' + text);
+
+		contentSpan.appendChild(contentText);
+		el.appendChild(contentSpan);
+
+		panel.appendChild(el);
+		el.scrollTop = el.scrollHeight;
+	},
+
+	pushError: function(error) {
+		var panel = document.getElementById('messages-panel');
+
+		var el = document.createElement('div');
+		el.className = 'error';
+
+		var contentSpan = document.createElement('span');
+		contentSpan.className = 'content';
+
+		var contentText = document.createTextNode('Error: ' + error);
+
+		contentSpan.appendChild(contentText);
+		el.appendChild(contentSpan);
+
+		panel.appendChild(el);
+		el.scrollTop = el.scrollHeight;
+	},
+
+	pushMessage: function(message) {
+		var panel = document.getElementById('messages-panel');
+
+		var el = document.createElement('div');
+		el.className = 'message';
+
+		var senderSpan = document.createElement('span');
+		var contentSpan = document.createElement('span');
+		senderSpan.className = 'sender';
+		contentSpan.className = 'content';
+
+		var senderText = document.createTextNode(message.sender);
+		var contentText = document.createTextNode(message.content);
+
+		senderSpan.appendChild(senderText);
+		contentSpan.appendChild(contentText);
+
+		var sepText = document.createTextNode(': ');
+
+		el.appendChild(senderSpan);
+		el.appendChild(sepText);
+		el.appendChild(contentSpan);
+
+		panel.appendChild(el);
+		el.scrollIntoView();
+	},
+
+	clearFirst: function() {
+		var panel = document.getElementById('messages-panel');
+		panel.removeChild(panel.firstChild);
+	}
+};
+
+var Chat = {
+
+	connected: false,
+	socket: null,
+	address: '127.0.0.1',
+	port: 8080,
+	channel: '',
+	username: 'Dreamer',
+	sessionId: '',
+
+	start: function() {
+		this.socket = new WebSocket('ws://' + this.address + ':' + this.port + '/' + this.channel);
+
+		this.socket.onopen = this.onConnect;
+		this.socket.onclose = this.onDisconnect;
+		this.socket.onmessage = this.onMessage;
+		this.socket.onerror = this.onError;
+
+	},
+
+	onConnect: function(event) {
+		// send an empty message to init the connection
+		var msg = new ChatMessage();
+		msg.construct(Chat.username, '');
+		Chat.socket.send(msg.data);
+
+		Chat.connected = true;
+		Screen.pushInfo('Connected maggle ! Welcome !');
+	},
+
+	onMessage: function(event) {
+		try {
+			var message = new ChatMessage();
+			message.parse(event.data);
+
+			Screen.pushMessage(message);
+		}
+		catch(e) {
+			Screen.pushError(e.message);
+		}
+	},
+
+	onDisconnect: function(event) {
+		Chat.connected = false;
+		Screen.pushInfo('Disconnected');
+	},
+
+	onError: function(event) {
+		Screen.pushError("WebSocket error");
+	}
+};
+
+
+function initChat(opts) {
+	Chat.address = opts.address;
+	Chat.port = opts.port;
+	Chat.channel = opts.channel;
+	Chat.username = opts.username ? opts.username : 'Dreamer';
+	Chat.sessionId = opts.sessionId;
+
+	Chat.start();
+}
+
+function sendChatMessage() {
+	if(Chat.connected) {
+		var contentInput = document.getElementById('message-box');
+		var message = new ChatMessage();
+
+		message.construct(Chat.username, contentInput.value, Chat.sessionId);
+
+		Chat.socket.send(message.data);
+		Screen.pushMessage(message);
+
+		contentInput.value = '';
+	}
+}
+
+function keyPress(event) {
+	if(typeof event == 'undefined' && window.event)
+		event = window.event;
+
+	var contentInput = document.getElementById('message-box');
+
+	if(document.activeElement == contentInput && event.keyCode == 13) {
+		document.getElementById('message-send').click();
+	}
 }
 
 new Script({
 
-	pages: ["channel"],
+	pages: ["live"],
 
 	call: function() {
+		console.log("blaaaa");
+        console.log(liveChatOptions);
+		console.log(initChat);		
 
-		var channelSocialMessageSubmit = El("#channel-social-message-submit");
-
-		if (channelSocialMessageSubmit) {
-
-			channelSocialMessageSubmit.onclick = postMessage;
-
-			El("#post-content").on("keydown", function(event) {
-
-			    if (event.keyCode === 13 && event.ctrlKey) {
-
-			        postMessage();
-
-			    }
-
-			});
-
-		}
-
+		initChat(liveChatOptions);
+				 
 	}
 
 });
+
+
 
 /**
  * scripts/comment.js
@@ -1043,132 +812,6 @@ function postComment(vid, commentContent, fromChannel, parent) {
 	El("#textarea-comment").value = "";
 
 }
-
-/**
- * Scripts/embed-video.js
- *
- * EMBED VIDEO
- */
-
-function setExporterInputValue() {
-
-	if (!document.getElementById("exporter-input")) {
-
-		return false;
-
-	}
-
-	var exporterInput = El("#exporter-input"),
-
-		exporterQuality = El("#exporter-quality"),
-		exporterAutoplay = El("#exporter-autoplay"),
-		exporterTimeCheckbox = El("#exporter-time-checkbox"),
-		exporterTimeInput = El("#exporter-time-input");
-
-	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
-
-	var quality = exporterQuality.options[exporterQuality.value].innerHTML || "640x360",
-		qualitys = quality.split("x");
-		width = qualitys[0],
-		height = qualitys[1];
-
-	var autoplay = exporterAutoplay.checked || false;
-
-	if (autoplay) {
-
-		url += "/autoplay";
-
-	}
-
-	var startAt = exporterTimeCheckbox.checked || false;
-
-	if (startAt) {
-
-		var timeUrlFormat = ["s", "m", "h"];
-
-		var startTime = exporterTimeInput.value,
-			times = startTime.split(":").reverse();
-
-		for (var i = 0; i < times.length; i++) {
-
-			/*url += i === 0 & !autoplay ? "?" : "&";
-
-			url += timeUrlFormat[i] + "=" + times[i];*/
-
-			url += times[i] + '/';
-
-		}
-
-	}
-
-	exporterInput.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
-
-}
-
-new Script({
-
-	pages: ["watch"],
-
-	call: function() {
-
-		if (!El("#embed-video-icon")) {
-
-			return false;
-
-		}
-
-		El("#embed-video-icon").onclick = function() {
-
-			var videoInfoDescription = El("#video-info-description");
-
-			if (videoInfoDescription.hasClass("export")) {
-
-				videoInfoDescription.removeClass("playlist");
-				videoInfoDescription.removeClass("export");
-
-			}
-
-			else {
-
-				videoInfoDescription.removeClass("playlist");
-				videoInfoDescription.addClass("export");
-
-				El("#exporter-input").select();
-
-			}
-
-		};
-
-		El("#exporter-quality").on("change", setExporterInputValue),
-		El("#exporter-autoplay").on("change", setExporterInputValue),
-		El("#exporter-time-checkbox").on("change", setExporterInputValue),
-		El("#exporter-time-input").on("change", setExporterInputValue);
-
-		setExporterInputValue();
-
-	}
-
-});
-
-/**
- * Scripts/model.js
- *
- * EXAMPLE SCRIPT
- */
-
-new Script({
-
-	pages: ["default", "watch"], // Pages
-
-	// OU // pages: "all", // OU ne pas spécifier
-
-	call: function() { // Fonction appelée lorsque la page peut être manipulée
-
-		// console.log("Il pleut!", "{example script}");
-
-	}
-
-});
 
 /**
  * scripts/playlist-scroll.js
@@ -1311,6 +954,387 @@ new Script({
 			}
 		
 		}, false);
+
+	}
+
+});
+
+/**
+ * core/$.js
+ *
+ * DOM Content Loaded function
+ */
+
+Application.dom_load_event_listeners = [];
+
+function $(callback) {
+
+	if (typeof callback === "function") {
+
+		Application.dom_load_event_listeners.push(callback);
+
+	}
+
+}
+
+Application.dom_content_loaded = false;
+
+Application.on_dom_content_loaded = function(event) {
+
+	if (!Application.dom_content_loaded) {
+
+		Application.dom_content_loaded = true;
+
+		for (var i = 0; i < Application.dom_load_event_listeners.length; i++) {
+
+			var fn = Application.dom_load_event_listeners[i]
+
+			if (typeof fn === "function") {
+
+				fn();
+
+			}
+			
+		}
+
+	}
+
+};
+
+El(document).on("DOMContentLoaded", Application.on_dom_content_loaded);
+El(window).on("load", Application.on_dom_content_loaded);
+
+window.onload = function() {
+
+    Application.on_dom_content_loaded();
+
+};
+
+/**
+ * Core/isset.js
+ *
+ * Test if a variable is not `undefined`
+ */
+
+function isset(variable) {
+
+	return typeof variable !== "undefined";
+
+}
+
+/**
+ * Core/scripts-launch.js
+ *
+ * SCRIPTS LAUNCH
+ */
+
+$(function() {
+
+	for (var i = 0; i < Application.scripts.length; i++) {
+
+		var can_call = false,
+			script = Application.scripts[i];
+
+		if (script.pages === "*" || script.pages === "all" || !script.pages) {
+
+			can_call = true;
+
+		}
+
+		else {
+
+			for (var p = 0; p < script.pages.length; p++) {
+				
+				if (script.pages[p] === _currentpage_) {
+
+					can_call = true;
+
+				}
+
+			}
+			
+		}
+
+		if (can_call) {
+
+			script.call();
+
+		}
+
+	}
+
+});
+
+/**
+ * Core/scripts.js
+ *
+ * MAIN SCRIPT SCRIPT
+ */
+
+Application.scripts = [];
+
+var Script = function(script) {
+
+	this.pages = script.pages;
+
+	this.to_call = script.call;
+
+	Application.scripts.push(this);
+
+};
+
+Script.prototype.call = function() {
+	
+	this.to_call();
+
+};
+
+/**
+ * Scripts/bg-loader.js
+ *
+ * BACKGROUND LOADER
+ */
+
+function backgroundLoader(element) {
+
+    this.element = El(element);
+    this.src = this.element.getAttribute("data-background");;
+    this.element.style.backgroundImage = "url(" + this.src + ")";
+
+    this.imgLoader = new Image();
+    this.imgLoader.src = this.src;
+
+    El(this.imgLoader).on("load", function(event, element) {
+
+        element.removeClass("bg-loader");
+
+        element.addClass("bg-loader-transition");
+        element.addClass("bg-loaded");
+
+        setTimeout(function(element) {
+
+            return function() {
+
+                element.removeClass("bg-loader-transition");
+
+            }
+
+        }(element), 300);
+
+    }, this.element);
+
+ }
+
+new Script({
+
+	call: function() {
+
+		var elements = document.getElementsByClassName("bg-loader");
+
+		if (elements && elements.length) {
+
+		    for (var i = 0, length = elements.length; i < length; i++) {
+
+		        new backgroundLoader(elements[i]);
+
+		    }
+
+		}
+
+	}
+
+});
+
+/**
+ * Scripts/test.js
+ *
+ * TEST SCRIPT
+ */
+
+function postMessage() {
+
+ 	marmottajax.post({
+
+ 		url: "../../../posts",
+ 		json: true,
+
+ 		options: {
+
+ 			"post-message-submit": "lol",
+ 			channel: El("#channel-social-message-submit").getAttribute("data-channel-id"),
+ 			"post-content": El("#post-content").value
+
+ 		}
+
+ 	}).then(function(channel) {
+
+ 		return function(result) {
+	
+ 			El("#channel-posts").addFirst(Co('<channel-post avatar="${avatar}" channel="${channel}" message="${message}"/>', {
+	
+ 				avatar: _my_avatar_,
+ 				channel: _my_pseudo_,
+ 				message: result.content
+	
+ 			}));
+
+ 		}
+
+ 	}(El("#channel-social-message-submit").getAttribute("data-channel-id")));
+
+ 	El("#post-content").value = "";
+
+}
+
+new Script({
+
+	pages: ["channel"],
+
+	call: function() {
+
+		var channelSocialMessageSubmit = El("#channel-social-message-submit");
+
+		if (channelSocialMessageSubmit) {
+
+			channelSocialMessageSubmit.onclick = postMessage;
+
+			El("#post-content").on("keydown", function(event) {
+
+			    if (event.keyCode === 13 && event.ctrlKey) {
+
+			        postMessage();
+
+			    }
+
+			});
+
+		}
+
+	}
+
+});
+
+/**
+ * Scripts/embed-video.js
+ *
+ * EMBED VIDEO
+ */
+
+function setExporterInputValue() {
+
+	if (!document.getElementById("exporter-input")) {
+
+		return false;
+
+	}
+
+	var exporterInput = El("#exporter-input"),
+
+		exporterQuality = El("#exporter-quality"),
+		exporterAutoplay = El("#exporter-autoplay"),
+		exporterTimeCheckbox = El("#exporter-time-checkbox"),
+		exporterTimeInput = El("#exporter-time-input");
+
+	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
+
+	var quality = exporterQuality.options[exporterQuality.value].innerHTML || "640x360",
+		qualitys = quality.split("x");
+		width = qualitys[0],
+		height = qualitys[1];
+
+	var autoplay = exporterAutoplay.checked || false;
+
+	if (autoplay) {
+
+		url += "/autoplay";
+
+	}
+
+	var startAt = exporterTimeCheckbox.checked || false;
+
+	if (startAt) {
+
+		var timeUrlFormat = ["s", "m", "h"];
+
+		var startTime = exporterTimeInput.value,
+			times = startTime.split(":").reverse();
+
+		for (var i = 0; i < times.length; i++) {
+
+			/*url += i === 0 & !autoplay ? "?" : "&";
+
+			url += timeUrlFormat[i] + "=" + times[i];*/
+
+			url += times[i] + '/';
+
+		}
+
+	}
+
+	exporterInput.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
+
+}
+
+new Script({
+
+	pages: ["watch"],
+
+	call: function() {
+
+		if (!El("#embed-video-icon")) {
+
+			return false;
+
+		}
+
+		El("#embed-video-icon").onclick = function() {
+
+			var videoInfoDescription = El("#video-info-description");
+
+			if (videoInfoDescription.hasClass("export")) {
+
+				videoInfoDescription.removeClass("playlist");
+				videoInfoDescription.removeClass("export");
+
+			}
+
+			else {
+
+				videoInfoDescription.removeClass("playlist");
+				videoInfoDescription.addClass("export");
+
+				El("#exporter-input").select();
+
+			}
+
+		};
+
+		El("#exporter-quality").on("change", setExporterInputValue),
+		El("#exporter-autoplay").on("change", setExporterInputValue),
+		El("#exporter-time-checkbox").on("change", setExporterInputValue),
+		El("#exporter-time-input").on("change", setExporterInputValue);
+
+		setExporterInputValue();
+
+	}
+
+});
+
+/**
+ * Scripts/model.js
+ *
+ * EXAMPLE SCRIPT
+ */
+
+new Script({
+
+	pages: ["default", "watch"], // Pages
+
+	// OU // pages: "all", // OU ne pas spécifier
+
+	call: function() { // Fonction appelée lorsque la page peut être manipulée
+
+		// console.log("Il pleut!", "{example script}");
 
 	}
 

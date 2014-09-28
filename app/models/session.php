@@ -1,5 +1,6 @@
 <?php
 
+require_once MODEL.'user.php';
 require_once MODEL.'user_session.php';
 
 class Session {
@@ -27,6 +28,10 @@ class Session {
 
 	public static function get() {
 		return self::$session;
+	}
+
+	public static function getId() {
+		return $_COOKIE['SESSID'];
 	}
 
 	public static function isActive() {
