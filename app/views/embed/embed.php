@@ -24,7 +24,7 @@
 		</script>
 
 		<div id="player">
-			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="http://puu.sh/6Tf6f.png"></video>
+			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $video->getThumbnail(); ?>"></video>
 			<div id="annotationsElement"></div>
 			<span id="repeat">
 				<span class="icon"></span>
@@ -41,7 +41,7 @@
 				</span>
 				<span id="play-pause" class="play"></span>
 				<span id="time"></span>
-				<a href="http://dreamvids.fr/&t0dnj1" target="_blank" id="DreamVidsIconEmbed"></a>
+				<a href="http://dreamvids.fr<?php echo $video->url; ?>" target="_blank" id="DreamVidsIconEmbed"></a>
 				<span id="annotationsButton" style="display: none"></span>
 				<span id="qualityButton">SD</span>
 				<span id="volume">
@@ -64,36 +64,22 @@
 				{
 
 					format: 360,
-					mp4: "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4",
-					webm: "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.webm"
+					mp4: "<?php echo $url; ?>_640x360p.mp4",
+					webm: "<?php echo $url; ?>_640x360p.webm"
 
 				},
 
 				{
 
 					format: 720,
-					mp4: "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.mp4",
-					webm: "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"
-
-				}
-
-			]);
-
-			setAnnotations([
-
-				{
-
-					text: "Oh une annotation !",
-					left: 20, top: 20,
-					width: 45, height: 10,
-					start: 5, end: 12
+					mp4: "<?php echo $url; ?>_1280x720p.mp4",
+					webm: "<?php echo $url; ?>_1280x720p.webm"
 
 				}
 
 			]);
 
 			setVolume(1);
-
 		</script>
 
 	</body>

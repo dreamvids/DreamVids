@@ -13,6 +13,7 @@ Route::register('account', 'account');
 Route::register('channel', 'channel');
 Route::register('watch', 'video');
 Route::register('feed', 'feed');
+Route::register('embed', 'embed');
 
 Route::register('videos', 'video');
 Route::register('playlists', 'playlist');
