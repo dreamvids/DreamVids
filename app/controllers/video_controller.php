@@ -67,8 +67,11 @@ class VideoController extends Controller {
 			$data['nextVideo'] = WEBROOT.'playlists/'.$playlist->id.'/watch/'.$videos_ids[$nextKey];
 		}
 		
+		$ext = explode('.', $video->url);
+		$ext = $ext[count($ext) - 1];
 		$data['playlist'] = $playlist;
 		$data['video'] = $video;
+		$data['ext'] = $ext;
 		$data['playlists'] = array();
 		$data['channels'] = (Session::isActive()) ? Session::get()->getOwnedChannels() : array();
 		foreach ($data['channels'] as $chan) {
