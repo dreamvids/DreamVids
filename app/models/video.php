@@ -94,13 +94,17 @@ class Video extends ActiveRecord\Model {
 		return VideoVote::exists(array('user_id' => $userId, 'obj_id' => $this->id, 'action' => 'dislike'));
 	}
 
-	public function updateInfo($newTitle, $newDescription, $newTags, $newThumbnail) {
+	public function updateInfo($newTitle, $newDescription, $newTags, $newThumbnail, $newVisibility) {
 		$this->title = $newTitle;
 		$this->description = $newDescription;
 		$this->tags = $newTags;
-		$this->tumbnail = Utils::upload($newThumbnail, 'img', $this->id, $this->poster_id, $this->getThumbnail());
-
+		$this->tumbnail = Utils::upload($newThumbnail, 'img', $this->id, $this->poster_id, $this->getThumbnail(), true);
+		$this->visibility = (in_array($newVisibility, array(0, 1, 2))) ? $newVisibility : 0;
 		$this->save();
+		
+		if ($newVisibility == 2 && !ChannelAction::exists(array('channel_id' => $this->poster_id, 'type' => 'upload', 'target' => $this->id))) {
+			Video::sendUploadNotification($this->id, $this->poster_id);
+		}
 	}
 
 	public function like($userId) {
@@ -235,63 +239,46 @@ class Video extends ActiveRecord\Model {
 		}
 	}
 
-	public static function createTemp($id, $channelId) {
+	public static function createTemp($id, $channelId, $videoPath, $thumbnailPath) {
 		Video::create(array(
 			'id' => $id,
 			'poster_id' => $channelId,
 			'title' => '[no_info_provided]',
 			'description' => '[no_info_provided]',
 			'tags' => '[no_info_provided]',
-			'tumbnail' => '[no_info_provided]',
-			'url' => '[no_info_provided]',
+			'tumbnail' => $thumbnailPath,
+			'url' => $videoPath,
 			'views' => 0,
 			'likes' => 0,
 			'dislikes' => 0,
 			'timestamp' => Utils::tps(), // upload start time
-			'visibility' => -1,
+			'visibility' => 0,
 			'flagged' => 0
 		));
 	}
 
-	public static function updateURL($vidId, $url) {
-		Video::update_all(array(
-			'set' => array(
-				'url' => $url,
-			),
-			'conditions' => array(
-				'id = ?',
-				$vidId
-			)
-		));
+	public static function register($vidId, $channelId, $title, $desc, $tags, $thumb, $visibility) {
+		$video = Video::find($vidId);
+		$upload->delete();
+		$video->title = $title;
+		$video->description = $desc;
+		$video->tags = $tags;
+		$video->visibility = (in_array($visibility, array(0, 1, 2))) ? $visibility : 0;
+		$video->tumbnail = Utils::upload($thumb, 'img', $videoId, $channelId, $video->getThumbnail());
+		$video->save();
+					
+		if ($req['video-visibility'] == 2) {
+			Video::sendUploadNotification($vidId, $channelId);
+		}
 	}
-
-	public static function register($vidId, $channelId, $title, $desc, $tags, $thumb, $timestamp, $visibility) {
-		Video::update_all(array(
-			'set' => array(
-				'poster_id' => $channelId,
-				'title' => $title,
-				'description' => $desc,
-				'tags' => $tags,
-				'tumbnail' => $thumb,
-				'views' => 0,
-				'likes' => 0,
-				'dislikes' => 0,
-				'timestamp' => $timestamp,
-				'visibility' => $visibility,
-				'flagged' => 0
-			),
-			'conditions' => array(
-				'id = ?',
-				$vidId
-			)
-		));
-
+	
+	public static function sendUploadNotification($videoId, $channelId) {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $channelId,
 			'recipients_ids' => ';'.trim(Channel::find($channelId)->subs_list, ';').';',
 			'type' => 'upload',
-			'target' => $vidId,
+			'target' => $videoId,
 			'timestamp' => Utils::tps()
 		));
 	}

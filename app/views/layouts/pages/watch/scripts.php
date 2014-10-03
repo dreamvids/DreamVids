@@ -18,14 +18,14 @@
 
 		{
 			format: 360,
-			mp4: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_640x360p.mp4",
-			webm: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_640x360p.webm"
+			mp4: "<?php echo $video->url; ?>_640x360p.mp4",
+			webm: "<?php echo $video->url; ?>_640x360p.webm"
 		},
 
 		{
 			format: 720,
-			mp4: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.mp4",
-			webm: "http://dreamvids.fr/uploads/Dimou/AxRw02.webm_1280x720p.webm"
+			mp4: "<?php echo $video->url; ?>_1280x720p.mp4",
+			webm: "<?php echo $video->url; ?>_1280x720p.webm"
 		}
 
 	]);
@@ -46,6 +46,6 @@
 
 	]);*/
 
-	var _redirectAtEnd = "http://dreamvids.fr/&AxRw02";
+	var _redirectAtEnd = "<?php echo @$nextVideo; ?>";
 
 </script>

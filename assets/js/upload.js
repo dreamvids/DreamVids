@@ -67,7 +67,7 @@ function submitVideoInfo() {
 
 uploadInput.addEventListener('change', function(event) {
 	var extension = uploadInput.value.split('.')[uploadInput.value.split('.').length - 1].toLowerCase();
-	var validsExtensions = ['webm', 'mp4', 'mov', 'avi', 'wmv', 'ogg', 'ogv'];
+	var validsExtensions = ['webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'];
 
 	if (validsExtensions.indexOf(extension) != -1) {
 

@@ -3,6 +3,8 @@
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']), true);
 define('WEBROOT', str_replace('index.php', '', $_SERVER['SCRIPT_NAME']), true);
 define('SYSTEM', ROOT.'system/');
+define('SCRIPT', ROOT.'scripts/');
+define('CACHE', ROOT.'cache/');
 
 define('APP', ROOT.'app/');
 define('CONFIG', APP.'config/');

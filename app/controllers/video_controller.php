@@ -10,6 +10,7 @@ require_once SYSTEM.'json_response.php';
 require_once MODEL.'video.php';
 require_once MODEL.'comment.php';
 require_once MODEL.'user_channel.php';
+require_once MODEL.'channel_action.php';
 
 class VideoController extends Controller {
 
@@ -55,7 +56,17 @@ class VideoController extends Controller {
 		}
 
 		$data = array();
-
+		if ($playlist != false) {
+			$videos_ids = json_decode($playlist->videos_ids);
+			foreach($videos_ids as $key => $value) {
+				if ($value == $video->id) {
+					$nextKey = (isset($videos_ids[$key+1])) ? $key+1 : 0;
+					break;
+				}
+			}
+			$data['nextVideo'] = WEBROOT.'playlists/'.$playlist->id.'/watch/'.$videos_ids[$nextKey];
+		}
+		
 		$data['playlist'] = $playlist;
 		$data['video'] = $video;
 		$data['playlists'] = array();
@@ -98,12 +109,31 @@ class VideoController extends Controller {
 	}
 
 	public function create($request) {
-
+		$req = $request->getParameters();
+		if (isset($req['channelId'], $req['uploadId']) && UserChannel::find($req['channelId'])->belongToUser(Session::get()->id) && Upload::exists(array('id' => $req['uploadId'], 'channel_id' => $req['channelId']))) {
+			$upload = Upload::find($req['uploadId']);
+			$videoId = $upload->video_id;
+			if (isset($req['_FILES_']['video'])) {
+				$ext = explode('.', $req['_FILES_']['video']['name']);
+				$ext = $ext[count($ext) - 1];
+				$videoPath = Utils::upload($req['_FILES']['video'], 'vid', $videoId, $req['channelId']);
+				$thumbnailPath = WEBROOT.'uploads/'.$req['channelId'].'/'.$videoId.'.'.$ext.'.jpg';
+				Video::createTemp($videoId, $req['channelId'], $videoPath, $thumbnailPath);
+				return new Response(200);
+			}
+			else {
+				if (isset($req['video-title'], $req['video-description'], $req['video-tags'], $req['video-visibility'])) {
+					Video::register($videoId, $req['channelId'], $req['video-title'], $req['video-description'], $req['video-tags'], $req['upload-tumbnail'], $req['video-visibility']);
+				}
+			}
+		}
+		else {
+			return new Response(403);
+		}
 	}
 
 	public function update($id, $request) {
 		$req = $request->getParameters();
-
 		if(Session::isActive()) {
 			if($video = Video::find($id)) {
 				if(isset($req['video-edit-submit'], $req['video-title'], $req['video-description'], $req['video-tags'])) {
@@ -118,13 +148,13 @@ class VideoController extends Controller {
 						$data['video'] = $video;
 
 						$response = new ViewResponse('video/edit', $data);
-						$response->addMessage(ViewMessage::success('Votre video a bien été modifitée !'));
+						$response->addMessage(ViewMessage::success('Votre video a bien été modifiée !'));
 
 						return $response;
 					}
 					else {
 						$response = new ViewResponse('video/edit', $data);
-						$response->addMessage(ViewMessage::error('Les informations ne sont pas valides !'));
+						$response->addMessage(ViewMessage::error('Les informations ne sont pas valides.'));
 
 						return $response;
 					}
@@ -214,11 +244,6 @@ class VideoController extends Controller {
 		}
 
 		return new Response(500);
-	}
-
-	// Called by "GET video/upload"
-	public function upload($request) {
-		return new Response(200);
 	}
 
 	public function edit($id, $request) {

@@ -17,7 +17,7 @@
 
 			<div class="card video">
 				<div class="thumbnail bg-loader" data-background="<?php echo $chan->getBackground(); ?>">
-					<div class="time">0</div>
+					<div class="time"><?php echo $videos_count[$chan->id]; ?></div>
 					<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>" class="overlay"></a>
 				</div>
 				<div class="description">

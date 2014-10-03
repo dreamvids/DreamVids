@@ -1,5 +1,5 @@
 <div id="upload-large-modal">
-	<div class="bg-loader" id="backgroundLoader" data-background="<?php echo IMG.'backgrounds/002.jpg'; ?>"></div>
+	<div class="bg-loader" id="backgroundLoader" data-background="<?php echo UserChannel::find($channelId)->getBackground(); ?>"></div>
 	<section id="message-upload">
 		<h3>Déposez votre fichier vidéo dans cette zone pour l'uploader</h3>
 		<p>(Ou selectionnez votre fichier manuellement en cliquant sur le nuage)</p>
@@ -22,16 +22,9 @@
 </div>
 
 <div id="upload-content">
-	<form class="form middle" method="post" action="">
-		<label for="video-channel">Chaîne :</label>	
-		<select name="video-channel" id="video-channel">
-			<?php
-			foreach ($channels as $chan) {
-				echo '<option value="'.$chan->id.'">'.$chan->name.'</option>';
-			}
-			?>
-		</select>
-		
+	<form class="form middle" method="post" action="<?php echo WEBROOT.'videos'; ?>">
+		<input type="hidden" name="channelId" value="<?php echo $channelId; ?>" />
+		<input type="hidden" name="uploadId" value="<?php echo $uploadId; ?>" />
 		<label for="video-title">
 			Titre de la vidéo :
 			<input id="video-title" type="text" name="video-title" required="required" placeholder="Titre" spellcheck="false"/>

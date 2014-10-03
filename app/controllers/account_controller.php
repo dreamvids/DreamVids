@@ -147,6 +147,10 @@ class AccountController extends Controller {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
 			$data['channel'] = Session::get()->getOwnedChannels();
+			$data['videos_count'] = array();
+			foreach($data['channel'] as $chan) {
+				$data['videos_count'][$chan->id] = Video::count(array('conditions' => array('poster_id = ?', $chan->id)));
+			}
 			$data['current'] = 'videos';
 			
 			$response = new ViewResponse('account/channels_videos', $data);

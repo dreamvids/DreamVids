@@ -3,6 +3,10 @@
 require_once SYSTEM.'request.php';
 require_once SYSTEM.'view_response.php';
 
+require_once MODEL.'storage_server.php';
+require_once MODEL.'backup.php';
+require_once MODEL.'video.php';
+
 class Utils {
 
 	public static function getPerformedRequest() {
@@ -226,7 +230,7 @@ class Utils {
 	
 	public static function securingData($data) {
 		foreach ($data as $key => $value) {
-			if (is_subclass_of($value, "ActiveRecord\Model")) {
+			if (!is_string($value) && is_subclass_of($value, "ActiveRecord\Model")) {
 				$data[$key] = self::secureActiveRecordModel($value);
 			}
 			else if (is_array($value)) {
@@ -246,13 +250,12 @@ class Utils {
 		return $obj;
 	}
 	
-	public static function upload($file, $type, $fileId, $channelId, $default = '') {
+	public static function upload($file, $type, $fileId, $channelId, $default = '', $backup = false) {
 		if (!file_exists(ROOT.'uploads/')) {
 			mkdir(ROOT.'uploads');
 		}
 		if (!file_exists(ROOT.'uploads/'.$channelId.'/')) {
 			mkdir(ROOT.'uploads/'.$channelId);
-			mkdir(ROOT.'uploads/'.$channelId.'/videos');
 		}
 		
 		if ($file['name'] != '') {
@@ -262,22 +265,57 @@ class Utils {
 			switch ($type) {
 				case 'vid':
 					if (in_array($ext, array('webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'))) {
-						$path = 'uploads/'.$channelId.'/videos/'.$fileId.'.'.$ext;
+						$path = 'uploads/'.$channelId.'/'.$fileId.'.'.$ext;
 						move_uploaded_file($file['tmp_name'], ROOT.$path);
-						return WEBROOT.$path;
+						$duration = self::getVideoDuration($file['tmp_name']);
+						$video = Video::find($fileId);
+						$video->duration = $duration;
+						$video->save();
+						StorageServer::lockFreestServer();
+						self::convert(ROOT.$path);
+						$serv = StorageServer::getFreestServer();
+						return $serv->address.$path;
 					}
 				break;
 				
 				case 'img':
 					if (in_array($ext, array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'))) {
 						$path = 'uploads/'.$channelId.'/'.$fileId.'.'.$ext;
+						
 						move_uploaded_file($file['tmp_name'], ROOT.$path);
+						if ($backup) {
+							StorageServer::backup($fileId.'.'.$ext, $channelId);
+						}
 						return WEBROOT.$path;
 					}
 				break;
 			}
-			return $default;
 		}
 		return $default;
+	}
+	
+	public static function convert($path) {
+		system('sudo -u www-data convert.sh '.escapeshellarg($path).' '.ROOT.'');
+	}
+	
+	public static function getVideoDuration($videofile) {
+		ob_start();
+		passthru("ffmpeg -i $videofile 2>&1");
+		$duration = ob_get_contents();
+		ob_clean();
+		 
+		$search='/Duration: (.*?),/';
+		$duration=preg_match($search, $duration, $matches, PREG_OFFSET_CAPTURE, 3);
+		 
+		return self::hms2sec($matches[1][0]);
+	}
+	
+	public static function hms2sec ($hms) {
+        list($h, $m, $s) = explode (":", $hms);
+        $seconds = 0;
+        $seconds += (intval($h) * 3600);
+        $seconds += (intval($m) * 60);
+        $seconds += (intval($s));
+        return $seconds;
 	}
 }
