@@ -264,7 +264,7 @@ class Utils {
 			$ext = $ext[count($ext)-1];
 			switch ($type) {
 				case 'vid':
-					if (in_array($ext, array('webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'))) {
+					if (in_array(strtolower($ext), array('webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'))) {
 						$path = 'uploads/'.$channelId.'/'.$fileId.'.'.$ext;
 						move_uploaded_file($file['tmp_name'], ROOT.$path);
 						$duration = self::getVideoDuration($file['tmp_name']);

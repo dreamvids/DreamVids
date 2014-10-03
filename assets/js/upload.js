@@ -53,7 +53,7 @@ function tempsRestant(timestamp) {
 
 }
 
-function submitVideoInfo() {
+/*function submitVideoInfo() {
 
 	var title = document.getElementById("video-title").value;
 	var description = document.getElementById("video-description").value;
@@ -82,7 +82,7 @@ function submitVideoInfo() {
 
 	postRequest.send(thumbForm);
 
-}
+}*/
 
 uploadInput.addEventListener("change", function(event) {
 
@@ -90,12 +90,6 @@ uploadInput.addEventListener("change", function(event) {
 	var validsExtensions = ["webm", "mp4", "m4a", "mpg", "mpeg", "3gp", "3g2", "asf", "wma", "mov", "avi", "wmv", "ogg", "ogv", "flv", "mkv"];
 
 	if (validsExtensions.indexOf(extension) != -1) {
-
-		marmottajax.get("../upload/preprocess/").then(function(result) {
-		
-			console.log("GET upload/preprocess/", result);
-		
-		});
 
 		uploader.className = uploader.className.replace(" hover", "");
 		uploader.className = "uploading";
@@ -113,7 +107,7 @@ uploadInput.addEventListener("change", function(event) {
 		document.getElementById("up-submit").removeAttribute("disabled");
 
 		uploadHttpRequest = new XMLHttpRequest();
-		uploadHttpRequest.open("POST", "../upload/process/");
+		uploadHttpRequest.open("POST", _webroot_+"videos");
 
 		uploadHttpRequest.upload.onprogress = function(event) {
 
@@ -138,12 +132,14 @@ uploadInput.addEventListener("change", function(event) {
 			progressBar.style.width = "100%";
 			progressBar.dataset["restant"] = "";
 
-			console.log("POST upload/process/", uploadHttpRequest.responseText);
+			console.log("POST /videos", uploadHttpRequest.responseText);
 
 		};
 
 		var form = new FormData();
-		form.append("videoInput", uploadInput.files[0]);
+		form.append("video", uploadInput.files[0]);
+		form.append("channelId", document.getElementById('channelId').value);
+		form.append("uploadId", document.getElementById('uploadId').value);
 
 		uploadHttpRequest.send(form);
 		timeUpload.started = new Date().getTime();

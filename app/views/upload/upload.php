@@ -23,8 +23,8 @@
 
 <div id="upload-content">
 	<form class="form middle" method="post" action="<?php echo WEBROOT.'videos'; ?>">
-		<input type="hidden" name="channelId" value="<?php echo $channelId; ?>" />
-		<input type="hidden" name="uploadId" value="<?php echo $uploadId; ?>" />
+		<input type="hidden" name="channelId" id="channelId" value="<?php echo $channelId; ?>" />
+		<input type="hidden" name="uploadId" id="uploadId" value="<?php echo $uploadId; ?>" />
 		<label for="video-title">
 			Titre de la vidéo :
 			<input id="video-title" type="text" name="video-title" required="required" placeholder="Titre" spellcheck="false"/>
