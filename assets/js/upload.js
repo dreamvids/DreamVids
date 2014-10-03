@@ -1,28 +1,33 @@
-var uploader = document.getElementById('uploader');
-var uploadInput = document.getElementById('upload-input');
-var fileName = document.getElementById('file-name');
-var progressBar = document.getElementById('progress-bar');
+var uploader = document.getElementById("uploader");
+var uploadInput = document.getElementById("upload-input");
+var fileName = document.getElementById("file-name");
+var progressBar = document.getElementById("progress-bar");
 
 var timeUpload = {
+
 	started: 0,
 	current: 0
+
 };
 
 function cancelUpload() {
+
 	if (!uploadHttpRequest)
 		return false;
 
 	uploadHttpRequest.abort();
-	uploadInput.removeAttribute('disabled');
+	uploadInput.removeAttribute("disabled");
+
 }
 
 function tempsRestant(timestamp) {
+
 	var seconds = Math.round(timestamp / 1000);
 	var minutes = Math.round(seconds / 60);
 	var heures = Math.round(minutes / 60);
 
 	if (seconds < 1)
-		return "une seconde";
+		return "bientôt";
 	else if (seconds < 60)
 		return seconds + " secondes";
 	else if (minutes === 1)
@@ -44,76 +49,111 @@ function tempsRestant(timestamp) {
 	else if (minutes < 1440)
 		return heures + " heures";
 	else
-		return "trÃ¨s longtemps";
+		return "très longtemps";
+
 }
 
 function submitVideoInfo() {
-	var title = document.getElementById('video-title').value;
-	var description = document.getElementById('video-description').value;
-	var tags = document.getElementById('video-tags').value;
-	var thumb = document.getElementById('video-tumbnail').files[0];
-	var visibility = document.getElementById('video-visibility').value;
 
-	ajax.post('upload/', {'videoTitle' : title, 'videoDescription' : description, 'videoTags': tags, 'videoVisibility' : visibility});
+	var title = document.getElementById("video-title").value;
+	var description = document.getElementById("video-description").value;
+	var tags = document.getElementById("video-tags").value;
+	var thumb = document.getElementById("video-tumbnail").files[0];
+	var visibility = document.getElementById("video-visibility").value;
+
+	marmottajax.post("../upload/", {
+
+		videoTitle: title,
+		videoDescription: description,
+		videoTags:tags,
+		videoVisibility: visibility
+
+	}).then(function(result) {
+		
+		console.log("POST upload/", result);
+	
+	});
 
 	var postRequest = new XMLHttpRequest();
-	postRequest.open('POST', 'upload/addthumb');
+	postRequest.open("POST", "upload/addthumb");
 
 	var thumbForm = new FormData();
-	thumbForm.append('videoThumbnail', document.getElementById('video-tumbnail').files[0]);
+	thumbForm.append("videoThumbnail", document.getElementById("video-tumbnail").files[0]);
 
 	postRequest.send(thumbForm);
+
 }
 
-uploadInput.addEventListener('change', function(event) {
-	var extension = uploadInput.value.split('.')[uploadInput.value.split('.').length - 1].toLowerCase();
-	var validsExtensions = ['webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'];
+uploadInput.addEventListener("change", function(event) {
+
+	var extension = uploadInput.value.split(".")[uploadInput.value.split(".").length - 1].toLowerCase();
+	var validsExtensions = ["webm", "mp4", "m4a", "mpg", "mpeg", "3gp", "3g2", "asf", "wma", "mov", "avi", "wmv", "ogg", "ogv", "flv", "mkv"];
 
 	if (validsExtensions.indexOf(extension) != -1) {
 
-		ajax.get('upload/preprocess');
+		marmottajax.get("../upload/preprocess/").then(function(result) {
+		
+			console.log("GET upload/preprocess/", result);
+		
+		});
 
-		uploader.className = uploader.className.replace(' hover', '');
-		uploader.className = 'uploading';
+		uploader.className = uploader.className.replace(" hover", "");
+		uploader.className = "uploading";
 
-		var name = uploadInput.files[0].name.replace(/\.[0-9a-z]+$/i, '');
+		var name = uploadInput.files[0].name.replace(/\.[0-9a-z]+$/i, "");
 		fileName.innerHTML = name;
-		if (document.getElementById('video-title').value == '') {
-			document.getElementById('video-title').value = name;
+
+		if (document.getElementById("video-title").value == "") {
+
+			document.getElementById("video-title").value = name;
+
 		}
 
-		uploadInput.setAttribute('disabled', '');
-		document.getElementById('up-submit').removeAttribute('disabled');
+		uploadInput.setAttribute("disabled", "");
+		document.getElementById("up-submit").removeAttribute("disabled");
 
 		uploadHttpRequest = new XMLHttpRequest();
-		uploadHttpRequest.open('POST', 'upload/process/');
+		uploadHttpRequest.open("POST", "../upload/process/");
 
 		uploadHttpRequest.upload.onprogress = function(event) {
+
 			timeUpload.current = new Date().getTime();
 			var totalTime = (timeUpload.current - timeUpload.started) * event.total / event.loaded
 			time = totalTime - (timeUpload.current - timeUpload.started);
 
 			restant = tempsRestant(time);
 
-			progressBar.dataset['restant'] = restant;
+			progressBar.dataset["restant"] = restant;
 
 			percent = Math.round((event.loaded / event.total) * 100);
-			progressBar.style.width = progressBar.dataset['percent'] = percent + '%';
+			progressBar.style.width = progressBar.dataset["percent"] = percent + "%";
 
-			document.title = percent != 100 ? percent + '% | ' + restant + " restant" : 'Upload terminé';
+			document.title = percent != 100 ? percent + "% | " + restant + " restant" : "Upload terminé";
+
 		};
 
 		uploadHttpRequest.onload = function() {
-			uploader.className = 'uploaded';
-			progressBar.style.width = '100%';
+
+			uploader.className = "uploaded";
+			progressBar.style.width = "100%";
+			progressBar.dataset["restant"] = "";
+
+			console.log("POST upload/process/", uploadHttpRequest.responseText);
+
 		};
 
 		var form = new FormData();
-		form.append('videoInput', uploadInput.files[0]);
+		form.append("videoInput", uploadInput.files[0]);
 
 		uploadHttpRequest.send(form);
 		timeUpload.started = new Date().getTime();
-	} else {
-		alert("Type de fichier incorrect");
+
 	}
+
+	else {
+
+		alert("Type de fichier incorrect");
+
+	}
+
 }, false);
