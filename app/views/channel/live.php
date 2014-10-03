@@ -19,13 +19,20 @@
 	</div>
 	
 	<?php if ($onAir) { ?>
-	<div id="player">
-		<video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" data-setup='{ "techOrder": ["flash"] }'>
-			<source src="<?php echo Config::getValue_('livestream-source').$channel->name; ?>" type='rtmp/flv' />
-		</video>
-	</div>
+		<div id="player">
+			<video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" data-setup='{ "techOrder": ["flash"] }'>
+				<source src="<?php echo Config::getValue_('livestream-source').$channel->name; ?>" type='rtmp/flv' />
+			</video>
+		</div>
+	<?php }
 
-	<section class="video-infos live">
+	else { ?>
+		<div id="player" class="live-offline">
+			<div class="live-offline__image"></div>
+		</div>
+	<?php } ?>
+
+	<section class="video-infos live <?php if (!$onAir) { echo "live--offline"; } ?>">
 
 		<div class="views">128 viewers</div>
 
@@ -50,11 +57,17 @@
 		</div>
 
 	</section>
-	<?php } ?>
-
-	<?php if (!$onAir) { ?>
-		<p>Aucun live sur cette chaîne</p>
-	<?php } ?>
 	
 </div>
 
+<script>
+
+	var chatLiveOptions = {
+		ip: "192.168.33.10",
+		port: 8081,
+		channel: '<?php echo $channel->name; ?>',
+		username: '<?php echo Session::get()->username; ?>',
+		sessionId: '<?php echo Session::getId(); ?>'
+	};
+
+</script>

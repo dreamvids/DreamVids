@@ -37,6 +37,12 @@
 
 }
 
+.video-infos.live--offline:before {
+
+	background: #4093C8;
+
+}
+
 @media (max-width: 1015px) {
 
   	#player {

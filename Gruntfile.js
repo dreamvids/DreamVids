@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
 					"assets/scripts/main.js",
 
-					"assets/scripts/vendor/**/*.js",
+					"assets/scripts/libs/**/*.js",
 
 					"assets/scripts/core/**/*.js",
 
@@ -152,6 +152,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask("auto", ["concurrent:auto"]);
 	grunt.registerTask("dev", ["auto"]);
+	grunt.registerTask("d", ["auto"]);
 	grunt.registerTask("auto-scripts", ["watch:scripts"]);
 	grunt.registerTask("auto-style", ["watch:style"]);
 
