@@ -40,9 +40,9 @@
 
 		<div class="live-chat">
 
-			<div class="live-chat__messages">
+			<div class="live-chat__messages" id="messages-panel">
 				
-				<div class="live-chat__message">
+				<!--<div class="live-chat__message">
 
 					<img class="live-chat__message__avatar" src="http://lorempicsum.com/nemo/255/200/2">
 					<span class="live-chat__message__pseudo">Pseudo</span>
@@ -65,6 +65,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
 				</div>
+				-->
 
 			</div>
 			

@@ -1,3 +1,7 @@
+/*
+ * Live chat
+ */
+
 function ChatMessage() {
 	var that = this;
 
@@ -24,8 +28,13 @@ function ChatMessage() {
 			"timestamp": that.timestamp
 		};
 
-		if(sessionId.length > 0) {
-			dataArray.sessionId = sessionId;
+		if(typeof sessionId == 'undefined') {
+
+		}
+		else {
+			if(sessionId.length > 0) {
+				dataArray.sessionId = sessionId;
+			}
 		}
 
 		that.data = JSON.stringify(dataArray);
@@ -46,68 +55,49 @@ function ChatMessage() {
 };
 
 var Screen = {
-	pushInfo: function(text) {
-		var panel = document.getElementById('messages-panel');
-
-		var el = document.createElement('div');
-		el.className = 'info';
-
-		var contentSpan = document.createElement('span');
-		contentSpan.className = 'info';
-
-		var contentText = document.createTextNode('Info: ' + text);
-
-		contentSpan.appendChild(contentText);
-		el.appendChild(contentSpan);
-
-		panel.appendChild(el);
-		el.scrollTop = el.scrollHeight;
-	},
-
-	pushError: function(error) {
-		var panel = document.getElementById('messages-panel');
-
-		var el = document.createElement('div');
-		el.className = 'error';
-
-		var contentSpan = document.createElement('span');
-		contentSpan.className = 'content';
-
-		var contentText = document.createTextNode('Error: ' + error);
-
-		contentSpan.appendChild(contentText);
-		el.appendChild(contentSpan);
-
-		panel.appendChild(el);
-		el.scrollTop = el.scrollHeight;
-	},
-
 	pushMessage: function(message) {
 		var panel = document.getElementById('messages-panel');
 
 		var el = document.createElement('div');
-		el.className = 'message';
+		el.className = 'live-chat__message';
 
-		var senderSpan = document.createElement('span');
-		var contentSpan = document.createElement('span');
-		senderSpan.className = 'sender';
-		contentSpan.className = 'content';
+		var avatar = document.createElement('img');
+		avatar.className = 'live-chat__message__avatar';
+		avatar.setAttribute('src', 'http://lorempicsum.com/simpsons/255/200/5');
 
-		var senderText = document.createTextNode(message.sender);
-		var contentText = document.createTextNode(message.content);
+		var username = document.createElement('span');
+		username.className = 'live-chat__message__pseudo';
+		var text = document.createTextNode(message.sender);
+		username.appendChild(text);
 
-		senderSpan.appendChild(senderText);
-		contentSpan.appendChild(contentText);
+		var messageElem = document.createElement('p');
+		var messageText = document.createTextNode(message.content);
+		messageElem.appendChild(messageText);
 
-		var sepText = document.createTextNode(': ');
-
-		el.appendChild(senderSpan);
-		el.appendChild(sepText);
-		el.appendChild(contentSpan);
+		el.appendChild(avatar);
+		el.appendChild(username);
+		el.appendChild(messageElem);
 
 		panel.appendChild(el);
-		el.scrollIntoView();
+		el.scrollTop = el.scrollHeight;
 	},
+
+	pushText: function(message, type) {
+		var panel = document.getElementById('messages-panel');
+
+		var el = document.createElement('div');
+		el.className = 'live-chat__message';
+
+		var messageElem = document.createElement('p');
+		var messageText = document.createTextNode(type + ': ' + message);
+		messageElem.appendChild(messageText);
+
+		el.appendChild(messageElem);
+
+		panel.appendChild(el);
+		el.scrollTop = el.scrollHeight;
+	},
+
 
 	clearFirst: function() {
 		var panel = document.getElementById('messages-panel');
@@ -142,7 +132,7 @@ var Chat = {
 		Chat.socket.send(msg.data);
 
 		Chat.connected = true;
-		Screen.pushInfo('Connected maggle ! Welcome !');
+		Screen.pushText('Connected maggle ! Welcome !', 'info');
 	},
 
 	onMessage: function(event) {
@@ -153,34 +143,37 @@ var Chat = {
 			Screen.pushMessage(message);
 		}
 		catch(e) {
-			Screen.pushError(e.message);
+			Screen.pushText(e.message, 'error');
 		}
 	},
 
 	onDisconnect: function(event) {
 		Chat.connected = false;
-		Screen.pushInfo('Disconnected');
+		Screen.pushText('Disconnected', 'info');
 	},
 
 	onError: function(event) {
-		Screen.pushError("WebSocket error");
+		Screen.pushText("WebSocket error", 'error');
 	}
 };
 
 
 function initChat(opts) {
-	Chat.address = opts.address;
+	//Chat.address = opts.ip;
+	Chat.address = '127.0.0.1';
 	Chat.port = opts.port;
 	Chat.channel = opts.channel;
 	Chat.username = opts.username ? opts.username : 'Dreamer';
 	Chat.sessionId = opts.sessionId;
+
+	window.onkeypress = keyPress;
 
 	Chat.start();
 }
 
 function sendChatMessage() {
 	if(Chat.connected) {
-		var contentInput = document.getElementById('message-box');
+		var contentInput = document.getElementById('live-chat-input');
 		var message = new ChatMessage();
 
 		message.construct(Chat.username, contentInput.value, Chat.sessionId);
@@ -196,10 +189,10 @@ function keyPress(event) {
 	if(typeof event == 'undefined' && window.event)
 		event = window.event;
 
-	var contentInput = document.getElementById('message-box');
+	var contentInput = document.getElementById('live-chat-input');
 
 	if(document.activeElement == contentInput && event.keyCode == 13) {
-		document.getElementById('message-send').click();
+		sendChatMessage();
 	}
 }
 
@@ -210,8 +203,9 @@ new Script({
 	call: function() {
 
 		initChat(chatLiveOptions);
-				 
+
 	}
 
 });
+
 
