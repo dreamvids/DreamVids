@@ -7,6 +7,8 @@
 
 .live-chat__messages {
 
-	background: $purple;
+	height: 210px;
+
+	overflow: auto;
 
 }

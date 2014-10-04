@@ -5,11 +5,42 @@
  * LIVE CHAT MESSAGE
  */
 
-.live-chat__messages__message {
+.live-chat__message {
+
+	clear: both;
 
 	display: block;
-	margin: 5px 0 5px 0;
+	margin: 10px 0 5px 0;
 
-	background: $orange;
+}
+
+.live-chat__message__avatar {
+
+	float: left;
+
+	width: 32px;
+	height: 32px;
+
+	@include border-radius;
+
+}
+
+.live-chat__message__pseudo {
+
+	float: left;
+
+	margin: 6px 0 0 5px;
+
+	@include font-title(19px);
+
+}
+
+.live-chat__message p {
+
+	clear: both;
+
+	padding-top: 8px;
+
+	@include font-paragraph(17px);
 
 }

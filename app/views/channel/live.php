@@ -42,9 +42,29 @@
 
 			<div class="live-chat__messages">
 				
-				<div class="live-chat__messages__message">Lol</div>
-				<div class="live-chat__messages__message">Yolo</div>
-				<div class="live-chat__messages__message">Swag</div>
+				<div class="live-chat__message">
+
+					<img class="live-chat__message__avatar" src="http://lorempicsum.com/nemo/255/200/2">
+					<span class="live-chat__message__pseudo">Pseudo</span>
+					<p>Lol</p>
+
+				</div>
+
+				<div class="live-chat__message">
+
+					<img class="live-chat__message__avatar" src="http://lorempicsum.com/rio/350/200/1">
+					<span class="live-chat__message__pseudo">Pseudo</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, maiores, sit! Quibusdam aut adipisci amet, beatae dolor natus odit quo excepturi, quia doloremque reprehenderit? Nulla corporis doloribus eaque, voluptatum sit.</p>
+
+				</div>
+
+				<div class="live-chat__message">
+
+					<img class="live-chat__message__avatar" src="http://lorempicsum.com/simpsons/255/200/5">
+					<span class="live-chat__message__pseudo">Pseudo</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+				</div>
 
 			</div>
 			

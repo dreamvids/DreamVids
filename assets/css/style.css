@@ -2017,6 +2017,9 @@ body {
   .card a {
     color: #525252; }
 
+.card--new {
+  background: #ffe4d0; }
+
 /* CARD VIDEO
    ============================= */
 .card.video .thumbnail {
@@ -2652,11 +2655,19 @@ body {
  */
 .live-chat__form {
   position: absolute;
-  bottom: 30px;
-  background: #259b24; }
+  bottom: 20px;
+  left: 10px;
+  right: 20px;
+  height: 30px;
+  border: 5px solid white; }
 
 .live-chat__form__input {
-  background: #ffeb3b; }
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: white; }
 
 /**
  * components/watch/video-infos/live-chat/messages.scss
@@ -2664,17 +2675,38 @@ body {
  * LIVE CHAT MESSAGES
  */
 .live-chat__messages {
-  background: #9c27b0; }
+  height: 210px;
+  overflow: auto; }
 
 /**
  * components/watch/video-infos/live-chat/message.scss
  * 
  * LIVE CHAT MESSAGE
  */
-.live-chat__messages__message {
+.live-chat__message {
+  clear: both;
   display: block;
-  margin: 5px 0 5px 0;
-  background: #ff9800; }
+  margin: 10px 0 5px 0; }
+
+.live-chat__message__avatar {
+  float: left;
+  width: 32px;
+  height: 32px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%; }
+
+.live-chat__message__pseudo {
+  float: left;
+  margin: 6px 0 0 5px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 19px; }
+
+.live-chat__message p {
+  clear: both;
+  padding-top: 8px;
+  font-family: serif;
+  font-size: 17px; }
 
 /* === CHANNEL === */
 /* SOCIAL MESSAGE FORM
