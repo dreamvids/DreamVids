@@ -22,7 +22,7 @@
 </div>
 
 <div id="upload-content">
-	<form class="form middle" method="post" action="<?php echo WEBROOT.'videos'; ?>">
+	<form class="form middle" method="post" action="<?php echo WEBROOT.'videos'; ?>" enctype="multipart/form-data">
 		<input type="hidden" name="channelId" id="channelId" value="<?php echo $channelId; ?>" />
 		<input type="hidden" name="uploadId" id="uploadId" value="<?php echo $uploadId; ?>" />
 		<label for="video-title">
