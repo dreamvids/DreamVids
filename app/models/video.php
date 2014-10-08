@@ -47,24 +47,19 @@ class Video extends ActiveRecord\Model {
 		return $thumbnail = (!empty($this->tumbnail)) ? $this->tumbnail : Config::getValue_('default-thumbnail');
 	}
 
-	public function getAssociatedVideos() {
-		$vids = array();
-		$maxIndex = Video::count(array('conditions' => array('poster_id' => $this->poster_id)));
-		$okay = false;
-
-		while(!$okay) {
-			for($i = 0; $i < $maxIndex; $i++) {
-				$indexes[$i] = rand(0, $maxIndex - 1);
-			}
-
-			$new = array_unique($indexes);
-			$okay = count($new) == count($indexes);
-			if($okay) $indexes = $new;
+	public function getAssociatedVideos($nb) {
+		$tags = explode(' ', trim($this->tags));
+		$tagstr = array();
+		foreach ($tags as $tag) {
+			$tagstr[] = 'tags LIKE ?';
 		}
+		$tagstr = implode(' OR ', $tagstr);
+		$cond = array_merge(array('id != "'.$this->id.'" AND ('.$tagstr.')'), $tags);
+		
+		$vids = array();
+		$tagsVids = Video::all(array('conditions' => $cond, 'limit' => $nb));
 
-		$allVids = Video::find('all');
-		foreach ($indexes as $index) $vids[] = $allVids[$index];
-
+		$vids = (count($tagsVids) < $nb) ? array_merge($tagsVids, Video::getDiscoverVideos($nb - count($tagsVids))) : $tagsVids;
 		return $vids;
 	}
 

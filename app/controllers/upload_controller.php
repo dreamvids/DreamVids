@@ -18,11 +18,16 @@ class UploadController extends Controller {
 	}
 	
 	public function index($request) {
-		if (count(Session::get()->getOwnedChannels()) > 1) {
-			return new RedirectResponse(WEBROOT.'upload/channelSelection');
+		if (Session::isActive() ) {
+			if (count(Session::get()->getOwnedChannels()) > 1) {
+				return new RedirectResponse(WEBROOT.'upload/channelSelection');
+			}
+			else {
+				return new RedirectResponse(WEBROOT.'upload/'.Session::get()->getMainChannel()->id);
+			}
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'upload/'.Session::get()->getMainChannel()->id);
+			return new RedirectResponse(WEBROOT.'login');
 		}
 	}
 	

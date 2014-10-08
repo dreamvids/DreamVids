@@ -281,7 +281,7 @@ foreach ($videos_ids as $vid) {
 	<aside class="column-cards-list">
 		<h3>Recommandations</h3>
 
-		<?php foreach ($recommendations as $vid): ?>
+		<?php foreach ($recommendations as $vid) { ?>
 			<div class="card video">
 				<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/simpsons/627/200/3">
 					<div class="time"><?php echo $vid->duration; ?></div>
@@ -295,6 +295,6 @@ foreach ($videos_ids as $vid) {
 					</div>
 				</div>
 			</div>
-		<?php endforeach ?>
+		<?php } ?>
 	</aside>
 </div>

@@ -11,6 +11,7 @@ require_once MODEL.'video.php';
 require_once MODEL.'comment.php';
 require_once MODEL.'user_channel.php';
 require_once MODEL.'channel_action.php';
+require_once MODEL.'upload.php';
 
 class VideoController extends Controller {
 
@@ -100,7 +101,7 @@ class VideoController extends Controller {
 		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($author->id) : false;
 		$data['likedByUser'] = Session::isActive() ? $video->isLikedByUser(Session::get()->id) : false;
 		$data['dislikedByUser'] = Session::isActive() ? $video->isDislikedByUser(Session::get()->id) : false;
-		$data['recommendations'] = $video->getAssociatedVideos();
+		$data['recommendations'] = $video->getAssociatedVideos(4);
 		$data['channels'] = Session::isActive() ? Session::get()->getOwnedChannels() : array();
 		$data['flagged'] = $video->isFlagged();
 		$data['discover'] = $video->discover;
