@@ -53,7 +53,7 @@ class StorageServer extends ActiveRecord\Model {
 				);
 				
 				$context  = stream_context_create($opts);
-				$content = @file_get_contents($serv->address, null, $context);
+				$content = @file_get_contents($serv->address.'index.php', null, $context);
 				
 				if ($content !== false) {
 					if ($content == 'CRITICAL_ALERT') {
