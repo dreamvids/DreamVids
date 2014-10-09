@@ -272,7 +272,7 @@ class Video extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $channelId,
-			'recipients_ids' => ';'.trim(Channel::find($channelId)->subs_list, ';').';',
+			'recipients_ids' => ';'.trim(UserChannel::find($channelId)->subs_list, ';').';',
 			'type' => 'upload',
 			'target' => $videoId,
 			'timestamp' => Utils::tps()
