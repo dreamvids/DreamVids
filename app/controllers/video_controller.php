@@ -150,9 +150,10 @@ class VideoController extends Controller {
 					$title = $req['video-title'];
 					$description = $req['video-description'];
 					$tags = $req['video-tags'];
+					$visibility = $req['video-visibility'];
 
-					if(Utils::validateVideoInfo($title, $description, $tags)) {
-						$video->updateInfo($title, $description, $tags, $req['_FILES_']['tumbnail']);
+					if(Utils::validateVideoInfo($title, $description, $tags) && in_array($visibility, array(0, 1, 2))) {
+						$video->updateInfo($title, $description, $tags, $req['_FILES_']['tumbnail'], $visibility);
 						$data['video'] = $video;
 
 						$response = new ViewResponse('video/edit', $data);
