@@ -26,9 +26,9 @@
 			<label for="video-visibility">
 				Visibilité :
 				<select name="video-visibility" id="video-visibility">
-					<option value="2">Publique</option>
-					<option value="1">Non listée</option>
-					<option value="0">Privée</option>
+					<option value="2" <?php echo ($video->visibility == 2) ? 'selected="selected"' : ''; ?>>Publique</option>
+					<option value="1" <?php echo ($video->visibility == 1) ? 'selected="selected"' : ''; ?>>Non listée</option>
+					<option value="0" <?php echo ($video->visibility == 0) ? 'selected="selected"' : ''; ?>>Privée</option>
 				</select>
 			</label>
 
