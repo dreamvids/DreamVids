@@ -307,7 +307,7 @@ function loadDiscution(id) {
 
 function leaveDiscution(id) {
 
-    marmottajax.delete_({
+    marmottajax.delete({
 
         url: '../conversations/' + id,
         

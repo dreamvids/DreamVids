@@ -113,8 +113,8 @@ class ChannelController extends Controller {
 		$req = $request->getParameters();
 		$data = $req;
 		$data['current'] = 'channels';
-		$name = @Utils::secure($req['name']);
-		$descr = @Utils::secure($req['description']);
+		$name = $req['name'];
+		$descr = $req['description'];
 		$admins = json_decode($req['_admins']);
 
 		if(isset($req['editChannelSubmit']) && Session::isActive()) {

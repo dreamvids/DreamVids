@@ -37,7 +37,7 @@ function erasePlaylist(id) {
 
 	if (confirm("Êtes-vous sur de vouloir supprimer cette playlist ? Cela n'effacera pas physiquement les vidéos qu'elle contient.")) {
 
-		marmottajax.destroy({
+		marmottajax.delete({
 
 			url: "playlists/" + id,
 
