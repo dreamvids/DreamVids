@@ -267,14 +267,11 @@ class Utils {
 					if (in_array(strtolower($ext), array('webm', 'mp4', 'm4a', 'mpg', 'mpeg', '3gp', '3g2', 'asf', 'wma', 'mov', 'avi', 'wmv', 'ogg', 'ogv', 'flv', 'mkv'))) {
 						$path = 'uploads/'.$channelId.'/'.$fileId.'.'.$ext;
 						move_uploaded_file($file['tmp_name'], ROOT.$path);
-						$duration = self::getVideoDuration($file['tmp_name']);
-						$video = Video::find($fileId);
-						$video->duration = $duration;
-						$video->save();
+						$duration = self::getVideoDuration(ROOT.$path);
 						StorageServer::lockFreestServer();
 						self::convert(ROOT.$path);
 						$serv = StorageServer::getFreestServer();
-						return $serv->address.$path;
+						return array($serv->address.$path, $duration);
 					}
 				break;
 				

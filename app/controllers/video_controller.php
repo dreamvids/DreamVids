@@ -120,9 +120,11 @@ class VideoController extends Controller {
 			if (isset($req['_FILES_']['video'])) {
 				$ext = explode('.', $req['_FILES_']['video']['name']);
 				$ext = $ext[count($ext) - 1];
-				$videoPath = Utils::upload($req['_FILES_']['video'], 'vid', $videoId, $req['channelId']);
+				$videoInfos = Utils::upload($req['_FILES_']['video'], 'vid', $videoId, $req['channelId']);
+				$videoPath = $videoInfos[0];
+				$duration = $videoInfos[1];
 				$thumbnailPath = WEBROOT.'uploads/'.$req['channelId'].'/'.$videoId.'.'.$ext.'.jpg';
-				Video::createTemp($videoId, $req['channelId'], $videoPath, $thumbnailPath);
+				Video::createTemp($videoId, $req['channelId'], $videoPath, $thumbnailPath, $duration);
 				return new Response(200);
 			}
 			else {

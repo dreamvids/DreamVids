@@ -234,7 +234,7 @@ class Video extends ActiveRecord\Model {
 		}
 	}
 
-	public static function createTemp($id, $channelId, $videoPath, $thumbnailPath) {
+	public static function createTemp($id, $channelId, $videoPath, $thumbnailPath, $duration) {
 		Video::create(array(
 			'id' => $id,
 			'poster_id' => $channelId,
@@ -242,6 +242,7 @@ class Video extends ActiveRecord\Model {
 			'description' => '[no_info_provided]',
 			'tags' => '[no_info_provided]',
 			'tumbnail' => $thumbnailPath,
+			'duration' => $duration,
 			'url' => $videoPath,
 			'views' => 0,
 			'likes' => 0,
