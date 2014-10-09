@@ -12,6 +12,7 @@ require_once MODEL.'comment.php';
 require_once MODEL.'user_channel.php';
 require_once MODEL.'channel_action.php';
 require_once MODEL.'upload.php';
+require_once MODEL.'playlist.php';
 
 class VideoController extends Controller {
 
