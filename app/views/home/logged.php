@@ -59,7 +59,7 @@
 
 		<?php if(sizeof($subscriptions_vids) == 0) { ?>
 			<p style="text-align: center; color: #858484;">Aucune nouvelles vidéos de vos abonnement</p>
-			<p style="text-align: center; color: #858484;">Allez <a href="<?php echo WEBROOT.'discover'; ?>">découvrir</a> de nouveux créateurs !</p>
+			<p style="text-align: center; color: #858484;">Allez <a href="<?php echo WEBROOT.'news'; ?>">découvrir</a> de nouveux créateurs !</p>
 		<?php } ?>
 
 		<!--<a href="<?php echo WEBROOT.'feed'; ?>" class="big-button">Voir mon flux d'acivité</a>-->
