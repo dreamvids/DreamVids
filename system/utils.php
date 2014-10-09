@@ -185,7 +185,7 @@ class Utils {
 	public static function getVideoCardHTML($vid) {
 		return '<div class="card video">
 				<div class="thumbnail bg-loader" data-background="'.$vid->getThumbnail().'">
-					<div class="time">'.$vid->duration.'</div>
+					<div class="time">'.self::sec2ms($vid->duration).'</div>
 					<a href="'.WEBROOT.'watch/'.$vid->id.'" class="overlay"></a>
 				</div>
 				<div class="description">
@@ -307,12 +307,18 @@ class Utils {
 		return self::hms2sec($matches[1][0]);
 	}
 	
-	public static function hms2sec ($hms) {
-        list($h, $m, $s) = explode (":", $hms);
+	public static function hms2sec($hms) {
+        list($h, $m, $s) = explode(":", $hms);
         $seconds = 0;
         $seconds += (intval($h) * 3600);
         $seconds += (intval($m) * 60);
         $seconds += (intval($s));
         return $seconds;
+	}
+	
+	public static function sec2ms($sec) {
+		$m = floor($sec / 60);
+		$s = $sec % 60;
+		return $m.':'.$s;
 	}
 }
