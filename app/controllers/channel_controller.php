@@ -152,7 +152,7 @@ class ChannelController extends Controller {
 										$adm[] = $admin;
 										ChannelAction::create(array(
 											'id' => ChannelAction::generateId(6),
-											'channel_id' => Session::get()->getMainChannel()->id,
+											'channel_id' => $channel->id,
 											'recipients_ids' => ';'.$admin.';',
 											'type' => 'admin',
 											'target' => $channel->id,
@@ -167,7 +167,7 @@ class ChannelController extends Controller {
 										unset($adm[$id[0]]);
 										ChannelAction::create(array(
 											'id' => ChannelAction::generateId(6),
-											'channel_id' => Session::get()->getMainChannel()->id,
+											'channel_id' => $channel->id,
 											'recipients_ids' => ';'.$admin.';',
 											'type' => 'unadmin',
 											'target' => $channel->id,

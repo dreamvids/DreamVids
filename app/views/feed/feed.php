@@ -90,7 +90,7 @@
 					else if($action->type == 'admin') {
 						?>
 							<div class="card<?php echo $supp_class; ?> plus">
-								<a href="<?php echo WEBROOT.'accounts/channels'; ?>">
+								<a href="<?php echo WEBROOT.'channels/'.$channel_action->id; ?>">
 									<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/futurama/350/200/6"></div>
 									<p>Vous avez été nommé administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
 								</a>
@@ -101,7 +101,7 @@
 					else if($action->type == 'unadmin') {
 						?>
 							<div class="card<?php echo $supp_class; ?> plus">
-								<a href="<?php echo WEBROOT.'accounts/channels'; ?>">
+								<a href="<?php echo WEBROOT.'channels/'.$channel_action->id; ?>">
 									<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
 									<p>Vous n'êtes plus administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
 								</a>
