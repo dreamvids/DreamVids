@@ -242,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `storage_servers` (
 --
 
 CREATE TABLE IF NOT EXISTS `uploads` (
-  `id` int(11) NOT NULL,
+  `id` varchar(6) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `video_id` varchar(6) NOT NULL,
   `expire` bigint(20) NOT NULL,
