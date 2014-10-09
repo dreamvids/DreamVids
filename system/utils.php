@@ -319,6 +319,7 @@ class Utils {
 	public static function sec2ms($sec) {
 		$m = floor($sec / 60);
 		$s = $sec % 60;
+		$s = (strlen($s) > 1) ? $s : '0'.$s;
 		return $m.':'.$s;
 	}
 }
