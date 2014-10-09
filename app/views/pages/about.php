@@ -130,12 +130,10 @@
 			</div>
 			<p style="padding-left:70px">
 				<b>Deltawhois</b><br />
-				Chris pour les intimes ;) Avec 16 ans au compteur j'ai pour hobbies la sonorisation et la
-				lumière, l’électronique et l'électricité industrielle ainsi qu'une pointe d'informatique.
-				Bricoleur dans l’âme je passe mes journées à observer et bidouiller ce qui m'entoure dans
-				le but d'assouvir ma curiosité grandissante. J'ai toujours été intéressé par des projets
-				visant a faire bouger les choses, c'est pour ça que je suis là, avec la fierté de faire
-				partie de cette aventure !
+				J'ai pour hobbies la sonorisation et la lumière, l'électrotechnique, l’électronique ainsi
+				qu'une pointe d'informatique. Grand curieux dans l’âme, je passe mes journées à observer,
+				bidouiller et bricoler ce qui m'entour. Et c'est avec fierté que j'ai le plaisir de modérer
+				vos contenus jours après jours depuis le début de cette aventure !
 			</p>
 		</div>
 		<div style="margin-bottom:50px">

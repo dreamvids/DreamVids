@@ -5,7 +5,7 @@ function autocompletion(obj) {
 	if (obj.value.length != 0) {
 		if (obj.value.length >= 3) {
 			marmottajax.get({
-				'url': '../../channel/autocomplete/'+obj.value
+				'url': '../../channel/autocomplete/'+obj.value+'/'
 			}).then(function(result) {
 				var users = JSON.parse(result);
 				div.innerHTML = '';
