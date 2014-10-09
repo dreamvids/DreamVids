@@ -5,6 +5,7 @@ require_once MODEL.'channel_action.php';
 require_once MODEL.'video_vote.php';
 require_once MODEL.'video_view.php';
 require_once MODEL.'modo_action.php';
+require_once MODEL.'upload.php';
 
 class Video extends ActiveRecord\Model {
 
@@ -255,7 +256,7 @@ class Video extends ActiveRecord\Model {
 
 	public static function register($vidId, $channelId, $title, $desc, $tags, $thumb, $visibility) {
 		$video = Video::find($vidId);
-		$upload->delete();
+		Upload::find(array('conditions' => array('video_id = ?', $vidId)))->delete();
 		$video->title = $title;
 		$video->description = $desc;
 		$video->tags = $tags;

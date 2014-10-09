@@ -292,7 +292,7 @@ class Utils {
 	}
 	
 	public static function convert($path) {
-		system('sudo -u www-data convert.sh '.escapeshellarg($path).' '.ROOT.'');
+		system('convert.sh '.escapeshellarg($path).' '.ROOT.'');
 	}
 	
 	public static function getVideoDuration($videofile) {
