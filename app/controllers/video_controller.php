@@ -129,6 +129,7 @@ class VideoController extends Controller {
 				if (isset($req['video-title'], $req['video-description'], $req['video-tags'], $req['video-visibility'])) {
 					Video::register($videoId, $req['channelId'], $req['video-title'], $req['video-description'], $req['video-tags'], $req['_FILES_']['upload-tumbnail'], $req['video-visibility']);
 				}
+				return new RedirectResponse(WEBROOT.'watch/'.$videoId);
 			}
 		}
 		else {
