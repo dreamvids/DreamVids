@@ -8,11 +8,11 @@ class StorageServer extends ActiveRecord\Model {
 		$distantpath = '/var/www/';
 		
 		$serv = StorageServer::getFreestServer();
+		$relativepath = "uploads/$channelId/$filename";
 		if ($serv !== false) {
 			$hash = hash_hmac('sha256', $serv->address, $serv->private_key);
 			$err = file_get_contents($serv->address.'mkdir.php?cid='.$channelId.'&hash='.$hash);
 			if ($err == 0) {
-				$relativepath = "uploads/$channelId/$filename";
 				$filepath = ROOT.$relativepath;
 				$addr = preg_replace("#^https?://([a-zA-Z0-9.-]+)(/.*)?$#", "$1", $serv->address);
 				shell_exec("scp $filepath www-data@$addr:$distantpath$relativepath");
