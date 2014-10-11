@@ -65,7 +65,7 @@
 		<!--<a href="<?php echo WEBROOT.'feed'; ?>" class="big-button">Voir mon flux d'acivité</a>-->
 	</aside>
 
-	<aside class="aside-cards-list">
+	<aside class="full-cards-list">
 		<h3 class="title">Meilleures vidéos</h3>
 		<?php foreach($bestVids as $vid) {
 			echo Utils::getVideoCardHTML($vid);

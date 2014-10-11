@@ -144,16 +144,6 @@
 
 				<div class="inner">
 
-					<div class="rights">
-
-						<span class="love">Fait avec le <i>♥</i></span>
-
-						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
-						DreamVids 2013-<?php echo date('Y'); ?>
-						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
-						
-					</div>
-
 					<div class="row">
 
 						<h1>DreamVids</h1>
@@ -190,6 +180,21 @@
 						<a href="https://github.com/DreamVids" target="_blank">GitHub</a>
 
 					</div>
+
+					<div class="rights">
+
+						<span class="love">Fait avec le <i>♥</i></span>
+
+						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
+						DreamVids 2013-<?php echo date('Y'); ?>
+						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
+						
+					</div>
+
+					<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
+						<br>
+						<br>
+					<!-- / -->
 
 				</div>
 

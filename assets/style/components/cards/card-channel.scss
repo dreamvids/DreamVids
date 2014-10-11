@@ -116,6 +116,8 @@
 
 			button {
 
+				float: left;
+
 				display: block;
 				width: 90%;
 				max-width: 200px;
@@ -136,10 +138,30 @@
 
 			}
 
+			button.red {
+
+				background: #e70739;
+
+				&:hover  { background: lighten(#e70739, 10%); }
+				&:active { background:  darken(#e70739,  5%); }
+
+			}
+
+			.note,
 			.principal {
 
+				clear: both;
+				position: relative;
+				top: 10px;
+
 				display: block;
-				margin: 15px 0 0 15px;
+				margin: 0 0 0 15px;
+				color: #5e5e5e;
+
+			}
+
+			.principal {
+
 				color: #e70739;
 
 			}

@@ -2122,7 +2122,7 @@ body {
       display: block;
       width: 90%;
       height: 35px;
-      margin: 15px 0 5px 5%;
+      margin: 12px 0 5px 5%;
       border: none;
       color: white;
       cursor: pointer;
@@ -2133,6 +2133,12 @@ body {
         background: #2a9cdc; }
       .card.video.long .description button:focus, .card.video.long .description button:active {
         outline: none; }
+    .card.video.long .description button.orange {
+      background: #ff853d; }
+      .card.video.long .description button.orange:hover {
+        background: #ffa570; }
+      .card.video.long .description button.orange:active {
+        background: #ff7523; }
     .card.video.long .description .visibility {
       display: block;
       margin: 15px 0 0 5%;
@@ -2305,6 +2311,7 @@ body {
       font-size: 16px;
       font-weight: bold; }
     .card.channel.long .description button {
+      float: left;
       display: block;
       width: 90%;
       max-width: 200px;
@@ -2320,9 +2327,21 @@ body {
         background: #2a9cdc; }
       .card.channel.long .description button:focus, .card.channel.long .description button:active {
         outline: none; }
+    .card.channel.long .description button.red {
+      background: #e70739; }
+      .card.channel.long .description button.red:hover {
+        background: #f92857; }
+      .card.channel.long .description button.red:active {
+        background: #ce0633; }
+    .card.channel.long .description .note,
     .card.channel.long .description .principal {
+      clear: both;
+      position: relative;
+      top: 10px;
       display: block;
-      margin: 15px 0 0 15px;
+      margin: 0 0 0 15px;
+      color: #5e5e5e; }
+    .card.channel.long .description .principal {
       color: #e70739; }
     .card.channel.long .description div {
       position: absolute;

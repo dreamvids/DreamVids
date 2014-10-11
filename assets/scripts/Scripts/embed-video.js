@@ -7,7 +7,7 @@
 
 function setExporterInputValue() {
 
-	if (!document.getElementById("exporter-input")) {
+	if (!El("exporter-input")) {
 
 		return false;
 
@@ -74,6 +74,7 @@ new Script({
 
 		El("#embed-video-icon").onclick = function() {
 
+
 			var videoInfoDescription = El("#video-info-description");
 
 			if (videoInfoDescription.hasClass("export")) {
@@ -86,7 +87,7 @@ new Script({
 			else {
 
 				videoInfoDescription.removeClass("playlist");
-				videoInfoDescription.addClass("export");
+				videoInfoDescription.className += " export";
 
 				El("#exporter-input").select();
 

@@ -15,20 +15,19 @@
 			if(!empty($channel)) { 
 				foreach($channel as $chan) { ?>
 
-			<div class="card video">
-				<div class="thumbnail bg-loader" data-background="<?php echo $chan->getBackground(); ?>">
-					<div class="time"><?php echo $videos_count[$chan->id]; ?></div>
-					<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>" class="overlay"></a>
-				</div>
-				<div class="description">
-					<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>"><h4>Vidéos de la chaîne "<?php echo $chan->name; ?>"</h4></a>
-					<div>
-						<span class="view"><?php echo $chan->views; ?></span>
-						<a class="channel" href="#"></a>
+				<div class="card channel long">
+					<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>">
+						<div class="avatar bg-loader" data-background="<?php echo $chan->getBackground(); ?>"></div>
+					</a>
+	
+					<div class="description">
+						<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>"><b>Vidéos de la chaîne "<?php echo $chan->name; ?>"</b></a>
+						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><button>Acceder à la chaine</button></a>
+						<b class="note"><?php echo $chan->views; ?> vues</b>
+						<span class="subscriber"><b><?php echo $videos_count[$chan->id]; ?></b> vidéos</span>
 					</div>
 				</div>
-			</div>
-
+	
 			<?php }
 			}
 			?>

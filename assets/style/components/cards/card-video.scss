@@ -172,7 +172,7 @@
 				display: block;
 				width: 90%;
 				height: 35px;
-				margin: 15px 0 5px 5%;
+				margin: 12px 0 5px 5%;
 
 				border: none;
 				color: white;
@@ -185,6 +185,15 @@
 
 				&:focus,
 				&:active { outline: none; }
+
+			}
+			
+			button.orange {
+
+				background: #ff853d;
+
+				&:hover  { background: lighten(#ff853d, 10%); }
+				&:active { background:  darken(#ff853d,  5%); }
 
 			}
 

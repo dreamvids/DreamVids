@@ -23,7 +23,7 @@
 					<a href="<?php echo WEBROOT.'watch/'.$video->id; ?>"><h4><?php echo $video->title; ?></h4></a>
 					<span class="buttons">
 						<a href="<?php echo WEBROOT.'videos/'.$video->id.'/edit'; ?>"><button>Paramètres</button></a>
-						<button onclick="eraseVideo('<?php echo $video->id; ?>')">Supprimer</button>
+						<button class="orange" onclick="eraseVideo('<?php echo $video->id; ?>')">Supprimer</button>
 					</span>
 					<div><span class="view"><?php echo $video->views; ?></span><span class="plus"><?php echo $video->likes; ?></span><span class="moins"><?php echo $video->dislikes; ?></span></div>
 				</div>

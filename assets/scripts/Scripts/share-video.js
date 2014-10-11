@@ -22,8 +22,29 @@ new Script({
 			var shareVideoBlock = El("#share-video-block"),
 				videoInfoDescription = El("#video-info-description");
 
-			shareVideoBlock.toggleClass("show");
-			videoInfoDescription.toggleClass("little");
+			if (videoInfoDescription.hasClass("little")) {
+
+				videoInfoDescription.removeClass("little");
+
+			}
+
+			else {
+
+				videoInfoDescription.className += " little";
+
+			}
+
+			if (shareVideoBlock.hasClass("show")) {
+
+				shareVideoBlock.removeClass("show");
+
+			}
+
+			else {
+
+				shareVideoBlock.className += " show";
+
+			}
 
 		};
 

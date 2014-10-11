@@ -55,7 +55,7 @@ new Script({
 			else {
 
 				videoInfoDescription.removeClass("export");
-				videoInfoDescription.addClass("playlist");
+				videoInfoDescription.className += " playlist";
 
 			}
 
