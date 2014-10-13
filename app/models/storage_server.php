@@ -5,8 +5,6 @@ class StorageServer extends ActiveRecord\Model {
 	static $filepath = 'server.json';
 	
 	public static function backup($filename, $channelId, $removeAfterBackup = false) {
-		$distantpath = '/var/www/';
-		
 		$serv = StorageServer::getFreestServer();
 		$relativepath = "uploads/$channelId/$filename";
 		if ($serv !== false) {
@@ -15,7 +13,7 @@ class StorageServer extends ActiveRecord\Model {
 			if ($err == 0) {
 				$filepath = ROOT.$relativepath;
 				$addr = preg_replace("#^https?://([a-zA-Z0-9.-]+)(/.*)?$#", "$1", $serv->address);
-				shell_exec("scp $filepath www-data@$addr:$distantpath$relativepath");
+				shell_exec("scp $filepath ".$serv->user."@$addr:".$serv->path.$relativepath."");
 				if ($removeAfterBackup) {
 					unlink($filepath);
 				}

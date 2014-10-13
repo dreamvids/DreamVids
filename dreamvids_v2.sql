@@ -230,10 +230,12 @@ CREATE TABLE IF NOT EXISTS `pre_inscriptions` (
 CREATE TABLE IF NOT EXISTS `storage_servers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(255) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  `path` varchar(255) NOT NULL,
   `critical` tinyint(1) NOT NULL,
   `private_key` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
