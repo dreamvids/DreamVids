@@ -10,21 +10,19 @@ class StorageServer extends ActiveRecord\Model {
 		if ($serv !== false) {
 			$hash = hash_hmac('sha256', $serv->address, $serv->private_key);
 			$err = file_get_contents($serv->address.'mkdir.php?cid='.$channelId.'&hash='.$hash);
-			if ($err == 0) {
-				$filepath = ROOT.$relativepath;
-				$addr = preg_replace("#^https?://([a-zA-Z0-9.-]+)(/.*)?$#", "$1", $serv->address);
-				shell_exec("scp $filepath ".$serv->user."@$addr:".$serv->path.$relativepath."");
-				if ($removeAfterBackup) {
-					unlink($filepath);
-				}
-				
-				if (class_exists('Backup')) {
-					Backup::create(array(
-						'channel_id' => $channelId,
-						'filepath' => $filepath,
-						'server' => $serv->address
-					));
-				}
+			$filepath = ROOT.$relativepath;
+			$addr = preg_replace("#^https?://([a-zA-Z0-9.-]+)(/.*)?$#", "$1", $serv->address);
+			shell_exec("scp $filepath ".$serv->user."@$addr:".$serv->path.$relativepath."");
+			if ($removeAfterBackup) {
+				unlink($filepath);
+			}
+			
+			if (class_exists('Backup')) {
+				Backup::create(array(
+					'channel_id' => $channelId,
+					'filepath' => $filepath,
+					'server' => $serv->address
+				));
 			}
 		}
 		
