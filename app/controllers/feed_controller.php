@@ -7,6 +7,7 @@ require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'video.php';
 require_once MODEL.'user_channel.php';
+require_once MODEL.'comment.php';
 
 class FeedController extends Controller {
 
