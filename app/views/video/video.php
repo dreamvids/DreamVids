@@ -26,7 +26,7 @@
 	</div>
 	
 	<div id="player">
-		<video id="video-tag" muted x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
+		<video id="video-tag" x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
 			<source id="srcMp4" type="video/mp4" src="">
 			<source id="srcWebm" type="video/webm" src="">
 		</video>
