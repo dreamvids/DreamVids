@@ -236,7 +236,7 @@ foreach ($videos_ids as $vid) {
 			<?php
 			
 			function displayComments($video, $parent, $i) {
-				$comments = $video->getComments($parent);
+				$comments = Utils::securingData($video->getComments($parent));
 				if (empty($comments)) { ?>
 					<p>Aucun commentaire à propos de cette video</p>
 				<?php }

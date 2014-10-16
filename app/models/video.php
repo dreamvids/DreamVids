@@ -41,7 +41,7 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public function getComments($parent) {
-		return Comment::all(array('conditions' => array('video_id = ? AND parent = ?', $this->id, $parent)));
+		return Comment::all(array('conditions' => array('video_id = ? AND parent = ?', $this->id, $parent), 'order' => 'timestamp desc'));
 	}
 
 	public function getThumbnail() {
@@ -302,7 +302,7 @@ class Video extends ActiveRecord\Model {
 	}
 	
 	public static function getLastVideos($number = 10) {
-		return Video::all(array('conditions' => 'visibility=2', 'order' => 'timestamp', 'limit' => $number));
+		return Video::all(array('conditions' => 'visibility=2', 'order' => 'timestamp desc', 'limit' => $number));
 	}
 
 	public static function getSubscriptionsVideos($userId, $amount='nope') {

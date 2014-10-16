@@ -114,7 +114,7 @@
 							<ul>
 							<?php $nb_notifs = (Session::isActive()) ? ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'")) : 0;
 							$notifs = ($nb_notifs > 0) ? 'data-new="'.$nb_notifs.'"' : ''; ?>
-								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="index.php">Accueil</a></li>
+								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT; ?>">Accueil</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'news') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'news'; ?>">Nouveautés</a></li>
 								<li <?php echo $notifs; echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
