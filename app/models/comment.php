@@ -29,14 +29,16 @@ class Comment extends ActiveRecord\Model {
 				$this->undislike($user);
 			}
 
-			ChannelAction::create(array(
-				'id' => ChannelAction::generateId(6),
-				'channel_id' => $user->getMainChannel()->id,
-				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
-				'type' => 'like_comment',
-				'target' => $this->id,
-				'timestamp' => Utils::tps()
-			));
+			if (ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'like_comment', 'target' => $this->id))) {
+				ChannelAction::create(array(
+					'id' => ChannelAction::generateId(6),
+					'channel_id' => $user->getMainChannel()->id,
+					'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
+					'type' => 'like_comment',
+					'target' => $this->id,
+					'timestamp' => Utils::tps()
+				));
+			}
 
 			$this->likes++;
 			$this->save();

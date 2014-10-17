@@ -112,14 +112,16 @@ class UserChannel extends ActiveRecord\Model {
 			$subscribingChannel->subs_list = implode(';', $subscriptionsArrayChannel).';';
 			$subscribingChannel->save();
 
-			ChannelAction::create(array(
-				'id' => ChannelAction::generateId(6),
-				'channel_id' => User::find($subscriber)->getMainChannel()->id,
-				'recipients_ids' => $subscribingChannel->admins_ids,
-				'type' => 'subscription',
-				'target' => $subscribing,
-				'timestamp' => Utils::tps()
-			));
+			if (ChannelAction::exists(array('channel_id' => User::find($subscriber)->getMainChannel()->id, 'type' => 'subscription', 'target' => $subscribing))) {		
+				ChannelAction::create(array(
+					'id' => ChannelAction::generateId(6),
+					'channel_id' => User::find($subscriber)->getMainChannel()->id,
+					'recipients_ids' => $subscribingChannel->admins_ids,
+					'type' => 'subscription',
+					'target' => $subscribing,
+					'timestamp' => Utils::tps()
+				));
+			}
 		}
 	}
 

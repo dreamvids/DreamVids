@@ -110,14 +110,16 @@ class Video extends ActiveRecord\Model {
 		$this->likes++;
 		$this->save();
 
-		ChannelAction::create(array(
-			'id' => ChannelAction::generateId(6),
-			'channel_id' => User::find($userId)->getMainChannel()->id,
-			'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
-			'type' => 'like',
-			'target' => $this->id,
-			'timestamp' => Utils::tps()
-		));
+		if (ChannelAction::exists(array('channel_id' => User::find($userId)->getMainChannel()->id, 'type' => 'like', 'target' => $this->id))) {
+			ChannelAction::create(array(
+				'id' => ChannelAction::generateId(6),
+				'channel_id' => User::find($userId)->getMainChannel()->id,
+				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
+				'type' => 'like',
+				'target' => $this->id,
+				'timestamp' => Utils::tps()
+			));
+		}
 	}
 
 	public function dislike($userId) {
