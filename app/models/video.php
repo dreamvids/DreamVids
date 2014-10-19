@@ -110,7 +110,7 @@ class Video extends ActiveRecord\Model {
 		$this->likes++;
 		$this->save();
 
-		if (ChannelAction::exists(array('channel_id' => User::find($userId)->getMainChannel()->id, 'type' => 'like', 'target' => $this->id))) {
+		if (!ChannelAction::exists(array('channel_id' => User::find($userId)->getMainChannel()->id, 'type' => 'like', 'target' => $this->id))) {
 			ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($userId)->getMainChannel()->id,

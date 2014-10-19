@@ -29,7 +29,7 @@ class Comment extends ActiveRecord\Model {
 				$this->undislike($user);
 			}
 
-			if (ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'like_comment', 'target' => $this->id))) {
+			if (!ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'like_comment', 'target' => $this->id))) {
 				ChannelAction::create(array(
 					'id' => ChannelAction::generateId(6),
 					'channel_id' => $user->getMainChannel()->id,
