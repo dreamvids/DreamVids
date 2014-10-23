@@ -182,8 +182,7 @@
 $videos_ids = json_decode($playlist->videos_ids);
 foreach ($videos_ids as $vid) {
 	$video = Video::find($vid);
-	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/futurama/350/200/1"></div></a>';
-	// echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="'.$video->getThumbnail().'"></div></a>';
+	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="'.$video->getThumbnail().'"></div></a>';
 }
 ?>
 		</div>
