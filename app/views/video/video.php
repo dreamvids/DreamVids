@@ -175,19 +175,20 @@
 		
 		<div class="playlist__title">Playlist "<?php echo $playlist->name; ?>"</div>
 
-		<img id="playlist-button-scroll-left" class="playlist__button playlist__button--left" src="<?php echo IMG.'/playlist-button-left.png'; ?>">
+		<img title="Gauche" id="playlist-button-scroll-left" class="playlist__button playlist__button--left" src="<?php echo IMG.'/playlist-button-left.png'; ?>">
 
 		<div id="playlist-videos" class="playlist__videos">
 <?php
 $videos_ids = json_decode($playlist->videos_ids);
 foreach ($videos_ids as $vid) {
 	$video = Video::find($vid);
-	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="'.$video->getThumbnail().'"></div></a>';
+	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="http://lorempicsum.com/futurama/350/200/1"></div></a>';
+	// echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="'.$video->getThumbnail().'"></div></a>';
 }
 ?>
 		</div>
 
-		<img id="playlist-button-scroll-right" class="playlist__button playlist__button--right" src="<?php echo IMG.'/playlist-button-right.png'; ?>">
+		<img title="Droite" id="playlist-button-scroll-right" class="playlist__button playlist__button--right" src="<?php echo IMG.'/playlist-button-right.png'; ?>">
 
 	</section>
 <?php } ?>

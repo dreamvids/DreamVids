@@ -5,12 +5,12 @@
 .playlist__button {
 
 	position: absolute;
-	top: 91px;
+	top: 58px;
 	z-index: 2;
 
 	display: block;
-	width: 48px;
-	height: 48px;
+	width: 25px;
+	height: 120px;
 
 	opacity: .85;
 	cursor: pointer;
@@ -19,12 +19,16 @@
 
 .playlist__button--left {
 
-	left: 36px;
+	left: 20px;
+
+	border-right: 20px solid transparent;
 
 }
 
 .playlist__button--right {
 
-	right: 36px;
+	right: 20px;
+
+	border-left: 20px solid transparent;
 
 }
