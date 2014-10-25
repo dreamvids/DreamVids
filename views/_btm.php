@@ -35,7 +35,7 @@
               <a href="<?php echo $partner['url']; ?>" target="_blank"><?php echo $partner['name']; ?></a>
             <?php } ?>
 
-            <a href="javascript:void(0)" onclick="alert('Pour toute demande de partenariat, envoyez un E-Mail à \'jeremy [at] dreamvids [dot] fr\'')">Votre site ici ?</a>
+            <a href="javascript:void(0)" onclick="alert('Pour toute demande de partenariat, envoyez un E-Mail à \'antoine [at] dreamvids [dot] net\'')">Votre site ici ?</a>
 
         </div>
 
