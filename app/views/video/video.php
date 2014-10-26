@@ -81,7 +81,11 @@
 
 			<div class="inner-description">
 
-				<?php echo $description.'<br /><br />Tags: '.implode(' ', $tags); ?>
+				<?php echo $description.'<br /><br />Tags: ';
+				foreach ($tags as $tag) {
+					echo '<a href="search?q=%23'.$tag.'">#'.$tag.'</a> ';
+				}
+				?>
 				
 			</div>
 

@@ -88,7 +88,6 @@ class VideoController extends Controller {
 			$tag = str_replace(';', '', $tag);
 			$tag = str_replace(':', '', $tag);
 			$tag = str_replace('.', '', $tag);
-			$tag = '<a href="search?q=%23'.$tag.'">#'.$tag.'</a>';
 			$data['tags'][] = $tag;
 		}
 		$data['poster_id'] = $video->poster_id;
