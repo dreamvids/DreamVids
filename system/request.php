@@ -17,7 +17,7 @@ class Request {
 		$this->acceptedData = $acceptedData;
 		
 		$uri = trim($uri, '?');
-		if(Utils::stringEndsWith(, '.json')) {
+		if(Utils::stringEndsWith($uri, '.json')) {
 			$this->acceptedData .= ',application/json';
 			$uri = str_replace('.json', '', $uri);
 		}
