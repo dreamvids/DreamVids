@@ -44,7 +44,7 @@ function eraseChannel(chanId) {
 			'url': '../channels/' + chanId,
 			'options': {}
 		}).then(function(result) {
-			window.location.reload();
+			window.location.href = _webroot_+'account/channels';
 		});
 	}
 }

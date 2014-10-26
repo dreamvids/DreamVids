@@ -13,13 +13,11 @@ class Router {
 			return false;
 
 		$uri = $request->getURI();
-
 		if(strpos($uri, '/') !== false) {
 			$parameters = explode('/', $uri);
-
 			$controllerName = $parameters[0];
 			$controller = $this->matchRoute($controllerName);
-
+			
 			if(is_object($controller)) {
 				$this->executeAction($request, $controller, $parameters);
 			}
@@ -107,7 +105,7 @@ class Router {
 					// Exemple: /posts/42
 					else {
 						if($controller->isActionAllowed(Action::GET)) {
-							$response = call_user_func_array(array($controller, 'get'), array(Utils::secure($uriParameters[1]), $request));
+							$response = call_user_func_array(array($controller, 'get'), array($uriParameters[1], $request));
 							Utils::sendResponse($response);
 						}
 						else

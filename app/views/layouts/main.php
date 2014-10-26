@@ -57,7 +57,7 @@
 
 						<div class="right">
 
-							<form method="get" action="<?php echo WEBROOT.'search'; ?>">
+							<form method="get" onsubmit="document.location.href=_webroot_+'search/'+document.getElementById('top-nav-search-input').value.replace(/ /g, '+');return false;" action="<?php echo WEBROOT.'search'; ?>">
 
 								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$search; ?>">
 								<input type="submit" value="">
@@ -167,7 +167,7 @@
 						}
 						
 						?>
-						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'antoine [arobase] dreamvids [point] fr\'')">Vous ici ?</a>
+						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'antoine [arobase] dreamvids [point] net\'')">Vous ici ?</a>
 
 					</div>
 

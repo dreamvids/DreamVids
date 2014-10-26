@@ -36,13 +36,10 @@ class Utils {
 	}
 	
 	public static function getCurrentURI() {
-		$requestURI = key($_GET);
+		$requestURI = isset($_GET['uri']) ? $_GET['uri'] : '/';
 		if(strpos($requestURI, '_json'))
 			$requestURI = str_replace('_json', '.json', $requestURI);
-	
-		if(Utils::stringStartsWith($requestURI, '/')) $requestURI = substr_replace($requestURI, '', 0, 1);
-		if(Utils::stringEndsWith($requestURI, '/')) $requestURI = substr_replace($requestURI, '', strlen($requestURI) - 1, 1);
-		
+		$requestURI = trim($requestURI, '/');
 		return $requestURI;
 	}
 
@@ -225,7 +222,11 @@ class Utils {
 	}
 
 	public static function secure($str) {
-		return (is_string($str) && json_decode($str) == null) ? htmlentities(strip_tags(stripslashes($str)), ENT_QUOTES, 'UTF-8') : $str;
+		$secured = $str;
+		$secured = htmlentities(stripslashes($secured), ENT_QUOTES, 'UTF-8');
+		$secured = str_replace('<', '&lt;', $secured);
+		$secured = str_replace('>', '&gt;', $secured);
+		return (is_string($str) && json_decode($str) == null) ? $secured : $str;
 	}
 	
 	public static function securingData($data) {

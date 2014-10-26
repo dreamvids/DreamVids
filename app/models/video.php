@@ -364,7 +364,7 @@ class Video extends ActiveRecord\Model {
 				return Video::all(array('conditions' => array('tags LIKE ?', '%'.$query.'%'), 'order' => 'timestamp desc'));
 			}
 			else {
-				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query))));
+				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query)), 'order' => 'timestamp desc'));
 			}
 		}
 	}

@@ -281,20 +281,10 @@ foreach ($videos_ids as $vid) {
 	<aside class="column-cards-list">
 		<h3>Recommandations</h3>
 
-		<?php foreach ($recommendations as $vid) { ?>
-			<div class="card video">
-				<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/simpsons/627/200/3">
-					<div class="time"><?php echo $vid->duration; ?></div>
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>" class="overlay"></a>
-				</div>
-				<div class="description">
-					<a href="<?php echo WEBROOT.'watch/'.$vid->id; ?>"><h4><?php echo $vid->title; ?></h4></a>
-					<div>
-						<span class="view"><?php echo $vid->views; ?></span>
-						<a class="channel" href="<?php echo WEBROOT.'channel/'.$vid->getAuthor()->name; ?>"><?php echo $vid->getAuthor()->name; ?></a>
-					</div>
-				</div>
-			</div>
-		<?php } ?>
+		<?php
+		foreach ($recommendations as $vid) {
+			echo Utils::getVideoCardHTML($vid);
+		}
+		?>
 	</aside>
 </div>

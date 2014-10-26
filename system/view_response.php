@@ -15,8 +15,7 @@ class ViewResponse extends Response {
 
 		if(file_exists($file)) {
 			$this->protocol = 'HTTP/1.1';
-			$this->statusCode = $statusCode;
-			$this->statusString = 'OK';
+			$this->setStatusCode($statusCode);
 			$this->contentType = 'text/html';
 
 			if(is_array($data)) $this->data = $data;

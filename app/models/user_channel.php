@@ -9,7 +9,7 @@ class UserChannel extends ActiveRecord\Model {
 	static $table_name = 'users_channels';
 
 	public function getPostedVideos() {
-		return Video::all(array('conditions' => array('poster_id' => $this->id)));
+		return Video::all(array('conditions' => array('poster_id' => $this->id), 'order' => 'timestamp desc'));
 	}
 
 	public function getPostedMessages() {
