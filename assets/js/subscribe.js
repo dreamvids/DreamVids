@@ -3,13 +3,13 @@ function subscribeAction(channel) {
 
 	if(hasClass(button, 'subscribed')) {
 		marmottajax.put({
-			'url': channel,
+			'url': _webroot_ + channel,
 			'options': { unsubscribe: true }
 		});
 	}
 	else {
 		marmottajax.put({
-			'url': channel,
+			'url': _webroot_ + channel,
 			'options': { subscribe: true }
 		});
 	}

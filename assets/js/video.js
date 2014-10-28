@@ -26,7 +26,7 @@ function votePlus(vid, element) {
 
         // Unlike video
         marmottajax.put({
-            'url': '../videos/' + vid,
+            url: _webroot_ + 'videos/' + vid,
             'options': { unlike: true }
         });
 
@@ -39,7 +39,7 @@ function votePlus(vid, element) {
 
         // Like video
         marmottajax.put({
-            'url': '../videos/' + vid,
+            url: _webroot_ + 'videos/' + vid,
             'options': { like: true }
         });
 
@@ -77,7 +77,7 @@ function voteMoins(vid, element) {
 
         // Undislike video
         marmottajax.put({
-            'url': '../videos/' + vid,
+            url: _webroot_ + 'videos/' + vid,
             'options': { undislike: true }
         });
 
@@ -90,7 +90,7 @@ function voteMoins(vid, element) {
 
         // Dislike video
         marmottajax.put({
-            'url': '../videos/' + vid,
+            url: _webroot_ + 'videos/' + vid,
             'options': { dislike: true }
         });
 
@@ -111,7 +111,7 @@ function flag(vid) {
 
         marmottajax.put({
 
-            'url': '../videos/' + vid,
+            url: _webroot_ + 'videos/' + vid,
 
             'options': { flag: true }
 

@@ -66,7 +66,7 @@ hover_subscribe.addEventListener("click", function() {
 
         marmottajax.put({
 
-            url: "../channel/" + channel,
+            url: _webroot_ + "channel/" + channel,
             options: { unsubscribe: true }
 
         });
@@ -89,7 +89,7 @@ hover_subscribe.addEventListener("click", function() {
 
         marmottajax.put({
 
-            url: "../channel/" + channel,
+            url: _webroot_ + "channel/" + channel,
             options: { subscribe: true }
 
         });

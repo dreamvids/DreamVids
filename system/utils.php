@@ -181,7 +181,7 @@ class Utils {
 
 	public static function getVideoCardHTML($vid) {
 		return '<div class="card video">
-				<div class="thumbnail bg-loader" data-background="'.$vid->getThumbnail().'">
+				<div class="thumbnail bg-loader" data-background-load-in-view data-background="'.$vid->getThumbnail().'">
 					<div class="time">'.self::sec2ms($vid->duration).'</div>
 					<a href="'.WEBROOT.'watch/'.$vid->id.'" class="overlay"></a>
 				</div>

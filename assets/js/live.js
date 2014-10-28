@@ -1,6 +1,6 @@
 function createLive(channelId) {
 	marmottajax.post({
-		'url': './lives',
+		'url': _webroot_ + 'lives',
 		'options': { 'channel-id': channelId }
 	}) .then(function(result) {
 		try {
@@ -13,7 +13,7 @@ function createLive(channelId) {
 
 function revokeLive(accessId) {
 	marmottajax.delete({
-		'url': './lives/' + accessId,
+		'url': _webroot_ + 'lives/' + accessId,
 		'options': {}
 	}) .then(function(result) {
 		document.getElementById('access').innerHTML = 'Accès supprimé';

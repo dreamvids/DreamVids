@@ -39,7 +39,7 @@ function erasePlaylist(id) {
 
 		marmottajax.delete({
 
-			url: "playlists/" + id,
+			url: _webroot_ + "playlists/" + id,
 
 		}).then(function() {
 

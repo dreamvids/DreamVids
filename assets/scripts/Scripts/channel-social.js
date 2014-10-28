@@ -9,7 +9,7 @@ function postMessage() {
 
  	marmottajax.post({
 
- 		url: "../../../posts",
+ 		url: _webroot_ + "posts",
  		json: true,
 
  		options: {

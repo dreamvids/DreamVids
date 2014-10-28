@@ -4,20 +4,11 @@
 			<button onclick="createDiscution();">Nouveau</button>
 		</h1>
 
-		<div class="form">
-			<p>Messages de la chaîne:</p>
+		<aside class="list">
 			<select name="channels" id="channels">
 			<?php foreach ($channels as $channel): ?>
 				<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
 			<?php endforeach ?>
-			</select>
-		</div>
-		<aside class="list">
-			<select name="sorts-dropdown" id="sorts-dropdown">
-				<option value="1">Tous les messages</option>
-				<option value="2">Messages non lus</option>
-				<option value="3">Messages de mes abonnements</option>
-				<option value="4">Mes messages favoris</option>
 			</select>
 
 			<ul id="messages-list">

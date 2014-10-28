@@ -5,15 +5,16 @@
 .video-infos {
 
 	position: relative;
-	bottom: -1px;
+	bottom: 0;
 	z-index: 2;
 	
 	display: block;
 	width: 360px;
+	height: 360px;
 	margin-bottom: 19px;
-	overflow: hidden;
 
 	background: #f1f0f0;
+	overflow: hidden;
 
 }
 
@@ -387,28 +388,6 @@
 
 	@include font-title(18px);
 
-}
-
-.video-infos .description .inner-description::-webkit-scrollbar { width: 4px; }
-
-.video-infos .description .inner-description::-webkit-scrollbar-track { background: transparent; }
-
-.video-infos .description .inner-description::-webkit-scrollbar-thumb {
-
-    background: #b5b4b4;
-    border-radius: 2px;
-
-}
-
-.video-infos .description .inner-description::-moz-scrollbar { width: 4px; }
-
-.video-infos .description .inner-description::-moz-scrollbar-track { background: transparent; }
-
-.video-infos .description .inner-description::-moz-scrollbar-thumb {
-
-    background: #b5b4b4;
-    border-radius: 2px;
-    
 }
 
 .video-infos .buttons {

@@ -42,7 +42,7 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> channel">
 									<a href="<?php echo WEBROOT.'channel/'.$channel_action->name; ?>">
-										<div class="avatar bg-loader" data-background="<?php echo $channel_action->getBackground(); ?>"></div>
+										<div class="avatar bg-loader" data-background-load-in-view data-background="<?php echo $channel_action->getBackground(); ?>"></div>
 										<p><b><?php echo $channel_action->name ?></b> s'est abonné à votre chaîne "<b><?php echo UserChannel::find($action->target)->name; ?></b>"</p>
 									</a>
 									<span class="subscriber"><b><?php echo $channel_action->subscribers; ?></b> Abonnés</span>
@@ -54,7 +54,7 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>">
-										<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/up/350/200/6"></div>
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/6"></div>
 										<p><b><?php echo $channel_action->name ?></b> a aimé votre vidéo "<b><?php echo Video::find_by_id($action->target)->title; ?></b>"</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
@@ -92,7 +92,7 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'channels/'.$channel_action->id; ?>">
-										<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/futurama/350/200/6"></div>
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/futurama/350/200/6"></div>
 										<p>Vous avez été nommé administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
@@ -103,7 +103,7 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'channels/'.$channel_action->id; ?>">
-										<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/futurama/255/200/2"></div>
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/futurama/255/200/2"></div>
 										<p>Vous n'êtes plus administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
@@ -127,7 +127,7 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'account/messages'; ?>">
-										<div class="thumbnail bg-loader" data-background="http://lorempicsum.com/up/350/200/1"></div>
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/1"></div>
 										<p>Vous avez un nouveau message privé !</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>

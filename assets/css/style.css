@@ -192,11 +192,11 @@ body {
 
 .bg-loader-transition {
   will-change: opacity;
-  -webkit-transition: opacity .3s ease-out;
-  -moz-transition: opacity .3s ease-out;
-  -ms-transition: opacity .3s ease-out;
-  -o-transition: opacity .3s ease-out;
-  transition: opacity .3s ease-out; }
+  -webkit-transition: opacity .2s ease-out;
+  -moz-transition: opacity .2s ease-out;
+  -ms-transition: opacity .2s ease-out;
+  -o-transition: opacity .2s ease-out;
+  transition: opacity .2s ease-out; }
 
 /* COMPONENTS
    ----------------------------- */
@@ -5349,8 +5349,8 @@ nav.pagination {
     .messages .message .create-form label p {
       float: left;
       position: relative;
-      left: 5%;
-      top: 40px;
+      left: 22px;
+      top: 28px;
       margin-left: -32px;
       color: #aaa;
       font-size: 20px; }
@@ -6278,13 +6278,14 @@ nav.pagination {
    ============================= */
 .video-infos {
   position: relative;
-  bottom: -1px;
+  bottom: 0;
   z-index: 2;
   display: block;
   width: 360px;
+  height: 360px;
   margin-bottom: 19px;
-  overflow: hidden;
-  background: #f1f0f0; }
+  background: #f1f0f0;
+  overflow: hidden; }
 
 .video-infos:before {
   position: absolute;
@@ -6518,26 +6519,6 @@ nav.pagination {
   margin-bottom: 10px;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 18px; }
-
-.video-infos .description .inner-description::-webkit-scrollbar {
-  width: 4px; }
-
-.video-infos .description .inner-description::-webkit-scrollbar-track {
-  background: transparent; }
-
-.video-infos .description .inner-description::-webkit-scrollbar-thumb {
-  background: #b5b4b4;
-  border-radius: 2px; }
-
-.video-infos .description .inner-description::-moz-scrollbar {
-  width: 4px; }
-
-.video-infos .description .inner-description::-moz-scrollbar-track {
-  background: transparent; }
-
-.video-infos .description .inner-description::-moz-scrollbar-thumb {
-  background: #b5b4b4;
-  border-radius: 2px; }
 
 .video-infos .buttons {
   padding: 15px 30px;

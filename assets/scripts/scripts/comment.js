@@ -31,7 +31,7 @@ function postComment(vid, commentContent, fromChannel, parent) {
 
 	marmottajax.post({
 
-		url: "../comments/",
+		url: _webroot_ + "comments/",
 
 		options: {
 

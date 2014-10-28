@@ -1,6 +1,6 @@
 function likeComment(commentId) {
 	marmottajax.put({
-		'url': '../comments/' + commentId,
+		'url': _webroot_ + 'comments/' + commentId,
 		'options': { like: true }
 	}).then(function(result) {
 		try {
@@ -15,7 +15,7 @@ function likeComment(commentId) {
 
 function dislikeComment(commentId) {
 	marmottajax.put({
-		'url': '../comments/' + commentId,
+		'url': _webroot_ + 'comments/' + commentId,
 		'options': { dislike: true }
 	}).then(function(result) {
 		try {
@@ -31,7 +31,7 @@ function dislikeComment(commentId) {
 function reportComment(commentId, reportElement) {
 	if(confirm('Ce commentaire sera envoyé aux moderateurs. Voulez-vous continuer ?')) {
 		marmottajax.put({
-			'url': '../comments/' + commentId,
+			'url': _webroot_ + 'comments/' + commentId,
 			'options': { flag: true }
 		}).then(function(result) {
 			reportElement.innerHTML = 'Commentaire reporté. Merci.';

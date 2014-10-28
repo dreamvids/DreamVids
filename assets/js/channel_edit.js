@@ -5,7 +5,7 @@ function autocompletion(obj) {
 	if (obj.value.length != 0) {
 		if (obj.value.length >= 3) {
 			marmottajax.get({
-				'url': '../../channel/autocomplete/'+obj.value+'/'
+				'url': _webroot_ + 'channel/autocomplete/'+obj.value+'/'
 			}).then(function(result) {
 				var users = JSON.parse(result);
 				div.innerHTML = '';
@@ -41,7 +41,7 @@ function remove_adm(user_id) {
 function eraseChannel(chanId) {
 	if(confirm('Voulez-vous vraiment supprimer cette chaîne ainsi que toutes les vidéos qui lui sont associées de façon DEFINITIVE ?')) {
 		marmottajax.delete({
-			'url': '../channels/' + chanId,
+			'url': _webroot_ + 'channels/' + chanId,
 			'options': {}
 		}).then(function(result) {
 			window.location.href = _webroot_+'account/channels';

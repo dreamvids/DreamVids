@@ -23,8 +23,6 @@ var messagesList = document.getElementById("messages-list"),
 
     channelSelector = document.getElementById("channels"),
 
-    sortsDropdown = document.getElementById("sorts-dropdown"),
-
     discutionId = null;
 
 var scrolling = false,
@@ -165,23 +163,13 @@ function addMessageInDiscution(message) {
 
 }
 
-function loadMessagesInList(sorts) {
+function loadMessagesInList() {
 
     settings = {};
 
-    if (sorts) {
-
-        settings = {
-
-            sorts: sorts
-
-        }
-
-    }
-
     marmottajax.get({
 
-        url: '../conversations/channel/' + channelSelector.value + '.json',
+        url: _webroot_ + 'conversations/channel/' + channelSelector.value + '.json',
 
     }).then(function(result) {
 
@@ -209,19 +197,13 @@ function loadMessagesInList(sorts) {
 
 }
 
-if (sortsDropdown) {
-
-    loadMessagesInList(sortsDropdown.value);
-
-}
-
 function loadDiscution(id) {
 
     discutionId = id;
 
     marmottajax.get({
 
-        url: '../conversations/' + discutionId + '.json',
+        url: _webroot_ + 'conversations/' + discutionId + '.json',
 
     }).then(function(result) {
 
@@ -309,7 +291,7 @@ function leaveDiscution(id) {
 
     marmottajax.delete({
 
-        url: '../conversations/' + id,
+        url: _webroot_ + 'conversations/' + id,
         
         options: {
 
@@ -329,7 +311,7 @@ function submitMessage() {
 
     marmottajax.post({
 
-        url: '../messages',
+        url: _webroot_ + 'messages',
 
         options: {
 
@@ -417,10 +399,18 @@ function createDiscution(members) {
 
 }
 
-if (createSubmit && sortsDropdown && channelSelector) {
+if (createSubmit && channelSelector) {
+
+    channelSelector.onchange = function() {
+
+        messagesList.innerHTML = "Chargement en cours...";
+
+        loadMessagesInList();
+
+    };
 
     createSubmit.addEventListener("click", function() {
-    
+
         discutionInfos.className = discutionInfos.className.replace("none", "");
         createForm.className += " none";
     
@@ -431,7 +421,7 @@ if (createSubmit && sortsDropdown && channelSelector) {
     
         marmottajax.post({
     
-            url: '../conversations',
+            url: _webroot_ + 'conversations',
     
             options: {
     
@@ -442,23 +432,10 @@ if (createSubmit && sortsDropdown && channelSelector) {
             }
     
         }).then(function(result) {
-    
-            loadDiscution(result);
-            loadMessagesInList(sortsDropdown.value);
+
+            loadMessagesInList();
     
         });
-    
-    }, false);
-    
-    sortsDropdown.addEventListener("change", function(event) {
-    
-        loadMessagesInList(sortsDropdown.value);
-    
-    }, false);
-    
-    channelSelector.addEventListener("change", function(event) {
-    
-        loadMessagesInList(sortsDropdown.value);
     
     }, false);
 
@@ -468,7 +445,7 @@ function loadMessagesInDiscution(id) {
 
     marmottajax.get({
 
-        url: '../conversations/' + discutionId + '.json',
+        url: _webroot_ + 'conversations/' + discutionId + '.json',
 
     }).then(function(result) {
 
@@ -512,3 +489,5 @@ setInterval(function() {
     }
 
 }, 10000);
+
+loadMessagesInList();
