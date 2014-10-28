@@ -27,13 +27,14 @@ include 'classes/LoggedUser.php';
 include 'classes/Video.php';
 include 'classes/Comment.php';
 include 'classes/Message.php';
+include 'classes/Citrouille.php';
 include 'includes/tasks.php';
 
 if ($config['maintenance'] == '0' || @($session->getRank() == $config['rank_adm']) )
 {
 	include $model;
 	include $content;
-	if (@$_GET['page'] != 'ajax' && @$_GET['page'] != 'rss_channel')
+	if (@$_GET['page'] != 'ajax' && @$_GET['page'] != 'bouuh' && @$_GET['page'] != 'rss_channel')
 	{
 		include 'views/_top.php';
 		include $view;

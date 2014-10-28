@@ -59,6 +59,12 @@
         </div>
 
     </div>
+<?php
+$bouuh = new Citrouille(2);
+if ($bouuh->exists()) {
+	$bouuh->display();
+}
+?>
 </footer>
 
 <script src="js/bgLoader.js"></script>

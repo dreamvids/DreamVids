@@ -159,4 +159,10 @@
 				</div>
 			</div>
 		</div>
+<?php
+$bouuh = new Citrouille(1);
+if ($bouuh->exists()) {
+	$bouuh->display();
+}
+?>
 	</header>

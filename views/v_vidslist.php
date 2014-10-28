@@ -124,15 +124,20 @@
 
 		<aside class="full-cards-list">
 
-	<?php } 
-
-
+	<?php }
+		
 		if (!in_array(@$_GET['mode'], array('subscriptions', 'search', 'discover') ) )
 		{
 			//TODO: Afficher un espace dédié à la "vidéo du moment" (front end uniquement)
 		}
 
-		foreach ($vids as $vid) {
+		foreach ($vids as $key => $vid) {
+			if ($key == floor(count($vids) / 2)) {
+				$bouuh = new Citrouille(4);
+				if ($bouuh->exists()) {
+					$bouuh->display(1);
+				}			
+			}
 			
 			$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
 			$descVid = (strlen($vid->getDescription() ) > 60) ? secure(substr($vid->getDescription(), 0, 57) ).'...' : secure($vid->getDescription() );

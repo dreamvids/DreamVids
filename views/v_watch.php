@@ -305,6 +305,10 @@ echo 'Tags: '.implode(', ', $tags);
 
 		<?php
 		}
+		$bouuh = new Citrouille(3);
+		if ($bouuh->exists()) {
+			$bouuh->display(1);
+		}
 		?>
 
 	</aside>
