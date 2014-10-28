@@ -132,11 +132,11 @@
 		}
 
 		foreach ($vids as $key => $vid) {
-			if ($key == floor(count($vids) / 2)) {
+			if ($key == floor(count($vids) / 2) && @$_GET['mode'] == 'discover') {
 				$bouuh = new Citrouille(4);
 				if ($bouuh->exists()) {
 					$bouuh->display(1);
-				}			
+				}
 			}
 			
 			$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
