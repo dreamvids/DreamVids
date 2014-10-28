@@ -20,6 +20,7 @@ class HomeController extends Controller {
 	public function index($request) {
 		if(Session::isActive()) {
 			$data = array();
+			$data['currentPageTitle'] = 'Accueil';
 			$channel = Session::get()->getMainChannel();
 
 			$data['subscriptions'] = Session::get()->getSubscriptions();

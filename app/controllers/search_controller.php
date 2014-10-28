@@ -18,6 +18,8 @@ class SearchController extends Controller {
 	
 	public function get($id, $request) {
 		$q = urldecode($id);
+		$data = array();
+		$data['currentPageTitle'] = $q.' - Recherche';
 		$data['search'] = $q;
 		$data['videos'] = Video::getSearchVideos($q);
 		return new ViewResponse('search/search', $data);

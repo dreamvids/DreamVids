@@ -41,23 +41,23 @@ class VideoController extends Controller {
 
 			return new JsonResponse($videoData);
 		}
-
+		
+		$data = array();
+		$data['currentPageTitle'] = $video->title;
+		
 		if($video->isSuspended()) {
-			$data = array();
 			$data['author'] = $author;
 			$data['video'] = $video;
 			
 			return new ViewResponse('video/suspended', $data);
 		}
 		elseif($video->isPrivate() && $video->poster_id != Session::get()->getMainChannel()->id) {
-			$data = array();
 			$data['author'] = $author;
 			$data['video'] = $video;
 			
 			return new ViewResponse('video/private', $data);
 		}
-
-		$data = array();
+		
 		if ($playlist != false) {
 			$videos_ids = json_decode($playlist->videos_ids);
 			foreach($videos_ids as $key => $value) {
@@ -143,6 +143,8 @@ class VideoController extends Controller {
 		$req = $request->getParameters();
 		if(Session::isActive()) {
 			if($video = Video::find($id)) {
+				$data = array();
+				$data['currentPageTitle'] = $video->title.' - Modification';
 				if(isset($req['video-edit-submit'], $req['video-title'], $req['video-description'], $req['video-tags'])) {
 					$data['video'] = $video;
 
@@ -235,6 +237,7 @@ class VideoController extends Controller {
 				else if(isset($req['discover'])) {
 					$video->discover = Utils::tps();
 					$video->save();
+					return new Response(200);
 				}
 			}
 		}
@@ -258,7 +261,7 @@ class VideoController extends Controller {
 		if(Session::isActive()) {
 			if($video = Video::find($id)) {
 				$data = array();
-
+				$data['currentPageTitle'] = $video->title.' - Modification';
 				$data['video'] = $video;
 				return new ViewResponse('video/edit', $data);
 			}

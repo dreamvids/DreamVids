@@ -40,6 +40,7 @@ class ChannelController extends Controller {
 		else {
 			$data = array();
 			$data['currentPage'] = 'channel';
+			$data['currentPageTitle'] = $channel->name;
 			$data['current'] = 'videos';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
@@ -64,13 +65,15 @@ class ChannelController extends Controller {
 		$descr = @Utils::secure($req['description']);
 		
 		if(isset($req['createChannelSubmit']) && Session::isActive()) {
+			$data = array();
+			$data['currentPageTitle'] = 'Créer une chaine';
 			if(isset($req['name'], $req['description'])) {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
 						if(UserChannel::isNameFree($name)) {
 							UserChannel::addNew($name, $descr, $req['_FILES_']['avatar'], $req['_FILES_']['background']);
 							$data['channels'] = Session::get()->getOwnedChannels();
-
+							$data['currentPageTitle'] = 'Mes chaines';
 							$response = new ViewResponse('account/channels', $data);
 							$response->addMessage(ViewMessage::success('Votre nouvelle chaîne a bien été créée ! Faites-en bon usage !'));
 
@@ -128,6 +131,7 @@ class ChannelController extends Controller {
 			$data['mainChannel'] = $channel->isUsersMainChannel(Session::get()->id);
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
+			$data['currentPageTitle'] = $channel->name.' - Edition';
 
 			if(isset($req['name'], $req['description'])) {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
@@ -136,7 +140,6 @@ class ChannelController extends Controller {
 						if($channel->isUsersMainChannel(Session::get()->id)) {
 							if ($channel->name != $req['name']) {
 								$data['name'] = $channel->name;
-	
 								$response = new ViewResponse('channel/edit', $data);
 								$response->addMessage(ViewMessage::error('Vous ne pouvez pas changer le nom de votre chaîne principale !'));
 	
@@ -181,7 +184,7 @@ class ChannelController extends Controller {
 						
 						UserChannel::edit($channel->id, $name, $descr, $adm, $req['_FILES_']['avatar'], $req['_FILES_']['background']); //TODO: Support logo/background
 						$data['channels'] = Session::get()->getOwnedChannels();
-
+						$data['currentPageTitle'] = 'Mes chaines';
 						$response = new ViewResponse('account/channels', $data);
 						$response->addMessage(ViewMessage::success('Votre chaîne '.$name.' a bien été modifiée !'));
 
@@ -260,6 +263,7 @@ class ChannelController extends Controller {
 		if(is_object($channel)) {
 			$data = array();
 			$data['currentPage'] = 'channel';
+			$data['currentPageTitle'] = $channel->name.' - Social';
 			$data['current'] = 'social';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
@@ -283,6 +287,7 @@ class ChannelController extends Controller {
 		if(is_object($channel)) {
 			$data = array();
 			$data['currentPage'] = 'channel';
+			$data['currentPageTitle'] = $channel->name.' - Playlists';
 			$data['current'] = 'playlists';
 			$data['id'] = $channel->id;
 			$data['name'] = $channel->name;
@@ -304,6 +309,7 @@ class ChannelController extends Controller {
 		if(Session::isActive()) {
 			$data = array();
 			$data['current'] = 'channels';
+			$data['currentPageTitle'] = 'Créer une chaine';
 
 			return new ViewResponse('channel/create', $data);
 		}
@@ -321,6 +327,7 @@ class ChannelController extends Controller {
 				$data = array();
 				$data['currentPage'] = 'channel';
 				$data['current'] = 'channels';
+				$data['currentPageTitle'] = $channel->name.' - Edition';
 				$data['id'] = $channel->id;
 				$data['mainChannel'] = $channel->isUsersMainChannel(Session::get()->id);
 				$data['owner_id'] = $channel->owner_id;

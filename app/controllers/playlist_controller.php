@@ -17,6 +17,7 @@ class PlaylistController extends Controller {
 	public function index($request) {
 		if (Session::isActive()) {
 			$data = array();
+			$data['currentPageTitle'] = 'Playlists';
 			$data['playlists'] = array();
 			$data['channels'] = Session::get()->getOwnedChannels();
 			foreach ($data['channels'] as $chan) {

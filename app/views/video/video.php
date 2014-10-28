@@ -163,12 +163,12 @@
 			
 			</div>
 
-			<img id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
-			<img class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');">
-			<img class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo WEBROOT.'uploads/'.$video->poster_id.'/'.$video->id.'.'.$ext; ?>');">
-			<img id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
+			<img title="Partager" id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img title="Signaler" class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');">
+			<img title="Télécharger" class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo WEBROOT.'uploads/'.$video->poster_id.'/'.$video->id.'.'.$ext; ?>');">
+			<img title="Intégrer" id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<?php if(Session::isActive()) { ?>
-				<img data-vidid="<?php echo $video->id; ?>" id="add-playlist-icon" src="<?php echo IMG.'plus.png'; ?>" title="Ajouter à une playlist">
+				<img title="Ajouter à une playlist" data-vidid="<?php echo $video->id; ?>" id="add-playlist-icon" src="<?php echo IMG.'plus.png'; ?>" title="Ajouter à une playlist">
 			<?php } ?>
 
 		</div>
@@ -185,8 +185,8 @@
 <?php
 $videos_ids = json_decode($playlist->videos_ids);
 foreach ($videos_ids as $vid) {
-	$video = Video::find($vid);
-	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$video->id.'"><div class="playlist__video bg-loader" data-background="'.$video->getThumbnail().'"></div></a>';
+	$vid = Video::find($vid);
+	echo '<a href="'.WEBROOT.'playlists/'.$playlist->id.'/watch/'.$vid->id.'"><div class="playlist__video bg-loader" data-background="'.$vid->getThumbnail().'"></div></a>';
 }
 ?>
 		</div>
@@ -240,7 +240,7 @@ foreach ($videos_ids as $vid) {
 			<?php
 			
 			function displayComments($video, $parent, $i) {
-				$comments = Utils::securingData($video->getComments($parent));
+				$comments = $video->getComments($parent);
 				if (empty($comments)) { ?>
 					<p>Aucun commentaire à propos de cette video</p>
 				<?php }

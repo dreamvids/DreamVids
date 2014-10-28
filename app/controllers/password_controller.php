@@ -18,13 +18,17 @@ class PasswordController extends Controller {
 			return new RedirectResponse(WEBROOT);
 		}
 		else {
-			return new ViewResponse('password/password');
+			$data = array();
+			$data['currentPageTitle'] = 'Mot de passe oublié';
+			return new ViewResponse('password/password', $data);
 		}
 	}
 	
 	public function create($request) {
 		$req = $request->getParameters();
-		$resp = new ViewResponse('password/password');
+		$data = array();
+		$data['currentPageTitle'] = 'Mot de passe oublié';
+		$resp = new ViewResponse('password/password', $data);
 		if (!empty($req['email']) xor !empty($req['pseudo'])) {
 			if (!empty($req['email'])) {
 				if (Utils::validateMail($req['email'])) {
@@ -82,12 +86,16 @@ class PasswordController extends Controller {
 			$pass = Password::generatePass(9);
 			$user->pass = sha1($pass);
 			$user->save();
-			$resp = new ViewResponse('login/login');
+			$data = array();
+			$data['currentPageTitle'] = 'Connexion';
+			$resp = new ViewResponse('login/login', $data);
 			$resp->addMessage(ViewMessage::success('Voici votre nouveau mot de passe: <b>'.$pass.'</b>. Connectez-vous dès maintenant !'));
 			return $resp;
 		}
 		else {
-			$resp = new ViewResponse('password/password');
+			$data = array();
+			$data['currentPageTitle'] = 'Mot de passe oublié';
+			$resp = new ViewResponse('password/password', $data);
 			$resp->addMessage(ViewMessage::error('Clé invalide ou expirée, merci de recommencer la procédure'));
 			return $resp;
 		}

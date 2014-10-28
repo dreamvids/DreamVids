@@ -29,6 +29,7 @@ class AccountController extends Controller {
 		$data = $req;
 		$data['current'] = 'account';
 		$data['email'] = Session::get()->email;
+		$data['currentPageTitle'] = 'Mon compte';
 
 		if($id == 'infos') {
 			if(isset($req['profileSubmit']) && Session::isActive()) {
@@ -118,6 +119,7 @@ class AccountController extends Controller {
 	public function infos($request) {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
+			$data['currentPageTitle'] = 'Mon compte';
 			$data['username'] = Session::get()->username;
 			$data['email'] = Session::get()->email;
 			$data['settings'] = Session::get()->getSettings();
@@ -132,6 +134,7 @@ class AccountController extends Controller {
 	public function password($request) {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
+			$data['currentPageTitle'] = 'Mon compte';
 			$data['username'] = Session::get()->username;
 			$data['current'] = 'password';
 
@@ -146,6 +149,7 @@ class AccountController extends Controller {
 	public function channelslist($request) {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
+			$data['currentPageTitle'] = 'Mon compte';
 			$data['channel'] = Session::get()->getOwnedChannels();
 			$data['videos_count'] = array();
 			foreach($data['channel'] as $chan) {
@@ -167,6 +171,7 @@ class AccountController extends Controller {
 	public function videos($id, $request) {
 		if(Session::isActive()) {
 			$data['videos'] = UserChannel::find($id)->getPostedVideos();
+			$data['currentPageTitle'] = 'Mon compte';
 			$data['current'] = 'videos';
 			
 			$response = new ViewResponse('account/videos', $data);
@@ -184,6 +189,7 @@ class AccountController extends Controller {
 		if(Session::isActive()) {
 			$data = array();
 			$data['current'] = 'messages';
+			$data['currentPageTitle'] = 'Mon compte';
 
 			$data['channels'] = Session::get()->getOwnedChannels();
 
@@ -197,6 +203,7 @@ class AccountController extends Controller {
 	public function channels($request) {
 		if(Session::isActive()) {
 			$data['user'] = Session::get();
+			$data['currentPageTitle'] = 'Mon compte';
 			$data['channels'] = Session::get()->getOwnedChannels();
 			$data['current'] = 'channels';
 
