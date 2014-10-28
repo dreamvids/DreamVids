@@ -1,7 +1,13 @@
 var uploader = document.getElementById("uploader");
 var uploadInput = document.getElementById("upload-input");
+var uploadForm = document.getElementById("upload-form");
 var fileName = document.getElementById("file-name");
 var progressBar = document.getElementById("progress-bar");
+var disablingCode = function() {
+	alert('Veuillez attendre la fin de la mise en ligne de la vidéo');
+	return false;
+};
+uploadForm.onsubmit = disablingCode;
 
 var timeUpload = {
 
@@ -103,7 +109,7 @@ uploadInput.addEventListener("change", function(event) {
 
 		}
 
-		uploadInput.setAttribute("disabled", "");
+		uploadInput.setAttribute("disabled", "true");
 		document.getElementById("up-submit").removeAttribute("disabled");
 
 		uploadHttpRequest = new XMLHttpRequest();
@@ -131,6 +137,7 @@ uploadInput.addEventListener("change", function(event) {
 			uploader.className = "uploaded";
 			progressBar.style.width = "100%";
 			progressBar.dataset["restant"] = "";
+			uploadForm.onsubmit = function(){return true};
 
 			console.log("POST /videos", uploadHttpRequest.responseText);
 

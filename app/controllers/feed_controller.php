@@ -22,6 +22,7 @@ class FeedController extends Controller {
 		if(Session::isActive()) {
 			$sess = Session::get();
 			$data = array();
+			$data['currentPageTitle'] = 'Flux d\'activité';
 			$data['actions'] = array();
 			$data['subscriptions'] = array();
 			$data['last_visit'] = $sess->last_visit;

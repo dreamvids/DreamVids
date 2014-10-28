@@ -16,7 +16,9 @@ class LoginController extends Controller {
 
 	public function index($request) {
 		if(!Session::isActive()) {
-			return new ViewResponse('login/login');
+			$data = array();
+			$data['currentPageTitle'] = 'Connexion';
+			return new ViewResponse('login/login', $data);
 		}
 		else {
 			return new RedirectResponse(WEBROOT);
@@ -44,14 +46,18 @@ class LoginController extends Controller {
 					return new RedirectResponse(WEBROOT);
 				}
 				else {
-					$response = new ViewResponse('login/login', $_POST);
+					$data = array();
+					$data['currentPageTitle'] = 'Connexion';
+					$response = new ViewResponse('login/login', $data);
 					$response->addMessage(ViewMessage::error('Mot de passe incorrect'));
 
 					return $response;
 				}
 			}
 			else {
-				$response = new ViewResponse('login/login', $_POST);
+				$data = array();
+				$data['currentPageTitle'] = 'Connexion';
+				$response = new ViewResponse('login/login', $data);
 				$response->addMessage(ViewMessage::error('Ce nom d\'utilisateur n\'existe pas'));
 
 				return $response;

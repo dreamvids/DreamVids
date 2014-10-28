@@ -34,6 +34,7 @@ class UploadController extends Controller {
 	public function channelSelection($request) {
 		$data = array();
 		$data['channel'] = UserChannel::all(array('conditions' => array('admins_ids LIKE ?', '%;'.Session::get()->id.';%')));
+		$data['currentPageTitle'] = 'Mettre en ligne';
 		return new ViewResponse('upload/channels', $data);
 	}
 	
@@ -48,6 +49,7 @@ class UploadController extends Controller {
 			));
 			
 			$data = array();
+			$data['currentPageTitle'] = 'Mettre en ligne';
 			$data['uploadId'] = $uploadId;
 			$data['thumbnail'] = Config::getValue_('default-thumbnail');
 			$data['channelId'] = $id;

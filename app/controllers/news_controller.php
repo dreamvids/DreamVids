@@ -17,6 +17,7 @@ class NewsController extends Controller {
 
 	public function index($request) {
 		$data = array();
+		$data['currentPageTitle'] = 'Nouveautés';
 		$data['vids'] = Video::getLastVideos(50);
 
 		return new ViewResponse('news/news', $data);

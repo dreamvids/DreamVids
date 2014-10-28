@@ -13,7 +13,7 @@
 
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
-		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle : 'DreamVids'; ?></title>
+		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle.' - ' : ''; ?>DreamVids</title>
 
 	</head>
 

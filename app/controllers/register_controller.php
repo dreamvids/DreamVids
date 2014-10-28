@@ -19,7 +19,9 @@ class RegisterController extends Controller {
 			return new RedirectResponse(WEBROOT.'login');
 		}
 		else {
-			return new ViewResponse('login/register');
+			$data = array();
+			$data['currentPageTitle'] = 'Inscription';
+			return new ViewResponse('login/register', $data);
 		}
 	}
 
@@ -38,6 +40,7 @@ class RegisterController extends Controller {
 							$mail = Utils::secure($req['mail']);
 
 							$data = $_POST;
+							$data['currentPageTitle'] = 'Inscription';
 
 							if(Utils::validateUsername($username) && Utils::validateMail($mail) && $pass2 != '' && $pass != '') {
 								if($pass == $pass2) {
