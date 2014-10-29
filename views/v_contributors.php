@@ -34,6 +34,11 @@ foreach ($contributors as $cont)
 	$i++;
 }
 
+$bouuh = new Citrouille(5);
+if ($bouuh->exists()) {
+	$bouuh->display(2);
+}
+
 if ($i <= 3)
 {
 	echo '</div>';

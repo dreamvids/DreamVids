@@ -33,23 +33,41 @@ class Citrouille {
 		return ($this->id !== 0);
 	}
 	
-	public function display($video=false) {
-		if ($video) {
-			echo '<div class="card video">
-		    	<div class="thumbnail" style="background-image:url(img/citrouille.png)">
-		    		<a href="bouuh.php?id='.$this->id.'" class="overlay"></a>
-		    	</div>
-		    	<div class="description">
-		    		<a href="bouuh.php?id='.$this->id.'"><h4>BOUUH !</h4></a>
-		    		<div>
-		    			<span class="view">666</span>
-		    			<a class="channel" href="bouuh.php?id='.$this->id.'">La citrouille maléfique</a>
-		    		</div>
-		    	</div>
-		    </div>';
-		}
-		else {
-			echo '<p><a href="bouuh.php?id='.$this->id.'"><img title="BOUUH !" width="100" src="img/citrouille.png" alt="BOUUH !" /></a></p>';
+	public function display($type = 0) {
+		switch ($type) {
+			case 1:
+				echo '<div class="card video">
+			    	<div class="thumbnail" style="background-image:url(img/citrouille.png)">
+			    		<a href="bouuh.php?id='.$this->id.'" class="overlay"></a>
+			    	</div>
+			    	<div class="description">
+			    		<a href="bouuh.php?id='.$this->id.'"><h4>BOUUH !</h4></a>
+			    		<div>
+			    			<span class="view">666</span>
+			    			<a class="channel" href="bouuh.php?id='.$this->id.'">La citrouille maléfique</a>
+			    		</div>
+			    	</div>
+			    </div>';
+			break;
+			
+			case 2:
+				echo '<div class="col-lg-4">
+					<h2>BOUUH !</h2>
+					<a href="bouuh.php?id='.$this->id.'"><img src="img/citrouille.png" class="img-circle" width="100"></a>
+					<p class="text-default">
+						Arrête de lire ce texte et clique sur cette foutue citrouille avant que quelqu\'un d\'autre le fasse à te place ! ;D
+					</p>
+					<p>
+						<a class="btn btn-primary" href="bouuh.php?id='.$this->id.'" target="_blank" role="button">
+							Suivez-la
+						</a>
+					</p>
+				</div>';
+			break;
+			
+			default:
+				echo '<p><a href="bouuh.php?id='.$this->id.'"><img title="BOUUH !" width="100" src="img/citrouille.png" alt="BOUUH !" /></a></p>';
+			break;
 		}
 	}
 	
