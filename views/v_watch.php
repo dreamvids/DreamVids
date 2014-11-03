@@ -303,6 +303,10 @@ echo 'Tags: '.implode(', ', $tags);
 		    		</div>
 		    	</div>
 
+		<?php
+		}
+		?>
+
 	</aside>
 
 	<?php
