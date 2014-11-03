@@ -159,15 +159,4 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="alert alert-success">
-			<b><big>BOUUH !</big></b><br />
-			À l'occasion d'Halloween, DreamVids organise un event pour vous permettre de gagner des clés pour la bêta de la V2 ! Plus d'infos ici: <a target="_blank" style="color:blue" href="http://blog.dreamvids.fr/?p=57">http://blog.dreamvids.fr/?p=57</a>
-		</div>
-<?php
-$bouuh = new Citrouille(1);
-if ($bouuh->exists()) {
-	$bouuh->display();
-}
-?>
 	</header>

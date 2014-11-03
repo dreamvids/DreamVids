@@ -72,19 +72,8 @@
 
 			<?php
 		}
-		
-		if ($member->getName() == 'PHPeter') {
-			$bouuh = new Citrouille(6);
-			if ($bouuh->exists()) {
-				$bouuh->display();
-			}
-		}
-		else if ($member->getName() == 'Toinou') {
-			$bouuh = new Citrouille(7);
-			if ($bouuh->exists()) {
-				$bouuh->display();
-			}
-		}
 		?>
 	<div>
+</div>
+</div>
 </div>

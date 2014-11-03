@@ -131,13 +131,7 @@
 			//TODO: Afficher un espace dédié à la "vidéo du moment" (front end uniquement)
 		}
 
-		foreach ($vids as $key => $vid) {
-			if ($key == floor(count($vids) / 2) && @$_GET['mode'] == 'discover') {
-				$bouuh = new Citrouille(4);
-				if ($bouuh->exists()) {
-					$bouuh->display(1);
-				}
-			}
+		foreach ($vids as $vid) {
 			
 			$titleVid = (strlen($vid->getTitle() ) > 32) ? secure(substr($vid->getTitle(), 0, 29) ).'...' : secure($vid->getTitle() );
 			$descVid = (strlen($vid->getDescription() ) > 60) ? secure(substr($vid->getDescription(), 0, 57) ).'...' : secure($vid->getDescription() );
