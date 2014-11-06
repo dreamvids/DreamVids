@@ -11,7 +11,21 @@ class UserChannel extends ActiveRecord\Model {
 	public function getPostedVideos() {
 		return Video::all(array('conditions' => array('poster_id' => $this->id), 'order' => 'timestamp desc'));
 	}
-
+	
+	public function getAllViews() {
+		
+		$videos = $this->getPostedVideos();
+		$result = 0;
+		
+		foreach ($videos as $video) {
+			
+			if(!$video->isSuspended() && !$video->isPrivate()){
+			$result += $video->views;				
+			}
+		}
+		return $result;
+		
+	}
 	public function getPostedMessages() {
 		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id), 'order' => 'timestamp desc'));
 	}
