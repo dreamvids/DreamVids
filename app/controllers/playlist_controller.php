@@ -165,10 +165,18 @@ class PlaylistController extends Controller {
 			}
 			else {
 				$video_id = json_decode($playlist->videos_ids);
-				$video_id = $video_id[0];
+				if(isset($video_id[0])){
+					$video_id = $video_id[0];
+				}else{
+					$data=array();
+					$data['playlist'] = $playlist;
+					return new ViewResponse('playlists/error_empty', $data);
+					
+				}
 			}
 			
 			if (in_array($video_id, json_decode($playlist->videos_ids))) {
+				
 				$resp = new VideoController();
 				return $resp->get($video_id, $request, $playlist);
 			}
