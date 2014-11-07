@@ -5,6 +5,7 @@
 		<ul class="top">
 			<li><b><?php echo $subscribers; ?></b> Abonnés</li>
 			<li><b><?php echo count($videos); ?></b> Vidéos</li>
+			<li><b><?php echo $total_views; ?></b> Vue<?php echo $total_views>1? 's' : ''; ?></li>
 		</ul>
 
 		<div class="left">
