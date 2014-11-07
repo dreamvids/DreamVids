@@ -108,6 +108,8 @@ class VideoController extends Controller {
 
 		$data['currentPage'] = "watch";
 
+		
+		
 		$video->addView();
 		return new ViewResponse('video/video', $data);
 	}
@@ -246,14 +248,23 @@ class VideoController extends Controller {
 	}
 
 	public function destroy($id, $request) {
-		if(Session::isActive() && Session::get()->isAdmin()) {
+		if(Session::isActive()) {
 			if($video = Video::find($id)) {
+				$channels=Session::get()->getOwnedChannels();
+				$channels_ids= array();
+				
+				foreach ($channels as $chan) { //Get only the channels ids
+					$channels_ids[]=$chan->id;
+				}
+				if(Session::get()->isAdmin() || Session::get()->isModerator() || in_array($video->poster_id, $channels_ids)){ //Verify if the user own the channel of the video
+					
 				$video->erase(Session::get()->id);
-
 				return new Response(200);
+				}
+				return new Response(403);				
 			}
+			return new Response(404);
 		}
-
 		return new Response(500);
 	}
 
