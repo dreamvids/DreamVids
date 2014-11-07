@@ -63,7 +63,7 @@ class Utils {
 		$return = 'Il y a';
 
 		if( $iSeconds<60 ){
-		$return .= " ".'moins d\' une minute';}
+		$return .= " ".'moins d\'une minute';}
 		elseif( $iMinutes<60 ){
 		$return .= " ".$iMinutes . ' minute' . ( $iMinutes>1 ? 's' : '' );}
 		elseif( $iHours<24 ){

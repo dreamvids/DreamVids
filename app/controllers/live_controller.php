@@ -25,6 +25,7 @@ class LiveController extends Controller {
 				$data['accessGranted'] = true;
 				$data['access'] = LiveAccess::find(array('channel_id' => $liveChannel->id));
 				$data['liveChannel'] = $liveChannel;
+				$data['channels'] = Session::get()->getOwnedChannels();
 			}
 			else {
 				$data['accessGranted'] = false;
@@ -75,7 +76,7 @@ class LiveController extends Controller {
 						'timestamp' => time()
 					));
 
-					return new JsonResponse(array('key' => $access->key, 'channel' => $channel->name));
+					return new JsonResponse(array('key' => $access->key, 'channel' => $channel->name, 'id' => $access->id));
 				}
 				else
 					return new Response(500);
