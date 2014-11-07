@@ -223,7 +223,7 @@ class Video extends ActiveRecord\Model {
 
 	public function erase($userId) {
 		$this->delete();
-
+		ChannelAction::delete_all(array("target" =>$this->id ));
 		//TODO: Delete file
 
 		if (Session::get()->isModerator() || Session::get()->isAdmin()) {
