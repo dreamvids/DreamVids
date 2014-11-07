@@ -22,6 +22,15 @@ class SearchController extends Controller {
 		$data['currentPageTitle'] = $q.' - Recherche';
 		$data['search'] = $q;
 		$data['videos'] = Video::getSearchVideos($q);
+		if(empty($data['videos'])){
+			
+			$data['error']= array(
+					"message" => "La recherche n'a retourné aucun resultat.",
+					"level" => "error"
+			);
+			
+			return new ViewResponse('search/error', $data);
+		}
 		return new ViewResponse('search/search', $data);
 	}
 	

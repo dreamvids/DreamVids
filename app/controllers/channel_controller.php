@@ -51,6 +51,7 @@ class ChannelController extends Controller {
 			$data['videos'] = $channel->getPostedVideos();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			$data['total_views'] = $channel->getAllViews();
 
 			return new ViewResponse('channel/channel', $data);
 		}
