@@ -11,24 +11,6 @@ Pour GNU/Linux on installe NodeJs comme ceci :
 ```shell
 apt-get install nodejs
 ```
-###Ruby
-
-Si Ruby n'est pas installé sur votre ordinateur sous Windows : [rubyinstaller.org](http://rubyinstaller.org/) Attention ! Il faut absolument cocher la case "Add Ruby executables to your PATH".
-
-Si Ruby n'est pas installé sur GNU/Linux : 
-
-```shell
-apt-get install ruby
-```
-*Ruby est normalement déjà installé sur Mac.*
-
-###Sass
-
-Il faut maintenant installer Sass, pour cela, ouvrez l'invite de commande dans votre dossier et lancez cette commande :
-
-```shell
-gem install sass
-```
 
 ###Grunt et ses plugins
 
@@ -51,5 +33,5 @@ grunt
 Pour éviter de devoir lancer la compilation à chaque modification, on utilise cette commande :
 
 ```shell
-grunt auto
+grunt dev
 ```

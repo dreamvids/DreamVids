@@ -18,35 +18,38 @@
 
 }
 
-@each $name, $color in $colors {
+@each $array in $colors {
 
-	.btn--flat.btn--#{$name} {
+	$_color-name: nth($array, 1);
+	$_color-value: nth($array, 2);
+
+	.btn--flat.btn--#{$_color-name} {
 	
-		color: $color;
+		color: $_color-value;
 
 	}
 
-	.btn--flat.btn--#{$name} .ripple {
+	.btn--flat.btn--#{$_color-name} .ripple {
 
-		background-color: $color;
-
-	}
-
-	.btn--flat.btn--#{$name}:focus {
-
-		@include outline($color);
+		background-color: $_color-value;
 
 	}
 
-	.btn--flat.btn--outline-#{$name}:focus {
+	.btn--flat.btn--#{$_color-name}:focus {
 
-		@include outline($color);
+		@include outline($_color-value);
 
 	}
 
-	.btn--flat.btn--ripple-#{$name} .ripple {
+	.btn--flat.btn--outline-#{$_color-name}:focus {
 
-		background-color: $color;
+		@include outline($_color-value);
+
+	}
+
+	.btn--flat.btn--ripple-#{$_color-name} .ripple {
+
+		background-color: $_color-value;
 
 	}
 

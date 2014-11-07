@@ -5,6 +5,9 @@
 Chaque fichier Sass devra contenir un header la forme ci-dessous.
 
 ```css
-/* TITRE DU DOCUMENT
-   ============================= */
+/**
+ * path/to/file.js
+ *
+ * Stylesheet description
+ */
 ```

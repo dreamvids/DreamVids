@@ -6,8 +6,8 @@ Chaque fichier JavaScript devra contenir un header la forme ci-dessous.
 
 ```js
 /**
- * emplacement/du/fichier.js
+ * path/to/file.js
  * 
- * TITRE DU DOCUMENT
+ * Script description
  */
 ```

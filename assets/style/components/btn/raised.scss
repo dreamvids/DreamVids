@@ -39,23 +39,26 @@
 
 }
 
-@each $name, $color in $colors {
+@each $array in $colors {
 
-	.btn--raised.btn--#{$name} {
+	$_color-name: nth($array, 1);
+	$_color-value: nth($array, 2);
 
-		background-color: $color;
+	.btn--raised.btn--#{$_color-name} {
+
+		background-color: $_color-value;
 
 	}
 
-	@if $name != yellow {
+	@if $_color-name != yellow {
 
-		.btn--raised.btn--#{$name} {
+		.btn--raised.btn--#{$_color-name} {
 
 			color: white;
 
 		}
 
-		.btn--raised.btn--#{$name} .ripple {
+		.btn--raised.btn--#{$_color-name} .ripple {
 
 			background-color: white;
 
