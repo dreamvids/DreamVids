@@ -142,7 +142,14 @@ class User extends ActiveRecord\Model {
 	}
 
 	public function setSoundSetting($newSoundSetting) {
-		$this->soundsetting = $newSoundSetting;
+		$settings = $this->getSettings();
+		if(empty($settings)){
+			$settings = array();
+		}
+		
+		$settings->volume = $newSoundSetting;
+		$this->settings = json_encode($settings);
+		
 		$this->save();
 	}
 	
@@ -155,7 +162,15 @@ class User extends ActiveRecord\Model {
 	}
 	
 	public function getSoundSetting(){
-		return !empty($this->soundsetting) ? $this->soundsetting : 1; 
+		
+		$settings = $this->getSettings();
+		if(!isset($settings->volume)){
+			$soundsetting = 1;
+		}else{
+			$soundsetting = $settings->volume;
+		}
+		
+		return $soundsetting; 
 	}
 
 	public function hasSubscribedToChannel($channelId) {
