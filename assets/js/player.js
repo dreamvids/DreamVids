@@ -432,17 +432,25 @@ qualitySelection.addEventListener('click', function() {
 
 qualityButton = document.getElementById('qualityButton'); // On ouvre
 qualityButton.addEventListener('click', function() {
+	
     if (qualitys.length == 2) {
-        if (qualitys[0].format == currentQuality)
-            setQuality(qualitys[1].format)
-        else
-            setQuality(qualitys[0].format)
+        if (qualitys[0].format == currentQuality){
+        	setQuality(qualitys[1].format);
+        	qualityChange(qualitys[1].format);
+        }
+        else{
+        	setQuality(qualitys[0].format);
+        	qualityChange(qualitys[0].format);
+        }
 
     } else if (qualitys.length > 1) // S'il y a plusieurs qualités...
         qualitySelection.className = 'show';
+
+
 });
 
 function setQuality(format) { // On change la qualité
+	
     player.style.height = typeof embeded != 'undefined' ? document.documentElement.clientHeight + 'px' : player.offsetWidth / (16 / 9) + 'px';
     if (videoInfos)
         videoInfos.style.height = player.offsetWidth / (16 / 9) + 'px';
@@ -451,7 +459,7 @@ function setQuality(format) { // On change la qualité
     length = qualitys.length;
     if (currentQuality == format)
         return;
-
+    
     for (var i = 0; i < length; i++) {
         quality = qualitys[i];
         if (quality.format == format) {
@@ -463,7 +471,7 @@ function setQuality(format) { // On change la qualité
                 qualityButton.innerHTML = 'HD';
             else
                 qualityButton.innerHTML = 'Full HD';
-
+            
             lastTime = video.currentTime || lastTime;
             srcMp4.src = quality.mp4;
             srcWebm.src = quality.webm;
@@ -480,6 +488,14 @@ function setQuality(format) { // On change la qualité
         }
     }
 }
+
+function qualityChange(format) {
+	marmottajax.put({
+		url: _webroot_ + 'account/definition',
+		options: { definition: format }
+	});
+}
+
 var qualitys;
 
 function setVideo(array) { // On set toutes les qualités au chargement de la page

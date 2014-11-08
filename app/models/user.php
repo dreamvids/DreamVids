@@ -153,6 +153,19 @@ class User extends ActiveRecord\Model {
 		$this->save();
 	}
 	
+	public function setDefinitionSetting($newDefinitionSetting) {
+		$settings = $this->getSettings();
+		if(empty($settings)){
+			$settings = array();
+		}
+	
+		$settings->definition = $newDefinitionSetting;
+		$this->settings = json_encode($settings);
+	
+		$this->save();
+	}
+	
+	
 	public function getPassword() {
 		return $this->pass;
 	}
@@ -172,6 +185,20 @@ class User extends ActiveRecord\Model {
 		
 		return $soundsetting; 
 	}
+	
+	public function getDefinitionSetting(){
+	
+		$settings = $this->getSettings();
+		
+		if(!isset($settings->definition)){
+			$definitionsetting = 360;
+		}else{
+			$definitionsetting = $settings->definition;
+		}
+	
+		return $definitionsetting;
+	}
+	
 
 	public function hasSubscribedToChannel($channelId) {
 		if(UserChannel::exists($channelId)) {

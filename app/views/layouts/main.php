@@ -33,7 +33,8 @@
 
 			var _my_pseudo_ = "<?php echo Session::get()->username ?>",
 				_my_avatar_ = "<?php echo Session::get()->getMainChannel()->getAvatar() ?>",
-				_last_volume_setting_ =<?php echo Session::get()->getSoundSetting() ?>;
+				_last_volume_setting_ = <?php echo Session::get()->getSoundSetting() ?>,
+				_last_definition_setting_ = <?php echo Session::get()->getDefinitionSetting() ?>;
 
 			<?php } ?>
 
@@ -206,6 +207,7 @@
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
 <?php if (Session::isActive()) { ?>
 		<script>
+		setQuality(_last_definition_setting_);
 		setVolume(_last_volume_setting_);
 		 percent = video.volume * 100 + "%";
 		    volume.barre.style.width = percent;
