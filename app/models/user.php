@@ -141,12 +141,21 @@ class User extends ActiveRecord\Model {
 		$this->save();
 	}
 
+	public function setSoundSetting($newSoundSetting) {
+		$this->soundsetting = $newSoundSetting;
+		$this->save();
+	}
+	
 	public function getPassword() {
 		return $this->pass;
 	}
 	
 	public function getSettings() {
 		return json_decode($this->settings);
+	}
+	
+	public function getSoundSetting(){
+		return !empty($this->soundsetting) ? $this->soundsetting : 1; 
 	}
 
 	public function hasSubscribedToChannel($channelId) {

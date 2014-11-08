@@ -268,6 +268,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actual_ip` varchar(15) NOT NULL,
   `rank` int(1) NOT NULL DEFAULT '0',
   `settings` text NOT NULL,
+  `soundsetting` FLOAT NOT NULL DEFAULT '1',
   `last_visit` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

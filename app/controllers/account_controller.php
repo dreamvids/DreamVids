@@ -112,6 +112,12 @@ class AccountController extends Controller {
 				}
 			}
 		}
+		
+		if($id == 'volume'){
+			$data = $req;
+			Session::get()->setSoundSetting($data["volume"]);
+			return new Response(200);
+		}
 		else
 			return new ViewResponse('account/profile', $data);
 	}

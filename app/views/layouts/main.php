@@ -32,7 +32,8 @@
 			_logged_ = true;
 
 			var _my_pseudo_ = "<?php echo Session::get()->username ?>",
-				_my_avatar_ = "<?php echo Session::get()->getMainChannel()->getAvatar() ?>";
+				_my_avatar_ = "<?php echo Session::get()->getMainChannel()->getAvatar() ?>",
+				_last_volume_setting_ =<?php echo Session::get()->getSoundSetting() ?>;
 
 			<?php } ?>
 
@@ -203,7 +204,22 @@
 		</div> <!-- #page -->
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
-
+<?php if (Session::isActive()) { ?>
+		<script>
+		setVolume(_last_volume_setting_);
+		 percent = video.volume * 100 + "%";
+		    volume.barre.style.width = percent;
+		    volume.icon.style.left = percent;
+		    if (video.volume <= 0.05) // Génération de l'image
+		        volume.icon.dataset.volume = 0;
+		    else if (video.volume <= 0.4)
+		        volume.icon.dataset.volume = 1;
+		    else if (video.volume <= 0.6)
+		        volume.icon.dataset.volume = 2;
+		    else if (video.volume >= 0.6)
+		        volume.icon.dataset.volume = 3;
+		</script>
+<?php } ?>
 		<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
 			<form method="post" onsubmit="sendBug(this);return false;" class="bug-beta-input" onclick="document.getElementById('bug').focus();">
 
@@ -212,7 +228,7 @@
 			</form>
 			
 			<script>
-
+			
 				function sendBug(form) {
 
 					marmottajax.post({

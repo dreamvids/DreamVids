@@ -351,12 +351,12 @@ video.addEventListener("volumechange", function(event) {
 }, false);
 
 function volumeChange() {
-    ajax.post({
-        action: 'volume',
-        vol: video.volume
-    });
+	marmottajax.put({
+		url: _webroot_ + 'account/volume',
+		options: { volume: video.volume }
+	});
 }
-
+setVolume(_last_volume_setting_);
 var volumeBeforeUp = 1;
 var mouseDownVolume = false;
 volume.addEventListener("mousedown", function(event) { // Déplacement de la "barre" de volume
