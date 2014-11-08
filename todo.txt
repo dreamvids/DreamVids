@@ -1,5 +1,3 @@
-- Garder le volume sonore/qualité en mémoire
-
 - Améliorer les chaines
 
 - Officialisé les utilisateurs avec un icône ou mention "Officiel" à coté du nom (mais ça c'est pas très important).
