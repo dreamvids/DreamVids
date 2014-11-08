@@ -356,7 +356,7 @@ function volumeChange() {
 		options: { volume: video.volume }
 	});
 }
-setVolume(_last_volume_setting_);
+
 var volumeBeforeUp = 1;
 var mouseDownVolume = false;
 volume.addEventListener("mousedown", function(event) { // Déplacement de la "barre" de volume
