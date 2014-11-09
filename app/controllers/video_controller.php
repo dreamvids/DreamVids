@@ -13,7 +13,7 @@ require_once MODEL.'user_channel.php';
 require_once MODEL.'channel_action.php';
 require_once MODEL.'upload.php';
 require_once MODEL.'playlist.php';
-require_once MODEL.'predefined_description.php';
+//require_once MODEL.'predefined_description.php';
 
 class VideoController extends Controller {
 
