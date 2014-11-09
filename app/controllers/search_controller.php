@@ -22,7 +22,9 @@ class SearchController extends Controller {
 		$data['currentPageTitle'] = $q.' - Recherche';
 		$data['search'] = $q;
 		$data['videos'] = Video::getSearchVideos($q);
-		if(empty($data['videos'])){
+		$data['channels'] = UserChannel::getSearchChannels($q);
+		
+		if(empty($data['videos']) && empty($data['channels'])){
 			
 			$data['error']= array(
 					"message" => "La recherche n'a retourné aucun resultat.",
@@ -31,6 +33,7 @@ class SearchController extends Controller {
 			
 			return new ViewResponse('search/error', $data);
 		}
+// 		die(var_dump($data['channels']));
 		return new ViewResponse('search/search', $data);
 	}
 	
