@@ -13,8 +13,8 @@ echo '
 					<div class="description">
 						<a href="'.WEBROOT.'channel/'.$chan->id.'"><h4>'.$chan->name.'</h4></a>
 						<div>
-							<span class="view">'.number_format($chan->getAllViews()).'</span>
-							
+							<span class="view">'.number_format($chan->getAllViews()).' / ' .$chan->getSubscribersNumber().' Abonnés </span>
+
 						</div>
 					</div>
 				</div>';
