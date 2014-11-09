@@ -84,8 +84,8 @@
 <script>
 
 	var chatLiveOptions = {
-		ip: "192.168.33.10",
-		port: 8081,
+		ip: '<?php echo Config::getValue_('livechat-address'); ?>',
+		port: <?php echo Config::getValue_('livechat-port'); ?>,
 		channel: '<?php echo $channel->name; ?>',
 		username: '<?php echo Session::get()->username; ?>',
 		sessionId: '<?php echo Session::getId(); ?>'

@@ -159,8 +159,7 @@ var Chat = {
 
 
 function initChat(opts) {
-	//Chat.address = opts.ip;
-	Chat.address = '127.0.0.1';
+	Chat.address = opts.ip;
 	Chat.port = opts.port;
 	Chat.channel = opts.channel;
 	Chat.username = opts.username ? opts.username : 'Dreamer';

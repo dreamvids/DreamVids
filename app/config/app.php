@@ -16,3 +16,5 @@ if (defined('WEBROOT')) {
 }
 
 Config::addValue('livestream-source', 'rtmp://192.168.33.10/stream/');
+Config::addValue('livechat-address', '192.168.33.10');
+Config::addValue('livechat-port', '8080');
