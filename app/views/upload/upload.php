@@ -30,7 +30,7 @@
 			<input id="video-title" type="text" name="video-title" required="required" placeholder="Titre" spellcheck="false"/>
 		</label>
 		<fieldset>
-			<?php if(!empty($predefined_descriptions)) { ?>
+			<?php if(false){ //if(!empty($predefined_descriptions)) { //TODO AFTER All the bug fix?>
 			<select onchange="insertDesc(this);">
 				<option value="" selected>Inserez une description prédéfinie...</option>
 				<option disabled>──────────</option>
@@ -46,7 +46,9 @@
 			Description : 
 		<textarea name="video-description" required="required" id="video-description" rows="4" placeholder="Description"></textarea>
 		</label>
-		<input name="save-description" type="checkbox">Ajouter cette description aux prédéfinies &nbsp;</input><input name="save-description-name" style="width:45%; display: inline;" placeholder="Nom de cette description" type="text">
+		
+<!-- 		<input name="save-description" type="checkbox">Ajouter cette description aux prédéfinies &nbsp;</input> 
+		<input name="save-description-name" style="width:45%; display: inline;" placeholder="Nom de cette description" type="text"> -->
 		</fieldset>
 		
 		<label for="video-tags">

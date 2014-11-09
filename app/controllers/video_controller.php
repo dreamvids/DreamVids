@@ -122,13 +122,13 @@ class VideoController extends Controller {
 		
 		if (isset($req['channelId'], $req['uploadId']) && UserChannel::find($req['channelId'])->belongToUser(Session::get()->id) && Upload::exists(array('id' => $req['uploadId'], 'channel_id' => $req['channelId']))) {
 			
-			if(isset($req['save-description']) && isset($req['save-description-name']) && isset($req['video-description'])){
-				$newdesc=array();
-				$newdesc['name']=$req['save-description-name'];
-				$newdesc['description']=$req['video-description'];
-				$newdesc['users_channels_id']=$req['channelId'];
-				PredefinedDescription::create($newdesc);
-			}
+// 			if(isset($req['save-description']) && isset($req['save-description-name']) && isset($req['video-description'])){
+// 				$newdesc=array();
+// 				$newdesc['name']=$req['save-description-name'];
+// 				$newdesc['description']=$req['video-description'];
+// 				$newdesc['users_channels_id']=$req['channelId'];
+// 				PredefinedDescription::create($newdesc);
+// 			}
 			
 			$upload = Upload::find($req['uploadId']);
 			$videoId = $upload->video_id;
