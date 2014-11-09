@@ -81,7 +81,7 @@
 
 			<div class="inner-description">
 
-				<?php echo $description.'<br /><br />Tags: ';
+				<?php echo nl2br($description).'<br /><br />Tags: ';
 				foreach ($tags as $tag) {
 					echo '<a href="search?q=%23'.$tag.'">#'.$tag.'</a> ';
 				}
