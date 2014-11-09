@@ -147,7 +147,7 @@ class User extends ActiveRecord\Model {
 			$settings = array();
 		}
 		
-		$settings->volume = $newSoundSetting;
+		$settings['volume'] = $newSoundSetting;
 		$this->settings = json_encode($settings);
 		
 		$this->save();
@@ -159,7 +159,7 @@ class User extends ActiveRecord\Model {
 			$settings = array();
 		}
 	
-		$settings->definition = $newDefinitionSetting;
+		$settings['definition'] = $newDefinitionSetting;
 		$this->settings = json_encode($settings);
 	
 		$this->save();
@@ -171,16 +171,16 @@ class User extends ActiveRecord\Model {
 	}
 	
 	public function getSettings() {
-		return json_decode($this->settings);
+		return json_decode($this->settings, true);
 	}
 	
 	public function getSoundSetting(){
 		
 		$settings = $this->getSettings();
-		if(!isset($settings->volume)){
+		if(!isset($settings['volume'])){
 			$soundsetting = 1;
 		}else{
-			$soundsetting = $settings->volume;
+			$soundsetting = $settings['volume'];
 		}
 		
 		return $soundsetting; 
@@ -190,10 +190,10 @@ class User extends ActiveRecord\Model {
 	
 		$settings = $this->getSettings();
 		
-		if(!isset($settings->definition)){
+		if(!isset($settings['definition'])){
 			$definitionsetting = 360;
 		}else{
-			$definitionsetting = $settings->definition;
+			$definitionsetting = $settings['definition'];
 		}
 	
 		return $definitionsetting;

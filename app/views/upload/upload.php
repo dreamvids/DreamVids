@@ -30,9 +30,15 @@
 			<input id="video-title" type="text" name="video-title" required="required" placeholder="Titre" spellcheck="false"/>
 		</label>
 		
-		<label for="video-description">
-			Description :
-			<textarea name="video-description" required="required" id="video-description" rows="4" placeholder="Description"></textarea>
+<!-- 		<label for="video-description">  -->
+<!-- 			Description :  -->
+<!-- 			<select> -->
+<!-- 				<option value="0" selected>Prédéfinie...</option> -->
+<!-- 				<option value="1">Non listée</option> -->
+<!-- 				<option value="0">Privée</option> -->
+<!-- 		</select>  -->
+		<textarea name="video-description" required="required" id="video-description" rows="4" placeholder="Description"></textarea>
+
 		</label>
 		
 		<label for="video-tags">
