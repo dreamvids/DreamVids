@@ -247,7 +247,7 @@ class ChannelController extends Controller {
 		}
 			else if(isset($req['admin_edit'])){
 				
-					$admintoremove = $admins[0]*-1;
+	
 					if(Session::isActive()){
 						$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 						if(!$channel){
@@ -266,7 +266,7 @@ class ChannelController extends Controller {
 										return new RedirectResponse(WEBROOT."channel/$id");
 									}
 								}
-								die(var_dump($current_admins));					
+												
 							}
 						}
 					}
