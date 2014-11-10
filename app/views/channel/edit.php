@@ -27,13 +27,13 @@
 			<textarea rows="8" cols="50" required="required" name="description" id="description"><?php echo @$description; ?></textarea><br />
 			
 			<label for="avatar">
-				<img class="preview none filePreview" data-input="avatar" id="preview-avatar" src="<?php echo $avatar; ?>">
+				<img class="preview none filePreview" data-input="avatar" id="preview-avatar" src="<?php echo @$avatar; ?>">
 				<i>Avatar :</i>
 				<input type="file" data-text="Choisir un avatar" data-preview="preview-avatar" name="avatar" id="avatar" /><br />
 			</label>
 			
 			<label for="background">
-				<img class="preview none filePreview" data-input="background" id="preview-background" src="<?php echo $background; ?>">
+				<img class="preview none filePreview" data-input="background" id="preview-background" src="<?php echo @$background; ?>">
 				<i>Arrière-plan :</i>
 				<input type="file" data-text="Choisir un arrière-plan" data-preview="preview-background" name="background" id="background" /><br />
 			</label>
