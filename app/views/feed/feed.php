@@ -63,7 +63,7 @@
 							<?php
 						}
 						else if($action->type == 'comment') {
-							$comment = Utils::secureActiveRecordModel(Comment::getByChannelAction($action));
+ 							$comment = Comment::getByChannelAction($action);
 							$video = Utils::secureActiveRecordModel(Video::find($action->target));
 							?>
 								<div class="card<?php echo $supp_class; ?> comment">
