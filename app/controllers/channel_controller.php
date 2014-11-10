@@ -135,11 +135,19 @@ class ChannelController extends Controller {
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
 			$data['currentPageTitle'] = $channel->name.' - Edition';
-
+			$data['owner_id'] = $channel->owner_id;
+			
+			
+			$admins_array_ids = explode(';', trim($channel->admins_ids, ';'));
+			$data['admins_ids'] = $admins_array_ids;
+			$data['admins'] = array();
+			foreach ($admins_array_ids as $adm) {
+				$data['admins'][] = User::find_by_id($adm)->getMainChannel();
+			}
+						
 			if(isset($req['name'], $req['description'])) {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
-						$adm = $channel->admins_ids;
 						if($channel->isUsersMainChannel(Session::get()->id)) {
 							if ($channel->name != $req['name']) {
 								$data['name'] = $channel->name;
@@ -196,7 +204,7 @@ class ChannelController extends Controller {
 					else {
 						$response = new ViewResponse('channel/edit', $data);
 						$response->addMessage(ViewMessage::error('Le nom de la chaîne doit contenir uniquement des lettres (majuscules et minuscules), des traits-d\'union, des _ et des points.'));
-
+// 						die(var_dump($data));	
 						return $response;
 					}
 				}

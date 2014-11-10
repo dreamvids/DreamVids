@@ -42,6 +42,7 @@
 			<label>Administrateurs :</label>
 				<div id="adm">
 <?php
+
 foreach ($admins as $key => $adm) {
 	$is_creator = ($adm->owner_id == $owner_id);
 	$creator = ($is_creator) ? ' (Créateur)' : '';
