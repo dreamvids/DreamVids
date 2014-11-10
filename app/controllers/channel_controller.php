@@ -53,6 +53,7 @@ class ChannelController extends Controller {
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
+			$data['owner_id'] = $channel->owner_id;
 
 			return new ViewResponse('channel/channel', $data);
 		}
@@ -118,10 +119,10 @@ class ChannelController extends Controller {
 		$req = $request->getParameters();
 		$data = $req;
 		$data['current'] = 'channels';
-		$name = $req['name'];
-		$descr = $req['description'];
-		$admins = json_decode($req['_admins']);
-
+		$name = @$req['name'];
+		$descr = @$req['description'];
+		$admins = @json_decode($req['_admins']);
+		
 		if(isset($req['editChannelSubmit']) && Session::isActive()) {
 			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 
@@ -244,6 +245,33 @@ class ChannelController extends Controller {
 				return new Response(500);
 			}
 		}
+			else if(isset($req['admin_edit'])){
+				
+					$admintoremove = $admins[0]*-1;
+					if(Session::isActive()){
+						$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+						if(!$channel){
+							return Utils::getNotFoundResponse();
+						}
+						if(!$channel->isUsersMainChannel(Session::get()->id) && $channel->owner_id!=Session::get()->id){
+							if(in_array($channel, Session::get()->getOwnedChannels())){
+								$current_admins=$channel->admins_ids;
+								$current_admins = trim($current_admins, ";");
+								$current_admins = explode(";", $current_admins);
+								foreach ($current_admins as $k => $admin){
+									if($admin==Session::get()->id){
+										unset($current_admins[$k]);
+										$channel->admins_ids=";".implode($current_admins, ";").";";
+										$channel->save();
+										return new RedirectResponse(WEBROOT."channel/$id");
+									}
+								}
+								die(var_dump($current_admins));					
+							}
+						}
+					}
+					return Utils::getForbiddenResponse();
+			}
 	}
 
 	public function destroy($id, $request) {
@@ -278,6 +306,7 @@ class ChannelController extends Controller {
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
 			$data['videos'] = $channel->getPostedVideos();
+			$data['owner_id'] = $channel->owner_id;
 
 			return new ViewResponse('channel/social', $data);
 		}
@@ -304,6 +333,7 @@ class ChannelController extends Controller {
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
 			$data['videos'] = $channel->getPostedVideos();
+			$data['owner_id'] = $channel->owner_id;
 
 			return new ViewResponse('channel/playlists', $data);
 		}
