@@ -32,6 +32,7 @@ class ChannelController extends Controller {
 				'background' => $channel->getBackground(),
 				'subscribers' => $channel->subscribers,
 				'views' => $channel->views,
+				'total_views' => $channel->getAllViews(),
 				'verified' => $channel->verified
 			);
 
@@ -275,6 +276,8 @@ class ChannelController extends Controller {
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['posts'] = $channel->getPostedMessages();
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			$data['total_views'] = $channel->getAllViews();
+			$data['videos'] = $channel->getPostedVideos();
 
 			return new ViewResponse('channel/social', $data);
 		}
@@ -299,6 +302,8 @@ class ChannelController extends Controller {
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['playlists'] = Playlist::all(array('conditions' => array('channel_id = ?', $channel->id)));
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			$data['total_views'] = $channel->getAllViews();
+			$data['videos'] = $channel->getPostedVideos();
 
 			return new ViewResponse('channel/playlists', $data);
 		}
