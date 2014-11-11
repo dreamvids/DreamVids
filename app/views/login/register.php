@@ -13,6 +13,6 @@
 		<label for="mail">Adresse e-mail: </label>
 		<input type="text" name="mail" id="mail" placeholder="Adresse de contact" value="<?php echo @$mail; ?>"/><br />
 
-		<input type="submit" name="submitRegister" value="Valider" class="btn btn-primary" />
+		<input type="submit" name="submitRegister" value="Valider" />
 	</form>
 </section>
