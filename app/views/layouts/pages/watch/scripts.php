@@ -29,6 +29,22 @@
 		}
 
 	]);
+
+	/*setVideo([
+
+		{
+			format: 360,
+			mp4: "http://incroya.bl.ee/sd.mp4",
+			webm: "http://incroya.bl.ee/sd.mp4"
+		},
+
+		{
+			format: 720,
+			mp4: "http://incroya.bl.ee/sd.mp4",
+			webm: "http://incroya.bl.ee/hd.mp4"
+		}
+
+	]);*/
 	
 	/*setSubTitles([
 

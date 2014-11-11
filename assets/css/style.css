@@ -4700,7 +4700,7 @@ nav.pagination {
         display: block;
         width: 100%;
         height: 30px;
-        content: attr(data-restant);
+        content: attr(data-percent);
         color: white;
         text-align: right;
         font-size: 22px;
@@ -4710,10 +4710,10 @@ nav.pagination {
         left: 100%;
         top: 0;
         display: block;
-        width: 100px;
+        width: 600px;
         height: 30px;
         margin-left: 10px;
-        content: attr(data-percent);
+        content: attr(data-restant);
         color: #40a6e0;
         font-size: 25px;
         line-height: 32px; }
@@ -4844,7 +4844,7 @@ nav.pagination {
   font-size: 19px;
   color: white;
   background: rgba(64, 166, 224, 0.8);
-  overflow: hidden;
+  overflow: auto;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -4867,6 +4867,20 @@ nav.pagination {
       width: 50%;
       height: 100%;
       padding: 5px; } }
+.content.wide.channel > .inner .right::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  background: transparent;
+  cursor: pointer; }
+.content.wide.channel > .inner .right::-webkit-scrollbar-thumb {
+  background: white; }
+.content.wide.channel > .inner .right::-moz-scrollbar {
+  height: 8px;
+  width: 8px;
+  background: transparent;
+  cursor: pointer; }
+.content.wide.channel > .inner .right::-moz-scrollbar-thumb {
+  background: white; }
 
 .contributors li {
   float: left;
@@ -6226,10 +6240,10 @@ nav.pagination {
 
 #player.wide ~ .video-infos {
   width: 100%;
-  margin: 0 auto 0 auto; }
+  margin: 0; }
 
 @media (min-width: 640px) {
-  #player.wide ~ .video-infos {
+  #player.animated ~ .video-infos {
     -webkit-transition: width 0.4s;
     -moz-transition: width 0.4s;
     -ms-transition: width 0.4s;
