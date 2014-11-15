@@ -24,7 +24,10 @@
 		</script>
 
 		<div id="player">
-			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $video->getThumbnail(); ?>"></video>
+			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $video->getThumbnail(); ?>">
+				<source id="srcMp4" type="video/mp4" src="">
+				<source id="srcWebm" type="video/webm" src="">
+			</video>
 			<div id="annotationsElement"></div>
 			<span id="repeat">
 				<span class="icon"></span>
@@ -41,7 +44,7 @@
 				</span>
 				<span id="play-pause" class="play"></span>
 				<span id="time"></span>
-				<a href="http://dreamvids.fr<?php echo $video->url; ?>" target="_blank" id="DreamVidsIconEmbed"></a>
+				<a href="http://alpha.dreamvids.fr/watch/<?php echo $video->id; ?>" target="_blank" id="DreamVidsIconEmbed"></a>
 				<span id="annotationsButton" style="display: none"></span>
 				<span id="qualityButton">SD</span>
 				<span id="volume">
