@@ -35,6 +35,33 @@ class FeedController extends Controller {
 			if(count($actions) > 0) {
 				$data['actions'] = $actions;
 			}
+			
+			$last_pm_timestamp = 0;
+			$interval = 7*24*3600; //secondes
+			$first_streak = true;
+			$first_streak_id = -1;
+			foreach ($data["actions"] as $k => $action) {
+				if($action->type != 'pm') { continue; } //on s'occupe que des pm
+				if($first_streak_id<0){
+					$first_streak_id = $k;
+				}
+				
+				if($first_streak){
+					$first_streak = false;
+					$first_streak_id=$k;
+					$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
+				}else{
+					if($action->timestamp+$interval>=$last_pm_timestamp){
+						unset($data["actions"][$k]);
+						$data["actions"][$first_streak_id]->infos['nb_msg']++;
+					}else{
+						$first_streak_id=$k;
+						$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
+					}
+					
+				}
+				$last_pm_timestamp = $action->timestamp;
+			}
 
 			return new ViewResponse('feed/feed', $data);
 		}

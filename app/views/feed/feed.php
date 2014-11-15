@@ -130,7 +130,7 @@
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'account/messages'; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/1"></div>
-										<p>Vous avez un nouveau message privé !</p>
+										<p>Vous avez <?php echo $action->infos['nb_msg']?> nouveau message privé !</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
