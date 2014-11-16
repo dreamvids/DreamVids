@@ -47,7 +47,17 @@ class RegisterController extends Controller {
 									if(!User::find_by_username($username)) {
 										if(!User::isMailRegistered($mail)) {
 											User::register($username, $pass, $mail);
-
+											
+											$created_user = User::find('first', array('username' => $username));
+											ChannelAction::create(array(
+											'id' => ChannelAction::generateId(6),
+											'channel_id' => $created_user->getMainChannel()->id,
+											'recipients_ids' => ";" . $created_user->id . ";",
+											'type' => 'welcome',
+											'target' => $created_user->id,
+											'timestamp' => Utils::tps()
+											));
+											
 											$response = new ViewResponse('login/login');
 											$response->addMessage(ViewMessage::success('Inscription validée. Vous pouvez vous connecter !'));
 											return $response;
