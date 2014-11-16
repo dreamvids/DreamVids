@@ -159,20 +159,25 @@ class AccountController extends Controller {
 	
 	public function channelslist($request) {
 		if(Session::isActive()) {
-			$data['user'] = Session::get();
-			$data['currentPageTitle'] = 'Mon compte';
-			$data['channel'] = Session::get()->getOwnedChannels();
-			$data['videos_count'] = array();
-			foreach($data['channel'] as $chan) {
-				$data['videos_count'][$chan->id] = Video::count(array('conditions' => array('poster_id = ?', $chan->id)));
+			if (count(Session::get()->getOwnedChannels()) > 1) {
+				$data['user'] = Session::get();
+				$data['currentPageTitle'] = 'Mon compte';
+				$data['channel'] = Session::get()->getOwnedChannels();
+				$data['videos_count'] = array();
+				foreach($data['channel'] as $chan) {
+					$data['videos_count'][$chan->id] = Video::count(array('conditions' => array('poster_id = ?', $chan->id)));
+				}
+				$data['current'] = 'videos';
+				
+				$response = new ViewResponse('account/channels_videos', $data);
+				if (empty($data['channel'])) {
+					$response->addMessage(ViewMessage::error('Vous n\'avez aucune chaîne'));
+				}
+				return $response;
 			}
-			$data['current'] = 'videos';
-			
-			$response = new ViewResponse('account/channels_videos', $data);
-			if (empty($data['channel'])) {
-				$response->addMessage(ViewMessage::error('Vous n\'avez aucune chaîne'));
+			else {
+				return new RedirectResponse(WEBROOT.'account/videos/'.Session::get()->getMainChannel()->id);
 			}
-			return $response;
 		}
 		else {
 			return new RedirectResponse(WEBROOT.'login');
@@ -181,7 +186,7 @@ class AccountController extends Controller {
 
 	public function videos($id, $request) {
 		if(Session::isActive()) {
-			$data['videos'] = UserChannel::find($id)->getPostedVideos();
+			$data['videos'] = UserChannel::find($id)->getPostedVideos(0);
 			$data['currentPageTitle'] = 'Mon compte';
 			$data['current'] = 'videos';
 			

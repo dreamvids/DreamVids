@@ -208,8 +208,12 @@ function downPlayer() { // Les controles disparaissent
     if (!video.paused) {
         lastTime = new Date().getTime();
         annotationsElement.style.cursor = 'none';
-        controls.className = 'down';
-        player.className = 'down';
+        if (player.className.indexOf("down") < 0) {
+
+            controls.className += ' down';
+            player.className += ' down';
+            
+        }
     }
 }
 var timeout = setTimeout(downPlayer, time2down / 2);
@@ -244,15 +248,16 @@ widescreen.addEventListener("click", function() {
         videoInfos.style.height = '';
 
     if (player.className.search('wide') < 0) {
-        player.className = 'animated wide';
+        player.className += ' animated wide';
         widescreen.className = 'smallscreen';
     } else {
-        player.className = 'animated';
+        player.className = player.className.replace("wide", "");
+        player.className += ' animated';
         widescreen.className = 'widescreen';
     }
 
     var unAnimate = setTimeout(function() {
-        player.className = player.className.search('wide') > 0 ? 'wide' : '';
+        player.className = player.className.replace("animated", "");
         player.style.height = typeof embeded != 'undefined' ? document.documentElement.clientHeight + 'px' : player.offsetWidth / (16 / 9) + 'px';
     }, 400);
 });
@@ -268,7 +273,7 @@ function toogleFullScreen() {
     if (typeof annoTimeLine != 'undefined')
         return;
 
-    player.className = player.className.search('wide') > 0 ? 'wide' : '';
+    player.className = player.className.search('wide') > 0 ? player.className + ' wide' : '';
 
     if (!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement)) {
         if (player.requestFullscreen)

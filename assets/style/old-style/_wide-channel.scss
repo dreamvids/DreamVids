@@ -164,7 +164,7 @@
 		font-size: 19px;
 		color: white;
 		background: #{'rgba(64, 166, 224, 0.8)'};
-		overflow: hidden;
+		overflow: auto;
 
 		@media (max-width: 900px) {
 			max-height: 80%;
@@ -193,5 +193,37 @@
 			-ms-box-sizing: border-box;
 			 -o-box-sizing: border-box;
 				box-sizing: border-box;
+	}
+
+	.right::-webkit-scrollbar {
+
+		height: 8px;
+		width: 8px;
+
+		background: transparent;
+		cursor: pointer;
+
+	}
+
+	.right::-webkit-scrollbar-thumb {
+
+		background: white;
+
+	}
+
+	.right::-moz-scrollbar {
+
+		height: 8px;
+		width: 8px;
+
+		background: transparent;
+		cursor: pointer;
+
+	}
+
+	.right::-moz-scrollbar-thumb {
+
+		background: white;
+
 	}
 }

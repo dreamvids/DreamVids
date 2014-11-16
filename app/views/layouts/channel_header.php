@@ -2,7 +2,13 @@
 	<div class="bg-loader" id="background-wide" data-background="<?php echo $background; ?>"></div>
 
 	<section class="inner">
-		<ul class="top">
+	<?php if($channelBelongsToUser && Session::get()->id != $owner_id){ ?>
+	<form class="form no-style" method="post" action="<?php echo WEBROOT."channel/$id"?>">
+		<input type="hidden" name="_method" value="put">
+		<input type="submit" name="admin_edit" value="Quitter cette chaine">
+	</form>
+	<?php } ?>
+	<ul class="top">
 			<li><b><?php echo $subscribers; ?></b> Abonnés</li>
 			<li><b><?php echo count($videos); ?></b> Vidéos</li>
 			<li><b><?php echo $total_views; ?></b> Vue<?php echo $total_views>1? 's' : ''; ?></li>

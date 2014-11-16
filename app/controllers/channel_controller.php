@@ -32,6 +32,7 @@ class ChannelController extends Controller {
 				'background' => $channel->getBackground(),
 				'subscribers' => $channel->subscribers,
 				'views' => $channel->views,
+				'total_views' => $channel->getAllViews(),
 				'verified' => $channel->verified
 			);
 
@@ -52,6 +53,7 @@ class ChannelController extends Controller {
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
+			$data['owner_id'] = $channel->owner_id;
 
 			return new ViewResponse('channel/channel', $data);
 		}
@@ -117,10 +119,10 @@ class ChannelController extends Controller {
 		$req = $request->getParameters();
 		$data = $req;
 		$data['current'] = 'channels';
-		$name = $req['name'];
-		$descr = $req['description'];
-		$admins = json_decode($req['_admins']);
-
+		$name = @$req['name'];
+		$descr = @$req['description'];
+		$admins = @json_decode($req['_admins']);
+		
 		if(isset($req['editChannelSubmit']) && Session::isActive()) {
 			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 
@@ -133,11 +135,19 @@ class ChannelController extends Controller {
 			$data['name'] = $channel->name;
 			$data['description'] = $channel->description;
 			$data['currentPageTitle'] = $channel->name.' - Edition';
-
+			$data['owner_id'] = $channel->owner_id;
+			
+			
+			$admins_array_ids = explode(';', trim($channel->admins_ids, ';'));
+			$data['admins_ids'] = $admins_array_ids;
+			$data['admins'] = array();
+			foreach ($admins_array_ids as $adm) {
+				$data['admins'][] = User::find_by_id($adm)->getMainChannel();
+			}
+						
 			if(isset($req['name'], $req['description'])) {
 				if(strlen($name) >= 3 && strlen($name) <= 40) {
 					if(preg_match("#^[a-zA-Z0-9\_\-\.]+$#", $name) ) {
-						$adm = $channel->admins_ids;
 						if($channel->isUsersMainChannel(Session::get()->id)) {
 							if ($channel->name != $req['name']) {
 								$data['name'] = $channel->name;
@@ -194,7 +204,7 @@ class ChannelController extends Controller {
 					else {
 						$response = new ViewResponse('channel/edit', $data);
 						$response->addMessage(ViewMessage::error('Le nom de la chaîne doit contenir uniquement des lettres (majuscules et minuscules), des traits-d\'union, des _ et des points.'));
-
+// 						die(var_dump($data));	
 						return $response;
 					}
 				}
@@ -243,6 +253,33 @@ class ChannelController extends Controller {
 				return new Response(500);
 			}
 		}
+			else if(isset($req['admin_edit'])){
+				
+	
+					if(Session::isActive()){
+						$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+						if(!$channel){
+							return Utils::getNotFoundResponse();
+						}
+						if(!$channel->isUsersMainChannel(Session::get()->id) && $channel->owner_id!=Session::get()->id){
+							if(in_array($channel, Session::get()->getOwnedChannels())){
+								$current_admins=$channel->admins_ids;
+								$current_admins = trim($current_admins, ";");
+								$current_admins = explode(";", $current_admins);
+								foreach ($current_admins as $k => $admin){
+									if($admin==Session::get()->id){
+										unset($current_admins[$k]);
+										$channel->admins_ids=";".implode($current_admins, ";").";";
+										$channel->save();
+										return new RedirectResponse(WEBROOT."channel/$id");
+									}
+								}
+												
+							}
+						}
+					}
+					return Utils::getForbiddenResponse();
+			}
 	}
 
 	public function destroy($id, $request) {
@@ -275,6 +312,9 @@ class ChannelController extends Controller {
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['posts'] = $channel->getPostedMessages();
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			$data['total_views'] = $channel->getAllViews();
+			$data['videos'] = $channel->getPostedVideos();
+			$data['owner_id'] = $channel->owner_id;
 
 			return new ViewResponse('channel/social', $data);
 		}
@@ -299,6 +339,9 @@ class ChannelController extends Controller {
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['playlists'] = Playlist::all(array('conditions' => array('channel_id = ?', $channel->id)));
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			$data['total_views'] = $channel->getAllViews();
+			$data['videos'] = $channel->getPostedVideos();
+			$data['owner_id'] = $channel->owner_id;
 
 			return new ViewResponse('channel/playlists', $data);
 		}

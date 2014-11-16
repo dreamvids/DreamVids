@@ -8,8 +8,9 @@ class UserChannel extends ActiveRecord\Model {
 
 	static $table_name = 'users_channels';
 
-	public function getPostedVideos() {
-		return Video::all(array('conditions' => array('poster_id' => $this->id), 'order' => 'timestamp desc'));
+	public function getPostedVideos($publicOnly = true) {
+		$visibility = ($publicOnly) ? 'AND visibility = '.Config::getValue_('vid_visibility_public') : '';
+		return Video::all(array('conditions' => array("poster_id = ? AND visibility != ? ".$visibility, $this->id, Config::getValue_('vid_visibility_suspended')), 'order' => 'timestamp desc'));
 	}
 	
 	public function getAllViews() {

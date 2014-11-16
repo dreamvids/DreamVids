@@ -72,7 +72,7 @@ class ChannelPostController extends Controller {
 			$channel = UserChannel::exists($channelId) ? UserChannel::find($channelId) : UserChannel::find_by_name($channelId);
 
 			if(is_object($channel) && $channel->belongToUser(Session::get()->id)) {
-				$postContent = Utils::secure($req['post-content']);
+				$postContent = $req['post-content'];
 				$postContent = trim($postContent);
 				if (!empty($postContent)) {
 					$post = $channel->postMessage($postContent);
@@ -80,7 +80,7 @@ class ChannelPostController extends Controller {
 					$postData = array(
 						'id' => $post->id,
 						'channel_id' => $post->channel_id,
-						'content' => $post->content,
+						'content' => Utils::secure($post->content),
 						'timestamp' => $post->timestamp
 					);
 	
@@ -88,7 +88,7 @@ class ChannelPostController extends Controller {
 				}
 			}
 		}
-
+		
 		return new Response(500);
 	}
 

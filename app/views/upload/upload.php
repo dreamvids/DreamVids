@@ -29,11 +29,27 @@
 			Titre de la vidéo :
 			<input id="video-title" type="text" name="video-title" required="required" placeholder="Titre" spellcheck="false"/>
 		</label>
-		
-		<label for="video-description">
-			Description :
-			<textarea name="video-description" required="required" id="video-description" rows="4" placeholder="Description"></textarea>
+		<fieldset>
+			<?php if(false){ //if(!empty($predefined_descriptions)) { //TODO AFTER All the bug fix?>
+			<select onchange="insertDesc(this);">
+				<option value="" selected>Inserez une description prédéfinie...</option>
+				<option disabled>──────────</option>
+			<?php foreach ($predefined_descriptions as $desc) { ?>
+			
+				<option value="<?php echo stripslashes($desc->description); ?>" ><?php echo Utils::secure($desc->name); ?></option>
+			<?php } ?>
+		</select> 
+			<?php }else{
+					
+			}?>
+		<label for="video-description"> 
+			Description : 
+		<textarea name="video-description" required="required" id="video-description" rows="4" placeholder="Description"></textarea>
 		</label>
+		
+<!-- 		<input name="save-description" type="checkbox">Ajouter cette description aux prédéfinies &nbsp;</input> 
+		<input name="save-description-name" style="width:45%; display: inline;" placeholder="Nom de cette description" type="text"> -->
+		</fieldset>
 		
 		<label for="video-tags">
 			Mots clés (séparés par un espace) :<input id="video-tags" type="text" name="video-tags" required="required" placeholder="Tag1 Tag2 TagDeLaMort" spellcheck="false"/>

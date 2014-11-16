@@ -86,13 +86,13 @@
 #player.wide ~ .video-infos {
 
 	width: 100%;
-	margin: 0 auto 0 auto;
+	margin: 0;
 
 }
 
 @media (min-width: 640px) {
 
-	#player.wide ~ .video-infos {
+	#player.animated ~ .video-infos {
 
 		-webkit-transition: width 0.4s;
 		   -moz-transition: width 0.4s;

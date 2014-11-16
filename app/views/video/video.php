@@ -81,7 +81,7 @@
 
 			<div class="inner-description">
 
-				<?php echo $description.'<br /><br />Tags: ';
+				<?php echo nl2br($description).'<br /><br />Tags: ';
 				foreach ($tags as $tag) {
 					echo '<a href="search?q=%23'.$tag.'">#'.$tag.'</a> ';
 				}
@@ -91,7 +91,7 @@
 
 			<div class="inner-export">
 
-				<input id="exporter-input" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//dreamvids.fr/embed/<?php echo $video->id; ?>" allowfullscreen frameborder="0"></iframe>'>
+				<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//alpha.dreamvids.fr/embed/<?php echo $video->id; ?>" allowfullscreen frameborder="0"></iframe>'>
 
 				<div class="form no-style">
 					
@@ -265,7 +265,7 @@ foreach ($videos_ids as $vid) {
 								<li class="plus" id="plus-<?php echo $comment->id; ?>" onclick="likeComment('<?php echo $comment->id; ?>')">+<?php echo $comment->likes; ?></li>
 								<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
 								<li onclick="reportComment('<?php echo $comment->id; ?>', this)" style="cursor:pointer">Signaler</li>
-								<li onclick="document.getElementById('response').innerHTML='<b>Répondre à <?php echo UserChannel::getNameById($comment->poster_id); ?> :</b>';document.getElementById('textarea-comment').focus();document.getElementById('parent').value='<?php echo $comment->id; ?>';" style="cursor:pointer">Répondre</li>
+								<li onclick="document.getElementById('response').innerHTML='<b>Répondre à <?php echo UserChannel::getNameById($comment->poster_id); ?> :</b>';document.getElementById('textarea-comment').focus();document.getElementById('parent-comment').value='<?php echo $comment->id; ?>';" style="cursor:pointer">Répondre</li>
 							</ul>
 						</div>
 					</div>

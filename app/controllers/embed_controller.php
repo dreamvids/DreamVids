@@ -17,7 +17,7 @@ class EmbedController extends Controller {
 	
 	public function get($id, $request) {
 		$video = Video::find($id);
-		$url = (preg_match("#^http#isU", $video->url)) ? $video->url : 'http://dreamvids.fr'.$video->url;
+		$url = (preg_match("#^http#isU", $video->url)) ? $video->url : 'http://dreamvids.fr/'.$video->url;
 		$data = array();
 		$data['video'] = $video;
 		$data['url'] = $url;

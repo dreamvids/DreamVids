@@ -43,7 +43,7 @@
 								<div class="card<?php echo $supp_class; ?> channel">
 									<a href="<?php echo WEBROOT.'channel/'.$channel_action->name; ?>">
 										<div class="avatar bg-loader" data-background-load-in-view data-background="<?php echo $channel_action->getBackground(); ?>"></div>
-										<p><b><?php echo $channel_action->name ?></b> s'est abonné à votre chaîne "<b><?php echo UserChannel::find($action->target)->name; ?></b>"</p>
+										<p><b><?php echo Utils::secure($channel_action->name); ?></b> s'est abonné à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
 									</a>
 									<span class="subscriber"><b><?php echo $channel_action->subscribers; ?></b> Abonnés</span>
 									<i><?php echo Utils::relative_time($action->timestamp) ?></i>
@@ -51,22 +51,24 @@
 							<?php
 						}
 						else if($action->type == 'like') {
+								$video = Utils::secureActiveRecordModel(Video::find_by_id($action->target));
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/6"></div>
-										<p><b><?php echo $channel_action->name ?></b> a aimé votre vidéo "<b><?php echo Video::find_by_id($action->target)->title; ?></b>"</p>
+										<p><b><?php echo $channel_action->name ?></b> a aimé votre vidéo "<b><?php echo $video->title; ?></b>"</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
 							<?php
 						}
 						else if($action->type == 'comment') {
-							$comment = Utils::secureActiveRecordModel(Comment::getByChannelAction($action));
+ 							$comment = Comment::getByChannelAction($action);
+							$video = Utils::secureActiveRecordModel(Video::find($action->target));
 							?>
 								<div class="card<?php echo $supp_class; ?> comment">
 									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>">
-										<p><b><?php echo $channel_action->name; ?></b> a commenté votre vidéo "<b><?php echo Video::find($action->target)->title; ?></b>" :</p>
+										<p><b><?php echo Utils::secure($channel_action->name); ?></b> a commenté votre vidéo "<b><?php echo $video->title; ?></b>" :</p>
 										<blockquote>
 											<?php echo substr($comment->comment, 0, 80); ?>
 										</blockquote>
@@ -79,9 +81,9 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> comment">
 									<a href="<?php echo WEBROOT.'channel/'.$action->channel_id.'/social'; ?>">
-										<p><b><?php echo $channel_action->name; ?></b> a posté un message !</p>
+										<p><b><?php echo Utils::secure($channel_action->name); ?></b> a posté un message !</p>
 										<blockquote>
-											<?php echo substr($action->target, 0, 80); ?>
+											<?php echo Utils::secure(substr($action->target, 0, 80)); ?>
 										</blockquote>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
@@ -93,7 +95,7 @@
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'channels/'.$channel_action->id; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/futurama/350/200/6"></div>
-										<p>Vous avez été nommé administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
+										<p>Vous avez été nommé administrateur de la chaîne "<b><?php echo Utils::secureActiveRecordModel($channel_action)->name; ?></b>"</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
@@ -104,7 +106,7 @@
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'channels/'.$channel_action->id; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/futurama/255/200/2"></div>
-										<p>Vous n'êtes plus administrateur de la chaîne "<b><?php echo $channel_action->name; ?></b>"</p>
+										<p>Vous n'êtes plus administrateur de la chaîne "<b><?php echo Utils::secureActiveRecordModel($channel_action)->name; ?></b>"</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
@@ -114,9 +116,9 @@
 							?>
 								<div class="card<?php echo $supp_class; ?> comment">
 									<a href="<?php echo WEBROOT.'watch/'.Comment::find($action->target)->video_id; ?>">
-										<p><b><?php echo $channel_action->name; ?></b> a aimé votre commentaire</p>
+										<p><b><?php echo Utils::secure($channel_action->name); ?></b> a aimé votre commentaire</p>
 										<blockquote>
-											<?php echo substr(Comment::find($action->target)->comment, 0, 80); ?>
+											<?php echo Utils::secure(substr(Comment::find($action->target)->comment), 0, 80); ?>
 										</blockquote>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
@@ -128,7 +130,7 @@
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'account/messages'; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/1"></div>
-										<p>Vous avez un nouveau message privé !</p>
+										<p>Vous avez <?php echo $action->infos['nb_msg']?> nouveau message privé !</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>

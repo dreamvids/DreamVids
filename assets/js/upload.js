@@ -160,3 +160,13 @@ uploadInput.addEventListener("change", function(event) {
 	}
 
 }, false);
+
+function insertDesc(element) {
+	
+		text = element.value;
+	    document.getElementById("video-description").innerText=text;
+}
+
+
+
+

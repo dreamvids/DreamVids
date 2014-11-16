@@ -10,7 +10,7 @@
 		<?php @include $messages; ?>
 
 		<aside class="long-cards-list">
-
+			<h3 class="title">Choisissez la chaine pour dont vous souhaitez gérer les vidéos</h3>
 			<?php
 			if(!empty($channel)) { 
 				foreach($channel as $chan) { ?>
