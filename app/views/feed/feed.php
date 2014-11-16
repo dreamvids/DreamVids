@@ -118,7 +118,7 @@
 									<a href="<?php echo WEBROOT.'watch/'.Comment::find($action->target)->video_id; ?>">
 										<p><b><?php echo Utils::secure($channel_action->name); ?></b> a aimé votre commentaire</p>
 										<blockquote>
-											<?php echo Utils::secure(substr(Comment::find($action->target)->comment), 0, 80); ?>
+											<?php echo Utils::secure(substr(Comment::find($action->target)->comment, 0, 80)); ?>
 										</blockquote>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>

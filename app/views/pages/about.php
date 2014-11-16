@@ -195,8 +195,8 @@
 			</div>
 			<p style="padding-left:70px">
 				<b>Olivier MIS</b><br />
-				[Cet homme a trop de swagg pour pouvoir donner une description. Tentez d'établir le
-				contact avec lui si vous voulez le connaitre, nous on a pas encore réussi. #OverBooké]
+				Breton, mangeur de kouign amman à plein temps, j'aime les fraises. Accessoirement patron de
+				PulseHeberg et vice-président de DreamVids. Surbooké 24/7.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
@@ -205,10 +205,10 @@
 			</div>
 			<p style="padding-left:70px">
 				<b>Peter CAUTY</b><br />
-				On ferme la marche avec moi: Peter, 19 ans, Co-fondateur, chef de projet et développeur chez
-				DreamVids. J'étudie	un étrange truc nommé "Informatique" en L3. J'aime ce que je fais et
-				j'aime mon équipe. Je termine cette page à 22:12, le 15/09/2014. Cette information est
-				inutile.
+				On ferme la marche avec moi: Peter, 20 ans, Co-fondateur, Président, chef de projet et
+				développeur chez DreamVids. J'étudie	un étrange truc nommé "Informatique" en L3. J'aime ce
+				que je fais et j'aime mon équipe. Je termine cette page à 22:12, le 15/09/2014. Cette
+				information est inutile.
 			</p>
 		</div>
 </div>

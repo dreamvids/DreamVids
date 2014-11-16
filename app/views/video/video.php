@@ -265,7 +265,7 @@ foreach ($videos_ids as $vid) {
 								<li class="plus" id="plus-<?php echo $comment->id; ?>" onclick="likeComment('<?php echo $comment->id; ?>')">+<?php echo $comment->likes; ?></li>
 								<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
 								<li onclick="reportComment('<?php echo $comment->id; ?>', this)" style="cursor:pointer">Signaler</li>
-								<li onclick="document.getElementById('response').innerHTML='<b>Répondre à <?php echo UserChannel::getNameById($comment->poster_id); ?> :</b>';document.getElementById('textarea-comment').focus();document.getElementById('parent-comment').value='<?php echo $comment->id; ?>';" style="cursor:pointer">Répondre</li>
+								<li onclick="document.location.href='#comments';document.getElementById('response').innerHTML='<b>Répondre à <?php echo UserChannel::getNameById($comment->poster_id); ?> :</b>';document.getElementById('textarea-comment').focus();document.getElementById('parent-comment').value='<?php echo $comment->id; ?>';" style="cursor:pointer">Répondre</li>
 							</ul>
 						</div>
 					</div>
