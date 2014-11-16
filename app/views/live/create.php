@@ -11,7 +11,9 @@
 			<label for="channel">Veuillez choisir votre chaîne :</label>
 			<select name="channels" id="channel">
 				<?php foreach ($channels as $channel): ?>
-					<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
+					<?php if(!$channel->hasLiveAccess()) { ?>
+						<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
+					<?php } ?>
 				<?php endforeach ?>
 			</select>
 			
@@ -25,32 +27,40 @@
 
 	<?php } else { ?>
 
-		<section class="middle">
-			<h1 class="title" id="live-creation-title">Votre live</h1>
-		</section>
+		<h1 class="title" id="live-creation-title">Vos lives</h1>
 
 		<div class="form middle">
 
-			<label for="channel">Veuillez choisir votre chaîne :</label>
-			<select name="channels" id="channel" disabled>
+			<label for="channel">Lancer un nouveau live sur la chaîne</label>
+			<select name="channels" id="channel">
 				<?php foreach ($channels as $channel): ?>
-					<option value="<?php echo $channel->id; ?>" <?php if ($channel->id == $liveChannel->id) { echo "selected"; } ?>><?php echo $channel->name; ?></option>
+					<?php if(!$channel->hasLiveAccess()) { ?>
+						<option value="<?php echo $channel->id; ?>"><?php echo $channel->name; ?></option>
+					<?php } ?>
 				<?php endforeach ?>
 			</select>
 			
 			<div id="live-form-button">
-				<button class="btn btn--raised btn--red" onclick="revokeLive('<?php echo $access->id; ?>')">Révoquer l'accès live</button>
+				<button class="btn btn--raised btn--blue" onclick="createLive(document.getElementById('channel').value)">Commencer un live</button>
 			</div>
 
 		</div>
 
-		<p id="live-key" class="live-creation-paragraph">
-			
-			Accès a votre live disponible (chaîne: <?php echo $liveChannel->name; ?>)<br><br>
-			Clé de live : <?php echo $access->key; ?><br>
-			Lien du live : <a href="<?php echo WEBROOT.'lives/'.$liveChannel->name; ?>">http://dreamvids.fr/lives/<?php echo $liveChannel->name; ?></a>
+		<?php foreach($liveAccesses as $access) { ?>
+			<p id="live-key" class="live-creation-paragraph">
 
-		</p>
+				Accès au live sur la chaîne <?php echo $access->getChannel()->name; ?><br>
+				
+				<ul>
+					<li>Clé de live : <?php echo $access->getChannel()->name.'?key='.$access->key; ?><br></li>
+					<li>Lien du live : <a href="<?php echo WEBROOT.'lives/'.$access->getChannel()->name; ?>">http://dreamvids.fr/lives/<?php echo $access->getChannel()->name; ?></a></li>
+					<button class="btn btn--raised btn--red" onclick="revokeLive(<?php echo $access->id; ?>)">Révoquer l'accès live</button>
+				</ul>
+
+				<br/><br/>
+
+			</p>
+		<?php } ?>
 
 	<?php } ?>
 
