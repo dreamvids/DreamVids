@@ -8,13 +8,12 @@ class LiveAccess extends ActiveRecord\Model {
 		return $this->online;
 	}
 
-	public static function grantedForUser($user) {
-		foreach($user->getOwnedChannels() as $channel) {
-			if(LiveAccess::exists(array('channel_id' => $channel->id)))
-				return $channel;
-		}
+	public function getChannel() {
+		return UserChannel::find($this->channel_id);
+	}
 
-		return false;
+	public static function grantedForUser($user) {
+		return LiveAccess::exists(array('user_id' => $user->id));
 	}
 
 }

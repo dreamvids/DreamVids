@@ -87,6 +87,10 @@ class UserChannel extends ActiveRecord\Model {
 		return $this->verified == 1;
 	}
 
+	public function hasLiveAccess() {
+		return LiveAccess::exists(array('channel_id' => $this->id));
+	}
+
 	public function postMessage($messageContent) {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
