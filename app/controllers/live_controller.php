@@ -21,10 +21,9 @@ class LiveController extends Controller {
 			$data['currentPage'] = 'live';
 			$data['currentPageTitle'] = 'Mes lives';
 
-			if($liveChannel = LiveAccess::grantedForUser(Session::get())) {
+			if(LiveAccess::grantedForUser(Session::get())) {
 				$data['accessGranted'] = true;
-				$data['access'] = LiveAccess::find(array('channel_id' => $liveChannel->id));
-				$data['liveChannel'] = $liveChannel;
+				$data['liveAccesses'] = LiveAccess::all(array('user_id' => Session::get()->id));
 				$data['channels'] = Session::get()->getOwnedChannels();
 			}
 			else {
@@ -69,9 +68,10 @@ class LiveController extends Controller {
 			if(isset($params['channel-id']) && UserChannel::exists(Utils::secure($params['channel-id']))) {
 				$channel = UserChannel::find(Utils::secure($params['channel-id']));
 
-				if(!LiveAccess::grantedForUser(Session::get()) && $channel->belongToUser(Session::get()->id)) {
+				if(!$channel->hasLiveAccess() && $channel->belongToUser(Session::get()->id)) {
 					$access = LiveAccess::create(array(
 						'channel_id' => $channel->id,
+						'user_id' => Session::get()->id,
 						'key' => hash_hmac('sha256', mt_rand(), mt_rand()),
 						'timestamp' => time()
 					));
