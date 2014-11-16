@@ -18,10 +18,15 @@ try {
 
 	switch ($action) {
 		case 'publish':
+			if(is_null($key)) break;
+
 			$query = $pdo->prepare('SELECT * FROM `live_accesses` WHERE `key`=:access');
 			$query->execute(array(':access' => $key));
 
 			if($query->rowCount() == 1) {
+				$onlineQuery = $pdo->prepare("UPDATE `live_accesses` SET `online`=1 WHERE `key`=?");
+				$onlineQuery->execute(array($key));
+
 				header('HTTP/1.1 200 OK');
 				exit();
 			}
@@ -33,8 +38,18 @@ try {
 			break;
 
 		case 'done':
-			break;
+			if(is_null($key)) { // If there is no key, a client left
+				break;
+			}
+			else { // If key is set, the streamer stoped his stream
+				$onlineQuery = $pdo->prepare("UPDATE `live_accesses` SET `online`=0 WHERE `key`=?");
+				$onlineQuery->execute(array($key));
 
+				header('HTTP/1.1 200 OK');
+				exit();
+			}
+
+			break;
 		case 'record_done':
 			if(isset($_POST['path'])) {
 				$recordedFilePath = secure($_POST['path']);

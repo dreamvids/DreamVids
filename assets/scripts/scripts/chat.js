@@ -128,7 +128,7 @@ var Chat = {
 	onConnect: function(event) {
 		// send an empty message to init the connection
 		var msg = new ChatMessage();
-		msg.construct(Chat.username, '');
+		msg.construct(Chat.username, '', Chat.sessionId);
 		Chat.socket.send(msg.data);
 
 		Chat.connected = true;
@@ -178,8 +178,6 @@ function sendChatMessage() {
 		message.construct(Chat.username, contentInput.value, Chat.sessionId);
 
 		Chat.socket.send(message.data);
-		Screen.pushMessage(message);
-
 		contentInput.value = '';
 	}
 }

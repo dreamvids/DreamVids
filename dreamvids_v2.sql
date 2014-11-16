@@ -1,63 +1,31 @@
--- phpMyAdmin SQL Dump
--- version 4.0.4
--- http://www.phpmyadmin.net
---
--- Client: localhost
--- Généré le: Ven 03 Octobre 2014 à 16:29
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Adminer 4.1.0 MySQL dump
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET NAMES utf8;
+SET time_zone = '+00:00';
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `dreamvids_v2`
---
-CREATE DATABASE IF NOT EXISTS `dreamvids_v2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `dreamvids_v2`;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `backups`
---
-
-CREATE TABLE IF NOT EXISTS `backups` (
+DROP TABLE IF EXISTS `backups`;
+CREATE TABLE `backups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `channel_id` varchar(10) NOT NULL,
   `filepath` varchar(255) NOT NULL,
   `server` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `bugs`
---
-
-CREATE TABLE IF NOT EXISTS `bugs` (
+DROP TABLE IF EXISTS `bugs`;
+CREATE TABLE `bugs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
   `description` text NOT NULL,
   `url` varchar(255) NOT NULL,
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `channels_actions`
---
-
-CREATE TABLE IF NOT EXISTS `channels_actions` (
+DROP TABLE IF EXISTS `channels_actions`;
+CREATE TABLE `channels_actions` (
   `id` varchar(6) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `recipients_ids` text NOT NULL,
@@ -67,13 +35,9 @@ CREATE TABLE IF NOT EXISTS `channels_actions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `channels_posts`
---
-
-CREATE TABLE IF NOT EXISTS `channels_posts` (
+DROP TABLE IF EXISTS `channels_posts`;
+CREATE TABLE `channels_posts` (
   `id` varchar(6) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `content` varchar(255) NOT NULL,
@@ -81,39 +45,37 @@ CREATE TABLE IF NOT EXISTS `channels_posts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `config`
---
+DROP TABLE IF EXISTS `chat_mutes`;
+CREATE TABLE `chat_mutes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_id` bigint(20) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `config` (
+
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE `config` (
   `key` varchar(255) NOT NULL,
   `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `contributors`
---
-
-CREATE TABLE IF NOT EXISTS `contributors` (
+DROP TABLE IF EXISTS `contributors`;
+CREATE TABLE `contributors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `conversations`
---
-
-CREATE TABLE IF NOT EXISTS `conversations` (
+DROP TABLE IF EXISTS `conversations`;
+CREATE TABLE `conversations` (
   `id` varchar(6) NOT NULL,
   `object` varchar(255) NOT NULL,
   `members_ids` text NOT NULL,
@@ -121,27 +83,20 @@ CREATE TABLE IF NOT EXISTS `conversations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `live_accesses`
---
-
-CREATE TABLE IF NOT EXISTS `live_accesses` (
+DROP TABLE IF EXISTS `live_accesses`;
+CREATE TABLE `live_accesses` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `channel_id` varchar(50) NOT NULL,
   `key` varchar(255) NOT NULL DEFAULT '0',
   `timestamp` bigint(20) NOT NULL DEFAULT '0',
+  `online` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `messages`
---
-
-CREATE TABLE IF NOT EXISTS `messages` (
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE `messages` (
   `id` varchar(6) NOT NULL,
   `sender_id` varchar(6) NOT NULL,
   `conversation_id` varchar(6) NOT NULL,
@@ -150,13 +105,9 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `modos_actions`
---
-
-CREATE TABLE IF NOT EXISTS `modos_actions` (
+DROP TABLE IF EXISTS `modos_actions`;
+CREATE TABLE `modos_actions` (
   `id` varchar(6) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -165,69 +116,49 @@ CREATE TABLE IF NOT EXISTS `modos_actions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `partners`
---
-
-CREATE TABLE IF NOT EXISTS `partners` (
+DROP TABLE IF EXISTS `partners`;
+CREATE TABLE `partners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `passwords`
---
-
-CREATE TABLE IF NOT EXISTS `passwords` (
+DROP TABLE IF EXISTS `passwords`;
+CREATE TABLE `passwords` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `key` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `playlists`
---
-
-CREATE TABLE IF NOT EXISTS `playlists` (
+DROP TABLE IF EXISTS `playlists`;
+CREATE TABLE `playlists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `videos_ids` varchar(255) NOT NULL DEFAULT ';',
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `pre_inscriptions`
---
-
-CREATE TABLE IF NOT EXISTS `pre_inscriptions` (
+DROP TABLE IF EXISTS `pre_inscriptions`;
+CREATE TABLE `pre_inscriptions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `utilisateur` tinyint(1) NOT NULL,
   `videaste` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `storage_servers`
---
-
-CREATE TABLE IF NOT EXISTS `storage_servers` (
+DROP TABLE IF EXISTS `storage_servers`;
+CREATE TABLE `storage_servers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(255) NOT NULL,
   `user` varchar(255) NOT NULL,
@@ -235,15 +166,11 @@ CREATE TABLE IF NOT EXISTS `storage_servers` (
   `critical` tinyint(1) NOT NULL,
   `private_key` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `uploads`
---
-
-CREATE TABLE IF NOT EXISTS `uploads` (
+DROP TABLE IF EXISTS `uploads`;
+CREATE TABLE `uploads` (
   `id` varchar(6) NOT NULL,
   `channel_id` varchar(6) NOT NULL,
   `video_id` varchar(6) NOT NULL,
@@ -251,13 +178,9 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -270,15 +193,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `settings` text NOT NULL,
   `last_visit` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `users_channels`
---
-
-CREATE TABLE IF NOT EXISTS `users_channels` (
+DROP TABLE IF EXISTS `users_channels`;
+CREATE TABLE `users_channels` (
   `id` varchar(6) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -293,28 +212,20 @@ CREATE TABLE IF NOT EXISTS `users_channels` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `users_sessions`
---
-
-CREATE TABLE IF NOT EXISTS `users_sessions` (
+DROP TABLE IF EXISTS `users_sessions`;
+CREATE TABLE `users_sessions` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `session_id` varchar(32) NOT NULL,
   `expiration` bigint(20) NOT NULL,
   `remember` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `videos`
---
-
-CREATE TABLE IF NOT EXISTS `videos` (
+DROP TABLE IF EXISTS `videos`;
+CREATE TABLE `videos` (
   `id` varchar(6) NOT NULL,
   `poster_id` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -333,13 +244,9 @@ CREATE TABLE IF NOT EXISTS `videos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `videos_annot`
---
-
-CREATE TABLE IF NOT EXISTS `videos_annot` (
+DROP TABLE IF EXISTS `videos_annot`;
+CREATE TABLE `videos_annot` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `video_id` varchar(255) NOT NULL,
   `content` text NOT NULL,
@@ -348,15 +255,11 @@ CREATE TABLE IF NOT EXISTS `videos_annot` (
   `time` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `videos_comments`
---
-
-CREATE TABLE IF NOT EXISTS `videos_comments` (
+DROP TABLE IF EXISTS `videos_comments`;
+CREATE TABLE `videos_comments` (
   `id` varchar(6) NOT NULL,
   `poster_id` varchar(6) NOT NULL,
   `video_id` varchar(6) NOT NULL,
@@ -368,41 +271,29 @@ CREATE TABLE IF NOT EXISTS `videos_comments` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `videos_convert`
---
-
-CREATE TABLE IF NOT EXISTS `videos_convert` (
+DROP TABLE IF EXISTS `videos_convert`;
+CREATE TABLE `videos_convert` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `video_id` text NOT NULL,
   `sd` int(11) NOT NULL,
   `hd` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `videos_view`
---
-
-CREATE TABLE IF NOT EXISTS `videos_view` (
+DROP TABLE IF EXISTS `videos_view`;
+CREATE TABLE `videos_view` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `video_id` varchar(255) NOT NULL,
   `hash` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `videos_votes`
---
-
-CREATE TABLE IF NOT EXISTS `videos_votes` (
+DROP TABLE IF EXISTS `videos_votes`;
+CREATE TABLE `videos_votes` (
   `id` varchar(6) NOT NULL,
   `user_id` int(11) NOT NULL,
   `type` varchar(7) NOT NULL,
@@ -411,6 +302,5 @@ CREATE TABLE IF NOT EXISTS `videos_votes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- 2014-11-16 11:43:39
