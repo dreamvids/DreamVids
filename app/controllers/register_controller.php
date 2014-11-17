@@ -47,7 +47,11 @@ class RegisterController extends Controller {
 									if(!User::find_by_username($username)) {
 										if(!User::isMailRegistered($mail)) {
 											User::register($username, $pass, $mail);
-
+											
+											$created_user = User::find('first', array('username' => $username));
+											$created_user->sendWelcomeNotification();
+											
+											
 											$response = new ViewResponse('login/login');
 											$response->addMessage(ViewMessage::success('Inscription validée. Vous pouvez vous connecter !'));
 											return $response;

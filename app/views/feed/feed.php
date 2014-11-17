@@ -126,16 +126,25 @@
 							<?php
 						}
 						else if($action->type == 'pm') {
+							$pluriel = $action->infos['nb_msg'] > 1 ? "messages privés" : "message privé";
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'account/messages'; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/1"></div>
-										<p>Vous avez <?php echo $action->infos['nb_msg']?> nouveau message privé !</p>
+										<p>Vous avez <?php echo $action->infos['nb_msg'] . " " . $pluriel ?></p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
 							<?php
-						}
+						}else if ($action->type == 'welcome') { ?>
+								<div class="card<?php echo $supp_class; ?> plus">
+									<a href="<?php echo WEBROOT.'upload'; //TODO visite guidée ?>">
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/1"></div>
+										<p>Bienvenue sur DreamVids.fr ! Commencez à envoyer une vidéo !</p>
+									</a>
+									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
+								</div>
+						<?php }
 					}
 				}
 			}
