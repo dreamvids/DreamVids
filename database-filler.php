@@ -106,6 +106,7 @@ class DatabaseFiller {
 					';',
 					'upload',
 					'".$vidId."',
+					null,
 					'".$timestamp."'
 				)");
 

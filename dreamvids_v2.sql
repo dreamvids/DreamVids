@@ -31,6 +31,7 @@ CREATE TABLE `channels_actions` (
   `recipients_ids` text NOT NULL,
   `type` varchar(255) NOT NULL,
   `target` text NOT NULL,
+  `complementary_id` varchar(20),
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
