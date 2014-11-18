@@ -38,10 +38,10 @@ class Comment extends ActiveRecord\Model {
 					'target' => $this->id,
 					'timestamp' => Utils::tps()
 				));
-			}
 
-			$this->likes++;
-			$this->save();
+				$this->likes++;
+				$this->save();
+			}
 		}
 	}
 
@@ -68,7 +68,7 @@ class Comment extends ActiveRecord\Model {
 	}
 
 	public function dislike($user) {
-		if(is_object($user) && !$this->isDislikedByUser($user)) {
+		if(is_object($user) && !$this->isDislikedByUser($user) && $user->id != Session::get()->id) {
 			if($this->isLikedByUser($user)) {
 				$this->unlike($user);
 			}

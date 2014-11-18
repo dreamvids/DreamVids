@@ -46,10 +46,11 @@ function deleteComment(commentId, deleteElement) {
 		}).then(function(result) {
 			if(result == "done"){
 				document.getElementById("c-"+commentId).innerHTML = 
-		'<div class="message error">'+
-		'	<div class="message-icn"><img src="'+_webroot_ +'assets/img/message_error_icon.png" alt="Erreur"></div>'+
-		'	<p>Commentaire supprimé</p>'+
-		'</div>';
+				'<div class="message error">'+
+				'	<div class="message-icn"><img src="'+_webroot_ +'assets/img/message_error_icon.png" alt="Erreur"></div>'+
+				'	<p>Commentaire supprimé</p>'+
+				'</div>';
+				setTimeout(function(){document.getElementById("c-"+commentId).innerHTML='';}, 3000);
 			}
 		});
 	}
