@@ -31,6 +31,7 @@ CREATE TABLE `channels_actions` (
   `recipients_ids` text NOT NULL,
   `type` varchar(255) NOT NULL,
   `target` text NOT NULL,
+  `complementary_id` varchar(20),
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -86,11 +87,14 @@ CREATE TABLE `conversations` (
 
 DROP TABLE IF EXISTS `live_accesses`;
 CREATE TABLE `live_accesses` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL,
   `channel_id` varchar(50) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `key` varchar(255) NOT NULL DEFAULT '0',
   `timestamp` bigint(20) NOT NULL DEFAULT '0',
   `online` tinyint(1) NOT NULL DEFAULT '0',
+  `stream_name` varchar(255) NOT NULL,
+  `viewers` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -303,4 +307,4 @@ CREATE TABLE `videos_votes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2014-11-16 11:43:39
+-- 2014-11-17 19:49:15

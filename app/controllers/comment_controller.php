@@ -163,14 +163,18 @@ class CommentController extends Controller {
 	}
 
 	public function destroy($id, $request) {
-		if(Session::isActive() && Comment::exists($id) && (Session::get()->isModerator() || Session::get()->isAdmin())) {
-			$comment = Comment::exists($id) ? Comment::find($id) : false;
-			$comment->erase(Session::get());
+		$comment = Comment::exists($id) ? Comment::find($id) : false;
+		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin() || 
+				($comment && $comment->getVideo()->getAuthor()->belongToUser(Session::get()->id)))) { 
 			
-			return new Response(200);
+			$comment->erase(Session::get());
+			$response = new Response(200);
+			$response->setBody("done");
+			return $response;
 		}
-
-		return new Response(500);
+		$response = new Response(500);
+		$response->setBody("error");
+		return $response;
 	}
 
 	// Return all the comments on the specified video

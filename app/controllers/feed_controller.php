@@ -37,7 +37,7 @@ class FeedController extends Controller {
 			}
 			
 			$last_pm_timestamp = 0;
-			$interval = 7*24*3600; //secondes
+			$interval = 5*3600; //secondes
 			$first_streak = true;
 			$first_streak_id = -1;
 			foreach ($data["actions"] as $k => $action) {

@@ -221,7 +221,18 @@ class User extends ActiveRecord\Model {
 
 		return $this->rank == $config->getValue('rankAdmin');
 	}
-
+	
+	public function sendWelcomeNotification() {
+		
+		ChannelAction::create(array(
+		'id' => ChannelAction::generateId(6),
+		'channel_id' => $this->getMainChannel()->id,
+		'recipients_ids' => ";" . $this->id . ";",
+		'type' => 'welcome',
+		'target' => $this->id,
+		'timestamp' => Utils::tps()
+		));
+	}
 
 	// Static
 

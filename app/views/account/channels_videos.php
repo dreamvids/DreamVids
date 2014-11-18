@@ -10,14 +10,14 @@
 		<?php @include $messages; ?>
 
 		<aside class="long-cards-list">
-			<h3 class="title">Choisissez la chaine pour dont vous souhaitez gérer les vidéos</h3>
+			<h3 class="title">Choisissez la chaine dont vous souhaitez gérer les vidéos</h3>
 			<?php
 			if(!empty($channel)) { 
 				foreach($channel as $chan) { ?>
 
 				<div class="card video">
 					<div class="thumbnail bg-loader" data-background="<?php echo $chan->getBackground(); ?>">
-						<div class="time"><?php echo $videos_count[$chan->id]; ?></div>
+						<div class="time"><?php echo $videos_count[$chan->id]; echo ' vidéo'; echo ($videos_count[$chan->id] > 1) ? 's' : ''; ?></div>
 						<a href="<?php echo WEBROOT.'account/videos/'.$chan->id; ?>" class="overlay"></a>
 					</div>
 					<div class="description">

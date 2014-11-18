@@ -131,15 +131,18 @@ class Comment extends ActiveRecord\Model {
 		}
 	}
 
-	public function erase($user) {
-
-		ModoAction::create(array(
+	public function erase(User $user) {
+		if($user->isModerator() || $user->isAdmin()){
+			ModoAction::create(array(
 			'id' => ModoAction::generateId(6),
 			'user_id' => $user->id,
 			'type' => 'delete_comment',
 			'target' => $this->id,
 			'timestamp' => Utils::tps()
-		));
+		));			
+		}
+		
+		ChannelAction::table()->delete(array("type" => "comment", "complementary_id"=>$this->id ));
 
 		$this->delete();
 	}
@@ -169,13 +172,14 @@ class Comment extends ActiveRecord\Model {
 			'timestamp' => $timestamp,
 			'parent' => $parent
 		));
-
+		
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $authorId,
 			'recipients_ids' => UserChannel::find(Video::find($videoId)->poster_id)->admins_ids,
 			'type' => 'comment',
 			'target' => $videoId,
+			'complementary_id' => $comment->id,
 			'timestamp' => $timestamp
 		));
 

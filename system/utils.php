@@ -180,7 +180,6 @@ class Utils {
 	}
 
 	public static function getVideoCardHTML($vid) {
-		$vid=self::secureActiveRecordModel($vid);
 		return '<div class="card video">
 				<div class="thumbnail bg-loader" data-background-load-in-view data-background="'.$vid->getThumbnail().'">
 					<div class="time">'.self::sec2ms($vid->duration).'</div>

@@ -34,7 +34,7 @@
 
 	<section class="video-infos live <?php if (!$onAir) { echo "live--offline"; } ?>">
 
-		<div class="views">128 viewers</div>
+		<div class="views"><?php echo $viewers; ?> viewers</div>
 
 		<hr>
 
