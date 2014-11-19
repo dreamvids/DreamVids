@@ -1,6 +1,3 @@
-<?php 
-// die(var_dump($actions));
-?>
 <div class="content">
 	<aside class="aside-channels">
 		<h3 class="title">Mes abonnements</h3>
