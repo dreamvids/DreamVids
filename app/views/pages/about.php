@@ -63,13 +63,13 @@
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
-				<img src="<?php echo IMG.'team/snapcube.jpeg'; ?>" style="height:50px;width:50px;border-radius:25px;" />
+				<img src="<?php echo IMG.'team/snapcube.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
 				<b>Snapcube</b><br />
-				Moi c'est Alessandro, ou encore snapcube, un passionné d'informatique. J'aime plus
-				particulièrement la programmation. Modérateur chez Dreamvids, je vérifie vos faits et
-				gestes bandes de voyous ;)
+				Moi c'est Alessandro, ou encore snapcube, un passionné d'informatique. 
+				J'aime plus particulièrement la programmation. J'étais un modérateur de Dreamvids 
+				puis je suis devenu développeur juste avant la V2.
 			</p>
 		</div>
 		<div style="margin-bottom:50px">

@@ -36,32 +36,8 @@ class FeedController extends Controller {
 				$data['actions'] = $actions;
 			}
 			
-			$last_pm_timestamp = 0;
-			$interval = 5*3600; //secondes
-			$first_streak = true;
-			$first_streak_id = -1;
-			foreach ($data["actions"] as $k => $action) {
-				if($action->type != 'pm') { continue; } //on s'occupe que des pm
-				if($first_streak_id<0){
-					$first_streak_id = $k;
-				}
-				
-				if($first_streak){
-					$first_streak = false;
-					$first_streak_id=$k;
-					$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
-				}else{
-					if($action->timestamp+$interval>=$last_pm_timestamp){
-						unset($data["actions"][$k]);
-						$data["actions"][$first_streak_id]->infos['nb_msg']++;
-					}else{
-						$first_streak_id=$k;
-						$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
-					}
-					
-				}
-				$last_pm_timestamp = $action->timestamp;
-			}
+			$data = $this->regroupPmFeeds($data);
+			$data = $this->regroupSuscribeFeeds($data);
 
 			return new ViewResponse('feed/feed', $data);
 		}
@@ -82,7 +58,78 @@ class FeedController extends Controller {
 			return new ViewResponse('feed/feed', $data);
 		}
 	}
+	
+	private function regroupPmFeeds($data) {
+		
+		$last_timestamp = 0;
+		$interval = 5*3600; //secondes
+		$first_streak = true;
+		$first_streak_id = -1;
+		foreach ($data["actions"] as $k => $action) {
+			if($action->type != 'pm') { continue; } //on s'occupe que des pm
+			if($first_streak_id<0){
+				$first_streak_id = $k;
+			}
+		
+			if($first_streak){
+				$first_streak = false;
+				$first_streak_id=$k;
+				$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
+			}else{
+				if($action->timestamp+$interval>=$last_timestamp){
+					unset($data["actions"][$k]);
+					$data["actions"][$first_streak_id]->infos['nb_msg']++;
+				}else{
+					$first_streak_id=$k;
+					$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
+				}
+					
+			}
+			$last_timestamp = $action->timestamp;
+		}
+		
+		
+		return $data;
+	}
+	
+	private function regroupSuscribeFeeds(&$data, $starting_index=-1, &$skip = array()){
 
+		$last_timestamp = 0;
+		$interval = 3*24*3600; //secondes
+		$first_streak = true;
+		$first_streak_id = -1;
+		$last_channel = "";
+		foreach ($data["actions"] as $k => $action) {
+			if($action->type != 'subscription' || $starting_index>$k || in_array($k, $skip)) { continue; } 
+			
+			if($first_streak){
+				if($first_streak_id<0){
+					$first_streak_id = $k;
+				}
+				$first_streak = false;
+				$last_channel = $action->target;
+				$data["actions"][$first_streak_id]->infos['nb_subscription'] = 1;
+				$last_timestamp = $action->timestamp;
+			}else{
+				if($last_channel != $action->target){
+					$data = $this->regroupSuscribeFeeds($data, $k, $skip);
+				}else{
+					if($action->timestamp+$interval>=$last_timestamp){
+						unset($data["actions"][$k]);
+						$data["actions"][$first_streak_id]->infos['nb_subscription']++;
+						$skip[]=$k;
+					}else{
+						$first_streak_id=$k;
+						$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
+					}
+				}
+			}
+			
+		}
+		
+		return $data;
+	}
+	
 	// Denied actions
 	public function get($id, $request) {}
 	public function create($request) {}
