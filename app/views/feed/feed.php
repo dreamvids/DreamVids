@@ -1,3 +1,6 @@
+<?php 
+// die(var_dump($actions));
+?>
 <div class="content">
 	<aside class="aside-channels">
 		<h3 class="title">Mes abonnements</h3>
@@ -43,7 +46,11 @@
 								<div class="card<?php echo $supp_class; ?> channel">
 									<a href="<?php echo WEBROOT.'channel/'.$channel_action->name; ?>">
 										<div class="avatar bg-loader" data-background-load-in-view data-background="<?php echo $channel_action->getBackground(); ?>"></div>
+									<?php if($action->infos['nb_subscription'] <= 1){ ?>
 										<p><b><?php echo Utils::secure($channel_action->name); ?></b> s'est abonné à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
+									<?php } else{ ?>
+										<p><b><?php echo $action->infos['nb_subscription']; ?></b> personnes se sont abonnées à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
+									<?php } ?>
 									</a>
 									<span class="subscriber"><b><?php echo $channel_action->subscribers; ?></b> Abonnés</span>
 									<i><?php echo Utils::relative_time($action->timestamp) ?></i>
