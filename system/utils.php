@@ -226,6 +226,7 @@ class Utils {
 		$secured = htmlentities(stripslashes($secured), ENT_QUOTES, 'UTF-8');
 		$secured = str_replace('<', '&lt;', $secured);
 		$secured = str_replace('>', '&gt;', $secured);
+		$secured = str_replace('&amp;', '&', $secured);
 		return (is_string($str) && json_decode($str) == null) ? $secured : $str;
 	}
 	

@@ -35,10 +35,10 @@
 					$supp_class = ($action->timestamp > $last_visit) ? ' card--new' : '';
 					$channel_action = (UserChannel::exists($action->channel_id)) ? Utils::secureActiveRecordModel(UserChannel::find($action->channel_id)) : false;
 					if ($channel_action !== false) {
-						if($action->type == 'upload') {
-							echo Utils::getVideoCardHTML(Video::find($action->target));
+						if($action->type == 'upload' && Video::exists($action->target)) {
+							echo Utils::getVideoCardHTML(Utils::secureActiveRecordModel(Video::find($action->target)));
 						}
-						else if($action->type == "subscription") {
+						else if($action->type == "subscription" && UserChannel::exists($action->target)) {
 							?>
 								<div class="card<?php echo $supp_class; ?> channel">
 									<a href="<?php echo WEBROOT.'channel/'.$channel_action->name; ?>">
@@ -50,7 +50,7 @@
 								</div>
 							<?php
 						}
-						else if($action->type == 'like') {
+						else if($action->type == 'like' && Video::exists($action->target) {
 								$video = Utils::secureActiveRecordModel(Video::find_by_id($action->target));
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
@@ -62,7 +62,7 @@
 								</div>
 							<?php
 						}
-						else if($action->type == 'comment') {
+						else if($action->type == 'comment' && Video::exists($action->target) {
  							$comment = Comment::getByChannelAction($action);
 							$video = Utils::secureActiveRecordModel(Video::find($action->target));
 							?>
@@ -112,7 +112,7 @@
 								</div>
 							<?php
 						}
-						else if($action->type == 'like_comment') {
+						else if($action->type == 'like_comment' && Comment::exists($action->target) {
 							?>
 								<div class="card<?php echo $supp_class; ?> comment">
 									<a href="<?php echo WEBROOT.'watch/'.Comment::find($action->target)->video_id; ?>">

@@ -80,7 +80,7 @@
 
 			<div class="inner-description">
 
-				<?php echo nl2br($description).'<br /><br />Tags: ';
+				<?php echo nl2br(preg_replace("#https?://[a-z0-9\./\+\,\%\#_\-\?\&\=\@\!\&]+#is", '<a href="$0" target="_blank">$0</a>', $description)).'<br /><br />Tags: ';
 				foreach ($tags as $tag) {
 					echo '<a href="search?q=%23'.$tag.'">#'.$tag.'</a> ';
 				}
