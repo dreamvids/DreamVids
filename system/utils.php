@@ -342,6 +342,8 @@ class Utils {
 		$url = urlencode($video->title);
 		$video_url = urlencode("http://www.dreamvids.fr/watch/".$video->id);
 		
+		$result = "";
+		
 		foreach ($socials as $k => $social) {
 			$full_url = $social[0];
 			$icon = IMG . "social/" . $social[1];
@@ -351,9 +353,9 @@ class Utils {
 			$full_url = preg_replace("#{text}#" , $text, $full_url);
 			$full_url = preg_replace("#{title}#", $title, $full_url);
 			$full_url = preg_replace("#{url}#", $video_url, $full_url);
-			echo '<a target="_blank" style="margin:0" href="' . $full_url . '"><img style="margin:0" src="'. $icon .'" alt="'. $info .'" title="'. $info .'"></a>' . PHP_EOL;
+			$result.= '<a target="_blank" style="margin:0" href="' . $full_url . '"><img style="margin:0" src="'. $icon .'" alt="'. $info .'" title="'. $info .'"></a>' . PHP_EOL;
 		}
-		
+		return $result;
 	 }
 	
 }
