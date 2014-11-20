@@ -324,4 +324,36 @@ class Utils {
 		$s = (strlen($s) > 1) ? $s : '0'.$s;
 		return $m.':'.$s;
 	}
+	
+	public static function generateShareButtons($video) {
+	 	$text = "Check this out : ";
+		$socials = array(
+				array("https://www.facebook.com/sharer/sharer.php?u={text}{title} {url}", "32-facebook.png", "Facebook"),
+				array("http://twitter.com/intent/tweet/?url={url}&text={text}{title}&via=Dreamvids_", "32-twitter.png", "Twitter"),
+				array("https://plus.google.com/share?url={text}{title} {url}&hl=fr", "32-googleplus.png", "Google+"),
+// 				array("http://pinterest.com/pin/create/button/?url={url}&media={media}&description={text}{title}", "32-pinterest.png", "Pinterest")
+				array("https://www.blogger.com/blog-this.g?n={text}&source=dreamvids&b=%3Ca%20href%3D%22{url}%22%3E{title}</a>", "32-blogger.png", "Blogger"),
+				array("http://www.myspace.com/Modules/PostTo/Pages/?u={url}&t={title}&c={text}{title}&l=", "32-myspace.png", "MySpace"),
+				array("http://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}", "32-linkedin.png", "LinkedIn"),
+				array("http://tumblr.com/share?s=&v=3&t={text}{title}&u={url}", "32-tumblr.png", "Tumblr")
+		);
+
+		$title = urlencode($video->title);
+		$url = urlencode($video->title);
+		$video_url = urlencode("http://www.dreamvids.fr/watch/".$video->id);
+		
+		foreach ($socials as $k => $social) {
+			$full_url = $social[0];
+			$icon = IMG . "social/" . $social[1];
+			$info = "Partager sur " . $social[2];
+			
+			
+			$full_url = preg_replace("#{text}#" , $text, $full_url);
+			$full_url = preg_replace("#{title}#", $title, $full_url);
+			$full_url = preg_replace("#{url}#", $video_url, $full_url);
+			echo '<a target="_blank" style="margin:0" href="' . $full_url . '"><img style="margin:0" src="'. $icon .'" alt="'. $info .'" title="'. $info .'"></a>' . PHP_EOL;
+		}
+		
+	 }
+	
 }
