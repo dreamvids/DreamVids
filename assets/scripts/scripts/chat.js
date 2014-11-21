@@ -61,10 +61,6 @@ var Screen = {
 		var el = document.createElement('div');
 		el.className = 'live-chat__message';
 
-		var avatar = document.createElement('img');
-		avatar.className = 'live-chat__message__avatar';
-		avatar.setAttribute('src', 'http://lorempicsum.com/simpsons/255/200/5');
-
 		var username = document.createElement('span');
 		username.className = 'live-chat__message__pseudo';
 		var text = document.createTextNode(message.sender);
@@ -74,28 +70,53 @@ var Screen = {
 		var messageText = document.createTextNode(message.content);
 		messageElem.appendChild(messageText);
 
-		el.appendChild(avatar);
 		el.appendChild(username);
 		el.appendChild(messageElem);
 
 		panel.appendChild(el);
-		el.scrollTop = el.scrollHeight;
+		panel.scrollTop = panel.scrollHeight;
+
+		var maxMessagesInList = 32;
+
+		if (panel.childNodes.length > maxMessagesInList) {
+
+			for (var i = 0; panel.childNodes.length > maxMessagesInList;) {
+				
+				panel.removeChild(panel.childNodes[i])
+			
+			}
+
+		}
+
 	},
 
 	pushText: function(message, type) {
 		var panel = document.getElementById('messages-panel');
 
 		var el = document.createElement('div');
-		el.className = 'live-chat__message';
+		el.className = 'live-chat__message ' + "live-chat__message--" + type;
 
 		var messageElem = document.createElement('p');
-		var messageText = document.createTextNode(type + ': ' + message);
+
+		var typeText = {
+
+			error: "Erreur",
+			info: "Information"
+
+		};
+
+		var messageText = document.createElement('span');
+		messageText.className = 'live-chat__message__pseudo';
+		messageText.innerHTML = (typeText[type] || type) + ' : ' + message;
+
 		messageElem.appendChild(messageText);
 
 		el.appendChild(messageElem);
 
 		panel.appendChild(el);
-		el.scrollTop = el.scrollHeight;
+		panel.scrollTop = panel.scrollHeight;
+
+
 	},
 
 

@@ -2,12 +2,16 @@
 	<aside class="aside-channels">
 		<h3 class="title">Mes abonnements</h3>
 		<ul class="limited">
+
+			<?php $channel_subscribed_number = 0; ?>
+
 			<?php if(empty($subscriptions)): ?>
 				<p style="text-align: center; color: #858484;">Vous n'avez aucun abonnement !</p>
 			<?php endif ?>
 
 			<?php foreach($subscriptions as $subscription): ?>
 				<?php if ($subscription): ?>
+					<?php $channel_subscribed_number ++; ?>
 					<a href="<?php echo WEBROOT.'channel/'.$subscription->name; ?>" class="channels">
 						<span style="background-image: url(<?php echo $subscription->getAvatar(); ?>)" class="avatar"></span>
 						<span class="name"><?php echo $subscription->name; ?></span>
@@ -16,9 +20,17 @@
 				<?php endif ?>
 			<?php endforeach ?>
 
-			<input type="checkbox" onclick="p=this.parentNode;p.className=this.checked?p.className+' all':p.className.replace(' all','');"/>
-			<span class="ch-more">Voir tout</span>
-			<span class="ch-less">Voir moins</span>
+			<?php 
+
+				if ($channel_subscribed_number > 8) { ?>
+
+					<input type="checkbox" onclick="p=this.parentNode;p.className=this.checked?p.className+' all':p.className.replace(' all','');"/>
+					<span class="ch-more">Voir tout</span>
+					<span class="ch-less">Voir moins</span>
+
+				<?php }
+			?>
+			
 		</ul>
 	</aside>
 
@@ -143,8 +155,8 @@
 						}else if ($action->type == 'welcome') { ?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'upload'; //TODO visite guidée ?>">
-										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/1"></div>
-										<p>Bienvenue sur DreamVids.fr ! Commencez à envoyer une vidéo !</p>
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="<?php echo WEBROOT.'assets/img/default-thumbnail.png'; ?>"></div>
+										<p>Bienvenue sur DreamVids ! Commencez à envoyer une vidéo dès maintenant !</p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>

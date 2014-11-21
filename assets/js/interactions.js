@@ -104,12 +104,19 @@ var subscribe_button = document.getElementById("subscribe-button") || document.c
 
 subscribe_button.addEventListener("click", function() {
 
+    var channel = subscribe_button.dataset.id;
+
     if (subscribe_button.className == "subscribed") {
 
         subscribe_button.className = "";
         subscribe_button.innerHTML = subscribe_button.dataset.text.split("|")[0];
 
-        ajax.post({ action: "unsubscribe" });
+        marmottajax.put({
+
+            url: _webroot_ + "channel/" + channel,
+            options: { unsubscribe: true }
+
+        });
 
     }
 
@@ -118,7 +125,12 @@ subscribe_button.addEventListener("click", function() {
         subscribe_button.className = "subscribed";
         subscribe_button.innerHTML = subscribe_button.dataset.text.split("|")[1];
 
-        ajax.post({ action: "subscribe" });
+        marmottajax.put({
+
+            url: _webroot_ + "channel/" + channel,
+            options: { subscribe: true }
+
+        });
 
     }
 

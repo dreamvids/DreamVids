@@ -8,11 +8,26 @@
 		<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 		<title>DreamVids</title>
+
+		<style>
+
+			html,
+			body {
+
+				width: 100%;
+				height: 100%;
+
+				padding: 0;
+				margin: 0;
+
+			}			
+
+		</style>
 	</head>
 
 	<body class="embeded">
-		<video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="720" data-setup='{ "techOrder": ["flash"] }'>
-				<source src="rtmp://alpha.dreamvids.fr/stream/<?php echo $chaine; ?>" type="rtmp/flv" />
+		<video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="100%" data-setup='{ "techOrder": ["flash"] }'>
+			<source src="rtmp://alpha.dreamvids.fr/stream/<?php echo $chaine; ?>" type="rtmp/flv" />
 		</video>
 	</body>
 </html>

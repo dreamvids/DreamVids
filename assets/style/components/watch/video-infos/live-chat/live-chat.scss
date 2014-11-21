@@ -7,11 +7,12 @@
 
 .live-chat {
 
-	position: relative;
+	position: absolute;
+	left: 0;
+	right: 0;
 
-	width: 80%;
 	height: 259px;
 	margin: auto;
-	padding: 20px 20px;
+	padding: 8px 16px;
 
 }

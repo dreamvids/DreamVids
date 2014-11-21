@@ -14,14 +14,15 @@
 
 }
 
-.live-chat__message__avatar {
+.live-chat__message--error p {
 
-	float: left;
+	color: $red;
 
-	width: 32px;
-	height: 32px;
+}
 
-	@include border-radius;
+.live-chat__message--info p {
+
+	color: $blue;
 
 }
 
@@ -29,9 +30,10 @@
 
 	float: left;
 
-	margin: 6px 0 0 5px;
+	margin: 6px 0 0 0;
 
-	@include font-title(19px);
+	@include font-title(17px);
+	@include font-bold;
 
 }
 
@@ -39,8 +41,8 @@
 
 	clear: both;
 
-	padding-top: 8px;
+	padding-top: 4px;
 
-	@include font-paragraph(17px);
+	@include font-title(16px);
 
 }

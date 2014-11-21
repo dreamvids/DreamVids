@@ -241,3 +241,22 @@
 	}
 
 }
+
+.card--live::after {
+
+	content: "";
+
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	z-index: 6;
+
+	width: 14px;
+	height: 14px;
+
+	background-color: $red;
+
+	@include border-radius;
+	@include box-shadow(0px 0px 8px 0px $red);
+
+}

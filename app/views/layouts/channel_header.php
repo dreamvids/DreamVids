@@ -20,7 +20,7 @@
 
 			<?php if(!$channelBelongsToUser): ?>
 				<?php if (Session::isActive()) { ?>
-					<button <?php if($subscribed) echo 'class="subscribed"'; ?> id="subscribe-button" data-text="S'abonner|Se désabonner" onclick="subscribeAction('<?php echo $id; ?>')">
+					<button <?php if($subscribed) echo 'class="subscribed"'; ?> id="subscribe-button" data-text="S'abonner|Se désabonner" data-id="<?php echo $id; ?>">
 						<?php echo $subscribed ? 'Se désabonner' : 'S\'abonner'; ?>
 					</button>
 				<?php } else { ?>

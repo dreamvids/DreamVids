@@ -7,7 +7,7 @@
 
 function setExporterInputValue() {
 
-	if (!El("exporter-input")) {
+	if (!El("#exporter-input")) {
 
 		return false;
 
@@ -20,7 +20,7 @@ function setExporterInputValue() {
 		exporterTimeCheckbox = El("#exporter-time-checkbox"),
 		exporterTimeInput = El("#exporter-time-input");
 
-	var url = "//dreamvids.fr/embed/" + _VIDEO_ID_;
+	var url = "//dreamvids.fr/embed/video/" + _VIDEO_ID_;
 
 	var quality = exporterQuality.options[exporterQuality.value].innerHTML || "640x360",
 		qualitys = quality.split("x");
@@ -56,6 +56,8 @@ function setExporterInputValue() {
 
 	}
 
+	console.log("<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>");
+
 	exporterInput.value = "<iframe width=\"" + width + "\" height=\"" + height + "\" src=\"" + url + "\" allowfullscreen frameborder=\"0\"></iframe>";
 
 }
@@ -73,7 +75,6 @@ new Script({
 		}
 
 		El("#embed-video-icon").onclick = function() {
-
 
 			var videoInfoDescription = El("#video-info-description");
 
@@ -95,10 +96,10 @@ new Script({
 
 		};
 
-		El("#exporter-quality").on("change", setExporterInputValue),
-		El("#exporter-autoplay").on("change", setExporterInputValue),
-		El("#exporter-time-checkbox").on("change", setExporterInputValue),
-		El("#exporter-time-input").on("change", setExporterInputValue);
+		El("#exporter-quality").onchange = setExporterInputValue;
+		El("#exporter-autoplay").onchange = setExporterInputValue;
+		El("#exporter-time-checkbox").onchange = setExporterInputValue;
+		El("#exporter-time-input").onchange = setExporterInputValue;
 
 		setExporterInputValue();
 

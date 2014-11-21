@@ -2164,6 +2164,22 @@ body {
       .card.video.long .description div .moins:before {
         content: "-"; }
 
+.card--live::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 6;
+  width: 14px;
+  height: 14px;
+  background-color: #e51c23;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 8px 0px #e51c23;
+  -moz-box-shadow: 0px 0px 8px 0px #e51c23;
+  box-shadow: 0px 0px 8px 0px #e51c23; }
+
 /* CARD COMMENT
    ============================= */
 .card.comment a {
@@ -2461,6 +2477,7 @@ body {
 /* FULL CARDS LIST
    ============================= */
 .full-cards-list {
+  clear: both;
   display: block;
   width: 100%; }
   .full-cards-list h3 {
@@ -2658,11 +2675,12 @@ body {
  * LIVE CHAT
  */
 .live-chat {
-  position: relative;
-  width: 80%;
+  position: absolute;
+  left: 0;
+  right: 0;
   height: 259px;
   margin: auto;
-  padding: 20px 20px; }
+  padding: 8px 16px; }
 
 /**
  * components/watch/video-infos/live-chat/input.scss
@@ -2671,11 +2689,11 @@ body {
  */
 .live-chat__form {
   position: absolute;
-  bottom: 20px;
-  left: 10px;
-  right: 20px;
+  bottom: -25px;
+  left: 4px;
+  right: 0;
   height: 30px;
-  border: 5px solid white; }
+  border: 10px solid white; }
 
 .live-chat__form__input {
   width: 100%;
@@ -2691,7 +2709,7 @@ body {
  * LIVE CHAT MESSAGES
  */
 .live-chat__messages {
-  height: 210px;
+  height: 242px;
   overflow: auto; }
 
 /**
@@ -2704,25 +2722,24 @@ body {
   display: block;
   margin: 10px 0 5px 0; }
 
-.live-chat__message__avatar {
-  float: left;
-  width: 32px;
-  height: 32px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%; }
+.live-chat__message--error p {
+  color: #e51c23; }
+
+.live-chat__message--info p {
+  color: #40a6e0; }
 
 .live-chat__message__pseudo {
   float: left;
-  margin: 6px 0 0 5px;
+  margin: 6px 0 0 0;
   font-family: "Source Sans Pro", sans-serif;
-  font-size: 19px; }
+  font-size: 17px;
+  font-weight: 800; }
 
 .live-chat__message p {
   clear: both;
-  padding-top: 8px;
-  font-family: serif;
-  font-size: 17px; }
+  padding-top: 4px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px; }
 
 /* === CHANNEL === */
 /* SOCIAL MESSAGE FORM
