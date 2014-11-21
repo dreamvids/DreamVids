@@ -90,7 +90,7 @@
 
 			<div class="inner-export">
 
-				<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//alpha.dreamvids.fr/embed/<?php echo $video->id; ?>" allowfullscreen frameborder="0"></iframe>'>
+				<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//alpha.dreamvids.fr/embed/video/<?php echo $video->id; ?>" allowfullscreen frameborder="0"></iframe>'>
 
 				<div class="form no-style">
 					
@@ -257,7 +257,7 @@ foreach ($videos_ids as $vid) {
 							</div>
 						</div>
 						<div class="comment-text">
-							<p><?php echo $comment->comment; ?></p>
+							<p style="word-wrap:break-word"><?php echo $comment->comment; ?></p>
 						</div>
 						<div class="comment-notation">
 							<ul>

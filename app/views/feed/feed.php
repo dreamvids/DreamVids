@@ -54,7 +54,7 @@
 								</div>
 							<?php
 						}
-						else if($action->type == 'like' && Video::exists($action->target) {
+						else if($action->type == 'like' && Video::exists($action->target)) {
 								$video = Utils::secureActiveRecordModel(Video::find_by_id($action->target));
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
@@ -66,7 +66,7 @@
 								</div>
 							<?php
 						}
-						else if($action->type == 'comment' && Video::exists($action->target) {
+						else if($action->type == 'comment' && Video::exists($action->target)) {
  							$comment = Comment::getByChannelAction($action);
 							$video = Utils::secureActiveRecordModel(Video::find($action->target));
 							?>
@@ -116,7 +116,7 @@
 								</div>
 							<?php
 						}
-						else if($action->type == 'like_comment' && Comment::exists($action->target) {
+						else if($action->type == 'like_comment' && Comment::exists($action->target)) {
 							?>
 								<div class="card<?php echo $supp_class; ?> comment">
 									<a href="<?php echo WEBROOT.'watch/'.Comment::find($action->target)->video_id; ?>">

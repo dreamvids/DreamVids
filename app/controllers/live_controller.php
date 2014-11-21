@@ -77,7 +77,9 @@ class LiveController extends Controller {
 						'timestamp' => time()
 					));
 
-					return new JsonResponse(array('key' => $access->key, 'channel' => $channel->name, 'id' => $access->id));
+					return new RedirectResponse(WEBROOT.'lives');
+					exit();
+					//return new JsonResponse(array('key' => $access->key, 'channel' => $channel->name, 'id' => $access->id));
 				}
 				else
 					return new Response(500);
