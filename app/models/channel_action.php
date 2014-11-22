@@ -26,6 +26,9 @@ class ChannelAction extends ActiveRecord\Model {
 	}
 
 	public static function filterReceiver($admins_ids, $type) {
+		
+		return $admins_ids; //TEMPORAIRE
+		
 		$admins_ids = trim($admins_ids, ";");
 		$admins_ids = explode(';',$admins_ids);
 		
