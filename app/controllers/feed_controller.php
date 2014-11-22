@@ -92,7 +92,7 @@ class FeedController extends Controller {
 		return $data;
 	}
 	
-	private function regroupSusbcribeFeeds(&$data, $starting_index=-1, &$skip = array()){
+	private function regroupSubscribeFeeds(&$data, $starting_index=-1, &$skip = array()){
 
 		$last_timestamp = 0;
 		$interval = 3*24*3600; //secondes
@@ -112,7 +112,7 @@ class FeedController extends Controller {
 				$last_timestamp = $action->timestamp;
 			}else{
 				if($last_channel != $action->target){
-					$data = $this->regroupSusbcribeFeeds($data, $k, $skip);
+					$data = $this->regroupSubscribeFeeds($data, $k, $skip);
 				}else{
 					if($action->timestamp+$interval>=$last_timestamp){
 						unset($data["actions"][$k]);
