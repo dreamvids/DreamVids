@@ -13,7 +13,7 @@
 			</select>
 			
 			<div id="live-form-button">
-				<input type="submit" class="btn btn--raised btn--blue" value="Créer l'accès" />
+				<input type="submit" class="btn--raised btn--blue" value="Créer l'accès" />
 			</div>
 
 		</form>
