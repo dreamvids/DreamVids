@@ -249,7 +249,7 @@ class VideoController extends Controller {
 						return new Response(200);
 					}
 				}
-				else if(isset($req['discover'])) {
+				else if(isset($req['discover']) && (Session::get()->isModerator() || Session::get()->isAdmin())) {
 					$video->discover = Utils::tps();
 					$video->save();
 					return new Response(200);
@@ -271,8 +271,8 @@ class VideoController extends Controller {
 				}
 				if(Session::get()->isAdmin() || Session::get()->isModerator() || in_array($video->poster_id, $channels_ids)){ //Verify if the user own the channel of the video
 					
-				$video->erase(Session::get()->id);
-				return new Response(200);
+					$video->erase(Session::get()->id);
+					return new Response(200);
 				}
 				return new Response(403);				
 			}

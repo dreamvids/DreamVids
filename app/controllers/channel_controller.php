@@ -8,6 +8,7 @@ require_once SYSTEM.'redirect_response.php';
 require_once SYSTEM.'json_response.php';
 
 require_once MODEL.'user_channel.php';
+require_once MODEL.'playlist.php';
 
 class ChannelController extends Controller {
 

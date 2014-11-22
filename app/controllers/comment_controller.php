@@ -164,9 +164,10 @@ class CommentController extends Controller {
 
 	public function destroy($id, $request) {
 		$comment = Comment::exists($id) ? Comment::find($id) : false;
-		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin() || 
-				($comment && $comment->getVideo()->getAuthor()->belongToUser(Session::get()->id))||
-				($comment && $comment->getAuthor()->belongToUser(Session::get()->id)))) { 
+
+
+		if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin() || ($comment && $comment->getVideo()->getAuthor()->belongToUser(Session::get()->id)) || ($comment && $comment->getAuthor()->belongToUser(Session::get()->id)))))) { 
+
 			
 			$comment->erase(Session::get());
 			$response = new Response(200);
