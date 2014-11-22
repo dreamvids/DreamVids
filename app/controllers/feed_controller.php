@@ -120,7 +120,7 @@ class FeedController extends Controller {
 						$skip[]=$k;
 					}else{
 						$first_streak_id=$k;
-						$data["actions"][$first_streak_id]->infos['nb_msg']= 1;
+						$data["actions"][$first_streak_id]->infos['nb_subscription']= 1;
 					}
 				}
 			}
