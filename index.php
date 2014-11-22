@@ -37,7 +37,7 @@ $router = new Router();
 $request = Utils::getPerformedRequest();
 
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
-if (!Session::isActive() && !in_array($request->getURI(), array('beta', 'login'))) {
+if (!Session::isActive() && !in_array($request->getURI(), array('beta', 'login')) && !preg_match("#^lives/.*$#isU", $request->getURI())) {
 	header('location:'.WEBROOT.'beta');
 	exit();
 }
