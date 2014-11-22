@@ -172,11 +172,13 @@ class Comment extends ActiveRecord\Model {
 			'timestamp' => $timestamp,
 			'parent' => $parent
 		));
+		$admins_ids = UserChannel::find(Video::find($videoId)->poster_id)->admins_ids;
+		$admins_ids = ChannelAction::filterReceiver($admins_ids, "comment");
 		
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $authorId,
-			'recipients_ids' => UserChannel::find(Video::find($videoId)->poster_id)->admins_ids,
+			'recipients_ids' => $admins_ids,
 			'type' => 'comment',
 			'target' => $videoId,
 			'complementary_id' => $comment->id,

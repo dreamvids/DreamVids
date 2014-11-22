@@ -119,9 +119,18 @@ class AccountController extends Controller {
 			return new Response(200);
 		}
 		if($id == 'definition'){
-			$data = $req;
+			$data = $request;
 			Session::get()->setDefinitionSetting($data["definition"]);
 			return new Response(200);
+		}
+		if($id == 'notifications'){
+			return Utils::getNotFoundResponse(); //TEMPORAIRE
+			$data = $request->getParameters();
+			$data['current'] = 'notifications';
+			Session::get()->setNotificationSettings($data);
+			$data = array_merge($data, Session::get()->getNotificationSettings());
+			
+			return new ViewResponse('account/notifications', $data);
 		}
 		else
 			return new ViewResponse('account/profile', $data);
@@ -228,6 +237,21 @@ class AccountController extends Controller {
 		else {
 			return new RedirectResponse(WEBROOT.'login');
 		}
+	}
+	
+	public function notifications($request) {
+		return Utils::getNotFoundResponse(); //TEMPORAIRE
+		if(Session::isActive()) {
+			$data['currentPageTitle'] = 'Paramètre de notifications';
+			$data['settings'] = Session::get()->getSettings();
+			$data['current'] = 'notifications';
+			
+			$data = array_merge($data, Session::get()->getNotificationSettings());
+				
+			return new ViewResponse('account/notifications', $data);
+		}
+		else
+			return new RedirectResponse(WEBROOT.'login');
 	}
 
 	public function get($id, $request) {}
