@@ -37,7 +37,7 @@ class FeedController extends Controller {
 			}
 			
 			$data = $this->regroupPmFeeds($data);
-			$data = $this->regroupSuscribeFeeds($data);
+			$data = $this->regroupSubscribeFeeds($data);
 
 			return new ViewResponse('feed/feed', $data);
 		}
@@ -92,7 +92,7 @@ class FeedController extends Controller {
 		return $data;
 	}
 	
-	private function regroupSuscribeFeeds(&$data, $starting_index=-1, &$skip = array()){
+	private function regroupSusbcribeFeeds(&$data, $starting_index=-1, &$skip = array()){
 
 		$last_timestamp = 0;
 		$interval = 3*24*3600; //secondes
@@ -112,7 +112,7 @@ class FeedController extends Controller {
 				$last_timestamp = $action->timestamp;
 			}else{
 				if($last_channel != $action->target){
-					$data = $this->regroupSuscribeFeeds($data, $k, $skip);
+					$data = $this->regroupSusbcribeFeeds($data, $k, $skip);
 				}else{
 					if($action->timestamp+$interval>=$last_timestamp){
 						unset($data["actions"][$k]);
