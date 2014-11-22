@@ -58,7 +58,7 @@ class RegisterController extends Controller {
 										}
 										else {
 											$response = new ViewResponse('login/register', $data);
-											$response->addMessage(ViewMessage::error('Cette adresse e-mail est déjà occupée'));
+											$response->addMessage(ViewMessage::error('Cette adresse e-mail est déjà enregistrée'));
 
 											return $response;
 										}

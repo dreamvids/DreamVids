@@ -35,4 +35,12 @@ $router = new Router();
 
 
 $request = Utils::getPerformedRequest();
+
+/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
+if (!Session::isActive() && !in_array($request->getURI(), array('beta', 'login'))) {
+	header('location:'.WEBROOT.'beta');
+	exit();
+}
+/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
+
 $router->executeRequest($request);
