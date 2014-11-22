@@ -31,4 +31,5 @@ Route::register('admin', 'admin');
 
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
 Route::register('bugs', 'bug');
+Route::register('beta', 'beta');
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
