@@ -24,7 +24,7 @@ class Message extends ActiveRecord\Model {
 			}
 		}
 		$recep = ';'.implode(';', $recep).';';
-		
+		$recep = ChannelAction::filterReceiver($recep, "pm");
 
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),

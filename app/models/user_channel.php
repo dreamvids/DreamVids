@@ -135,7 +135,7 @@ class UserChannel extends ActiveRecord\Model {
 				ChannelAction::create(array(
 					'id' => ChannelAction::generateId(6),
 					'channel_id' => User::find($subscriber)->getMainChannel()->id,
-					'recipients_ids' => $subscribingChannel->admins_ids,
+					'recipients_ids' => ChannelAction::filterReceiver($subscribingChannel->admins_ids, "subscription"),
 					'type' => 'subscription',
 					'target' => $subscribing,
 					'timestamp' => Utils::tps()
@@ -171,7 +171,7 @@ class UserChannel extends ActiveRecord\Model {
 			ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($subscriber)->getMainChannel()->id,
-				'recipients_ids' => $subscribingChannel->admins_ids,
+				'recipients_ids' => ChannelAction::filterReceiver($subscribingChannel->admins_ids, "unsubscription"),
 				'type' => 'unsubscription',
 				'target' => $subscribing,
 				'timestamp' => Utils::tps()

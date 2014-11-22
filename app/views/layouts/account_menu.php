@@ -5,5 +5,6 @@
 		<li <?php echo (isset($current) && $current == 'channels') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channels'; ?>">Chaînes</a></li>
 		<li <?php echo (isset($current) && $current == 'videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channelslist'; ?>">Vidéos</a></li>
 		<li <?php echo (isset($current) && $current == 'messages') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/messages'; ?>">Messagerie</a></li>
+		<li <?php echo (isset($current) && $current == 'notifications') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/notifications'; ?>">Notifications</a></li>
 	</ul>
 </nav>

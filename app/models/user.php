@@ -165,6 +165,23 @@ class User extends ActiveRecord\Model {
 		$this->save();
 	}
 	
+	public function setNotificationSettings($newNotificationSetting) {
+		$settings = $this->getSettings();
+		$notificationssetting = $this->getNotificationSettings();
+
+		foreach ($notificationssetting as $k => $set) {
+			
+			if(isset($newNotificationSetting[$k])){
+				$notificationssetting[$k] = $newNotificationSetting[$k];
+			}else{
+				$notificationssetting[$k] = 0;
+			}
+		}
+		$settings['notifications'] = $notificationssetting;
+		$this->settings = json_encode($settings);
+	
+		$this->save();
+	}
 	
 	public function getPassword() {
 		return $this->pass;
@@ -197,6 +214,19 @@ class User extends ActiveRecord\Model {
 		}
 	
 		return $definitionsetting;
+	}
+	
+	public function getNotificationSettings(){
+	
+		$settings = $this->getSettings();
+	
+		if(!isset($settings['notifications'])){
+			$notificationssetting = array("like" => 1, "comment" => 1, "subscription" => 1, "upload" => 1, "pm" => 1);
+		}else{
+			$notificationssetting = $settings['notifications'];
+		}
+	
+		return $notificationssetting;
 	}
 	
 

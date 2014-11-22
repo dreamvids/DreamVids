@@ -114,7 +114,7 @@ class Video extends ActiveRecord\Model {
 			ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($userId)->getMainChannel()->id,
-				'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
+				'recipients_ids' => ChannelAction::filterReceiver(UserChannel::find($this->poster_id)->admins_ids, "like"),
 				'type' => 'like',
 				'target' => $this->id,
 				'timestamp' => Utils::tps()
@@ -132,7 +132,7 @@ class Video extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => User::find($userId)->getMainChannel()->id,
-			'recipients_ids' => UserChannel::find($this->poster_id)->admins_ids,
+			'recipients_ids' => ChannelAction::filterReceiver(UserChannel::find($this->poster_id)->admins_ids, "dislike"),
 			'type' => 'dislike',
 			'target' => $this->id,
 			'timestamp' => Utils::tps()
@@ -162,7 +162,7 @@ class Video extends ActiveRecord\Model {
 		if($this->flagged == 0) {
 			$this->flagged = 1;
 			$this->save();
-
+			
 			/*ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($userId)->getMainChannel()->id,
@@ -275,7 +275,7 @@ class Video extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $channelId,
-			'recipients_ids' => ';'.trim(UserChannel::find($channelId)->subs_list, ';').';',
+			'recipients_ids' => ChannelAction::filterReceiver(';'.trim(UserChannel::find($channelId)->subs_list, ';').';', "upload"),
 			'type' => 'upload',
 			'target' => $videoId,
 			'timestamp' => Utils::tps()
