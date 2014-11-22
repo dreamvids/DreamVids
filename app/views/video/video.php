@@ -262,7 +262,7 @@ foreach ($videos_ids as $vid) {
 								<li class="moins" id="moins-<?php echo $comment->id; ?>" onclick="dislikeComment('<?php echo $comment->id; ?>')">-<?php echo $comment->dislikes; ?></li>
 								<li onclick="reportComment('<?php echo $comment->id; ?>', this)" style="cursor:pointer">Signaler</li>
 								<li onclick="document.location.href='#comments';document.getElementById('response').innerHTML='<b>Répondre à <?php echo UserChannel::getNameById($comment->poster_id); ?> :</b>';document.getElementById('textarea-comment').focus();document.getElementById('parent-comment').value='<?php echo $comment->id; ?>';" style="cursor:pointer">Répondre</li>
-								<?php if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin() || $video->getAuthor()->belongToUser(Session::get()->id))) { ?>								
+								<?php if(Session::isActive() && (Session::get()->isModerator() || Session::get()->isAdmin() || $video->getAuthor()->belongToUser(Session::get()->id) || $comment->getAuthor()->belongToUser(Session::get()->id))) { ?>								
 								<li onclick="deleteComment('<?php echo $comment->id; ?>', this)" style="cursor:pointer">Suprimer</li>
 								<?php } ?>
 							</ul>
