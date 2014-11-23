@@ -56,7 +56,7 @@ class AccountController extends Controller {
 				if (isset($req['username']) && $req['username'] != $currentUsername) {
 					$newUsername = Utils::secure($req['username']);
 					
-					if (Utils::validateUsername($newUsername)) {
+					if (Utils::validateUsername($newUsername) && !User::exists(array('username' => $newUsername))) {
 						$channel = Session::get()->getMainChannel();
 						$user->username = $newUsername;
 						$user->save();
@@ -66,7 +66,7 @@ class AccountController extends Controller {
 					}
 					else {
 						$response = new ViewResponse('account/profile', $data);
-						$response->addMessage(ViewMessage::error('Le nom d\'utilisateur doit contenir uniquement des lettres, des chiffres, des points, des traits d\'union et des _ et doit être compris entre 3 et 40 caractères.'));
+						$response->addMessage(ViewMessage::error('Le nom d\'utilisateur doit �tre disponible, contenir uniquement des lettres, des chiffres, des points, des traits d\'union et des _ et doit être compris entre 3 et 40 caractères.'));
 					
 						return $response;
 					}

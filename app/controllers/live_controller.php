@@ -44,16 +44,27 @@ class LiveController extends Controller {
 		if($channel) {
 			$access = LiveAccess::find(array('channel_id' => $channel->id));
 
-			$data = array();
-			$data['currentPage'] = 'live';
+			if(is_object($access)) {
+				$data = array();
+				$data['currentPage'] = 'live';
 
-			$data['channel'] = $channel;
-			$data['viewers'] = $access->viewers;
-			$data['currentPageTitle'] = 'Live de '.$channel->name;
-			$data['subscribers'] = $channel->subscribers;
-			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
-			$data['onAir'] = is_object($access) ? $access->isOnline() : false;
-			$data['liveKey'] = is_object($access) ? $access->key : '';
+				$data['channel'] = $channel;
+				$data['viewers'] = $access->viewers;
+				$data['currentPageTitle'] = 'Live de '.$channel->name;
+				$data['subscribers'] = $channel->subscribers;
+				$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+				$data['onAir'] = is_object($access) ? $access->isOnline() : false;
+				$data['liveKey'] = is_object($access) ? $access->key : '';
+			}
+			else {
+				$data['channel'] = $channel;
+				$data['viewers'] = 0;
+				$data['currentPageTitle'] = 'Live de '.$channel->name;
+				$data['subscribers'] = $channel->subscribers;
+				$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+				$data['onAir'] = false;
+				$data['liveKey'] = '';
+			}
 
 			return new ViewResponse('channel/live', $data);
 		}
