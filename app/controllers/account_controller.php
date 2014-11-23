@@ -119,7 +119,7 @@ class AccountController extends Controller {
 			return new Response(200);
 		}
 		if($id == 'definition'){
-			$data = $request;
+			$data = $req;
 			Session::get()->setDefinitionSetting($data["definition"]);
 			return new Response(200);
 		}
