@@ -66,7 +66,7 @@ class AccountController extends Controller {
 					}
 					else {
 						$response = new ViewResponse('account/profile', $data);
-						$response->addMessage(ViewMessage::error('Le nom d\'utilisateur doit �tre disponible, contenir uniquement des lettres, des chiffres, des points, des traits d\'union et des _ et doit être compris entre 3 et 40 caractères.'));
+						$response->addMessage(ViewMessage::error('Le nom d\'utilisateur doit être disponible, contenir uniquement des lettres, des chiffres, des points, des traits d\'union et des _ et doit être compris entre 3 et 40 caractères.'));
 					
 						return $response;
 					}
