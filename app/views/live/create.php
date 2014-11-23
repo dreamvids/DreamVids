@@ -27,7 +27,7 @@
 				
 				<ul>
 					<li>- "Clé de live" ou "Nom de live" : <b><?php echo $access->getChannel()->name.'?key='.$access->key; ?></b></li>
-					<li>- URL de Streaming: <b>http://alpha.dreamvids.fr/stream</b>
+					<li>- URL de Streaming: <b>rtmp://alpha.dreamvids.fr/stream</b>
 					<li>- Lien du live : <b><a href="<?php echo WEBROOT.'lives/'.$access->getChannel()->name; ?>">http://dreamvids.fr/lives/<?php echo $access->getChannel()->name; ?></a></b></li>
 					<button class="btn btn--raised btn--red" onclick="revokeLive(<?php echo $access->id; ?>)">Révoquer l'accès live</button>
 				</ul>
