@@ -2045,6 +2045,15 @@ new Script({
  * Live chat
  */
 
+ window.requestAnimationFrame = (function() {
+     return window.requestAnimationFrame ||
+         window.webkitRequestAnimationFrame ||
+         window.mozRequestAnimationFrame ||
+         function(callback) {
+             window.setTimeout(callback, 1000 / 60);
+     };
+ })();
+
 function ChatMessage() {
 	var that = this;
 
@@ -2099,13 +2108,13 @@ function ChatMessage() {
 
 var Screen = {
 	pushMessage: function(message) {
-		var panel = document.getElementById('messages-panel');
+		var panel = document.getElementById("messages-panel");
 
-		var el = document.createElement('div');
-		el.className = 'live-chat__message';
+		var el = document.createElement("div");
+		el.className = "live-chat__message";
 
 		var username = document.createElement('span');
-		username.className = 'live-chat__message__pseudo';
+		username.className = "live-chat__message__pseudo " + (message.rank ? "live-chat__message__pseudo--" + message.rank : "");
 		var text = document.createTextNode(message.sender);
 		username.appendChild(text);
 
@@ -2117,7 +2126,8 @@ var Screen = {
 		el.appendChild(messageElem);
 
 		panel.appendChild(el);
-		panel.scrollTop = panel.scrollHeight;
+
+		Chat.scrollDown();
 
 		var maxMessagesInList = 32;
 
@@ -2178,6 +2188,9 @@ var Chat = {
 	channel: '',
 	username: 'Dreamer',
 	sessionId: '',
+	scrolling: false,
+	isHover: false,
+	scrollSpeed: 0,
 
 	start: function() {
 		this.socket = new WebSocket('ws://' + this.address + ':' + this.port + '/' + this.channel);
@@ -2218,11 +2231,47 @@ var Chat = {
 
 	onError: function(event) {
 		Screen.pushText("WebSocket error", 'error');
+	},
+
+	scrollDown: function() {
+
+		if (!Chat.scrolling && !Chat.isHover) {
+
+			Chat.scrollInterval();
+
+		}
+
+	},
+
+	scrollInterval: function() {
+
+		var panel = document.getElementById("messages-panel");
+
+	    Chat.scrolling = true;
+	    speed = Math.abs(panel.scrollTop + panel.offsetHeight - panel.scrollHeight) / 12 + 1;
+	    Chat.scrollSpeed += Chat.scrollSpeed < speed ? speed / 5 : -speed / 8;
+
+	    panel.scrollTop += !Chat.isHover ? Chat.scrollSpeed : 0;
+
+	    if (panel.scrollTop + panel.offsetHeight < panel.scrollHeight) {
+
+	        requestAnimationFrame(Chat.scrollInterval);
+
+	    }
+
+	    else {
+
+	        Chat.scrollSpeed = 0;
+	        Chat.scrolling = false;
+
+	    }
+
 	}
+
 };
 
-
 function initChat(opts) {
+
 	Chat.address = opts.ip;
 	Chat.port = opts.port;
 	Chat.channel = opts.channel;
@@ -2232,6 +2281,27 @@ function initChat(opts) {
 	window.onkeypress = keyPress;
 
 	Chat.start();
+
+	var panel = document.getElementById("messages-panel");
+
+	panel.addEventListener("mouseover", function() {
+
+	    Chat.isHover = true;
+
+	});
+
+	panel.addEventListener("mouseout", function() {
+
+	    Chat.isHover = false;
+
+	});
+
+	panel.addEventListener("mousewheel", function(event) {
+
+	    panel.scrollTop += event.wheelDelta > 0 || event.detail < 0 ? -30 : 30;
+
+	});
+
 }
 
 function sendChatMessage() {
@@ -2268,9 +2338,6 @@ new Script({
 	}
 
 });
-
-
-
 
 /**
  * scripts/comment.js
@@ -2994,6 +3061,15 @@ new Script({
  * Live chat
  */
 
+ window.requestAnimationFrame = (function() {
+     return window.requestAnimationFrame ||
+         window.webkitRequestAnimationFrame ||
+         window.mozRequestAnimationFrame ||
+         function(callback) {
+             window.setTimeout(callback, 1000 / 60);
+     };
+ })();
+
 function ChatMessage() {
 	var that = this;
 
@@ -3048,13 +3124,13 @@ function ChatMessage() {
 
 var Screen = {
 	pushMessage: function(message) {
-		var panel = document.getElementById('messages-panel');
+		var panel = document.getElementById("messages-panel");
 
-		var el = document.createElement('div');
-		el.className = 'live-chat__message';
+		var el = document.createElement("div");
+		el.className = "live-chat__message";
 
 		var username = document.createElement('span');
-		username.className = 'live-chat__message__pseudo';
+		username.className = "live-chat__message__pseudo " + (message.rank ? "live-chat__message__pseudo--" + message.rank : "");
 		var text = document.createTextNode(message.sender);
 		username.appendChild(text);
 
@@ -3066,7 +3142,8 @@ var Screen = {
 		el.appendChild(messageElem);
 
 		panel.appendChild(el);
-		panel.scrollTop = panel.scrollHeight;
+
+		Chat.scrollDown();
 
 		var maxMessagesInList = 32;
 
@@ -3127,6 +3204,9 @@ var Chat = {
 	channel: '',
 	username: 'Dreamer',
 	sessionId: '',
+	scrolling: false,
+	isHover: false,
+	scrollSpeed: 0,
 
 	start: function() {
 		this.socket = new WebSocket('ws://' + this.address + ':' + this.port + '/' + this.channel);
@@ -3167,11 +3247,47 @@ var Chat = {
 
 	onError: function(event) {
 		Screen.pushText("WebSocket error", 'error');
+	},
+
+	scrollDown: function() {
+
+		if (!Chat.scrolling && !Chat.isHover) {
+
+			Chat.scrollInterval();
+
+		}
+
+	},
+
+	scrollInterval: function() {
+
+		var panel = document.getElementById("messages-panel");
+
+	    Chat.scrolling = true;
+	    speed = Math.abs(panel.scrollTop + panel.offsetHeight - panel.scrollHeight) / 12 + 1;
+	    Chat.scrollSpeed += Chat.scrollSpeed < speed ? speed / 5 : -speed / 8;
+
+	    panel.scrollTop += !Chat.isHover ? Chat.scrollSpeed : 0;
+
+	    if (panel.scrollTop + panel.offsetHeight < panel.scrollHeight) {
+
+	        requestAnimationFrame(Chat.scrollInterval);
+
+	    }
+
+	    else {
+
+	        Chat.scrollSpeed = 0;
+	        Chat.scrolling = false;
+
+	    }
+
 	}
+
 };
 
-
 function initChat(opts) {
+
 	Chat.address = opts.ip;
 	Chat.port = opts.port;
 	Chat.channel = opts.channel;
@@ -3181,6 +3297,27 @@ function initChat(opts) {
 	window.onkeypress = keyPress;
 
 	Chat.start();
+
+	var panel = document.getElementById("messages-panel");
+
+	panel.addEventListener("mouseover", function() {
+
+	    Chat.isHover = true;
+
+	});
+
+	panel.addEventListener("mouseout", function() {
+
+	    Chat.isHover = false;
+
+	});
+
+	panel.addEventListener("mousewheel", function(event) {
+
+	    panel.scrollTop += event.wheelDelta > 0 || event.detail < 0 ? -30 : 30;
+
+	});
+
 }
 
 function sendChatMessage() {
@@ -3217,9 +3354,6 @@ new Script({
 	}
 
 });
-
-
-
 
 /**
  * scripts/comment.js

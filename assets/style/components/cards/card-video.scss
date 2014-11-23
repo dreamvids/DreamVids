@@ -4,6 +4,8 @@
 
 .card.video {
 
+	position: relative;
+
 	.thumbnail {
 
 		position: relative;
@@ -100,19 +102,24 @@
 
 		a h4 {
 
+			height: 15px;
 			margin-left: 13px;
-			margin-top: 15px;
+			margin-top: 13px;
 
 			font-size: 14px;
 			font-weight: bold;
+			overflow: hidden;
+
+			word-wrap: break-word;
 
 		}
 
 		div {
 
-			margin-top: 10px;
-			padding-left: 15px;
-			padding-right: 15px;
+			position: absolute;
+			bottom: 10px;
+			left: 15px;
+			right: 15px;
 
 			font-size: 14px;
 
@@ -137,7 +144,7 @@
 			.channel {
 
 				float: right;
-				margin-top: -15px;
+
 				color: #40a6e0;
 
 			}

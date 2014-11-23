@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	
-	<div id="player">
+	<div id="player" class="wide">
 		<video id="video-tag" x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
 			<source id="srcMp4" type="video/mp4" src="">
 			<source id="srcWebm" type="video/webm" src="">
@@ -53,7 +53,7 @@
 				<span id="icon"></span>
 			</span>
 			<span id="separation"></span>
-			<span id="widescreen" class="widescreen"></span>
+			<span id="widescreen" class="smallscreen"></span>
 			<span id="fullscreen" class="fullscreen"></span>
 
 			<span class="cast" id="chromecastplayicon"></span>

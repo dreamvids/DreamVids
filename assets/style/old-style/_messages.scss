@@ -199,7 +199,15 @@
 				color: #333;
 			}
 
+			a {
+
+				position: relative;
+				top: -8px;
+
+			}
+
 			&.none { display: none; }
+
 		}
 
 		.create-form {

@@ -63,7 +63,7 @@
 	#player.wide ~ .video-infos {
 
 		width: 100%;
-  		margin: 0 auto 0 auto;
+		margin: 0 auto 0 auto;
 
 	}
 
@@ -277,6 +277,33 @@
 .video-infos .votes .plus  { color: #48a84f; }
 
 .video-infos .votes .moins { color: #dd4e47; }
+
+#player.wide ~ .video-infos .votes {
+
+	text-align: left;
+
+}
+
+#player.wide ~ .video-infos .votes .plus,
+#player.wide ~ .video-infos .votes .moins {
+
+	width: 15%;
+
+}
+
+#player.wide ~ .video-infos .votes .moins {
+
+	margin-left: 5%;
+
+}
+
+#player.wide ~ .video-infos .votes .moins:before {
+
+	left: 18%;
+	content: "-";
+	border: 1px solid #dd4e47;
+
+}
 
 .video-infos .description {
 

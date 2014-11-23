@@ -216,7 +216,12 @@ function loadDiscution(id) {
 
         discutionInfos.innerHTML = "";
         discutionInfos.className = discutionInfos.className.replace("none", "");
-        createForm.className += " none";
+
+        if (createForm.className.indexOf("none") < 0) {
+
+            createForm.className += " none";
+
+        }
 
         var h1 = document.createElement('h1');
         h1.innerHTML = '<b>' + infos.title + '</b>';
@@ -394,8 +399,15 @@ function createDiscution(members) {
     createInputTitle.value = "";
     createInputMembers.value = members ? members : "";
 
-    discutionInfos.className += " none";
+    if (discutionInfos.className.indexOf("none") < 0) {
+
+        discutionInfos.className += " none";
+
+    }
+
     createForm.className = createForm.className.replace("none", "");
+
+    messagesDiscution.innerHTML = "";
 
 }
 
@@ -412,7 +424,12 @@ if (createSubmit && channelSelector) {
     createSubmit.addEventListener("click", function() {
 
         discutionInfos.className = discutionInfos.className.replace("none", "");
-        createForm.className += " none";
+
+        if (createForm.className.indexOf("none") < 0) {
+
+            createForm.className += " none";
+
+        }
     
         var creator = channelSelector.value;
     
@@ -434,6 +451,14 @@ if (createSubmit && channelSelector) {
         }).then(function(result) {
 
             loadMessagesInList();
+    
+        }).error(function() {
+
+            alert("Erreur : le destinataire n'a pas pu être trouvé");
+
+            createDiscution();
+
+            createInputMembers.select();
     
         });
     

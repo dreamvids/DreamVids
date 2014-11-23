@@ -9,6 +9,55 @@
 
 	height: 242px;
 
-	overflow: auto;
+	overflow-x: none;
+	overflow-y: auto;
+
+}
+
+.live-chat__messages::-webkit-scrollbar {
+
+	height: 16px;
+	width: 16px;
+
+	background: transparent;
+
+}
+
+.live-chat__messages::-webkit-scrollbar-thumb {
+
+	border: 6px solid #F1F0F0;
+	border-left: 9px solid #F1F0F0;
+
+	background: transparentize(black, .5);
+
+}
+
+.live-chat__messages:hover::-webkit-scrollbar-thumb {
+
+	background: transparentize(black, .5);
+
+}
+
+.live-chat__messages::-moz-scrollbar {
+
+	height: 16px;
+	width: 16px;
+
+	background: transparent;
+
+}
+
+.live-chat__messages::-moz-scrollbar-thumb {
+
+	border: 6px solid #F1F0F0;
+	border-left: 9px solid #F1F0F0;
+
+	background: transparentize(black, .5);
+
+}
+
+.live-chat__messages:hover::-moz-scrollbar-thumb {
+
+	background: transparentize(black, .5);
 
 }
