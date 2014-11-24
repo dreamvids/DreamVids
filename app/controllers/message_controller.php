@@ -23,6 +23,7 @@ class MessageController extends Controller {
 		if(Session::isActive()) {
 			$req = $request->getParameters();
 			Session::get()->last_visit = Utils::tps();
+			Session::get()->save();
 			if(isset($req['sender'], $req['conversation'], $req['content']) && !empty($req['conversation']) && !empty($req['sender']) && !empty($req['content'])) {
 				$sender = Utils::secure($req['sender']);
 				$conversation = Utils::secure($req['conversation']);
