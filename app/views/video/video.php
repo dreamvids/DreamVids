@@ -20,7 +20,11 @@
 					<p id="video-top-abonnes"><span class="strong"><?php echo $subscribers; ?></span> abonnés</p>
 				</div>
 			</div>
-			<h1 class="<?php echo ($discover != 0) ? 'staff-selected' : ''; ?>"><?php echo $title; ?></h1>
+			<h1 class="<?php echo ($discover != 0) ? 'staff-selected' : ''; ?>"><?php echo $title; ?>
+				<?php if($video->getAuthor()->belongToUser(Session::get()->id)) { ?>
+				<a href="<?php echo WEBROOT."videos/$video->id/edit" ?>" class="form no-style" ><input style="max-width: 300px; display: inline-block; margin-left:30px" class="btn--blue" type="submit" value="Editer cette vidéo"></a>
+				<?php } ?>
+			</h1>
 		</div>
 	</div>
 	
