@@ -217,7 +217,8 @@ class AccountController extends Controller {
 			$data['currentPageTitle'] = 'Mon compte';
 
 			$data['channels'] = Session::get()->getOwnedChannels();
-
+			Session::get()->last_visit = Utils::tps();
+			Session::get()->save();
 			return new ViewResponse('account/messages', $data);
 		}
 		else {

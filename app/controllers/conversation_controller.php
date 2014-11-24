@@ -18,6 +18,8 @@ class ConversationController extends Controller {
 
 	public function index($request) {
 		if(Session::isActive()) {
+			Session::get()->last_visit = Utils::tps();
+			Session::get()->save();
 			if($request->acceptsJson()) {
 				$conversations = Conversation::getByUser(Session::get());
 
@@ -43,6 +45,8 @@ class ConversationController extends Controller {
 
 	public function get($id, $request) {
 		if(Session::isActive()) {
+			Session::get()->last_visit = Utils::tps();
+			Session::get()->save();
 			if($conv = Conversation::find($id)) {
 				if(!$conv->isUserAllowed(Session::get()))
 					return Utils::getUnauthorizedResponse();
@@ -84,8 +88,9 @@ class ConversationController extends Controller {
 					'text' => isset(end($messages)->content) ? end($messages)->content : 'Aucun message'
 				);
 
-				if(isset($messagesData))
+				if(isset($messagesData)){
 					$conversationsData['messages'] = $messagesData;
+				}
 
 				return new JsonResponse($conversationsData);
 			}
