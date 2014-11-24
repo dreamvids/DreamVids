@@ -335,7 +335,8 @@ class Utils {
 				array("https://www.blogger.com/blog-this.g?n={text}&source=dreamvids&b=%3Ca%20href%3D%22{url}%22%3E{title}</a>", "32-blogger.png", "Blogger"),
 				array("http://www.myspace.com/Modules/PostTo/Pages/?u={url}&t={title}&c={text}{title}&l=", "32-myspace.png", "MySpace"),
 				array("http://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}", "32-linkedin.png", "LinkedIn"),
-				array("http://tumblr.com/share?s=&v=3&t={text}{title}&u={url}", "32-tumblr.png", "Tumblr")
+				array("http://tumblr.com/share?s=&v=3&t={text}{title}&u={url}", "32-tumblr.png", "Tumblr"),
+				array("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={url}", "32-qrcode.png", "un QRCode")
 		);
 
 		$title = urlencode($video->title);
