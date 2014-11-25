@@ -37,6 +37,7 @@ class FeedController extends Controller {
 			}
 			
 			$data = $this->regroupPmFeeds($data);
+			$data = $this->regroupLikeFeeds($data);
 			$data = $this->regroupSubscribeFeeds($data);
 
 			return new ViewResponse('feed/feed', $data);
@@ -129,6 +130,46 @@ class FeedController extends Controller {
 		
 		return $data;
 	}
+	
+	
+	private function regroupLikeFeeds(&$data, $starting_index=-1, &$skip = array()){
+		
+		$last_timestamp = 0;
+		$interval = 3*24*3600; //secondes 3 jours
+		$first_streak = true;
+		$first_streak_id = -1;
+		$last_video = "";
+		foreach ($data["actions"] as $k => $action) {
+			if($action->type != 'like' || $starting_index>$k || in_array($k, $skip)) { continue; }
+				
+			if($first_streak){
+				if($first_streak_id<0){
+					$first_streak_id = $k;
+				}
+				$first_streak = false;
+				$last_video = $action->target;
+				$data["actions"][$first_streak_id]->infos['nb_like'] = 1;
+				$last_timestamp = $action->timestamp;
+			}else{
+				if($last_video != $action->target){
+					$data = $this->regroupLikeFeeds($data, $k, $skip);
+				}else{
+					if($action->timestamp+$interval>=$last_timestamp){
+						unset($data["actions"][$k]);
+						$data["actions"][$first_streak_id]->infos['nb_like']++;
+						$skip[]=$k;
+					}else{
+						$first_streak_id=$k;
+						$data["actions"][$first_streak_id]->infos['nb_like']= 1;
+					}
+				}
+			}
+				
+		}
+	
+		return $data;
+	}
+	
 	
 	// Denied actions
 	public function get($id, $request) {}

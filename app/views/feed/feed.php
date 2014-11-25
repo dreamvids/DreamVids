@@ -61,18 +61,20 @@
 										<p><b><?php echo $action->infos['nb_subscription']; ?></b> personnes se sont abonnées à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
 									<?php } ?>
 									</a>
-									<span class="subscriber"><b><?php echo $channel_action->subscribers; ?></b> Abonnés</span>
+									<span class="subscriber"><b><?php echo UserChannel::find($action->target)->getSubscribersNumber(); ?></b> Abonnés</span>
 									<i><?php echo Utils::relative_time($action->timestamp) ?></i>
 								</div>
 							<?php
 						}
 						else if($action->type == 'like' && Video::exists($action->target)) {
 								$video = Utils::secureActiveRecordModel(Video::find_by_id($action->target));
+								$nb_like = $action->infos["nb_like"];
+								$phrase = "<b>" . ($nb_like > 1 ? "$nb_like</b> personnes ont" : "$channel_action->name</b> a ") . "  aimé votre vidéo \"<b>$video->title</b>\"";
 							?>
 								<div class="card<?php echo $supp_class; ?> plus">
 									<a href="<?php echo WEBROOT.'watch/'.$action->target; ?>">
 										<div class="thumbnail bg-loader" data-background-load-in-view data-background="http://lorempicsum.com/up/350/200/6"></div>
-										<p><b><?php echo $channel_action->name ?></b> a aimé votre vidéo "<b><?php echo $video->title; ?></b>"</p>
+										<p><?php echo $phrase; ?></p>
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
