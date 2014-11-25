@@ -34,7 +34,7 @@
 
 	<section class="video-infos live <?php if (!$onAir) { echo "live--offline"; } ?>">
 
-		<div class="views"><?php echo $viewers; ?> viewers</div>
+		<div class="views" id="viewers"><?php echo $viewers; ?> viewers</div>
 
 		<hr>
 
@@ -55,7 +55,7 @@
 </div>
 
 <script>
-
+	var channelId = '<?php echo $channel->id; ?>';
 	var chatLiveOptions = {
 		ip: '<?php echo Config::getValue_('livechat-address'); ?>',
 		port: <?php echo Config::getValue_('livechat-port'); ?>,

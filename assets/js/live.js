@@ -50,3 +50,16 @@ function revokeLive(accessId) {
 	});
 
 }
+
+function getViewers(channelId) {
+	marmottajax.get({
+		
+		url: _webroot_ + "lives/viewers/" + channelId
+	
+	}) .then(function(result) {
+		var tab = JSON.parse(result);
+		document.getElementById("viewers").innerHTML = tab[0] + ' viewers';
+	});
+}
+
+var timer = setInterval(function(){getViewers(channelId)}, 30000);

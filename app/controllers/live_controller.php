@@ -118,5 +118,19 @@ class LiveController extends Controller {
 		else
 			return Utils::getUnauthorizedResponse();
 	}
+	
+	public function viewers($id, $request) {
+		if (UserChannel::exists($id)) {
+			$channel_id = $id;
+		}
+		elseif (UserChannel::exists(array('name' => $id))) {
+			$channel_id = UserChannel::find(array('name' => $id))->id;
+		}
+		else {
+			return Utils::getNotFoundResponse();
+		}
+		
+		return new JsonResponse(array(LiveAccess::find(array('channel_id' => $channel_id))->viewers));
+	}
 
 }
