@@ -12,13 +12,27 @@
 
 		display: block;
 		width: 100%;
-		height: 70%;
+		height: 74%;
 		overflow: hidden;
 
 		background-color: #e9e9e9;
 		background-position: center;
 		
 		@extend %background-cover;
+
+	}
+
+}
+
+.full-cards-list .card.video .thumbnail {
+
+	height: 71%;
+
+}
+
+.card.video {
+
+	.thumbnail {
 
 		.time {
 
