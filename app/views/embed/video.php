@@ -38,7 +38,7 @@
 				</span>
 				<span id="play-pause" class="play"></span>
 				<span id="time"></span>
-				<a href="http://alpha.dreamvids.fr/watch/<?php echo $video->id; ?>" target="_blank" id="DreamVidsIconEmbed"></a>
+				<a href="http://v2.dreamvids.fr/watch/<?php echo $video->id; ?>" target="_blank" id="DreamVidsIconEmbed"></a>
 				<span id="annotationsButton" style="display: none"></span>
 				<span id="qualityButton">SD</span>
 				<span id="volume">

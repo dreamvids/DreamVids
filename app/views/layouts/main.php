@@ -169,7 +169,7 @@
 						}
 						
 						?>
-						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'antoine [arobase] dreamvids [point] fr\'')">Vous ici ?</a>
+						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'partenaires [arobase] dreamvids.fr\'')">Vous ici ?</a>
 
 					</div>
 
