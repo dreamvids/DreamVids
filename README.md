@@ -19,4 +19,4 @@ Back-end development: [Peter Cauty](https://github.com/Vetiore), [Quadrifoglio](
 
 Design: [DarkWos](https://twitter.com/darkwos1), [LowiSky](https://github.com/LowiSky)
 
-Front-end development: [Dimou](https://github.com/dimitrinicolas), [LowiSky](https://github.com/LowiSky)
+Front-end development: [Dimou](https://github.com/dimitrinicolas), [LowiSky](https://github.com/LowiSky), [mxcmaxime](https://github.com/mxcmaxime)
