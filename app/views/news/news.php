@@ -1,6 +1,5 @@
 <div class="content">
-
-	<aside class="full-cards-list">
+	<!-- <aside class="full-cards-list">
 		<h3 class="title">Lives en cours</h3>
 		
 		<div class="card video card--live">
@@ -29,7 +28,7 @@
 			</div>
 		</div>
 
-	</aside>
+	</aside> -->
 
 	<aside class="full-cards-list">
 		<h3 class="title">Dernières vidéos postées</h3>
