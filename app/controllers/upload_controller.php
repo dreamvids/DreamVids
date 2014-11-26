@@ -34,7 +34,8 @@ class UploadController extends Controller {
 	
 	public function channelSelection($request) {
 		$data = array();
-		$data['channel'] = UserChannel::all(array('conditions' => array('admins_ids LIKE ?', '%;'.Session::get()->id.';%')));
+// 		$data['channel'] = UserChannel::all(array('conditions' => array('admins_ids LIKE ?', '%;'.Session::get()->id.';%')));
+		$data['channel'] = Session::get()->getOwnedChannels();
 		$data['currentPageTitle'] = 'Mettre en ligne';
 		return new ViewResponse('upload/channels', $data);
 	}
