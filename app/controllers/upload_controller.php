@@ -33,11 +33,16 @@ class UploadController extends Controller {
 	}
 	
 	public function channelSelection($request) {
+		if (Session::isActive() ) {
 		$data = array();
 // 		$data['channel'] = UserChannel::all(array('conditions' => array('admins_ids LIKE ?', '%;'.Session::get()->id.';%')));
 		$data['channel'] = Session::get()->getOwnedChannels();
 		$data['currentPageTitle'] = 'Mettre en ligne';
-		return new ViewResponse('upload/channels', $data);
+		return new ViewResponse('upload/channels', $data);			
+		}
+		else {
+			return new RedirectResponse(WEBROOT.'login');
+		}
 	}
 	
 	public function get($id, $request) {
