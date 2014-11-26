@@ -146,11 +146,13 @@ class User extends ActiveRecord\Model {
 		if(empty($settings)){
 			$settings = array();
 		}
-		
+		if(is_numeric($newSoundSetting)){
+			
 		$settings['volume'] = $newSoundSetting;
 		$this->settings = json_encode($settings);
 		
 		$this->save();
+		}
 	}
 	
 	public function setDefinitionSetting($newDefinitionSetting) {
@@ -158,11 +160,13 @@ class User extends ActiveRecord\Model {
 		if(empty($settings)){
 			$settings = array();
 		}
-	
+		if (is_numeric($newDefinitionSetting)){
 		$settings['definition'] = $newDefinitionSetting;
 		$this->settings = json_encode($settings);
 	
 		$this->save();
+			
+		}
 	}
 	
 	public function setNotificationSettings($newNotificationSetting) {
