@@ -3,9 +3,11 @@
 		<div id="video-top-title">
 			<div id="video-top-channel">
 				<img src="<?php echo $channel->getAvatar(); ?>">
+				<?php if (Session::get()->getMainChannel()->id != $channel->id) { ?>
 				<span id="hover_subscribe" data-channel="<?php echo $channel->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
 					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
 				</span>
+				<?php } ?>
 				<div id="video-top-channel-infos">
 					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$channel->id; ?>" class="<?php echo $channel->isVerified() ? 'validate' : ''; ?>">
 						<?php echo $channel->name; ?>
