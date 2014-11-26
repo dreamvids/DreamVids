@@ -156,7 +156,7 @@ class VideoController extends Controller {
 
 	public function update($id, $request) {
 		$req = $request->getParameters();
-		if(Session::isActive()) {
+		if(Session::isActive() && UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id)) {
 			if($video = Video::find($id)) {
 				$data = array();
 				$data['currentPageTitle'] = $video->title.' - Modification';
@@ -282,7 +282,7 @@ class VideoController extends Controller {
 	}
 
 	public function edit($id, $request) {
-		if(Session::isActive()) {
+		if(Session::isActive() && UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id)) {
 			if($video = Video::find($id)) {
 				$data = array();
 				$data['currentPageTitle'] = $video->title.' - Modification';
