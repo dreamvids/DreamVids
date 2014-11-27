@@ -2677,6 +2677,48 @@ body {
   .share-video-block.show .fb-share-button {
     margin-left: -15px; }
 
+/* SHARE LIVE BLOCK
+   ============================= */
+.share-live-block:before {
+  position: absolute;
+  float: left;
+  display: block;
+  width: 4px;
+  height: 100%;
+  content: "";
+  background: none repeat scroll 0% 0% #1E73BD; }
+
+.share-live-block {
+  position: relative;
+  bottom: 0px;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 360px;
+  margin-bottom: 19px;
+  margin-top: -19px;
+  background: none repeat scroll 0% 0% #F1F0F0;
+  overflow: hidden; }
+  @media (max-width: 1000px) {
+    .share-live-block {
+      margin: 0px auto;
+      width: 640px; } }
+  .share-live-block .buttons {
+    padding: 15px 30px;
+    text-align: left; }
+  .share-live-block .buttons * {
+    margin: 0px 15px; }
+  .share-live-block .buttons img {
+    cursor: pointer;
+    transition: all 0.2s ease 0s; }
+  .share-live-block .twitter-share-button, .share-live-block .fb-share-button {
+    float: left;
+    margin: 5px 0 15px 25px; }
+  .share-live-block .twitter-share-button {
+    margin-right: -15px; }
+  .share-live-block .fb-share-button {
+    margin-left: -15px; }
+
 /* === LIVE CHAT === */
 /**
  * components/watch/video-infos/live-chat/live-chat.scss

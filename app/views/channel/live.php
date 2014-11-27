@@ -53,6 +53,17 @@
 		</div>
 
 	</section>
+	<section class="share-live-block">
+
+		<div class="buttons">
+
+
+			<img title="Partager" id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
+			<img title="Intégrer" id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
+
+		</div>
+
+	</section>
 	
 </div>
 
