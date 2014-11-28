@@ -6,7 +6,7 @@
 
     position: absolute;
     float: left;
-    
+
     display: block;
     width: 4px;
     height: 100%;
@@ -36,6 +36,22 @@
     	width: 640px;
 
     }
+
+    hr {
+
+	    height: 0px;
+	    margin: 0px 20px;
+
+	    border-width: 0px 0px 1px;
+	    border-style: none none solid;
+	    border-color: -moz-use-text-color -moz-use-text-color #D9D9D9;
+	    -moz-border-top-colors: none;
+	    -moz-border-right-colors: none;
+	    -moz-border-bottom-colors: none;
+	    -moz-border-left-colors: none;
+	    border-image: none;
+
+	}
 
 	.buttons {
 

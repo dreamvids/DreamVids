@@ -62,6 +62,8 @@
 
 		</div>
 
+		<hr></hr>
+
 		<div class="inner-export">
 
 			<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//v2.dreamvids.fr/embed/live/<?php echo $channel->name; ?>" allowfullscreen frameborder="0"></iframe>'>
