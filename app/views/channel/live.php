@@ -57,10 +57,35 @@
 
 		<div class="buttons">
 
-
 			<img title="Partager" id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
 			<img title="Intégrer" id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 
+		</div>
+
+		<div class="inner-export">
+
+			<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//v2.dreamvids.fr/embed/video/<?php echo $channel->id; ?>" allowfullscreen frameborder="0"></iframe>'>
+
+			<div class="form no-style">
+					
+				<select id="exporter-quality">
+					<option value="0">1280x720</option>
+					<option value="1" selected>640x360</option>
+					<option value="2">320x180</option>
+				</select>
+
+				<input type="checkbox" checked id="exporter-autoplay"/><label for="exporter-autoplay">Autoplay</label><br>
+					
+				<br>
+				<label for="exporter-time-checkbox">Démarrer à</label>
+				<input type="checkbox" class="for-checkbox-dependence" id="exporter-time-checkbox"/>
+
+				<label for="exporter-time-input" class="checkbox-dependence">
+					<input type="time" id="exporter-time-input" value="00:00" min="00:00">
+				</label>
+
+			</div>
+			
 		</div>
 
 	</section>
