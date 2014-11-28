@@ -61,7 +61,7 @@
 
 							<form method="get" onsubmit="document.location.href=_webroot_+'search/'+document.getElementById('top-nav-search-input').value.replace(/ /g, '+');return false;" action="<?php echo WEBROOT.'search'; ?>">
 
-								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$search; ?>">
+								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$_SESSION["last_search"]; ?>">
 								<input type="submit" value="">
 
 							</form>

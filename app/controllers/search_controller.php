@@ -17,6 +17,7 @@ class SearchController extends Controller {
 	}
 	
 	public function get($id, $request) {
+		
 		$q = urldecode($id);
 		$data = array();
 		$data['currentPageTitle'] = $q.' - Recherche';
@@ -24,6 +25,7 @@ class SearchController extends Controller {
 		$data['videos'] = Video::getSearchVideos($q);
 		$data['channels'] = UserChannel::getSearchChannels($q);
 		
+		$_SESSION["last_search"] = $q;
 		if(empty($data['videos']) && empty($data['channels'])){
 			
 			$data['error']= array(
@@ -33,7 +35,6 @@ class SearchController extends Controller {
 			
 			return new ViewResponse('search/error', $data);
 		}
-// 		die(var_dump($data['channels']));
 		return new ViewResponse('search/search', $data);
 	}
 	
