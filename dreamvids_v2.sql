@@ -272,6 +272,7 @@ CREATE TABLE `videos_comments` (
   `dislikes` int(11) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   `parent` varchar(6) NOT NULL,
+  `flagged` BOOLEAN NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
