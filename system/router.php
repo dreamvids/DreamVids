@@ -120,7 +120,7 @@ class Router {
 						unset($uriParameters[0]);
 						unset($uriParameters[1]);
 
-						$response = call_user_func_array(array($controller, $methodName), array_merge($uriParameters, array($request)));
+						$response = call_user_func_array(array($controller, $methodName), array_merge(array($request), $uriParameters));
 						Utils::sendResponse($response);
 					}
 					// Example: /posts/42/edit --> call function edit (if it exists)
@@ -131,7 +131,7 @@ class Router {
 							unset($uriParameters[0]);
 							unset($uriParameters[2]);
 
-							$response = call_user_func_array(array($controller, $methodName), array(Utils::secureArray($uriParameters), $request));
+							$response = call_user_func_array(array($controller, $methodName), array($request, Utils::secureArray($uriParameters)));
 							Utils::sendResponse($response);
 						}
 						else {
