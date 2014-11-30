@@ -9,7 +9,7 @@
 		<div id="video-top-title">
 			<div id="video-top-channel">
 				<img src="<?php echo $author->getAvatar(); ?>">
-				<?php if (Session::get()->getMainChannel()->id != $author->id) { ?>
+				<?php if (Session::isActive() && Session::get()->getMainChannel()->id != $author->id) { ?>
 				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
 					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
 				</span>
