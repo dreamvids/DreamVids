@@ -13,6 +13,7 @@ tmp
 *.swp
 
 .project
+.buildpath
 .cache/
 .settings/
 uploads/
