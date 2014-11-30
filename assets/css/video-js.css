@@ -20,8 +20,8 @@ The control icons are from a custom font. Each icon corresponds to a character
 */
 @font-face {
   font-family: 'VideoJS';
-  src: url('../fonts/vjs.eot');
-  src: url('../fonts/vjs.eot?#iefix') format('embedded-opentype'), url('../fonts/vjs.woff') format('woff'), url('../fonts/vjs.ttf') format('truetype'), url('../fonts/vjs.svg#icomoon') format('svg');
+  src: url('font/vjs.eot');
+  src: url('font/vjs.eot?#iefix') format('embedded-opentype'), url('font/vjs.woff') format('woff'), url('font/vjs.ttf') format('truetype'), url('font/vjs.svg#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -144,7 +144,7 @@ fonts to show/hide properly.
 /* Replacement for focus outline */
 .vjs-default-skin .vjs-control:focus:before,
 .vjs-default-skin .vjs-control:hover:before {
-  text-shadow: 0em 0em 1em #ffffff;
+  text-shadow: 0em 0em 1em rgba(255, 255, 255, 0.5);
 }
 .vjs-default-skin .vjs-control:focus {
   /*  outline: 0; */
@@ -219,13 +219,13 @@ fonts to show/hide properly.
   content: "\e005";
 }
 .vjs-default-skin .vjs-volume-control {
-  width: 5em;
+  width: 7em;
   float: right;
 }
 .vjs-default-skin .vjs-volume-bar {
-  width: 5em;
+  width: 6em;
   height: 0.6em;
-  margin: 1.1em auto 0;
+  margin: 1.1em auto 0 -4px;
 }
 .vjs-default-skin .vjs-volume-menu-button .vjs-menu-content {
   height: 2.9em;
@@ -240,8 +240,8 @@ fonts to show/hide properly.
   width: 100%;
 }
 .vjs-default-skin .vjs-volume-bar .vjs-volume-handle {
-  width: 0.5em;
-  height: 0.5em;
+  width: 4px;
+  height: 4px;
   /* Assumes volume starts at 1.0. If you change the size of the
      handle relative to the volume bar, you'll need to update this value
      too. */
@@ -249,11 +249,10 @@ fonts to show/hide properly.
   left: 4.5em;
 }
 .vjs-default-skin .vjs-volume-handle:before {
-  font-size: 0.9em;
-  top: -0.2em;
-  left: -0.2em;
-  width: 1em;
-  height: 1em;
+  top: 0px;
+  left: 2px;
+  width: 7px;
+  height: 7px;
 }
 .vjs-default-skin .vjs-volume-menu-button .vjs-menu .vjs-menu-content {
   width: 6em;
@@ -263,6 +262,7 @@ fonts to show/hide properly.
 --------------------------------------------------------------------------------
 */
 .vjs-default-skin .vjs-progress-control {
+  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -352,14 +352,15 @@ fonts to show/hide properly.
 --------------------------------------------------------------------------------
 */
 .vjs-default-skin .vjs-time-controls {
-  font-size: 1em;
+  font-size: 1.2em;
   /* Align vertically by making the line height the same as the control bar */
-  line-height: 3em;
+  line-height: 2.5em;
 }
 .vjs-default-skin .vjs-current-time {
   float: left;
 }
 .vjs-default-skin .vjs-duration {
+  display: none;
   float: left;
 }
 /* Remaining time is in the HTML, but not included in default design */
@@ -368,6 +369,7 @@ fonts to show/hide properly.
   float: left;
 }
 .vjs-time-divider {
+  display: none;
   float: left;
   line-height: 3em;
 }
@@ -442,7 +444,6 @@ easily in the skin designer. http://designer.videojs.com/
 }
 .vjs-default-skin:hover .vjs-big-play-button,
 .vjs-default-skin .vjs-big-play-button:focus {
-  outline: none;
   /* transition */
   -webkit-transition: all 0s;
   -moz-transition: all 0s;
@@ -684,6 +685,7 @@ easily in the skin designer. http://designer.videojs.com/
 }
 /* Captions Button */
 .vjs-default-skin .vjs-captions-button:before {
+  display: none;
   content: "\e008";
 }
 /* Chapters Button */
