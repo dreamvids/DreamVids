@@ -233,6 +233,18 @@ class User extends ActiveRecord\Model {
 		return $notificationssetting;
 	}
 	
+	public function getLanguageSetting() {
+		$settings = $this->getSettings();
+		
+		if(!isset($settings['language'])){
+			$languagesetting = "auto";
+		}else{
+			$languagesetting = $settings['language'];
+		}
+		
+		return $languagesetting;
+	}
+	
 
 	public function hasSubscribedToChannel($channelId) {
 		if(UserChannel::exists($channelId)) {

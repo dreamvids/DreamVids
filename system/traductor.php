@@ -8,8 +8,53 @@ require_once MODEL.'session.php';
  */
 class Traductor{
 
-	private static $fr_array = array();
-	private static $en_array = array();
+	private static $fr_array = array(
+			"header" => array(
+					"menu" => array(
+							"home" => "Accueil",
+							"news" => "Nouveautées",
+							"flux" => "Flux d'activité",
+							"upload" => "Uploader",
+							"live" => "Diffuser",
+							"videos" => "Mes vidéos",
+							"user_submenu" => array(
+									"account" => "Mon compte",
+									"channels" => "Mes chaînes",
+									"playlists" => "Mes playlists",
+									"messages" => "Mes messages",
+									"logout" => "Déconnexion",
+									"login" => "Connexion",
+									"register" => "Inscription"
+
+							)
+					),
+					"search" => "Rechercher"
+			)
+
+	);
+	private static $en_array = array(
+			"header" => array(
+					"menu" => array(
+							"home" => "Home",
+							"news" => "News",
+							"flux" => "Notifications",
+							"upload" => "Upload",
+							"live" => "Broadcast",
+							"videos" => "My Videos",
+							"user_submenu" => array(
+									"account" => "My account",
+									"channels" => "My channels",
+									"playlists" => "My playlists",
+									"messages" => "My messages",
+									"logout" => "Log Out",
+									"login" => "Log In",
+									"register" => "Register"
+
+							)
+					),
+					"search" => "Search"
+			)
+	);
 	private static $languages = array();
 	private static $prefered_language = 'fr';
 
@@ -19,15 +64,30 @@ class Traductor{
 				"en" => self::$en_array
 		);
 		if(Session::isActive()){
-			self::$prefered_language = Session::get()->getLanguageSetting();
+			self::$prefered_language = Session::get()->getLanguageSetting() == "auto" ? self::GetLanguageFromHttpRequest() : Session::get()->getLanguageSetting();
 		}else{
 			self::$prefered_language = self::GetLanguageFromHttpRequest();
 		}
 
 	}
+	/**
+	 *
+	 * @param The $name of the string "menu.home"
+	 * @param $language Optional if you want to override
+	 */
+	public static function get($name, $language = false) {
+		$array_navigator = self::getLanguageArray($language);
+		$array_requested_key = explode(".", $name);
+		foreach ($array_requested_key as $key) {
+
+			$array_navigator = $array_navigator[$key];
+		}
+
+		return $array_navigator;
+	}
 
 	/**
-	 * 
+	 *
 	 * @return string The language letters
 	 */
 	private static function GetLanguageFromHttpRequest() {
@@ -50,9 +110,17 @@ class Traductor{
 				}
 			}
 		}
-		
+
 		return "fr";
 
+	}
+
+	private static function getLanguageArray($language = false){
+		if(!$language){
+			return self::$languages[self::$prefered_language];
+		}else{
+			return isset(self::$languages[self::$prefered_language]) ? self::$languages[self::$prefered_language] : self::$languages["fr"];
+		}
 	}
 
 }
