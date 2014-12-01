@@ -24,6 +24,7 @@ require_once SYSTEM.'utils.php';
 require_once SYSTEM.'route.php';
 require_once SYSTEM.'router.php';
 require_once SYSTEM.'database.php';
+require_once SYSTEM.'traductor.php';
 
 require_once MODEL.'session.php';
 
@@ -31,6 +32,8 @@ require_once CONFIG.'app.php';
 
 Database::connect();
 Session::init();
+Traductor::init();
+
 $router = new Router();
 
 
