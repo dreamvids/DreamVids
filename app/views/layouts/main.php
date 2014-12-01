@@ -61,7 +61,7 @@
 
 							<form method="get" onsubmit="document.location.href=_webroot_+'search/'+document.getElementById('top-nav-search-input').value.replace(/ /g, '+');return false;" action="<?php echo WEBROOT.'search'; ?>">
 
-								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$_SESSION["last_search"]; ?>">
+								<input type="text" id="top-nav-search-input" name="q" required placeholder="<?php echo Traductor::get("header.search"); ?>" value="<?php echo @$_SESSION["last_search"]; ?>">
 								<input type="submit" value="">
 
 							</form>
@@ -78,11 +78,11 @@
 										
 										<div class="user-information-menu" id="top-nav-user-information-menu">
 											<ul>
-												<a href="<?php echo WEBROOT.'account/infos'; ?>">Mon compte</a>
-												<a href="<?php echo WEBROOT.'account/channels'; ?>">Mes chaînes</a>
-												<a href="<?php echo WEBROOT.'playlists'; ?>">Mes playlists</a>
-												<a href="<?php echo WEBROOT.'account/messages'; ?>">Mes messages</a>
-												<a href="<?php echo WEBROOT.'login/signout' ?>">Déconnexion</a>
+												<a href="<?php echo WEBROOT.'account/infos'; ?>"><?php echo Traductor::get("header.menu.user_submenu.account"); ?></a>
+												<a href="<?php echo WEBROOT.'account/channels'; ?>"><?php echo Traductor::get("header.menu.user_submenu.channels"); ?></a>
+												<a href="<?php echo WEBROOT.'playlists'; ?>"><?php echo Traductor::get("header.menu.user_submenu.playlists"); ?></a>
+												<a href="<?php echo WEBROOT.'account/messages'; ?>"><?php echo Traductor::get("header.menu.user_submenu.messages"); ?></a>
+												<a href="<?php echo WEBROOT.'login/signout' ?>"><?php echo Traductor::get("header.menu.user_submenu.logout"); ?></a>
 											</ul>
 										</div>
 
@@ -92,9 +92,9 @@
 
 									<div class="connection">
 
-										<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
+										<a href="<?php echo WEBROOT.'login'; ?>"><?php echo Traductor::get("header.menu.user_submenu.login"); ?></a>
 										<p>/</p>
-										<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
+										<a href="<?php echo WEBROOT.'register'; ?>"><?php echo Traductor::get("header.menu.user_submenu.register"); ?></a>
 
 									</div>
 
@@ -116,12 +116,12 @@
 							<ul>
 							<?php $nb_notifs = (Session::isActive()) ? ChannelAction::count(array('conditions' => "timestamp > ".Session::get()->last_visit." AND recipients_ids LIKE '%;".Session::get()->id.";%'")) : 0;
 							$notifs = ($nb_notifs > 0) ? 'data-new="'.$nb_notifs.'"' : ''; ?>
-								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT; ?>">Accueil</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'news') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'news'; ?>">Nouveautés</a></li>
-								<li <?php echo $notifs; echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>">Flux d'activité</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>">Uploader</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'lives') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'lives'; ?>">Diffuser</a></li>
-								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channelslist'; ?>">Mes Vidéos</a></li>
+								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT; ?>"><?php echo Traductor::get("header.menu.home"); ?></a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'news') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'news'; ?>"><?php echo Traductor::get("header.menu.news"); ?></a></li>
+								<li <?php echo $notifs; echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>"><?php echo Traductor::get("header.menu.flux"); ?></a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>"><?php echo Traductor::get("header.menu.upload"); ?></a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'lives') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'lives'; ?>"><?php echo Traductor::get("header.menu.live"); ?></a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channelslist'; ?>"><?php echo Traductor::get("header.menu.videos"); ?></a></li>
 							</ul>
 						</nav>
 
