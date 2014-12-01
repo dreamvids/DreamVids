@@ -2,6 +2,10 @@
 
 require_once MODEL.'session.php';
 
+/**
+ * Traductor class
+ *
+ */
 class Traductor{
 
 	private static $fr_array = array();
@@ -24,7 +28,7 @@ class Traductor{
 
 	/**
 	 * 
-	 * @return string|Ambigous <string, multitype:>
+	 * @return string The language letters
 	 */
 	private static function GetLanguageFromHttpRequest() {
 		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
