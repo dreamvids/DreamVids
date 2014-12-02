@@ -8,6 +8,7 @@ define('CACHE', ROOT.'cache/');
 
 define('APP', ROOT.'app/');
 define('CONFIG', APP.'config/');
+define('TRANSLATIONS', CONFIG.'translations/');
 define('CONTROLLER', APP.'controllers/');
 define('VIEW', APP.'views/');
 define('MODEL', APP.'models/');

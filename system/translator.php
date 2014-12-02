@@ -6,119 +6,20 @@ require_once MODEL.'session.php';
  * Translator class
  * To use it :
  * <ol>
- * <li>Add the array with translation you want. <strong>Be carefull ! There is no index anti-fail</strong></li>
+ * <li>Add the json with translation you want in app/config. <strong>Be carefull ! There is no index anti-fail</strong></li>
  * <li>Then register the array you want by adding it in init() function</li>
- * <li>You can now access the value by Translator::get("the.subcategory.name")</li>
+ * <li>You can now access the value by Translator::get("the.subcategory.name") or by get / index in /translator[:name]</li>
  * </ol>
  */
 class Translator{
-
-	private static $fr_array = array(
-			"header" => array(
-					"menu" => array(
-							"home" => "Accueil",
-							"news" => "Nouveautées",
-							"flux" => "Flux d'activité",
-							"upload" => "Uploader",
-							"live" => "Diffuser",
-							"videos" => "Mes vidéos",
-							"user_submenu" => array(
-									"account" => "Mon compte",
-									"channels" => "Mes chaînes",
-									"playlists" => "Mes playlists",
-									"messages" => "Mes messages",
-									"logout" => "Déconnexion",
-									"login" => "Connexion",
-									"register" => "Inscription"
-
-							)
-					),
-					"search" => "Rechercher"
-			),
-			"common" => array(
-					"subscriber" => "Abonné",
-					"subscriptions" => "Abonnements",
-					"time" => array(
-							"minute" => "minute",
-							"hour" => "heure",
-							"day" => "jour",
-							"month" => "mois",
-							"week" => "semaine",
-							"year" => "an"
-					)
-			),
-			"footer" => array(
-					"about" => "Qui sommes nous ?",
-					"contributors" => "Contributeurs",
-					"tos" => "CGU",
-					"shop" => "Boutique",
-					"dev_blog" => "Blog de développement",
-					"partners" => "Partenaires",
-					"become_partner" => array(
-							"title" => "Vous ici ?",
-							"popup" => "Envoyez un E-Mail à \'partenaires [arobase] dreamvids.fr\'"
-					),
-					"social" => "Social"
-			)
-
-	);
-	private static $en_array = array(
-			"header" => array(
-					"menu" => array(
-							"home" => "Home",
-							"news" => "News",
-							"flux" => "Notifications",
-							"upload" => "Upload",
-							"live" => "Broadcast",
-							"videos" => "My Videos",
-							"user_submenu" => array(
-									"account" => "My account",
-									"channels" => "My channels",
-									"playlists" => "My playlists",
-									"messages" => "My messages",
-									"logout" => "Log Out",
-									"login" => "Log In",
-									"register" => "Register"
-
-							)
-					),
-					"search" => "Search"
-			),
-			"common" => array(
-					"subscriber" => "Subscriber",
-					"subscriptions" => "Subscriptions",
-					"time" => array(
-							"minute" => "minute",
-							"hour" => "hour",
-							"day" => "day",
-							"month" => "month",
-							"week" => "week",
-							"year" => "year"
-					)
-			),
-			"footer" => array(
-					"about" => "About us",
-					"contributors" => "Contributors",
-					"tos" => "TOS",
-					"shop" => "Shop",
-					"dev_blog" => "Development blog",
-					"partners" => "Parterns",
-					"become_partner" => array(
-							"title" => "Want to become a partner ?",
-							"popup" => "Send a Mail at \'partenaires [at] dreamvids.fr\'"
-					),
-					"social" => "Social"
-			)
-	);
+	
 	private static $languages = array();
 	private static $prefered_language = 'fr';
 
 	public static function init() {
-
-		self::registerLanguage(array(
-				"fr" => self::$fr_array,
-				"en" => self::$en_array
-		));
+		
+		
+		self::registerLanguage(array("fr", "en"));
 
 
 		if(Session::isActive()){
@@ -133,12 +34,18 @@ class Translator{
 	 * @param The $name of the string "menu.home"
 	 * @param $language Optional if you want to override
 	 */
-	public static function get($name, $language = false) {
+	public static function get($name = "all", $language = false) {
 		$array_navigator = self::getLanguageArray($language);
+		if($name == "all"){
+			return $array_navigator;
+		}
 		$array_requested_key = explode(".", $name);
 		foreach ($array_requested_key as $key) {
-
-			$array_navigator = $array_navigator[$key];
+			if(isset($array_navigator[$key])){
+			$array_navigator = $array_navigator[$key];				
+			}else{
+				return "null";
+			}
 		}
 
 		return $array_navigator;
@@ -180,8 +87,19 @@ class Translator{
 			return isset(self::$languages[self::$prefered_language]) ? self::$languages[self::$prefered_language] : self::$languages["fr"];
 		}
 	}
-	private static function registerLanguage($array) {
-		self::$languages = array_merge(self::$languages, $array);
+	private static function registerLanguage($languages) {
+
+		foreach ($languages as $language) {
+
+			$filename = TRANSLATIONS.$language."_translations.json";
+			if(file_exists($filename)){
+				$lang_array = json_decode(file_get_contents($filename), true);
+				
+				self::$languages = array_merge(self::$languages, array($language => $lang_array));
+			}
+		}
+				
+		
 	}
 
 }

@@ -27,6 +27,8 @@ Route::register('password', 'password');
 Route::register('pages', 'page');
 Route::register('upload', 'upload');
 
+Route::register('translation', 'translation');
+
 Route::register('admin', 'admin');
 
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
