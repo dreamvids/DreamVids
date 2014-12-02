@@ -6,7 +6,7 @@ require_once MODEL.'session.php';
  * Translator class
  * To use it :
  * <ol>
- * <li>Add the json with translation you want in app/config. <strong>Be carefull ! There is no index anti-fail</strong></li>
+ * <li>Add the json with translation you want in app/config/translations.</li>
  * <li>Then register the array you want by adding it in init() function</li>
  * <li>You can now access the value by Translator::get("the.subcategory.name") or by get / index in /translator[:name]</li>
  * </ol>
