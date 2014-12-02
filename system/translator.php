@@ -30,6 +30,18 @@ class Translator{
 					),
 					"search" => "Rechercher"
 			),
+			"common" => array(
+					"subscriber" => "Abonné",
+					"subscriptions" => "Abonnements",
+					"time" => array(
+							"minute" => "minute",
+							"hour" => "heure",
+							"day" => "jour",
+							"month" => "mois",
+							"week" => "semaine",
+							"year" => "an"
+					)
+			),			
 			"footer" => array(
 					"about" => "Qui sommes nous ?",
 					"contributors" => "Contributeurs",
@@ -66,6 +78,18 @@ class Translator{
 							)
 					),
 					"search" => "Search"
+			),
+			"common" => array(
+					"subscriber" => "Subscriber",
+					"subscriptions" => "Subscriptions",
+					"time" => array(
+							"minute" => "minute",
+							"hour" => "hour",
+							"day" => "day",
+							"month" => "month",
+							"week" => "week",
+							"year" => "year"
+					)
 			),
 			"footer" => array(
 					"about" => "About us",
