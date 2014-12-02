@@ -1,47 +1,64 @@
 {
-  "header": {
-    "menu": {
-      "home": "Home",
-      "news": "News",
-      "flux": "Notifications",
-      "upload": "Upload",
-      "live": "Broadcast",
-      "videos": "My Videos",
-      "user_submenu": {
-        "account": "My account",
-        "channels": "My channels",
-        "playlists": "My playlists",
-        "messages": "My messages",
-        "logout": "Log Out",
-        "login": "Log In",
-        "register": "Register"
-      }
-    },
-    "search": "Search"
-  },
-  "common": {
-    "subscriber": "Subscriber",
-    "subscriptions": "Subscriptions",
-    "time": {
-      "minute": "minute",
-      "hour": "hour",
-      "day": "day",
-      "month": "month",
-      "week": "week",
-      "year": "year"
-    }
-  },
-  "footer": {
-    "about": "About us",
-    "contributors": "Contributors",
-    "tos": "TOS",
-    "shop": "Shop",
-    "dev_blog": "Development blog",
-    "partners": "Parterns",
-    "become_partner": {
-      "title": "Want to become a partner ?",
-      "popup": "Send a Mail at \\'partenaires [at] dreamvids.fr\\'"
-    },
-    "social": "Social"
-  }
+	"header": {
+		"menu": {
+			"home": "Home",
+			"news": "News",
+			"flux": "Notifications",
+			"upload": "Upload",
+			"live": "Broadcast",
+			"videos": "My Videos",
+			"user_submenu": {
+				"account": "My account",
+				"channels": "My channels",
+				"playlists": "My playlists",
+				"messages": "My messages",
+				"logout": "Log Out",
+				"login": "Log In",
+				"register": "Register"
+			}
+		},
+		"search": "Search"
+	},
+	"common": {
+		"subscriber": "Subscriber",
+		"subscriptions": "Subscriptions",
+		"time": {
+			"minute": "minute",
+			"hour": "hour",
+			"day": "day",
+			"month": "month",
+			"week": "week",
+			"year": "year"
+		}
+	},
+	"pages": {
+		"home": {
+			"title": "Home"
+		},
+		"news": {
+			"title": "News"
+		},
+		"flux": {
+			"title": "Notifications"
+		},
+		"upload": {
+			"title": "Upload"
+		},
+		"live": {
+			"title": "My broadcasts"
+		}
+	},	
+	"footer": {
+		"about": "About us",
+		"contributors": "Contributors",
+		"tos": "TOS",
+		"shop": "Shop",
+		"dev_blog": "Development blog",
+		"partners": "Parterns",
+		"become_partner": {
+			"title": "Want to become a partner ?",
+			"popup": "Send a Mail at \\'partenaires [at] dreamvids.fr\\'"
+		},
+		"social": "Social"
+	}
 }

@@ -1,47 +1,64 @@
 {
-  "header": {
-    "menu": {
-      "home": "Accueil",
-      "news": "Nouveautées",
-      "flux": "Flux d'activité",
-      "upload": "Uploader",
-      "live": "Diffuser",
-      "videos": "Mes vidéos",
-      "user_submenu": {
-        "account": "Mon compte",
-        "channels": "Mes chaînes",
-        "playlists": "Mes playlists",
-        "messages": "Mes messages",
-        "logout": "Déconnexion",
-        "login": "Connexion",
-        "register": "Inscription"
-      }
-    },
-    "search": "Rechercher"
-  },
-  "common": {
-    "subscriber": "Abonné",
-    "subscriptions": "Abonnements",
-    "time": {
-      "minute": "minute",
-      "hour": "heure",
-      "day": "jour",
-      "month": "mois",
-      "week": "semaine",
-      "year": "an"
-    }
-  },
-  "footer": {
-    "about": "Qui sommes nous ?",
-    "contributors": "Contributeurs",
-    "tos": "CGU",
-    "shop": "Boutique",
-    "dev_blog": "Blog de développement",
-    "partners": "Partenaires",
-    "become_partner": {
-      "title": "Vous ici ?",
-      "popup": "Envoyez un E-Mail à \\'partenaires [arobase] dreamvids.fr\\'"
-    },
-    "social": "Social"
-  }
+	"header": {
+		"menu": {
+			"home": "Accueil",
+			"news": "Nouveautées",
+			"flux": "Flux d'activité",
+			"upload": "Uploader",
+			"live": "Diffuser",
+			"videos": "Mes vidéos",
+			"user_submenu": {
+				"account": "Mon compte",
+				"channels": "Mes chaînes",
+				"playlists": "Mes playlists",
+				"messages": "Mes messages",
+				"logout": "Déconnexion",
+				"login": "Connexion",
+				"register": "Inscription"
+			}
+		},
+		"search": "Rechercher"
+	},
+	"common": {
+		"subscriber": "Abonné",
+		"subscriptions": "Abonnements",
+		"time": {
+			"minute": "minute",
+			"hour": "heure",
+			"day": "jour",
+			"month": "mois",
+			"week": "semaine",
+			"year": "an"
+		}
+	},
+	"pages": {
+		"home": {
+			"title": "Accueil"
+		},
+		"news": {
+			"title": "Nouveautés"
+		},
+		"flux": {
+			"title": "Flux d'activité"
+		},
+		"upload": {
+			"title": "Mettre en ligne"
+		},
+		"live": {
+			"title": "Mes lives"
+		}
+	},
+	"footer": {
+		"about": "Qui sommes nous ?",
+		"contributors": "Contributeurs",
+		"tos": "CGU",
+		"shop": "Boutique",
+		"dev_blog": "Blog de développement",
+		"partners": "Partenaires",
+		"become_partner": {
+			"title": "Vous ici ?",
+			"popup": "Envoyez un E-Mail à \\'partenaires [arobase] dreamvids.fr\\'"
+		},
+		"social": "Social"
+	}
 }
