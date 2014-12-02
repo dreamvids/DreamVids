@@ -29,6 +29,19 @@ class Translator{
 							)
 					),
 					"search" => "Rechercher"
+			),
+			"footer" => array(
+					"about" => "Qui sommes nous ?",
+					"contributors" => "Contributeurs",
+					"tos" => "CGU",
+					"shop" => "Boutique",
+					"dev_blog" => "Blog de développement",
+					"partners" => "Partenaires",
+					"become_partner" => array(
+							"title" => "Vous ici ?",
+							"popup" => "Envoyez un E-Mail à \'partenaires [arobase] dreamvids.fr\'"
+					),
+					"social" => "Social"
 			)
 
 	);
@@ -53,6 +66,19 @@ class Translator{
 							)
 					),
 					"search" => "Search"
+			),
+			"footer" => array(
+					"about" => "About us",
+					"contributors" => "Contributors",
+					"tos" => "TOS",
+					"shop" => "Shop",
+					"dev_blog" => "Development blog",
+					"partners" => "Parterns",
+					"become_partner" => array(
+							"title" => "Want to become a partner ?",
+							"popup" => "Send a Mail at \'partenaires [at] dreamvids.fr\'"
+					),
+					"social" => "Social"
 			)
 	);
 	private static $languages = array();

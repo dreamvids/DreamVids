@@ -150,17 +150,17 @@
 
 						<h1>DreamVids</h1>
 						
-						<a href="<?php echo WEBROOT.'pages/about'; ?>">Qui sommes nous ?</a>
-						<a href="<?php echo WEBROOT.'pages/contributors'; ?>">Contributeurs</a>
-						<a href="<?php echo WEBROOT.'pages/tos'; ?>">CGU</a>
-						<a href="http://dreamvids.spreadshirt.fr/" target="_blank">Boutique</a>
-						<a href="http://blog.dreamvids.fr/" target="_blank">Blog de développement</a>
+						<a href="<?php echo WEBROOT.'pages/about'; ?>"><?php echo Translator::get("footer.about"); ?></a>
+						<a href="<?php echo WEBROOT.'pages/contributors'; ?>"><?php echo Translator::get("footer.contributors"); ?></a>
+						<a href="<?php echo WEBROOT.'pages/tos'; ?>"><?php echo Translator::get("footer.tos"); ?></a>
+						<a href="http://dreamvids.spreadshirt.fr/" target="_blank"><?php echo Translator::get("footer.shop"); ?></a>
+						<a href="http://blog.dreamvids.fr/" target="_blank"><?php echo Translator::get("footer.dev_blog"); ?></a>
 
 					</div>
 
 					<div class="row">
 
-						<h1>Partenaires</h1>
+						<h1><?php echo Translator::get("footer.partners"); ?></h1>
 						
 						<?php
 						$partners = Partners::all();
@@ -169,7 +169,7 @@
 						}
 						
 						?>
-						<a href="javascript:void(0)" onclick="alert('Envoyez un E-Mail à \'partenaires [arobase] dreamvids.fr\'')">Vous ici ?</a>
+						<a href="javascript:void(0)" onclick="alert('<?php echo Translator::get("footer.become_partner.popup"); ?>')"><?php echo Translator::get("footer.become_partner.title"); ?></a>
 
 					</div>
 
