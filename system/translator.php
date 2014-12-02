@@ -4,7 +4,12 @@ require_once MODEL.'session.php';
 
 /**
  * Translator class
- *
+ * To use it :
+ * <ol>
+ * <li>Add the array with translation you want. <strong>Be carefull ! There is no index anti-fail</strong></li>
+ * <li>Then register the array you want by adding it in init() function</li>
+ * <li>You can now access the value by Translator::get("the.subcategory.name")</li>
+ * </ol>
  */
 class Translator{
 
@@ -41,7 +46,7 @@ class Translator{
 							"week" => "semaine",
 							"year" => "an"
 					)
-			),			
+			),
 			"footer" => array(
 					"about" => "Qui sommes nous ?",
 					"contributors" => "Contributeurs",
@@ -109,10 +114,13 @@ class Translator{
 	private static $prefered_language = 'fr';
 
 	public static function init() {
-		self::$languages = array(
+
+		self::registerLanguage(array(
 				"fr" => self::$fr_array,
 				"en" => self::$en_array
-		);
+		));
+
+
 		if(Session::isActive()){
 			self::$prefered_language = Session::get()->getLanguageSetting() == "auto" ? self::GetLanguageFromHttpRequest() : Session::get()->getLanguageSetting();
 		}else{
@@ -171,6 +179,9 @@ class Translator{
 		}else{
 			return isset(self::$languages[self::$prefered_language]) ? self::$languages[self::$prefered_language] : self::$languages["fr"];
 		}
+	}
+	private static function registerLanguage($array) {
+		self::$languages = array_merge(self::$languages, $array);
 	}
 
 }
