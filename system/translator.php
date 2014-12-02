@@ -3,10 +3,10 @@
 require_once MODEL.'session.php';
 
 /**
- * Traductor class
+ * Translator class
  *
  */
-class Traductor{
+class Translator{
 
 	private static $fr_array = array(
 			"header" => array(
