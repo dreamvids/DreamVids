@@ -6,6 +6,11 @@
  */
 
 
+/* VENDOR
+   ----------------------------- */
+
+@import "vendor/dreamplayer.min.scss";
+
 /* VARIABLES
    ----------------------------- */
 
@@ -121,6 +126,10 @@
     
     /* === WATCH === */
 
+    @import "components/watch/watch-page-player.scss";
+
+        /* === PLAYLIST === */
+
         @import "components/watch/playlist/playlist.scss";
         @import "components/watch/playlist/title.scss";
         @import "components/watch/playlist/videos.scss";
@@ -132,12 +141,12 @@
         @import "components/watch/video-infos/share-video-block.scss";
         @import "components/watch/video-infos/share-live-block.scss";
 
-            /* === LIVE CHAT === */
+        /* === LIVE CHAT === */
 
-            @import "components/watch/video-infos/live-chat/live-chat.scss";
-            @import "components/watch/video-infos/live-chat/input.scss";
-            @import "components/watch/video-infos/live-chat/messages.scss";
-            @import "components/watch/video-infos/live-chat/message.scss";
+        @import "components/watch/video-infos/live-chat/live-chat.scss";
+        @import "components/watch/video-infos/live-chat/input.scss";
+        @import "components/watch/video-infos/live-chat/messages.scss";
+        @import "components/watch/video-infos/live-chat/message.scss";
 
     /* === CHANNEL === */
 
