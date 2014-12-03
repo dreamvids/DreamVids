@@ -1,4 +1,17 @@
 {
+  "name": "dreamvids",
+  "description": "DreamVids",
+  "scripts": {
+    "build": "grunt",
+    "dev": "grunt dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamvids/dreamvids.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dreamvids/dreamvids/issues"
+  },
   "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-banner": "~0.2.3",
