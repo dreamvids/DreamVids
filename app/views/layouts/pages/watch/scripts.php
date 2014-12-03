@@ -18,7 +18,7 @@
 	new DreamPlayer({
 	
 	    cible: document.getElementById("player-div"),
-	    poster: "https://i.vimeocdn.com/video/494373548.webp?mw=960",
+	    poster: "<?php echo $thumbnail; ?>",
 	
 	    <?php if (Session::isActive()) {
 
@@ -33,8 +33,8 @@
 	
 	            format: 360,
 	            text: "SD",
-	            mp4: "http://incroya.bl.ee/sd.mp4",
-	            webm: "http://incroya.bl.ee/sd.mp4"
+	            mp4: "<?php echo $video->url; ?>_640x360p.mp4",
+	            webm: "<?php echo $video->url; ?>_640x360p.webm"
 	
 	        },
 	
@@ -42,8 +42,8 @@
 	
 	            format: 720,
 	            text: "HD",
-	            mp4: "http://incroya.bl.ee/hd.mp4",
-	            webm: "http://incroya.bl.ee/hd.mp4"
+	            mp4: "<?php echo $video->url; ?>_1280x720p.mp4",
+	            webm: "<?php echo $video->url; ?>_1280x720p.webm"
 	
 	        }
 	
