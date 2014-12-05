@@ -6859,7 +6859,7 @@ nav.pagination {
     width: 640px;
     margin: 0 auto 0 auto; }
 
-  #player-div ~ .video-infos, #player ~ .video-infos {
+  #player-div ~ .video-infos:not(.live), #player ~ .video-infos:not(.live) {
     width: 100%;
     margin: 0 auto 0 auto; }
  }
@@ -6873,7 +6873,7 @@ nav.pagination {
     transition: width 0; }
  }
 
-#player ~ .video-infos, #player-div ~ .video-infos {
+#player ~ .video-infos:not(.live), #player-div ~ .video-infos:not(.live) {
   width: 100%;
   margin: 0; }
 
