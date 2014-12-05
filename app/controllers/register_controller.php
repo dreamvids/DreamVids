@@ -35,8 +35,9 @@ class RegisterController extends Controller {
 				if(isset($req['pass'])) {
 					if(isset($req['pass-confirm'])) {
 						if(isset($req['mail'])) {
-							$data = $_POST;
 						    if(isset($req["g-recaptcha-response"])){
+							$data = $_POST;
+							$data['currentPageTitle'] = 'Inscription';
 						        $url = "https://www.google.com/recaptcha/api/siteverify?secret="; //Adress a get
 						        $url .= Config::getValue_("recaptcha_private"); //Cle prive
 						        $url .= "&response=" . $req['g-recaptcha-response']; // Resultat de captcha
@@ -62,7 +63,6 @@ class RegisterController extends Controller {
 							$pass2 = Utils::secure($req['pass-confirm']);
 							$mail = Utils::secure($req['mail']);
 
-							$data['currentPageTitle'] = 'Inscription';
 							
 							if(Utils::validateUsername($username) && Utils::validateMail($mail) && $pass2 != '' && $pass != '') {
 								if($pass == $pass2) {
