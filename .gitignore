@@ -12,6 +12,8 @@ tmp
 .grunt
 *.swp
 
+deployment.properties
+deployment.xml
 .project
 .buildpath
 .cache/
