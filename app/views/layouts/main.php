@@ -14,7 +14,7 @@
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
 		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle.' - ' : ''; ?>DreamVids</title>
-
+		<script src="https://www.google.com/recaptcha/api.js"></script>
 	</head>
 
 	<body>
@@ -138,7 +138,6 @@
 
 				</div> <!-- .bottom -->
 			</header>
-
 			<?php include($content); ?>
 			<br>
 

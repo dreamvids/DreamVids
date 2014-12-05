@@ -21,6 +21,7 @@ class RegisterController extends Controller {
 		else {
 			$data = array();
 			$data['currentPageTitle'] = 'Inscription';
+			$data["currentPage"] = "register";
 			return new ViewResponse('login/register', $data);
 		}
 	}
@@ -38,6 +39,7 @@ class RegisterController extends Controller {
 						    if(isset($req["g-recaptcha-response"])){
 							$data = $_POST;
 							$data['currentPageTitle'] = 'Inscription';
+							$data["currentPage"] = "register";
 						        $url = "https://www.google.com/recaptcha/api/siteverify?secret="; //Adress a get
 						        $url .= Config::getValue_("recaptcha_private"); //Cle prive
 						        $url .= "&response=" . $req['g-recaptcha-response']; // Resultat de captcha
