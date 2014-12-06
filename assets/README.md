@@ -14,7 +14,15 @@ apt-get install nodejs
 
 ###Grunt et ses plugins
 
-Pour installer Grunt et ses plugins, il faut lancer cette commande dans la racine du projet :
+Pour installer Grunt et ses plugins, il faut lancer ces commande à la racine du projet :
+
+```shell
+npm install -g grunt
+```
+
+```shell
+npm install -g browser-sync
+```
 
 ```shell
 npm install
