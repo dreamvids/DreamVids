@@ -11,7 +11,7 @@ class Database {
 		ActiveRecord\Config::initialize(function($cfg) {
 
 			$dbHost = Config::getValue_('dbHost');
-			$dbUser = Config::getValue_('dbUser')."a";
+			$dbUser = Config::getValue_('dbUser');
 			$dbPass = Config::getValue_('dbPass');
 			$dbName = Config::getValue_('dbName');
 
