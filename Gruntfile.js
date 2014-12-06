@@ -2,6 +2,8 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
+		devjson: grunt.file.readJSON("dev.json"),
+
 		"concat": {
 
 			dist: {
@@ -61,7 +63,7 @@ module.exports = function(grunt) {
 
 		"concurrent": {
 
-			auto: ["auto-scripts", "auto-style"],
+			auto: ["browserSync", "auto-scripts", "auto-style"],
 
             options: {
 
@@ -132,9 +134,33 @@ module.exports = function(grunt) {
 
   			}
   			
-		}
+		},
+
+		"browserSync": {
+
+			bsFiles: {
+
+				src: [
+
+					"assets/js/*.js",
+					"assets/css/*.css",
+					"app/views/**/*.php"
+
+				]
+
+			},
+
+			options: {
+
+				proxy: "<%= devjson.browserSyncProxy %>"
+
+			}
+
+ 		}
 
 	});
+
+	// NODE MODULES
 
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
@@ -144,6 +170,10 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks("grunt-contrib-watch");
 	grunt.loadNpmTasks("grunt-concurrent");
+
+	grunt.loadNpmTasks("grunt-browser-sync");
+
+	// GRUNT TASKS
 
 	grunt.registerTask("default", ["scripts", "styles"]);
 

@@ -29,7 +29,7 @@ class Comment extends ActiveRecord\Model {
 				$this->undislike($user);
 			}
 
-			if ($user->id != Session::get()->id && !ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'like_comment', 'target' => $this->id))) {
+			if(!ChannelAction::exists(array('channel_id' => $user->getMainChannel()->id, 'type' => 'like_comment', 'target' => $this->id))) {
 				ChannelAction::create(array(
 					'id' => ChannelAction::generateId(6),
 					'channel_id' => $user->getMainChannel()->id,
@@ -68,7 +68,7 @@ class Comment extends ActiveRecord\Model {
 	}
 
 	public function dislike($user) {
-		if(is_object($user) && !$this->isDislikedByUser($user) && $user->id != Session::get()->id) {
+		if(is_object($user) && !$this->isDislikedByUser($user)) {
 			if($this->isLikedByUser($user)) {
 				$this->unlike($user);
 			}
