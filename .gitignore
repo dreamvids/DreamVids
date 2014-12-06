@@ -12,6 +12,8 @@ tmp
 .grunt
 *.swp
 
+dev.json
+
 .project
 .buildpath
 .cache/
