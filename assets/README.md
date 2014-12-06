@@ -35,3 +35,5 @@ Pour éviter de devoir lancer la compilation à chaque modification, on utilise 
 ```shell
 grunt dev
 ```
+
+La commande `grunt dev` va également lancer un serveur proxy Browser Sync, vous pouvez définir votre adresse de développement local dans le fichier `dev.json`.
