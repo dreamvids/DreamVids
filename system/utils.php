@@ -137,8 +137,14 @@ class Utils {
 		return new ViewResponse('error/401', array(), true, 'layouts/main.php', 401);
 	}
 
-	public static function getInternalServerErrorResponse() {
-		return new ViewResponse('error/500', array(), true, 'layouts/main.php', 500);
+	public static function getInternalServerErrorResponse($critical = false) {
+		$data = array("can_go_to_home"=> !$critical);
+		if(!$critical){
+			return new ViewResponse('error/500', $data, 'layouts/main.php', 500);
+		}
+		else{
+			return new ViewResponse('error/500', $data, true, 'layouts/critical_error.php', 500);
+		}
 	}
 
 	public static function sendResponse($response) {
