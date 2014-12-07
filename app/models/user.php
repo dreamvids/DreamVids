@@ -212,7 +212,7 @@ class User extends ActiveRecord\Model {
 		$settings = $this->getSettings();
 		
 		if(!isset($settings['definition'])){
-			$definitionsetting = 360;
+			$definitionsetting = 0;
 		}else{
 			$definitionsetting = $settings['definition'];
 		}
