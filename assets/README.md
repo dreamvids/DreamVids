@@ -12,17 +12,9 @@ Pour GNU/Linux on installe NodeJs comme ceci :
 apt-get install nodejs
 ```
 
-###Grunt et ses plugins
+###Gulp et ses modules
 
-Pour installer Grunt et ses plugins, il faut lancer ces commande à la racine du projet :
-
-```shell
-npm install -g grunt
-```
-
-```shell
-npm install -g browser-sync
-```
+Pour installer Gulp et ses modules, il suffit de lancer cette commande à la racine du projet :
 
 ```shell
 npm install
@@ -32,16 +24,10 @@ npm install
 
 Vous pourrez désormais développer le style et les scripts du projet.
 
-Pour lancer les processus de compilation du scss et du js, il suffit de lancer cette commande dans la racine du projet :
+Pour lancer les processus de compilation du scss et du js, vous devez lancer cette commande dans la racine du projet :
 
 ```shell
-grunt
+gulp
 ```
 
-Pour éviter de devoir lancer la compilation à chaque modification, on utilise cette commande :
-
-```shell
-grunt dev
-```
-
-La commande `grunt dev` va également lancer un serveur proxy Browser Sync, vous pouvez définir votre adresse de développement local dans le fichier `dev.json`.
+Cela va également lancer un serveur proxy Browser Sync, vous pouvez définir votre adresse de développement local dans le fichier `dev.json`.
