@@ -33,12 +33,12 @@ require_once CONFIG.'app.php';
 
 Database::connect();
 Session::init();
-Translator::init();
 
 $router = new Router();
 
-
 $request = Utils::getPerformedRequest();
+
+Translator::init($request);
 
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
 if (!Session::isActive() && !preg_match("#^(beta|login|lives|password|embed)(/.*)?$#isU", $request->getURI())) {

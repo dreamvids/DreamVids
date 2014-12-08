@@ -6,7 +6,7 @@ require_once MODEL.'session.php';
  * Translator class
  * To use it :
  * <ol>
- * <li>Add the json with translation you want in app/config/translations.</li>
+ * <li>Add the json with translation you want in app/config/translations/:lang_translations.json.</li>
  * <li>Then register the array you want by adding it in init() function</li>
  * <li>You can now access the value by Translator::get("the.subcategory.name") or by get / index in /translator[:name]</li>
  * </ol>
@@ -15,9 +15,15 @@ class Translator{
 	
 	private static $languages = array();
 	private static $prefered_language = 'fr';
-
-	public static function init() {
+	
+	/**
+	 * @var Request
+	 */
+	private static $request;
+	
+	public static function init($request) {
 		
+		self::$request = $request;
 		
 		self::registerLanguage(array("fr", "en"));
 
@@ -44,7 +50,7 @@ class Translator{
 			if(isset($array_navigator[$key])){
 			$array_navigator = $array_navigator[$key];				
 			}else{
-				return "null";
+				return $name;
 			}
 		}
 
@@ -56,8 +62,8 @@ class Translator{
 	 * @return string The language letters
 	 */
 	private static function GetLanguageFromHttpRequest() {
-		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
-			$string_accept = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+		if(self::$request->getAcceptedLanguages()){
+			$string_accept = self::$request->getAcceptedLanguages();
 		}else{
 			return 'fr';
 		}
