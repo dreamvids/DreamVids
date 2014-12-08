@@ -14,7 +14,11 @@ apt-get install nodejs
 
 ###Gulp et ses modules
 
-Pour installer Gulp et ses modules, il suffit de lancer cette commande à la racine du projet :
+Pour installer Gulp et ses modules, il suffit de lancer ces deux commandes à la racine du projet :
+
+```shell
+npm i -g gulp
+```
 
 ```shell
 npm install
