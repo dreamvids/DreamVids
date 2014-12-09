@@ -17,7 +17,6 @@ class LoginController extends Controller {
 	public function index($request) {
 				
 		$redirect = Utils::getRedirect();
-		//die(var_dump($get_string) . var_dump($redirect));
 		
 		if(!Session::isActive()) {
 			$data = array();
