@@ -43,7 +43,7 @@ class FeedController extends Controller {
 			return new ViewResponse('feed/feed', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 

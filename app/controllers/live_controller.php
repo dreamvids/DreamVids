@@ -34,7 +34,7 @@ class LiveController extends Controller {
 			return new ViewResponse('live/create', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 
