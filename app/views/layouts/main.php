@@ -14,7 +14,6 @@
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
 		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle.' - ' : ''; ?>DreamVids</title>
-		<script src="https://www.google.com/recaptcha/api.js"></script>
 	</head>
 
 	<body>
@@ -91,8 +90,7 @@
 								<?php } else { ?>
 
 									<div class="connection">
-
-										<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
+										<a href="<?php echo Utils::generateLoginURL(); ?>">Connexion</a>
 										<p>/</p>
 										<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
 

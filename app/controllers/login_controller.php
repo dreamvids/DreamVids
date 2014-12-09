@@ -15,13 +15,18 @@ class LoginController extends Controller {
 	}
 
 	public function index($request) {
+				
+		$redirect = Utils::getRedirect();
+		//die(var_dump($get_string) . var_dump($redirect));
+		
 		if(!Session::isActive()) {
 			$data = array();
 			$data['currentPageTitle'] = 'Connexion';
+			$data['redirect'] = $redirect;
 			return new ViewResponse('login/login', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT);
+			return new RedirectResponse($redirect ? $redirect : WEBROOT);
 		}
 	}
 
@@ -43,7 +48,9 @@ class LoginController extends Controller {
 
 				if(sha1($password) == $realPass) {
 					User::connect($username, 1);
-					return new RedirectResponse(WEBROOT);
+					
+					
+					return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
 				}
 				else {
 					$data = array();

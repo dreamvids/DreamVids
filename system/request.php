@@ -8,6 +8,7 @@ class Request {
 	private $protocol = "HTTP/1.1";
 	private $method = Method::INVALID;
 	private $uri = '';
+	private $fullURI = '';
 	private $acceptedData = 'text/html';
 	private $parameters = array();
 
@@ -15,7 +16,7 @@ class Request {
 		$this->protocol = $protocol;
 		$this->method = $method;
 		$this->acceptedData = $acceptedData;
-		
+		$this->fullURI = "http://".@$_SERVER[HTTP_HOST].@$_SERVER[REQUEST_URI];
 		$uri = trim($uri, '?');
 		if(Utils::stringEndsWith($uri, '.json')) {
 			$this->acceptedData .= ',application/json';
@@ -43,6 +44,10 @@ class Request {
 
 	public function getURI() {
 		return $this->uri;
+	}
+	
+	public function getFullURI() {
+		return $this->fullURI;
 	}
 
 	public function getAcceptedData() {
