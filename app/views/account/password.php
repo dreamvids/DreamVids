@@ -20,7 +20,7 @@
 			<label for="newPassConfirm">Confirmation du nouveau mot de passe :</label>
 			<input type="password" name="newPassConfirm"><br />
 
-			<input type="submit" name="passwordSubmit" value="Enregistrer">
+			<input type="submit" name="passwordSubmit" value="<?php echo Translator::get("common.button.save"); ?>">
 		</form>
 	</section>
 
