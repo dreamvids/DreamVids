@@ -90,8 +90,7 @@
 								<?php } else { ?>
 
 									<div class="connection">
-
-										<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
+										<a href="<?php echo Utils::generateLoginURL(); ?>">Connexion</a>
 										<p>/</p>
 										<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
 

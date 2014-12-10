@@ -8,7 +8,11 @@ require_once MODEL.'backup.php';
 require_once MODEL.'video.php';
 
 class Utils {
-
+	/**
+	 * @var Request
+	 */
+	public static $r;
+	
 	public static function getPerformedRequest() {
 		$requestProtocol = $_SERVER['SERVER_PROTOCOL'];
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
@@ -35,12 +39,31 @@ class Utils {
 		return new Request($requestProtocol, $requestMethod, $requestURI, $requestAcceptedData);
 	}
 	
+	/** 
+	 * @return Request the instanciated Request object
+	 */
+	public static function getCurrentRequest() {
+		return $GLOBALS['request'];
+	}
+	
 	public static function getCurrentURI() {
 		$requestURI = isset($_GET['uri']) ? $_GET['uri'] : '/';
 		if(strpos($requestURI, '_json'))
 			$requestURI = str_replace('_json', '.json', $requestURI);
 		$requestURI = trim($requestURI, '/');
 		return $requestURI;
+	}
+	
+	/**
+	 * Extract the ?redirect=xx from the requested URL
+	 * @return The URLencoded url to go after
+	 */
+	public static function getRedirect() {
+		$request =  self::getCurrentRequest();
+		$fullURI = $request->getFullURI ();
+		$get_string = @explode("?", $fullURI)[1];
+		$redirect = urlencode(urldecode(str_replace("redirect=", "", $get_string)));
+		return $redirect;
 	}
 
 	public static function tps() {
@@ -371,6 +394,16 @@ class Utils {
 			$result.= '<a target="_blank" style="margin:0" href="' . $full_url . '"><img style="margin:0" src="'. $icon .'" alt="'. $info .'" title="'. $info .'"></a>' . PHP_EOL;
 		}
 		return $result;
+	 }
+	 
+	 public static function generateLoginURL() {
+	 	$url = WEBROOT.'login';
+	 	//?redirect='.urlencode($GLOBALS['request']->getFullURI());
+	 	
+	 	if(!in_array(self::getCurrentRequest()->getURI(), array("login", "news"))){
+	 		$url.= "?redirect=".urlencode(self::getCurrentRequest()->getFullURI());
+	 	}
+	 	return $url;
 	 }
 	
 }

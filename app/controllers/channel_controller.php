@@ -359,7 +359,7 @@ class ChannelController extends Controller {
 			return new ViewResponse('channel/create', $data);
 		}
 		else
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	// Called by URL /channel/:id/edit
@@ -393,7 +393,7 @@ class ChannelController extends Controller {
 				return Utils::getNotFoundResponse();
 		}
 		else
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	public function subscribe($id, $request) {
