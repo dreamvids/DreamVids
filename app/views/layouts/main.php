@@ -154,8 +154,9 @@
 						<a href="<?php echo WEBROOT.'pages/contributors'; ?>"><?php echo Translator::get("footer.contributors"); ?></a>
 						<a href="<?php echo WEBROOT.'pages/tos'; ?>"><?php echo Translator::get("footer.tos"); ?></a>
 						<a href="http://dreamvids.spreadshirt.fr/" target="_blank"><?php echo Translator::get("footer.shop"); ?></a>
-						<a href="http://blog.dreamvids.fr/" target="_blank"><?php echo Translator::get("footer.dev_blog"); ?></a>
-
+<?php if(Session::isActive()){ ?>						
+						<a href="<?php echo WEBROOT.'account/language/'?>"><?php echo Translator::get("footer.language"); ?></a>
+<?php } ?>
 					</div>
 
 					<div class="row">
@@ -185,7 +186,7 @@
 
 					<div class="rights">
 
-						<span class="love">Fait avec le <i>♥</i></span>
+						<span class="love"><?php echo Translator::get("footer.made-with"); ?><i>♥</i></span>
 
 						<a class="license" rel="license" title="Cette œuvre est mise à disposition selon les termes de la Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licence Creative Commons" src="<?php echo IMG.'license.png'; ?>" /></a>
 						DreamVids 2013-<?php echo date('Y'); ?>

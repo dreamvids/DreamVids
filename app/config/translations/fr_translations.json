@@ -1,4 +1,5 @@
 {
+	"name": "Français",
 	"header": {
 		"menu": {
 			"home": "Accueil",
@@ -29,6 +30,11 @@
 			"month": "mois",
 			"week": "semaine",
 			"year": "an"
+		},
+		"button": {
+			"save": "Enregistrer",
+			"settings": "Paramètres",
+			"new": "Nouveau"
 		}
 	},
 	"pages": {
@@ -50,6 +56,7 @@
 	},
 	"footer": {
 		"about": "Qui sommes nous ?",
+		"language" :"Changer de langue, FR",
 		"contributors": "Contributeurs",
 		"tos": "CGU",
 		"shop": "Boutique",
@@ -59,6 +66,7 @@
 			"title": "Vous ici ?",
 			"popup": "Envoyez un E-Mail à \\'partenaires [arobase] dreamvids.fr\\'"
 		},
-		"social": "Social"
+		"social": "Social",
+		"made-with" : "Fait avec le "
 	}
 }

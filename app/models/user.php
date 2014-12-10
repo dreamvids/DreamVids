@@ -187,6 +187,13 @@ class User extends ActiveRecord\Model {
 		$this->save();
 	}
 	
+	public function setLanguageSetting($lang){
+		$settings = $this->getSettings();
+		$settings['language'] = $lang;
+		$this->settings = json_encode($settings);
+		$this->save();
+	}
+	
 	public function getPassword() {
 		return $this->pass;
 	}

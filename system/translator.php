@@ -90,7 +90,7 @@ class Translator{
 		if(!$language){
 			return self::$languages[self::$prefered_language];
 		}else{
-			return isset(self::$languages[self::$prefered_language]) ? self::$languages[self::$prefered_language] : self::$languages["fr"];
+			return isset(self::$languages[$language]) ? self::$languages[$language] : self::$languages["fr"];
 		}
 	}
 	private static function registerLanguage($languages) {
@@ -106,6 +106,18 @@ class Translator{
 		}
 				
 		
+	}
+	
+	public static function getLanguagesList() {
+		$result = array();
+		foreach (self::$languages as $value => $array) {
+			$result[$value] = self::get("name", $value);
+		}
+		return $result;
+	}
+	
+	public static function getCurrentLanguageName() {
+		return self::$prefered_language;
 	}
 
 }
