@@ -240,7 +240,6 @@ class AccountController extends Controller {
 	}
 	
 	public function notifications($request) {
-		//return Utils::getNotFoundResponse(); //TEMPORAIRE
 		if(Session::isActive()) {
 			$data['currentPageTitle'] = 'Paramètre de notifications';
 			$data['settings'] = Session::get()->getSettings();
