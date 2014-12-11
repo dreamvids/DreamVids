@@ -371,7 +371,7 @@ class Utils {
 				array("http://www.myspace.com/Modules/PostTo/Pages/?u={url}&t={title}&c={text}{title}&l=", "32-myspace.png", "MySpace"),
 				array("http://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}", "32-linkedin.png", "LinkedIn"),
 				array("http://tumblr.com/share?s=&v=3&t={text}{title}&u={url}", "32-tumblr.png", "Tumblr"),
-				array("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={url}", "32-qrcode.png", "QRCode", false)
+				array("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={url}&choe=UTF-8&chld=H|0", "32-qrcode.png", "QRCode", false)
 		);
 		if(is_array($video)){
 			$title = urlencode($video['title']);
