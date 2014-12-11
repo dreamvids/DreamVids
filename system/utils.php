@@ -8,10 +8,6 @@ require_once MODEL.'backup.php';
 require_once MODEL.'video.php';
 
 class Utils {
-	/**
-	 * @var Request
-	 */
-	public static $r;
 	
 	public static function getPerformedRequest() {
 		$requestProtocol = $_SERVER['SERVER_PROTOCOL'];
