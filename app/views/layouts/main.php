@@ -17,7 +17,17 @@
 	</head>
 
 	<body>
+		
+		<!-- Encart pour les cookies mmmmh gateaux... -->
 
+		<div id="cookie-box">En navigant sur ce site vous <a onclick="closeCookie()">vous acceptez l'utilisation des cookies.</a></div>
+
+		<script>
+			function closeCookie(){document.getElementById("cookie-box").style.display="none";}
+		</script>
+
+		<!-- Encart pour les cookies mmmmh gateaux... -->
+		
 		<script>
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
