@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-
+		
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 
 		<div id="cookie-box">En navigant sur ce site vous <a onclick="closeCookie()">vous acceptez l'utilisation des cookies.</a></div>
@@ -27,7 +27,19 @@
 		</script>
 
 		<!-- Encart pour les cookies mmmmh gateaux... -->
+<<<<<<< HEAD
 
+		<div id="cookie-box">En navigant sur ce site vous <a onclick="closeCookie()">vous acceptez l'utilisation des cookies.</a></div>
+
+		<script>
+			function closeCookie(){document.getElementById("cookie-box").style.display="none";}
+		</script>
+
+		<!-- Encart pour les cookies mmmmh gateaux... -->
+
+=======
+		
+>>>>>>> b8f02cd8b0c73fa2222a9fdcfd9396f36301a9a6
 		<script>
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
