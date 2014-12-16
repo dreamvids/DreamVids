@@ -3469,6 +3469,11 @@ body {
   line-height: 40px;
   text-align: center; }
 
+#cookie-info, #cookie-info:link, #cookie-info:visited, #cookie-info:active {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #696969; }
+
 #cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
   cursor: pointer;
   background: #40a6e0;

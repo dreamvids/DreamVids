@@ -20,20 +20,7 @@
 
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 
-		<div id="cookie-box">En navigant sur ce site vous acceptez l'utilisation des <a href="_webroot_+'pages/cookies'"></a>cookies. <a id="cookie-link" onclick="closeCookie(); setCookie('checkCookie', '1', 365);" title="j'accepte.">J'ai compris.</a></div>
-
-		<script>
-			function closeCookie(){
-				document.getElementById("cookie-box").style.display="none";
-			}
-
-			function setCookie(cname, cvalue, exdays) {
-				var d = new Date();
-				d.setTime(d.getTime() + (exdays*24*60*60*1000));
-				var expires = "expires="+d.toUTCString();
-				document.cookie = cname + "=" + cvalue + "; " + expires;
-			}
-		</script>
+		<div id="cookie-box">En navigant sur ce site vous acceptez l'utilisation des <a id="cookie-info" href="<?php echo WEBROOT.'pages/cookies'; ?>">cookies</a>. <a id="cookie-link" onclick="closeCookie(); setCookie('checkCookie', '1', 365);" title="j'accepte.">J'ai compris.</a></div>
 
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 		
