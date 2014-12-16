@@ -20,7 +20,7 @@
 
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 
-		<div id="cookie-box">En navigant sur ce site vous <a onclick="closeCookie()">vous acceptez l'utilisation des cookies.</a></div>
+		<div id="cookie-box">En navigant sur ce site vous acceptez l'utilisation des cookies. <a id="cookie-link" onclick="closeCookie()" title="j'accepte.">J'ai compris.</a></div>
 
 		<script>
 			function closeCookie(){document.getElementById("cookie-box").style.display="none";}
