@@ -3475,9 +3475,9 @@ body {
   color: #696969; }
 
 #cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
-  cursor: pointer;
   padding: 4px 10px 4px 10px;
   margin-left: 10px;
+  cursor: pointer;
   background: #40a6e0;
   border-radius: 5px; }
 
