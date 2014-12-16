@@ -52,6 +52,16 @@
 		},
 		"live": {
 			"title": "Mes lives"
+		},
+		"account": {
+			"title": "Espace membre",
+			"sub_menu": {
+				"language": {
+					"title": "Languages",
+					"language_label": "Langue : "
+				}
+			
+			}
 		}
 	},
 	"footer": {

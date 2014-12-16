@@ -9,6 +9,7 @@
 
 		<form class="form" method="post" action="<?php echo WEBROOT.'account/language'; ?>">
 			<input type="hidden" name="_method" value="put" />
+			<label for="language"><?php echo Translator::get("pages.account.sub_menu.language.language_label")?></label>
 			<select name="language" id="language">
 <?php foreach ($avaiable_languages as $value => $name) { 
 	$selected = Translator::getCurrentLanguageName() == $value ? "selected" : "";

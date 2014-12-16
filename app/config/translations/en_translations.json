@@ -52,6 +52,16 @@
 		},
 		"live": {
 			"title": "My broadcasts"
+		},
+		"account": {
+			"title": "Member area",
+			"sub_menu": {
+				"language": {
+					"title": "Languages",
+					"language_label": "Language : "
+				}
+			
+			}
 		}
 	},	
 	"footer": {
