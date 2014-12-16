@@ -57,10 +57,24 @@
 			"title": "Espace membre",
 			"sub_menu": {
 				"language": {
-					"title": "Languages",
+					"title": "Langues",
 					"language_label": "Langue : "
+				},
+				"infos": {
+					"title": "Informations"
+				},
+				"password": {
+					"title": "Mot de passe"
+				},
+				"messages": {
+					"title": "Messagerie"
+				},
+				"videos": {
+					"title": "Videos"
+				},
+				"channels": {
+					"title": "Chaines"
 				}
-			
 			}
 		}
 	},

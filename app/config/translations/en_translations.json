@@ -59,6 +59,21 @@
 				"language": {
 					"title": "Languages",
 					"language_label": "Language : "
+				},
+				"infos": {
+					"title": "Informations"
+				},
+				"password": {
+					"title": "Password"
+				},
+				"messages": {
+					"title": "Bulletin board"
+				},
+				"videos": {
+					"title": "Videos"
+				},
+				"channels": {
+					"title": "Channels"
 				}
 			
 			}
