@@ -1,12 +1,25 @@
 {
+  "name": "dreamvids",
+  "description": "DreamVids",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dreamvids/dreamvids.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dreamvids/dreamvids/issues"
+  },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-banner": "~0.2.3",
-    "grunt-concurrent": "~0.5.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-cssmin": "~0.9.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-sass": "^0.16.1"
-  }
+    "browser-sync": "^1.7.2",
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.2",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-react": "^2.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^1.2.4",
+    "gulp-uglify": "^1.0.2"
+  },
+  "componentManagerStyle": "assets/style/main.scss"
 }

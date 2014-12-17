@@ -12,7 +12,11 @@ tmp
 .grunt
 *.swp
 
+deployment.properties
+deployment.xml
+dev.json
 .project
+.buildpath
 .cache/
 .settings/
 .buildpath

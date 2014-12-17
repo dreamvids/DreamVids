@@ -3,7 +3,6 @@
 Core rework & new design for the DreamVids video sharing platform
 This project is using [SysDream2](https://github.com/Quadrifoglio/SysDream-2) as a base.
 
-
 ##Dependencies
 
 ###Back

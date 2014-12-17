@@ -9,7 +9,7 @@
 		<div id="video-top-title">
 			<div id="video-top-channel">
 				<img src="<?php echo $author->getAvatar(); ?>">
-				<?php if (Session::get()->getMainChannel()->id != $author->id) { ?>
+				<?php if (Session::isActive() && Session::get()->getMainChannel()->id != $author->id) { ?>
 				<span id="hover_subscribe" data-channel="<?php echo $author->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
 					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
 				</span>
@@ -29,43 +29,8 @@
 			</h1>
 		</div>
 	</div>
-	
-	<div id="player" class="wide">
-		<video id="video-tag" x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $thumbnail; ?>">
-			<source id="srcMp4" type="video/mp4" src="">
-			<source id="srcWebm" type="video/webm" src="">
-		</video>
-		<div id="subtitlesList"></div>
-		<div id="annotationsElement"></div>
-		<span id="repeat">
-			<span class="icon"></span>
-		</span>
-		<span id="qualitySelection" class="show"></span>
-		<span id="waitForPlay" style="display: none;"></span>
-		<span id="bigPlay"></span>
-		<span id="bigPause"></span>
-		<div id="controls">
-			<span id="progress">
-				<span id="buffered"></span>
-				<span id="viewed"></span>
-				<span id="current"></span>
-			</span>
-			<span id="play-pause" class="play"></span>
-			<span id="time"></span>
-			<span id="annotationsButton" style="display: none"></span>
-			<span id="qualityButton">SD</span>
-			<span id="volume">
-				<span id="barre"></span>
-				<span id="icon"></span>
-			</span>
-			<span id="separation"></span>
-			<span id="widescreen" class="smallscreen"></span>
-			<span id="fullscreen" class="fullscreen"></span>
 
-			<span class="cast" id="chromecastplayicon"></span>
-		</div>
-		<span id="redirect-at-end" class="video__redirect-at-end" data-message='Prochaine vidéo dans {time}' data-cancel-message="Annuler"></span>
-	</div>
+    <div id="player-div" class="watch-page-player"></div>
 
 	<section class="video-infos">
 

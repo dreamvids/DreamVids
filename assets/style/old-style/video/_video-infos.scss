@@ -46,6 +46,7 @@
 
 @media (max-width: 1015px) {
 
+  	#player-div,
   	#player {
 
   		float: none!important;
@@ -60,7 +61,8 @@
 
 	}
 
-	#player.wide ~ .video-infos {
+	#player-div ~ .video-infos:not(.live),
+	#player ~ .video-infos:not(.live) {
 
 		width: 100%;
 		margin: 0 auto 0 auto;
@@ -83,7 +85,8 @@
 
 }
 
-#player.wide ~ .video-infos {
+#player ~ .video-infos:not(.live),
+#player-div ~ .video-infos:not(.live) {
 
 	width: 100%;
 	margin: 0;
@@ -278,26 +281,31 @@
 
 .video-infos .votes .moins { color: #dd4e47; }
 
-#player.wide ~ .video-infos .votes {
+#player ~ .video-infos .votes,
+#player-div ~ .video-infos .votes {
 
 	text-align: left;
 
 }
 
-#player.wide ~ .video-infos .votes .plus,
-#player.wide ~ .video-infos .votes .moins {
+#player-div ~ .video-infos .votes .plus,
+#player-div ~ .video-infos .votes .moins,
+#player ~ .video-infos .votes .plus,
+#player ~ .video-infos .votes .moins {
 
 	width: 15%;
 
 }
 
-#player.wide ~ .video-infos .votes .moins {
+#player-div ~ .video-infos .votes .moins,
+#player ~ .video-infos .votes .moins {
 
 	margin-left: 5%;
 
 }
 
-#player.wide ~ .video-infos .votes .moins:before {
+#player-div ~ .video-infos .votes .moins:before,
+#player ~ .video-infos .votes .moins:before {
 
 	left: 18%;
 	content: "-";

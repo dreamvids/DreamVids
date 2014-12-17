@@ -8,7 +8,7 @@ require_once MODEL.'backup.php';
 require_once MODEL.'video.php';
 
 class Utils {
-
+	
 	public static function getPerformedRequest() {
 		$requestProtocol = $_SERVER['SERVER_PROTOCOL'];
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
@@ -35,12 +35,31 @@ class Utils {
 		return new Request($requestProtocol, $requestMethod, $requestURI, $requestAcceptedData);
 	}
 	
+	/** 
+	 * @return Request the instanciated Request object
+	 */
+	public static function getCurrentRequest() {
+		return $GLOBALS['request'];
+	}
+	
 	public static function getCurrentURI() {
 		$requestURI = isset($_GET['uri']) ? $_GET['uri'] : '/';
 		if(strpos($requestURI, '_json'))
 			$requestURI = str_replace('_json', '.json', $requestURI);
 		$requestURI = trim($requestURI, '/');
 		return $requestURI;
+	}
+	
+	/**
+	 * Extract the ?redirect=xx from the requested URL
+	 * @return The URLencoded url to go after
+	 */
+	public static function getRedirect() {
+		$request =  self::getCurrentRequest();
+		$fullURI = $request->getFullURI ();
+		$get_string = @explode("?", $fullURI)[1];
+		$redirect = urlencode(urldecode(str_replace("redirect=", "", $get_string)));
+		return $redirect;
 	}
 
 	public static function tps() {
@@ -137,8 +156,14 @@ class Utils {
 		return new ViewResponse('error/401', array(), true, 'layouts/main.php', 401);
 	}
 
-	public static function getInternalServerErrorResponse() {
-		return new ViewResponse('error/500', array(), true, 'layouts/main.php', 500);
+	public static function getInternalServerErrorResponse($critical = false) {
+		$data = array("can_go_to_home"=> !$critical);
+		if(!$critical){
+			return new ViewResponse('error/500', $data, 'layouts/main.php', 500);
+		}
+		else{
+			return new ViewResponse('error/500', $data, true, 'layouts/critical_error.php', 500);
+		}
 	}
 
 	public static function sendResponse($response) {
@@ -325,8 +350,14 @@ class Utils {
 		return $m.':'.$s;
 	}
 	
+	/**
+	 * 
+	 * @param Video|array $video
+	 * @return string
+	 */
 	public static function generateShareButtons($video) {
 	 	$text = "Check this out : ";
+	 	
 		$socials = array(
 				array("https://www.facebook.com/sharer/sharer.php?u={text}{title} {url}", "32-facebook.png", "Facebook"),
 				array("http://twitter.com/intent/tweet/?url={url}&text={text}{title}&via=Dreamvids_", "32-twitter.png", "Twitter"),
@@ -336,13 +367,15 @@ class Utils {
 				array("http://www.myspace.com/Modules/PostTo/Pages/?u={url}&t={title}&c={text}{title}&l=", "32-myspace.png", "MySpace"),
 				array("http://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}", "32-linkedin.png", "LinkedIn"),
 				array("http://tumblr.com/share?s=&v=3&t={text}{title}&u={url}", "32-tumblr.png", "Tumblr"),
-				array("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={url}", "32-qrcode.png", "QRCode", false)
+				array("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={url}&choe=UTF-8&chld=H|0", "32-qrcode.png", "QRCode", false)
 		);
-
-		$title = urlencode($video->title);
-		$url = urlencode($video->title);
-		$video_url = urlencode("http://www.dreamvids.fr/watch/".$video->id);
-		
+		if(is_array($video)){
+			$title = urlencode($video['title']);
+			$video_url = urlencode("http://www.dreamvids.fr/lives/".$video['channel']->id);
+		}else{
+			$title = urlencode($video->title);
+			$video_url = urlencode("http://www.dreamvids.fr/watch/".$video->id);			
+		}	
 		$result = "";
 		
 		foreach ($socials as $k => $social) {
@@ -357,6 +390,16 @@ class Utils {
 			$result.= '<a target="_blank" style="margin:0" href="' . $full_url . '"><img style="margin:0" src="'. $icon .'" alt="'. $info .'" title="'. $info .'"></a>' . PHP_EOL;
 		}
 		return $result;
+	 }
+	 
+	 public static function generateLoginURL() {
+	 	$url = WEBROOT.'login';
+	 	//?redirect='.urlencode($GLOBALS['request']->getFullURI());
+	 	
+	 	if(!in_array(self::getCurrentRequest()->getURI(), array("login", "news"))){
+	 		$url.= "?redirect=".urlencode(self::getCurrentRequest()->getFullURI());
+	 	}
+	 	return $url;
 	 }
 	
 }

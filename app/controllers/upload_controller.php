@@ -28,7 +28,7 @@ class UploadController extends Controller {
 			}
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 	
@@ -40,7 +40,7 @@ class UploadController extends Controller {
 			return new ViewResponse('upload/channels', $data);			
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 	

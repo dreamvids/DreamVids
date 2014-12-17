@@ -11,21 +11,25 @@ class Session {
 		if(isset($_COOKIE['SESSID'])) {
 			if(UserSession::exists(array('session_id' => $_COOKIE['SESSID']))) {
 				$session = User::find_by_id(UserSession::find_by_session_id($_COOKIE['SESSID'])->user_id);
+				session_id($_COOKIE['SESSID']);
+				
 				self::set($session);
 			}
 			else {
 				setcookie("SESSID", "", -1);
 				self::set(-1);
 			}
+	 	session_start();
 		}
-
 		UserSession::delete_all(array('conditions' => array('expiration < ?', Utils::tps())));
 	}
 
 	public static function set($session) {
 		self::$session = $session;
 	}
-
+	/**
+	 * @return User
+	 */
 	public static function get() {
 		return self::$session;
 	}

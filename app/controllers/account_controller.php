@@ -22,7 +22,7 @@ class AccountController extends Controller {
 
 	public function update($id, $request) {
 		if(!Session::isActive()) {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 
 		$req = $request->getParameters();
@@ -124,7 +124,6 @@ class AccountController extends Controller {
 			return new Response(200);
 		}
 		if($id == 'notifications'){
-			return Utils::getNotFoundResponse(); //TEMPORAIRE
 			$data = $request->getParameters();
 			$data['current'] = 'notifications';
 			Session::get()->setNotificationSettings($data);
@@ -148,7 +147,7 @@ class AccountController extends Controller {
 			return new ViewResponse('account/profile', $data);
 		}
 		else
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	public function password($request) {
@@ -161,7 +160,7 @@ class AccountController extends Controller {
 			return new ViewResponse('account/password', $data);
 		}
 		else {
-			header('Location: '.WEBROOT.'login');
+			header('Location: ' . Utils::generateLoginURL());
 			exit();
 		}
 	}
@@ -189,7 +188,7 @@ class AccountController extends Controller {
 			}
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 
@@ -206,7 +205,7 @@ class AccountController extends Controller {
 			return $response;
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 
@@ -222,7 +221,7 @@ class AccountController extends Controller {
 			return new ViewResponse('account/messages', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 
@@ -236,12 +235,11 @@ class AccountController extends Controller {
 			return new ViewResponse('account/channels', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
 	
 	public function notifications($request) {
-		return Utils::getNotFoundResponse(); //TEMPORAIRE
 		if(Session::isActive()) {
 			$data['currentPageTitle'] = 'Paramètre de notifications';
 			$data['settings'] = Session::get()->getSettings();
@@ -252,7 +250,7 @@ class AccountController extends Controller {
 			return new ViewResponse('account/notifications', $data);
 		}
 		else
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	public function get($id, $request) {}

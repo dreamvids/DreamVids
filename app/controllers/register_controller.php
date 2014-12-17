@@ -21,27 +21,51 @@ class RegisterController extends Controller {
 		else {
 			$data = array();
 			$data['currentPageTitle'] = 'Inscription';
+			$data["currentPage"] = "register";
 			return new ViewResponse('login/register', $data);
 		}
 	}
 
 	// Called by a POST request
 	public function create($request) {
+        
 		$req = $request->getParameters();
-
+		
 		if(isset($req['submitRegister'])) {
 			if(isset($req['username'])) {
 				if(isset($req['pass'])) {
 					if(isset($req['pass-confirm'])) {
 						if(isset($req['mail'])) {
+						    if(isset($req["g-recaptcha-response"])){
+							$data = $_POST;
+							$data['currentPageTitle'] = 'Inscription';
+							$data["currentPage"] = "register";
+						        $url = "https://www.google.com/recaptcha/api/siteverify?secret="; //Adress a get
+						        $url .= Config::getValue_("recaptcha_private"); //Cle prive
+						        $url .= "&response=" . $req['g-recaptcha-response']; // Resultat de captcha
+						        
+						        
+						        $json_result = json_decode(file_get_contents($url), true); //Parsage de la reponse
+						        if(@$json_result["success"] != true){ 
+						            $response = new ViewResponse('login/register', $data);
+						            $response->addMessage(ViewMessage::error('Erreur de captcha')); //Affichage de l'erreur
+						            
+						            return $response;
+						        }else{
+		                          //OK
+						        }
+						    }else{ //Affichage de l'erreur
+						        $response = new ViewResponse('login/register', $data);
+						        $response->addMessage(ViewMessage::error('Erreur de captcha'));
+						        
+						        return $response;
+						    }
 							$username = Utils::secure($req['username']);
 							$pass = Utils::secure($req['pass']);
 							$pass2 = Utils::secure($req['pass-confirm']);
 							$mail = Utils::secure($req['mail']);
 
-							$data = $_POST;
-							$data['currentPageTitle'] = 'Inscription';
-
+							
 							if(Utils::validateUsername($username) && Utils::validateMail($mail) && $pass2 != '' && $pass != '') {
 								if($pass == $pass2) {
 									if(!User::find_by_username($username)) {

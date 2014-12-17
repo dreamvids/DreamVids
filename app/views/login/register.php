@@ -12,7 +12,7 @@
 		<input type="password" name="pass-confirm" id="pass-confirm" placeholder="Mot de passe" vaue=""/><br />
 		<label for="mail">Adresse e-mail: </label>
 		<input type="email" name="mail" id="mail" placeholder="Adresse de contact" value="<?php echo @$mail; ?>"/><br />
-
+		<div class="g-recaptcha" data-sitekey="<?php echo Config::getValue_("recaptcha_public");?>"></div>
 		<input type="submit" name="submitRegister" value="Valider" />
 	</form>
 </section>

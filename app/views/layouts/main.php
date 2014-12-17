@@ -14,11 +14,16 @@
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
 		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle.' - ' : ''; ?>DreamVids</title>
-
 	</head>
 
 	<body>
+<?php if(!(isset($_COOKIE['checkCookie']) && $_COOKIE['checkCookie'] == 1)) { ?>
+		<!-- Encart pour les cookies mmmmh gateaux... -->
 
+		<div id="cookie-box">En navigant sur ce site vous acceptez l'utilisation des <a id="cookie-info" href="<?php echo WEBROOT.'pages/cookies'; ?>">cookies</a>. <a id="cookie-link" onclick="closeCookie(); setCookie('checkCookie', '1', 365);" title="j'accepte.">J'ai compris.</a></div>
+
+		<!-- Encart pour les cookies mmmmh gateaux... -->
+<?php } ?>
 		<script>
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
@@ -61,7 +66,7 @@
 
 							<form method="get" onsubmit="document.location.href=_webroot_+'search/'+document.getElementById('top-nav-search-input').value.replace(/ /g, '+');return false;" action="<?php echo WEBROOT.'search'; ?>">
 
-								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$search; ?>">
+								<input type="text" id="top-nav-search-input" name="q" required placeholder="Rechercher" value="<?php echo @$_SESSION["last_search"]; ?>">
 								<input type="submit" value="">
 
 							</form>
@@ -91,8 +96,7 @@
 								<?php } else { ?>
 
 									<div class="connection">
-
-										<a href="<?php echo WEBROOT.'login'; ?>">Connexion</a>
+										<a href="<?php echo Utils::generateLoginURL(); ?>">Connexion</a>
 										<p>/</p>
 										<a href="<?php echo WEBROOT.'register'; ?>">Inscription</a>
 
@@ -138,7 +142,6 @@
 
 				</div> <!-- .bottom -->
 			</header>
-
 			<?php include($content); ?>
 			<br>
 
@@ -205,23 +208,7 @@
 		</div> <!-- #page -->
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
-<?php if (Session::isActive()) { ?>
-		<script>
-		setQuality(_last_definition_setting_);
-		setVolume(_last_volume_setting_);
-		 percent = video.volume * 100 + "%";
-		    volume.barre.style.width = percent;
-		    volume.icon.style.left = percent;
-		    if (video.volume <= 0.05) // Génération de l'image
-		        volume.icon.dataset.volume = 0;
-		    else if (video.volume <= 0.4)
-		        volume.icon.dataset.volume = 1;
-		    else if (video.volume <= 0.6)
-		        volume.icon.dataset.volume = 2;
-		    else if (video.volume >= 0.6)
-		        volume.icon.dataset.volume = 3;
-		</script>
-<?php } ?>
+
 		<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
 			<form method="post" onsubmit="sendBug(this);return false;" class="bug-beta-input" onclick="document.getElementById('bug').focus();">
 

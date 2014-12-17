@@ -156,7 +156,7 @@ class VideoController extends Controller {
 
 	public function update($id, $request) {
 		$req = $request->getParameters();
-		if(Session::isActive() && UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id)) {
+		if(Session::isActive() && (UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id) || Session::get()->isModerator() || Session::get()->isAdmin())) {
 			if($video = Video::find($id)) {
 				$data = array();
 				$data['currentPageTitle'] = $video->title.' - Modification';
@@ -293,7 +293,7 @@ class VideoController extends Controller {
 				return new RedirectResponse(WEBROOT.'account/videos');
 		}
 		else 
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	public function index($request) {}
