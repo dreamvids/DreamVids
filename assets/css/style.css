@@ -3457,17 +3457,17 @@ body {
 
 /* === COOKIES === */
 /**
- * components/bug/bug.scss
+ * components/cookie-box/cookie.scss
  * 
- * BUG
+ * COOKIE
  */
 #cookie-box {
   height: auto;
-  background: #272727;
-  color: #eaeaea;
   font-size: 16px;
   line-height: 40px;
-  text-align: center; }
+  text-align: center;
+  background: #272727;
+  color: #eaeaea; }
 
 #cookie-info, #cookie-info:link, #cookie-info:visited, #cookie-info:active {
   text-decoration: underline;
@@ -3475,10 +3475,10 @@ body {
   color: #696969; }
 
 #cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
-  cursor: pointer;
-  background: #40a6e0;
   padding: 4px 10px 4px 10px;
   margin-left: 10px;
+  cursor: pointer;
+  background: #40a6e0;
   border-radius: 5px; }
 
 .aside-channels {

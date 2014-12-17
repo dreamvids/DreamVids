@@ -1,28 +1,39 @@
 /**
- * components/bug/bug.scss
+ * components/cookie-box/cookie.scss
  * 
- * BUG
+ * COOKIE
  */
 
 #cookie-box {
+
 	height: auto;
-	background: #272727;
-	color: $light-grey;
+
 	font-size: 16px;
 	line-height: 40px;
 	text-align: center;
+
+	background: #272727;
+	color: $light-grey;
+
 }
 
 #cookie-info, #cookie-info:link, #cookie-info:visited, #cookie-info:active {
+
 	text-decoration: underline;
 	cursor: pointer;
+
 	color: $dark-grey;
+
 }
 
 #cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
-	cursor: pointer;
-	background: $blue;
+
 	padding: 4px 10px 4px 10px;
 	margin-left: 10px;
+
+	cursor: pointer;
+	
+	background: $blue;
 	border-radius: 5px;
+
 }
