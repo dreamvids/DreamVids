@@ -411,7 +411,7 @@ class Utils {
 	 	$path = "http://" . $_SERVER['HTTP_HOST'] . $path;
 
 	 	$img = imagecreatefromstring(file_get_contents($path)); //On get l'image
-	 	$scaled = imagescale($img, 4, 4, IMG_BILINEAR_FIXED); //On reduit
+	 	$scaled = imagescale($img, 4, 4); //On reduit
 	 	$meanColor = imagecolorat($scaled, 2, 2); //Color index
 	 	$colors = imagecolorsforindex($scaled, $meanColor); //RVB array
 	 	unset($colors['alpha']); //Remove alpha
