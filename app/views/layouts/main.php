@@ -28,6 +28,8 @@
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
 
+			<?php echo ($average_background_color ? "<script>var average_background_color = [$average_background_color];</script>" : ""); ?>
+			
 			var _logged_ = false;
 
 			var _webroot_ = "<?php echo WEBROOT ?>";

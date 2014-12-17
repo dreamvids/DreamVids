@@ -1,6 +1,4 @@
 <?php
-
-echo ($average_background_color ? "<script>var avergage_background_color = [$average_background_color];</script>" : "");
 include VIEW.'/layouts/channel_header.php';
 ?>
 <div class="content">
