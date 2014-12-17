@@ -15,5 +15,6 @@ tmp
 .project
 .cache/
 .settings/
+.buildpath
 uploads/
 BETAKEYS/
