@@ -20,8 +20,11 @@
 <?php if(!(isset($_COOKIE['checkCookie']) && $_COOKIE['checkCookie'] == 1)) { ?>
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 
-		<div id="cookie-box">En navigant sur ce site vous acceptez l'utilisation des <a id="cookie-info" href="<?php echo WEBROOT.'pages/cookies'; ?>">cookies</a>. <a id="cookie-link" onclick="closeCookie(); setCookie('checkCookie', '1', 365);" title="j'accepte.">J'ai compris.</a></div>
-
+		<div id="cookie-box">En navigant sur ce site vous acceptez l'utilisation des <a id="cookie-info" href="<?php echo WEBROOT.'pages/cookies'; ?>">cookies</a>. 
+<?php if(!(isset($currentPage) && $currentPage == "register")){ ?>		
+		<a id="cookie-link" onclick="closeCookie(); setCookie('checkCookie', '1', 365);" title="j'accepte.">J'ai compris.</a>
+<?php } ?>
+		</div>
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 <?php } ?>
 		<script>
