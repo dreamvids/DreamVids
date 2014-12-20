@@ -1,5 +1,6 @@
 <?php
 
+use ActiveRecord\SQLBuilder;
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
@@ -47,6 +48,12 @@ class CommentController extends Controller {
 
 		if(isset($req['commentSubmit'], $req['from-channel'], $req['video-id']) && Session::isActive()) {
 			$channelId = Utils::secure($req['from-channel']);
+			
+			$min_timestamp = Utils::tps()-Config::getValue_("time_between_comments");
+			
+			if(Comment::exists(array('conditions' => array("poster_id=? AND timestamp > ?", $channelId,  $min_timestamp)))){
+				return new Response(500);
+			}
 			
 			if(UserChannel::exists($channelId) && UserChannel::find($channelId)->belongToUser(Session::get()->id)) {
 				$content = Utils::secure($req['comment-content']);
