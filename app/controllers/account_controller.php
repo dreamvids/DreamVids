@@ -124,7 +124,6 @@ class AccountController extends Controller {
 			return new Response(200);
 		}
 		if($id == 'notifications'){
-			return Utils::getNotFoundResponse(); //TEMPORAIRE
 			$data = $request->getParameters();
 			$data['current'] = 'notifications';
 			Session::get()->setNotificationSettings($data);
@@ -241,7 +240,6 @@ class AccountController extends Controller {
 	}
 	
 	public function notifications($request) {
-		return Utils::getNotFoundResponse(); //TEMPORAIRE
 		if(Session::isActive()) {
 			$data['currentPageTitle'] = 'Paramètre de notifications';
 			$data['settings'] = Session::get()->getSettings();

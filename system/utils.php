@@ -350,8 +350,14 @@ class Utils {
 		return $m.':'.$s;
 	}
 	
+	/**
+	 * 
+	 * @param Video|array $video
+	 * @return string
+	 */
 	public static function generateShareButtons($video) {
 	 	$text = "Check this out : ";
+	 	
 		$socials = array(
 				array("https://www.facebook.com/sharer/sharer.php?u={text}{title} {url}", "32-facebook.png", "Facebook"),
 				array("http://twitter.com/intent/tweet/?url={url}&text={text}{title}&via=Dreamvids_", "32-twitter.png", "Twitter"),
@@ -361,13 +367,15 @@ class Utils {
 				array("http://www.myspace.com/Modules/PostTo/Pages/?u={url}&t={title}&c={text}{title}&l=", "32-myspace.png", "MySpace"),
 				array("http://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}", "32-linkedin.png", "LinkedIn"),
 				array("http://tumblr.com/share?s=&v=3&t={text}{title}&u={url}", "32-tumblr.png", "Tumblr"),
-				array("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={url}", "32-qrcode.png", "QRCode", false)
+				array("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={url}&choe=UTF-8&chld=H|0", "32-qrcode.png", "QRCode", false)
 		);
-
-		$title = urlencode($video->title);
-		$url = urlencode($video->title);
-		$video_url = urlencode("http://www.dreamvids.fr/watch/".$video->id);
-		
+		if(is_array($video)){
+			$title = urlencode($video['title']);
+			$video_url = urlencode("http://www.dreamvids.fr/lives/".$video['channel']->id);
+		}else{
+			$title = urlencode($video->title);
+			$video_url = urlencode("http://www.dreamvids.fr/watch/".$video->id);			
+		}	
 		$result = "";
 		
 		foreach ($socials as $k => $social) {
@@ -394,4 +402,22 @@ class Utils {
 	 	return $url;
 	 }
 	
+	 /**
+	  * 
+	  * @param String $path the path after dreamvids.fr/
+	  * @return string The rvb string "150,150,150"
+	  */
+	 public static function getAverageColorFromImage($path) {
+	 	$path = "http://" . $_SERVER['HTTP_HOST'] . $path;
+
+	 	$img = imagecreatefromstring(file_get_contents($path)); //On get l'image
+	 	$scaled = imagescale($img, 4, 4); //On reduit
+	 	$meanColor = imagecolorat($scaled, 2, 2); //Color index
+	 	$colors = imagecolorsforindex($scaled, $meanColor); //RVB array
+	 	unset($colors['alpha']); //Remove alpha
+		$rvb = implode(", ", $colors); //On reunit
+
+	 	return $rvb;
+	 }
+	 
 }

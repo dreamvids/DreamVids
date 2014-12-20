@@ -1,0 +1,39 @@
+/**
+ * components/cookie-box/cookie.scss
+ * 
+ * COOKIE
+ */
+
+#cookie-box {
+
+	height: auto;
+
+	font-size: 16px;
+	line-height: 40px;
+	text-align: center;
+
+	background: #272727;
+	color: $light-grey;
+
+}
+
+#cookie-info, #cookie-info:link, #cookie-info:visited, #cookie-info:active {
+
+	text-decoration: underline;
+	cursor: pointer;
+
+	color: $dark-grey;
+
+}
+
+#cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
+
+	padding: 4px 10px 4px 10px;
+	margin-left: 10px;
+
+	cursor: pointer;
+	
+	background: $blue;
+	border-radius: 5px;
+
+}
