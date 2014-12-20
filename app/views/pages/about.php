@@ -1,8 +1,8 @@
-<div class="content" style="text-align:justify;">
+<div class="content">
 	<h1 class="title">Qui sommes-nous ?</h1>
 
 	<h3 class="title">Un peu d'histoire</h3>
-	<p>
+	<p style="text-align:justify;">
 		<b>DreamVids</b> est une plateforme qui a vu le jour le 11 Décembre 2013.
 		À cette époque le scandale sur la nouvelle politique de YouTube vient d'éclater. Tout le monde,
 		même les plus grands YouTubers, s'indignent contre ces mesures. Je m'appelle Peter, j'ai alors 19
@@ -22,7 +22,7 @@
 	</p>
 
 	<h3 class="title">Et Maintenant ?</h3>
-	<p>
+	<p style="text-align:justify;">
 		Aujourd'hui, DreamVids est un projet bénévole composé de 17 personnes passionnées.
 		Nous travaillons tous les jours pour faire de DreamVids une plateforme cool et reconnue !
 		Actuellement, vous naviguez sur la version 2 du site, qui fait suite à la version 1, qui était
