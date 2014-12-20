@@ -263,10 +263,10 @@ class Video extends ActiveRecord\Model {
 		$video->description = $desc;
 		$video->tags = $tags;
 		$video->visibility = (in_array($visibility, array(0, 1, 2))) ? $visibility : 0;
-		$video->tumbnail = Utils::upload($thumb, 'img', $videoId, $channelId, $video->getThumbnail());
+		$video->tumbnail = Utils::upload($thumb, 'img', $vidId, $channelId, $video->getThumbnail());
 		$video->save();
 					
-		if ($req['video-visibility'] == 2) {
+		if ($visibility == 2) {
 			Video::sendUploadNotification($vidId, $channelId);
 		}
 	}
