@@ -128,8 +128,9 @@ class AccountController extends Controller {
 			$data['current'] = 'notifications';
 			Session::get()->setNotificationSettings($data);
 			$data = array_merge($data, Session::get()->getNotificationSettings());
-			
-			return new ViewResponse('account/notifications', $data);
+			$response = new ViewResponse('account/notifications', $data);
+			$response->addMessage(ViewMessage::success("Paramètres de notifications sauvegardés"));
+			return $response;
 		}
 		else
 			return new ViewResponse('account/profile', $data);
