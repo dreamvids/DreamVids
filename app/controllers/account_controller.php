@@ -83,13 +83,13 @@ class AccountController extends Controller {
 			if(isset($req['passwordSubmit']) && Session::isActive()) {
 				if(isset($req['newPass']) && isset($req['newPassConfirm']) && isset($req['currentPass'])) {
 					if($req['newPass'] == $req['newPassConfirm']) {
-						$currentPass = sha1($req['currentPass']);
-						$newPass = sha1($req['newPass']);
+						$currentPass = $req['currentPass'];
+						$newPass = $req['newPass'];
 						$data = $req;
 						$data['current'] = 'password';
-						
-						if($currentPass == Session::get()->pass) {
-							Session::get()->setPassword($newPass);
+
+						if(password_verify($currentPass, Session::get()->pass)) {
+							Session::get()->setPassword(password_hash($newPass, PASSWORD_BCRYPT));
 
 							$response = new ViewResponse('account/password', $data);
 							$response->addMessage(ViewMessage::success('Préférences enregistrées !'));

@@ -291,7 +291,7 @@ class User extends ActiveRecord\Model {
 		User::create(array(
 			'username' => $username,
 			'email' => $mail,
-			'pass' => sha1($password),
+			'pass' => password_hash($password, PASSWORD_BCRYPT),
 			'subscriptions' => '',
 			'reg_timestamp' => Utils::tps(),
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
@@ -314,7 +314,9 @@ class User extends ActiveRecord\Model {
 			'verified' => 0
 		));
 	}
-
+	/**
+	 * @return User
+	 */
 	public static function connect($username, $remember) {
 		if(User::find_by_username($username)) {
 			$sessid = md5(uniqid());
@@ -323,6 +325,7 @@ class User extends ActiveRecord\Model {
 
 			UserSession::create(array('user_id' => $user->id, 'session_id' => $sessid, 'expiration' => $expiration, 'remember' => $remember));
 			setcookie('SESSID', $sessid, $expiration);
+			return $user;
 		}
 	}
 

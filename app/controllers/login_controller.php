@@ -45,13 +45,17 @@ class LoginController extends Controller {
 			if(User::find_by_username($username)) {
 				$realPass = User::find_by_username($username)->getPassword();
 
-				if(sha1($password) == $realPass) {
+				if(password_verify($password, $realPass)) {
 					User::connect($username, 1);
-					
 					
 					return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
 				}
 				else {
+					if(sha1($password) == $realPass) {
+						User::connect($username, 1)->setPassword(password_hash($password, PASSWORD_BCRYPT));
+						
+						return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
+					}
 					$data = array();
 					$data['currentPageTitle'] = 'Connexion';
 					$response = new ViewResponse('login/login', $data);
