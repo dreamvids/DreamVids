@@ -205,7 +205,6 @@ class ChannelController extends Controller {
 					else {
 						$response = new ViewResponse('channel/edit', $data);
 						$response->addMessage(ViewMessage::error('Le nom de la chaîne doit contenir uniquement des lettres (majuscules et minuscules), des traits-d\'union, des _ et des points.'));
-// 						die(var_dump($data));	
 						return $response;
 					}
 				}

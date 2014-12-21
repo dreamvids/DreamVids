@@ -159,10 +159,6 @@ class ConversationController extends Controller {
 
 	public function destroy($id, $request) {
 		$req = $request->getParameters();
-		ob_start();
-		var_dump($request);
-		$res = ob_get_contents();
-		ob_clean();
 
 		if(Session::isActive() && isset($req['channelId']) && ($channel = UserChannel::find($req['channelId']))) {
 			$conv = Conversation::exists($id) ? Conversation::find($id) : false;
