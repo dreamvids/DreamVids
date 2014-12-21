@@ -188,7 +188,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `pass` varchar(40) NOT NULL,
+  `pass` varchar(100) NOT NULL,
   `subscriptions` text NOT NULL,
   `reg_timestamp` bigint(20) NOT NULL,
   `reg_ip` varchar(15) NOT NULL,
