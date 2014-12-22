@@ -84,7 +84,7 @@ class PasswordController extends Controller {
 			$user = User::find($pass->user_id);
 			$pass->delete();
 			$pass = Password::generatePass(9);
-			$user->pass = sha1($pass);
+			$user->pass = password_hash($pass, PASSWORD_BCRYPT);
 			$user->save();
 			$data = array();
 			$data['currentPageTitle'] = 'Connexion';
