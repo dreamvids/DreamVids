@@ -7,22 +7,23 @@
 
     <h3 class="title">Un cookie, qu'est-ce que c'est ?</h3>
     <p>
-        Les cookies sont des fichiers texte d'informations -ça ne se mange pas- téléchargés sur votre ordinateur de bureau,
+        Les cookies sont des fichiers texte d'informations téléchargés sur votre ordinateur de bureau,
         ordinateur portable ou appareil mobile personnel (collectivement un « Appareil ») quand vous visitez un site web.
-        Votre navigateur web renvoie ensuite ces cookies vers le site web qui les a générés lors de chaque visite suivante ou
-        vers un autre site web qui reconnaît ces cookies. Vous pouvez en apprendre davantage sur les cookies
-        sur <a href="http://www.allaboutcookies.org">www.allaboutcookies.org</a> et
-        <a href="http://www.youronlinechoices.eu">www.youronlinechoices.eu</a>. Les cookies apportent une aide précieuse et leur
+        Votre navigateur web renvoie ensuite ces cookies vers le site web qui les a générés lors de chaque visite. Il peut également
+        les envoyer vers un autre site web qui reconnaît ces cookies. Les cookies apportent une aide précieuse et leur
         utilisation peut avoir plusieurs objectifs. Ils vous permettent notamment de naviguer plus efficacement d'une page à
-        l'autre en mémorisant vos préférences et accélèrent votre interaction avec le site web.
+		l'autre en mémorisant vos préférences et en en accélérant votre interaction avec le site web.
+		<br />
+		Vous pouvez en apprendre davantage sur les cookies sur <a href="http://www.allaboutcookies.org">www.allaboutcookies.org</a> et
+        <a href="http://www.youronlinechoices.eu">www.youronlinechoices.eu</a>. 
     </p>
 
     <h3 class="title">Sauvegarde de vos sessions de connexion</h3>
     <p style="text-align: justify;">
-        Lorsque vous vous connectez sur DreamVids, nous avons besoin de stocker un cookie sur votre ordinateur afin que le site se souvienne de vous lorsque vous changerez de page. ce cookie a une
-        durée de vie d'un an (afin que vous n'ayez pas à vous reconnecter à chacune de vos visites) et ne sert en aucun cas à
+		Lorsque vous vous connectez sur DreamVids, nous avons besoin de stocker un cookie sur votre ordinateur afin que le site se souvienne de vous lorsque vous changerez de page.
+		Ce cookie a une durée de vie d'un an (afin que vous n'ayez pas à vous reconnecter lors de chacune de vos visites) et ne sert en aucun cas à
         récolter une quelconque information personnelle vous concernant. Le contenu de ce cookie est un identifiant (un nombre
-        très grand) permettant de retrouver votre session et d'y associer tous les informations de votre compte.
+        très grand) permettant de retrouver votre session et d'y associer toutes les informations de votre compte.
     </p>
 
     <h3 class="title">Analyse d'audience</h3>
