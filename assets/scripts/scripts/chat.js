@@ -284,13 +284,21 @@ function keyPress(event) {
 	}
 }
 
+var chatAlreadyCalled = false;
+
 new Script({
 
 	pages: ["live"],
 
 	call: function() {
 
-		initChat(chatLiveOptions);
+		if (!chatAlreadyCalled) {
+
+			chatAlreadyCalled = true;
+
+			initChat(chatLiveOptions);
+
+		}
 
 	}
 
