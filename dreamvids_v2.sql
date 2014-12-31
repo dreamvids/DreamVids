@@ -196,7 +196,7 @@ CREATE TABLE `users` (
   `rank` int(1) NOT NULL DEFAULT '0',
   `settings` text NOT NULL,
   `last_visit` bigint(20) NOT NULL,
-  `log_fail` bigint(20)
+  `log_fail` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
