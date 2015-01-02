@@ -12,3 +12,4 @@ admin/suppr.txt
 .flooignore
 .floo
 composer.lock
+.buildpath
