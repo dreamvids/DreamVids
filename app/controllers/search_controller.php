@@ -10,15 +10,19 @@ require_once MODEL.'video.php';
 class SearchController extends Controller {
 	
 	public function __construct() {
-		$this->denyAction(Action::INDEX);
+		$this->denyAction(Action::GET);
 		$this->denyAction(Action::CREATE);
 		$this->denyAction(Action::UPDATE);
 		$this->denyAction(Action::DESTROY);
 	}
 	
-	public function get($id, $request) {
+	public function index($request) {
+
+		if(!isset($_GET['q'])){
+			return Utils::getNotFoundResponse();
+		}
+		$q = urldecode($_GET['q']);
 		
-		$q = urldecode($id);
 		$data = array();
 		$data['currentPageTitle'] = $q.' - Recherche';
 		$data['search'] = $q;
@@ -38,7 +42,7 @@ class SearchController extends Controller {
 		return new ViewResponse('search/search', $data);
 	}
 	
-	public function index($request) {}
+	public function get($id, $request) {}
 	public function create($request) {}
 	public function update($id, $request) {}
 	public function destroy($id, $request) {}
