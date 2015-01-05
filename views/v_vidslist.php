@@ -50,7 +50,7 @@
 					staffselection_zone_thumbnails.style.display = "none";
 					staffselection_zone_embed.style.display = "block";
 
-					staffselection_zone_embed.innerHTML = '<iframe style="width: 100%; height: 100%;" frameborder="0" src="http://stornitz.fr/DreamVids/' + staffselection_video_id + '" allowfullscreen></iframe>';
+					staffselection_zone_embed.innerHTML = '<iframe width="640px" height="360px" frameborder="0" src="http://dreamvids.fr/embed/embed.php?id='+staffselection_video_id+'&autoplay=false" allowfullscreen></iframe>';
 
 					setTimeout(function() {
 

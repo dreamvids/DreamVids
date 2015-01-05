@@ -7,8 +7,8 @@ var player = document.getElementById('player'),
 
 if (document.body.clientWidth < 640) {
 
-    player.style.width = document.body.clientWidth + 'px';
-    player.style.height = document.body.clientWidth / (16 / 9) + 'px';
+    //player.style.width = document.body.clientWidth + 'px';
+    //player.style.height = document.body.clientWidth / (16 / 9) + 'px';
 
 }
 
@@ -22,8 +22,8 @@ window.addEventListener("resize", function(event) { // Player responsive
 
     if (document.body.clientWidth < 640) {
 
-        player.style.width = document.body.clientWidth + 'px';
-        player.style.height = document.body.clientWidth / (16 / 9) + 'px';
+        //player.style.width = document.body.clientWidth + 'px';
+        //player.style.height = document.body.clientWidth / (16 / 9) + 'px';
 
         if (videoInfos) {
 
