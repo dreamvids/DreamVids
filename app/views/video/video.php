@@ -56,7 +56,7 @@
 				echo nl2br(preg_replace("#https?://[a-z0-9\./\+\,\%\#_\-\?\&\=\@\!\&]+#is", '<a href="$0" target="_blank">$0</a>', $description)).'<br /><br />Tags: ';
 
 				foreach ($tags as $tag) {
-					echo '<a href="'.WEBROOT.'search/%23'.$tag.'">#'.$tag.'</a> ';
+					echo '<a href="'.WEBROOT.'search/&q='.urlencode(urlencode("#$tag")).'">#'.$tag.'</a> ';
 				}
 				?>
 				
