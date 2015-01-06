@@ -1,6 +1,8 @@
 <div class="content">
 	<aside class="aside-cards-list">
-		<h3 class="title">Rechercher - "<?php echo $search; ?>"</h3>
+		<h3 class="title">Rechercher - "<?php echo $search; ?>" (Vous ne trouvez pas ? Faite une <a href="<?php echo  WEBROOT. 'search/advanced' ?>">recherche avancée</a>)</h3>
+		
+		
 <?php
 			if(!empty($channels)) { 
 				foreach($channels as $chan) {

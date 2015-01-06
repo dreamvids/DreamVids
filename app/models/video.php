@@ -368,5 +368,23 @@ class Video extends ActiveRecord\Model {
 			}
 		}
 	}
+	
+	public static function getSearchVideosByTags($tags_array, $contain_all = false) {
+		
+		$sql_string = "";
+		$args = array();
+		$cond = array();
+		foreach ($tags_array as $k => $value) {
+			$sql_string .= " tags LIKE ? " . ($contain_all ? "AND" : "OR");
+			$args[] = "%".$tags_array[$k]."%";
+		}
+		$sql_string .= $contain_all ? " 1" : " 0";
+		
+		$cond[] = $sql_string.' AND visibility = ?';
+		$cond = array_merge($cond, $args);
+		$cond[] = Config::getValue_('vid_visibility_public');
+
+		return Video::all(array('conditions' =>$cond, 'order' => 'timestamp desc'));
+	}
 
 }
