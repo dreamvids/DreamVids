@@ -71,7 +71,7 @@ class SearchController extends Controller {
 						}else{
 							$data['videos'] = Video::getSearchVideosByTags(explode(" ", $value), $order, $tags_select_type == "and");
 						}
-					echo Video::connection()->last_query;
+
 					break;
 				}
 				$_SESSION["last_search"] = "";
@@ -109,7 +109,7 @@ class SearchController extends Controller {
 		}
 		$req = $request->getParameters();
 		
-		$generatedUrl= "search/". ($id=="adavanced" ? "&advanced=1" : "");
+		$generatedUrl= "search/". ($id=="advanced" || isset($req['advanced']) ? "&advanced=1" : "");
 		foreach ($req as $k => $value){
 			if(in_array($k, array_merge(self::$acceptableSearchFields, ["q"])) && !empty($value)){
 				$generatedUrl.= "&$k=".urlencode(urlencode($value)); //yep twice
