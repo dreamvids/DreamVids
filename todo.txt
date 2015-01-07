@@ -2,8 +2,6 @@
 
 - Officialisé les utilisateurs avec un icône ou mention "Officiel" à coté du nom (mais ça c'est pas très important).
 
-- Que l'on puisse trier la recherche par date, popularité.
-
 - Avoir la durée de la vidéo sur les miniatures.
 
 - Développer une version mobile ainsi qu'une appli IOS et Android.
