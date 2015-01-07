@@ -148,6 +148,16 @@
 		</div>
 		<div style="margin-bottom:50px">
 			<div style="float:left">
+				<img src="<?php echo IMG.'team/maxime.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
+			</div>
+			<p style="padding-left:70px">
+				<b>Maxime</b><br />
+				Graphiste, webdesigner et développeur front-end en autodidacte depuis 2010.<br />
+				J'ai intégré DreamVids avec la joie de découvrir une équipe soudée et un peu loufoque sur les bords.
+			</p>
+		</div>
+		<div style="margin-bottom:50px">
+			<div style="float:left">
 				<img src="<?php echo IMG.'team/gwomos.png'; ?>" style="height:50px;width:50px;border-radius:25px;" />
 			</div>
 			<p style="padding-left:70px">
