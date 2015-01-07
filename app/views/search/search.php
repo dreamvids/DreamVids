@@ -21,12 +21,10 @@ $order_way="";
 		
 }
 ?>	
-			
-		</form>
-		<select id="order-select" onload="" name="order" onchange="
+		<select id="order-select" onload="" name="none" onchange="
 			document.getElementById('order_field').value=this.value; 
 			document.getElementById('order_way_field').value = this.options[this.selectedIndex].dataset.order;
-			document.getElementById('form-order').submit();
+			this.form.submit();
 			">
 			<option value="views" data-order="DESC" selected="selected">Les plus vues</option>
 			<option value="views" data-order="ASC">Les moins vues</option>
@@ -34,6 +32,9 @@ $order_way="";
 			<option value="timestamp" data-order="DESC">Les vidéos les plus récentes</option>
 			<option value="timestamp" data-order="ASC">Les vidéos les plus vielles</option>
 		</select>
+			
+		</form>
+	
 <!-- Ending order select  -->
 		
 		
