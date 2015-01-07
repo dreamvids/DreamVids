@@ -243,7 +243,7 @@ class UserChannel extends ActiveRecord\Model {
 		$chann->save();
 	}
 	
-	public static function getSearchChannels($query = ''){
+	public static function getSearchChannels($query){
 		$query = trim(urldecode($query));
 		if ($query != '') {
 				return UserChannel::all(array('conditions' => array('name LIKE ? OR description LIKE ?', '%'.$query.'%', '%'.$query.'%'), 'order' => 'subscribers desc', 'limit' => 6));

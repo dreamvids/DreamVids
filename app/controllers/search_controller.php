@@ -9,7 +9,7 @@ require_once MODEL.'video.php';
 
 class SearchController extends Controller {
 
-	public static $acceptableSearchFields = ["channel", "video", "tags_select_type", "tags"];
+	public static $acceptableSearchFields = ["channel", "video", "tags_select_type", "tags", "order", "order_way"];
 	
 	public function __construct() {
 		$this->denyAction(Action::GET);
@@ -35,6 +35,17 @@ class SearchController extends Controller {
 		/* END SECURING */
 		
 		$data = [];
+		$data['filteredFields'] = $filteredFileds;
+		$order = "none";
+		if(isset($_GET[ "order"], $_GET["order_way"])){
+			if(in_array($_GET['order'], ['views', 'likes', 'timestamp'])
+					&& in_array($_GET['order_way'], ['ASC', 'DESC'])){
+				$order = $_GET['order'] . " " . $_GET['order_way'];
+				$filteredFileds['oreder']=$_GET['order'];
+				$filteredFileds['oreder_way']=$_GET['order_way'];
+			}
+		}
+		
 		/* Advanced */
 		if(@$filteredFileds['advanced']==1){
 			$data['currentPageTitle'] = 'Recherche avancée';
@@ -47,17 +58,18 @@ class SearchController extends Controller {
 				}
 			}
 			
+			
 			foreach ($filteredFileds as $k => $value) {
 				switch ($k){
-					case "video" : $data['videos'] = Video::getSearchVideos($value);
+					case "video" : $data['videos'] = Video::getSearchVideos($value, $order);
 					break;
 					case "channel" : $data['channels'] = UserChannel::getSearchChannels($value);
 					break;
 					case "tags" : 
 						if(isset($data['videos'])){
-							$data['videos'] = array_merge($data['videos'], Video::getSearchVideosByTags(explode(" ", $value), $tags_select_type == "and"));
+							$data['videos'] = array_merge($data['videos'], Video::getSearchVideosByTags(explode(" ", $value), $order, $tags_select_type == "and"));
 						}else{
-							$data['videos'] = Video::getSearchVideosByTags(explode(" ", $value), $tags_select_type == "and");
+							$data['videos'] = Video::getSearchVideosByTags(explode(" ", $value), $order, $tags_select_type == "and");
 						}
 					echo Video::connection()->last_query;
 					break;
@@ -72,7 +84,7 @@ class SearchController extends Controller {
 			
 			$data['currentPageTitle'] = $q.' - Recherche';
 			$data['search'] = $q;
-			$data['videos'] = Video::getSearchVideos($q);
+			$data['videos'] = Video::getSearchVideos($q, $order);
 			$data['channels'] = UserChannel::getSearchChannels($q);
 			
 			$_SESSION["last_search"] = $q;
@@ -92,14 +104,14 @@ class SearchController extends Controller {
 	}
 	
 	public function update($id="nope", $request) {
-		if($id!="advanced"){
+		if($id!= "advanced" && $id != "order"){
 			return Utils::getNotFoundResponse();
 		}
 		$req = $request->getParameters();
 		
-		$generatedUrl= "search/&advanced=1";
+		$generatedUrl= "search/". ($id=="adavanced" ? "&advanced=1" : "");
 		foreach ($req as $k => $value){
-			if(in_array($k, self::$acceptableSearchFields) && !empty($value)){
+			if(in_array($k, array_merge(self::$acceptableSearchFields, ["q"])) && !empty($value)){
 				$generatedUrl.= "&$k=".urlencode(urlencode($value)); //yep twice
 			}
 		}

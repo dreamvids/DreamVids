@@ -356,20 +356,27 @@ class Video extends ActiveRecord\Model {
 		}
 	}
 	
-	public static function getSearchVideos($query = '') {
+	public static function getSearchVideos($query, $order) {
+		if($order == "none"){
+			$order = "timestamp desc"; 
+		}
 		$query = trim(urldecode($query));
 		if ($query != '') {
 			if ($query[0] == '#') {
 				$query = trim($query, '#');
-				return Video::all(array('conditions' => array('tags LIKE ? AND visibility = ?', '%'.$query.'%', Config::getValue_('vid_visibility_public')), 'order' => 'timestamp desc'));
+				return Video::all(array('conditions' => array('tags LIKE ? AND visibility = ?', '%'.$query.'%', Config::getValue_('vid_visibility_public')), 'order' => $order));
 			}
 			else {
-				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query)), 'order' => 'timestamp desc'));
+				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query)), 'order' => $order));
 			}
 		}
 	}
 	
-	public static function getSearchVideosByTags($tags_array, $contain_all = false) {
+	public static function getSearchVideosByTags($tags_array, $order, $contain_all = false) {
+		
+		if($order == "none"){
+			$order = "timestamp desc";
+		}
 		
 		$sql_string = "";
 		$args = array();
@@ -384,7 +391,7 @@ class Video extends ActiveRecord\Model {
 		$cond = array_merge($cond, $args);
 		$cond[] = Config::getValue_('vid_visibility_public');
 
-		return Video::all(array('conditions' =>$cond, 'order' => 'timestamp desc'));
+		return Video::all(array('conditions' =>$cond, 'order' => $order));
 	}
 
 }
