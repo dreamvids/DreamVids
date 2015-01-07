@@ -53,7 +53,12 @@ class SearchController extends Controller {
 					break;
 					case "channel" : $data['channels'] = UserChannel::getSearchChannels($value);
 					break;
-					case "tags" : $data['videos'] = Video::getSearchVideosByTags(explode(" ", $value), $tags_select_type == "and");
+					case "tags" : 
+						if(isset($data['videos'])){
+							$data['videos'] = array_merge($data['videos'], Video::getSearchVideosByTags(explode(" ", $value), $tags_select_type == "and"));
+						}else{
+							$data['videos'] = Video::getSearchVideosByTags(explode(" ", $value), $tags_select_type == "and");
+						}
 					echo Video::connection()->last_query;
 					break;
 				}
