@@ -90,8 +90,11 @@
         <h3 class="title">7. INSCRIPTION ET ACCÈS</h3>
         <p>
             Aux fins de bénéficier des fonctionnalités du Site, vous devez créer un compte au moyen du
-            formulaire en ligne prévu à cet effet. Vous demeurez à tout moment libre de modifier la teneur des
-            Données Personnelles. Par ailleurs, en tant que contributeur au Site, il est de votre responsabilité
+            formulaire en ligne prévu à cet effet. Conformément à la loi applicable n° 78-17 du 6 janvier 1978 relative
+            à l'informatique, aux fichiers et aux libertés, telle qu’amendée le 6 août 2004, vous disposez d'un droit
+            d'accès, de modification, de rectification et de suppression des informations vous concernant. Vous
+            disposez en outre d’un droit d’opposition, pour motifs légitimes, au traitement de ces données.
+            Par ailleurs, en tant que contributeur au Site, il est de votre responsabilité
             de vous assurer que les données personnelles permettant de vous identifier soient exactes et
             complètes. L'accès à votre compte s'effectue par saisie de votre identifiant et mot de passe associé,
             dont vous assurez seul la confidentialité. En cas de non-respect des obligations inhérentes à votre
