@@ -44,7 +44,7 @@ class LoginController extends Controller {
 
 			if(User::find_by_username($username)) {
 				
-				$current_log_fail = json_decode(User::find_by_username($username)->log_fail, true);
+				$current_log_fail = User::find_by_username($username)->getLogFails();
 				if(!is_null($current_log_fail)){
 					
 
@@ -66,16 +66,23 @@ class LoginController extends Controller {
 						return $response;
 					}
 				}
-				die(var_dump($current_log_fail));
+				// die(var_dump($current_log_fail));
 				$realPass = User::find_by_username($username)->getPassword();
 
-				if(sha1($password) == $realPass) {
+				if(password_verify($password, $realPass)) {
 					User::connect($username, 1);
+					
 					User::find_by_username($username)->resetLogFails();
 					
 					return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
 				}
 				else {
+					if(sha1($password) == $realPass) {
+						User::find_by_username($username)->resetLogFails();
+						User::connect($username, 1)->setPassword(password_hash($password, PASSWORD_BCRYPT));
+						
+						return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
+					}
 					User::find_by_username($username)->addLogFail();
 					$data = array();
 					$data['currentPageTitle'] = 'Connexion';

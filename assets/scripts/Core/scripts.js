@@ -16,9 +16,3 @@ var Script = function(script) {
 	Application.scripts.push(this);
 
 };
-
-Script.prototype.call = function() {
-	
-	this.to_call();
-
-};

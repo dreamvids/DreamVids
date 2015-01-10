@@ -8,6 +8,7 @@ define('CACHE', ROOT.'cache/');
 
 define('APP', ROOT.'app/');
 define('CONFIG', APP.'config/');
+define('TRANSLATIONS', CONFIG.'translations/');
 define('CONTROLLER', APP.'controllers/');
 define('VIEW', APP.'views/');
 define('MODEL', APP.'models/');
@@ -24,6 +25,7 @@ require_once SYSTEM.'utils.php';
 require_once SYSTEM.'route.php';
 require_once SYSTEM.'router.php';
 require_once SYSTEM.'database.php';
+require_once SYSTEM.'translator.php';
 
 require_once MODEL.'session.php';
 
@@ -31,10 +33,12 @@ require_once CONFIG.'app.php';
 
 Database::connect();
 Session::init();
+
 $router = new Router();
 
-
 $request = Utils::getPerformedRequest();
+
+Translator::init($request);
 
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
 if (!Session::isActive() && !preg_match("#^(beta|login|lives|password|embed)(/.*)?$#isU", $request->getURI())) {

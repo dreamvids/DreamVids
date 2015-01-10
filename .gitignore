@@ -19,5 +19,6 @@ dev.json
 .buildpath
 .cache/
 .settings/
+.buildpath
 uploads/
 BETAKEYS/

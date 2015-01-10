@@ -356,17 +356,42 @@ class Video extends ActiveRecord\Model {
 		}
 	}
 	
-	public static function getSearchVideos($query = '') {
+	public static function getSearchVideos($query, $order="none") {
+		if($order == "none"){
+			$order = "timestamp desc"; 
+		}
 		$query = trim(urldecode($query));
 		if ($query != '') {
 			if ($query[0] == '#') {
 				$query = trim($query, '#');
-				return Video::all(array('conditions' => array('tags LIKE ? AND visibility = ?', '%'.$query.'%', Config::getValue_('vid_visibility_public')), 'order' => 'timestamp desc'));
+				return Video::all(array('conditions' => array('tags LIKE ? AND visibility = ?', '%'.$query.'%', Config::getValue_('vid_visibility_public')), 'order' => $order));
 			}
 			else {
-				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query)), 'order' => 'timestamp desc'));
+				return Video::all(array('conditions' => array('title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query)), 'order' => $order));
 			}
 		}
+	}
+	
+	public static function getSearchVideosByTags($tags_array, $order, $contain_all = false) {
+		
+		if($order == "none"){
+			$order = "timestamp desc";
+		}
+		
+		$sql_string = "";
+		$args = array();
+		$cond = array();
+		foreach ($tags_array as $k => $value) {
+			$sql_string .= " tags LIKE ? " . ($contain_all ? "AND" : "OR");
+			$args[] = "%".$tags_array[$k]."%";
+		}
+		$sql_string .= $contain_all ? " 1" : " 0";
+		
+		$cond[] = $sql_string.' AND visibility = ?';
+		$cond = array_merge($cond, $args);
+		$cond[] = Config::getValue_('vid_visibility_public');
+
+		return Video::all(array('conditions' =>$cond, 'order' => $order));
 	}
 
 }

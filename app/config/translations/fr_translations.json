@@ -1,0 +1,149 @@
+{
+	"name": "Français",
+	"header": {
+		"menu": {
+			"home": "Accueil",
+			"news": "Nouveautées",
+			"flux": "Flux d'activité",
+			"upload": "Uploader",
+			"live": "Diffuser",
+			"videos": "Mes vidéos",
+			"user_submenu": {
+				"account": "Mon compte",
+				"channels": "Mes chaînes",
+				"playlists": "Mes playlists",
+				"messages": "Mes messages",
+				"logout": "Déconnexion",
+				"login": "Connexion",
+				"register": "Inscription"
+			}
+		},
+		"search": "Rechercher"
+	},
+	"common": {
+		"subscriber": "Abonné",
+		"subscriptions": "Abonnements",
+		"time": {
+			"minute": "minute",
+			"hour": "heure",
+			"day": "jour",
+			"month": "mois",
+			"week": "semaine",
+			"year": "an"
+		},
+		"button": {
+			"save": "Enregistrer",
+			"settings": "Paramètres",
+			"new": "Nouveau",
+			"validate": "Valider"
+		}
+	},
+	"pages": {
+		"home": {
+			"title": "Accueil",
+			"videos_to_discover": "Vidéos à découvrir"
+		},
+		"news": {
+			"title": "Nouveautés",
+			"last_posted": "Dernières vidéos postées"
+		},
+		"flux": {
+			"title": "Flux d'activité"
+		},
+		"upload": {
+			"title": "Mettre en ligne",
+			"instruction_1": "Déposez votre fichier vidéo dans cette zone pour l'uploader",
+			"instruction_2": "(Ou selectionnez votre fichier manuellement en cliquant sur le nuage)",
+			"form": {
+				"title": "Titre de la vidéo",
+				"description": "Description",
+				"tags": "Mots clés (séparés par un espace)",
+				"thumbnail": "Miniature",
+				"visibility": "Visibilité",
+				"public": "Publique",
+				"unlisted": "Non-listée",
+				"private": "Privée"
+			}
+		},
+		"live": {
+			"title": "Mes lives"
+		},
+		"account": {
+			"title": "Espace membre",
+			"sub_menu": {
+				"language": {
+					"title": "Langues",
+					"language_label": "Langue : "
+				},
+				"infos": {
+					"title": "Informations",
+					"mail": "Adresse email",
+					"pseudo": "Pseudo"
+				},
+				"password": {
+					"title": "Mot de passe",
+					"actual_password": "Mot de passe actuel",
+					"new_password": "Nouveau mot de passe",
+					"confirm_new_password": "Confirmation du nouveau mot de passe"
+				},
+				"messages": {
+					"title": "Messagerie"
+				},
+				"videos": {
+					"title": "Videos"
+				},
+				"channels": {
+					"title": "Chaines",
+					"new_channel": "Créer une nouvelle chaîne",
+					"main_channel": "Chaîne principale"					
+				},
+				"notifications": {
+					"title": "Notifications",
+					"notified_plus": "Être notifier lorsque qu'une de mes vidéos reçoit un \"+\"",
+					"notified_comment": "Être notifier lorsque qu'une de mes vidéos est commentée",
+					"notified_subscribe": "Être notifier lorsque que quelqu'un s'abonne à une de mes chaines",
+					"notified_upload": "Être notifier lorsque qu'une chaine dont je suis abonné upload une nouvelle vidéo",
+					"notified_pm": "Être notifier lorsque je recois un message privé"
+					
+				}				
+			}
+		},
+		"videos": {
+			"edit": {
+					"title": "Paramètres de la vidéo"
+				},
+			"watch": {
+					"tags": "Tags",
+					"view": "vue",
+					"share": "Partager",
+					"flag": "Signaler",
+					"download": "Télécharger",
+					"embed": "Intégrer",
+					"add_to_playlist": "Ajouter à une playlist",
+					"autoplay": "Autoplay",
+					"start_at": "Démarrer à",
+					"share_on": "Partager sur",
+					"admin": {
+						"suspend": "Suspendre",
+						"staff_select": "Mettre en avant",
+						"staff_select_popup": "Voulez-vous vraiment mettre cette vidéo on avant sur la page d\\'accueil ?"
+					}
+			}
+		}
+	},
+	"footer": {
+		"about": "Qui sommes nous ?",
+		"language" :"Changer de langue, FR",
+		"contributors": "Contributeurs",
+		"tos": "CGU",
+		"shop": "Boutique",
+		"dev_blog": "Blog de développement",
+		"partners": "Partenaires",
+		"become_partner": {
+			"title": "Vous ici ?",
+			"popup": "Envoyez un E-Mail à \\'partenaires [arobase] dreamvids.fr\\'"
+		},
+		"social": "Social",
+		"made-with" : "Fait avec le "
+	}
+}

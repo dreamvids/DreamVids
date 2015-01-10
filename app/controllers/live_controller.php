@@ -57,6 +57,8 @@ class LiveController extends Controller {
 				$data['liveKey'] = is_object($access) ? $access->key : '';
 			}
 			else {
+				$data['currentPage'] = 'live';
+				
 				$data['channel'] = $channel;
 				$data['viewers'] = 0;
 				$data['currentPageTitle'] = 'Live de '.$channel->name;

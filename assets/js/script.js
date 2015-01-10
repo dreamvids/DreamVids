@@ -1326,9 +1326,11 @@ $(function() {
 			
 		}
 
-		if (can_call) {
+		if (can_call && !Application.scripts[i].alreadyCalled) {
 
-			script.call();
+			Application.scripts[i].alreadyCalled = true;
+
+			script.to_call();
 
 		}
 
@@ -1351,12 +1353,6 @@ var Script = function(script) {
 	this.to_call = script.call;
 
 	Application.scripts.push(this);
-
-};
-
-Script.prototype.call = function() {
-	
-	this.to_call();
 
 };
 
@@ -2344,13 +2340,21 @@ function keyPress(event) {
 	}
 }
 
+var chatAlreadyCalled = false;
+
 new Script({
 
 	pages: ["live"],
 
 	call: function() {
 
-		initChat(chatLiveOptions);
+		if (!chatAlreadyCalled) {
+
+			chatAlreadyCalled = true;
+
+			initChat(chatLiveOptions);
+
+		}
 
 	}
 
@@ -3358,13 +3362,21 @@ function keyPress(event) {
 	}
 }
 
+var chatAlreadyCalled = false;
+
 new Script({
 
 	pages: ["live"],
 
 	call: function() {
 
-		initChat(chatLiveOptions);
+		if (!chatAlreadyCalled) {
+
+			chatAlreadyCalled = true;
+
+			initChat(chatLiveOptions);
+
+		}
 
 	}
 

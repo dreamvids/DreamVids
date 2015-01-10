@@ -83,13 +83,13 @@ class AccountController extends Controller {
 			if(isset($req['passwordSubmit']) && Session::isActive()) {
 				if(isset($req['newPass']) && isset($req['newPassConfirm']) && isset($req['currentPass'])) {
 					if($req['newPass'] == $req['newPassConfirm']) {
-						$currentPass = sha1($req['currentPass']);
-						$newPass = sha1($req['newPass']);
+						$currentPass = $req['currentPass'];
+						$newPass = $req['newPass'];
 						$data = $req;
 						$data['current'] = 'password';
-						
-						if($currentPass == Session::get()->pass) {
-							Session::get()->setPassword($newPass);
+
+						if(password_verify($currentPass, Session::get()->pass)) {
+							Session::get()->setPassword(password_hash($newPass, PASSWORD_BCRYPT));
 
 							$response = new ViewResponse('account/password', $data);
 							$response->addMessage(ViewMessage::success('Préférences enregistrées !'));
@@ -128,8 +128,22 @@ class AccountController extends Controller {
 			$data['current'] = 'notifications';
 			Session::get()->setNotificationSettings($data);
 			$data = array_merge($data, Session::get()->getNotificationSettings());
+			$response = new ViewResponse('account/notifications', $data);
+			$response->addMessage(ViewMessage::success("Paramètres de notifications sauvegardés"));
+			return $response;
+		}
+		if($id == 'language'){
 			
-			return new ViewResponse('account/notifications', $data);
+			$data['currentPageTitle'] = "Paramètre de langues";
+			$data['current'] = 'language';
+			
+			Session::get()->setLanguageSetting($req['language']);
+			var_dump(Session::get()->settings);
+			$data['settings'] = Session::get()->getSettings();
+			$data['avaiable_languages'] = Translator::getLanguagesList();
+			$data['lang_setting'] = Session::get()->getLanguageSetting();
+			
+			return new RedirectResponse('account/language', $data);
 		}
 		else
 			return new ViewResponse('account/profile', $data);
@@ -251,6 +265,21 @@ class AccountController extends Controller {
 		}
 		else
 			return new RedirectResponse(Utils::generateLoginURL());
+	}
+	
+	public function language($request) {
+		if(Session::isActive()){
+			$data['currentPageTitle'] = "Paramètre de langues";
+			$data['settings'] = Session::get()->getSettings();
+			$data['current'] = 'language';
+			
+			$data['avaiable_languages'] = Translator::getLanguagesList();
+			$data['lang_setting'] = Session::get()->getLanguageSetting();
+			return new ViewResponse('account/language', $data);
+		}
+		else{
+			return RedirectResponse(WEBROOT.'login');
+		}
 	}
 
 	public function get($id, $request) {}
