@@ -26,7 +26,7 @@
 			<br>
 			<label for="pm">Être notifier lorsque je recois un message privé : <input type="checkbox" value="1" name="pm" <?php echo $pm ? "checked" : "unchecked"; ?> /></label>
 			<br>
-			<input type="submit" name="notificationsSubmit" value="Enregistrer">
+			<input type="submit" name="notificationsSubmit" value="<?php echo Translator::get("common.button.save"); ?>">
 		</form>
 	</section>
 
