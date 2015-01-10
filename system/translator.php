@@ -25,7 +25,7 @@ class Translator{
 		
 		self::$request = $request;
 		
-		self::registerLanguage(array("fr", "en"));
+		self::registerLanguage(array("fr"));
 
 
 		if(Session::isActive()){
