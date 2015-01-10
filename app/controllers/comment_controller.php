@@ -1,6 +1,5 @@
 <?php
 
-use ActiveRecord\SQLBuilder;
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';

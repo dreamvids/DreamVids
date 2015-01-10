@@ -356,7 +356,7 @@ class Video extends ActiveRecord\Model {
 		}
 	}
 	
-	public static function getSearchVideos($query, $order) {
+	public static function getSearchVideos($query, $order="none") {
 		if($order == "none"){
 			$order = "timestamp desc"; 
 		}
