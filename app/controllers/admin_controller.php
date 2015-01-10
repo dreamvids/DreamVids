@@ -5,23 +5,23 @@ require_once SYSTEM.'actions.php';
 
 class AdminController extends Controller {
 	public function index($request) {
-		$this->handleAdminRequest('index', $request);
+		return $this->handleAdminRequest('index', $request);
 	}
 	
 	public function get($id, $request) {
-		$this->handleAdminRequest('get', $id, $request);
+		return $this->handleAdminRequest('get', $id, $request);
 	}
 	
 	public function create($request) {
-		$this->handleAdminRequest('create', $request);
+		return $this->handleAdminRequest('create', $request);
 	}
 	
 	public function update($id, $request) {
-		$this->handleAdminRequest('update', $id, $request);
+		return $this->handleAdminRequest('update', $id, $request);
 	}
 	
 	public function destroy($id, $request) {
-		$this->handleAdminRequest('destroy', $id, $request);
+		return $this->handleAdminRequest('destroy', $id, $request);
 	}
 	
 	private function handleAdminRequest() {
@@ -35,13 +35,15 @@ class AdminController extends Controller {
 		
 		switch ($argc) {
 			case 2:
-				$ctrl->$argv[0]($argv[1]);
+				$resp = $ctrl->$argv[0]($argv[1]);
 			break;
 			
 			case 3:
-				$ctrl->$argv[0]($argv[1], $argv[2]);
+				$resp = $ctrl->$argv[0]($argv[1], $argv[2]);
 			break;
 		}
+		
+		return $resp;
 	}
 }
 

@@ -13,8 +13,7 @@ class AdminHomeController extends Controller {
 	}
 	
 	public function index($request) {
-		echo 'It works.';
-		exit();
+		return new ViewResponse('admin/dashboard');
 	}
 	
 	public function get($id, $request){}
