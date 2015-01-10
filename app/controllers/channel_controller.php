@@ -55,7 +55,7 @@ class ChannelController extends Controller {
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
 			$data['owner_id'] = $channel->owner_id;
-
+			$data['average_background_color'] = Utils::getAverageColorFromImage($channel->getBackground());
 			return new ViewResponse('channel/channel', $data);
 		}
 
@@ -205,7 +205,6 @@ class ChannelController extends Controller {
 					else {
 						$response = new ViewResponse('channel/edit', $data);
 						$response->addMessage(ViewMessage::error('Le nom de la chaîne doit contenir uniquement des lettres (majuscules et minuscules), des traits-d\'union, des _ et des points.'));
-// 						die(var_dump($data));	
 						return $response;
 					}
 				}
@@ -359,7 +358,7 @@ class ChannelController extends Controller {
 			return new ViewResponse('channel/create', $data);
 		}
 		else
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	// Called by URL /channel/:id/edit
@@ -393,7 +392,7 @@ class ChannelController extends Controller {
 				return Utils::getNotFoundResponse();
 		}
 		else
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	public function subscribe($id, $request) {

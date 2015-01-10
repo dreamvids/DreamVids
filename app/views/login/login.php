@@ -4,6 +4,9 @@
 	<?php @include $messages; ?>
 
 	<form method="post" action="<?php echo WEBROOT.'login'; ?>" class="form middle">
+<?php if (isset($redirect)) { ?>
+		<input type="hidden" name="redirect" value="<?php echo $redirect; ?>">
+<?php } ?>
 		<label for="username">Pseudo :</label>
 		<input type="text" name="username" id="username" placeholder="Pseudo" value="<?php echo @$username; ?>"/><br />
 		<label for="pass">Mot de passe :</label>

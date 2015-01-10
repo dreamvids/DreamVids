@@ -293,7 +293,7 @@ class VideoController extends Controller {
 				return new RedirectResponse(WEBROOT.'account/videos');
 		}
 		else 
-			return new RedirectResponse(WEBROOT.'login');
+			return new RedirectResponse(Utils::generateLoginURL());
 	}
 
 	public function index($request) {}

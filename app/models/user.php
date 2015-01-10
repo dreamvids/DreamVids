@@ -187,6 +187,13 @@ class User extends ActiveRecord\Model {
 		$this->save();
 	}
 	
+	public function setLanguageSetting($lang){
+		$settings = $this->getSettings();
+		$settings['language'] = $lang;
+		$this->settings = json_encode($settings);
+		$this->save();
+	}
+	
 	public function getPassword() {
 		return $this->pass;
 	}
@@ -212,7 +219,7 @@ class User extends ActiveRecord\Model {
 		$settings = $this->getSettings();
 		
 		if(!isset($settings['definition'])){
-			$definitionsetting = 360;
+			$definitionsetting = 0;
 		}else{
 			$definitionsetting = $settings['definition'];
 		}
@@ -231,6 +238,18 @@ class User extends ActiveRecord\Model {
 		}
 	
 		return $notificationssetting;
+	}
+	
+	public function getLanguageSetting() {
+		$settings = $this->getSettings();
+		
+		if(!isset($settings['language'])){
+			$languagesetting = "auto";
+		}else{
+			$languagesetting = $settings['language'];
+		}
+		
+		return $languagesetting;
 	}
 	
 
@@ -291,7 +310,7 @@ class User extends ActiveRecord\Model {
 		User::create(array(
 			'username' => $username,
 			'email' => $mail,
-			'pass' => sha1($password),
+			'pass' => password_hash($password, PASSWORD_BCRYPT),
 			'subscriptions' => '',
 			'reg_timestamp' => Utils::tps(),
 			'reg_ip' => $_SERVER['REMOTE_ADDR'],
@@ -314,7 +333,9 @@ class User extends ActiveRecord\Model {
 			'verified' => 0
 		));
 	}
-
+	/**
+	 * @return User
+	 */
 	public static function connect($username, $remember) {
 		if(User::find_by_username($username)) {
 			$sessid = md5(uniqid());
@@ -323,6 +344,7 @@ class User extends ActiveRecord\Model {
 
 			UserSession::create(array('user_id' => $user->id, 'session_id' => $sessid, 'expiration' => $expiration, 'remember' => $remember));
 			setcookie('SESSID', $sessid, $expiration);
+			return $user;
 		}
 	}
 

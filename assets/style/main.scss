@@ -6,10 +6,10 @@
  */
 
 
-/* VENDOR
+/* IMPORT
    ----------------------------- */
 
-@import "vendor/dreamplayer.min.scss";
+@import "import/dreamplayer.min.scss";
 
 /* VARIABLES
    ----------------------------- */
@@ -155,6 +155,10 @@
     /* === BUG === */
 
     @import "components/bug/bug.scss";
+
+    /* === COOKIES === */
+
+    @import "components/cookie-box/cookie.scss";
 
 
 

@@ -3,7 +3,7 @@
 		<div id="video-top-title">
 			<div id="video-top-channel">
 				<img src="<?php echo $channel->getAvatar(); ?>">
-				<?php if (Session::get()->getMainChannel()->id != $channel->id) { ?>
+				<?php if (Session::isActive() && Session::get()->getMainChannel()->id != $channel->id) { ?>
 				<span id="hover_subscribe" data-channel="<?php echo $channel->id; ?>" class="<?php echo $subscribed ? 'subscribed' : ''; ?>">
 					<i><?php echo $subscribed ? 'Abonné': 'S\'abonner'; ?></i>
 				</span>
@@ -64,7 +64,9 @@
 			<br>
 
 			<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//v2.dreamvids.fr/embed/live/<?php echo $channel->name; ?>" allowfullscreen frameborder="0"></iframe>'>
-
+			<br>
+			<br>
+			<?php echo Utils::generateShareButtons(array('title' => $currentPageTitle, 'channel' => $channel)); ?>
 		</div>
 
 	</section>

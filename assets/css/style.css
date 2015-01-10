@@ -3,7 +3,7 @@
  *
  * MAIN STYLESHEET
  */
-/* VENDOR
+/* IMPORT
    ----------------------------- */
 .player {
   position: relative;
@@ -3454,6 +3454,32 @@ body {
   font-style: italic;
   font-size: 15px;
   color: white; }
+
+/* === COOKIES === */
+/**
+ * components/cookie-box/cookie.scss
+ * 
+ * COOKIE
+ */
+#cookie-box {
+  height: auto;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+  background: #272727;
+  color: #eaeaea; }
+
+#cookie-info, #cookie-info:link, #cookie-info:visited, #cookie-info:active {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #696969; }
+
+#cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
+  padding: 4px 10px 4px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  background: #40a6e0;
+  border-radius: 5px; }
 
 .aside-channels {
   float: left;

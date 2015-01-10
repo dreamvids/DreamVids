@@ -1,6 +1,10 @@
 <div class="content">
 	<aside class="aside-cards-list">
-		<h3 class="title">Rechercher - "<?php echo $search; ?>"</h3>
+		<h3 class="title">Rechercher - "<?php echo $search; ?>" (Vous ne trouvez pas ? Faite une <a href="<?php echo  WEBROOT. 'search/advanced' ?>">recherche avancée</a>)</h3>
+
+<?php include VIEW."search/order_form.php";?>
+		
+		
 <?php
 			if(!empty($channels)) { 
 				foreach($channels as $chan) {
@@ -31,3 +35,21 @@ echo '
 		} ?>
 	</aside>
 </div>
+<?php
+		if(isset($order_way, $order)){
+?>
+		<script type="text/javascript">
+		
+			var options = document.getElementById('order-select').options;
+			for (var i = 0; i < options.length; i++) {
+				if(options[i].dataset.order == "<?php echo $order_way; ?>" && options[i].value == "<?php echo $order; ?>"){
+					options[0].selected = false;
+					options[i].selected = true;
+					break;
+				}
+			}
+		</script>
+<?php 
+		}
+
+

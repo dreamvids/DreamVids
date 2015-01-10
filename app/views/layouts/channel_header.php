@@ -31,7 +31,7 @@
 
 		<?php if($description != '') { ?>
 			<div class="right">
-				<?php echo $description; ?>
+				<?php echo nl2br($description); ?>
 			</div>
 		<?php } ?>
 	</section>

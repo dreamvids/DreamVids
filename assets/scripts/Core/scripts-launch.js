@@ -32,9 +32,11 @@ $(function() {
 			
 		}
 
-		if (can_call) {
+		if (can_call && !Application.scripts[i].alreadyCalled) {
 
-			script.call();
+			Application.scripts[i].alreadyCalled = true;
+
+			script.to_call();
 
 		}
 

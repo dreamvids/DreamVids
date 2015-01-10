@@ -28,7 +28,7 @@ class DatabaseFiller {
 	public function generateUsersAndChannels() {
 		foreach ($this->names as $username) {
 			$this->pdo->query("INSERT INTO users VALUES (
-				'',
+				NULL,
 				'".$username."',
 				'mail@wtf.com',
 				'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3',

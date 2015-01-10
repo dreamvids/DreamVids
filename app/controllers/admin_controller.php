@@ -2,10 +2,62 @@
 
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
-require_once SYSTEM.'view_response.php';
-require_once SYSTEM.'redirect_response.php';
 
-require_once MODEL.'user_channel.php';
+class AdminController extends Controller {
+	public function index($request) {
+		return $this->handleAdminRequest('index', $request);
+	}
+	
+	public function get($id, $request) {
+		return $this->handleAdminRequest('get', $id, $request);
+	}
+	
+	public function create($request) {
+		return $this->handleAdminRequest('create', $request);
+	}
+	
+	public function update($id, $request) {
+		return $this->handleAdminRequest('update', $id, $request);
+	}
+	
+	public function destroy($id, $request) {
+		return $this->handleAdminRequest('destroy', $id, $request);
+	}
+	
+	private function handleAdminRequest() {
+		$argc = func_num_args();
+		$argv = func_get_args();
+		$uri = explode('/', Utils::getCurrentURI());
+		$controller = (isset($uri[1]) && file_exists(CONTROLLER.'admin/'.$uri[1].'_controller.php')) ? trim($uri[1], '/') : 'home';
+		require_once CONTROLLER.'admin/'.$controller.'_controller.php';
+		$ctrl = 'Admin'.ucfirst($controller).'Controller';
+		$ctrl = new $ctrl();
+		
+		switch ($argc) {
+			case 2:
+				$resp = $ctrl->$argv[0]($argv[1]);
+			break;
+			
+			case 3:
+				$resp = $ctrl->$argv[0]($argv[1], $argv[2]);
+			break;
+		}
+		
+		return $resp;
+	}
+}
+
+/*
+ * Old code bellow
+ * DO NOT REMOVE
+ * This is the most important piece of code in the world
+ * ...
+ * Not really
+ * Maybe
+ * It's classified.
+ */
+
+/*require_once MODEL.'user_channel.php';
 require_once MODEL.'video.php';
 
 class AdminController extends Controller {
@@ -105,4 +157,4 @@ class AdminController extends Controller {
 	public function update($id, $request) {}
 	public function destroy($id, $request) {}
 
-}
+}*/
