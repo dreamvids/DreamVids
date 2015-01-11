@@ -287,6 +287,71 @@ class User extends ActiveRecord\Model {
 		));
 	}
 
+	
+	public function getLogFails() {
+		return json_decode($this->log_fail, true);
+	}
+	
+	public function resetLogFails() {
+		$this->log_fail = null;
+		$this->save();
+	}
+	public function addLogFail() {
+		
+		$log_fail_array = $this->getLogFails();
+		if($log_fail_array){ //Si c'est pas nul en bdd
+			if(isset($log_fail_array['nb_try']) && $log_fail_array['nb_try'] < Config::getValue_("max_login_try")){ //Si un nb d'essais existe && qu'il est inférieur au max
+				
+				$log_fail_array["nb_try"]++; //On incrémente et update le last_try
+				$log_fail_array["last_try"] = Utils::tps();
+				
+				if($log_fail_array["nb_try"] >= Config::getValue_("max_login_try")){ //Si on a atteint le max d'essais on update le temps avant autorisation de connexion sinon on met à 0
+					$log_fail_array["next_try"] = Utils::tps()+Config::getValue_("login_fail_wait");
+				}else{
+					$log_fail_array["next_try"] = 0;
+				}
+				
+				
+			}else if(!isset($log_fail_array['nb_try'])){
+				$log_fail_array = [
+						"nb_try" => 1,
+						"last_try" => Utils::tps(),
+						"next_try" => 0
+				];
+			}
+		}else{
+			$log_fail_array = [
+					"nb_try" => 1,
+					"last_try" => Utils::tps(),
+					"next_try" => 0
+			];
+		}
+		
+		$this->log_fail = json_encode($log_fail_array);
+		$this->save();
+	}
+	public function isAllowedToAttemptLogin() {
+		$log_fail_array = $this->getLogFails();
+		if(!$log_fail_array){ return true; }
+		if(!isset($log_fail_array["nb_try"])){ return true; }
+		if($log_fail_array["nb_try"] < Config::getValue_("max_login_try")){ return true;}
+
+		if(isset($log_fail_array["next_try"]) && $log_fail_array["next_try"]<=Utils::tps()) { return true; }
+		
+		return false;
+		
+	}
+	public function isIntervalBetweenTwoLogAttemptElapsed() {
+		$log_fail_array = $this->getLogFails();
+		if(!$log_fail_array){ return false; }
+		if(!isset($log_fail_array["last_try"])){ return true; }
+		if(Utils::tps() - $log_fail_array["last_try"] > Config::getValue_("login_fail_intervalle")){ return true; }
+		
+		return false;
+		
+	}
+	
+	
 	// Static
 
 	public static function getNameById($userId) {
