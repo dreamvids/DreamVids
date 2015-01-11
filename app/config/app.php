@@ -24,6 +24,6 @@ Config::addValue('livechat-port', '8080');
 
 Config::addValue("time_between_comments", "10"); //seconds
 
-Config::addValue("max_login_try", "10"); //seconds
+Config::addValue("max_login_try", "10"); 
 Config::addValue("login_fail_intervalle", "20"); //seconds
 Config::addValue("login_fail_wait", 5*60); //seconds (5min)

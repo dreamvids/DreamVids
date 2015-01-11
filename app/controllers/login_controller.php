@@ -44,18 +44,19 @@ class LoginController extends Controller {
 
 			if(User::find_by_username($username)) {
 				
-				$current_log_fail = User::find_by_username($username)->getLogFails();
-				if(!is_null($current_log_fail)){
+				$user = User::find_by_username($username);
+				 
+				$current_log_fail = $user->getLogFails();
+				if(!$user->isAllowedToAttemptLogin()){
 					
 
 					$next_timestamp = $current_log_fail['next_try'];
 					$last_try_timestamp = $current_log_fail['last_try'];
 					$nb_try = $current_log_fail['nb_try'];
-					if($nb_try>=Config::getValue_("max_login_try")){
-						
+				
 						$next_try_tps = $next_timestamp - Utils::tps();
-						$next_try_min = round($next_try_tps/60);
-						$next_try_sec = round($next_try_tps%60);
+						$next_try_min = floor($next_try_tps/60);
+						$next_try_sec = round(($next_try_tps - $next_try_min*60));
 						$next_try_str = "$next_try_min m et $next_try_sec s";
 					
 						$data = array();
@@ -64,26 +65,32 @@ class LoginController extends Controller {
 						$response->addMessage(ViewMessage::error($nb_try . " de tentatives de connexions à la suite pour ce compte. Veuillez patienter $next_try_str"));
 							
 						return $response;
-					}
+					
 				}
-				// die(var_dump($current_log_fail));
+
 				$realPass = User::find_by_username($username)->getPassword();
 
 				if(password_verify($password, $realPass)) {
 					User::connect($username, 1);
 					
-					User::find_by_username($username)->resetLogFails();
+					$user->resetLogFails();
 					
 					return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
 				}
 				else {
 					if(sha1($password) == $realPass) {
-						User::find_by_username($username)->resetLogFails();
+						$user->resetLogFails();
 						User::connect($username, 1)->setPassword(password_hash($password, PASSWORD_BCRYPT));
 						
 						return new RedirectResponse($data['redirect'] ? urldecode($data['redirect']) : WEBROOT );
 					}
-					User::find_by_username($username)->addLogFail();
+					
+					if(!$user->isIntervalBetweenTwoLogAttemptElapsed() || !$current_log_fail){
+						$user->addLogFail();						
+					}else{
+						$user->resetLogFails();
+						$user->addLogFail();
+					}
 					$data = array();
 					$data['currentPageTitle'] = 'Connexion';
 					$response = new ViewResponse('login/login', $data);
