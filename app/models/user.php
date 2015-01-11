@@ -2,7 +2,7 @@
 
 require_once MODEL.'user_channel.php';
 require_once MODEL.'user_session.php';
-//TODO fail safe password
+
 class User extends ActiveRecord\Model {
 
 	public function getMainChannel() {
