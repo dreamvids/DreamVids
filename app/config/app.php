@@ -10,7 +10,7 @@ Config::addValue('vid_visibility_public', '2');
 Config::addValue('vid_visibility_suspended', '3');
 
 Config::addValue("recaptcha_public", "6Lcd4f4SAAAAAOkSp8erYm27K2FE5x6e16gmb-en"); // <- Change them on prod (ask Snap)
-Config::addValue("recaptcha_private", "6Lcd4f4SAAAAABSaIe3Oc3xjVPfe2uLFMXZrTTHY"); // <-
+Config::addValue("recaptcha_private", "6Lcd4f4SAAAAABSaIe3Oc3xjVPfe2uLFMXZrTTHY"); 
 
 if (defined('WEBROOT')) {
 	Config::addValue('default-avatar', IMG.'default-avatar.png');
