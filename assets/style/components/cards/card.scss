@@ -4,11 +4,10 @@
 
 .card {
 
-	position: relative;
 	float: left;
+	position: relative;
 
 	overflow: hidden;
-	display: block;
 	width: 95%;
 	height: 238px;
 	padding: 0;
@@ -19,7 +18,11 @@
 
 	@include box-shadow(1px 2px 0px #e2e2e2);
 
-	a { color: #525252; }
+	a {
+
+		color: #525252;
+
+	}
 
 }
 

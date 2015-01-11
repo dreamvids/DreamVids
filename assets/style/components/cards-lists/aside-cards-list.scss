@@ -4,16 +4,24 @@
 
 .aside-cards-list {
 
-	display: block;
+	float: left;
+
 	width: 70%;
 	min-height: 100px;
-
-	float: left;
+	line-height: 1.4;
 
 	@media (max-width: 850px) {
 
 		float: none;
 		width: 100%;
+
+	}
+
+	a {
+
+		color: $blue;
+
+		border-bottom: 1px solid $blue;
 
 	}
 

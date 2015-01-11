@@ -114,11 +114,18 @@
 
 	.description {
 
+		line-height: 1;
+
+		a {
+
+			color: $dark-grey;
+
+		}
+
 		a h4 {
 
 			height: 15px;
-			margin-left: 13px;
-			margin-top: 13px;
+			margin: 10px 0 4px 13px;
 
 			font-size: 14px;
 			font-weight: bold;
@@ -160,6 +167,7 @@
 				float: right;
 
 				color: #40a6e0;
+				border-bottom: 1px solid $blue;
 
 			}
 

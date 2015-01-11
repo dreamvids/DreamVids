@@ -1,39 +1,53 @@
+
 /**
  * components/cookie-box/cookie.scss
  * 
  * COOKIE
  */
 
-#cookie-box {
+.cookie-box {
 
-	height: auto;
+	padding: 4px 0 4px 0;
 
 	font-size: 16px;
-	line-height: 40px;
+	line-height: 1.8;
 	text-align: center;
-
 	background: #272727;
 	color: $light-grey;
 
 }
 
-#cookie-info, #cookie-info:link, #cookie-info:visited, #cookie-info:active {
+.cookie-box__link {
 
-	text-decoration: underline;
+	text-decoration: none;
 	cursor: pointer;
-
-	color: $dark-grey;
+	color: $light-grey;
+	border-bottom: 1px solid darken($light-grey, 20%);
 
 }
 
-#cookie-link, #cookie-link:link, #cookie-link:visited, #cookie-link:active {
+.cookie-box__button {
 
-	padding: 4px 10px 4px 10px;
+	padding: 4px 10px;
 	margin-left: 10px;
 
 	cursor: pointer;
+
+	@include border-radius(5px);
+
+	@include transition(.15s);
+
+}
+
+.cookie-box__button:hover {
+
+	background: lighten($blue, 8%);
+
+}
+
+.cookie-box__button,
+.cookie-box__button:active {
 	
 	background: $blue;
-	border-radius: 5px;
 
 }
