@@ -1322,9 +1322,10 @@ body {
   max-width: 50%;
   min-height: 350px;
   margin-top: 180px;
+  line-height: 1.4;
   padding: 0;
   color: #40a6e0;
-  font-size: 16px; }
+  font-size: 17px; }
   @media (max-width: 1015px) {
     .error-404 .text {
       padding: 0;
@@ -6995,21 +6996,23 @@ nav.pagination {
 .video-infos .votes .plus:before, .video-infos .votes .moins:before {
   position: absolute;
   display: inline-block;
-  width: 25px;
-  height: 23px;
+  width: 24px;
+  height: 24px;
   margin-top: -3px;
   margin-left: 40px;
-  padding-top: 2px;
+  padding-top: 1px;
+  padding-left: 1px;
   line-height: 23px;
-  border-radius: 50%;
-  text-align: center; }
+  text-align: center;
+  font-weight: bold;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%; }
 
 @media (min-width: 640px) {
   .video-infos .votes .plus:before, .video-infos .votes .moins:before {
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
-    -ms-transition: 0.2s;
-    -o-transition: 0.2s;
     transition: 0.2s; }
  }
 
@@ -7045,8 +7048,6 @@ nav.pagination {
   .video-infos .votes .plus:active:before, .video-infos .votes .moins:active:before {
     -webkit-transition: 0.1s;
     -moz-transition: 0.1s;
-    -ms-transition: 0.1s;
-    -o-transition: 0.1s;
     transition: 0.1s; }
  }
 

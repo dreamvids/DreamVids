@@ -7,7 +7,7 @@
 
 		<meta charset="utf-8">
 
-		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.min.css'; ?>">
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/meta.php') : include(VIEW.'layouts/pages/default/meta.php'); ?>
 
