@@ -1,5 +1,5 @@
 <div class="content">
-	<aside class="aside-cards-list">
+	<aside class="full-cards-list">
 		<h3 class="title">Rechercher - "<?php echo $search; ?>" (Vous ne trouvez pas ? Faite une <a href="<?php echo  WEBROOT. 'search/advanced' ?>">recherche avancée</a>)</h3>
 
 <?php include VIEW."search/order_form.php";?>

@@ -1,5 +1,5 @@
 <!-- Starting order select  -->
-		<form method="post" id="form-order" action="<?php echo WEBROOT."search/order"?>">
+		<form class="form middle" method="post" id="form-order" action="<?php echo WEBROOT."search/order"?>">
 	
 			<input type="hidden" name="_method" value="put" id="order">
 			<input type="hidden" name="order" value="" id="order_field">
@@ -31,5 +31,6 @@ $order_way="";
 		</select>
 			
 		</form>
+		<br>
 	
 <!-- Ending order select  -->

@@ -31,7 +31,7 @@
 			<input type="radio" value="1" name="set_likes" checked="checked" /> Oui
 			<input type="radio" value="0" name="set_likes" /> Non -->
 			
-			<input type="submit" name="profileSubmit" value="Enregistrer">
+			<input type="submit" name="profileSubmit" value="<?php echo Translator::get("common.button.save"); ?>">
 		</form>
 	</section>
 

@@ -193,15 +193,18 @@
 	position: absolute;
 
 	display: inline-block;
-	width: 25px;
-	height: 23px;
+	width: 24px;
+	height: 24px;
 	margin-top: -3px;
 	margin-left: 40px;
-	padding-top: 2px;
+	padding-top: 1px;
+	padding-left: 1px;
 	
 	line-height: 23px;
-	border-radius: 50%;
 	text-align: center;
+	font-weight: bold;
+
+  	@include border-radius;
 
 }
 
@@ -210,11 +213,7 @@
   	.video-infos .votes .plus:before,
   	.video-infos .votes .moins:before {
 
-  		-webkit-transition: 0.2s;
-  		   -moz-transition: 0.2s;
-  			-ms-transition: 0.2s;
-  			 -o-transition: 0.2s;
-  				transition: 0.2s;
+  		@include transition(.2s);
 
   	}
 
@@ -239,7 +238,9 @@
 .video-infos .votes .moins:before {
 
 	left: 40%;
+
 	content: "-";
+
 	border: 1px solid #dd4e47;
 
 }
@@ -268,11 +269,9 @@
 
   	.video-infos .votes .plus:active:before,
   	.video-infos .votes .moins:active:before {
-		-webkit-transition: 0.1s;
-		   -moz-transition: 0.1s;
-			-ms-transition: 0.1s;
-			 -o-transition: 0.1s;
-				transition: 0.1s;
+		
+		@include transition(.1s);
+
 	}
 
 }

@@ -53,6 +53,10 @@ class Request {
 	public function getAcceptedData() {
 		return $this->acceptedData;
 	}
+	
+	public function getAcceptedLanguages() {
+		return isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : null;
+	}
 
 	public function acceptsHtml() {
 		return strpos($this->acceptedData, 'text/html') !== false;

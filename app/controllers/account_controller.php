@@ -132,6 +132,19 @@ class AccountController extends Controller {
 			$response->addMessage(ViewMessage::success("Paramètres de notifications sauvegardés"));
 			return $response;
 		}
+		if($id == 'language'){
+			
+			$data['currentPageTitle'] = "Paramètre de langues";
+			$data['current'] = 'language';
+			
+			Session::get()->setLanguageSetting($req['language']);
+			var_dump(Session::get()->settings);
+			$data['settings'] = Session::get()->getSettings();
+			$data['avaiable_languages'] = Translator::getLanguagesList();
+			$data['lang_setting'] = Session::get()->getLanguageSetting();
+			
+			return new RedirectResponse('account/language', $data);
+		}
 		else
 			return new ViewResponse('account/profile', $data);
 	}
@@ -252,6 +265,21 @@ class AccountController extends Controller {
 		}
 		else
 			return new RedirectResponse(Utils::generateLoginURL());
+	}
+	
+	public function language($request) {
+		if(Session::isActive()){
+			$data['currentPageTitle'] = "Paramètre de langues";
+			$data['settings'] = Session::get()->getSettings();
+			$data['current'] = 'language';
+			
+			$data['avaiable_languages'] = Translator::getLanguagesList();
+			$data['lang_setting'] = Session::get()->getLanguageSetting();
+			return new ViewResponse('account/language', $data);
+		}
+		else{
+			return RedirectResponse(WEBROOT.'login');
+		}
 	}
 
 	public function get($id, $request) {}

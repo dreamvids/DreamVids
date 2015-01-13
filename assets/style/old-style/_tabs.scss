@@ -1,21 +1,27 @@
 nav.tabs {
+
 	margin: 20px 0 20px 0;
 	
 	ul {
+
 		margin-left: 1%;
 		margin-right: 1%;
 
 		li {
+
 			display: inline-block;
 			width: 15%;
 			height: 25px;
 			padding-top: 10px;
+			margin-bottom: 16px;
 			
 			text-align: center;
 
 			a {
-				color: #40A6E0;
+
+				color: #40a6e0;
 				font-size: 20px;
+
 			}
 
 			&:after {
@@ -32,57 +38,82 @@ nav.tabs {
 				opacity: 0;
 				content: "";
 
-				-webkit-transition: 0.15s;
-				   -moz-transition: 0.15s;
-					-ms-transition: 0.15s;
-					 -o-transition: 0.15s;
-						transition: 0.15s;
+				@include transition(.15s);
+
 			}
 
 			&:hover:after,
 			&.current:after {
+
 				width: 100%;
 				opacity: 1;
+
 			}
 	
 			margin-left: 2%;
+
 		}
+
 	}
 
 	&:not(.four) {
+
 		ul > li {
+
 			@media (max-width: 1000px) { width: 25%; }
 			@media (max-width: 600px)  { width: 30%; }
+
 			@media (max-width: 500px)  {
+
 				width: 95%;
 				margin-bottom: 20px;
 
 				&:hover:after,
 				&.current:after {
+
 					width: 70%!important;
+
 				}
+
 			}
+
 		}
+
 	}
 
 	&.four {
+
 		ul > li {
+
 			@media (max-width: 1000px) { width: 20%; }
+
 			@media (max-width: 800px)  {
+
 				width: 95%;
 				margin-bottom: 20px;
 
 				&:hover:after,
 				&.current:after {
+
 					width: 50%!important;
+
 				}
+
 			}
+
 			@media (max-width: 500px)  {
+
 				&:hover:after,
 				&.current:after {
+
 					width: 70%!important;
+
 				}
+
 			}
+
 		}
+
 	}
+
 }

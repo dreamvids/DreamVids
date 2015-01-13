@@ -38,7 +38,8 @@ class DatabaseFiller {
 				'lol.lol.lol.lol',
 				'0',
 				'',
-				0
+				0,
+				''
 			)");
 
 			$channelId = $this->generateChannelId(6);
