@@ -5,6 +5,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
 require_once SYSTEM.'json_response.php';
+require_once SYSTEM. 'view_message.php';
 
 require_once MODEL.'user_channel.php';
 require_once MODEL.'channel_post.php';
@@ -63,6 +64,27 @@ class ChannelPostController extends Controller {
 		else
 			return Utils::getNotFoundResponse();
 	}
+	public function edit($id, $request) {
+		if (Session::isActive()) {
+			$user = Session::get();
+			
+			if (ChannelPost::exists($id)) {
+				$post = ChannelPost::find($id);
+				if (UserChannel::find($post->channel_id) && UserChannel::find($post->channel_id)->belongToUser($user->id)) {
+					$data = [];
+					$data["post_id"] = $post->id;
+					$data["message"] = $post->content;
+					return new ViewResponse("channel/social/edit", $data);
+				} else {
+					return Utils::getUnauthorizedResponse();
+				}
+			} else {
+				return Utils::getNotFoundResponse();
+			}
+		} else {
+			return Utils::getUnauthorizedResponse();
+		}
+	}
 
 	public function create($request) {
 		$req = $request->getParameters();
@@ -91,13 +113,37 @@ class ChannelPostController extends Controller {
 		
 		return new Response(500);
 	}
-
 	public function update($id, $request) {
-
+		$req = $request->getParameters();
+		if (Session::isActive()) {
+			$user = Session::get();
+			
+			if (ChannelPost::exists($id)) {
+				$post = ChannelPost::find($id);
+				if (UserChannel::find($post->channel_id) && UserChannel::find($post->channel_id)->belongToUser($user->id) && isset($req["message"], $req["post-message-submit"])) {
+					$data=[];
+					
+					$post->content = $req["message"];
+					$data["post_id"] = $post->id;
+					$data["message"] = $post->content;
+					$post->save();
+					
+					$r = new ViewResponse("channel/social/edit");
+					$r->addMessage(ViewMessage::success("Post bien modifié"));
+					return new ViewResponse("channel/social/edit", $data);
+				} else {
+					return Utils::getUnauthorizedResponse();
+				}
+			} else {
+				return Utils::getNotFoundResponse();
+			}
+		} else {
+			return Utils::getUnauthorizedResponse();
+		}
 	}
-
+	
 	public function destroy($id, $request) {
-
+		
 	}
 
 
