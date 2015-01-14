@@ -1,4 +1,5 @@
 <?php
+require_once MODEL . 'channel_action.php';
 
 class ChannelPost extends ActiveRecord\Model {
 
@@ -24,5 +25,10 @@ class ChannelPost extends ActiveRecord\Model {
 
 		return $id;
 	}
-
+	
+	public function erase(){
+		ChannelAction::table()->delete(array("complementary_id" => $this->id, "type"=> "message"));
+		$this->delete();
+	}
+	
 }

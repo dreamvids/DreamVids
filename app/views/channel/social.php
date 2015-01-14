@@ -22,10 +22,18 @@ include VIEW.'/layouts/channel_header.php';
 		<?php foreach($posts as $post) { ?>
 			<div class="channel-post"> 
 				<img src="<?php echo $avatar ?>" alt="Avatar" />
-<?php if($channelBelongsToUser){ ?>
-<a href="<?php echo WEBROOT?>">lol</a>				
-<?php } ?>
 				<p><span class="channel-name"><?php echo $name; ?></span> a posté un message :</p>
+<?php if($channelBelongsToUser){ ?>
+(<a href="<?php echo WEBROOT."posts/".$post->id."/edit"?>">Editer</a>
+<a onclick="if(confirm('Supprimer ce message ?')){
+			marmottajax.delete({
+				url: _webroot_ + 'posts/<?php echo $post->id ?>'
+				});
+			this.parentElement.style.display = 'none';
+			} 
+			return false;
+			" href="#">Supprimer</a>)				
+<?php } ?>
 				<div class="social-message"><?php echo $post->content; ?></div>
 			</div>
 		<?php } ?>

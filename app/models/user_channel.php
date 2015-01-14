@@ -92,21 +92,23 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function postMessage($messageContent) {
-		ChannelAction::create(array(
-			'id' => ChannelAction::generateId(6),
-			'channel_id' => $this->id,
-			'recipients_ids' => ';'.trim($this->subs_list, ';').';',
-			'type' => 'message',
-			'target' => $messageContent,
-			'timestamp' => Utils::tps()
-		));
 
-		return ChannelPost::create(array(
+		$post = ChannelPost::create(array(
 			'id' => ChannelPost::generateId(6),
 			'channel_id' => $this->id,
 			'content' => $messageContent,
 			'timestamp' => Utils::tps()
 		));
+		ChannelAction::create(array(
+		'id' => ChannelAction::generateId(6),
+		'channel_id' => $this->id,
+		'recipients_ids' => ';'.trim($this->subs_list, ';').';',
+		'type' => 'message',
+		'target' => $messageContent,
+		'complementary_id' => $post->id,
+		'timestamp' => Utils::tps()
+		));
+		return $post; 
 	}
 
 	public function subscribe($subscriber) {

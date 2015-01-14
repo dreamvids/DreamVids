@@ -73,7 +73,8 @@ class ChannelPostController extends Controller {
 				if (UserChannel::find($post->channel_id) && UserChannel::find($post->channel_id)->belongToUser($user->id)) {
 					$data = [];
 					$data["post_id"] = $post->id;
-					$data["message"] = $post->content;
+					$data["channel_id"] = $post->channel_id;
+					$data["post_content"] = $post->content;
 					return new ViewResponse("channel/social/edit", $data);
 				} else {
 					return Utils::getUnauthorizedResponse();
@@ -120,17 +121,18 @@ class ChannelPostController extends Controller {
 			
 			if (ChannelPost::exists($id)) {
 				$post = ChannelPost::find($id);
-				if (UserChannel::find($post->channel_id) && UserChannel::find($post->channel_id)->belongToUser($user->id) && isset($req["message"], $req["post-message-submit"])) {
+				if (UserChannel::find($post->channel_id) && UserChannel::find($post->channel_id)->belongToUser($user->id) && isset($req["post_content"], $req["post-message-submit"])) {
 					$data=[];
 					
-					$post->content = $req["message"];
+					$post->content = $req["post_content"];
 					$data["post_id"] = $post->id;
-					$data["message"] = $post->content;
+					$data["post_content"] = $post->content;
+					$data["channel_id"] = $post->channel_id;
 					$post->save();
 					
-					$r = new ViewResponse("channel/social/edit");
+					$r = new ViewResponse("channel/social/edit", $data);
 					$r->addMessage(ViewMessage::success("Post bien modifié"));
-					return new ViewResponse("channel/social/edit", $data);
+					return $r;
 				} else {
 					return Utils::getUnauthorizedResponse();
 				}
@@ -143,7 +145,17 @@ class ChannelPostController extends Controller {
 	}
 	
 	public function destroy($id, $request) {
-		
+		if (Session::isActive()) {
+			$user = Session::get();
+				
+			if (ChannelPost::exists($id)) {
+				$post = ChannelPost::find($id);
+				if (UserChannel::find($post->channel_id) && UserChannel::find($post->channel_id)->belongToUser($user->id)){
+					$post->erase();
+				}
+			}
+		}
+		return new Response(200);
 	}
 
 
