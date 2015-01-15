@@ -25,25 +25,32 @@ class AdminController extends Controller {
 	}
 	
 	private function handleAdminRequest() {
-		$argc = func_num_args();
-		$argv = func_get_args();
-		$uri = explode('/', Utils::getCurrentURI());
-		$controller = (isset($uri[1]) && file_exists(CONTROLLER.'admin/'.$uri[1].'_controller.php')) ? trim($uri[1], '/') : 'home';
-		require_once CONTROLLER.'admin/'.$controller.'_controller.php';
-		$ctrl = 'Admin'.ucfirst($controller).'Controller';
-		$ctrl = new $ctrl();
+		$user = Session::get();
 		
-		switch ($argc) {
-			case 2:
-				$resp = $ctrl->$argv[0]($argv[1]);
-			break;
+		if ($user->isTeam() || $user->isModerator() || $user->isAdmin()) {
+			$argc = func_num_args();
+			$argv = func_get_args();
+			$uri = explode('/', Utils::getCurrentURI());
+			$controller = (isset($uri[1]) && file_exists(CONTROLLER.'admin/'.$uri[1].'_controller.php')) ? trim($uri[1], '/') : 'home';
+			require_once CONTROLLER.'admin/'.$controller.'_controller.php';
+			$ctrl = 'Admin'.ucfirst($controller).'Controller';
+			$ctrl = new $ctrl();
 			
-			case 3:
-				$resp = $ctrl->$argv[0]($argv[1], $argv[2]);
-			break;
+			switch ($argc) {
+				case 2:
+					$resp = $ctrl->$argv[0]($argv[1]);
+				break;
+				
+				case 3:
+					$resp = $ctrl->$argv[0]($argv[1], $argv[2]);
+				break;
+			}
+			
+			return $resp;
 		}
-		
-		return $resp;
+		else {
+			return Utils::getForbiddenResponse();
+		}
 	}
 }
 

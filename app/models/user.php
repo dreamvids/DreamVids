@@ -260,6 +260,13 @@ class User extends ActiveRecord\Model {
 			return strpos($subscriptionsStr, $channelId) !== false;
 		}
 	}
+	
+	public function isTeam() {
+		$config = new Config(CONFIG.'app.json');
+		$config->parseFile();
+
+		return $this->rank == $config->getValue('rankTeam');
+	}
 
 	public function isModerator() {
 		$config = new Config(CONFIG.'app.json');

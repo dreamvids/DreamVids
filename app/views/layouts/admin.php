@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Administration - DreamVids</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo ASSETS.'admin/'; ?>bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +52,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">DreamVids - Administration</a>
             </div>
             <!-- /.navbar-header -->
 

@@ -10,12 +10,12 @@ class ViewResponse extends Response {
 	private $renderLayout = true;
 	private $layoutFile = 'layouts/main.php';
 
-	public function __construct($viewFile, $data = array(), $renderLayout = true, $layoutFile = 'layouts/main.php', $statusCode = 200) {
+	public function __construct($viewFile, $data = array(), $renderLayout = true, $layoutFile = '', $statusCode = 200) {
 		$uri = explode('/', Utils::getCurrentURI());
 		$admin = (strtolower($uri[0]) == 'admin');
 		
-		if ($admin && $layoutFile == 'layouts/main.php') {
-			$layoutFile = 'layouts/admin.php';
+		if ($layoutFile == '') {
+			$layoutFile = ($admin) ? 'layouts/admin.php' : 'layouts/main.php';
 		}
 		
 		$file = VIEW.$viewFile.'.php';
