@@ -162,6 +162,16 @@
 									</a>
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>
+						<?php }else if($action->type == "welcomeback"){ ?>
+							
+								<div class="card<?php echo $supp_class; ?> plus">
+									<a href="<?php echo WEBROOT; ?>">
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="<?php echo WEBROOT.'assets/img/logo_words.jpg'; ?>"></div>
+										<p>Bienvenue sur la V2 de DreamVids ! Vous allez voir, ça va être super !</p>
+									</a>
+									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
+								</div>							
+							
 						<?php }
 					}
 				}
