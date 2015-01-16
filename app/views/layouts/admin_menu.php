@@ -7,10 +7,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">DreamVids - Administration - <span class="label label-danger">Compte Admin</span>
-<!--                 																	   <span class="label label-warning">Compte Modo</span> -->
-<!--                 																	   <span class="label label-success">Compte Team</span> -->
-                </a>
+                <?php 
+                switch (true) {
+                	case Session::get()->isTeam():
+                	$admin_type = '<span class="label label-success">Compte Team</span>';
+                	break;
+                	case Session::get()->isModerator(): 
+                	$admin_type = '<span class="label label-warning">Compte Modo</span>';
+                	break;
+                	case Session::get()->isAdmin(): 
+                	$admin_type = '<span class="label label-danger">Compte Admin</span>';
+                	break;
+                	default: 
+                	$admin_type = '<span class="label label-info" style="background: gray">Hacker</span>';
+                	break;
+                }
+                ?>
+                <a class="navbar-brand" href="index.html">DreamVids - Administration - <?php echo $admin_type; ?></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -239,6 +252,16 @@
                             <!-- /input-group -->
                         </li>
                         <?php 
+                        
+                        /**
+                         * $menu_array is the side menu.
+                         * To add an item just add :
+                         * 			"<showed name>" => 
+                         * 					["icon" => "<font awesome icon>", "url" => "<url> (optional)", "right" => <permission>]
+                         * <permission> can be an array like ["modo", "admin"] that is equivalent to the acceptable string "modo_or_more"
+                         * Availlable string are located at Utils::generateAdminMenuFromArray() 
+                         * Add a "sub-menu" with a sub array that contains we said before 
+                         */  
                         $menu_array = 
                         [
                         		"Vue d'ensemble" => 
@@ -248,7 +271,7 @@
                         			["icon" => "bar-chart-o", "url" => "monitoring"],
                         		
                         		"Modération" => 
-                        			["icon" => "smile-o", "sub-menu" => 
+                        			["icon" => "smile-o", "right" => ["modo_or_more"], "sub-menu" => 
                         					["Vue d'ensemble" => ["icon" => "dashboard", "url" => "moderation"],
                         					 "Vidéos" => ["icon" => "video-camera", "url" => "moderation/videos"],
                         					 "Commentaires" => ["icon" => "comments", "url" => "moderation/comments"]]
@@ -267,7 +290,7 @@
                         			["icon" => "bug", "url" => "bugtracker"],
                         		
                         		"Paramètres" =>
-                        			["icon" => "wrench", "sub-menu" =>
+                        			["icon" => "wrench", "right" => ["admin"], "sub-menu" =>
                         					["Mise en maintenance" => ["icon" => "plug", "url" => "settings/emergency"],
                         					 "Gestion des admins/modérateurs" => ["icon" => "users", "url" => "settings/users"]]
                         			]

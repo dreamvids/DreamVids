@@ -422,15 +422,45 @@ class Utils {
 	 /**
 	  * 
 	  * @param array $menu
-	  * @param User $user
+	  * @param User $user Used to define which are the menu to show
 	  */
 	 public static function generateAdminMenuFromArray($menu, $user) {
-		if (!(is_array($menu))) {
-			return "";
-		}
-		
+		if (! (is_array($menu))) { return ""; }
+		$right_array = [ //Add here new ranks that have access to admin
+				"admin" => $user->isAdmin(),
+				
+				"modo_or_more" => $user->isModerator() || $user->isAdmin(),
+				"modo" => $user->isModerator(),
+				
+				"team_or_more" => $user->isModerator() || $user->isAdmin() || $user->isTeam(),
+				"team" => $user->isTeam()
+		];
 		$output = "";
+		
 		foreach ($menu as $title => $element) {
+			
+			$has_right = false;
+			
+			if (isset($element['right'])) {
+				$rights = $element['right'];
+				if (is_array($rights)) {
+					foreach ($rights as $value) {
+						if (isset($right_array[$value]) && $right_array[$value]) {
+							$has_right = true;
+							break;
+						}
+					}
+				} else {
+					if (isset($right_array[$rights]) && $right_array[$rights]) {
+						$has_right = true;
+					}
+				}
+			} else {
+				$has_right = true;
+			}
+			
+			if(!$has_right) continue;
+			
 			$url = WEBROOT . "admin/";
 			$output .= PHP_EOL . "<li>";
 			
