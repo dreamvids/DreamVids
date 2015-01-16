@@ -138,7 +138,7 @@ class AccountController extends Controller {
 			$data['current'] = 'language';
 			
 			Session::get()->setLanguageSetting($req['language']);
-			var_dump(Session::get()->settings);
+		
 			$data['settings'] = Session::get()->getSettings();
 			$data['avaiable_languages'] = Translator::getLanguagesList();
 			$data['lang_setting'] = Session::get()->getLanguageSetting();
