@@ -419,5 +419,54 @@ class Utils {
 
 	 	return $rvb;
 	 }
+	 /**
+	  * 
+	  * @param array $menu
+	  * @param User $user
+	  */
+	 public static function generateAdminMenuFromArray($menu, $user) {
+		if (!(is_array($menu))) {
+			return "";
+		}
+		
+		$output = "";
+		foreach ($menu as $title => $element) {
+			$url = WEBROOT . "admin/";
+			$output .= PHP_EOL . "<li>";
+			
+			if(isset($element["url"])) { $url .= $element["url"]; }
+			else { $url .= "#"; }
+			
+			if(isset($element["icon"])) { $icon = '<i class="fa fa-'.$element["icon"].' fa-fw"></i> '; }
+			else { $icon = ""; }
+			
+			$output.= PHP_EOL.'<a href="'.$url.'">'.$icon.$title;
+			
+			if(!isset($element['sub-menu'])){
+				$output.="</a></li>";
+				
+			}else{
+				
+				$output.='<span class="fa arrow"></span></a>';
+				$output.='<ul class="nav nav-second-level collapse">';
+				
+				foreach ($element["sub-menu"] as $sub_title => $sub_element) {
+					$url = WEBROOT . "admin/";
+					if(isset($sub_element["url"])) { $url .= $sub_element["url"]; }
+					else { $url = "#"; }
+						
+					if(isset($sub_element["icon"])) { $icon = '<i class="fa fa-'.$sub_element["icon"].' fa-fw"></i> '; }
+					else { $icon = ""; }
+					
+					$output.= PHP_EOL.'<li><a href="'.$url.'">'.$icon.$sub_title.'</a></li>';
+				}
+				
+				
+				$output.="</ul></li>";
+			}
+		
+		}
+		return $output;
+	}
 	 
 }
