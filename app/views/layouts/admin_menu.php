@@ -275,51 +275,6 @@
                         $menu = Utils::generateAdminMenuFromArray($menu_array, Session::get()); 
                         echo $menu;
                         ?>
-<!--                         <li> -->
-<!--                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Vue d'ensemble</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Monitoring</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <a href="#"><i class="fa fa-smile-o fa-fw"></i> Modération<span class="fa arrow"></span></a> -->
-<!--                             <ul class="nav nav-second-level"> -->
-<!-- 		                        <li> -->
-<!-- 		                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Vue d'ensemble</a> -->
-<!-- 		                        </li>                             -->
-<!--                                 <li> -->
-<!--                                     <a href="flot.html"><i class="fa fa-video-camera fa-fw"></i> Vidéos</a> -->
-<!--                                 </li> -->
-<!--                                 <li> -->
-<!--                                     <a href="morris.html"><i class="fa fa-comments fa-fw"></i> Commentaires</a> -->
-<!--                                 </li> -->
-<!--                             </ul> -->
-                            <!-- /.nav-second-level -->
-<!--                         </li>                         -->
-<!--                         <li> -->
-<!--                             <a href="tables.html"><i class="fa fa-users fa-fw"></i> Gestion des utilisateurs</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Gestion des chaînes</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <a href="forms.html"><i class="fa fa-video-camera fa-fw"></i> Gestion des vidéos</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <a href="forms.html"><i class="fa fa-bug fa-fw"></i> Bugtracker</a> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Paramètres<span class="fa arrow"></span></a> -->
-<!--                             <ul class="nav nav-second-level"> -->
-<!--                                 <li> -->
-<!--                                     <a href="panels-wells.html">Mise en maintenance</a> -->
-<!--                                 </li> -->
-<!--                                 <li> -->
-<!--                                     <a href="buttons.html">Gestion des admins / modérateurs</a> -->
-<!--                                 </li> -->
-<!--                             </ul> -->
-                            <!-- /.nav-second-level -->
-<!--                         </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
