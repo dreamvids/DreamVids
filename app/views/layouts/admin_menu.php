@@ -278,7 +278,7 @@
                         			],
                         		
                         		"Gestion des utilisateurs" =>
-                        			["icon" => "users", "url" => "users"],
+                        			["icon" => "users", "url" => "user"],
                         		
                         		"Gestion des chaînes" => 
                         			["icon" => "sitemap", "url" => "channel"],

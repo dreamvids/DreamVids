@@ -13,7 +13,9 @@ class AdminUserController extends Controller {
 	}
 	
 	public function index($request) {
-		return new ViewResponse('admin/user/index');
+		$data = [];
+		$data['users'] = User::find('all');
+		return new ViewResponse('admin/user/index', $data);
 	}
 	
 	public function get($id, $request){}
