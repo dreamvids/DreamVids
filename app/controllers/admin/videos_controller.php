@@ -13,7 +13,9 @@ class AdminVideosController extends Controller {
 	}
 	
 	public function index($request) {
-		return new ViewResponse('admin/videos/index');
+		$data = [];
+		$data['videos'] = Video::find('all');
+		return new ViewResponse('admin/videos/index', $data);
 	}
 	
 	public function get($id, $request){}

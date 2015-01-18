@@ -2,7 +2,7 @@
 	<h1>Modération des commentaires</h1>
 
 	<div class="col-lg-12">
-		<table class="table table-bordered table-hover table-striped">
+		<table class="table table-bordered table-hover table-striped table-to-sort">
 			<thead>
 				<tr>
 					<th>Auteur</th>
