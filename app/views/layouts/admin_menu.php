@@ -281,7 +281,7 @@
                         			["icon" => "users", "url" => "users"],
                         		
                         		"Gestion des chaînes" => 
-                        			["icon" => "sitemap", "url" => "channels"],
+                        			["icon" => "sitemap", "url" => "channel"],
                         		
                         		"Gestion des vidéos" =>
                         			["icon" => "video-camera", "url" => "videos"],

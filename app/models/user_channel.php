@@ -37,14 +37,16 @@ class UserChannel extends ActiveRecord\Model {
 
 	public function getAdminsNames() {
 		$adminsStr = '';
-
+		
 		if(strpos($this->admins_ids, ';') !== false) {
+			
 			$adminsIds = explode(';', $this->admins_ids);
-
+			
 			if(empty($adminsIds[count($adminsIds) - 1])) unset($adminsIds[count($adminsIds) - 1]);
 
+				
 			foreach ($adminsIds as $id) {
-				$adminsStr .= User::exists($id) ? User::find($id)->username.', ' : '';
+				$adminsStr .= User::exists($id) && $id != "" ? User::find($id)->username.', ' : '';
 			}
 
 			$adminsStr = rtrim($adminsStr, ' ,');

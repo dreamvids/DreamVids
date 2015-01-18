@@ -13,7 +13,9 @@ class AdminChannelController extends Controller {
 	}
 	
 	public function index($request) {
-		return new ViewResponse('admin/dashboard');
+		$data = [];
+		$data['channels'] = UserChannel::find('all');
+		return new ViewResponse('admin/channel/index', $data);
 	}
 	
 	public function get($id, $request){}
