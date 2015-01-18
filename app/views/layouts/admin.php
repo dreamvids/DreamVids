@@ -36,6 +36,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script type="text/javascript"> var _webroot_ = "<?php echo WEBROOT; ?>";</script>
 
 </head>
 
@@ -65,13 +67,44 @@
     <script src="<?php echo ASSETS.'admin/'; ?>bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <!-- <script src="<?php echo ASSETS.'admin/'; ?>bower_components/raphael/raphael-min.js"></script>
+    <script src="<?php echo ASSETS.'admin/'; ?>bower_components/raphael/raphael-min.js"></script>
     <script src="<?php echo ASSETS.'admin/'; ?>bower_components/morrisjs/morris.min.js"></script>
-    <script src="<?php echo ASSETS.'admin/'; ?>js/morris-data.js"></script> -->
+    <!-- <script src="<?php echo ASSETS.'admin/'; ?>js/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo ASSETS.'admin/'; ?>dist/js/sb-admin-2.js"></script>
+<?php if(isset($video_graph_data)){ ?>
+    <script type="text/javascript">
 
+
+$(function() {
+	<?php 
+	$length = count($video_graph_data);
+	$i = 0;
+	echo "data_ = [";
+	foreach ($video_graph_data as $data) {
+		$i++;
+		echo "{day:\"$data[0]\", count:$data[1]}";
+		echo $i != $length ? "," : "";
+	}
+	echo "];";
+	?>
+    Morris.Area({
+        element: 'videos-morris-area-chart',
+        data: data_,
+        xkey: 'day',
+        ykeys: ['count'],
+        labels: ['Videos postées'],
+        pointSize: 5,
+        hideHover: 'auto',
+        resize: true,
+        smooth:false
+    });
+
+});
+</script>
+    <?php } ?>
+<?php include(VIEW.'layouts/pages/admin/scripts.php'); ?>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
-<div class="content">
-	<h1 class="title">Panel <?php echo $rankStr; ?> - Commentaires reportés </h1>
+<div class="row">
+	<h1>Modération des commentaires</h1>
 
-	<div class="reports">
-		<table class="pure-table">
+	<div class="col-lg-12">
+		<table class="table table-bordered table-hover table-striped">
 			<thead>
 				<tr>
 					<th>Auteur</th>
@@ -27,8 +27,8 @@
 						<td><?php echo $com->likes; ?></td>
 						<td><?php echo $com->dislikes; ?></td>
 						<td>
-							<button class="button-success pure-button" onclick="unflagComment('<?php echo $com->id; ?>')">Annuler le flag</button>
-							<button class="button-error pure-button" onclick="eraseComment('<?php echo $com->id; ?>')">Supprimer</button>
+							<button class="btn-success btn" onclick="unflagComment('<?php echo $com->id; ?>')">Annuler le flag</button>
+							<button class="btn-danger btn" onclick="eraseComment('<?php echo $com->id; ?>')">Supprimer</button>
 						</td>
 					</tr>
 				<?php endforeach ?>

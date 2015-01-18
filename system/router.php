@@ -82,10 +82,17 @@ class Router {
 	}
 
 	private function executeAction($request, $controller, $uriParameters) {
+		$is_admin = false;
+		if(isset($uriParameters[0]) && $uriParameters[0] == "admin") { 
+			unset($uriParameters[0]); 
+			$is_admin=true; 
+			$uriParameters=array_values($uriParameters);
+		}
+		
 		switch ($request->getMethod()) {
 			case Method::GET:
 				// Example: /posts/
-				if(count($uriParameters) < 1) {
+				if(count($uriParameters) < 1 || $is_admin && count($uriParameters) < 2) {
 					if($controller->isActionAllowed(Action::INDEX)) {
 						$response = call_user_func_array(array($controller, 'index'), array($request));
 						Utils::sendResponse($response);
@@ -96,9 +103,9 @@ class Router {
 				// Example: /posts/42 or /posts/latest
 				else if(count($uriParameters) == 2) {
 					// Example: /posts/latest --> calls the 'latest' method from controller
-					if(method_exists($controller, $uriParameters[1])) {
+					if(method_exists($controller, $uriParameters[1]) || $is_admin) {
 						unset($uriParameters[0]);
-
+						
 						$response = call_user_func_array(array($controller, $uriParameters[1]), array($request));
 						Utils::sendResponse($response);
 					}
@@ -114,7 +121,7 @@ class Router {
 				}
 				else if(count($uriParameters) > 2) {
 					// Example: /posts/recents/4 --> calls recents(4) from PostsController, to retrive the 4 most recent posts
-					if(method_exists($controller, $uriParameters[1])) {
+					if(method_exists($controller, $uriParameters[1]) || $is_admin) {
 						$methodName = $uriParameters[1];
 
 						unset($uriParameters[0]);

@@ -24,9 +24,18 @@ class AdminController extends Controller {
 		return $this->handleAdminRequest('destroy', $id, $request);
 	}
 	
+	public function __call($name , $args){
+		if (isset($args[0], $args[1])) {
+			return $this->handleAdminRequest($name, $args[0], $args[1]);
+		}
+		return $this->handleAdminRequest($name, '', $args[0]);
+	}
+	
 	private function handleAdminRequest() {
 		$user = Session::get();
-		
+		if($user === -1){
+			return Utils::getForbiddenResponse();
+		}
 		if ($user->isTeam() || $user->isModerator() || $user->isAdmin()) {
 			$argc = func_num_args();
 			$argv = func_get_args();
@@ -35,14 +44,18 @@ class AdminController extends Controller {
 			require_once CONTROLLER.'admin/'.$controller.'_controller.php';
 			$ctrl = 'Admin'.ucfirst($controller).'Controller';
 			$ctrl = new $ctrl();
-			
+	
 			switch ($argc) {
 				case 2:
 					$resp = $ctrl->$argv[0]($argv[1]);
 				break;
 				
-				case 3:
-					$resp = $ctrl->$argv[0]($argv[1], $argv[2]);
+				case 3:			
+					if(method_exists($ctrl, $argv[0])){
+						$resp = $ctrl->$argv[0]($argv[1], $argv[2]);						
+					}else{
+						$resp = $this->handleAdminRequest('get', $argv[0], $argv[1]);
+					}
 				break;
 			}
 			

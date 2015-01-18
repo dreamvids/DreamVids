@@ -4,7 +4,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
 
-class AdminHomeController extends Controller {
+class AdminSettingsController extends Controller {
 	public function __construct() {
 		$this->denyAction(Action::GET);
 		$this->denyAction(Action::CREATE);
@@ -12,10 +12,8 @@ class AdminHomeController extends Controller {
 		$this->denyAction(Action::DESTROY);
 	}
 	
-
-	
 	public function index($request) {
-		return new ViewResponse('admin/dashboard/index');
+		return new ViewResponse('admin/settings/index');
 	}
 	
 	public function get($id, $request){}
