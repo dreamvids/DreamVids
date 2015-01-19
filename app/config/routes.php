@@ -30,8 +30,8 @@ Route::register('upload', 'upload');
 Route::register('translation', 'translation');
 
 Route::register('admin', 'admin');
+Route::register('assistance', 'assist');
 
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
-Route::register('bugs', 'bug');
 Route::register('beta', 'beta');
 /* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */

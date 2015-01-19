@@ -54,17 +54,17 @@ class LoginController extends Controller {
 					$last_try_timestamp = $current_log_fail['last_try'];
 					$nb_try = $current_log_fail['nb_try'];
 				
-						$next_try_tps = $next_timestamp - Utils::tps();
-						$next_try_min = floor($next_try_tps/60);
-						$next_try_sec = round(($next_try_tps - $next_try_min*60));
-						$next_try_str = "$next_try_min m et $next_try_sec s";
-					
-						$data = array();
-						$data['currentPageTitle'] = 'Connexion';
-						$response = new ViewResponse('login/login', $data);
-						$response->addMessage(ViewMessage::error($nb_try . " de tentatives de connexions à la suite pour ce compte. Veuillez patienter $next_try_str"));
-							
-						return $response;
+					$next_try_tps = $next_timestamp - Utils::tps();
+					$next_try_min = floor($next_try_tps/60);
+					$next_try_sec = round(($next_try_tps - $next_try_min*60));
+					$next_try_str = "$next_try_min m et $next_try_sec s";
+				
+					$data = array();
+					$data['currentPageTitle'] = 'Connexion';
+					$response = new ViewResponse('login/login', $data);
+					$response->addMessage(ViewMessage::error($nb_try . " de tentatives de connexions à la suite pour ce compte. Veuillez patienter $next_try_str"));
+						
+					return $response;
 					
 				}
 

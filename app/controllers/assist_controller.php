@@ -1,41 +1,44 @@
 <?php
-/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'response.php';
+require_once SYSTEM.'view_response.php';
+require_once SYSTEM.'view_message.php';
 
-require_once MODEL.'bug.php';
+require_once MODEL.'ticket.php';
 
-class BugController extends Controller {
+class AssistController extends Controller {
 
 	public function __construct() {
-		$this->denyAction(Action::INDEX);
 		$this->denyAction(Action::GET);
 		$this->denyAction(Action::UPDATE);
 		$this->denyAction(Action::DESTROY);
 	}
 	
+	public function index($request) {
+		return new ViewResponse('assist/ticket');
+	}
+	
 	public function create($request) {
 		$req = $request->getParameters();
-		if (!empty($req['bug']) && !empty($req['url'])) {
+		$response = new ViewResponse('assist/ticket');
+		if (trim($req['bug']) != '') {
 			$username = (Session::isActive()) ? Session::get()->username : '[Anonyme]';
-			Bug::create(array(
+			Ticket::create(array(
 				'username' => $username,
 				'description' => $req['bug'],
 				'url' => $req['url'],
 				'ip' => $_SERVER['REMOTE_ADDR']
 			));
-			return new Response(200);
+			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié par E-Mail dès qu\'une réponse sera apporté à votre problème.'));
 		}
 		else {
-			return new Response(500);
+			$response->addMessage(ViewMessage::error('Merci de nous décrire votre problème.'));
 		}
+		return $response;
 	}
 
-	public function index($request){}
 	public function get($id, $request){}
 	public function update($id, $request){}
 	public function destroy($id, $request){}
-
 }
-/* BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE */
