@@ -13,7 +13,7 @@ CREATE TABLE `backups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `bugs`;
+DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE `bugs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
