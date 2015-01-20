@@ -83,6 +83,7 @@ class Router {
 
 	private function executeAction($request, $controller, $uriParameters) {
 		$is_admin = false;
+// 		var_dump($uriParameters);
 		if(isset($uriParameters[0]) && $uriParameters[0] == "admin") { 
 			unset($uriParameters[0]); 
 			$is_admin=true; 
@@ -92,7 +93,7 @@ class Router {
 		switch ($request->getMethod()) {
 			case Method::GET:
 				// Example: /posts/
-				if(count($uriParameters) < 1 || $is_admin && count($uriParameters) < 2) {
+				if(count($uriParameters) < 1 || ($is_admin && count($uriParameters) < 2)) {
 					if($controller->isActionAllowed(Action::INDEX)) {
 						$response = call_user_func_array(array($controller, 'index'), array($request));
 						Utils::sendResponse($response);
