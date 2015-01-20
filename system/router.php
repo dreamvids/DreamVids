@@ -83,7 +83,7 @@ class Router {
 
 	private function executeAction($request, $controller, $uriParameters) {
 		$is_admin = false;
-// 		var_dump($uriParameters);
+
 		if(isset($uriParameters[0]) && $uriParameters[0] == "admin") { 
 			unset($uriParameters[0]); 
 			$is_admin=true; 
