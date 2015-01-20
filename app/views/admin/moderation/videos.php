@@ -24,7 +24,7 @@
 						<td><?php echo $vid->dislikes; ?></td>
 						<td>
 							<?php if($vid->isSuspended()) { ?>
-								<button class="btn-success pure-btn" onclick="unSuspendVideo('<?php echo $vid->id ?>')">Annuler la suspension</button>	
+								<button class="btn-success btn" onclick="unSuspendVideo('<?php echo $vid->id ?>')">Annuler la suspension</button>	
 							<?php } else { ?>
 								<button class="btn-success btn" onclick="unFlagVideo('<?php echo $vid->id ?>')">Annuler le flag</button>
 								<button class="btn-warning btn" onclick="suspendVideo('<?php echo $vid->id ?>')">Suspendre</button>
