@@ -111,23 +111,27 @@ class Comment extends ActiveRecord\Model {
 
 	public function report($reporterUser) {
 		if(is_object($reporterUser)) {
-			$this->flagged = 1;
-			$this->save();
+			if ($this->flagged == 0) {
+				$this->flagged = 1;
+				$this->save();
+			}
 		}
 	}
 
 	public function unflag($reporterUser) {
 		if(is_object($reporterUser)) {
-			ModoAction::create(array(
-				'id' => ModoAction::generateId(6),
-				'user_id' => $reporterUser->id,
-				'type' => 'unflag_comment',
-				'target' => $this->id,
-				'timestamp' => Utils::tps()
-			));
-
-			$this->flagged = 0;
-			$this->save();
+			if ($this->flagged == 1) {
+				ModoAction::create(array(
+					'id' => ModoAction::generateId(6),
+					'user_id' => $reporterUser->id,
+					'type' => 'unflag_comment',
+					'target' => $this->id,
+					'timestamp' => Utils::tps()
+				));
+	
+				$this->flagged = 2;
+				$this->save();
+			}
 		}
 	}
 

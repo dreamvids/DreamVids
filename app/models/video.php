@@ -176,7 +176,7 @@ class Video extends ActiveRecord\Model {
 
 	public function unFlag($userId) {
 		if($this->flagged == 1) {
-			$this->flagged = 0;
+			$this->flagged = 2;
 			$this->save();
 
 			ModoAction::create(array(
