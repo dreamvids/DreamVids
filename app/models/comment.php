@@ -194,10 +194,10 @@ class Comment extends ActiveRecord\Model {
 
 	public static function getReportedComments($limit = 'nope') {
 		if($limit != 'nope') {
-			return Comment::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc', 'limit' => $limit));
+			return Comment::all(array('conditions' => array('flagged' => 1), 'order' => 'timestamp desc', 'limit' => $limit));
 		}
 		else {
-			return Comment::all(array('conditions' => array('flagged', 1), 'order' => 'timestamp desc'));
+			return Comment::all(array('conditions' => array('flagged' => 1), 'order' => 'timestamp desc'));
 		}
 	}
 
