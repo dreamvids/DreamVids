@@ -4,10 +4,7 @@
         "sFilterInput": "form-control",
         "sLengthSelect": "form-control"
     });
-    $('.table-to-sort').DataTable({
-    	paging: false
-    	
-    });
+    $('.table-to-sort').DataTable();
 
 });
 	</script>
