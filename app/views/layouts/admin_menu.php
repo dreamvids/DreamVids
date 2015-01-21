@@ -286,8 +286,8 @@
                         		"Gestion des vidéos" =>
                         			["icon" => "video-camera", "url" => "videos"],
                         		
-                        		"Bugtracker" => 
-                        			["icon" => "bug", "url" => "bugtracker"],
+                        		"Tickets" => 
+                        			["icon" => "bug", "url" => "tickets"],
                         		
                         		"Paramètres" =>
                         			["icon" => "wrench", "right" => ["admin"], "sub-menu" =>
