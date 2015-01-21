@@ -37,31 +37,38 @@ class AdminUserController extends Controller {
 		echo 1;
 	}
 	public function update($id, $request) {
+		$config = new Config(CONFIG.'app.json');
+		$config->parseFile();
+		
 		$data = $request->getParameters();
-		$deny_fields = ['id', 'rank'];
-		if (User::exists(['id' => $id])) {
-			$user = User::find(['id' => $id]);
-			foreach ($data as $k => $value) {
-				if(isset($user->$k) && !in_array($k, $deny_fields)){
-					switch ($k) {
-						case 'username':
-							$u_c = $user->getMainChannel();
-							$u_c->name = $value;
-							$u_c->save();
-						break;
-						case 'pass':
-							$value = !empty($value) ? password_hash($value, PASSWORD_BCRYPT) : $user->pass;
-						break;
-					}
-					
-					$user->$k = $value;
-				}
-				$user->save();
-			}
-			$r = new ViewResponse("admin/user/edit", ['user' => $user]);
+	
+		if(isset($data['userSubmit'])){
 			
+			$deny_fields = ['id', 'rank'];
+			if (User::exists($id)) {
+				$user = User::find($id);
+				foreach ($data as $k => $value) {
+					if(isset($user->$k) && !in_array($k, $deny_fields)){
+						switch ($k) {
+							case 'username':
+								$u_c = $user->getMainChannel();
+								$u_c->name = $value;
+								$u_c->save();
+							break;
+							case 'pass':
+								$value = !empty($value) ? password_hash($value, PASSWORD_BCRYPT) : $user->pass;
+							break;
+						}
+						
+						$user->$k = $value;
+					}
+					$user->save();
+				}
+				$r = new ViewResponse("admin/user/edit", ['user' => $user]);
+				
+			}
+			return $r;
 		}
-		return $r;
 	}
 	public function destroy($id, $request){}
 }
