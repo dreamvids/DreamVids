@@ -15,11 +15,10 @@
 			<div class="btn-group" data-toggle="buttons">
 			
 <?php foreach ($ranks as $r_index => $name) { ?>
-			<label class="btn btn-primary<?php echo $user->rank == $r_index ? ' active' : ''?>">
-			    <input type="radio" name="rank" value="<?php echo $r_index; ?>" id="option1" autocomplete="off" <?php echo $user->rank == $r_index ? ' checked' : ''?>> <?php echo $name; ?>
+			<label class="btn btn-<?php echo $name[1]; ?><?php echo $user->rank == $r_index ? ' active' : ''?>">
+			    <input type="radio" name="rank" value="<?php echo $r_index; ?>" id="option1" autocomplete="off" <?php echo $user->rank == $r_index ? ' checked' : ''?>> <?php echo $name[0]; ?>
 			  </label>
 <?php }?>
-			  
 			</div>
 			<br>
 			

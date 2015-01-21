@@ -1,5 +1,5 @@
 <div class="row">
-		<h1 class="title">Modifier l'utilisateur<small> <?php echo isset($user) ? $user->username . ' <a class="btn btn-primary" href="'.WEBROOT . 'admin/settings/users">Changer le rang</a>' : '';?></small></h1>
+		<h1 class="title">Modifier l'utilisateur<small> <?php echo isset($user) ? $user->username . ' <a class="btn btn-primary" href="'.WEBROOT . 'admin/settings/users/'.$user->id.'">Changer le rang</a>' : '';?></small></h1>
 		<?php include VIEW.'layouts/messages_bootstrap.php'; ?>
 
 		<?php if(isset($user)){ ?>
