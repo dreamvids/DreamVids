@@ -24,13 +24,13 @@ class AssistController extends Controller {
 		$response = new ViewResponse('assist/ticket');
 		if (trim($req['bug']) != '') {
 			$user_id = (Session::isActive()) ? Session::get()->id : 0;
-			Ticket::create(array(
+			$ticket = Ticket::create(array(
 				'user_id' => $user_id,
 				'description' => $req['bug'],
 				'url' => $req['url'],
 				'ip' => $_SERVER['REMOTE_ADDR']
 			));
-			$ticket_id = Ticket::find(array('conditions' => array('user_id' => Session::get()->id), 'order' => 'id desc'))->id;
+			$ticket_id = $ticket->id;
 			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié de l\'avancement de votre problème par E-Mail (Ticket #'.$ticket_id.')'));
 		}
 		else {
