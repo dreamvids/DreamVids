@@ -23,14 +23,15 @@ class AssistController extends Controller {
 		$req = $request->getParameters();
 		$response = new ViewResponse('assist/ticket');
 		if (trim($req['bug']) != '') {
-			$username = (Session::isActive()) ? Session::get()->username : '[Anonyme]';
+			$user_id = (Session::isActive()) ? Session::get()->id : 0;
 			Ticket::create(array(
-				'username' => $username,
+				'user_id' => $user_id,
 				'description' => $req['bug'],
 				'url' => $req['url'],
 				'ip' => $_SERVER['REMOTE_ADDR']
 			));
-			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié par E-Mail dès qu\'une réponse sera apporté à votre problème.'));
+			$ticket_id = Ticket::find(array('conditions' => array('user_id' => Session::get()->id), 'order' => 'id desc'))->id;
+			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié de l\'avancement de votre problème par E-Mail (Ticket #'.$ticket_id.')'));
 		}
 		else {
 			$response->addMessage(ViewMessage::error('Merci de nous décrire votre problème.'));

@@ -10,7 +10,7 @@
 						<i class="fa fa-comments fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<div class="huge"><?php echo $group[0] ? count($group) : 0; ?></div>
+						<div class="huge"><?php echo isset($group[0]) &&  $group[0] ? count($group) : 0; ?></div>
 						<div><?php echo $rank_name[$rank]; ?></div>
 					</div>
 				</div>
@@ -19,13 +19,14 @@
 			<div class="panel-footer">
 				<ul class="pull-left">
                                 
-<?php 		foreach ($group as $k => $user) {
-			if (! empty($user)) {
-				echo '<li><a href="'.WEBROOT.'admin/settings/users/'.$user->id.'">' . $user->username . '</a></li>';
-			}else{
-				echo '<li>Pas de ' . $rank_name[$rank] . '</li>';
-			}
-		} ?>
+<?php 		
+
+	if(!(isset($group[0]) &&  $group[0])){ echo '<li>Pas de ' . $rank_name[$rank] . '</li>'; }
+	else{
+	foreach ($group as $k => $user) { 
+				echo '<li><a href="'.WEBROOT.'admin/settings/users/'.$user->id.'">' . $user->username . '</a></li>'; 		
+		} 
+	}?>
                                 
                                 </ul>
 				<div class="clearfix"></div>
