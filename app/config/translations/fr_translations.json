@@ -8,7 +8,9 @@
 			"upload": "Uploader",
 			"live": "Diffuser",
 			"videos": "Mes vidéos",
+			"assist": "Assistance",
 			"user_submenu": {
+				"admin": "Administration",
 				"account": "Mon compte",
 				"channels": "Mes chaînes",
 				"playlists": "Mes playlists",

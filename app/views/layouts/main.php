@@ -83,11 +83,14 @@
 									<span class="user-information-button" id="top-nav-user-information-button">
 
 										<img src="<?php echo Session::get()->getMainChannel()->getAvatar() ?>" alt="Votre avatar" id="top-nav-user-information-button-img">
-										<h4><?php echo Session::isActive() ? Session::get()->username : 'Bienvenue, invité'; ?></h4>
+										<h4><?php echo Session::get()->username; ?></h4>
 										<img class="arrow" src="<?php echo IMG.'arrow_top_nav.png'; ?>" alt="Voir vos informations">
 										
 										<div class="user-information-menu" id="top-nav-user-information-menu">
 											<ul>
+											<?php if (Session::get()->isAdmin() or Session::get()->isModerator() or Session::get()->isTeam()): ?>
+												<a href="<?php echo WEBROOT.'admin'; ?>"><?php echo Translator::get("header.menu.user_submenu.admin"); ?></a>
+											<?php endif ?>
 												<a href="<?php echo WEBROOT.'account/infos'; ?>"><?php echo Translator::get("header.menu.user_submenu.account"); ?></a>
 												<a href="<?php echo WEBROOT.'account/channels'; ?>"><?php echo Translator::get("header.menu.user_submenu.channels"); ?></a>
 												<a href="<?php echo WEBROOT.'playlists'; ?>"><?php echo Translator::get("header.menu.user_submenu.playlists"); ?></a>
@@ -132,6 +135,7 @@
 								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>"><?php echo Translator::get("header.menu.upload"); ?></a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'lives') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'lives'; ?>"><?php echo Translator::get("header.menu.live"); ?></a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'account/videos') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/channelslist'; ?>"><?php echo Translator::get("header.menu.videos"); ?></a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'assistance') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'assistance'; ?>"><?php echo Translator::get("header.menu.assist"); ?></a></li>
 							</ul>
 						</nav>
 

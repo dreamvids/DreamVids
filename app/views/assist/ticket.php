@@ -1,5 +1,5 @@
 <section class="middle">
-	<h1 class="title">Assistance</a></h1>
+	<h1 class="title">Assistance: Un problème ? Nous sommes là !</a></h1>
 
 	<?php @include $messages; ?>
 
