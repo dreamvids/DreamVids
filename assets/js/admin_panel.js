@@ -11,6 +11,19 @@ function unFlagVideo(vidId) {
 	}
 }
 
+function flagVideo(vidId) {
+	if(confirm("Voulez-vous report cette video ?")) {
+		$.ajax({
+			type: "PUT",
+			url: _webroot_ + 'videos/' + vidId,
+			data: { flag: true },
+			success: function(result) {
+				window.location.reload();
+			}
+		});
+	}
+}
+
 function suspendVideo(vidId) {
 	if(confirm("Voulez-vous vraiment suspendre cette video ?")) {
 		$.ajax({
