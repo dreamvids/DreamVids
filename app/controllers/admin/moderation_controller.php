@@ -16,7 +16,24 @@ class AdminModerationController extends Controller {
 	}
 	
 	public function index($request) {
-		return new ViewResponse('admin/moderation/index');
+		$appConfig = new Config(CONFIG.'app.json');
+		$appConfig->parseFile();
+		$data = [];
+		$data['stats'] = [
+				"videos_suspended" => ["Vidéo(s) suspendue(s)", Video::count(['visibility' => Config::getValue_('vid_visibility_suspended')])],
+				"videos_flagged" => ["Vidéo(s) reportée(s)", Video::count(['flagged' => 1])],
+				"comments_flagged" => ["Commentaire(s) reporté(s)", Comment::count(['flagged' => 1])]
+		];
+		
+		$data['view_icons'] = ["videos_suspended" => ["fa-ban", "fa-video-camera"],
+							   "videos_flagged" => ["fa-flag", "fa-video-camera"],
+							   "comments_flagged" => ["fa-flag","fa-comments"]];
+		
+		$data['view_colors'] = ["videos_suspended" => "red",
+								"videos_flagged" => "yellow",
+								"comments_flagged" => "yellow"];
+		
+		return new ViewResponse('admin/moderation/index', $data);
 	}
 	
 	public function comments($id, $request){
