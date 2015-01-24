@@ -24,11 +24,11 @@ class AdminSettingsController extends Controller {
 		if($id && User::exists($id)){
 			$data['user'] = User::find($id);
 			
-			$data['ranks'][$config->getValue('rankAdmin')] = ['Administrateur', 'danger'];
-			$data['ranks'][$config->getValue('rankModo')] = ['Modérateur', 'warning'];
-			$data['ranks'][$config->getValue('rankTeam')] = ['Equipe', 'success'];
-			$data['ranks'][$config->getValue('rankContributor')] = ['Contributeur', 'info'];
-			$data['ranks'][$config->getValue('rankUser')] = ['Utilisateur', 'primary'];
+			$data['ranks'][$config->getValue('rankAdmin')] = ['Administrateur', 'red'];
+			$data['ranks'][$config->getValue('rankModo')] = ['Modérateur', 'yellow'];
+			$data['ranks'][$config->getValue('rankTeam')] = ['Equipe', 'green'];
+			$data['ranks'][$config->getValue('rankContributor')] = ['Contributeur', 'primary'];
+			$data['ranks'][$config->getValue('rankUser')] = ['Utilisateur', 'info'];
 			return new ViewResponse('admin/settings/edit_user', $data);
 		}
 		
@@ -42,7 +42,7 @@ class AdminSettingsController extends Controller {
 		$data['staff']['contributor'] = User::find('all', ['rank' => $config->getValue('rankContributor')]);
 		
 		$data['rank_name'] = ['admin' => 'Administrateur', 'modo' => 'Modérateur', 'team' => 'Equipe', 'contributor'=>'Contributeur'];
-		$data['rank_color'] = ['admin' => 'danger', 'modo' => 'warning', 'team' => 'green', 'contributor' => 'info'];
+		$data['rank_color'] = ['admin' => 'red', 'modo' => 'yellow', 'team' => 'green', 'contributor' => 'primary'];
 		
 		foreach ($data['staff'] as $k => $v) {
 			if(!is_array($v)){

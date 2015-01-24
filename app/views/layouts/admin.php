@@ -139,7 +139,7 @@ $(function() {
 				</div>
 			</div>
 
-			<?php include($content); ?>
+			<?php //include($content); ?>
 			<br>
 		</div>
 
