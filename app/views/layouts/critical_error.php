@@ -71,12 +71,6 @@
 						<a href="https://github.com/DreamVids/DreamVids" class="github">Code source sur Github</a>
 						
 					</div>
-
-					<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
-						<br>
-						<br>
-					<!-- / -->
-
 				</div>
 
 			</footer>

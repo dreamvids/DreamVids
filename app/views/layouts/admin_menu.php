@@ -268,7 +268,7 @@
                         			["icon" => "dashboard", "url" => "dashboard"],
                         		
                         		"Monitoring" => 
-                        			["icon" => "bar-chart-o", "url" => "monitoring"],
+                        			["icon" => "bar-chart-o", "url" => "monitoring", "right" => ["admin"]],
                         		
                         		"Modération" => 
                         			["icon" => "smile-o", "right" => ["modo_or_more"], "sub-menu" => 
@@ -278,13 +278,13 @@
                         			],
                         		
                         		"Gestion des utilisateurs" =>
-                        			["icon" => "users", "url" => "user"],
+                        			["icon" => "users", "url" => "user", "right" => ["modo_or_more"]],
                         		
                         		"Gestion des chaînes" => 
-                        			["icon" => "sitemap", "url" => "channel"],
+                        			["icon" => "sitemap", "url" => "channel", "right" => ["modo_or_more"]],
                         		
                         		"Gestion des vidéos" =>
-                        			["icon" => "video-camera", "url" => "videos"],
+                        			["icon" => "video-camera", "url" => "videos", "right" => ["modo_or_more"]],
                         		
                         		"Tickets" => 
                         			["icon" => "bug", "url" => "tickets"],

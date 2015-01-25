@@ -221,44 +221,6 @@
 
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
 
-		<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
-			<form method="post" onsubmit="sendBug(this);return false;" class="bug-beta-input" onclick="document.getElementById('bug').focus();">
-
-				<input required="required" id="bug" name="bug" type="text" placeholder="Un bug ? une suggestion ? Ecrivez ici ! (Entrée pour envoyer)">
-
-			</form>
-			
-			<script>
-			
-				function sendBug(form) {
-
-					marmottajax.post({
-
-						url: _webroot_ + "bugs",
-
-						options: {
-
-							bug: form.bug.value,
-							url: document.location.href
-
-						}
-
-					}).then(function(result) {
-
-						form.bug.value = "Envoyé ! Merci !";
-
-						setTimeout(function() {
-
-							form.bug.value = '';
-
-						}, 2000);
-
-					});
-				}
-
-			</script>
-		<!-- BETA UNIQUEMENT. A RETIRER AVANT LA PRODUCTION FINALE -->
-
 	</body>
 
 </html>
