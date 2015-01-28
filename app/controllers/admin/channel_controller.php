@@ -47,4 +47,8 @@ class AdminChannelController extends AdminSubController{
 	
 	public function create($request){}
 	public function destroy($id, $request){}
+	
+	public function hasPermission($user) {
+		return Utils::getRankArray($user)['modo_or_more'];
+	}
 }

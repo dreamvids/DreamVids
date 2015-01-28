@@ -71,4 +71,9 @@ class AdminUserController extends AdminSubController {
 		}
 	}
 	public function destroy($id, $request){}
+	
+	public function hasPermission($user) {
+		return Utils::getRankArray($user)['modo_or_more'];
+	}
+	
 }

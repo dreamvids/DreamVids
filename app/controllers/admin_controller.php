@@ -45,7 +45,8 @@ class AdminController extends Controller {
 			require_once CONTROLLER.'admin/'.$controller.'_controller.php';
 			$ctrl = 'Admin'.ucfirst($controller).'Controller';
 			$ctrl = new $ctrl();
-			if(!$ctrl->hasPermission(Session::get())){
+
+			if(!$ctrl->hasPermission(Session::get()) || $argv[0] == "hasPermission"){
 				return Utils::getUnauthorizedResponse();
 			}
 			switch ($argc) {
@@ -70,9 +71,20 @@ class AdminController extends Controller {
 	}
 }
 
+/**
+ * 
+ * Class used between Controller and Admin(xx)Controller
+ *
+ */
 abstract  class AdminSubController extends Controller {	
+	
+	/**
+	 * Method used to restrcit access to different parts of the panel. Change the permission of a controller by Overriding this method.
+	 * @param User $user
+	 * @return boolean 
+	 */
 	public function hasPermission($user) {
-		return true;
+		return Utils::getNotFoundResponse();
 	}
 }
 

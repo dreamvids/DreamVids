@@ -426,15 +426,7 @@ class Utils {
 	  */
 	 public static function generateAdminMenuFromArray($menu, $user) {
 		if (! (is_array($menu))) { return ""; }
-		$right_array = [ //Add here new ranks that have access to admin
-				"admin" => $user->isAdmin(),
-				
-				"modo_or_more" => $user->isModerator() || $user->isAdmin(),
-				"modo" => $user->isModerator(),
-				
-				"team_or_more" => $user->isModerator() || $user->isAdmin() || $user->isTeam(),
-				"team" => $user->isTeam()
-		];
+		$right_array = self::getRankArray($user);
 		$output = "";
 		
 		foreach ($menu as $title => $element) {
@@ -497,6 +489,18 @@ class Utils {
 		
 		}
 		return $output;
+	}
+	
+	public static function getRankArray($user) {
+		return  [ //Add here new ranks that have access to admin
+				"admin" => $user->isAdmin(),
+				
+				"modo_or_more" => $user->isModerator() || $user->isAdmin(),
+				"modo" => $user->isModerator(),
+				
+				"team_or_more" => $user->isModerator() || $user->isAdmin() || $user->isTeam(),
+				"team" => $user->isTeam()
+		];
 	}
 	 
 }

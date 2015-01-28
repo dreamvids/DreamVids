@@ -22,4 +22,8 @@ class AdminVideosController extends AdminSubController {
 	public function create($request){}
 	public function update($id, $request){}
 	public function destroy($id, $request){}
+	
+	public function hasPermission($user) {
+		return Utils::getRankArray($user)['modo_or_more'];
+	}
 }

@@ -69,7 +69,7 @@
                          * 					["icon" => "<font awesome icon>", "url" => "<url> (optional)", "right" => <permission>]
                          * <permission> can be an array like ["modo", "admin"] that is equivalent to the acceptable string "modo_or_more"
                          * Availlable string are located at Utils::generateAdminMenuFromArray() 
-                         * Add a "sub-menu" with a sub array that contains we said before 
+                         * Add a "sub-menu" with a sub array that contains what we said before. 
                          */  
                         $menu_array = 
                         [

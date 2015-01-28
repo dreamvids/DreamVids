@@ -28,4 +28,8 @@ class AdminMonitoringController extends AdminSubController {
 	public function update($id, $request){ }
 	public function destroy($id, $request){ }
 	public function get($id, $request){ }
+	
+	public function hasPermission($user) {
+		return Utils::getRankArray($user)['admin'];
+	}
 }

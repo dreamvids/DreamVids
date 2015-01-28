@@ -84,4 +84,8 @@ class AdminSettingsController extends AdminSubController {
 	public function get($id, $request){}
 	public function create($request){}
 	public function destroy($id, $request){}
+	
+	public function hasPermission($user) {
+		return Utils::getRankArray($user)['admin'];
+	}
 }
