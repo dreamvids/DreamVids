@@ -6,7 +6,7 @@ require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL . 'comment.php';
 
-class AdminModerationController extends Controller {
+class AdminModerationController extends AdminSubController {
 	public function __construct() {
 		
 		$this->denyAction(Action::GET);

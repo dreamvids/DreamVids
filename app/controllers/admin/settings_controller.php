@@ -5,7 +5,7 @@ require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 require_once SYSTEM.'redirect_response.php';
 
-class AdminSettingsController extends Controller {
+class AdminSettingsController extends AdminSubController {
 	public function __construct() {
 		$this->denyAction(Action::GET);
 		$this->denyAction(Action::CREATE);

@@ -6,7 +6,7 @@ require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'ticket.php';
 
-class AdminTicketsController extends Controller {
+class AdminTicketsController extends AdminSubController {
 	public function __construct() {
 		$this->denyAction(Action::GET);
 		$this->denyAction(Action::CREATE);

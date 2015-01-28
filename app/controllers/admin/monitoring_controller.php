@@ -4,7 +4,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
 
-class AdminMonitoringController extends Controller {
+class AdminMonitoringController extends AdminSubController {
 	public function __construct() {
 		$this->denyAction(Action::GET);
 		$this->denyAction(Action::CREATE);

@@ -2,6 +2,7 @@
 
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
+require_once MODEL.'session.php';
 
 class AdminController extends Controller {
 	public function index($request) {
@@ -44,7 +45,9 @@ class AdminController extends Controller {
 			require_once CONTROLLER.'admin/'.$controller.'_controller.php';
 			$ctrl = 'Admin'.ucfirst($controller).'Controller';
 			$ctrl = new $ctrl();
-	
+			if(!$ctrl->hasPermission(Session::get())){
+				return Utils::getUnauthorizedResponse();
+			}
 			switch ($argc) {
 				case 2:
 					$resp = $ctrl->$argv[0]($argv[1]);
@@ -64,6 +67,12 @@ class AdminController extends Controller {
 		else {
 			return Utils::getForbiddenResponse();
 		}
+	}
+}
+
+abstract  class AdminSubController extends Controller {	
+	public function hasPermission($user) {
+		return true;
 	}
 }
 
