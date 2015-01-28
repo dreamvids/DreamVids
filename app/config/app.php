@@ -27,3 +27,9 @@ Config::addValue("time_between_comments", "10"); //seconds
 Config::addValue("max_login_try", "10"); 
 Config::addValue("login_fail_intervalle", "20"); //seconds
 Config::addValue("login_fail_wait", 5*60); //seconds (5min)
+
+//Pushover part
+Config::addValue("po_all", "a-pushover-group-key");
+Config::addValue("po_dev", "dev-team-key");
+Config::addValue("po_sys", "sysadmin-team-key");
+Config::addValue("po_others", "some-other-group-key");
