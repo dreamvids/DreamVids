@@ -23,7 +23,7 @@
                 	break;
                 }
                 ?>
-                <a class="navbar-brand" href="index.html">DreamVids - Administration - <?php echo $admin_type; ?></a>
+                <a class="navbar-brand" href="<?php echo WEBROOT . 'admin'?>">DreamVids - Administration - <?php echo $admin_type; ?></a>
             </div>
             <!-- /.navbar-header -->
 
