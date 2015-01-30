@@ -910,7 +910,8 @@ h3.title:after {
     vertical-align: top; }
     .header .top .inner .right .user-information .user-information-button img:first-child {
       width: 35px;
-      height: 35px; }
+      height: 35px;
+      border-radius: 30px; }
     .header .top .inner .right .user-information .user-information-button img, .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       display: inline-block;
@@ -960,7 +961,7 @@ h3.title:after {
       font-size: 14px;
       font-weight: bold; }
   .header .top .inner .right .user-information .user-information-button:hover {
-    background-color: #3d9ed5;
+    color: #3d9ed5;
     cursor: pointer; }
   .header .top .inner .right .user-information .user-information-menu {
     position: absolute;

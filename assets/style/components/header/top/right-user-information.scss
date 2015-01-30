@@ -39,6 +39,8 @@
 			width: 35px;
 			height: 35px;
 
+			border-radius: 30px;
+
 		}
 
 		img,
@@ -138,7 +140,7 @@
 
 	.user-information-button:hover {
 
-		background-color: $nav_top_hover;
+		color: $nav_top_hover;
 		cursor: pointer;
 
 	}
