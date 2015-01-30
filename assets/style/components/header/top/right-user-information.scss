@@ -8,6 +8,8 @@
 	vertical-align: top;
 	text-align: right;
 
+	margin-top: 12.5px;
+
 	@media (max-width: 700px) {
 
 		text-align: right;
@@ -31,13 +33,11 @@
 		padding-right: 15px;
 		
 		vertical-align: top;
-		border-right: 1px solid $nav_borders;
 
 		img:first-child {
 
-			width: 60px;
-			height: 60px;
-			border-right: 1px solid $nav_borders;
+			width: 35px;
+			height: 35px;
 
 		}
 
@@ -79,17 +79,13 @@
 
 		display: inline-block;
 		width: 179px;
-		height: 60px;
-		padding-top: 25px;
+		height: 30px;
+		padding-top: 10px;
 		
-		border-right: 1px solid $nav_borders;
 		text-align: center;
 		font-size: 14px;
 
 		@include box-sizing;
-
-		@media (max-width: 450px) { width: 120px; }
-		@media (max-width: 350px) { width: 100px; }
 
 		p {
 
@@ -112,7 +108,6 @@
 		padding-right: 15px;
 		
 		vertical-align: top;
-		border-right: 1px solid $nav_borders;
 
 		img,
 		h4 {
@@ -151,7 +146,7 @@
 	.user-information-menu {
 
 		position: absolute;
-		top: 59px;
+		top: 45px;
 		right: 0;
 		z-index: 101;
 		
@@ -169,7 +164,7 @@
 			margin-bottom: -2px;
 			padding: 10px 15px;
 			
-			background-color: #a7a7a7;
+			background-color: #5b5b5b;
 			font-size: 14px;
 
 			@include box-sizing;

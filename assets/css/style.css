@@ -775,6 +775,106 @@ h3.title:after {
       left: 15px;
       top: -4px; }
 
+/* TOP CENTER HEADER
+   ============================= */
+.header .top .inner .center {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: inline-block;
+  text-align: center; }
+  @media (max-width: 450px) {
+    .header .top .inner .center {
+      position: absolute;
+      top: 0;
+      right: 0; } }
+
+/* TOP RIGHT HEADER SEARCH FORM
+   ============================= */
+.header .top .inner .center form {
+  position: relative;
+  left: 0;
+  right: 0;
+  width: auto;
+  display: block;
+  margin-right: -3px;
+  padding: 16.5px 300px 0 300px; }
+  @media (max-width: 800px) {
+    .header .top .inner .center form {
+      padding: 16.5px 250px 0 200px; } }
+  @media (max-width: 700px) {
+    .header .top .inner .center form {
+      padding: 16.5px 250px 0 100px; } }
+  @media (max-width: 550px) {
+    .header .top .inner .center form {
+      padding: 16.5px 200px 0 100px; } }
+  @media (max-width: 400px) {
+    .header .top .inner .center form {
+      display: none; } }
+  .header .top .inner .center form fieldset.search_bar {
+    position: relative;
+    width: 100%;
+    padding-left: 10px; }
+  .header .top .inner .center form input[type="text"] {
+    width: 100%;
+    height: 25px;
+    border: 0;
+    padding-left: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px; }
+  .header .top .inner .center form input[type="text"]::-webkit-input-placeholder {
+    position: relative;
+    color: #777777;
+    font-style: italic;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Arial; }
+  .header .top .inner .center form input[type="text"]::-moz-input-placeholder {
+    position: relative;
+    color: #777777;
+    font-style: italic;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Arial; }
+  .header .top .inner .center form input[type="text"]::-ms-input-placeholder {
+    position: relative;
+    color: #777777;
+    font-style: italic;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Arial; }
+  .header .top .inner .center form input[type="text"]::-o-input-placeholder {
+    position: relative;
+    color: #777777;
+    font-style: italic;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Arial; }
+  .header .top .inner .center form input[type="text"]::input-placeholder {
+    position: relative;
+    color: #777777;
+    font-style: italic;
+    font-size: 12px;
+    font-family: "Source Sans Pro", Arial; }
+  .header .top .inner .center form input[type="submit"] {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    display: block;
+    margin-top: 6px;
+    border-radius: 50px;
+    opacity: 1;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #000000;
+    vertical-align: top;
+    cursor: pointer; }
+  .header .top .inner .center form input[type="submit"]:hover {
+    opacity: 0.5; }
+  .header .top .inner .center form input[type="submit"]:focus, .header .top .inner .center form input[type="text"]:focus {
+    outline: none; }
+
 /* TOP RIGHT HEADER
    ============================= */
 .header .top .inner .right {
@@ -788,80 +888,13 @@ h3.title:after {
       top: 0;
       right: 0; } }
 
-/* TOP RIGHT HEADER SEARCH FORM
-   ============================= */
-.header .top .inner .right form {
-  display: inline-block;
-  margin-right: -3px;
-  border-left: 1px solid #33799f;
-  border-right: 1px solid #33799f; }
-  .header .top .inner .right form input[type="text"] {
-    width: 150px;
-    height: 58px;
-    border: 0;
-    padding-left: 20px;
-    background-color: #40a6e0;
-    color: #fff; }
-    @media (max-width: 450px) {
-      .header .top .inner .right form input[type="text"] {
-        width: 100px;
-        padding-left: 10px; } }
-    @media (max-width: 350px) {
-      .header .top .inner .right form input[type="text"] {
-        width: 50px;
-        padding-left: 5px; } }
-  .header .top .inner .right form input[type="text"]::-webkit-input-placeholder {
-    position: relative;
-    color: white;
-    font-style: italic;
-    font-size: 14px;
-    font-family: "Source Sans Pro", Arial; }
-  .header .top .inner .right form input[type="text"]::-moz-input-placeholder {
-    position: relative;
-    color: white;
-    font-style: italic;
-    font-size: 14px;
-    font-family: "Source Sans Pro", Arial; }
-  .header .top .inner .right form input[type="text"]::-ms-input-placeholder {
-    position: relative;
-    color: white;
-    font-style: italic;
-    font-size: 14px;
-    font-family: "Source Sans Pro", Arial; }
-  .header .top .inner .right form input[type="text"]::-o-input-placeholder {
-    position: relative;
-    color: white;
-    font-style: italic;
-    font-size: 14px;
-    font-family: "Source Sans Pro", Arial; }
-  .header .top .inner .right form input[type="text"]::input-placeholder {
-    position: relative;
-    color: white;
-    font-style: italic;
-    font-size: 14px;
-    font-family: "Source Sans Pro", Arial; }
-  .header .top .inner .right form input[type="submit"] {
-    position: relative;
-    right: 5px;
-    height: 30px;
-    width: 30px;
-    margin-top: 15px;
-    background-color: transparent;
-    background-image: url(../img/search_icon.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    border: none;
-    vertical-align: top;
-    cursor: pointer; }
-  .header .top .inner .right form input[type="submit"]:focus, .header .top .inner .right form input[type="text"]:focus {
-    outline: none; }
-
 /* TOP RIGHT HEADER
    ============================= */
 .header .top .inner .right .user-information {
   display: inline-block;
   vertical-align: top;
-  text-align: right; }
+  text-align: right;
+  margin-top: 12.5px; }
   @media (max-width: 700px) {
     .header .top .inner .right .user-information {
       text-align: right; }
@@ -874,12 +907,10 @@ h3.title:after {
     display: inline-block;
     margin-left: 0;
     padding-right: 15px;
-    vertical-align: top;
-    border-right: 1px solid #33799f; }
+    vertical-align: top; }
     .header .top .inner .right .user-information .user-information-button img:first-child {
-      width: 60px;
-      height: 60px;
-      border-right: 1px solid #33799f; }
+      width: 35px;
+      height: 35px; }
     .header .top .inner .right .user-information .user-information-button img, .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       display: inline-block;
@@ -898,20 +929,13 @@ h3.title:after {
   .header .top .inner .right .user-information .connection {
     display: inline-block;
     width: 179px;
-    height: 60px;
-    padding-top: 25px;
-    border-right: 1px solid #33799f;
+    height: 30px;
+    padding-top: 10px;
     text-align: center;
     font-size: 14px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-    @media (max-width: 450px) {
-      .header .top .inner .right .user-information .connection {
-        width: 120px; } }
-    @media (max-width: 350px) {
-      .header .top .inner .right .user-information .connection {
-        width: 100px; } }
     .header .top .inner .right .user-information .connection p {
       display: inline;
       margin-left: 7px;
@@ -922,8 +946,7 @@ h3.title:after {
     display: inline-block;
     margin-left: 0;
     padding-right: 15px;
-    vertical-align: top;
-    border-right: 1px solid #33799f; }
+    vertical-align: top; }
     .header .top .inner .right .user-information .user-information-button img, .header .top .inner .right .user-information .user-information-button h4 {
       position: relative;
       display: inline-block;
@@ -941,7 +964,7 @@ h3.title:after {
     cursor: pointer; }
   .header .top .inner .right .user-information .user-information-menu {
     position: absolute;
-    top: 59px;
+    top: 45px;
     right: 0;
     z-index: 101;
     display: none; }
@@ -954,7 +977,7 @@ h3.title:after {
       margin-top: 2px;
       margin-bottom: -2px;
       padding: 10px 15px;
-      background-color: #a7a7a7;
+      background-color: #5b5b5b;
       font-size: 14px;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;

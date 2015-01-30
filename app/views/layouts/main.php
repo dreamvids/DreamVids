@@ -66,15 +66,19 @@
 							</a>
 
 						</div>
-
-						<div class="right">
+						<div class="center">
 
 							<form method="get" onsubmit="document.location.href=_webroot_+'search/&q='+encodeURIComponent(encodeURIComponent(document.getElementById('top-nav-search-input').value));return false;" action="<?php echo WEBROOT.'search'; ?>">
 
-								<input type="text" id="top-nav-search-input" name="q" required placeholder="<?php echo Translator::get("header.search"); ?>" value="<?php echo @$_SESSION["last_search"]; ?>">
-								<input type="submit" value="">
+								<fieldset class="search_bar">
+									<input type="text" id="top-nav-search-input" name="q" required placeholder="<?php echo Translator::get("header.search"); ?>" value="<?php echo @$_SESSION["last_search"]; ?>">
+									<input type="submit" value="">
+								</fieldset>
 
 							</form>
+
+						</div>
+						<div class="right">
 
 							<div class="user-information">
 

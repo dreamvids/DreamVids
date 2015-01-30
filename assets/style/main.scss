@@ -63,8 +63,9 @@
 
         @import "components/header/top/top.scss";
         @import "components/header/top/left.scss";
+        @import "components/header/top/center.scss";
+        @import "components/header/top/center-search.scss";
         @import "components/header/top/right.scss";
-        @import "components/header/top/right-search.scss";
         @import "components/header/top/right-user-information.scss";
     
         @import "components/header/bottom/bottom.scss";

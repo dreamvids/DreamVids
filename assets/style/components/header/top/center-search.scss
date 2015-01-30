@@ -1,0 +1,101 @@
+
+/* TOP RIGHT HEADER SEARCH FORM
+   ============================= */
+
+.header .top .inner .center form {
+
+	position: relative;
+	left: 0;
+	right: 0;
+	width: auto;
+
+	display: block;
+	margin-right: -3px;
+	padding: 16.5px 300px 0 300px;
+	
+	@media (max-width: 800px) {
+		padding: 16.5px 250px 0 200px;
+	}
+
+	@media (max-width: 700px) {
+		padding: 16.5px 250px 0 100px;
+	}
+
+	@media (max-width: 550px) {
+		padding: 16.5px 200px 0 100px;
+	}
+
+	@media (max-width: 400px) {
+		display: none;
+	}
+
+	fieldset.search_bar {
+
+		position: relative;
+		width: 100%;
+
+		padding-left: 10px;
+
+	}
+
+	input[type="text"] {
+
+		width: 100%;
+		height: 25px;
+		border: 0;
+		padding-left: 10px;
+
+		background-color: #ffffff;
+		color: #000000;
+		border-radius: 5px;
+
+	}
+
+	@mixin header-input-placeholder() {
+
+		position: relative;
+
+		color: #777777;
+		font-style: italic;
+		font-size: 12px;
+		font-family: "Source Sans Pro", Arial;
+
+	}
+
+	input[type="text"]::-webkit-input-placeholder { @include header-input-placeholder(); }
+	   input[type="text"]::-moz-input-placeholder { @include header-input-placeholder(); }
+		input[type="text"]::-ms-input-placeholder { @include header-input-placeholder(); }
+		 input[type="text"]::-o-input-placeholder { @include header-input-placeholder(); }
+			input[type="text"]::input-placeholder { @include header-input-placeholder(); }
+
+	input[type="submit"] {
+
+		position: absolute;
+		right: -5px;
+		top: 0;
+		
+		height: 15px;
+		width: 15px;
+		display: block;
+		margin-top: 6px;
+		border-radius: 50px;
+
+		opacity: 1;
+		background-color: #ffffff;
+		background-repeat: no-repeat;
+		background-position: center center;
+		border: 1px solid #000000;
+		vertical-align: top;
+		cursor: pointer;
+	}
+
+	input[type="submit"]:hover {
+
+		opacity: 0.5;
+
+	}
+
+	input[type="submit"]:focus,
+	input[type="text"  ]:focus { outline: none; }
+
+}
