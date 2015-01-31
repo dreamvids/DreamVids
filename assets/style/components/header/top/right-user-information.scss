@@ -8,7 +8,7 @@
 	vertical-align: top;
 	text-align: right;
 
-	margin-top: 12.5px;
+	margin-top: 5px;
 
 	@media (max-width: 700px) {
 
@@ -29,9 +29,11 @@
 		position: relative;
 
 		display: inline-block;
+		height: 35px;
 		margin-left: 0;
-		padding-right: 15px;
+		padding: 7.5px 15px 7.5px 15px;
 		
+		border-radius: 50px;
 		vertical-align: top;
 
 		img:first-child {
@@ -148,7 +150,7 @@
 	.user-information-menu {
 
 		position: absolute;
-		top: 45px;
+		top: 54px;
 		right: 0;
 		z-index: 101;
 		

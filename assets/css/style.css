@@ -890,7 +890,8 @@ h3.title:after {
   position: absolute;
   top: 0;
   right: 0;
-  display: inline-block; }
+  display: inline-block;
+  height: 60px; }
   @media (max-width: 450px) {
     .header .top .inner .right {
       position: absolute;
@@ -903,7 +904,7 @@ h3.title:after {
   display: inline-block;
   vertical-align: top;
   text-align: right;
-  margin-top: 12.5px; }
+  margin-top: 5px; }
   @media (max-width: 700px) {
     .header .top .inner .right .user-information {
       text-align: right; }
@@ -914,8 +915,10 @@ h3.title:after {
   .header .top .inner .right .user-information .user-information-button {
     position: relative;
     display: inline-block;
+    height: 35px;
     margin-left: 0;
-    padding-right: 15px;
+    padding: 7.5px 15px 7.5px 15px;
+    border-radius: 50px;
     vertical-align: top; }
     .header .top .inner .right .user-information .user-information-button img:first-child {
       width: 35px;
@@ -974,7 +977,7 @@ h3.title:after {
     cursor: pointer; }
   .header .top .inner .right .user-information .user-information-menu {
     position: absolute;
-    top: 45px;
+    top: 54px;
     right: 0;
     z-index: 101;
     display: none; }
