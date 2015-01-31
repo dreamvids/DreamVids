@@ -166,7 +166,7 @@ var Chat = {
 		Chat.socket.send(msg.data);
 
 		Chat.connected = true;
-		Screen.pushText('Connected maggle ! Welcome !', 'info');
+		Screen.pushText('Bienvenue !', 'info');
 	},
 
 	onMessage: function(event) {
