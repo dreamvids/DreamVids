@@ -761,19 +761,25 @@ h3.title:after {
 .header .top .inner .left {
   display: inline-block;
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+  z-index: 9999; }
   .header .top .inner .left a {
-    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999;
     display: block;
     height: 60px;
     width: 180px;
     cursor: pointer; }
     .header .top .inner .left a .top-nav-icon-logo {
-      margin-top: 15px; }
+      margin-top: 15px;
+      z-index: 99999; }
     .header .top .inner .left a .top-nav-text-logo {
       position: relative;
       left: 15px;
-      top: -4px; }
+      top: -4px;
+      z-index: 99999; }
 
 /* TOP CENTER HEADER
    ============================= */
@@ -782,6 +788,8 @@ h3.title:after {
   top: 0;
   right: 0;
   left: 0;
+  margin: 0;
+  z-index: 0;
   display: inline-block;
   text-align: center; }
   @media (max-width: 450px) {
@@ -797,6 +805,7 @@ h3.title:after {
   left: 0;
   right: 0;
   width: auto;
+  z-index: 0;
   display: block;
   margin-right: -3px;
   padding: 16.5px 300px 0 300px; }
@@ -805,22 +814,21 @@ h3.title:after {
       padding: 16.5px 250px 0 200px; } }
   @media (max-width: 700px) {
     .header .top .inner .center form {
-      padding: 16.5px 250px 0 100px; } }
-  @media (max-width: 550px) {
-    .header .top .inner .center form {
-      padding: 16.5px 200px 0 100px; } }
-  @media (max-width: 400px) {
+      padding: 16.5px 200px 0 60px; } }
+  @media (max-width: 350px) {
     .header .top .inner .center form {
       display: none; } }
   .header .top .inner .center form fieldset.search_bar {
     position: relative;
     width: 100%;
+    z-index: 0;
     padding-left: 10px; }
   .header .top .inner .center form input[type="text"] {
     width: 100%;
     height: 25px;
     border: 0;
     padding-left: 10px;
+    z-index: 0;
     background-color: #ffffff;
     color: #000000;
     border-radius: 5px; }
@@ -858,6 +866,7 @@ h3.title:after {
     position: absolute;
     right: -5px;
     top: 0;
+    z-index: 0;
     height: 15px;
     width: 15px;
     display: block;
