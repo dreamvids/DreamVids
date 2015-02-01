@@ -5122,61 +5122,75 @@ video {
 
 nav.tabs {
   margin: 20px 0 20px 0; }
-  nav.tabs ul {
-    margin-left: 1%;
-    margin-right: 1%; }
-    nav.tabs ul li {
-      display: inline-block;
-      width: 15%;
-      height: 25px;
-      padding-top: 10px;
-      margin-bottom: 16px;
-      text-align: center;
-      margin-left: 2%; }
-      nav.tabs ul li a {
-        color: #40a6e0;
-        font-size: 20px; }
-      nav.tabs ul li:after {
-        position: relative;
-        bottom: -4px;
-        left: 0;
-        display: block;
-        width: 0%;
-        height: 4px;
-        margin: auto;
-        background: #40A6E0;
-        opacity: 0;
-        content: "";
-        -webkit-transition: 0.15s;
-        -moz-transition: 0.15s;
-        transition: 0.15s; }
-      nav.tabs ul li:hover:after, nav.tabs ul li.current:after {
-        width: 100%;
-        opacity: 1; }
+  nav.tabs li {
+    display: inline-block;
+    width: 15%;
+    height: 25px;
+    padding-top: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+    margin-left: 2%; }
+    nav.tabs li a {
+      color: #40a6e0;
+      font-size: 20px; }
+    nav.tabs li:after {
+      position: relative;
+      bottom: -4px;
+      left: 0;
+      display: block;
+      width: 0%;
+      height: 4px;
+      margin: auto;
+      background: #40A6E0;
+      opacity: 0;
+      content: "";
+      -webkit-transition: 0.15s;
+      -moz-transition: 0.15s;
+      transition: 0.15s; }
+    nav.tabs li:hover:after, nav.tabs li.current:after {
+      width: 100%;
+      opacity: 1; }
   @media (max-width: 1000px) {
-    nav.tabs:not(.four) ul > li {
+    nav.tabs:not(.four):not(.seven) li {
       width: 25%; } }
   @media (max-width: 600px) {
-    nav.tabs:not(.four) ul > li {
+    nav.tabs:not(.four):not(.seven) li {
       width: 30%; } }
   @media (max-width: 500px) {
-    nav.tabs:not(.four) ul > li {
+    nav.tabs:not(.four):not(.seven) li {
       width: 95%;
       margin-bottom: 20px; }
-      nav.tabs:not(.four) ul > li:hover:after, nav.tabs:not(.four) ul > li.current:after {
+      nav.tabs:not(.four):not(.seven) li:hover:after, nav.tabs:not(.four):not(.seven) li.current:after {
         width: 70% !important; } }
   @media (max-width: 1000px) {
-    nav.tabs.four ul > li {
+    nav.tabs.four li {
       width: 20%; } }
   @media (max-width: 800px) {
-    nav.tabs.four ul > li {
+    nav.tabs.four li {
       width: 95%;
       margin-bottom: 20px; }
-      nav.tabs.four ul > li:hover:after, nav.tabs.four ul > li.current:after {
+      nav.tabs.four li:hover:after, nav.tabs.four li.current:after {
         width: 50% !important; } }
   @media (max-width: 500px) {
-    nav.tabs.four ul > li:hover:after, nav.tabs.four ul > li.current:after {
+    nav.tabs.four li:hover:after, nav.tabs.four li.current:after {
       width: 70% !important; }
+ }
+  nav.tabs.seven li {
+    width: 12%; }
+    nav.tabs.seven li a {
+      font-size: 18px; }
+    @media (max-width: 1000px) {
+      nav.tabs.seven li {
+        width: 20%; } }
+    @media (max-width: 800px) {
+      nav.tabs.seven li {
+        width: 95%;
+        margin-bottom: 20px; }
+        nav.tabs.seven li:hover:after, nav.tabs.seven li.current:after {
+          width: 50% !important; } }
+    @media (max-width: 500px) {
+      nav.tabs.seven li:hover:after, nav.tabs.seven li.current:after {
+        width: 70% !important; }
  }
 
 nav.pagination {
