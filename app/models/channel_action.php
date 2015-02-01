@@ -25,22 +25,22 @@ class ChannelAction extends ActiveRecord\Model {
 		return $id;
 	}
 
-	public static function filterReceiver($admins_ids, $type) {
+	public static function filterReceiver($receiver_ids, $type) {
 		
-		$admins_ids = trim($admins_ids, ";");
-		$admins_ids = explode(';',$admins_ids);
+		$receiver_ids = trim($receiver_ids, ";");
+		$receiver_ids = explode(';',$receiver_ids);
 		
 		
-		foreach ($admins_ids as $k => $v) {
-			if(!User::exists($v)) unset($admins_ids[$k]);
+		foreach ($receiver_ids as $k => $v) {
+			if(!User::exists($v)) unset($receiver_ids[$k]);
 		}
-		if(!(count($admins_ids) > 0)){
+		if(!(count($receiver_ids) > 0)){
 			return ";";
 		}
-		$users = User::find($admins_ids);
+		$users = User::find($receiver_ids);
 		
 		$users = is_array($users) ? $users : array($users);
-		$filtered_admins_ids = ";";
+		$filtered_receiver_ids = ";";
 		foreach ($users as $k => $user) {
 			
 			$type_exists = false;
@@ -48,17 +48,17 @@ class ChannelAction extends ActiveRecord\Model {
 				if($j == $type){
 					$type_exists = true;
 					if(1==$notification){
-						$filtered_admins_ids.="$user->id;";
+						$filtered_receiver_ids.="$user->id;";
 						break;
 					}
 				}
 			}
 			if(!$type_exists){ 
-				$filtered_admins_ids.="$user->id;";
+				$filtered_receiver_ids.="$user->id;";
 			}
 		}
 		
-		return $filtered_admins_ids;
+		return $filtered_receiver_ids;
 	}
 
 }
