@@ -156,8 +156,10 @@ class VideoController extends Controller {
 
 	public function update($id, $request) {
 		$req = $request->getParameters();
-		if(Session::isActive() && (UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id) || Session::get()->isModerator() || Session::get()->isAdmin())) {
+		if(!Session::isActive()){ return Utils::getUnauthorizedResponse(); }
+		
 			if($video = Video::find($id)) {
+				if(UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id) || Session::get()->isModerator() || Session::get()->isAdmin()) {
 				$data = array();
 				$data['currentPageTitle'] = $video->title.' - Modification';
 				if(isset($req['video-edit-submit'], $req['video-title'], $req['video-description'], $req['video-tags'])) {
@@ -184,6 +186,7 @@ class VideoController extends Controller {
 						return $response;
 					}
 				}
+			}
 				else if(isset($req['flag']) && !empty($req['flag'])) {
 					$flag = $req['flag'];
 
@@ -255,7 +258,7 @@ class VideoController extends Controller {
 					return new Response(200);
 				}
 			}
-		}
+		
 
 		return new Response(500);
 	}
