@@ -28,37 +28,42 @@ class ChannelAction extends ActiveRecord\Model {
 	public static function filterReceiver($receiver_ids, $type) {
 		
 		$receiver_ids = trim($receiver_ids, ";");
-		$receiver_ids = explode(';',$receiver_ids);
 		
-		
-		foreach ($receiver_ids as $k => $v) {
-			if(!User::exists($v)) unset($receiver_ids[$k]);
-		}
-		if(!(count($receiver_ids) > 0)){
-			return ";";
-		}
-		$users = User::find($receiver_ids);
-		
-		$users = is_array($users) ? $users : array($users);
-		$filtered_receiver_ids = ";";
-		foreach ($users as $k => $user) {
+		if ($receiver_ids != '') {
+			$receiver_ids = explode(';',$receiver_ids);
 			
-			$type_exists = false;
-			foreach ($user->getNotificationSettings() as $j => $notification) {
-				if($j == $type){
-					$type_exists = true;
-					if(1==$notification){
-						$filtered_receiver_ids.="$user->id;";
-						break;
+			
+			foreach ($receiver_ids as $k => $v) {
+				if(!User::exists($v)) unset($receiver_ids[$k]);
+			}
+			if(!(count($receiver_ids) > 0)){
+				return ";";
+			}
+			$users = User::find($receiver_ids);
+			
+			$users = is_array($users) ? $users : array($users);
+			$filtered_receiver_ids = ";";
+			foreach ($users as $k => $user) {
+				
+				$type_exists = false;
+				foreach ($user->getNotificationSettings() as $j => $notification) {
+					if($j == $type){
+						$type_exists = true;
+						if(1==$notification){
+							$filtered_receiver_ids.="$user->id;";
+							break;
+						}
 					}
 				}
+				if(!$type_exists){ 
+					$filtered_receiver_ids.="$user->id;";
+				}
 			}
-			if(!$type_exists){ 
-				$filtered_receiver_ids.="$user->id;";
-			}
+			
+			return $filtered_receiver_ids;
 		}
 		
-		return $filtered_receiver_ids;
+		return ';';
 	}
 
 }
