@@ -402,23 +402,7 @@ class Utils {
 	 	return $url;
 	 }
 	
-	 /**
-	  * 
-	  * @param String $path the path after dreamvids.fr/
-	  * @return string The rvb string "150,150,150"
-	  */
-	 public static function getAverageColorFromImage($path) {
-	 	$path = "http://" . $_SERVER['HTTP_HOST'] . $path;
-
-	 	$img = imagecreatefromstring(file_get_contents($path)); //On get l'image
-	 	$scaled = imagescale($img, 4, 4); //On reduit
-	 	$meanColor = imagecolorat($scaled, 2, 2); //Color index
-	 	$colors = imagecolorsforindex($scaled, $meanColor); //RVB array
-	 	unset($colors['alpha']); //Remove alpha
-		$rvb = implode(", ", $colors); //On reunit
-
-	 	return $rvb;
-	 }
+	 
 	 /**
 	  * 
 	  * @param array $menu

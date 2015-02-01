@@ -55,7 +55,7 @@ class ChannelController extends Controller {
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
 			$data['owner_id'] = $channel->owner_id;
-			$data['average_background_color'] = Utils::getAverageColorFromImage($channel->getBackground());
+
 			return new ViewResponse('channel/channel', $data);
 		}
 

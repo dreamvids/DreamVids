@@ -30,8 +30,6 @@
 		<script>
 
 			var _currentpage_ = "<?php echo  isset($currentPage) ? $currentPage : 'default'; ?>";
-
-			var average_background_color = [<?php echo (isset($average_background_color) ? $average_background_color : ''); ?>];
 			
 			var _logged_ = false;
 
