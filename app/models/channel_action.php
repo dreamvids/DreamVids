@@ -44,7 +44,7 @@ class ChannelAction extends ActiveRecord\Model {
 			$filtered_receiver_ids = ";";
 			foreach ($receiver_ids as $k => $val) {
 				if (User::exists($val)) {		
-					$user = Usef::find($val);					
+					$user = User::find($val);					
 					$type_exists = false;
 					foreach ($user->getNotificationSettings() as $j => $notification) {
 						if($j == $type){
