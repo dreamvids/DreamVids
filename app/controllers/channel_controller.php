@@ -123,7 +123,6 @@ class ChannelController extends Controller {
 		$name = @$req['name'];
 		$descr = @$req['description'];
 		$admins = @json_decode($req['_admins']);
-		
 		if(isset($req['editChannelSubmit']) && Session::isActive()) {
 			$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
 
@@ -159,7 +158,7 @@ class ChannelController extends Controller {
 							}
 						}
 						else {
-							$adm = trim($adm, ';');
+							$adm = trim($channel->admins_ids, ';');
 							$adm = explode(';', $adm);
 							foreach ($admins as $admin) {
 								if ($admin > 0) {
@@ -253,33 +252,31 @@ class ChannelController extends Controller {
 				return new Response(500);
 			}
 		}
-			else if(isset($req['admin_edit'])){
-				
-	
-					if(Session::isActive()){
-						$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
-						if(!$channel){
-							return Utils::getNotFoundResponse();
-						}
-						if(!$channel->isUsersMainChannel(Session::get()->id) && $channel->owner_id!=Session::get()->id){
-							if(in_array($channel, Session::get()->getOwnedChannels())){
-								$current_admins=$channel->admins_ids;
-								$current_admins = trim($current_admins, ";");
-								$current_admins = explode(";", $current_admins);
-								foreach ($current_admins as $k => $admin){
-									if($admin==Session::get()->id){
-										unset($current_admins[$k]);
-										$channel->admins_ids=";".implode($current_admins, ";").";";
-										$channel->save();
-										return new RedirectResponse(WEBROOT."channel/$id");
-									}
-								}
-												
+		else if(isset($req['admin_edit'])){
+			if(Session::isActive()){
+				$channel = UserChannel::exists($id) ? UserChannel::find($id) : UserChannel::find_by_name($id);
+				if(!$channel){
+					return Utils::getNotFoundResponse();
+				}
+				if(!$channel->isUsersMainChannel(Session::get()->id) && $channel->owner_id!=Session::get()->id){
+					if(in_array($channel, Session::get()->getOwnedChannels())){
+						$current_admins=$channel->admins_ids;
+						$current_admins = trim($current_admins, ";");
+						$current_admins = explode(";", $current_admins);
+						foreach ($current_admins as $k => $admin){
+							if($admin==Session::get()->id){
+								unset($current_admins[$k]);
+								$channel->admins_ids=";".implode($current_admins, ";").";";
+								$channel->save();
+								return new RedirectResponse(WEBROOT."channel/$id");
 							}
 						}
+										
 					}
-					return Utils::getForbiddenResponse();
+				}
 			}
+			return Utils::getForbiddenResponse();
+		}
 	}
 
 	public function destroy($id, $request) {

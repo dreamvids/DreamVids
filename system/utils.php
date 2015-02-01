@@ -310,7 +310,7 @@ class Utils {
 						if ($backup) {
 							StorageServer::backup($fileId.'.'.$ext, $channelId);
 						}
-						return WEBROOT.$path;
+						return WEBROOT.$path.'?'.time();
 					}
 				break;
 			}
