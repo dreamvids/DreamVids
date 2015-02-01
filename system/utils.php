@@ -397,7 +397,7 @@ class Utils {
 	 	//?redirect='.urlencode($GLOBALS['request']->getFullURI());
 	 	
 	 	if(!in_array(self::getCurrentRequest()->getURI(), array("login", "news"))){
-	 		$url.= "?redirect=".urlencode(self::getCurrentRequest()->getFullURI());
+	 		$url.= "/&?redirect=".urlencode(self::getCurrentRequest()->getFullURI());
 	 	}
 	 	return $url;
 	 }
