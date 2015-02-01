@@ -22,7 +22,7 @@
 	
 	    <?php if (Session::isActive()) {
 
-	    	// echo "source: _last_definition_setting_,"; <- Il me faut un 0 (360p) ou un 1 (720p)
+		echo "source: _last_definition_setting_,";
 	    	echo "volume: _last_volume_setting_,";
 
 	    } ?>
