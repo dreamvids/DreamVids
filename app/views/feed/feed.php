@@ -61,7 +61,7 @@
 										<p><b><?php echo $action->infos['nb_subscription']; ?></b> personnes se sont abonnées à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
 									<?php } ?>
 									</a>
-									<span class="subscriber"><b><?php echo UserChannel::find($action->target)->getSubscribersNumber(); ?></b> Abonnés</span>
+									<span class="subscriber"></span>
 									<i><?php echo Utils::relative_time($action->timestamp) ?></i>
 								</div>
 							<?php

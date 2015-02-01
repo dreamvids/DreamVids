@@ -156,37 +156,39 @@ class VideoController extends Controller {
 
 	public function update($id, $request) {
 		$req = $request->getParameters();
+		ob_start();
+		var_dump($req);
+		file_put_contents('debug.html', ob_get_flush());
 		if(!Session::isActive()){ return Utils::getUnauthorizedResponse(); }
-		
 			if($video = Video::find($id)) {
-				if(UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id) || Session::get()->isModerator() || Session::get()->isAdmin()) {
-				$data = array();
-				$data['currentPageTitle'] = $video->title.' - Modification';
 				if(isset($req['video-edit-submit'], $req['video-title'], $req['video-description'], $req['video-tags'])) {
-					$data['video'] = $video;
-
-					$title = $req['video-title'];
-					$description = $req['video-description'];
-					$tags = $req['video-tags'];
-					$visibility = $req['video-visibility'];
-
-					if(Utils::validateVideoInfo($title, $description, $tags) && in_array($visibility, array(0, 1, 2))) {
-						$video->updateInfo($title, $description, $tags, $req['_FILES_']['tumbnail'], $visibility);
+					$data = array();
+					$data['currentPageTitle'] = $video->title.' - Modification';
+					if(UserChannel::find(Video::find($id)->poster_id)->belongToUser(Session::get()->id) || Session::get()->isModerator() || Session::get()->isAdmin()) {
 						$data['video'] = $video;
-
-						$response = new ViewResponse('video/edit', $data);
-						$response->addMessage(ViewMessage::success('Votre video a bien été modifiée !'));
-
-						return $response;
-					}
-					else {
-						$response = new ViewResponse('video/edit', $data);
-						$response->addMessage(ViewMessage::error('Les informations ne sont pas valides.'));
-
-						return $response;
+	
+						$title = $req['video-title'];
+						$description = $req['video-description'];
+						$tags = $req['video-tags'];
+						$visibility = $req['video-visibility'];
+	
+						if(Utils::validateVideoInfo($title, $description, $tags) && in_array($visibility, array(0, 1, 2))) {
+							$video->updateInfo($title, $description, $tags, $req['_FILES_']['tumbnail'], $visibility);
+							$data['video'] = $video;
+	
+							$response = new ViewResponse('video/edit', $data);
+							$response->addMessage(ViewMessage::success('Votre video a bien été modifiée !'));
+	
+							return $response;
+						}
+						else {
+							$response = new ViewResponse('video/edit', $data);
+							$response->addMessage(ViewMessage::error('Les informations ne sont pas valides.'));
+	
+							return $response;
+						}
 					}
 				}
-			}
 				else if(isset($req['flag']) && !empty($req['flag'])) {
 					$flag = $req['flag'];
 
