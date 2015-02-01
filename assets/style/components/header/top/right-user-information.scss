@@ -31,10 +31,22 @@
 		display: inline-block;
 		height: 35px;
 		margin-left: 0;
-		padding: 7.5px 15px 7.5px 15px;
+		padding: 8px 15px;
 		
-		border-radius: 50px;
 		vertical-align: top;
+		cursor: pointer;
+
+		@include transition(.2s);
+		@include border-radius((35px + 2 * 8px) / 2);
+
+		&.user-information-button--active {
+
+			background-color: $nav_top_hover;
+			padding-bottom: 12px;
+
+			@include border-radius((35px + 2 * 8px) / 2  (35px + 2 * 8px) / 2  0  0);
+			
+		}
 
 		img:first-child {
 
@@ -73,7 +85,6 @@
 		&:hover {
 
 			background-color: $nav_top_hover;
-			cursor: pointer;
 
 		}
 
@@ -154,9 +165,29 @@
 		right: 0;
 		z-index: 101;
 		
-		display: none;
+		display: inline;
+		width: 0;
 
-		&.show { display: inline-block; }
+		overflow: hidden;
+
+		-webkit-clip-path: circle(0px at 95% -20px);
+		   -moz-clip-path: circle(0px at 95% -20px);
+				clip-path: circle(0px at 95% -20px);
+
+		@include border-radius(0  0  10px  10px);
+		@include transition(all 0);
+
+		&.user-information-menu--show {
+
+			width: auto;
+
+			-webkit-clip-path: circle(200% at 95% -20px);
+			   -moz-clip-path: circle(200% at 95% -20px);
+					clip-path: circle(200% at 95% -20px);
+
+			@include transition(#{"-webkit-clip-path .6s, -moz-clip-path .6s, clip-path .6s"});
+
+		}
 
 		ul a {
 
@@ -172,8 +203,9 @@
 			font-size: 14px;
 
 			@include box-sizing;
+			@include transition(.1s);
 
-			&:hover { background-color: #9c9c9c; }
+			&:hover { background-color: lighten(#5b5b5b, 20%); }
 
 		}
 

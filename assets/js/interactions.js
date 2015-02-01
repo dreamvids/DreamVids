@@ -34,13 +34,30 @@ var button_user_info = document.getElementById("top-nav-user-information-button"
 
 button_user_info.addEventListener("click", function() {
 
-    user_info_menu.style.display = user_info_menu.style.display != "inline" ? "inline" : "none";
+    if (user_info_menu.className.indexOf("user-information-button--active") < 0) {
+
+        button_user_info.className = "user-information-button  user-information-button--active";
+        user_info_menu.className = "user-information-menu  user-information-menu--show";
+
+    }
+
+    else {
+
+        button_user_info.className = "user-information-button";
+        user_info_menu.className = "user-information-menu";
+
+    }
 
 });
 
 body.addEventListener("click", function(event) {
 
-    user_info_menu.style.display = event.target.id != "top-nav-user-information-button" && event.target.parentNode.id != "top-nav-user-information-button" ? "none" : user_info_menu.style.display;
+    if (event.target.id != "top-nav-user-information-button" && event.target.parentNode.id != "top-nav-user-information-button") {
+
+        button_user_info.className = "user-information-button";
+        user_info_menu.className = "user-information-menu";
+
+    }
 
 });
 

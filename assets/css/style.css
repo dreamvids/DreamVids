@@ -917,9 +917,21 @@ h3.title:after {
     display: inline-block;
     height: 35px;
     margin-left: 0;
-    padding: 7.5px 15px 7.5px 15px;
-    border-radius: 50px;
-    vertical-align: top; }
+    padding: 8px 15px;
+    vertical-align: top;
+    cursor: pointer;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    transition: 0.2s;
+    -webkit-border-radius: 25.5px;
+    -moz-border-radius: 25.5px;
+    border-radius: 25.5px; }
+    .header .top .inner .right .user-information .user-information-button.user-information-button--active {
+      background-color: #3d9ed5;
+      padding-bottom: 12px;
+      -webkit-border-radius: 25.5px 25.5px 0 0;
+      -moz-border-radius: 25.5px 25.5px 0 0;
+      border-radius: 25.5px 25.5px 0 0; }
     .header .top .inner .right .user-information .user-information-button img:first-child {
       width: 35px;
       height: 35px;
@@ -937,8 +949,7 @@ h3.title:after {
       font-size: 14px;
       font-weight: bold; }
     .header .top .inner .right .user-information .user-information-button:hover {
-      background-color: #3d9ed5;
-      cursor: pointer; }
+      background-color: #3d9ed5; }
   .header .top .inner .right .user-information .connection {
     display: inline-block;
     width: 179px;
@@ -980,9 +991,26 @@ h3.title:after {
     top: 54px;
     right: 0;
     z-index: 101;
-    display: none; }
-    .header .top .inner .right .user-information .user-information-menu.show {
-      display: inline-block; }
+    display: inline;
+    width: 0;
+    overflow: hidden;
+    -webkit-clip-path: circle(0px at 95% -20px);
+    -moz-clip-path: circle(0px at 95% -20px);
+    clip-path: circle(0px at 95% -20px);
+    -webkit-border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    -webkit-transition: all 0;
+    -moz-transition: all 0;
+    transition: all 0; }
+    .header .top .inner .right .user-information .user-information-menu.user-information-menu--show {
+      width: auto;
+      -webkit-clip-path: circle(200% at 95% -20px);
+      -moz-clip-path: circle(200% at 95% -20px);
+      clip-path: circle(200% at 95% -20px);
+      -webkit-transition: -webkit-clip-path .6s, -moz-clip-path .6s, clip-path .6s;
+      -moz-transition: -webkit-clip-path .6s, -moz-clip-path .6s, clip-path .6s;
+      transition: -webkit-clip-path .6s, -moz-clip-path .6s, clip-path .6s; }
     .header .top .inner .right .user-information .user-information-menu ul a {
       position: relative;
       display: block;
@@ -994,9 +1022,12 @@ h3.title:after {
       font-size: 14px;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
-      box-sizing: border-box; }
+      box-sizing: border-box;
+      -webkit-transition: 0.1s;
+      -moz-transition: 0.1s;
+      transition: 0.1s; }
       .header .top .inner .right .user-information .user-information-menu ul a:hover {
-        background-color: #9c9c9c; }
+        background-color: #8e8e8e; }
 
 /* BOTTOM HEADER
    ============================= */
@@ -2737,7 +2768,9 @@ body {
 .card.comment a {
   display: block;
   padding: 20px;
-  text-align: justify; }
+  text-align: justify;
+  border-bottom: none;
+  color: #696969; }
   .card.comment a p {
     margin-top: 15px;
     font-size: 18px; }
@@ -2782,7 +2815,9 @@ body {
 /* CARD PLUS
    ============================= */
 .card.plus a {
-  display: block; }
+  display: block;
+  border-bottom: none;
+  color: #696969; }
   .card.plus a .thumbnail {
     position: absolute;
     top: 0;
@@ -2812,7 +2847,9 @@ body {
 /* CARD CHANNEL
    ============================= */
 .card.channel a {
-  display: block; }
+  display: block;
+  border-bottom: none;
+  color: #696969; }
   .card.channel a .avatar {
     position: absolute;
     top: 0;
