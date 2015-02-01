@@ -28,5 +28,14 @@ class Database {
 
 		});
 	}
+	
+	/**
+	 * 
+	 * @param string $connection
+	 * @return PDO
+	 */
+	public static function getPDOObject($connection = "nope"){
+		return $connection == "nope" ? ActiveRecord\ConnectionManager::get_connection()->connection : ActiveRecord\ConnectionManager::get_connection($connection);
+	}
 
 }
