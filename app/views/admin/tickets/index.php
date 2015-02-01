@@ -20,7 +20,7 @@
 						<td><?php echo $tick->id; ?></td>
 						<td><?php echo $tick->description; ?></td>
 						<td><?php echo $tick->url; ?></td>
-						<td><?php echo User::find($tick->user_id)->username; ?></td>
+						<td><?php echo (User::exists($tick->user_id)) ? User::find($tick->user_id)->username : '[Anonyme]'; ?></td>
 						<td><?php echo $tick->ip; ?></td>
 						<td>
 							<div class="btn-group">

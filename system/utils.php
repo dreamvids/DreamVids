@@ -248,7 +248,7 @@ class Utils {
 
 	public static function secure($str) {
 		$secured = $str;
-		$secured = htmlentities(stripslashes($secured), ENT_QUOTES, 'UTF-8');
+		$secured = htmlspecialchars(stripslashes($secured), ENT_QUOTES, 'UTF-8');
 		$secured = str_replace('<', '&lt;', $secured);
 		$secured = str_replace('>', '&gt;', $secured);
 		$secured = str_replace('&amp;', '&', $secured);

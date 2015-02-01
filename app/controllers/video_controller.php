@@ -156,9 +156,6 @@ class VideoController extends Controller {
 
 	public function update($id, $request) {
 		$req = $request->getParameters();
-		ob_start();
-		var_dump($req);
-		file_put_contents('debug.html', ob_get_flush());
 		if(!Session::isActive()){ return Utils::getUnauthorizedResponse(); }
 			if($video = Video::find($id)) {
 				if(isset($req['video-edit-submit'], $req['video-title'], $req['video-description'], $req['video-tags'])) {
