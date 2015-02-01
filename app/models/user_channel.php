@@ -228,7 +228,7 @@ class UserChannel extends ActiveRecord\Model {
 			'avatar' => $avatar,
 			'background' => $background,
 			'subscribers' => 0,
-			'subs_list' => 0,
+			'subs_list' => '',
 			'views' => 0,
 			'verified' => 0
 		));
