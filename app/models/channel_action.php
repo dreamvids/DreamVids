@@ -31,6 +31,12 @@ class ChannelAction extends ActiveRecord\Model {
 		$admins_ids = explode(';',$admins_ids);
 		
 		
+		foreach ($admins_ids as $k => $v) {
+			if(!User::exists($v)) unset($admins_ids[$k]);
+		}
+		if(!(count($admins_ids) > 0)){
+			return ";";
+		}
 		$users = User::find($admins_ids);
 		
 		$users = is_array($users) ? $users : array($users);
