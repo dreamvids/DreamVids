@@ -17,7 +17,7 @@ class AdminTicketsController extends AdminSubController {
 	public function index($request) {
 		$data = [];
 		$data['tickets'] = Ticket::find('all');
-		return new ViewResponse('admin/tickets/index', $data);
+		return new ViewResponse(WEBROOT.'admin/tickets/index', $data);
 	}
 	
 	public function solved($id, $request) {
