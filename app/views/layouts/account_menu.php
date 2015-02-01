@@ -1,4 +1,4 @@
-<nav class="tabs four">
+<nav class="tabs seven">
 	<ul>
 		<li <?php echo (isset($current) && $current == 'account') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/infos'; ?>"><?php echo Translator::get("pages.account.sub_menu.infos.title"); ?></a></li>
 		<li <?php echo (isset($current) && $current == 'password') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'account/password'; ?>"><?php echo Translator::get("pages.account.sub_menu.password.title"); ?></a></li>
