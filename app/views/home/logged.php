@@ -32,7 +32,9 @@
 		<h3 class="title">Mes abonnements</h3>
 		<ul class="limited">
 			<?php if(sizeof($subscriptions) != 0) { ?>
-				<?php foreach($subscriptions as $sub) { ?>
+				<?php foreach($subscriptions as $sub) { 
+						if(!is_object($sub)) continue;
+					?>
 					<a href="<?php echo WEBROOT.'channel/'.$sub->name; ?>" class="channels">
 						<span style="background-image: url(<?php echo $sub->getAvatar(); ?>)" class="avatar"></span>
 						<span class="name" href="#"><?php echo $sub->name; ?></span>
