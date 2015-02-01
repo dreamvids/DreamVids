@@ -27,7 +27,7 @@
 
 	<body class="embeded">
 		<video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="100%" height="100%" data-setup='{ "techOrder": ["flash"] }'>
-			<source src="rtmp://v2.dreamvids.fr/stream/<?php echo $chaine; ?>" type="rtmp/flv" />
+			<source src="rtmp://dreamvids.fr/stream/<?php echo $chaine; ?>" type="rtmp/flv" />
 		</video>
 	</body>
 </html>

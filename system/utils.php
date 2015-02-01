@@ -303,7 +303,7 @@ class Utils {
 				break;
 				
 				case 'img':
-					if (in_array($ext, array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'))) {
+					if (in_array(strtolower($ext), array('jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'))) {
 						$path = 'uploads/'.$channelId.'/'.$fileId.'.'.$ext;
 						
 						move_uploaded_file($file['tmp_name'], ROOT.$path);
