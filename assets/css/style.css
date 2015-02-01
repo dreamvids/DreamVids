@@ -47,11 +47,34 @@
  }
 
 .player .controls__wrap {
-  margin: 48px; }
+  margin: 48px;
+  margin-right: 112px; }
 
 @media (max-width: 768px) {
   .player .controls__wrap {
-    margin: 28px; }
+    margin: 28px;
+    margin-right: 86px; }
+ }
+
+.player .time {
+  position: absolute;
+  right: 32px;
+  bottom: 29px;
+  font-family: sans-serif;
+  font-size: 18px;
+  color: #fff;
+  cursor: default; }
+
+@media (max-width: 768px) {
+  .player .time {
+    right: 16px;
+    bottom: 22px;
+    font-size: 16px; }
+ }
+
+@media (max-width: 360px) {
+  .player .time {
+    font-size: 15px; }
  }
 
 .player .play-pause {

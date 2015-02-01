@@ -51,23 +51,6 @@
 	
 	});
 
-	/*setVideo([
-
-	//<?php echo $thumbnail; ?>
-
-		{
-			format: 360,
-			mp4: "<?php echo $video->url; ?>_640x360p.mp4",
-			webm: "<?php echo $video->url; ?>_640x360p.webm"
-		},
-
-		{
-			format: 720,
-			mp4: "<?php echo $video->url; ?>_1280x720p.mp4",
-			webm: "<?php echo $video->url; ?>_1280x720p.webm"
-		}
-
-	]);*/
 
 	// var _redirectAtEnd = "<?php echo @$nextVideo; ?>";
 
