@@ -382,6 +382,7 @@ class Video extends ActiveRecord\Model {
 		$args = array();
 		$cond = array();
 		foreach ($tags_array as $k => $value) {
+			$tags_array[$k] = str_replace("#", "", $value);
 			$sql_string .= " tags LIKE ? " . ($contain_all ? "AND" : "OR");
 			$args[] = "%".$tags_array[$k]."%";
 		}
