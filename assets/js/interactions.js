@@ -34,7 +34,7 @@ var button_user_info = document.getElementById("top-nav-user-information-button"
 
 button_user_info.addEventListener("click", function() {
 
-    if (user_info_menu.className.indexOf("user-information-button--active") < 0) {
+    if (user_info_menu.className.indexOf("user-information-menu--show") < 0) {
 
         button_user_info.className = "user-information-button  user-information-button--active";
         user_info_menu.className = "user-information-menu  user-information-menu--show";
