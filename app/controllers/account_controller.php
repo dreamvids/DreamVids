@@ -223,9 +223,20 @@ class AccountController extends Controller {
 		}
 	}
 
-	public function messages($request) {
+	public function messages($param1, $param2='nope') {
+		if ($param2 != 'nope') {
+			$id = $param1;
+			$request = $param2;
+		}
+		else {
+			$request = $param1;
+		}
+		
 		if(Session::isActive()) {
 			$data = array();
+			if (isset($id)) {
+				$data['pre_load'] = $id;
+			}
 			$data['current'] = 'messages';
 			$data['currentPageTitle'] = 'Mon compte';
 
