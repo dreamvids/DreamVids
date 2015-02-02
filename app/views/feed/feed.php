@@ -51,14 +51,17 @@
 							echo Utils::getVideoCardHTML(Utils::secureActiveRecordModel(Video::find($action->target)));
 						}
 						else if($action->type == "subscription" && UserChannel::exists($action->target)) {
+							$target_channel = UserChannel::find($action->target);
 							?>
 								<div class="card<?php echo $supp_class; ?> channel">
+									<?php if($action->infos['nb_subscription'] <= 1){ ?>
 									<a href="<?php echo WEBROOT.'channel/'.$channel_action->name; ?>">
 										<div class="avatar bg-loader" data-background-load-in-view data-background="<?php echo $channel_action->getBackground(); ?>"></div>
-									<?php if($action->infos['nb_subscription'] <= 1){ ?>
 										<p><b><?php echo Utils::secure($channel_action->name); ?></b> s'est abonné à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
 									<?php } else{ ?>
-										<p><b><?php echo $action->infos['nb_subscription']; ?></b> personnes se sont abonnées à votre chaîne "<b><?php echo Utils::secure(UserChannel::find($action->target)->name); ?></b>"</p>
+									<a href="<?php echo WEBROOT.'channel/'.$target_channel->name; ?>">
+										<div class="avatar bg-loader" data-background-load-in-view data-background="<?php echo $target_channel->getBackground(); ?>"></div>
+										<p><b><?php echo $action->infos['nb_subscription']; ?></b> personnes se sont abonnées à votre chaîne "<b><?php echo Utils::secure($target_channel->name); ?></b>"</p>
 									<?php } ?>
 									</a>
 									<span class="subscriber"></span>
