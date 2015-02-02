@@ -5,6 +5,8 @@ require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'ticket.php';
+require_once MODEL.'conversation.php';
+require_once MODEL.'message.php';
 
 class AdminTicketsController extends AdminSubController {
 	public function __construct() {
@@ -30,10 +32,17 @@ class AdminTicketsController extends AdminSubController {
 	
 	public function inprogress($id, $request) {
 		$ticket = Ticket::find($id);
-		$ticket->tech = Session::get()->username;
-		$ticket->save();
-		$message = "Votre demande d'assistance a été prise en charge par {{tech}}. Vous serez prochainement avertit de l'issue de l'intervention.";
-		$this->mail($ticket, $message);
+		if ($ticket->tech == '') {
+			$ticket->tech = Session::get()->username;
+			if (User::exists(array('id' => $ticket->user_id))) {
+				$conv = Conversation::createNew('[Assistance] Demande #'.$ticket->id, Session::get()->getMainChannel(), ';'.User::find($ticket->user_id)->getMainChannel()->id.';'.Session::get()->getMainChannel()->id.';');
+				Message::sendNew(Session::get()->getMainChannel()->id, $conv, 'Bonjour, je suis '.Session::get()->username.' et j\'ai pris en charge votre demande d\'assistance. Cette conversation a été créé pour pouvoir discuter avec vous. ATTENTION: Ne communiquez jamais votre mot de passe, même à un technicien ! Un vrai technicien a à sa disposition tous les outils nécessaires à la résolution de votre problème !');
+				$ticket->conv_id = $conv;
+			}
+			$ticket->save();
+			$message = "Votre demande d'assistance a été prise en charge par {{tech}}. Vous serez prochainement avertit de l'issue de l'intervention.";
+			$this->mail($ticket, $message);
+		}
 		return new RedirectResponse(WEBROOT.'admin/tickets');
 	}
 	
@@ -46,13 +55,15 @@ class AdminTicketsController extends AdminSubController {
 	}
 	
 	private function mail($ticket, $message) {
-		$username = User::find($ticket->user_id)->username;
-		$to = User::find($ticket->user_id)->email;
-		$subject = '[DreamVids] Avancement de votre demande d\'assistance #'.$ticket->id;
-		$message = str_replace('{{tech}}', Session::get()->username, $message);
-		$message = "Bonjour $username,\r\n\r\n$message\r\n\r\nCordialement,\r\nL'équipe DreamVids.";
-		$headers = 'From: DreamVids <assistance@dreamvids.fr>';
-		mail($to, $subject, utf8_decode($message), $headers);
+		if ($ticket->user_id !== '0') {
+			$username = (User::exists(array('id' => $ticket->user_id))) ? ' '.User::find($ticket->user_id)->username : '';
+			$to = (User::exists(array('id' => $ticket->user_id))) ? User::find($ticket->user_id)->email : $ticket->user_id;
+			$subject = '[DreamVids] Avancement de votre demande d\'assistance #'.$ticket->id;
+			$message = str_replace('{{tech}}', Session::get()->username, $message);
+			$message = "Bonjour$username,\r\n\r\n$message\r\n\r\nCordialement,\r\nL'équipe DreamVids.";
+			$headers = 'From: DreamVids <assistance@dreamvids.fr>';
+			mail($to, $subject, utf8_decode($message), $headers);
+		}
 	}
 	
 	public function get($id, $request){}
