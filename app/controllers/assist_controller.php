@@ -24,22 +24,33 @@ class AssistController extends Controller {
 		$req = $request->getParameters();
 		$response = new ViewResponse('assist/ticket');
 		if (trim($req['bug']) != '') {
-			$user_id = (Session::isActive()) ? Session::get()->id : 0;
+			if (Session::isActive()) {
+				$user_id = Session::get()->id;
+			}
+			else {
+				if (trim($req['email']) != '') {
+					$user_id = $req['email'];
+				}
+				else {
+					$user_id = 0;
+				}
+			}
+
 			$ticket = Ticket::create(array(
 				'user_id' => $user_id,
 				'description' => $req['bug'],
-				'url' => $req['url'],
+				'timestamp' => time(),
 				'ip' => $_SERVER['REMOTE_ADDR']
 			));
 			$ticket_id = $ticket->id;
-			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié de l\'avancement de votre problème par E-Mail (Ticket #'.$ticket_id.')'));
+			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié de l\'avancement par E-Mail ou Message Privé (Ticket #'.$ticket_id.')'));
 			
-			$username = (Session::isActive()) ? Session::get()->username : '[Anonyme]';
+			/*$username = (Session::isActive()) ? Session::get()->username : '[Anonyme]';
 			$notif = new PushoverNotification();
 			$notif->setMessage('Nouveau ticket de '.$username);
 			$notif->setReceiver('all');
 			$notif->setExtraParameter('url', 'http://dreamvids.fr'.WEBROOT.'admin/tickets');
-			$notif->send();
+			$notif->send();*/
 		}
 		else {
 			$response->addMessage(ViewMessage::error('Merci de nous décrire votre problème.'));

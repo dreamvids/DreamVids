@@ -98,12 +98,13 @@ class Conversation extends ActiveRecord\Model {
 	}
 
 	public static function createNew($object, $creator, $members) {
-		Conversation::create(array(
+		$conv = Conversation::create(array(
 			'id' => Conversation::generateId(6),
 			'object' => $object,
 			'members_ids' => $members,
 			'thumbnail' => $creator->getAvatar()
 		));
+		return $conv->id;
 	}
 
 	public static function generateId($length) {
