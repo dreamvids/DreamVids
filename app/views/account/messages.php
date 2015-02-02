@@ -40,4 +40,4 @@
 		</aside>
 	</section>
 </div>
-<?php if (isset($pre_load)): ?><script>var timer = setInterval(function(){if (typeof(loadDiscution) !== 'undefined'){clearInterval(timer);loadDiscution('<?php echo $pre_load; ?>');}else{console.log('Pas encore');}}, 500);</script><?php endif ?>
+<?php if (isset($pre_load)): ?><script>var loadDiscutionOnLoad = '<?php echo $pre_load; ?>';</script><?php endif ?>
