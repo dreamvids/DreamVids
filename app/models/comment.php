@@ -165,7 +165,21 @@ class Comment extends ActiveRecord\Model {
 
 	public static function postNew($authorId, $videoId, $commentContent, $parent) {
 		$timestamp = Utils::tps();
+		$poster_channel = UserChannel::find(Video::find($videoId)->poster_id);
+		$admins_ids = $poster_channel->admins_ids;
+		$admins_ids = ChannelAction::filterReceiver($admins_ids, "comment");
+		
+		$admin_ids_array = $poster_channel->getArrayAdminsIds($admins_ids);
 
+		foreach ($admin_ids_array as $k => $value) {
+			if($value == Session::get()->id){
+				unset($admin_ids_array[$k]);
+				break;
+			}	 
+		}
+		
+		$recipients_ids = ';' . trim(implode(';', $admin_ids_array), ';') . ';';
+		
 		$comment = Comment::create(array(
 			'id' => Comment::generateId(6),
 			'poster_id' => $authorId,
@@ -176,13 +190,11 @@ class Comment extends ActiveRecord\Model {
 			'timestamp' => $timestamp,
 			'parent' => $parent
 		));
-		$admins_ids = UserChannel::find(Video::find($videoId)->poster_id)->admins_ids;
-		$admins_ids = ChannelAction::filterReceiver($admins_ids, "comment");
 		
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $authorId,
-			'recipients_ids' => $admins_ids,
+			'recipients_ids' => $recipients_ids,
 			'type' => 'comment',
 			'target' => $videoId,
 			'complementary_id' => $comment->id,

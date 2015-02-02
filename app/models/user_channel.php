@@ -54,6 +54,17 @@ class UserChannel extends ActiveRecord\Model {
 
 		return $adminsStr;
 	}
+	
+	function getArrayAdminsIds($custom_string = null) {
+		if($custom_string){
+			$trimed = trim($custom_string, ';');
+		}else{
+			$trimed = trim($this->admins_ids, ';');
+		}
+		
+		$array = explode(";", $trimed);
+		return $array;
+	}
 
 	public function getAvatar() {
 		return (!empty($this->avatar)) ? $this->avatar : Config::getValue_('default-avatar');
