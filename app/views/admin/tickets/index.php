@@ -35,11 +35,12 @@
 						<td>
 							<button class="btn-success btn" onclick="if(confirm('Êtes-vous sur que le problème est résolu ? Un E-Mail sera envoyé à l\'utilisateur pour lui confirmer la résolution de son problème et ce ticket sera définitivement supprimé.')){document.location.href=_webroot_+'admin/tickets/solved/<?php echo $tick->id; ?>';}">Problème résolu</button>
 							<?php if ($tick->tech == ''): ?>
-								<button class="btn-warning btn" onclick="if(confirm('Êtes-vous sur d\'avoir le temps de vous occuper de ce ticket ? Une fois assigner, un ticket ne peut changer de technicien.')){document.location.href=_webroot_+'admin/tickets/inprogress/<?php echo $tick->id; ?>';}">Résolution en cours</button>
-							<?php else:
-								if ($tick->tech == Session::get()->username):
+								<button class="btn-warning btn" onclick="if(confirm('Êtes-vous sur d\'avoir le temps de vous occuper de ce ticket ? Une fois assigner, une conversation MP est créée entre vous et l\'utilisateur (s\'il existe). De plus, un ticket ne peut pas changer de technicien.')){document.location.href=_webroot_+'admin/tickets/inprogress/<?php echo $tick->id; ?>';}">Résolution en cours</button>
+							<?php
+							else:
+								if ($tick->tech == Session::get()->username && is_numeric($tick->user_id) && $tick->user_id > 0):
 							?>
-								<button class="btn-info btn" onclick="document.location.href=_webroot_+'account/messages';">Conversation</button>
+								<button class="btn-info btn" onclick="document.location.href=_webroot_+'account/messages/<?php echo $tick->conv_id; ?>';">Conversation</button>
 							<?php else: ?>
 								<button class="btn-warning btn active" onclick="alert('Un membre de l\'équipe s\'occupe déjà de ce ticket.'); return false;">Résolution en cours (<?php echo $tick->tech; ?>)</button>
 							<?php 

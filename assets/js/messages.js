@@ -163,7 +163,7 @@ function addMessageInDiscution(message) {
 
 }
 
-function loadMessagesInList() {
+function loadMessagesInList(firstCall) {
 
     settings = {};
 
@@ -171,29 +171,39 @@ function loadMessagesInList() {
 
         url: _webroot_ + 'conversations/channel/' + channelSelector.value + '.json',
 
-    }).then(function(result) {
+    }).then(function(firstCall) {
+    
+        return function(result) {
 
-        messagesList.innerHTML = "";
+            if (firstCall && typeof loadDiscutionOnLoad !== "undefined") {
 
-        messages = JSON.parse(result);
-
-        if (!messages.length) {
-
-            console.info("Pas de messages");
-
-        }
-
-        else {
-
-            for (var i = 0; i < messages.length; i++) {
-
-                addMessageInList(messages[i]);
+                loadDiscution(loadDiscutionOnLoad);
 
             }
 
-        }
-
-    });
+            messagesList.innerHTML = "";
+    
+            messages = JSON.parse(result);
+    
+            if (!messages.length) {
+    
+                console.info("Pas de messages");
+    
+            }
+    
+            else {
+    
+                for (var i = 0; i < messages.length; i++) {
+    
+                    addMessageInList(messages[i]);
+    
+                }
+    
+            }
+    
+        };
+    
+    }(firstCall));
 
 }
 
@@ -515,4 +525,4 @@ setInterval(function() {
 
 }, 10000);
 
-loadMessagesInList();
+loadMessagesInList(true);

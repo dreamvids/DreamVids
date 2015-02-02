@@ -40,3 +40,4 @@
 		</aside>
 	</section>
 </div>
+<?php if (isset($pre_load)): ?><script>var loadDiscutionOnLoad = '<?php echo $pre_load; ?>';</script><?php endif ?>
