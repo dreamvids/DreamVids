@@ -418,6 +418,13 @@ class ChannelController extends Controller {
 			return new JsonResponse(array());
 		}
 	}
+	
+	public function checkChannelNameAvailable($name, $request) {
+		$data = [];
+		$data['available'] = !UserChannel::exists(['name' => $name]); 
+		
+		return new JsonResponse($data);
+	}
 
 	public function index($request) {}
 
