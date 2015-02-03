@@ -421,7 +421,7 @@ class ChannelController extends Controller {
 	
 	public function checkChannelNameAvailable($name, $request) {
 		$data = [];
-		$data['available'] = !UserChannel::exists(['name' => $name]); 
+		$data['available'] = UserChannel::isNameFree($name); 
 		
 		return new JsonResponse($data);
 	}
