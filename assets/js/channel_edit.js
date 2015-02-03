@@ -48,3 +48,25 @@ function eraseChannel(chanId) {
 		});
 	}
 }
+
+function checkChannelNameAvailable(input){
+	msg_el = document.getElementById('avaiabilityNameMessage');
+	if(input.value == ''){
+		msg_el.innerText = '';
+	} 
+	else {
+
+		marmottajax.get({
+			'url': _webroot_ + 'channels/checkChannelNameAvailable/' + input.value
+		}).then(function(result) {
+			result = JSON.parse(result);
+			msg_el.style.color = result.available ? 'green' : 'red';
+			msg_el.innerText = result.available ? 'Nom disponible !' : 'Nom indisponible';
+			
+			msg_el.style.color = input.value.length < 3 ? 'red' : msg_el.style.color;
+			msg_el.innerText = input.value.length < 3 ? 'Le nom doit faire plus de 3 caractères' : msg_el.innerText;
+			
+		});
+	}
+
+}
