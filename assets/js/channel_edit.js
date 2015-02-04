@@ -41,7 +41,7 @@ function remove_adm(user_id) {
 function eraseChannel(chanId) {
 	if(confirm('Voulez-vous vraiment supprimer cette chaîne ainsi que toutes les vidéos qui lui sont associées de façon DEFINITIVE ?')) {
 		marmottajax.delete({
-			'url': _webroot_ + 'channels/' + chanId,
+			'url': _webroot_ + 'channel/' + chanId,
 			'options': {}
 		}).then(function(result) {
 			window.location.href = _webroot_+'account/channels';

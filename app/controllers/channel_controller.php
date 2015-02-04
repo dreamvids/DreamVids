@@ -280,9 +280,13 @@ class ChannelController extends Controller {
 	}
 
 	public function destroy($id, $request) {
+		/*var_dump($id);
+		var_dump($request); */
 		$channel = UserChannel::find($id);
 		if ($channel->owner_id == Session::get()->id && $channel->id != Session::get()->getMainChannel()->id) {
-			Video::delete_all(array('conditions' => 'poster_id = ?'), $channel->id);
+			Video::table()->delete(array('poster_id' => $channel->id));
+			ChannelAction::table()->delete(array("channel_id" => $id));
+			ChannelAction::table()->delete(array("target" => $id));
 			$channel->delete();
 			return new Response(200);
 		}
