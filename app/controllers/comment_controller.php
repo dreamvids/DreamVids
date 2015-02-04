@@ -163,7 +163,17 @@ class CommentController extends Controller {
 			}
 			
 			return new Response(200);
+		}else if(isset($req['comment']) && Session::isActive() && Comment::exists($id)) {
+
+			$comment = Comment::find($id);
+			if($comment->getAuthor() && ($comment->getAuthor()->belongToUser(Session::get()->id) || Session::get()->isModerator() || Session::get()->isAdmin())){
+				$comment->comment = $req['comment'];
+				$comment->last_updated_timestamp = Utils::tps();
+				$comment->save();
+				return new Response(200);
+			}
 		}
+		
 
 		return new Response(500);
 	}

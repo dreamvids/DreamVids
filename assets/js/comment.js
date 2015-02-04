@@ -55,3 +55,48 @@ function deleteComment(commentId, deleteElement) {
 		});
 	}
 }
+
+function editComment(commentId, buttonEl){
+	if(!(buttonEl.getAttribute('data-state') == 'edit')){ //Normal state
+		buttonEl.setAttribute('data-state', 'edit');
+		buttonEl.innerText = 'Enregistrer';
+
+		textEl = document.getElementById("c-"+commentId).children[1].firstElementChild; //Text paragraph
+		
+		textarea = '<form class="no-style"><textarea id="c-new-content-'+commentId+'" data-content="' + textEl.innerText + '">'+ textEl.innerText +'</textarea></form>';
+		document.getElementById("c-"+commentId).children[1].firstElementChild.innerHTML = textarea;
+		document.getElementById("c-"+commentId).children[1].firstElementChild.focus();
+		
+	}else{	//Editing
+		saveEditedComment(commentId, buttonEl, function(buttonEl) {
+			buttonEl.setAttribute('data-state', '');
+			buttonEl.innerText = 'Editer';
+		});
+	}
+	
+	
+
+}
+
+function saveEditedComment(commentId, buttonEl, callback){
+	
+	if(confirm('Modifier le commentaire ?')){
+		marmottajax.put({
+			'url': _webroot_ + 'comments/' + commentId,
+			'options': {comment: document.getElementById('c-new-content-'+commentId).value}
+		}).then( function(result){
+			callback(buttonEl);
+			comment = document.getElementById("c-"+commentId); //comment element
+			textEl = comment.children[1].firstElementChild; //Text paragraph
+			
+			newContent =  document.getElementById('c-new-content-'+commentId).value;
+			
+			textEl.innerHTML = '';
+			textEl.innerText = newContent;
+			
+			newContent = textEl.innerText;
+		})
+	}
+	
+}
+		
