@@ -5,7 +5,8 @@
 
 	<form method="post" action="" class="middle form">
 		<label for="username">Nom d'utilisateur (Sera également le nom de votre chaîne) :</label>
-		<input type="text" name="username" id="username" placeholder="Pseudo" value="<?php echo @$username; ?>"/><br />
+		<span id="avaiabilityNameMessage"></span>
+		<input type="text" name="username" id="username" onchange="checkNameAvailable(this, null);" placeholder="Pseudo" value="<?php echo @$username; ?>"/><br />
 		<label for="pass">Mot de passe :</label>
 		<input type="password" name="pass" id="pass" placeholder="Mot de passe" vaue=""/><br />
 		<label for="pass-confirm">Confirmation :</label>

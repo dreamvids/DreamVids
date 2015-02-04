@@ -49,15 +49,18 @@ function eraseChannel(chanId) {
 	}
 }
 
-function checkChannelNameAvailable(input, currentName){
-	msg_el = document.getElementById('avaiabilityNameMessage');
+function checkNameAvailable(input, currentName){
+	
+	var url = 'channels/checkNameAvailable/' + input.value
+	
+	var msg_el = document.getElementById('avaiabilityNameMessage');
 	if(input.value == '' || input.value == currentName){
 		msg_el.innerText = '';
 	} 
 	else {
 
 		marmottajax.get({
-			'url': _webroot_ + 'channels/checkChannelNameAvailable/' + input.value
+			'url': _webroot_ + url
 		}).then(function(result) {
 			result = JSON.parse(result);
 			msg_el.style.color = result.available ? 'green' : 'red';

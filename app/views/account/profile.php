@@ -17,7 +17,8 @@
 			<input value="<?php echo $email; ?>" type="text" name="email" placeholder="Adresse email"><br />
 
 			<label for="username">Pseudo :</label>
-			<input value="<?php echo $username; ?>" type="text" name="username" placeholder="Pseudo"><br />
+			<span id="avaiabilityNameMessage"></span>
+			<input value="<?php echo $username; ?>" onchange="checkNameAvailable(this, '<?php echo $username; ?>')" type="text" name="username" placeholder="Pseudo"><br />
 			
 			<!-- <label for="language">Langue :</label>
 			<select name="language">

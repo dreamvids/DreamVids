@@ -360,7 +360,11 @@ class User extends ActiveRecord\Model {
 	
 	
 	// Static
-
+	
+	public static function isNameFree($name) {
+		return !User::exists(['username' => $name]);
+	}
+	
 	public static function getNameById($userId) {
 		return User::find_by_id($userId)->username;
 	}
