@@ -273,6 +273,7 @@ CREATE TABLE `videos_comments` (
   `likes` int(11) NOT NULL,
   `dislikes` int(11) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
+  `last_updated_timestamp` bigint(20) NOT NULL,
   `parent` varchar(6) NOT NULL,
   `flagged` BOOLEAN NOT NULL,
   PRIMARY KEY (`id`)
