@@ -56,7 +56,7 @@ class AccountController extends Controller {
 				if (isset($req['username']) && $req['username'] != $currentUsername) {
 					$newUsername = Utils::secure($req['username']);
 					
-					if (Utils::validateUsername($newUsername) && !User::exists(array('username' => $newUsername))) {
+					if (Utils::validateUsername($newUsername) && !User::exists(array('username' => $newUsername)) && !UserChannel::exists(['name' => $newUsername])) {
 						$channel = Session::get()->getMainChannel();
 						$user->username = $newUsername;
 						$user->save();
