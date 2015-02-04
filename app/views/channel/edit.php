@@ -13,7 +13,8 @@
 			<input type="hidden" id="_admins" name="_admins" value="" />
 			
 			<label for="name">Nom :</label>
-			<input value="<?php echo @$name; ?>" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'readonly' : ''; ?>/>
+			<span id="avaiabilityNameMessage"></span>
+			<input value="<?php echo @$name; ?>" onchange="checkChannelNameAvailable(this, '<?php echo @$name; ?>')" type="text" name="name" required="required" id="name" placeholder="Nom de votre chaîne" <?php echo @$mainChannel ? 'readonly' : ''; ?>/>
 
 			<?php if (@$mainChannel) { ?>
 				<p>Pour changer le nom de cette chaîne, vous devez changer de pseudo, le changement sera immédiatement répercuté sur votre chaîne.</p><br />

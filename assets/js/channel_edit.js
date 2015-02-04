@@ -49,9 +49,9 @@ function eraseChannel(chanId) {
 	}
 }
 
-function checkChannelNameAvailable(input){
+function checkChannelNameAvailable(input, currentName){
 	msg_el = document.getElementById('avaiabilityNameMessage');
-	if(input.value == ''){
+	if(input.value == '' || input.value == currentName){
 		msg_el.innerText = '';
 	} 
 	else {

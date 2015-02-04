@@ -12,8 +12,8 @@
 
 			<label for="name">
 				Nom :
-				<span style="color:red" id="avaiabilityNameMessage"></span>
-				<input value="<?php echo @$name; ?>" onchange="checkChannelNameAvailable(this)" id="name" type="text" name="name" placeholder="Nom de votre chaîne" required="required" spellcheck="false"/>
+				<span id="avaiabilityNameMessage"></span>
+				<input value="<?php echo @$name; ?>" onchange="checkChannelNameAvailable(this, null)" id="name" type="text" name="name" placeholder="Nom de votre chaîne" required="required" spellcheck="false"/>
 			</label>
 
 			<label for="description">
