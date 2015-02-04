@@ -40,7 +40,7 @@
     <h3 class="title">Le cookie d'acceptation des cookies</h3>
     <p style="text-align: justify;">
         La loi nous oblige à avertir les internautes lorsque nous utilisons les cookies. Le fait est que pour
-        éviter de vous redemander d'accepter l'utilsiation des cookies à chaque fois que vous visitez une page, nous avons
+        éviter de vous redemander d'accepter l'utilisation des cookies à chaque fois que vous visitez une page, nous avons
         -justement- besoin d'un cookie pour nous rapeller que vous avez déjà accepté l'utilisation des cookies.
     </p>
 </div>

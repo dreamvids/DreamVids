@@ -2,7 +2,18 @@
     <h1 class="title">Conditions Générales d’Utilisation du service « DreamVids »</h1>
 
     <p style="text-align:justify;">
-        <h3 class="title">1. PRÉSENTATION DU SITE</h3>
+        <h3 class="title">1. MENTIONS LEGALES</h3>
+        <p>
+            Le site web dreamvids.fr est édité par l'Association loi 1901 "DREAMVIDS" (Identification NRA:
+            W832012749), déclarée le 12/09/2014 et parue au journal officiel le 20/09/2014.<br />
+            <br />
+            SIEGE SOCIAL:<br />
+            Chemin du plan,<br />
+            Quartier le Pavillon<br />
+            83660 Carnoules.
+        </p>
+
+        <h3 class="title">2. PRÉSENTATION DU SITE</h3>
         <p>
             DreamVids est un site de partage de vidéos associatif permettant de visionner, accéder, mettre en
             ligne, stocker et partager des vidéos (le "Site"). L'espace de stockage alloué par l'utilisateur est
@@ -11,7 +22,7 @@
             insérée au sein du Site.
         </p>
 
-        <h3 class="title">2. VOTRE PROPRIÉTÉ INTELLECTUELLE</h3>
+        <h3 class="title">3. VOTRE PROPRIÉTÉ INTELLECTUELLE</h3>
         <p>
             Si vous êtes inscrit et que vous détenez un compte par le biais duquel vous mettez en ligne vos
             vidéos, ainsi que vos commentaires, votre pseudonyme et votre avatar ("Votre Contenu"),
@@ -28,14 +39,14 @@
             données.
         </p>
 
-        <h3 class="title">3. NOTRE PROPRIÉTÉ INTELLECTUELLE</h3>
+        <h3 class="title">4. NOTRE PROPRIÉTÉ INTELLECTUELLE</h3>
         <p>
             Le site est notre propriété exclusive. D'une manière générale, nous vous accordons un droit
             gratuit, personnel, non-exclusif et non-transférable d'accès et d'utilisation du Site sous réserve de
             votre acceptation et respect des CGU.
         </p>
 
-        <h3 class="title">4. CARACTERE "LIBRE ET OPEN-SOURCE" DU SITE</h3>
+        <h3 class="title">5. CARACTERE "LIBRE ET OPEN-SOURCE" DU SITE</h3>
         <p>
             Tous les composants du Site (exceptés Votre Contenu): codes,
             images et textes sont gratuitement mis à disposition de tout-un-chacun selon les termes de la
@@ -43,7 +54,7 @@
             d’Utilisation Commerciale - Partage dans les Mêmes Conditions (CC BY-NC-SA)</a> sur le site web www.github.com.
         </p>
 
-        <h3 class="title">5. NOTRE RESPONSABILITÉ D'HÉBERGEUR</h3>
+        <h3 class="title">6. NOTRE RESPONSABILITÉ D'HÉBERGEUR</h3>
         <p>
             Nous ne sommes légalement tenus à aucune obligation générale de surveillance du contenu
             transmis ou stocké via le Site. Les seules obligations inhérentes à notre qualité d'hébergeur
@@ -57,7 +68,7 @@
             </ul>
         </p>
 
-        <h3 class="title">6. VOTRE RESPONSABILITÉ D'UTILISATEUR</h3>
+        <h3 class="title">7. VOTRE RESPONSABILITÉ D'UTILISATEUR</h3>
         <p>
             En fournissant Votre Contenu sur le Site (qu'il s'agisse de vidéos, de commentaires que vous y
             apportez, de votre pseudo ou de votre avatar), vous êtes tenus au respect des dispositions légales
@@ -87,7 +98,7 @@
             </ul>
         </p>
 
-        <h3 class="title">7. INSCRIPTION ET ACCÈS</h3>
+        <h3 class="title">8. INSCRIPTION ET ACCÈS</h3>
         <p>
             Aux fins de bénéficier des fonctionnalités du Site, vous devez créer un compte au moyen du
             formulaire en ligne prévu à cet effet. Conformément à la loi applicable n° 78-17 du 6 janvier 1978 relative
@@ -103,7 +114,7 @@
             préjudice de nos autres droits.
         </p>
 
-        <h3 class="title">8. DISPONIBILITÉ DU SITE</h3>
+        <h3 class="title">9. DISPONIBILITÉ DU SITE</h3>
         <p>
             Le Site est par principe accessible 24/24h, 7/7j, sauf interruption, programmée ou non, pour les
             besoins de sa maintenance ou cas de force majeure. Etant de fait soumis à une obligation de
@@ -111,7 +122,7 @@
             résultant d'une indisponibilité du Site.
         </p>
 
-        <h3 class="title">9. PREUVE, CONSERVATION ET ARCHIVAGE</h3>
+        <h3 class="title">10. PREUVE, CONSERVATION ET ARCHIVAGE</h3>
         <p>
             Les registres informatisés conservés dans nos systèmes dans le respect des règles de l'art en
             matière de sécurité, seront considérés comme preuves des communications de courriers

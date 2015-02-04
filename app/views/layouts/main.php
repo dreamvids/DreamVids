@@ -168,6 +168,7 @@
 						<a href="<?php echo WEBROOT.'pages/about'; ?>"><?php echo Translator::get("footer.about"); ?></a>
 						<a href="<?php echo WEBROOT.'pages/contributors'; ?>"><?php echo Translator::get("footer.contributors"); ?></a>
 						<a href="<?php echo WEBROOT.'pages/tos'; ?>"><?php echo Translator::get("footer.tos"); ?></a>
+						<a href="<?php echo WEBROOT.'pages/cookies'; ?>"><?php echo Translator::get('footer.cookies'); ?></a>
 						<a href="http://dreamvids.spreadshirt.fr/" target="_blank"><?php echo Translator::get("footer.shop"); ?></a>
 						<a href="http://blog.dreamvids.fr/" target="_blank"><?php echo Translator::get("footer.dev_blog"); ?></a>
 <?php if(Session::isActive()){ ?>						
