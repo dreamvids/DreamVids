@@ -25,8 +25,16 @@
 							$user_id = '[Anonyme]';
 						endif;
 					endif;
+
+					if ((time() - $tick->timestamp) < (24 * 3600)):
+						$style = '';
+					elseif ((time() - $tick->timestamp) < (48 * 3600)):
+						$style = 'background-color:#ffBB55';
+					else:
+						$style = 'background-color:#ff6666;color:white;';
+					endif;
 				 ?>
-					<tr>
+					<tr style="<?php echo $style; ?>">
 						<td><?php echo $tick->id; ?></td>
 						<td><?php echo $tick->description; ?></td>
 						<td><?php echo date('d/m/Y H:i', $tick->timestamp); ?></td>
