@@ -6,6 +6,8 @@ require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 require_once SYSTEM.'redirect_response.php';
 
+require_once MODEL.'password';
+
 class PasswordController extends Controller {
 	
 	public function __construct() {
@@ -66,7 +68,7 @@ class PasswordController extends Controller {
 			'MIME-Version: 1.0' . "\r\n".
 			'Content-type: text/html; charset=utf-8' . "\r\n";
 			$message = 'Vous avez demandé la réinitialisation de votre mot de passe DreamVids. Clique sur le lien ci-dessous pour accéder à votre nouveau mot de passe :<br /><br />
-			<a href="http://localhost/DreamVids/password/'.$key.'">http://dreamvids.fr/password/'.$key.'</a>';
+			<a href="http://dreamvids.fr/password/'.$key.'">http://dreamvids.fr/password/'.$key.'</a>';
 			mail($email, 'DreamVids - Mot de passe oublié', $message, $headers);
 			$resp->addMessage(ViewMessage::success('Vous allez recevoir un E-Mail à l\'adresse '.$email.', suivez-en les instructions.'));
 		}
