@@ -5,6 +5,7 @@ require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'monitoring.php';
+require_once MODEL.'comment.php';
 
 class AdminMonitoringController extends AdminSubController {
 	public function __construct() {
