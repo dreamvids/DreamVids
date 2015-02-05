@@ -76,8 +76,8 @@
                         		"Vue d'ensemble" => 
                         			["icon" => "dashboard", "url" => "dashboard"],
                         		
-                        		"Monitoring" => 
-                        			["icon" => "bar-chart-o", "url" => "monitoring", "right" => ["admin"]],
+                        		"Statistiques" => 
+                        			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"]],
                         		
                         		"Modération" => 
                         			["icon" => "smile-o", "right" => ["modo_or_more"], "sub-menu" => 

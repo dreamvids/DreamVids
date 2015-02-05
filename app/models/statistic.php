@@ -1,5 +1,5 @@
 <?php
-class Monitoring {
+class Statistic {
 	
 	/** 
 	 * @param string $query
