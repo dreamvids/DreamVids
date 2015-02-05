@@ -59,18 +59,18 @@ function deleteComment(commentId, deleteElement) {
 function editComment(commentId, buttonEl){
 	if(!(buttonEl.getAttribute('data-state') == 'edit')){ //Normal state
 		buttonEl.setAttribute('data-state', 'edit');
-		buttonEl.innerText = 'Enregistrer';
+		buttonEl.innerHTML = 'Enregistrer';
 
 		textEl = document.getElementById("c-"+commentId).children[1].firstElementChild; //Text paragraph
 		
-		textarea = '<form class="no-style"><textarea id="c-new-content-'+commentId+'" data-content="' + textEl.innerText + '">'+ textEl.innerText +'</textarea></form>';
+		textarea = '<form class="no-style"><textarea id="c-new-content-'+commentId+'" data-content="' + textEl.innerHTML + '">'+ textEl.innerHTML +'</textarea></form>';
 		document.getElementById("c-"+commentId).children[1].firstElementChild.innerHTML = textarea;
-		document.getElementById("c-"+commentId).children[1].firstElementChild.focus();
+		document.getElementById("c-new-content-"+commentId).children[1].firstElementChild.focus();
 		
 	}else{	//Editing
 		saveEditedComment(commentId, buttonEl, function(buttonEl) {
 			buttonEl.setAttribute('data-state', '');
-			buttonEl.innerText = 'Editer';
+			buttonEl.innerHTML = 'Editer';
 		});
 	}
 	
@@ -92,9 +92,9 @@ function saveEditedComment(commentId, buttonEl, callback){
 			newContent =  document.getElementById('c-new-content-'+commentId).value;
 			
 			textEl.innerHTML = '';
-			textEl.innerText = newContent;
+			textEl.innerHTML = newContent;
 			
-			newContent = textEl.innerText;
+			newContent = textEl.innerHTML;
 		})
 	}
 	
