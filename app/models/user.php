@@ -27,44 +27,33 @@ class User extends ActiveRecord\Model {
 
 	public function getSubscriptions($amount='nope') {
 		$subscriptions = array();
+		$subs = $this->subscriptions;
 
-		if($amount != 'nope') {
-			$subs = $this->subscriptions;
+		if(Utils::stringStartsWith($subs, ';'))
+			$subs = substr_replace($subs, '', 0, 1);
+		if(Utils::stringEndsWith($subs, ';'))
+			$subs = substr_replace($subs, '', -1);
 
-			if(Utils::stringStartsWith($subs, ';'))
-				$subs = substr_replace($subs, '', 0, 1);
-			if(Utils::stringEndsWith($subs, ';'))
-				$subs = substr_replace($subs, '', -1);
+		$subscriptionsArray = explode(';', $subs);
 
-			$subscriptionsArray = explode(';', $subs);
-
-			if(count($subscriptionsArray) > $amount) $amount = count($subscriptionsArray);
-
-			for($i = 0; $i < $amount; $i++) {
-				$subscriptions[$i] = UserChannel::find_by_id($subscriptionsArray[$i]);
+		foreach ($subscriptionsArray as $k => $value) {
+			if(!UserChannel::exists($value)) {
+				unset($subscriptionsArray[$k]);
 			}
 		}
-		else {
-			$subs = $this->subscriptions;
-
-			if(Utils::stringStartsWith($subs, ';'))
-				$subs = substr_replace($subs, '', 0, 1);
-			if(Utils::stringEndsWith($subs, ';'))
-				$subs = substr_replace($subs, '', -1);
-
-			if(strpos($subs, ';') !== false) {
-				$subscriptionsArray = explode(';', $subs);
-
-				foreach ($subscriptionsArray as $sub) {
-					$subscriptions[] = UserChannel::find_by_id($sub);
-				}
-			}
-			else if(strlen($subs) == 6) {
-				$subscriptions[0] = UserChannel::find_by_id($subs);
-			}
+		
+		if (empty($subscriptionsArray)) {
+			return [];
 		}
-
-		if(!@$subscriptions[0]) $subscriptions = array();
+		
+		if($amount != 'nope'){
+			$amount = count($subscriptionsArray) > $amount = count($subscriptionsArray);
+			
+			$subscriptions = UserChannel::find($subscriptionsArray, ['limit' => $amount]);				
+		}else{
+			$subscriptions = UserChannel::find($subscriptionsArray);
+		}
+			
 		return $subscriptions;
 	}
 
