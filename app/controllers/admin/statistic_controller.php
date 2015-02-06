@@ -57,6 +57,6 @@ class AdminStatisticController extends AdminSubController {
 	public function get($id, $request){ }
 	
 	public function hasPermission($user) {
-		return Utils::getRankArray($user)['admin'];
+		return Utils::getRankArray($user)['team_or_more'];
 	}
 }
