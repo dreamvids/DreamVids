@@ -1,4 +1,4 @@
-﻿![DreamVids](/assets/img/blue_logo.png "DreamVids v2")
+﻿![DreamVids](/img/banniere.png "DreamVids v2")
 
 Core rework & new design for the DreamVids video sharing platform
 This project is using [SysDream2](https://github.com/Quadrifoglio/SysDream-2) as a base.
