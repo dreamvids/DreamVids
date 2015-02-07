@@ -35,7 +35,7 @@ class User extends ActiveRecord\Model {
 			$subs = substr_replace($subs, '', -1);
 
 		$subscriptionsArray = explode(';', $subs);
-
+		$subscriptionsArray = array_filter($subscriptionsArray);
 		foreach ($subscriptionsArray as $k => $value) {
 			if(!UserChannel::exists($value)) {
 				unset($subscriptionsArray[$k]);

@@ -24,6 +24,9 @@ class HomeController extends Controller {
 			$channel = Session::get()->getMainChannel();
 
 			$data['subscriptions'] = Session::get()->getSubscriptions();
+			if($data['subscriptions'] instanceof UserChannel){
+				$data['subscriptions'] = [$data['subscriptions']];
+			} 
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 20);
 			$data['discoverVids'] = Video::getDiscoverVideos(2);
 			$data['bestVids'] = Video::getBestVideos(6);
