@@ -119,5 +119,24 @@ class Translator{
 	public static function getCurrentLanguageName() {
 		return self::$prefered_language;
 	}
+	
+	public static function translateStringifiedDate($date, $lang = 'none') {
+
+			if($lang == 'none'){
+				$lang = self::getCurrentLanguageName();
+			}else{
+				if(isset(self::$languages[$lang])){
+					$lang = self::$languages[$lang];
+				}else{
+					$lang = self::getCurrentLanguageName();
+				}
+			}
+			
+			$array_translate = [];
+			$array_translate['en'] = array("January","February","March","April","May","June","July","August","September","October","November","December");
+			$array_translate['fr'] = array("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
+			
+			return str_replace($array_translate['en'], $array_translate[$lang], $date);
+	}
 
 }

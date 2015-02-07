@@ -52,7 +52,7 @@
 			<div class="inner-description">
 
 				<?php
-				echo "Publiée le " . strftime("%e %B %Y", $video->timestamp) . "<br /><br />";
+				echo "Publiée le " . Translator::translateStringifiedDate(strftime("%e %B %Y", $video->timestamp)) . "<br /><br />";
 				echo nl2br(preg_replace("#https?://[a-z0-9\./\+\,\%\#_\-\?\&\=\@\!\&]+#is", '<a href="$0" target="_blank">$0</a>', $description)).'<br /><br />Tags: ';
 
 				foreach ($tags as $tag) {
