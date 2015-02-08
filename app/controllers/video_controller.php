@@ -52,7 +52,7 @@ class VideoController extends Controller {
 			
 			return new ViewResponse('video/suspended', $data);
 		}
-		elseif($video->isPrivate() && $video->poster_id != Session::get()->getMainChannel()->id) {
+		elseif($video->isPrivate() && (!Session::isActive() || $video->poster_id != Session::get()->getMainChannel()->id)) {
 			$data['author'] = $author;
 			$data['video'] = $video;
 			
