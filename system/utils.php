@@ -248,11 +248,13 @@ class Utils {
 
 	public static function secure($str) {
 		$secured = $str;
-		$secured = htmlspecialchars(stripslashes($secured), ENT_QUOTES, 'UTF-8');
 		$secured = str_replace('<', '&lt;', $secured);
 		$secured = str_replace('>', '&gt;', $secured);
 		$secured = str_replace('&amp;', '&', $secured);
-		return (is_string($str) && json_decode($str) == null) ? $secured : $str;
+		$secured = str_replace('"', '', $secured);
+		$secured = htmlentities($secured, ENT_QUOTES, 'UTF-8');
+		
+		return (is_string($str) && is_string(json_decode($str))) ? $secured : $str;
 	}
 	
 	public static function securingData($data) {
