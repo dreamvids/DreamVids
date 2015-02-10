@@ -15,7 +15,7 @@ class RedirectResponse extends Response {
 				$this->newURL = WEBROOT;
 			}	
 		}else{
-			if (preg_match("#^".WEBROOT."#", $newURL) && !strstr($newURL, PHP_EOL)) {
+			if (preg_match("#^".WEBROOT."#", $newURL) && !strstr(urldecode($newURL), PHP_EOL)) {
 				$this->newURL = $newURL;
 			}
 			else {
