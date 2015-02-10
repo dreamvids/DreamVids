@@ -12,10 +12,15 @@ class RedirectResponse extends Response {
 			if ($_SERVER['HTTP_HOST'] == $newURL_host) {
 				$this->newURL = $newURL;
 			}else{
-				$this->newURL = '/';
+				$this->newURL = WEBROOT;
 			}	
 		}else{
-			$this->newURL = '/';
+			if (preg_match("#^".WEBROOT."#", $newURL) && !strstr($newURL, PHP_EOL)) {
+				$this->newURL = $newURL;
+			}
+			else {
+				$this->newURL = WEBROOT;
+			}
 		}
 	}
 
