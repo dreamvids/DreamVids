@@ -55,10 +55,7 @@ class Utils {
 	 * @return The URLencoded url to go after
 	 */
 	public static function getRedirect() {
-		$request =  self::getCurrentRequest();
-		$fullURI = $request->getFullURI ();
-		$get_string = @explode("?", $fullURI)[1];
-		$redirect = urlencode(urldecode(str_replace("redirect=", "", $get_string)));
+		$redirect = urlencode(urldecode(isset($_GET['redirect']) ? $_GET['redirect'] : ''));
 		return $redirect;
 	}
 
@@ -397,10 +394,8 @@ class Utils {
 	 
 	 public static function generateLoginURL() {
 	 	$url = WEBROOT.'login';
-	 	//?redirect='.urlencode($GLOBALS['request']->getFullURI());
-	 	
 	 	if(!in_array(self::getCurrentRequest()->getURI(), array("login", "news"))){
-	 		$url.= "/&?redirect=".urlencode(self::getCurrentRequest()->getFullURI());
+	 		$url.= "/&redirect=".urlencode(urlencode(self::getCurrentRequest()->getFullURI()));
 	 	}
 	 	return $url;
 	 }
