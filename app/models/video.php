@@ -55,7 +55,7 @@ class Video extends ActiveRecord\Model {
 			$tagstr[] = 'tags LIKE ?';
 		}
 		$tagstr = implode(' OR ', $tagstr);
-		$cond = array_merge(array('id != "'.$this->id.'" AND ('.$tagstr.')'), $tags);
+		$cond = array_merge(array('id != "'.$this->id.'" AND ('.$tagstr.') AND visibility=2'), $tags);
 		
 		$vids = array();
 		$tagsVids = Video::all(array('conditions' => $cond, 'limit' => $nb));
