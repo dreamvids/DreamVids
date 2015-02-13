@@ -17,12 +17,21 @@ class EmbedController extends Controller {
 		$this->denyAction(Action::DESTROY);
 	}
 	
-	public function video($id, $request) {
+	public function video($id, $param2, $param3='nope') {
+		$autoplay = ($param3 != 'nope');
+		if ($autoplay) {
+			$request = $param3;
+		}
+		else {
+			$request = $param2;
+		}
+
 		$video = Video::find($id);
 		$url = (preg_match("#^http#isU", $video->url)) ? $video->url : 'http://dreamvids.fr/'.$video->url;
 		$data = array();
 		$data['video'] = $video;
 		$data['url'] = $url;
+		$data['autoplay'] = $autoplay;
 		return new ViewResponse('embed/video', $data, false);
 	}
 	

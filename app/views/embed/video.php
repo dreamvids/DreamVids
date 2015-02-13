@@ -18,7 +18,7 @@
 		</script>
 
 		<div id="player">
-			<video x-webkit-airplay="allow" autobuffer preload="auto" poster="<?php echo $video->getThumbnail(); ?>">
+			<video x-webkit-airplay="allow" autobuffer <?php echo ($autoplay) ? 'autoplay' : ''; ?> preload="auto" poster="<?php echo $video->getThumbnail(); ?>">
 				<source id="srcMp4" type="video/mp4" src="">
 				<source id="srcWebm" type="video/webm" src="">
 			</video>
