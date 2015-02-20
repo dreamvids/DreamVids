@@ -134,6 +134,62 @@
     background-position: -52px 0; }
  }
 
+.player .redirect-message {
+  position: absolute;
+  top: 62%;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+  font-size: 26px;
+  color: #fff;
+  cursor: default;
+  text-align: center; }
+
+.player .redirect-cancel {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  width: 220px;
+  margin-left: -118px;
+  padding: 8px;
+  background: #fff;
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+
+@media (max-width: 768px) {
+  .player .redirect-message {
+    top: 20%;
+    font-size: 20px; }
+
+  .player .redirect-cancel {
+    top: 70%;
+    width: 200px;
+    margin-left: -108px;
+    padding: 8px;
+    font-size: 16px; }
+ }
+
+@media (max-width: 480px) {
+  .player .redirect-message {
+    top: 60%;
+    font-size: 18px; }
+
+  .player .redirect-cancel {
+    display: none; }
+ }
+
+.player .redirect-cancel:focus {
+  outline: 0; }
+
 .player .icons {
   position: absolute;
   top: 15px;

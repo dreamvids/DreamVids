@@ -23,7 +23,13 @@
 	    <?php if (Session::isActive()) {
 
 		echo "source: _last_definition_setting_,";
-	    	echo "volume: _last_volume_setting_,";
+	    echo "volume: _last_volume_setting_,";
+
+	    } ?>
+
+	    <?php if (isset($nextVideo)) {
+
+		echo "redirectAtEnd: " . @$nextVideo . ",";
 
 	    } ?>
 	
@@ -50,15 +56,5 @@
 	    ]
 	
 	});
-
-
-	// var _redirectAtEnd = "<?php echo @$nextVideo; ?>";
-
-<?php if (Session::isActive()) { ?>
-
-	/*setQuality(_last_definition_setting_);
-	setVolume(_last_volume_setting_);*/
-
-<?php } ?>
 
 </script>
