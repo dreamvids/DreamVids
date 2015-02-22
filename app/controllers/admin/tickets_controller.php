@@ -36,7 +36,8 @@ class AdminTicketsController extends AdminSubController {
 			$ticket->tech = Session::get()->username;
 			if (User::exists(array('id' => $ticket->user_id))) {
 				$conv = Conversation::createNew('[Assistance] Demande #'.$ticket->id, Session::get()->getMainChannel(), ';'.User::find($ticket->user_id)->getMainChannel()->id.';'.Session::get()->getMainChannel()->id.';');
-				Message::sendNew(Session::get()->getMainChannel()->id, $conv, 'Bonjour, je suis '.Session::get()->username.' et j\'ai pris en charge votre demande d\'assistance. Cette conversation a été créé pour pouvoir discuter avec vous. ATTENTION: Ne communiquez jamais votre mot de passe, même à un technicien ! Un vrai technicien a à sa disposition tous les outils nécessaires à la résolution de votre problème !');
+				Message::sendNew(User::find($ticket->user_id)->getMainChannel()->id, $conv, $ticket->description);
+				Message::sendNew(Session::get()->getMainChannel()->id, $conv, 'Bonjour, je suis '.Session::get()->username.' et j\'ai pris en charge votre demande d\'assistance. Cette conversation a été créée pour pouvoir discuter avec vous. ATTENTION: Ne communiquez jamais votre mot de passe, même à un technicien ! Un vrai technicien a à sa disposition tous les outils nécessaires à la résolution de votre problème !');
 				$ticket->conv_id = $conv;
 			}
 			$ticket->save();
