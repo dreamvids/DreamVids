@@ -6,7 +6,7 @@ require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 require_once SYSTEM.'redirect_response.php';
 
-require_once MODEL.'password';
+require_once MODEL.'password.php';
 
 class PasswordController extends Controller {
 	
