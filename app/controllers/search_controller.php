@@ -91,7 +91,7 @@ class SearchController extends Controller {
 		}
 		
 		
-		if(empty($data['videos']) && empty($data['channels'])){
+		if((empty($data['videos']) && empty($data['channels'])) || strlen($_GET['q']) < 3){
 			
 			$data['error']= array(
 					"message" => "La recherche n'a retourné aucun resultat.",
