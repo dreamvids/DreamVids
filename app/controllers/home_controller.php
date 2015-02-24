@@ -18,9 +18,11 @@ class HomeController extends Controller {
 	}
 
 	public function index($request) {
+		$data = array();
+		$data['currentPageTitle'] = 'Accueil';
+		$data['discoverVids'] = Video::getDiscoverVideos(2);
+		$data['bestVids'] = Video::getBestVideos(6);
 		if(Session::isActive()) {
-			$data = array();
-			$data['currentPageTitle'] = 'Accueil';
 			$channel = Session::get()->getMainChannel();
 
 			$data['subscriptions'] = Session::get()->getSubscriptions();
@@ -28,8 +30,6 @@ class HomeController extends Controller {
 				$data['subscriptions'] = [$data['subscriptions']];
 			} 
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 20);
-			$data['discoverVids'] = Video::getDiscoverVideos(2);
-			$data['bestVids'] = Video::getBestVideos(6);
 			$data['channelId'] = $channel->id;
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
@@ -37,7 +37,9 @@ class HomeController extends Controller {
 			return new ViewResponse('home/logged', $data);
 		}
 		else {
-			return new RedirectResponse(WEBROOT.'news');
+			$data['best_chans'] = UserChannel::getBestChannels();
+			$data['news_vids'] = Video::getLastVideos();
+			return new ViewResponse('home/guest', $data);
 		}
 	}
 

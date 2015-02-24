@@ -27,6 +27,7 @@ class UserChannel extends ActiveRecord\Model {
 		return $result;
 		
 	}
+	
 	public function getPostedMessages() {
 		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id), 'order' => 'timestamp desc'));
 	}
@@ -192,6 +193,10 @@ class UserChannel extends ActiveRecord\Model {
 				'timestamp' => Utils::tps()
 			));
 		}
+	}
+	
+	public static function getBestChannels() {
+		return UserChannel::all(array('order' => 'subscribers desc', 'limit' => '8'));
 	}
 
 	public static function generateId($length) {

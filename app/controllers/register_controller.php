@@ -37,23 +37,31 @@ class RegisterController extends Controller {
 					if(isset($req['pass-confirm'])) {
 						if(isset($req['mail'])) {
 						    if(isset($req["g-recaptcha-response"])){
-							$data = $_POST;
-							$data['currentPageTitle'] = 'Inscription';
-							$data["currentPage"] = "register";
-						        $url = "https://www.google.com/recaptcha/api/siteverify?secret="; //Adress a get
-						        $url .= Config::getValue_("recaptcha_private"); //Cle prive
-						        $url .= "&response=" . $req['g-recaptcha-response']; // Resultat de captcha
-						        
-						        
-						        $json_result = json_decode(file_get_contents($url), true); //Parsage de la reponse
-						        if(@$json_result["success"] != true){ 
-						            $response = new ViewResponse('login/register', $data);
-						            $response->addMessage(ViewMessage::error('Erreur de captcha')); //Affichage de l'erreur
-						            
-						            return $response;
-						        }else{
-		                          //OK
-						        }
+						    	if (isset($reg['CGU']) && $req['CGU'] == 'CGU') {
+									$data = $_POST;
+									$data['currentPageTitle'] = 'Inscription';
+									$data["currentPage"] = "register";
+							        $url = "https://www.google.com/recaptcha/api/siteverify?secret="; //Adress a get
+							        $url .= Config::getValue_("recaptcha_private"); //Cle prive
+							        $url .= "&response=" . $req['g-recaptcha-response']; // Resultat de captcha
+							        
+							        
+							        $json_result = json_decode(file_get_contents($url), true); //Parsage de la reponse
+							        if(@$json_result["success"] != true){ 
+							            $response = new ViewResponse('login/register', $data);
+							            $response->addMessage(ViewMessage::error('Erreur de captcha')); //Affichage de l'erreur
+							            
+							            return $response;
+							        }else{
+			                          //OK
+							        }
+						    	}
+						    	else {
+						    		$response = new ViewResponse('login/register', $data);
+						    		$response->addMessage(ViewMessage::error('Merci d\'accepter nos conditions avant de vous inscrire'));
+						    		
+						    		return $response;
+						    	}
 						    }else{ //Affichage de l'erreur
 						        $response = new ViewResponse('login/register', $data);
 						        $response->addMessage(ViewMessage::error('Erreur de captcha'));
