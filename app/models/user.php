@@ -240,7 +240,6 @@ class User extends ActiveRecord\Model {
 		
 		return $languagesetting;
 	}
-	
 
 	public function hasSubscribedToChannel($channelId) {
 		if(UserChannel::exists($channelId)) {

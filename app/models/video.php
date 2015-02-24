@@ -78,6 +78,13 @@ class Video extends ActiveRecord\Model {
 		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_private')));
 	}
 
+	public function isSubscribersOnly() {
+		$appConfig = new Config(CONFIG.'app.json');
+		$appConfig->parseFile();
+
+		return Video::exists(array('id' => $this->id, 'visibility' => $appConfig->getValue('vid_visibility_only_subscribers')));
+	}
+
 	public function isFlagged() {
 		return $this->flagged == 1;
 	}
@@ -300,11 +307,27 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public static function getDiscoverVideos($number = 10) {
-		return Video::all(array('conditions' => 'discover != 0 AND visibility=2', 'order' => 'discover desc', 'limit' => $number));
+		$videos = array();
+		$all = Video::all(array('conditions' => 'discover != 0 AND visibility=2 OR visibility=4', 'order' => 'discover desc', 'limit' => $number));
+		foreach ($all as $video){
+			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				$videos[] = $video;
+			}
+		}
+
+		return $videos;
 	}
 	
 	public static function getLastVideos($number = 10) {
-		return Video::all(array('conditions' => 'visibility=2', 'order' => 'timestamp desc', 'limit' => $number));
+		$videos = array();
+		$all = Video::all(array('conditions' => 'visibility=2 OR visibility=4', 'order' => 'timestamp desc', 'limit' => $number));
+		foreach ($all as $video){
+			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				$videos[] = $video;
+			}
+		}
+
+		return $videos;
 	}
 
 	public static function getSubscriptionsVideos($userId, $amount='nope') {
@@ -330,21 +353,30 @@ class Video extends ActiveRecord\Model {
 		if($subs == '()') return array();
 
 		if($amount != 'nope')
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." AND visibility=2 ORDER BY timestamp DESC LIMIT ".$amount);
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 OR visibility=4 AND poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
 		else
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." AND visibility=2 ORDER BY timestamp DESC");
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 OR visibility=4 AND poster_id IN ".$subs." ORDER BY timestamp DESC");
 
-
-		foreach ($vidsToAdd as $vid) {
-			array_push($videos, $vid);
+		foreach ($vidsToAdd as $video){
+			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				array_push($videos, $video);
+			}
 		}
 
 		return $videos;
 	}
 	
 	public static function getBestVideos($limit = 'nope') {
+		$videos = array();
+
 		$limit = ($limit == 'nope') ? 30 : $limit;
-		return Video::all(array('conditions' => 'visibility=2', 'order' => 'likes/(dislikes+1) desc', 'limit' => $limit));
+		$all = Video::all(array('conditions' => 'visibility=2 OR visibility=4', 'order' => 'likes/(dislikes+1) desc', 'limit' => $limit));
+		foreach ($all as $video){
+			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				$videos[] = $video;
+			}
+		}
+		return $videos;
 	}
 
 	public static function getReportedVideos($limit = 'nope') {
@@ -357,6 +389,8 @@ class Video extends ActiveRecord\Model {
 	}
 	
 	public static function getSearchVideos($query, $order="none") {
+		$videos = array();
+
 		if($order == "none"){
 			$order = "timestamp desc"; 
 		}
@@ -364,16 +398,24 @@ class Video extends ActiveRecord\Model {
 		if ($query != '') {
 			if ($query[0] == '#') {
 				$query = trim($query, '#');
-				return Video::all(array('conditions' => array('tags LIKE ? AND visibility = ?', '%'.$query.'%', Config::getValue_('vid_visibility_public')), 'order' => $order));
+				$all = Video::all(array('conditions' => array('tags LIKE ? AND visibility = ? OR visibility = ?', '%'.$query.'%', Config::getValue_('vid_visibility_public'), Config::getValue_('vid_visibility_only_subscribers')), 'order' => $order));
 			}
 			else {
-				return Video::all(array('conditions' => array('(title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?) AND visibility = ?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query), Config::getValue_('vid_visibility_public')), 'order' => $order));
+				$all = Video::all(array('conditions' => array('(title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?) AND visibility = ? OR visibility = ?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query), Config::getValue_('vid_visibility_public'), Config::getValue_('vid_visibility_only_subscribers')), 'order' => $order));
 			}
+
+			foreach ($all as $video){
+				if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+					$videos[] = $video;
+				}
+			}
+
+			return $videos;
 		}
 	}
 	
 	public static function getSearchVideosByTags($tags_array, $order, $contain_all = false) {
-		
+		$videos = array();
 		if($order == "none"){
 			$order = "timestamp desc";
 		}
@@ -388,11 +430,18 @@ class Video extends ActiveRecord\Model {
 		}
 		$sql_string .= $contain_all ? " 1" : " 0";
 		
-		$cond[] = $sql_string.' AND visibility = ?';
+		$cond[] = 'visibility = ? OR visibility = ? AND '.$sql_string;
 		$cond = array_merge($cond, $args);
 		$cond[] = Config::getValue_('vid_visibility_public');
+		$cond[] = Config::getValue_('vid_visibility_only_subscribers');
 
-		return Video::all(array('conditions' =>$cond, 'order' => $order));
+		$all = Video::all(array('conditions' =>$cond, 'order' => $order));
+		foreach ($all as $video){
+			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				$videos[] = $video;
+			}
+		}
+		return $videos;
 	}
 	
 	public static function getDataForGraphByDay() {

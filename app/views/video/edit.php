@@ -29,6 +29,7 @@
 					<option value="2" <?php echo ($video->visibility == 2) ? 'selected="selected"' : ''; ?>>Publique</option>
 					<option value="1" <?php echo ($video->visibility == 1) ? 'selected="selected"' : ''; ?>>Non listée</option>
 					<option value="0" <?php echo ($video->visibility == 0) ? 'selected="selected"' : ''; ?>>Privée</option>
+					<option value="4" <?php echo ($video->visibility == 4) ? 'selected="selected"' : ''; ?>>Seulement les abonnés</option>
 				</select>
 			</label>
 

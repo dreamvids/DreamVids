@@ -8,9 +8,16 @@ class UserChannel extends ActiveRecord\Model {
 
 	static $table_name = 'users_channels';
 
-	public function getPostedVideos($publicOnly = true) {
+	public function getPostedVideos($publicOnly = false) {
 		$visibility = ($publicOnly) ? 'AND visibility = '.Config::getValue_('vid_visibility_public') : '';
-		return Video::all(array('conditions' => array("poster_id = ? AND visibility != ? ".$visibility, $this->id, Config::getValue_('vid_visibility_suspended')), 'order' => 'timestamp desc'));
+		$all = Video::all(array('conditions' => array("poster_id = ? AND visibility != ? ".$visibility, $this->id, Config::getValue_('vid_visibility_suspended')), 'order' => 'timestamp desc'));
+		foreach ($all as $video){
+			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				$videos[] = $video;
+			}
+		}
+
+		return $videos;
 	}
 	
 	public function getAllViews() {

@@ -58,6 +58,12 @@ class VideoController extends Controller {
 			
 			return new ViewResponse('video/private', $data);
 		}
+		elseif (($video->isSubscribersOnly() && !Session::get()->hasSubscribedToChannel($video->poster_id)) && (!Session::isActive() || $video->poster_id != Session::get()->getMainChannel()->id)) {
+			$data['author'] = $author;
+			$data['video'] = $video;
+
+			return new ViewResponse('video/subscribers_only', $data);
+		}
 		
 		if ($playlist != false) {
 			$videos_ids = json_decode($playlist->videos_ids);
@@ -169,7 +175,7 @@ class VideoController extends Controller {
 						$tags = $req['video-tags'];
 						$visibility = $req['video-visibility'];
 	
-						if(Utils::validateVideoInfo($title, $description, $tags) && in_array($visibility, array(0, 1, 2))) {
+						if(Utils::validateVideoInfo($title, $description, $tags) && in_array($visibility, array(0, 1, 2, 4))) {
 							$video->updateInfo($title, $description, $tags, $req['_FILES_']['tumbnail'], $visibility);
 							$data['video'] = $video;
 	
