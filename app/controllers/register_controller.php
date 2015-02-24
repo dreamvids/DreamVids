@@ -37,7 +37,7 @@ class RegisterController extends Controller {
 					if(isset($req['pass-confirm'])) {
 						if(isset($req['mail'])) {
 						    if(isset($req["g-recaptcha-response"])){
-						    	if (isset($reg['CGU']) && $req['CGU'] == 'CGU') {
+						    	if (isset($req['CGU']) && $req['CGU'] == 'CGU') {
 									$data = $_POST;
 									$data['currentPageTitle'] = 'Inscription';
 									$data["currentPage"] = "register";
