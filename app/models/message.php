@@ -4,9 +4,9 @@ class Message extends ActiveRecord\Model {
 
 	static $table_name = 'messages';
 
-	public static function sendNew($sender, $conversation, $content) {
+	public static function sendNew($sender, $conversation, $content, $timeOffset = 0) {
 		$id = Message::generateId(6);
-		$timestamp = Utils::tps();
+		$timestamp = Utils::tps() + $timeOffset;
 
 		$message = Message::create(array(
 			'id' => $id,
