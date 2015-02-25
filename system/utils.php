@@ -201,8 +201,8 @@ class Utils {
 		return strpos($fileHeaders[0], '200 OK') !== false;
 	}
 
-	public static function getVideoCardHTML($vid) {
-		return '<div class="card video">
+	public static function getVideoCardHTML($vid, $card_new = "") {
+		return '<div class="card video'.$card_new.'">
 				<div class="thumbnail bg-loader" data-background-load-in-view data-background="'.$vid->getThumbnail().'">
 					<div class="time">'.self::sec2ms($vid->duration).'</div>
 					<a href="'.WEBROOT.'watch/'.$vid->id.'" class="overlay"></a>

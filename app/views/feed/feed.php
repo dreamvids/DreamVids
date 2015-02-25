@@ -48,7 +48,7 @@
 					$channel_action = (UserChannel::exists($action->channel_id)) ? Utils::secureActiveRecordModel(UserChannel::find($action->channel_id)) : false;
 					if ($channel_action !== false) {
 						if($action->type == 'upload' && Video::exists($action->target)) {
-							echo Utils::getVideoCardHTML(Utils::secureActiveRecordModel(Video::find($action->target)));
+							echo Utils::getVideoCardHTML(Utils::secureActiveRecordModel(Video::find($action->target)), $supp_class);
 						}
 						else if($action->type == "subscription" && UserChannel::exists($action->target)) {
 							$target_channel = UserChannel::find($action->target);
