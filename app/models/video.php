@@ -407,15 +407,5 @@ GROUP BY day";
 		}
 		return $result;
 	}
-	
-	public static function filterVideos($videos) {
-		$vids = array();
-		foreach ($videos as $video){
-			if(($video->visibility == Config::getValue_('vid_visibility_public')) || (Session::isActive() && $video->visibility == Config::getValue_('vid_visibility_only_subscribers') && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-				$vids[] = $video;
-			}
-		}
-		return $vids;
-	}
 
 }
