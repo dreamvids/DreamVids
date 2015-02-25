@@ -102,10 +102,10 @@ class Video extends ActiveRecord\Model {
 		$this->description = $newDescription;
 		$this->tags = $newTags;
 		$this->tumbnail = Utils::upload($newThumbnail, 'img', $this->id, $this->poster_id, $this->getThumbnail(), true);
-		$this->visibility = (in_array($newVisibility, array(0, 1, 2))) ? $newVisibility : 0;
+		$this->visibility = $newVisibility;
 		$this->save();
 		
-		if ($newVisibility == 2 && !ChannelAction::exists(array('channel_id' => $this->poster_id, 'type' => 'upload', 'target' => $this->id))) {
+		if ($newVisibility == Config::getValue_('vid_visibility_public') && !ChannelAction::exists(array('channel_id' => $this->poster_id, 'type' => 'upload', 'target' => $this->id))) {
 			Video::sendUploadNotification($this->id, $this->poster_id);
 		}
 	}
@@ -309,25 +309,15 @@ class Video extends ActiveRecord\Model {
 	public static function getDiscoverVideos($number = 10) {
 		$videos = array();
 		$all = Video::all(array('conditions' => 'discover != 0 AND visibility=2 OR visibility=4', 'order' => 'discover desc', 'limit' => $number));
-		foreach ($all as $video){
-			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-				$videos[] = $video;
-			}
-		}
-
-		return $videos;
+		
+		return Video::filterVideos($all);
 	}
 	
 	public static function getLastVideos($number = 10) {
 		$videos = array();
 		$all = Video::all(array('conditions' => 'visibility=2 OR visibility=4', 'order' => 'timestamp desc', 'limit' => $number));
-		foreach ($all as $video){
-			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-				$videos[] = $video;
-			}
-		}
-
-		return $videos;
+		
+		return Video::filterVideos($all);
 	}
 
 	public static function getSubscriptionsVideos($userId, $amount='nope') {
@@ -357,26 +347,13 @@ class Video extends ActiveRecord\Model {
 		else
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 OR visibility=4 AND poster_id IN ".$subs." ORDER BY timestamp DESC");
 
-		foreach ($vidsToAdd as $video){
-			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-				array_push($videos, $video);
-			}
-		}
-
-		return $videos;
+		return Video::filterVideos($vidsToAdd);
 	}
 	
 	public static function getBestVideos($limit = 'nope') {
-		$videos = array();
-
 		$limit = ($limit == 'nope') ? 30 : $limit;
 		$all = Video::all(array('conditions' => 'visibility=2 OR visibility=4', 'order' => 'likes/(dislikes+1) desc', 'limit' => $limit));
-		foreach ($all as $video){
-			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-				$videos[] = $video;
-			}
-		}
-		return $videos;
+		return Video::filterVideos($all);
 	}
 
 	public static function getReportedVideos($limit = 'nope') {
@@ -389,8 +366,6 @@ class Video extends ActiveRecord\Model {
 	}
 	
 	public static function getSearchVideos($query, $order="none") {
-		$videos = array();
-
 		if($order == "none"){
 			$order = "timestamp desc"; 
 		}
@@ -404,18 +379,11 @@ class Video extends ActiveRecord\Model {
 				$all = Video::all(array('conditions' => array('(title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?) AND visibility = ? OR visibility = ?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query), Config::getValue_('vid_visibility_public'), Config::getValue_('vid_visibility_only_subscribers')), 'order' => $order));
 			}
 
-			foreach ($all as $video){
-				if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-					$videos[] = $video;
-				}
-			}
-
-			return $videos;
+			return Video::filterVideos($all);
 		}
 	}
 	
 	public static function getSearchVideosByTags($tags_array, $order, $contain_all = false) {
-		$videos = array();
 		if($order == "none"){
 			$order = "timestamp desc";
 		}
@@ -436,12 +404,7 @@ class Video extends ActiveRecord\Model {
 		$cond[] = Config::getValue_('vid_visibility_only_subscribers');
 
 		$all = Video::all(array('conditions' =>$cond, 'order' => $order));
-		foreach ($all as $video){
-			if(($video->visibility == 2) || ($video->visibility == 4 && Session::get()->hasSubscribedToChannel($video->poster_id))) {
-				$videos[] = $video;
-			}
-		}
-		return $videos;
+		return Video::filterVideos($all);
 	}
 	
 	public static function getDataForGraphByDay() {
@@ -455,6 +418,15 @@ GROUP BY day";
 			$result[] = [date("Y-m-d",$value->day) , $value->count];
 		}
 		return $result;
+	}
+	
+	public static function filterVideos($videos) {
+		foreach ($videos as $video){
+			if(($video->visibility == Config::getValue_('vid_visibility_public')) || ($video->visibility == Config::getValue_('vid_visibility_only_subscribers') && Session::get()->hasSubscribedToChannel($video->poster_id))) {
+				$videos[] = $video;
+			}
+		}
+		return $videos;
 	}
 
 }

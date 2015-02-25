@@ -66,6 +66,7 @@
 			<option value="2">Publique</option>
 			<option value="1">Non listée</option>
 			<option value="0">Privée</option>
+			<option value="4">Seulement les abonnés</option>
 		</select>
 
 		<br>
