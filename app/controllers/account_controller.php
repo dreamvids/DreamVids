@@ -208,7 +208,7 @@ class AccountController extends Controller {
 
 	public function videos($id, $request) {
 		if(Session::isActive()) {
-			$data['videos'] = UserChannel::find($id)->getPostedVideos();
+			$data['videos'] = UserChannel::find($id)->getPostedVideos(false);
 			$data['currentPageTitle'] = 'Mon compte';
 			$data['current'] = 'videos';
 			
