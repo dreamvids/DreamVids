@@ -4,6 +4,7 @@
 		"menu": {
 			"home": "Accueil",
 			"news": "Nouveautés",
+			"lives": "Lives",
 			"flux": "Flux d'activité",
 			"upload": "Uploader",
 			"live": "Diffuser",

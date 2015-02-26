@@ -15,5 +15,9 @@ class LiveAccess extends ActiveRecord\Model {
 	public static function grantedForUser($user) {
 		return LiveAccess::exists(array('user_id' => $user->id));
 	}
+	
+	public static function getOnlines() {
+		return LiveAccess::all(array('conditions' => array('online' => 1)));
+	}
 
 }

@@ -133,6 +133,7 @@
 							$notifs = ($nb_notifs > 0) ? 'data-new="'.$nb_notifs.'"' : ''; ?>
 								<li <?php echo (in_array(Utils::getCurrentURI(), array('', 'home'))) ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT; ?>"><?php echo Translator::get("header.menu.home"); ?></a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'news') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'news'; ?>"><?php echo Translator::get("header.menu.news"); ?></a></li>
+								<li <?php echo (Utils::getCurrentURI() == 'news/lives') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'news/lives'; ?>"><?php echo Translator::get("header.menu.lives"); ?></a></li>
 								<li <?php echo $notifs; echo (Utils::getCurrentURI() == 'feed') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'feed'; ?>"><?php echo Translator::get("header.menu.flux"); ?></a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'upload') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'upload'; ?>"><?php echo Translator::get("header.menu.upload"); ?></a></li>
 								<li <?php echo (Utils::getCurrentURI() == 'lives') ? 'class="current"' : ''; ?>><a href="<?php echo WEBROOT.'lives'; ?>"><?php echo Translator::get("header.menu.live"); ?></a></li>

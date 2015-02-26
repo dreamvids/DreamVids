@@ -5,6 +5,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 
 require_once MODEL.'video.php';
+require_once MODEL.'live_access.php';
 
 class NewsController extends Controller {
 
@@ -21,6 +22,13 @@ class NewsController extends Controller {
 		$data['vids'] = Video::getLastVideos(50);
 
 		return new ViewResponse('news/news', $data);
+	}
+	
+	public function lives($request) {
+		$data = array();
+		$data['lives'] = LiveAccess::getOnlines();
+		
+		return new ViewResponse('news/lives', $data);
 	}
 
 	// Denied actions
