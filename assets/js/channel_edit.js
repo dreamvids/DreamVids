@@ -77,7 +77,7 @@ function checkNameAvailable(event, input, currentName) {
 					var msg_el = document.getElementById("avaiabilityNameMessage");
 
 					msg_el.style.color = result.available ? "#40A6E0" : "red";
-					msg_el.innerHTML = result.available ? (eventChange ? "Ce pseudo parfait !" : "Ce pseudo est correct") : "Nom indisponible...";
+					msg_el.innerHTML = result.available ? (eventChange ? "Ce pseudo est parfait !" : "Ce pseudo est correct") : "Nom indisponible...";
 					
 					msg_el.style.color = input.value.length < 3 ? "red" : msg_el.style.color;
 					msg_el.innerHTML = input.value.length < 3 ? "Le nom doit faire plus de 3 caractères" : msg_el.innerHTML;
