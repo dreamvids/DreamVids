@@ -17,7 +17,7 @@
 	cursor: pointer;
 	line-height: 41px;
 
-	@media (min-width: 800px) { display: none; }
+	@media (min-width: 950px) { display: none; }
 
 	@include transition(0.2s);
 
