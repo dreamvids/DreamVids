@@ -1,0 +1,88 @@
+
+/* 404 TEXT
+   ============================= */
+
+.error-404 .text {
+
+	left: 0;
+
+	display: inline-block;
+	width: 100%;
+	max-width: 50%;
+	min-height: 350px;
+	margin-top: 180px;
+	line-height: 1.4;
+	padding: 0;
+	
+	color: #40a6e0;
+	font-size: 17px;
+
+	@media (max-width: 1015px) {
+
+		padding: 0;
+		width: 100%;
+
+	}
+
+	@media (max-width: 750px) {
+		
+		padding: 0;
+		max-width: 100%;
+		width: 100%;
+		min-height: 100%;
+		margin-top: 20px;
+		margin-bottom: 10px;
+
+	}
+
+	@media (max-width: 350px) {
+
+		margin-top: 0;
+		margin-bottom: 5px;
+
+	}
+
+	.inner-text {
+
+		float: right;
+		width: auto;
+		padding: 15px;
+
+		@media (max-width: 1015px) {
+
+			float: left;
+			max-width: 450px;
+
+		}
+
+		@media (max-width: 760px) { max-width: 100%; }
+
+		@media (max-width: 750px) {
+			
+			width: auto;
+			padding: 15px;
+
+		}
+
+	}
+
+	h1 {
+
+		margin-bottom: 20px;
+
+		font-size: 30px;
+		font-weight: normal;
+		text-transform: uppercase;
+
+		@media (max-width: 350px) { font-size: 26px; }
+
+	}
+
+	a {
+
+		color: #40a6e0;
+		text-decoration: underline;
+		
+	}
+
+}

@@ -1,0 +1,19 @@
+
+/* PLAYLIST
+   ============================= */
+
+.playlist {
+
+	position: relative;
+
+	display: block;
+	width: 100%;
+	height: 185px;
+	margin: 10px 0 0 0;
+	padding-top: 10px;
+
+	background: #F1F0F0;
+
+	@include z-depht(1);
+
+}

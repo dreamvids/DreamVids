@@ -1,0 +1,214 @@
+
+/* TOP RIGHT HEADER
+   ============================= */
+
+.header .top .inner .right .user-information {
+
+	display: inline-block;
+	vertical-align: top;
+	text-align: right;
+
+	margin-top: 5px;
+
+	@media (max-width: 700px) {
+
+		text-align: right;
+
+		.user-information-button {
+
+			h4 { display: none; }
+
+			.arrow { margin-left: 15px; }
+
+		}
+
+	}
+
+	.user-information-button {
+
+		position: relative;
+
+		display: inline-block;
+		height: 35px;
+		margin-left: 0;
+		padding: 8px 15px;
+		
+		vertical-align: top;
+		cursor: pointer;
+
+		@include transition(.2s);
+		@include border-radius((35px + 2 * 8px) / 2);
+
+		&.user-information-button--active {
+
+			background-color: $nav_top_hover;
+			padding-bottom: 12px;
+
+			@include border-radius((35px + 2 * 8px) / 2  (35px + 2 * 8px) / 2  0  0);
+			
+		}
+
+		img:first-child {
+
+			width: 35px;
+			height: 35px;
+
+			border-radius: 30px;
+
+		}
+
+		img,
+		h4 {
+
+			position: relative;
+
+			display: inline-block;
+
+			vertical-align: middle;
+			color: $nav_texts;
+
+		}
+
+		h4 {
+
+			position: relative;
+
+			margin-left: 20px;
+			margin-right: 20px;
+
+			font-weight: normal;
+			font-size: 14px;
+			font-weight: bold;
+
+		}
+
+		&:hover {
+
+			background-color: $nav_top_hover;
+
+		}
+
+	}
+
+	.connection {
+
+		display: inline-block;
+		width: 179px;
+		height: 30px;
+		padding-top: 17px;
+		
+		text-align: center;
+		font-size: 14px;
+
+		@include box-sizing;
+
+		p {
+
+			display: inline;
+			margin-left: 7px;
+			margin-right: 7px;
+			
+			color: #e8e8e8;
+
+		}
+
+	}
+
+	.user-information-button {
+
+		position: relative;
+
+		display: inline-block;
+		margin-left: 0;
+		padding-right: 15px;
+		
+		vertical-align: top;
+
+		img,
+		h4 {
+
+			position: relative;
+
+			display: inline-block;
+
+			vertical-align: middle;
+			color: $nav_texts;
+
+		}
+
+		h4 {
+
+			position: relative;
+
+			margin-left: 20px;
+			margin-right: 20px;
+
+			font-weight: normal;
+			font-size: 14px;
+			font-weight: bold;
+
+		}
+
+	}
+
+	.user-information-button:hover {
+
+		color: $nav_top_hover;
+		cursor: pointer;
+
+	}
+
+	.user-information-menu {
+
+		position: absolute;
+		top: 54px;
+		right: 0;
+		z-index: 101;
+		
+		display: inline;
+		width: 0;
+
+		overflow: hidden;
+
+		-webkit-clip-path: circle(0px at 95% -20px);
+		   -moz-clip-path: circle(0px at 95% -20px);
+				clip-path: circle(0px at 95% -20px);
+
+		@include border-radius(0  0  10px  10px);
+		@include transition(all 0);
+
+		&.user-information-menu--show {
+
+			width: auto;
+
+			-webkit-clip-path: circle(200% at 95% -20px);
+			   -moz-clip-path: circle(200% at 95% -20px);
+					clip-path: circle(200% at 95% -20px);
+
+			@include transition(#{"-webkit-clip-path .6s, -moz-clip-path .6s, clip-path .6s"});
+
+		}
+
+		ul a {
+
+			position: relative;
+
+			display: block;
+			width: 210px;
+			margin-top: 2px;
+			margin-bottom: -2px;
+			padding: 10px 15px;
+			
+			background-color: #5b5b5b;
+			font-size: 14px;
+
+			@include box-sizing;
+			@include transition(.1s);
+
+			&:hover { background-color: lighten(#5b5b5b, 20%); }
+
+		}
+
+	}
+
+}

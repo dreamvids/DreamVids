@@ -1,0 +1,123 @@
+{
+    "name": "English",
+    "header": {
+        "menu": {
+            "home": "Home",
+            "news": "News",
+            "flux": "Notifications",
+            "upload": "Upload",
+            "live": "Broadcast",
+            "videos": "My Videos",
+            "user_submenu": {
+                "account": "My account",
+                "channels": "My channels",
+                "playlists": "My playlists",
+                "messages": "My messages",
+                "logout": "Log Out",
+                "login": "Log In",
+                "register": "Register"
+            }
+        },
+        "search": "Search"
+    },
+    "common": {
+        "subscriber": "Subscriber",
+        "subscriptions": "Subscriptions",
+        "time": {
+            "minute": "minute",
+            "hour": "hour",
+            "day": "day",
+            "month": "month",
+            "week": "week",
+            "year": "year"
+        },
+        "button": {
+            "save": "Save",
+            "settings": "Settings",
+            "new": "New",
+            "validate": "Validate"
+        }
+    },
+    "pages": {
+        "home": {
+            "title": "Home"
+        },
+        "news": {
+            "title": "News"
+        },
+        "flux": {
+            "title": "Notifications"
+        },
+        "upload": {
+            "title": "Upload",
+            "form": {
+                "private": "Private",
+                "thumbnail": "Video thumbnail",
+                "title": "Title"
+            },
+            "instruction_1": "Post your video file in this area to upload it",
+            "instruction_2": "(Or select your file manually by clicking the cloud)"
+        },
+        "live": {
+            "title": "My broadcasts"
+        },
+        "account": {
+            "title": "Member area",
+            "sub_menu": {
+                "language": {
+                    "title": "Languages",
+                    "language_label": "Language : "
+                },
+                "infos": {
+                    "title": "Informations",
+                    "mail": "Email address",
+                    "pseudo": "Username"
+                },
+                "password": {
+                    "title": "Password"
+                },
+                "messages": {
+                    "title": "Bulletin board"
+                },
+                "videos": {
+                    "title": "Videos"
+                },
+                "channels": {
+                    "title": "Channels",
+                    "new_channel": "Create a new channel"
+                },
+                "notifications": {
+                    "notified_upload": "Be notified when "
+                }
+            }
+        },
+        "videos": {
+            "watch": {
+                "share": "Share",
+                "autoplay": "Autoplay",
+                "view": "view",
+                "admin": {
+                    "suspend": "Suspend"
+                },
+                "start_at": "Start at",
+                "download": "Download",
+                "tags": "Tags"
+            }
+        }
+    },
+    "footer": {
+        "about": "About us",
+        "language": "Change language, EN",
+        "contributors": "Contributors",
+        "tos": "TOS",
+        "shop": "Shop",
+        "dev_blog": "Development blog",
+        "partners": "Parterns",
+        "become_partner": {
+            "title": "Want to become a partner ?",
+            "popup": "Send a Mail at \\'partenaires [at] dreamvids.fr\\'"
+        },
+        "social": "Social",
+        "made-with": "Made with "
+    }
+}

@@ -1,16 +1,14 @@
-RewriteEngine On
-RewriteRule ^signup$ index.php?page=reg [L]
-RewriteRule ^login$ index.php?page=log [L]
-RewriteRule ^logout$ index.php?page=log&out [L]
-RewriteRule ^profile$ index.php?page=profile [L]
-RewriteRule ^videoproperties-([a-zA-Z0-9]+)$ index.php?page=videoproperties&vidId=$1 [L]
-RewriteRule ^mail$ index.php?page=mail [L]
-RewriteRule ^manager$ index.php?page=manager [L]
-RewriteRule ^@(.+)$ index.php?page=member&name=$1 [L]
-RewriteRule ^pass$ index.php?page=pass [L]
-RewriteRule ^upload$ index.php?page=upload [L]
-RewriteRule ^discover$ index.php?page=vidslist&mode=discover [L]
-RewriteRule ^subscriptions$ index.php?page=vidslist&mode=subscriptions [L]
-RewriteRule ^search$ index.php?page=vidslist&mode=search [L]
-RewriteRule ^videoslist$ index.php?page=vidslist [L]
-RewriteRule ^&([a-zA-Z0-9]+)$ index.php?page=watch&vid=$1 [L]
+Options -indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^(.*)$ index.php?uri=/$1 [L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 index.php
+</IfModule>

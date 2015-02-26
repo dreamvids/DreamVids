@@ -1,0 +1,45 @@
+<div class="content">
+
+	<section class="profile">
+		<h1 class="title">Chaînes</h1>
+		
+		<?php
+			include VIEW.'layouts/account_menu.php';
+			include VIEW.'layouts/messages.php';
+		?>
+
+		<div class="moderating-commands">
+			<a href="<?php echo WEBROOT.'channels/add'; ?>">
+				<button class="blue big" name="create-channel">Créer une nouvelle chaîne</button>
+			</a>
+		</div>
+
+		<aside class="long-cards-list">
+
+			<?php foreach ($channels as $chan): ?>
+				<div class="card channel long">
+					<a href="<?php echo WEBROOT.'channel/'.$chan->name; ?>">
+						<div class="avatar bg-loader" data-background="<?php echo $chan->getAvatar(); ?>"></div>
+					</a>
+
+					<div class="description">
+						<a href="<?php echo WEBROOT.'channel/'.$chan->name; ?>"><b><?php echo $chan->name; ?></b></a>
+						<?php if (!$chan->isUsersMainChannel(Session::get()->id) && Session::get()->id == $chan->owner_id) { ?>
+							<br>
+						<?php } ?>
+						<a href="<?php echo WEBROOT.'channel/'.$chan->id.'/edit'; ?>"><button>Paramètres</button></a>
+						<?php if (!$chan->isUsersMainChannel(Session::get()->id) && Session::get()->id == $chan->owner_id) { ?>
+						<button class="red" onclick="eraseChannel('<?php echo $chan->id; ?>')">Supprimer</button>
+						<?php }
+						if ($chan->isUsersMainChannel(Session::get()->id)) { ?>
+							<b class="principal">Chaîne principale</b>
+						<?php } ?>
+
+						<span class="subscriber"><b><?php echo number_format($chan->subscribers); ?></b> Abonnés</span>
+					</div>
+				</div>
+			<?php endforeach ?>
+			
+		</aside>
+
+</div>

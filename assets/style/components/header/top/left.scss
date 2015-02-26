@@ -1,0 +1,53 @@
+
+/* TOP LEFT HEADER
+   ============================= */
+
+.header .top .inner .left {
+
+	display: inline-block;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	z-index: 9999;
+
+	a {
+
+		position: absolute;
+		left: 0;
+		top: 0;
+
+		z-index: 9999;
+		display: block;
+		height: 60px;
+		width: 180px;
+
+		cursor: pointer;
+
+		.top-nav-icon-logo { 
+
+			margin-top: 15px; 
+			z-index: 99999;
+
+		}
+
+		.top-nav-text-logo {
+
+			position: relative;
+			left: 15px;
+			top: -4px;
+
+			height: 17px;
+
+			z-index: 99999;
+
+		}
+
+		.top-nav-icon-logo {
+
+			height: 27px;
+
+		}
+
+	}
+
+}

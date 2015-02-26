@@ -1,0 +1,37 @@
+
+/* PRINCIPALS LAYOUTS
+   ============================= */
+
+.content {
+
+	display: block;
+	width: 100%;
+	max-width: 1000px;
+	margin: auto;
+	overflow: hidden;
+	
+}
+
+.center {
+
+	width: 100%;
+	clear: both;
+	
+	position: relative;
+	top: 20px;
+	margin: 0;
+	margin-bottom: 40px;
+	text-align: center;
+	overflow: hidden;
+
+}
+
+.middle {
+
+	width: 100%;
+	max-width: 600px;
+	margin: auto;
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+}

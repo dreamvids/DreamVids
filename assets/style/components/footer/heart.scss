@@ -1,0 +1,65 @@
+
+/* FOOTER HEART
+   ============================= */
+
+.footer .inner .rights .love {
+
+    float: right;
+
+    @media (max-width: 900px) {
+
+        float: none;
+        display: block;
+        margin-bottom: 15px;
+
+    }
+
+    i {
+
+        color: #f2749b;
+
+        @include prefix(animation, footer-heart-animation 2s ease-in 0s infinite normal);
+
+    }
+
+}
+
+@-webkit-keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}
+
+@-moz-keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}
+
+@-ms-keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}
+
+@-o-keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}
+
+@keyframes footer-heart-animation {
+
+    0%   { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+    50%  { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 1.0)"}; }
+    100% { text-shadow: 0 0 20px #{"rgba(213, 9, 60, 0.2)"}; }
+
+}

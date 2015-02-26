@@ -1,0 +1,42 @@
+
+/* FOOTER ROW
+   ============================= */
+
+.footer .inner .row {
+
+	float: left;
+
+	display: block;
+	width: 30%;
+	margin: 5px 2% 30px 0;
+
+	@media (max-width: 600px) {
+
+		width: 45%;
+		margin: 5px 2% 30px 2%;
+
+	}
+
+	@media (max-width: 500px) { width: 90%; }
+
+	h1 {
+
+		margin-bottom: 5px;
+		color: #333;
+		font-size: 20px;
+
+	}
+
+	a {
+
+		display: block;
+		margin-top: 3px;
+
+		color: #848b90;
+		text-decoration: none;
+
+		&:hover { text-decoration: underline; }
+
+	}
+
+}

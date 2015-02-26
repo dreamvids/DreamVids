@@ -1,37 +1,21 @@
-# DreamVids
+![DreamVids](/img/banniere.png "DreamVids v2")
 
-> New, Free, Open Source and French Videos sharing platform.
+Core rework & new design for the DreamVids video sharing platform
+This project is using [SysDream2](https://github.com/Quadrifoglio/SysDream-2) as a base.
 
-![DreamVids](img/blue_logo.png "DreamVids")
+##Dependencies
 
-[dreamvids.fr](http://dreamvids.fr/)
-Twitter : [@DreamVids_](https://twitter.com/DreamVids_)
-FaceBook : [/dreamvids](https://www.facebook.com/dreamvids)
+###Back
+This project is using php-activerecord as an ORM library for accessing the database.
+To install all required dependencies, just install composer and type "composer install" in a command prompt.
 
-###For NginX Config :
+###Front
+Le développement front-end necessite quelques [dépendances à installer](https://github.com/DreamVids/DreamVids/blob/dreamvids-2.0/assets/README.md).
 
-delete the .htaccess & place this code in your nginx config
+##Authors
 
-<pre>
-# nginx configuration
+Back-end development: [Peter Cauty](https://github.com/Vetiore), [Quadrifoglio](https://github.com/Quadrifoglio), [Snapcube](https://github.com/Snapcube)
 
-location = /home {
-  rewrite ^(.*)$ /index.php?page=home break;
-}
+Design: [DarkWos](https://twitter.com/darkwos1), [LowiSky](https://github.com/LowiSky)
 
-location = /signin {
-  rewrite ^(.*)$ /index.php?page=reg break;
-}
-
-location = /login {
-  rewrite ^(.*)$ /index.php?page=log break;
-}
-
-location = /logout {
-  rewrite ^(.*)$ /index.php?page=log&out break;
-}
-
-location = /profile {
-  rewrite ^(.*)$ /index.php?page=profile;
-}
-</pre>
+Front-end development: [Dimou](https://github.com/dimitrinicolas), [LowiSky](https://github.com/LowiSky), [mxcmaxime](https://github.com/mxcmaxime)

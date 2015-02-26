@@ -1,0 +1,191 @@
+
+/**
+ * main.scss
+ *
+ * MAIN STYLESHEET
+ */
+
+
+/* IMPORT
+   ----------------------------- */
+
+@import "import/dreamplayer.min.scss";
+
+/* VARIABLES
+   ----------------------------- */
+
+@import "variables/colors";
+@import "variables/sizes";
+@import "variables/others";
+
+/* MIXINS
+   ----------------------------- */
+
+@import "mixins/border-radius";
+@import "mixins/box-shadow";
+@import "mixins/box-sizing";
+@import "mixins/fonts";
+@import "mixins/outline";
+@import "mixins/prefix";
+@import "mixins/transform";
+@import "mixins/transition";
+@import "mixins/user-select";
+@import "mixins/z-depht";
+
+/* EXTENDS
+   ----------------------------- */
+
+@import "extends/background-cover";
+@import "extends/center";
+@import "extends/coverer";
+@import "extends/preserve-3d";
+
+/* BASE
+   ----------------------------- */
+
+@import "base/reset";
+@import "base/font-loader";
+@import "base/body";
+@import "base/layouts";
+@import "base/bg-loader";
+
+/* COMPONENTS
+   ----------------------------- */
+
+    /* === TYPOGRAPHY === */
+
+    @import "components/typography/titles.scss";
+    @import "components/typography/live-creation-paragraph.scss";
+
+    /* === HEADER === */
+
+    @import "components/header/header.scss";
+
+        @import "components/header/top/top.scss";
+        @import "components/header/top/left.scss";
+        @import "components/header/top/center.scss";
+        @import "components/header/top/center-search.scss";
+        @import "components/header/top/right.scss";
+        @import "components/header/top/right-user-information.scss";
+    
+        @import "components/header/bottom/bottom.scss";
+        @import "components/header/bottom/nav.scss";
+        @import "components/header/bottom/nav-li.scss";
+        @import "components/header/bottom/nav-social.scss";
+        @import "components/header/bottom/mobile-nav-icon.scss";
+    
+    /* === FOOTER === */
+    
+    @import "components/footer/footer.scss";
+    @import "components/footer/inner.scss";
+    @import "components/footer/row.scss";
+    @import "components/footer/rights.scss";
+    @import "components/footer/heart.scss";
+    
+    /* === 404 === */
+    
+    @import "components/404/404.scss";
+    @import "components/404/text.scss";
+    
+        @import "components/404/illustration/illustration.scss";
+        @import "components/404/illustration/cloud.scss";
+        @import "components/404/illustration/rain.scss";
+        @import "components/404/illustration/rain-li.scss";
+
+    /* === BUTTONS === */
+
+    @import "components/btn/btn";
+    @import "components/btn/flat";
+    @import "components/btn/raised";
+
+    /* === RIPPLES === */
+
+    @import "components/ripple/ripple";
+    @import "components/ripple/circle";
+    @import "components/ripple/animate";
+    
+	/* === PLAYER === */
+    
+        @import "components/player/cast.scss";
+        @import "components/player/live-offline.scss";
+	    @import "components/player/redirect-at-end.scss";
+
+    /* === CARDS === */
+
+    @import "components/cards/card.scss";
+    @import "components/cards/card-video.scss";
+    @import "components/cards/card-comment.scss";
+    @import "components/cards/card-plus.scss";
+    @import "components/cards/card-channel.scss";
+    
+    /* === CARDS LISTS === */
+    
+    @import "components/cards-lists/aside-cards-list.scss";
+    @import "components/cards-lists/column-cards-list.scss";
+    @import "components/cards-lists/full-cards-list.scss";
+    @import "components/cards-lists/long-cards-list.scss";
+    
+    /* === WATCH === */
+
+    @import "components/watch/watch-page-player.scss";
+
+        /* === PLAYLIST === */
+
+        @import "components/watch/playlist/playlist.scss";
+        @import "components/watch/playlist/title.scss";
+        @import "components/watch/playlist/videos.scss";
+        @import "components/watch/playlist/video.scss";
+        @import "components/watch/playlist/button.scss";
+
+        /* === VIDEO INFOS === */
+
+        @import "components/watch/video-infos/share-video-block.scss";
+        @import "components/watch/video-infos/share-live-block.scss";
+
+        /* === LIVE CHAT === */
+
+        @import "components/watch/video-infos/live-chat/live-chat.scss";
+        @import "components/watch/video-infos/live-chat/input.scss";
+        @import "components/watch/video-infos/live-chat/messages.scss";
+        @import "components/watch/video-infos/live-chat/message.scss";
+
+    /* === CHANNEL === */
+
+        @import "components/channel/content/social-message-form.scss";
+
+    /* === BUG === */
+
+    @import "components/bug/bug.scss";
+
+    /* === COOKIES === */
+
+    @import "components/cookie-box/cookie.scss";
+
+
+
+// A INTEGRER PROPREMENT AUX COMPONENTS :
+
+@import "old-style/aside-channels.scss";
+@import "old-style/annotations-tools.scss";
+@import "old-style/wide-content.scss";
+@import "old-style/embed.scss";
+@import "old-style/home-large-modal.scss";
+@import "old-style/player.scss";
+@import "old-style/tabs.scss";
+@import "old-style/pagination.scss";
+@import "old-style/upload-animation.scss";
+@import "old-style/upload-large-modal.scss";
+@import "old-style/wide-channel.scss";
+@import "old-style/contributors.scss";
+@import "old-style/forms.scss";
+@import "old-style/messages.scss";
+@import "old-style/moderating-commands.scss";
+@import "old-style/bug-content.scss";
+@import "old-style/bug-large-modal.scss";
+@import "old-style/message.scss";
+@import "old-style/suspended.scss";
+@import "old-style/channel-admin.scss";
+@import "old-style/video/comments.scss";
+@import "old-style/video/titre.scss";
+@import "old-style/video/video-infos.scss";
+@import "old-style/video/comment-form.scss";

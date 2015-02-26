@@ -1,0 +1,73 @@
+
+/* TITLES
+   ============================= */
+
+h1.title {
+
+	margin: 30px 0 25px 15px;
+	font-size: 25px;
+	color: #858484;
+
+	@media (max-width: 630px) { margin-left: 10px; }
+
+	a {
+
+		color: #ccc;
+		font-size: 20px;
+
+		&:hover        { color: #aaa; }
+		&:hover:before { color: #ccc; }
+
+		&:before { content: " / "; }
+
+	}
+
+}
+
+.title a {
+
+	color: $blue;
+	border-bottom: 1px solid $blue;
+
+}
+
+h3.title {
+
+	margin-left: 5%;
+
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 90px;
+	color: #858484;
+
+}
+
+h1.title:after,
+h3.title:after {
+
+	position: relative;
+
+	display: block;
+	height: 4px;
+	width: 25px;
+	border: none;
+	
+	content: "";
+
+}
+
+h1.title:after {
+
+	bottom: -5px;
+
+	background-color: #dddedd;
+
+}
+
+h3.title:after {
+
+	bottom: 30px;
+
+	background-color: #f1f0f0;
+
+}

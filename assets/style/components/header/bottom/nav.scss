@@ -1,0 +1,35 @@
+
+/* BOTTOM NAV HEADER
+   ============================= */
+
+.header .bottom nav {
+
+	position: relative;
+	left: -10px;
+	display: inline-block;
+
+	@media (max-width: 800px) {
+
+		position: fixed;
+		top: 0;
+		margin-left: -210px;
+		z-index: 100;
+
+		height: 100%;
+
+		background-color: darken($nav_bottom_background, 5%);
+
+		&.open {
+
+			margin-left:  -5px;
+
+			@include box-shadow(0 0 0 700px #{"rgba(0, 0, 0, 0.5)"});
+
+		}
+
+		@include box-shadow(0 0 0 700px transparent);
+		@include transition(0.2s);
+
+	}
+
+}

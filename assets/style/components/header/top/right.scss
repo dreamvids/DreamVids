@@ -1,0 +1,22 @@
+
+/* TOP RIGHT HEADER
+   ============================= */
+
+.header .top .inner .right {
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	display: inline-block;
+	height: 60px;
+
+	@media (max-width: 450px) {
+
+		position: absolute;
+		top: 0;
+		right: 0;
+
+	}
+
+}

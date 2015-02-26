@@ -1,0 +1,190 @@
+#uploader {
+    overflow: hidden;
+    cursor: pointer;
+
+    #upload-illustration {
+        position: relative;
+        top: 80px;
+
+        display: block;
+        width: 300px;
+        height: 160px;
+        margin: auto;
+        overflow: hidden;
+
+        .cloud {
+            position: relative;
+            z-index: 50;
+            
+            display: block;
+            width: 300px; 
+            height: 100px;
+            margin: 0;
+            margin-top: 60px;
+            
+            background-color: #40a6e0;
+            border-radius: 20% 20% 20% / 50% 50%;
+            line-height: 60px;
+
+            &:after,
+            &:before {
+                z-index: -1;
+
+                position: absolute;
+                width: 60%;
+
+                content: "";
+                background-color: #40a6e0;
+            }
+            &:after {
+                top: -50%;
+                left: 10%;
+
+                height: 130%;
+
+                border-radius: 90% 120% 0 100%;
+            }
+            &:before {
+                top: -60%;
+                right: 8%;
+
+                height: 150%;
+
+                border-radius: 90% 100% 50% 0;
+            }
+        }
+    
+        #arrowUpload {
+            position: relative;
+            top: -5%;
+            
+            display: block;
+            width: 0;
+            height: 0;
+            margin: auto;
+
+            border-style: solid;
+            border-width: 0 50px 60px 50px;
+            border-color: transparent transparent white transparent;
+
+            -webkit-transition: top 0.5s;
+               -moz-transition: top 0.5s;
+                -ms-transition: top 0.5s;
+                 -o-transition: top 0.5s;
+                    transition: top 0.5s;
+
+            &:after {
+                position: relative;
+                top: 60px;
+
+                display: block;
+                width: 45px;
+                height: 100px;
+                margin-left: -22px;
+
+                content: "";
+                background-color: white;
+            }
+        }
+    }
+
+    &:hover,
+    .hover {
+        #upload-illustration {
+            #arrowUpload { top: -20%; }
+        }
+    }
+
+    &.uploading {
+        #upload-illustration {
+            #arrowUpload {
+                position: relative;
+                left: 2px;
+                top: -25px;
+
+                width: 35%;
+                height: 0;
+                padding-bottom: 35%;
+                
+                border: none;
+                background: white;
+                border-radius: 50%;
+
+                -webkit-animation: uploading 0.5s ease-in-out infinite alternate;
+                   -moz-animation: uploading 0.5s ease-in-out infinite alternate;
+                    -ms-animation: uploading 0.5s ease-in-out infinite alternate;
+                     -o-animation: uploading 0.5s ease-in-out infinite alternate;
+                        animation: uploading 0.5s ease-in-out infinite alternate;
+    
+                &:after { display: none; }
+            }
+        }
+    }
+
+    &.uploaded {
+        #upload-illustration {
+            #arrowUpload {
+                position: relative;
+                top: -20%!important;
+                left: 0;
+                    
+                display: block;
+                width: 100%;
+    
+                border: none;
+
+                &:after {
+                    position: relative;
+                    top: 20px;
+                    left: 0;
+                    margin: auto;
+
+                    display: block;
+                    width: 100%;
+
+                    content: attr(data-uploaded-message);
+                    background: transparent;
+                    color: white;
+                    font-size: 50px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@-webkit-keyframes uploading {
+    to {
+        width: 25%;
+        padding-bottom: 25%;
+        top: -5px;
+    }
+}
+@-moz-keyframes uploading {
+    to {
+        width: 25%;
+        padding-bottom: 25%;
+        top: -5px;
+    }
+}
+@-ms-keyframes uploading {
+    to {
+        width: 25%;
+        padding-bottom: 25%;
+        top: -5px;
+    }
+}
+@-o-keyframes uploading {
+    to {
+        width: 25%;
+        padding-bottom: 25%;
+        top: -5px;
+    }
+}
+@keyframes uploading {
+    to {
+        width: 25%;
+        padding-bottom: 25%;
+        top: -5px;
+    }
+}

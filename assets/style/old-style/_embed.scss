@@ -1,0 +1,35 @@
+body.embeded {
+    margin: 0;
+    padding: 0;
+
+    #player {
+        width: 100%!important;
+        height: 100%;
+    	margin: 0!important;
+    }
+
+    #widescreen { display: none; }
+
+    #annotationsButton { right: 140px!important; }
+
+    #qualityButton     { right: 123px!important; }
+
+    #volume            { right:  56px!important; }
+
+    #separation        { right:  32px!important; }
+
+    #DreamVidsIconEmbed {
+    	position: absolute;
+    	bottom: 4px;
+    	left: 50%;
+        
+        display: block;
+        width: 48px;
+        height: 24px;
+        margin-left: -24px;
+        
+        background-image: url(../img/icon_logo.png);
+        background-size: 48px 24px;
+    	cursor: pointer;
+    }
+}
