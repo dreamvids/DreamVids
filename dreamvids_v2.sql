@@ -310,5 +310,15 @@ CREATE TABLE `videos_votes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `staff_contact_details` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NOT NULL,
+	`tel_1` VARCHAR(50) NULL DEFAULT NULL,
+	`tel_2` VARCHAR(50) NULL DEFAULT NULL,
+	`email` VARCHAR(50) NULL DEFAULT NULL,
+	`push_bullet_email` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `user_id` (`user_id`)
+) ENGINE=InnoDB;
 
 -- 2014-11-17 19:49:15
