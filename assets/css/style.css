@@ -846,7 +846,6 @@ h3.title:after {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 9999;
     display: block;
     height: 60px;
     width: 180px;
@@ -1114,7 +1113,7 @@ h3.title:after {
 /* BOTTOM HEADER
    ============================= */
 .header .bottom {
-  height: 45px;
+  height: 44px;
   background-color: #f1f0f0; }
   .header .bottom .inner {
     position: relative;
@@ -1127,7 +1126,7 @@ h3.title:after {
   position: relative;
   left: -10px;
   display: inline-block; }
-  @media (max-width: 800px) {
+  @media (max-width: 950px) {
     .header .bottom nav {
       position: fixed;
       top: 0;
@@ -1152,13 +1151,13 @@ h3.title:after {
 .header .bottom nav li {
   position: relative;
   display: inline-block;
-  width: 110px;
+  width: 96px;
   margin-left: 10px;
-  line-height: 46px;
+  line-height: 44px;
   text-transform: uppercase;
   font-size: 14px;
   text-align: center; }
-  @media (max-width: 800px) {
+  @media (max-width: 950px) {
     .header .bottom nav li {
       display: block;
       width: 200px;
@@ -1166,19 +1165,12 @@ h3.title:after {
       @media (max-width: 350px) {
         .header .bottom nav li {
           width: 170px; } }
-      .header .bottom nav li:after {
-        position: absolute;
-        top: 2px;
-        left: 15px;
-        width: 4px;
-        height: 34px;
-        opacity: 0; }
       .header .bottom nav li:hover:after, .header .bottom nav li.current:after {
         width: 4px;
         opacity: 1; } }
   .header .bottom nav li:after {
     position: relative;
-    top: -4px;
+    top: -3px;
     display: block;
     width: 0;
     height: 3px;
@@ -1186,6 +1178,14 @@ h3.title:after {
     content: "";
     background-color: #40a6e0;
     opacity: 0; }
+    @media (max-width: 950px) {
+      .header .bottom nav li:after {
+        position: absolute;
+        top: 4px;
+        left: 15px;
+        width: 4px;
+        height: 34px;
+        opacity: 0; } }
     @media (min-width: 640px) {
       .header .bottom nav li:after {
         -webkit-transition: 0.15s;
@@ -1194,10 +1194,9 @@ h3.title:after {
   .header .bottom nav li:hover:after, .header .bottom nav li.current:after {
     width: 100%;
     opacity: 1; }
-    @media (max-width: 800px) {
+    @media (max-width: 950px) {
       .header .bottom nav li:hover:after, .header .bottom nav li.current:after {
-        left: 0;
-        width: 80%; } }
+        width: 4px; } }
   .header .bottom nav li a {
     color: #959595; }
   .header .bottom nav li a:hover {
@@ -1254,7 +1253,7 @@ h3.title:after {
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
   transition: 0.2s; }
-  @media (min-width: 800px) {
+  @media (min-width: 950px) {
     .header .bottom .mobile-nav-icon {
       display: none; } }
   .header .bottom .mobile-nav-icon p {
