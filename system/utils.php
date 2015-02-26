@@ -211,7 +211,7 @@ class Utils {
 					<a href="'.WEBROOT.'watch/'.$vid->id.'"><h4>'.$vid->title.'</h4></a>
 					<div>
 						<span class="view">'.number_format($vid->views).'</span>
-						<a class="channel" href="'.WEBROOT.'channel/'.$vid->poster_id.'">'.UserChannel::getNameById($vid->poster_id).'</a>
+						<a class="channel" href="'.WEBROOT.'channel/'.UserChannel::find($vid->poster_id)->name.'">'.UserChannel::getNameById($vid->poster_id).'</a>
 					</div>
 				</div>
 			</div>';

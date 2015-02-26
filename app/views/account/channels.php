@@ -18,12 +18,12 @@
 
 			<?php foreach ($channels as $chan): ?>
 				<div class="card channel long">
-					<a href="<?php echo WEBROOT.'channel/'.$chan->id ?>">
+					<a href="<?php echo WEBROOT.'channel/'.$chan->name; ?>">
 						<div class="avatar bg-loader" data-background="<?php echo $chan->getAvatar(); ?>"></div>
 					</a>
 
 					<div class="description">
-						<a href="<?php echo WEBROOT.'channel/'.$chan->id; ?>"><b><?php echo $chan->name; ?></b></a>
+						<a href="<?php echo WEBROOT.'channel/'.$chan->name; ?>"><b><?php echo $chan->name; ?></b></a>
 						<?php if (!$chan->isUsersMainChannel(Session::get()->id) && Session::get()->id == $chan->owner_id) { ?>
 							<br>
 						<?php } ?>

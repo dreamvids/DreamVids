@@ -15,7 +15,7 @@
 				</span>
 				<?php } ?>
 				<div id="video-top-channel-infos">
-					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->id; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
+					<a id="video-top-pseudo" href="<?php echo WEBROOT.'channel/'.$author->name; ?>" class="<?php echo $author->isVerified() ? 'validate' : ''; ?>">
 						<?php echo $author->name; ?>
 					</a>
 					<hr>
@@ -222,7 +222,7 @@ foreach ($videos_ids as $vid) {
 						<div class="comment-head">
 							<div class="user">
 								<img src="<?php echo UserChannel::find($comment->poster_id)->getAvatar(); ?>" alt="[Avatar]">
-								<a href="<?php echo WEBROOT.'channel/'.$comment->poster_id; ?>"><?php echo UserChannel::getNameById($comment->poster_id); ?></a>
+								<a href="<?php echo WEBROOT.'channel/'.UserChannel::find($comment->poster_id)->name; ?>"><?php echo UserChannel::getNameById($comment->poster_id); ?></a>
 							</div>
 							<div class="date">
 								<p><?php echo Utils::relative_time($comment->timestamp); ?><?php echo $comment->last_updated_timestamp ? ' (Edité ' .  Utils::relative_time($comment->last_updated_timestamp) .')' : '' ?></p>

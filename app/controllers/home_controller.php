@@ -31,6 +31,7 @@ class HomeController extends Controller {
 			} 
 			$data['subscriptions_vids'] = Video::getSubscriptionsVideos(Session::get()->id, 20);
 			$data['channelId'] = $channel->id;
+			$data['channelName'] = $channel->name;
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 

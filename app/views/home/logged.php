@@ -3,7 +3,7 @@
 	<section>
 		<div id="boxPages" class="channel">
 			<div id="pageChannel">
-				<a href="<?php echo WEBROOT.'channel/'.$channelId; ?>">
+				<a href="<?php echo WEBROOT.'channel/'.$channelName; ?>">
 					<span class="avatar bg-loader" data-background="<?php echo $avatar; ?>"></span>
 					<h3><?php echo Session::get()->username; ?></h3>
 				</a>
