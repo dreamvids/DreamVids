@@ -49,27 +49,44 @@ function eraseChannel(chanId) {
 	}
 }
 
-function checkNameAvailable(input, currentName){
+function checkNameAvailable(event, input, currentName) {
+
+	var eventChange = event.type === "change" ? true : false;
 	
-	var url = 'channels/checkNameAvailable/' + input.value
-	
-	var msg_el = document.getElementById('avaiabilityNameMessage');
-	if(input.value == '' || input.value == currentName){
-		msg_el.innerHTML = '';
+	var url = "/channels/checkNameAvailable/" + input.value;
+
+	var msg_el = document.getElementById("avaiabilityNameMessage");
+
+	if (input.value == "" || !input.value) {
+
+		msg_el.innerHTML = "";
+
 	} 
+
 	else {
 
-		marmottajax.get({
-			'url': _webroot_ + url
-		}).then(function(result) {
-			result = JSON.parse(result);
-			msg_el.style.color = result.available ? 'green' : 'red';
-			msg_el.innerHTML = result.available ? 'Nom disponible !' : 'Nom indisponible';
-			
-			msg_el.style.color = input.value.length < 3 ? 'red' : msg_el.style.color;
-			msg_el.innerHTML = input.value.length < 3 ? 'Le nom doit faire plus de 3 caractères' : msg_el.innerHTML;
-			
-		});
+		marmottajax.json({
+
+			"url": _webroot_ + url
+
+		}).then(function(input, search, eventChange) {
+			return function(result) {
+
+				if (input.value === search) {
+
+					var msg_el = document.getElementById("avaiabilityNameMessage");
+
+					msg_el.style.color = result.available ? "#40A6E0" : "red";
+					msg_el.innerHTML = result.available ? (eventChange ? "Ce pseudo parfait !" : "Ce pseudo est correct") : "Nom indisponible...";
+					
+					msg_el.style.color = input.value.length < 3 ? "red" : msg_el.style.color;
+					msg_el.innerHTML = input.value.length < 3 ? "Le nom doit faire plus de 3 caractères" : msg_el.innerHTML;
+
+				}
+				
+			};
+		}(input, currentName, eventChange));
+
 	}
 
 }
