@@ -145,7 +145,7 @@ class Router {
 						if(method_exists($controller, $methodName)) {
 							unset($uriParameters[0]);
 							unset($uriParameters[2]);
-							if(!$this->isCallableAsAction($uriParameters[1])){
+							if(!$this->isCallableAsAction($methodName)){
 								$response = Utils::getForbiddenResponse();
 							}else{
 								$response = call_user_func_array(array($controller, $methodName), array(Utils::secureArray($uriParameters), $request));								
