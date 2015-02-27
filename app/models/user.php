@@ -2,9 +2,13 @@
 
 require_once MODEL.'user_channel.php';
 require_once MODEL.'user_session.php';
+require_once MODEL.'staff_contact.php';
 
 class User extends ActiveRecord\Model {
-
+	static $has_one = [
+			['details', 'class_name' => 'StaffContact']
+	];
+	
 	public function getMainChannel() {
 		return UserChannel::find_by_name($this->username);
 	}
@@ -344,6 +348,19 @@ class User extends ActiveRecord\Model {
 		
 		return false;
 		
+	}
+	
+	/**
+	 * Return false if staffdetails of $this aren't set.
+	 * @return StaffContact
+	 * 
+	 */
+	public function getStaffDetails(){
+		if(is_object($this->details)){
+			return $this->details;
+		}else{
+			return false;
+		}
 	}
 	
 	
