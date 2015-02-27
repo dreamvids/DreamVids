@@ -49,13 +49,21 @@ function eraseChannel(chanId) {
 	}
 }
 
-function checkNameAvailable(event, input) {
+function checkNameAvailable(event, input, currentName) {
 
-	if (event.type === "change") {
+	var msg_el = document.getElementById("avaiabilityNameMessage");
+
+	console.log(input.value, currentName);
+
+	if (input.value == "" || input.value == currentName) {
+
+		msg_el.innerHTML = "";
+
+	}
+
+	else if (event.type === "change") {
 
 		var url = "/channels/checkNameAvailable/" + input.value;
-
-		var msg_el = document.getElementById("avaiabilityNameMessage");
 
 		if (input.value == "" || !input.value) {
 
@@ -77,7 +85,7 @@ function checkNameAvailable(event, input) {
 						var msg_el = document.getElementById("avaiabilityNameMessage");
 
 						msg_el.style.color = result.available ? "#40A6E0" : "red";
-						msg_el.innerHTML = result.available ? "Ce pseudo est parfait !" : "Nom indisponible...";
+						msg_el.innerHTML = result.available ? "Ce nom est parfait !" : "Nom indisponible...";
 						
 						msg_el.style.color = input.value.length < 3 ? "red" : msg_el.style.color;
 						msg_el.innerHTML = input.value.length < 3 ? "Le nom doit faire plus de 3 caractères" : msg_el.innerHTML;
