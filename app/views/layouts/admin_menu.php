@@ -90,7 +90,7 @@
                         			["icon" => "users", "url" => "user", "right" => ["modo_or_more"]],
                         		
                         		"Coordonnées de la team" =>
-                        		["icon" => "phone", "url" => "staffContactDetails", "right" => ["team_or_more"]],
+                        			["icon" => "phone", "url" => "staffContactDetails", "right" => ["team_or_more"]],
                         		
                         		"Gestion des chaînes" => 
                         			["icon" => "sitemap", "url" => "channel", "right" => ["modo_or_more"]],
