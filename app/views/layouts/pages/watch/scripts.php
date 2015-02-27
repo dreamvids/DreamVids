@@ -29,7 +29,7 @@
 
 	    <?php if (isset($nextVideo)) {
 
-		echo "redirectAtEnd: " . @$nextVideo . ",";
+		echo 'redirectAtEnd: "' . @$nextVideo . '",';
 
 	    } ?>
 	
