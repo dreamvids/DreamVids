@@ -369,7 +369,7 @@ class Video extends ActiveRecord\Model {
 				$all = Video::all(array('conditions' => array('(title LIKE ? OR description LIKE ? OR tags LIKE ? OR poster_id=?) AND visibility = ?', '%'.$query.'%', '%'.$query.'%', '%'.$query.'%', UserChannel::getIdByName($query), Config::getValue_('vid_visibility_public')), 'order' => $order));
 			}
 
-			return Video::filterVideos($all);
+			return $all;
 		}
 	}
 	
