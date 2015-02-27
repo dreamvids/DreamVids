@@ -105,9 +105,13 @@ class Router {
 				else if(count($uriParameters) == 2) {
 					// Example: /posts/latest --> calls the 'latest' method from controller
 					if(method_exists($controller, $uriParameters[1]) || $is_admin) {
-						unset($uriParameters[0]);
-						
-						$response = call_user_func_array(array($controller, $uriParameters[1]), array($request));
+						if(!$this->isCallableAsAction($uriParameters[1])){
+							$response = Utils::getForbiddenResponse();
+						}else{							
+							unset($uriParameters[0]);
+							
+							$response = call_user_func_array(array($controller, $uriParameters[1]), array($request));
+						}
 						Utils::sendResponse($response);
 					}
 					// Exemple: /posts/42
@@ -127,8 +131,11 @@ class Router {
 
 						unset($uriParameters[0]);
 						unset($uriParameters[1]);
-
-						$response = call_user_func_array(array($controller, $methodName), array_merge($uriParameters, array($request)));
+						if(!$this->isCallableAsAction($methodName)){
+							$response = Utils::getForbiddenResponse();
+						}else{
+							$response = call_user_func_array(array($controller, $methodName), array_merge($uriParameters, array($request)));							
+						}
 						Utils::sendResponse($response);
 					}
 					// Example: /posts/42/edit --> call function edit (if it exists)
@@ -138,8 +145,11 @@ class Router {
 						if(method_exists($controller, $methodName)) {
 							unset($uriParameters[0]);
 							unset($uriParameters[2]);
-
-							$response = call_user_func_array(array($controller, $methodName), array(Utils::secureArray($uriParameters), $request));
+							if(!$this->isCallableAsAction($uriParameters[1])){
+								$response = Utils::getForbiddenResponse();
+							}else{
+								$response = call_user_func_array(array($controller, $methodName), array(Utils::secureArray($uriParameters), $request));								
+							}
 							Utils::sendResponse($response);
 						}
 						else {
@@ -203,6 +213,11 @@ class Router {
 			default:
 				break;
 		}
+	}
+	
+	private function isCallableAsAction($method){
+		$array = ['index', 'get', 'create', 'update', 'destroy'];
+		return !in_array($method, $array);
 	}
 
 }
