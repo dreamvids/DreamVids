@@ -54,20 +54,7 @@
 			</div>
 		
 		<div id="boxBest">
-			<h3>Vidéos à découvrir :</h3>	
-
-			<div class="card video">
-								<div class="thumbnail bg-loader" style="height: 75%;" data-background="http://dreamvids.fr/uploads/c_OHlk/xhiT4e.PNG?1423411131"><a href="/watch/xhiT4e" class="overlay"></a></div>
-								<div class="description">
-									<a href="/watch/xhiT4e"><h4>Ciné Pas Sorcier - Les Erreurs Scientifiques dans les films de Science-Fiction</h4></a>
-								</div>
-							</div>
-										<div class="card video">
-								<div class="thumbnail bg-loader" style="height: 75%;" data-background="http://dreamvids.fr/uploads/c_hAod/2GE9te.png?1423236917"><a href="/watch/2GE9te" class="overlay"></a></div>
-								<div class="description">
-									<a href="/watch/2GE9te"><h4>Anniversaire DreamVids - 1 an</h4></a>
-								</div>
-							</div>		
+			<h3>Vidéos à découvrir :</h3>
 			<?php for($i = 0; $i < count($discoverVids); $i++) { ?>
 				<div class="card video">
 					<div class="thumbnail bg-loader" style="height: 75%;" data-background="<?php echo $discoverVids[$i]->getThumbnail(); ?>"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
