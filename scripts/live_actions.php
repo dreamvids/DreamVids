@@ -58,7 +58,7 @@ try {
 
 			$onlineQuery = $pdo->prepare("SELECT `online` FROM `live_accesses` WHERE `stream_name` = ?");
 			$res = $onlineQuery->execute(array($name));
-			if($res["online"] == 0) exit();
+			if($res == 0) exit();
 
 			$onlineQuery = $pdo->prepare("UPDATE `live_accesses` SET `viewers`=`viewers`-1 WHERE `stream_name`=?");
 			$onlineQuery->execute(array($name));
