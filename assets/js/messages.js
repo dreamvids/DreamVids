@@ -142,7 +142,7 @@ function addMessageInDiscution(message) {
 
     var infos = document.createElement('a');
     infos.className = "infos";
-    infos.href = "../channel/" + message.pseudo;
+    infos.href = _webroot_+"channel/" + message.pseudo;
 
     var avatar = document.createElement('a');
     avatar.className = "avatar";
