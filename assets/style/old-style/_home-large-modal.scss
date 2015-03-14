@@ -308,6 +308,13 @@
 				margin-bottom: 30px;
 			}
 
+			@media (max-width: 400px) {
+
+				height: auto;
+				padding-bottom: 28px;
+
+			}
+
 			h3 {
 
 				margin-bottom: 10px;
@@ -362,12 +369,6 @@
 
 				@media (max-width: 970px)  { width: 45%; }
 
-				@media (max-width: 870px) { bottom: 0px; }
-
-				@media (max-width: 400px) { margin: 0 10px;	}
-
-				@media (max-width: 300px) { margin: 0 5px; }
-
 				@media (max-width: 870px) {
 
 					position: relative;
@@ -376,6 +377,17 @@
 
 				}
 
+				@media (max-width: 600px) { margin: 0 10px;	}
+
+				@media (max-width: 400px) {
+
+					width: 95%;
+					margin: 8px 10px 16px 10px;
+
+				}
+
+				@media (max-width: 300px) { margin: 0 5px; }
+
 				&:first-child { left: 0; }
 
 				&:nth-child(2) { right: 0; }
@@ -383,7 +395,6 @@
 				.video-time { display: none; }
 			
 				.video-description .video-bottom-description { display: none; }
-
 
 			}
 

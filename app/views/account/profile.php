@@ -18,7 +18,7 @@
 
 			<label for="username">Pseudo :</label>
 			<span id="avaiabilityNameMessage"></span>
-			<input value="<?php echo $username; ?>" onchange="checkNameAvailable(this, '<?php echo $username; ?>')" type="text" name="username" placeholder="Pseudo"><br />
+			<input value="<?php echo $username; ?>" onchange="checkNameAvailable(event, this, '<?php echo @$username; ?>');" onkeyup="checkNameAvailable(event, this, '<?php echo @$username; ?>');" type="text" name="username" placeholder="Pseudo"><br />
 			
 			<!-- <label for="language">Langue :</label>
 			<select name="language">

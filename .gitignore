@@ -9,7 +9,6 @@ node_modules
 logs
 *.log
 tmp
-.grunt
 *.swp
 
 deployment.properties

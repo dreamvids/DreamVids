@@ -6,6 +6,7 @@
 	<head>
 
 		<meta charset="utf-8">
+		<meta name="theme-color" content="#1a7bd4">
 
 		<link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'style.min.css'; ?>">
 

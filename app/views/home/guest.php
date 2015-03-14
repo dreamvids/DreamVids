@@ -54,7 +54,7 @@
 			</div>
 		
 		<div id="boxBest">
-			<h3>Vidéos à découvrir :</h3>			
+			<h3>Vidéos à découvrir :</h3>
 			<?php for($i = 0; $i < count($discoverVids); $i++) { ?>
 				<div class="card video">
 					<div class="thumbnail bg-loader" style="height: 75%;" data-background="<?php echo $discoverVids[$i]->getThumbnail(); ?>"><a href="<?php echo WEBROOT.'watch/'.$discoverVids[$i]->id; ?>" class="overlay"></a></div>
