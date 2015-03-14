@@ -63,7 +63,7 @@ function checkNameAvailable(event, input, currentName) {
 
 	else if (event.type === "change") {
 
-		var url = "/channels/checkNameAvailable/" + input.value;
+		var url = "channels/checkNameAvailable/" + input.value;
 
 		if (input.value == "" || !input.value) {
 
