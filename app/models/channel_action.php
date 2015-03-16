@@ -38,9 +38,6 @@ class ChannelAction extends ActiveRecord\Model {
 			if(!(count($receiver_ids) > 0)){
 				return ";";
 			}
-			/*$users = User::find($receiver_ids);
-			
-			$users = is_array($users) ? $users : array($users);*/
 			$filtered_receiver_ids = ";";
 			foreach ($receiver_ids as $k => $val) {
 				if (User::exists($val)) {		

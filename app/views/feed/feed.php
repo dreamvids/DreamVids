@@ -175,7 +175,19 @@
 									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
 								</div>							
 							
-						<?php }
+						<?php }else if($action->type == "staff_select"){ 
+							$video = Utils::secureActiveRecordModel(Video::find_by_id($action->target));
+							?>
+							
+								<div class="card<?php echo $supp_class; ?> plus">
+									<a href="<?php echo WEBROOT . 'watch/' . $video->id; ?>">
+										<div class="thumbnail bg-loader" data-background-load-in-view data-background="<?php echo $video->getThumbnail(); ?>"></div>
+										<p><b>Félicitation !</b> Votre vidéo <br><b><?php echo $video->title; ?></b> vient d'être mise en avant sur la page d'accueil !</p>
+									</a>
+									<i><?php echo Utils::relative_time($action->timestamp); ?></i>
+								</div>							
+							
+							<?php }
 					}
 				}
 			}
