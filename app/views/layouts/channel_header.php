@@ -16,7 +16,7 @@
 
 		<div class="left">
 			<span class="bg-loader" data-background="<?php echo $avatar; ?>"></span>
-			<p><?php echo $name; ?></p>
+			<p <?php echo ($verified == 1) ? 'class="validate"' : ''; ?>><?php echo $name; ?></p>
 
 			<?php if(!$channelBelongsToUser): ?>
 				<?php if (Session::isActive()) { ?>
