@@ -9,6 +9,8 @@ class User extends ActiveRecord\Model {
 			['details', 'class_name' => 'StaffContact']
 	];
 	
+	static $default_notifications_settings = ["like" => 1, "comment" => 1, "subscription" => 1, "upload" => 1, "pm" => 1, "staff_select" => 1];
+	
 	public function getMainChannel() {
 		return UserChannel::find_by_name($this->username);
 	}
@@ -225,11 +227,10 @@ class User extends ActiveRecord\Model {
 		$settings = $this->getSettings();
 	
 		if(!isset($settings['notifications'])){
-			$notificationssetting = array("like" => 1, "comment" => 1, "subscription" => 1, "upload" => 1, "pm" => 1);
+			$notificationssetting = self::$default_notifications_settings;
 		}else{
-			$notificationssetting = $settings['notifications'];
+			$notificationssetting = $settings['notifications'] + self::$default_notifications_settings;
 		}
-	
 		return $notificationssetting;
 	}
 	
