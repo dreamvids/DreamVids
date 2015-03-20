@@ -26,6 +26,8 @@
 			<br>
 			<label for="pm">Être notifier lorsque je recois un message privé : <input type="checkbox" value="1" name="pm" <?php echo $pm ? "checked" : "unchecked"; ?> /></label>
 			<br>
+			<label for="staff_select">Être notifier lorsqu'une de mes vidéos est mise en avant par DreamVids : <input type="checkbox" value="1" name="staff_select" <?php echo $staff_select ? "checked" : "unchecked"; ?> /></label>
+			<br>
 			<input type="submit" name="notificationsSubmit" value="<?php echo Translator::get("common.button.save"); ?>">
 		</form>
 	</section>

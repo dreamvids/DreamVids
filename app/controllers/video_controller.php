@@ -254,6 +254,18 @@ class VideoController extends Controller {
 				else if(isset($req['discover']) && (Session::get()->isModerator() || Session::get()->isAdmin())) {
 					$video->discover = Utils::tps();
 					$video->save();
+					
+					$author = $video->getAuthor();
+					$receiver = ChannelAction::filterReceiver($author->admins_ids, "staff_select");
+					
+					ChannelAction::create([
+						'id' => ChannelAction::generateId(6),
+						'channel_id' => $author->id,
+						'recipients_ids' => $receiver,
+						'type' => 'staff_select',
+						'target' => $video->id,
+						'timestamp' => Utils::tps()
+					]);
 					return new Response(200);
 				}
 			}

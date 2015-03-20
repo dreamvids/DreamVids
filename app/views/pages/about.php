@@ -88,8 +88,8 @@
 			</div>
 			<p style="padding-left:70px">
 				<b>Antoine</b><br />
-				Salut à tous, donc moi c'est Antoine, 16 ans, actuellement en terminal STI2D et je suis
-				aussi le directeur Marketing de Dreamvids !
+				Antoine, 17 ans, présent sur Dreamvids depuis ses débuts, en tant que modérateur j'ai finalement eu le droit à une petite promotion ! 
+				Je suis maintenant responsable de communication, j'aimerais me lancer dans le code... mais manque de temps...
 			</p>
 		</div>
 		<div style="margin-bottom:50px">
