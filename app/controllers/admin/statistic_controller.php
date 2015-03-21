@@ -47,7 +47,7 @@ class AdminStatisticController extends AdminSubController {
 		
 		$data['counts'] = $counts;
 		
-		return new ViewResponse('admin/Statistic/index', $data);
+		return new ViewResponse('admin/statistic/index', $data);
 	}
 	
 	
