@@ -15,12 +15,12 @@ require_once MODEL.'event_eggs.php';
  *	<li>Multiple validation (timestamp/found)</li>
  *	<li>Error and Success page</li>
  *	<li>Ranking</li>
+ * <li> Link to login or register if we win find an egg but aren't logged in</li>
  * </ul>
  * @todo 
  * <li> Panel admin</li>
  * <li> JS generation for CAVIcon </li>
  * <li> Integration of the eggs (randomly on the page ? or may be the position can be set in event_eggs.emplacement in a json string ?)</li>
- * <li> Link to login or register if we win find an egg but aren't logged in</li>
  *
  * 
  */

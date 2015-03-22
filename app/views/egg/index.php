@@ -15,7 +15,7 @@
 			
 		</p>	
 		<p class="center">
-			<img src="http://placehold.it/350x350">		
+			<img src="<?php echo IMG . 'eggs/egg_normal.png'; ?>">		
 		</p>	
 	
 </div>

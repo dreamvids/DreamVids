@@ -23,16 +23,14 @@
 		<style type="text/css">
 			.egg{
 				display:block;
-				height: 250px;
-				width: 250px;
-				position:relative;
+				height: 50px;
+				width: 50px;
+				position:absolute;
+			}			
+			.egg:hover{
+				cursor: pointer;
 			}
-			.egg_gold{
-				background: #f39c12;
-			}
-			.egg_normal{
-				background: #27ae60;
-			}
+			
 		</style>
 		
 	</head>
