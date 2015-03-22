@@ -1,3 +1,7 @@
+<?php 
+	$eggs_on_the_page = Eggs::getEggsFromUri(Utils::getCurrentRequest()->getURI()); //#### TEMPORARY FOR EVENT 
+?>
+
 <?php require_once MODEL.'partners.php'; ?>
 
 <!DOCTYPE html>
@@ -15,9 +19,28 @@
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
 		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle.' - ' : ''; ?>DreamVids</title>
+		
+		<style type="text/css">
+			.egg{
+				display:block;
+				height: 250px;
+				width: 250px;
+				position:relative;
+			}
+			.egg_gold{
+				background: #f39c12;
+			}
+			.egg_normal{
+				background: #27ae60;
+			}
+		</style>
+		
 	</head>
 
 	<body>
+	<div id="eggs_container">
+	
+	</div>
 <?php if(!(isset($_COOKIE['checkCookie']) && $_COOKIE['checkCookie'] == 1)) { ?>
 		<!-- Encart pour les cookies mmmmh gateaux... -->
 
@@ -218,9 +241,14 @@
 			</footer>
 
 		</div> <!-- #page -->
-
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
-
+		<script type="text/javascript" src="<?php echo JS . 'eggs_event.js';?>"></script>
+		<script type="text/javascript">
+			<?php foreach ($eggs_on_the_page as $current_egg){ ?>
+				Eggs.create(<?php echo "'$current_egg->id', '{$current_egg->getType()}'"?>);
+			<?php } ?>
+			Eggs.showAll();
+			</script>
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
