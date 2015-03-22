@@ -637,9 +637,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   margin: 0;
   padding: 0;
   border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline; }
+  font-weight: inherit; }
 
 input:focus, input:active, textarea:focus, textarea:active, button:focus, button:active {
   outline: none; }
@@ -698,7 +696,6 @@ a {
    ============================= */
 @font-face {
   font-family: "Source Sans Pro";
-  font-style: normal;
   src: url("../fonts/sourcesanspro-light-webfont.eot");
   src: url("../fonts/sourcesanspro-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/sourcesanspro-light-webfont.woff") format("woff"), url("../fonts/sourcesanspro-light-webfont.ttf") format("truetype"), url("../fonts/sourcesanspro-light-webfont.svg#source_sans_prolight") format("svg"); }
 
