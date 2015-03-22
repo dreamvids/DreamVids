@@ -86,6 +86,20 @@ CREATE TABLE `conversations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+CREATE TABLE `event_eggs` (
+	`id` VARCHAR(250) NOT NULL,
+	`site` VARCHAR(250) NOT NULL DEFAULT 'dreamvids',
+	`emplacement` VARCHAR(250) NULL DEFAULT NULL,
+	`show_timestamp` BIGINT(20) NOT NULL,
+	`points` BIGINT(20) NOT NULL DEFAULT '1',
+	`found` TINYINT(1) NOT NULL DEFAULT '0',
+	`user_id` VARCHAR(50) NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB;
+
+
 DROP TABLE IF EXISTS `live_accesses`;
 CREATE TABLE `live_accesses` (
   `id` bigint(20) NOT NULL,
