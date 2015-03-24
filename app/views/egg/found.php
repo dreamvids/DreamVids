@@ -1,5 +1,5 @@
 <div class="middle">
-	<h1 class="title">Chasse aux oeufs</h1>
+	<h1 class="title">Chasse aux oeufs<a href="<?php echo WEBROOT . 'egg';?>">Plus d'infos</a></h1>
 	
 		<p>
 			Félicitations ! Vous avez trouvé un oeuf <?php echo $egg->points == 3 ? ' en or' : '' ?>!<br>

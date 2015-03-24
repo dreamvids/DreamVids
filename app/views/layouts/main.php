@@ -231,7 +231,7 @@
 			<?php } ?>
 
 			//debug
-			new Egg('5', 'normal');
+			//new Egg('5', 'normal');
 			
 			</script>
 		<script>
