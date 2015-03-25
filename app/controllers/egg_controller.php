@@ -17,6 +17,7 @@ require_once MODEL.'event_eggs.php';
  *	<li>Ranking</li>
  * 	<li> Link to login or register if we win find an egg but aren't logged in</li>
  * 	<li> Panel admin</li>
+ * 	<li> JS generation for CAVIcon </li>
  * </ul>
  * <strong>To improve : </strong>
  * <ul>
@@ -24,7 +25,6 @@ require_once MODEL.'event_eggs.php';
  * </ul>
  * @todo
  * <ul> 
- * 	<li> JS generation for CAVIcon </li>
  * </ul>
  */
 
@@ -39,9 +39,10 @@ class EggController extends Controller {
 	}
 	
 	public function showCaviEggs($request){ //List the eggs for the cavicon's website 
-		$eggs = Eggs::getCaviconEggs();
+		$eggs = Eggs::getCaviconEggs(true);
 		$data = [];
-		return new JavaScriptResponse("egg/index.js", ['eggs' => ['a', 'b', 'c']]);
+		$data['eggs'] = $eggs;
+		return new JavaScriptResponse("egg/index.js", $data);
 	}
 	
 	public function check($id, $request){ //Check if an egg has been found or not

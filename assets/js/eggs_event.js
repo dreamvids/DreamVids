@@ -5,11 +5,14 @@
  * Eggs event
  */
 
-function Egg(id, eggType) {
+function Egg(id, eggType, blank, site) {
 
+	this.blank = blank;
+	this.site = site;
+	
 	this.id = id;
-
 	this.el = document.createElement("img");
+	this.el.id = this.id;
 	this.el.src = _webroot_ + "assets/img/eggs/egg_" + eggType + ".png";
 
 	this.el.onclick = this.onclick.bind(this);
@@ -41,8 +44,13 @@ function Egg(id, eggType) {
 }
 
 Egg.prototype.onclick = function() {
-	
-	document.location = _webroot_ + "egg/" + this.id;
+	if(this.blank == "blank"){
+		/*if(this.site == "cavicon"){ this.checkInterval = setInterval(function() { }, 1000); }*/
+		
+		window.open(_webroot_ + "egg/" + this.id, '_blank');
+	}else{
+		document.location = _webroot_ + "egg/" + this.id;
+	}
 
 };
 

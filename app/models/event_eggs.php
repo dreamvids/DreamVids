@@ -7,8 +7,13 @@ class Eggs extends ActiveRecord\Model {
 		return self::find('all', ['conditions' => ['site' => 'dreamvids'], 'order' => '!found DESC, show_timestamp DESC']);
 	}
 	
-	public static function getCaviconEggs(){
-		return self::find('all', ['conditions' => ['site' => 'cavicon'], 'order' => '!found DESC, show_timestamp DESC']);
+	public static function getCaviconEggs($only_not_found = false){
+		if(!$only_not_found){
+			return self::find('all', ['conditions' => ['site' => 'cavicon'], 'order' => '!found DESC, show_timestamp DESC']);
+		}else{
+			return self::find('all', ['conditions' => ['site' => 'cavicon', 'found' => 0], 'order' => '!found DESC, show_timestamp DESC']);
+		}
+			
 	}
 	
 	public static function generateId(){

@@ -3,7 +3,7 @@
 	<?php include VIEW.'layouts/messages_bootstrap.php'; ?>
 	
 	<div class="col-md-offset-2 col-md-8">
-		<form method="post" action="<?php echo WEBROOT . 'admin/egg'; ?>">
+		<form method="post" action="<?php echo WEBROOT . 'admin/egg/' . $egg->id; ?>">
 		
 		<input type="hidden" name="_method" value="put">
 		

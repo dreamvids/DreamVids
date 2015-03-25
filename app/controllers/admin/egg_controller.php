@@ -26,7 +26,7 @@ class AdminEggController extends AdminSubController{
 					$interval = abs($now - $egg->show_timestamp);
 					
 					$futur = new DateTime(date("c", $egg->show_timestamp));
-					$diff = $futur->diff($date_now)->format("%Y ans, %m mois, %d j et %H:%I:%S restans");
+					$diff = $futur->diff($date_now)->format("%Y ans, %m mois, %d j et %H:%I:%S restant");
 					$data['intervals'][$egg->id] = $diff;
 				}
 			}
@@ -60,8 +60,19 @@ class AdminEggController extends AdminSubController{
 		return $r;
 	}
 	public function update($id, $request){
-		$data = $request->getParameters();
-		var_dump($data);
+		$req = $request->getParameters();
+		$egg = Eggs::find_by_id($id);
+		$str_time = $this->preZero($req['day']).'-'.$this->preZero($req['month']).'-'.$req['year'].' '.$this->preZero($req['hour']).':'.$this->preZero($req['minute']); 
+		$timestamp = strtotime($str_time);
+
+		$egg->show_timestamp = $timestamp;
+		$egg->points = $req['points'];
+		$egg->emplacement = $req['emplacement'];
+		$egg->save();
+		
+		$response = $this->edit($id, $request);
+		$response->addMessage(ViewMessage::success('Modifications sauvegardées'));
+		return $response;
 		
 	}
 	
