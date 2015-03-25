@@ -18,6 +18,6 @@ function loadEggs(){
 			continue;
 		}
 		$type = $egg->points == 3 ? "gold" : "normal";
-		echo "new Egg('{$egg->id}', '$type', 'blank');" . PHP_EOL;
+		echo "new Egg('{$egg->id}', '$type');" . PHP_EOL;
 	} ?>
 }
