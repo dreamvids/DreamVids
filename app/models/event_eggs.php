@@ -4,11 +4,11 @@ class Eggs extends ActiveRecord\Model {
 	static $table_name = 'event_eggs';
 	
 	public static function getDreamvidsEggs(){
-		return self::find('all', ['conditions' => ['site' => 'dreamvids']]);
+		return self::find('all', ['conditions' => ['site' => 'dreamvids'], 'order' => 'show_timestamp DESC']);
 	}
 	
 	public static function getCaviconEggs(){
-		return self::find('all', ['conditions' => ['site' => 'cavicon']]);
+		return self::find('all', ['conditions' => ['site' => 'cavicon'], 'order' => 'show_timestamp DESC']);
 	}
 	
 	public static function generateId(){
@@ -41,7 +41,8 @@ class Eggs extends ActiveRecord\Model {
 				'id' => self::generateId(),
 				'site' => $site,
 				'show_timestamp' => $timestamp,
-				'emplacement' => $emplacement
+				'emplacement' => $emplacement,
+				'points' => $pts
 		]);
 		
 		return $egg;

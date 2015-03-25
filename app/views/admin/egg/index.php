@@ -1,6 +1,6 @@
 <div class="row">
 	<h1>Gestion de l'event "Chasse aux oeufs"</h1>
-	
+	<?php include VIEW.'layouts/messages_bootstrap.php'; ?>
 	<h2>Liste des oeufs : </h2>
 <?php foreach(['Dreamvids' => $dv_eggs, 'CAVIcon' => $cavi_eggs] as $key => $eggs): ?>		
 	<div class="col-lg-12">

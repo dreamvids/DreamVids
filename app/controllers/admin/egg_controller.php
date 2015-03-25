@@ -26,7 +26,7 @@ class AdminEggController extends AdminSubController{
 			break;
 			case 'cavicon' : $data['readable_site'] = 'CAVIcon';
 			break;
-			default : $data['readable_site'] = "[inconnu]";
+			default : return $this->index($request);
 		}
 		return new ViewResponse('admin/egg/add', $data);
 	}
@@ -43,22 +43,29 @@ class AdminEggController extends AdminSubController{
 	}
 	public function update($id, $request){
 		$data = $request->getParameters();
-		$channel = UserChannel::find($id);
+		var_dump($data);
 		
-		$channel->verified = $data['verified'];
-		$channel->description = $data['description'];
-		$channel->save();
-		$data['channel'] = $channel;
-		$data['channel_admin']= User::find($channel->owner_id);
-		$r = new ViewResponse('admin/egg/edit', $data);
-		$r->addMessage(ViewMessage::success("Chaîne modifiée"));
-		return $r;
 	}
 	
-	public function create($request){}
+	public function create($request){
+		$req = $request->getParameters();
+
+		$str_time = $this->preZero($req['day']).'-'.$this->preZero($req['month']).'-'.$req['year'].' '.$this->preZero($req['hour']).':'.$this->preZero($req['minute']); 
+		$timestamp = strtotime($str_time);
+
+		$egg = Eggs::createNewEgg($timestamp, $req['emplacement'], $req['site'], $req['points']);
+		$response = $this->index($request);
+		$response->addMessage(ViewMessage::success('Nouvel oeuf ajouté'));
+		return $response;
+	}
 	public function destroy($id, $request){}
 	
 	public function hasPermission($user) {
 		return Utils::getRankArray($user)['team_or_more'];
 	}
+	
+	private function preZero($input, $number_of_zero = 2) {
+		return str_pad($input, $number_of_zero, 0, STR_PAD_LEFT);
+	}
+	
 }
