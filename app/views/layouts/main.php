@@ -1,3 +1,7 @@
+<?php 
+	$eggs_on_the_page = Eggs::getEggsFromUri(Utils::getCurrentRequest()->getURI()); //#### TEMPORARY FOR EVENT 
+?>
+
 <?php require_once MODEL.'partners.php'; ?>
 
 <!DOCTYPE html>
@@ -15,6 +19,7 @@
 		<link rel="icon" href="<?php echo IMG.'favicon.png'; ?>" />
 
 		<title><?php echo (isset($currentPageTitle)) ? $currentPageTitle.' - ' : ''; ?>DreamVids</title>
+		
 	</head>
 
 	<body>
@@ -218,9 +223,17 @@
 			</footer>
 
 		</div> <!-- #page -->
-
 		<?php isset($currentPage) ? include(VIEW.'layouts/pages/'.$currentPage.'/scripts.php') : include(VIEW.'layouts/pages/default/scripts.php'); ?>
+		<script src="<?php echo JS . 'eggs_event.js';?>"></script>
+		<script>
+			<?php foreach ($eggs_on_the_page as $current_egg){ ?>
+				new Egg(<?php echo "'$current_egg->id', '{$current_egg->getType()}'"?>);
+			<?php } ?>
 
+			//debug
+			//new Egg('5', 'normal');
+			
+			</script>
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

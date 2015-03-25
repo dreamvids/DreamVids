@@ -85,6 +85,8 @@
                         					 "Vidéos" => ["icon" => "video-camera", "url" => "moderation/videos"],
                         					 "Commentaires" => ["icon" => "comments", "url" => "moderation/comments"]]
                         			],
+                        		"Event" =>
+                        			["icon" => "gift", "url" => "egg"],
                         		
                         		"Gestion des utilisateurs" =>
                         			["icon" => "users", "url" => "user", "right" => ["modo_or_more"]],

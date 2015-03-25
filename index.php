@@ -31,6 +31,10 @@ require_once MODEL.'session.php';
 
 require_once CONFIG.'app.php';
 
+// ##### <TEMPORARY>
+require_once MODEL . 'event_eggs.php';
+// #### </TEMPORARY>
+
 Database::connect();
 Session::init();
 
