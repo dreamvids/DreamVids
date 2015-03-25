@@ -13,6 +13,7 @@
 					<th>Points</th>
 					<th>Moment d'apparition</th>
 					<th>Etat</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 
@@ -27,8 +28,15 @@
 						<td><?php echo $egg->id; ?></td>
 						<?php if($key == 'Dreamvids'){?><td><?php echo '/'.$egg->emplacement; ?></td><?php }?>
 						<td><?php echo $egg->points ?></td>
-						<td><?php echo date('d/m/Y à H:i:s', $egg->show_timestamp); ?></td>
+						<td>
+							<?php echo date('d/m/Y à H:i:s', $egg->show_timestamp); ?><br>
+							<?php echo $intervals[$egg->id]; ?>						
+						</td>
 						<td><span class="label label-<?php echo $color_class?>"><?php echo $state ?></span></td>
+						<td>
+							<a href="<?php echo WEBROOT . 'admin/egg/edit/' . $egg->id; ?>" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i></a>
+							<button type="button" onclick="deleteEgg('<?php echo $egg->id ?>')" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+						</td>
 					</tr>
 				<?php endforeach ?>
 			</tbody>

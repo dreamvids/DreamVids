@@ -90,3 +90,16 @@ function eraseComment(commentId) {
 		});
 	}
 }
+
+function deleteEgg(egg_id){
+		if(confirm("ATTENTION ! Supprimer un oeuf déjà trouvé entraine la supression des points de la personne qu'il l'a trouvé.")){
+			$.ajax({
+				type: "DELETE",
+				url: _webroot_ + 'admin/egg/' + egg_id,
+				data: {},
+				success: function(result) {
+					window.location.reload();
+				}
+			});
+		}			
+}

@@ -16,6 +16,21 @@ class AdminEggController extends AdminSubController{
 		$data = [];
 		$data['dv_eggs'] = Eggs::getDreamvidsEggs();
 		$data['cavi_eggs'] = Eggs::getCaviconEggs();
+		$now = Utils::tps();
+		$date_now = new DateTime(date("c", $now));
+		foreach ($data as $k => $eggs) {
+			foreach ($eggs as $k2 => $egg) {
+				if($egg->show_timestamp < $now){
+					$data['intervals'][$egg->id] = '';
+				}else{
+					$interval = abs($now - $egg->show_timestamp);
+					
+					$futur = new DateTime(date("c", $egg->show_timestamp));
+					$diff = $futur->diff($date_now)->format("%Y ans, %m mois, %d j et %H:%I:%S restans");
+					$data['intervals'][$egg->id] = $diff;
+				}
+			}
+		}
 		return new ViewResponse('admin/egg/index', $data);
 	}
 	
@@ -33,13 +48,16 @@ class AdminEggController extends AdminSubController{
 	
 	public function edit($id, $request){
 		$data= [];
-		if($id == '' || !Egg::exists(['id' => $id])) return new RedirectResponse(WEBROOT . 'admin/egg');
+		if($id == '' || !Eggs::exists(['id' => $id])) return new RedirectResponse(WEBROOT . 'admin/egg');
 		
-		$channel = UserChannel::find_by_id($id);
-		$data['channel_admin']= User::find($channel->owner_id);
-		$data['channel'] = $channel;
-		
-		return new ViewResponse('admin/egg/edit', $data);
+		$egg = Eggs::find_by_id($id);
+		$data['egg']= $egg;
+		$data['edit'] = true;
+		$r = new ViewResponse('admin/egg/edit', $data);
+		if($egg->found){
+			$r->addMessage(ViewMessage::error("Attention, cet oeuf a déjà été trouvé par quelqu'un !"));
+		}
+		return $r;
 	}
 	public function update($id, $request){
 		$data = $request->getParameters();
@@ -58,10 +76,10 @@ class AdminEggController extends AdminSubController{
 		$response->addMessage(ViewMessage::success('Nouvel oeuf ajouté'));
 		return $response;
 	}
-	public function destroy($id, $request){}
-	
-	public function hasPermission($user) {
-		return Utils::getRankArray($user)['team_or_more'];
+	public function destroy($id, $request){
+		$egg = Eggs::find($id);
+		$result = $egg->delete();
+		return new JsonResponse(['result' => $result]);
 	}
 	
 	private function preZero($input, $number_of_zero = 2) {
