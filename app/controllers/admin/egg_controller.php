@@ -3,6 +3,7 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
+require_once SYSTEM.'json_response.php';
 require_once SYSTEM.'view_message.php';
 
 class AdminEggController extends AdminSubController{
@@ -90,6 +91,7 @@ class AdminEggController extends AdminSubController{
 	public function destroy($id, $request){
 		$egg = Eggs::find($id);
 		$result = $egg->delete();
+		die ($result ? 'lol' : 'nop');
 		return new JsonResponse(['result' => $result]);
 	}
 	
