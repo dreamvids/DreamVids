@@ -4,7 +4,9 @@
 		<p>
 			Félicitations ! Vous avez trouvé un oeuf <?php echo $egg->points == 3 ? ' en or' : '' ?>!<br>
 			<?php if(Session::isActive()){ ?>
-			Vous avez maintenant <b><?php echo $pts; ?></b> point<?php echo $pts > 1 ? 's' : '' ?> 
+			Vous avez maintenant <b><?php echo $pts; ?></b> point<?php echo $pts > 1 ? 's' : '' ?>.
+			<br>
+			<a href="<?php echo WEBROOT . 'egg/rank'; ?>">Voir le classement</a>
 			<?php }else{ ?>
 			<a href="<?php echo Utils::generateLoginURL(); ?>">Connectez vous</a> ou <a href="<?php echo WEBROOT . 'register'; ?>">Inscrivez-vous</a> pour gagner <?php echo $egg->points ?> point<?php echo $egg->points > 1 ? 's' : '' ?>
 			<?php } ?>
