@@ -10,7 +10,7 @@
 		<p class="center">
 			<ol>
 				<li>Le 1<sup>er</sup> : un passe <b>VIP</b> d'une journée pour la <a href="http://cavicon.fr/" target="_blank">CAVIcon</a></li>
-				<li>Les 2<sup>e</sup> et 3<sup>e</sup> : un passe simple de deux jours pour <a href="http://cavicon.fr/" target="_blank">CAVIcon</a></li>
+				<li>Les 2<sup>e</sup> et 3<sup>e</sup> : un passe simple de deux jours pour la <a href="http://cavicon.fr/" target="_blank">CAVIcon</a></li>
 			</ol>
 			
 		</p>	
