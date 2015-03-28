@@ -91,7 +91,7 @@ class AdminEggController extends AdminSubController{
 	public function destroy($id, $request){
 		$egg = Eggs::find($id);
 		$result = $egg->delete();
-		die ($result ? 'lol' : 'nop');
+
 		return new JsonResponse(['result' => $result]);
 	}
 	
