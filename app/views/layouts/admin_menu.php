@@ -77,7 +77,12 @@
                         			["icon" => "dashboard", "url" => "dashboard"],
                         		
                         		"Statistiques" => 
-                        			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"]],
+                        			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"] , "sub-menu" => 
+                        					["Contenu" => ["icon" => "align-justify", "url" => "statistic"],
+                        					"Accès" => ["icon" => "bar-chart", "url" => "statistic/accesses"]
+                        					]
+                        			],
+                        		
                         		
                         		"Modération" => 
                         			["icon" => "smile-o", "right" => ["modo_or_more"], "sub-menu" => 
