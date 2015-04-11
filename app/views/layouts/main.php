@@ -177,7 +177,7 @@
 						<a href="<?php echo WEBROOT.'pages/tos'; ?>"><?php echo Translator::get("footer.tos"); ?></a>
 						<a href="<?php echo WEBROOT.'pages/cookies'; ?>"><?php echo Translator::get('footer.cookies'); ?></a>
 						<a href="http://dreamvids.spreadshirt.fr/" target="_blank"><?php echo Translator::get("footer.shop"); ?></a>
-						<a href="http://blog.dreamvids.fr/" target="_blank"><?php echo Translator::get("footer.dev_blog"); ?></a>
+						<a href="http://dreamvids.info/" target="_blank"><?php echo Translator::get("footer.dev_blog"); ?></a>
 <?php if(Session::isActive()){ ?>						
 						<a href="<?php echo WEBROOT.'account/language/'?>"><?php echo Translator::get("footer.language"); ?></a>
 <?php } ?>
