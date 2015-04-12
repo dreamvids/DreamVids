@@ -30,4 +30,10 @@
 			<source src="rtmp://dreamvids.fr/stream/<?php echo $chaine; ?>" type="rtmp/flv" />
 		</video>
 	</body>
+	<script>
+	videojs('live-player').ready(function(){
+	  var myPlayer = this; 
+	  myPlayer.play();
+	});
+	</script>
 </html>
