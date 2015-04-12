@@ -3,3 +3,9 @@
 <!-- <link href="//vjs.zencdn.net/4.7/video-js.css" rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css" href="<?php echo isset($css) ? $css : CSS.'video-js.css'; ?>">
 <script src="//vjs.zencdn.net/4.7/video.js"></script>
+<script>
+	videojs('live-player').ready(function(){
+	  var myPlayer = this; 
+	  myPlayer.play();
+	});
+</script>
