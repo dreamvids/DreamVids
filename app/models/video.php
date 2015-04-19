@@ -96,8 +96,14 @@ class Video extends ActiveRecord\Model {
 		$this->tags = $newTags;
 		$this->tumbnail = Utils::upload($newThumbnail, 'img', $this->id, $this->poster_id, $this->getThumbnail(), true);
 		$this->visibility = $newVisibility;
-		$this->save();
 		
+		if($this->published_once == 0 && $newVisibility == Config::getValue_("vid_visibility_public")){
+				$this->timestamp = Utils::tps();
+				$this->published_once = 1;
+		}
+		
+		$this->save();
+
 		if ($newVisibility == Config::getValue_('vid_visibility_public') && !ChannelAction::exists(array('channel_id' => $this->poster_id, 'type' => 'upload', 'target' => $this->id))) {
 			Video::sendUploadNotification($this->id, $this->poster_id);
 		}
@@ -236,7 +242,9 @@ class Video extends ActiveRecord\Model {
 			));
 		}
 	}
-
+	
+	
+	
 	public static function createTemp($id, $channelId, $videoPath, $thumbnailPath, $duration) {
 		Video::create(array(
 			'id' => $id,
@@ -252,7 +260,8 @@ class Video extends ActiveRecord\Model {
 			'dislikes' => 0,
 			'timestamp' => Utils::tps(), // upload start time
 			'visibility' => 0,
-			'flagged' => 0
+			'flagged' => 0,
+			'published_once' => 0
 		));
 	}
 
@@ -263,6 +272,13 @@ class Video extends ActiveRecord\Model {
 		$video->description = $desc;
 		$video->tags = $tags;
 		$video->visibility = (in_array($visibility, array(0, 1, 2))) ? $visibility : 0;
+		
+		if($visibility == Config::getValue_("vid_visibility_public")){
+			$video->published_once = 1;
+		}else {
+			$video->published_once = 0;
+		}
+		
 		$video->tumbnail = Utils::upload($thumb, 'img', $vidId, $channelId, $video->getThumbnail());
 		$video->save();
 					
