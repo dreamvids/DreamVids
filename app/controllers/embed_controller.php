@@ -6,6 +6,7 @@ require_once SYSTEM.'response.php';
 require_once SYSTEM.'redirect_response.php';
 
 require_once MODEL.'video.php';
+require_once MODEL.'live_access.php';
 
 class EmbedController extends Controller {
 	
@@ -43,6 +44,27 @@ class EmbedController extends Controller {
 		else {
 			return new RedirectResponse(WEBROOT);
 			exit();
+		}
+	}
+	
+	public function chat($id, $request) {
+		if (UserChannel::exists(array('name' => $id))) {
+			$data = [];
+			$channel = UserChannel::find(['name' => $id]);
+			$data['channel']= $channel;
+			
+			$access = LiveAccess::find(array('channel_id' => $channel->id));
+			
+			if(is_object($access)){
+				$data['viewers'] = $access->viewers;
+			}else{
+				$data['viewers'] = 0;
+			}
+			
+			return new ViewResponse('embed/chat', $data, false);
+		}
+		else {
+			return Utils::getNotFoundResponse();
 		}
 	}
 	
