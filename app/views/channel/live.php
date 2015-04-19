@@ -64,6 +64,11 @@
 			<br>
 
 			<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="640" height="360" src="//dreamvids.fr/embed/live/<?php echo $channel->name; ?>" allowfullscreen frameborder="0"></iframe>'>
+			
+			<br><br>
+			Intégrer le chat :
+			<br><br>
+			<input id="exporter-input" onclick="this.select();" type="text" spellcheck="false" value='<iframe width="360" height="360" src="//dreamvids.fr/embed/chat/<?php echo $channel->name; ?>" allowfullscreen frameborder="0"></iframe>'>
 			<br>
 			<br>
 			<?php echo Utils::generateShareButtons(array('title' => $currentPageTitle, 'channel' => $channel)); ?>
