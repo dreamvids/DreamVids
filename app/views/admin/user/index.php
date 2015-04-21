@@ -1,5 +1,5 @@
 <div class="row">
-	<h1>Gestion des chaînes </h1>
+	<h1>Gestion des utilisateurs</h1>
 
 	<div class="col-lg-12">
 		<table class="table table-bordered table-hover table-striped table-to-sort">
