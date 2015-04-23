@@ -8,6 +8,8 @@
 		<title>DreamVids - chat du live</title>
 		<script>
 		var _currentpage_ = "live";
+		var _logged_ = <?php echo Session::isActive() ? 'true' : 'false'; ?>;
+		var _webroot_ = "<?php echo WEBROOT ?>";
 		</script>
 		<style>
 						html,
@@ -43,6 +45,9 @@
 		<hr>
 
 		<div class="live-chat">
+		<?php if(!Session::isActive()){ ?>
+		<a target="_blank" href="<?php echo WEBROOT . 'login'?>">Se connecter ou s'inscrire</a>
+		<?php } ?>
 			<div class="live-chat__messages" id="messages-panel"></div>
 		</div>
 			<form class="live-chat__form" method="post" onsubmit="return false;" onclick="document.getElementById('live-chat-input').focus();">
@@ -59,11 +64,24 @@
 			ip: '<?php echo Config::getValue_('livechat-address'); ?>',
 			port: <?php echo Config::getValue_('livechat-port'); ?>,
 			channel: '<?php echo $channel->name; ?>',
-			username: '<?php echo Session::get()->username; ?>',
-			sessionId: '<?php echo Session::getId(); ?>'
+			username: '<?php if(Session::isActive()){ echo Session::get()->username; } ?>',
+			sessionId: '<?php if(Session::isActive()){ echo Session::getId(); } ?>'
 		};
 	
 	</script>
 	<script src="<?php echo JS.'script.js'; ?>"></script>
-	
+	<script type="text/javascript">
+	checkLogged= function (){
+		marmottajax.get({url : _webroot_ + 'login/logged'}).then(function(result){
+			data = JSON.parse(result);
+			if(data.logged && _logged_ === false){
+				location.reload();
+			}
+		});
+		
+	}
+	if(!_logged_){
+		setInterval(checkLogged, 1000);
+	}
+	</script>
 </html>
