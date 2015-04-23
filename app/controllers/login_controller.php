@@ -5,6 +5,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 require_once SYSTEM.'redirect_response.php';
+require_once SYSTEM.'json_response.php';
 
 class LoginController extends Controller {
 
@@ -109,7 +110,11 @@ class LoginController extends Controller {
 			}
 		}
 	}
-
+		
+	public function logged($request){
+		return new JsonResponse(['logged' => Session::isActive()]);
+	}
+	
 	public function get($id, $request) {}
 	public function update($id, $request) {}
 	public function destroy($id, $request) {}
