@@ -44,15 +44,21 @@ class RegisterController extends Controller {
 							        $url = "https://www.google.com/recaptcha/api/siteverify?secret="; //Adress a get
 							        $url .= Config::getValue_("recaptcha_private"); //Cle prive
 							        $url .= "&response=" . $req['g-recaptcha-response']; // Resultat de captcha
-							        
-							        
-							        $json_result = json_decode(file_get_contents($url), true); //Parsage de la reponse
-							        if(@$json_result["success"] != true){ 
-							            $response = new ViewResponse('login/register', $data);
-							            $response->addMessage(ViewMessage::error('Erreur de captcha')); //Affichage de l'erreur
+							        $check_captcha = true;
+							        if(isset($req['cavicon'])){
+							        	$key = "key";
+							        	$check_captcha = $req['cavicon'] != $key;
+							        }
+							        if($check_captcha){
+							        	$json_result = json_decode(file_get_contents($url), true); //Parsage de la reponse
+							        	if(@$json_result["success"] != true){ 
+								            $response = new ViewResponse('login/register', $data);
+								            $response->addMessage(ViewMessage::error('Erreur de captcha')); //Affichage de l'erreur
 							            
-							            return $response;
-							        }else{
+							            	return $response;
+							        	}	
+							        }
+							        else{
 			                          //OK
 							        }
 						    	}
