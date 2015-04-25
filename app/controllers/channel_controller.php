@@ -353,6 +353,7 @@ class ChannelController extends Controller {
 	}
 
 	public function followers($id) {
+		return Utils::getNotFoundResponse();
 		$channel = UserChannel::exists($id) ? UserChannel::find_by_id($id) : UserChannel::find_by_name($id);
 
 		$data = array();
