@@ -16,10 +16,6 @@ class AdminStatisticController extends AdminSubController {
 	}
 	
 	public function index($request) {
-		return $this->graph(0, $request);
-	}
-	
-	public function graph($id, $request){
 		$data = [];
 		//$data['video_graph_data'] = Video::getDataForGraphByDay();
 		
@@ -32,7 +28,10 @@ class AdminStatisticController extends AdminSubController {
 		$counts['channel_user_ratio'] = round($counts['channels'] / $counts['users'], 2);
 		
 		$counts['videos_that_has_comments'] = Statistic::countVideosHavingComments();
+		$counts['channels_having_videos'] = Video::find_by_sql('SELECT count(DISTINCT poster_id) as count from `videos`')[0]->count;
+		
 		$counts['part_of_commented_videos'] = round($counts['videos_that_has_comments']/$counts['videos']*100, 2); 
+		$counts['part_of_channels_having_videos'] = round($counts['channels_having_videos']/$counts['channels']*100, 2);
 		
 		$counts['user_1_channel'] = Statistic::countUserHavingChannels('= 1');
 		$counts['user_2_channel'] = Statistic::countUserHavingChannels('= 2');
@@ -45,11 +44,16 @@ class AdminStatisticController extends AdminSubController {
 		$counts['user_3_channel_part'] = round($counts['user_3_channel']/$counts['users']*100, 2); 
 		$counts['user_more3_channel_part'] = round($counts['user_more3_channel']/$counts['users']*100, 2);
 		
+		
 		$data['counts'] = $counts;
 		
 		return new ViewResponse('admin/statistic/index', $data);
 	}
 	
+	public function accesses($request){
+		header("Location: http://dv.x-share.ga/stats.html");
+		die();
+	}
 	
 	public function create($request){ }
 	public function update($id, $request){ }

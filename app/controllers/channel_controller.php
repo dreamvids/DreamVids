@@ -56,7 +56,6 @@ class ChannelController extends Controller {
 			$data['total_views'] = $channel->getAllViews();
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
-
 			return new ViewResponse('channel/channel', $data);
 		}
 
@@ -317,6 +316,7 @@ class ChannelController extends Controller {
 			$data['total_views'] = $channel->getAllViews();
 			$data['videos'] = $channel->getPostedVideos(true);
 			$data['owner_id'] = $channel->owner_id;
+			$data['verified'] = $channel->verified;
 
 			return new ViewResponse('channel/social', $data);
 		}
@@ -344,11 +344,38 @@ class ChannelController extends Controller {
 			$data['total_views'] = $channel->getAllViews();
 			$data['videos'] = $channel->getPostedVideos();
 			$data['owner_id'] = $channel->owner_id;
+			$data['verified'] = $channel->verified;
 
 			return new ViewResponse('channel/playlists', $data);
 		}
 		else
 			return Utils::getNotFoundResponse();
+	}
+
+	public function followers($id) {
+		return Utils::getNotFoundResponse();
+		$channel = UserChannel::exists($id) ? UserChannel::find_by_id($id) : UserChannel::find_by_name($id);
+
+		$data = array();
+		$data['currentPage'] = 'channel';
+		$data['currentPageTitle'] = $channel->name.' - Followers';
+		$data['current'] = 'followers';
+		$data['id'] = $channel->id;
+		$data['name'] = $channel->name;
+		$data['avatar'] = $channel->getAvatar();
+		$data['background'] = $channel->getBackground();
+		$data['description'] = $channel->description;
+		$data['subscribers'] = $channel->subscribers;
+		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+		$data['posts'] = $channel->getPostedMessages();
+		$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+		$data['total_views'] = $channel->getAllViews();
+		$data['videos'] = $channel->getPostedVideos(true);
+		$data['owner_id'] = $channel->owner_id;
+		$data['followers'] = $channel->subs_list;
+		$data['verified'] = $channel->verified;
+		
+		return  new ViewResponse('channel/followers', $data);
 	}
 
 	public function add($request) {

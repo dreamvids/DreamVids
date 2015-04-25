@@ -261,6 +261,7 @@ CREATE TABLE `videos` (
   `visibility` int(11) NOT NULL,
   `flagged` int(11) NOT NULL DEFAULT '0',
   `discover` bigint(20) NOT NULL,
+  `published_once` TINYINT(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
