@@ -23,11 +23,11 @@
 
 			margin-left:  -5px;
 
-			@include box-shadow(0 0 0 700px #{"rgba(0, 0, 0, 0.5)"});
+			@include box-shadow(0 0 0 900px #{"rgba(0, 0, 0, 0.5)"});
 
 		}
 
-		@include box-shadow(0 0 0 700px transparent);
+		@include box-shadow(0 0 0 900px transparent);
 		@include transition(0.2s);
 
 	}
