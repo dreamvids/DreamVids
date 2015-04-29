@@ -1,5 +1,5 @@
 <section class="middle">
-	<h1 class="title">Inscription <a href="login">Connexion</a></h1>
+	<h1 class="title">Inscription <a href="<?php echo WEBROOT ?>login">Connexion</a></h1>
 
 	<?php @include $messages; ?>
 
