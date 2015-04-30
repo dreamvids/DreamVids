@@ -102,13 +102,13 @@ ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `live_accesses`;
 CREATE TABLE `live_accesses` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `channel_id` varchar(50) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `key` varchar(255) NOT NULL DEFAULT '0',
   `timestamp` bigint(20) NOT NULL DEFAULT '0',
   `online` tinyint(1) NOT NULL DEFAULT '0',
-  `stream_name` varchar(255) NOT NULL,
+  `stream_name` varchar(255) NOT NULL DEFAULT '',
   `viewers` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
