@@ -74,37 +74,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo ASSETS.'admin/'; ?>dist/js/sb-admin-2.js"></script>
-<?php if(isset($video_graph_data)){ ?>
-    <script type="text/javascript">
 
-
-$(function() {
-	<?php 
-	$length = count($video_graph_data);
-	$i = 0;
-	echo "data_ = [";
-	foreach ($video_graph_data as $data) {
-		$i++;
-		echo "{day:\"$data[0]\", count:$data[1]}";
-		echo $i != $length ? "," : "";
-	}
-	echo "];";
-	?>
-    Morris.Area({
-        element: 'videos-morris-area-chart',
-        data: data_,
-        xkey: 'day',
-        ykeys: ['count'],
-        labels: ['Videos postées'],
-        pointSize: 5,
-        hideHover: 'auto',
-        resize: true,
-        smooth:false
-    });
-
-});
-</script>
-    <?php } ?>
 <?php include(VIEW.'layouts/pages/admin/scripts.php'); ?>
 </body>
 
