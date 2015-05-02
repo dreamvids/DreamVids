@@ -52,6 +52,7 @@ DROP TABLE IF EXISTS `chat_mutes`;
 CREATE TABLE `chat_mutes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `channel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `admin_id` bigint(20) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
