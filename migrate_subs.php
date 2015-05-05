@@ -3,7 +3,7 @@ DEFINE('HOST', 'localhost'); 	//you know what these are
 DEFINE('DB', 'dreamvids_v2'); 
 DEFINE('USER', 'root');
 DEFINE('PASS', '');
-DEFINE('DOIT', false); //For testing let it at false
+DEFINE('DOIT', true); //For testing let it at false
 
 	echo "#This script will not modify other tables than `subscriptions`.\n\n";
 if(!DOIT){
@@ -12,7 +12,7 @@ if(!DOIT){
 
 $create_table = 'DROP TABLE IF EXISTS `subscriptions`;
 CREATE TABLE IF NOT EXISTS `subscriptions` (
-  `id` INT(11) NOT NULL AUTOINCREMENT
+  `id` INT(11) NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `channel_id` varchar(255) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
