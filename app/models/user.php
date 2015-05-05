@@ -9,6 +9,12 @@ class User extends ActiveRecord\Model {
 			['details', 'class_name' => 'StaffContact']
 	];
 	
+	static $has_many = [
+			['subscriptions'],
+			['subscribed_channels', 'class_name' => 'UserChannel', 'through' => 'subscriptions']
+			
+	];
+	
 	static $default_notifications_settings = ["like" => 1, "comment" => 1, "subscription" => 1, "upload" => 1, "pm" => 1, "staff_select" => 1];
 	
 	public function getMainChannel() {

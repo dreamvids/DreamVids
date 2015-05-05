@@ -7,7 +7,12 @@ require_once MODEL.'channel_post.php';
 class UserChannel extends ActiveRecord\Model {
 
 	static $table_name = 'users_channels';
-
+	
+	static $has_many = [
+			['subscriptions'],
+			['subscribed_users', 'class_name' => 'user', 'through' => 'subscriptions']
+	];
+	
 	public function getPostedVideos($publicOnly = true) {
 		$visibility = ($publicOnly) ? 'AND visibility = '.Config::getValue_('vid_visibility_public') : '';
 		return Video::all(array('conditions' => array("poster_id = ? AND visibility != ? ".$visibility, $this->id, Config::getValue_('vid_visibility_suspended')), 'order' => 'timestamp desc'));

@@ -14,7 +14,7 @@ $create_table = 'DROP TABLE IF EXISTS `subscriptions`;
 CREATE TABLE IF NOT EXISTS `subscriptions` (
   `id` INT(11) NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `channel_id` varchar(255) NOT NULL,
+  `user_channel_id` varchar(255) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;';
@@ -28,7 +28,7 @@ if(DOIT){
 
 $stmt = $pdo->query('SELECT id, subscriptions FROM `users`'); //On recupere tout depuis user
 
-$request = "INSERT IGNORE INTO `subscriptions` (`user_id`, `channel_id`, `timestamp`) VALUES"; //Début de requette
+$request = "INSERT IGNORE INTO `subscriptions` (`user_id`, `user_channel_id`, `timestamp`) VALUES"; //Début de requette
 
 while($current = $stmt->fetch(PDO::FETCH_ASSOC)){ //On recupere chaque user un par un
 
@@ -51,5 +51,5 @@ echo $request;
 	
 if(DOIT){
 	$pdo->query($request); //Execute INSTER INTO...
-	$pdo->query('DELETE FROM `subscriptions` WHERE `channel_id` NOT IN(SELECT `id` FROM `users_channels`)'); //Clear unexisting channels
+	$pdo->query('DELETE FROM `subscriptions` WHERE `user_channel_id` NOT IN(SELECT `id` FROM `users_channels`)'); //Clear unexisting channels
 }

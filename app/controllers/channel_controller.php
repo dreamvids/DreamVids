@@ -56,6 +56,8 @@ class ChannelController extends Controller {
 			$data['total_views'] = $channel->getAllViews();
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
+			var_dump( Subscription::getSubscribersFromChannelId($channel->id));
+			die;
 			return new ViewResponse('channel/channel', $data);
 		}
 
