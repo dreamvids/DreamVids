@@ -24,7 +24,7 @@
 						<?php echo $subscribed ? 'Se désabonner' : 'S\'abonner'; ?>
 					</button>
 				<?php } else { ?>
-					<a href="<?php echo WEBROOT.'login' ?>">Connectez-vous</a> pour vous abonner a cette chaîne !
+					<a href="<?php echo Utils::generateLoginURL(); ?>">Connectez-vous</a> pour vous abonner a cette chaîne !
 				<?php } ?>
 			<?php endif ?>
 		</div>
