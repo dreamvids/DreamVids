@@ -352,14 +352,13 @@ class ChannelController extends Controller {
 			return Utils::getNotFoundResponse();
 	}
 
-	public function followers($id) {
-		return Utils::getNotFoundResponse();
+	public function subscribers($id) {
 		$channel = UserChannel::exists($id) ? UserChannel::find_by_id($id) : UserChannel::find_by_name($id);
 
 		$data = array();
 		$data['currentPage'] = 'channel';
 		$data['currentPageTitle'] = $channel->name.' - Followers';
-		$data['current'] = 'followers';
+		$data['current'] = 'subscribers';
 		$data['id'] = $channel->id;
 		$data['name'] = $channel->name;
 		$data['avatar'] = $channel->getAvatar();
@@ -372,10 +371,10 @@ class ChannelController extends Controller {
 		$data['total_views'] = $channel->getAllViews();
 		$data['videos'] = $channel->getPostedVideos(true);
 		$data['owner_id'] = $channel->owner_id;
-		$data['followers'] = $channel->subs_list;
+		$data['subs_list'] = empty($channel->subs_list) ? null : explode(';', trim($channel->subs_list, ';'));
 		$data['verified'] = $channel->verified;
 		
-		return  new ViewResponse('channel/followers', $data);
+		return  new ViewResponse('channel/subscribers', $data);
 	}
 
 	public function add($request) {

@@ -201,6 +201,10 @@ class Utils {
 		return strpos($fileHeaders[0], '200 OK') !== false;
 	}
 
+	public static function makeLinks($s) {
+		return preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $s);
+	}
+
 	public static function getVideoCardHTML($vid, $card_new = "") {
 		return '<div class="card video'.$card_new.'">
 				<div class="thumbnail bg-loader" data-background-load-in-view data-background="'.$vid->getThumbnail().'">

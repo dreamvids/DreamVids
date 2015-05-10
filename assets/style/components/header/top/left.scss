@@ -24,8 +24,10 @@
 
 		.top-nav-icon-logo { 
 
-			margin-top: 15px; 
-			z-index: 99999;
+			position: relative;
+			z-index: 50;
+			
+			margin-top: 15px;
 
 		}
 
@@ -34,10 +36,9 @@
 			position: relative;
 			left: 15px;
 			top: -4px;
+			z-index: 50;
 
 			height: 17px;
-
-			z-index: 99999;
 
 		}
 

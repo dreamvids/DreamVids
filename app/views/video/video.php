@@ -215,7 +215,7 @@ foreach ($videos_ids as $vid) {
 					<p>Aucun commentaire à propos de cette video</p>
 				<?php }
 				foreach ($comments as $comment) {
-					$comment->comment = Utils::secure($comment->comment);
+					$comment->comment = Utils::makeLinks(Utils::secure($comment->comment));
 					$margin = $i * 8;
 				?>
 					<div style="width: <?php echo 100 - $margin; ?>%; margin-left:<?php echo $margin; ?>%" class="comment" id="c-<?php echo $comment->id; ?>">

@@ -411,17 +411,5 @@ class Video extends ActiveRecord\Model {
 		return Video::all(array('conditions' =>$cond, 'order' => $order));
 	}
 	
-	public static function getDataForGraphByDay() {
-		$request = "SELECT DISTINCT day , count(*) AS count FROM (
-SELECT *, (ROUND(`timestamp` / (60*60*24))*(60*60*24)) as day FROM `videos`
-ORDER BY `videos`.`timestamp`  DESC) AS temp
-GROUP BY day";
-		$temp = Video::find_by_sql($request);
-		$result = [];
-		foreach ($temp as $k => $value) {
-			$result[] = [date("Y-m-d",$value->day) , $value->count];
-		}
-		return $result;
-	}
 
 }

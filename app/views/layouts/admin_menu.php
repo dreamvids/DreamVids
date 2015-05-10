@@ -79,7 +79,8 @@
                         		"Statistiques" => 
                         			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"] , "sub-menu" => 
                         					["Contenu" => ["icon" => "align-justify", "url" => "statistic"],
-                        					"Accès" => ["icon" => "bar-chart", "url" => "statistic/accesses"]
+                        					"Accès" => ["icon" => "bar-chart", "url" => "statistic/accesses"],
+                        					"Graphiques" => ["icon" => "bar-chart", "url" => "statistic/graph"]
                         					]
                         			],
                         		

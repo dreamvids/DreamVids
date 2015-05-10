@@ -17,8 +17,7 @@ class AdminStatisticController extends AdminSubController {
 	
 	public function index($request) {
 		$data = [];
-		//$data['video_graph_data'] = Video::getDataForGraphByDay();
-		
+
 		$counts = [];
 		$counts['videos'] = Video::count();
 		$counts['users'] = User::count();
@@ -53,6 +52,15 @@ class AdminStatisticController extends AdminSubController {
 	public function accesses($request){
 		header("Location: http://dv.x-share.ga/stats.html");
 		die();
+	}
+	
+	public function graph(){
+		$data = [];
+		$data['data_for_graph']['videos'] = Statistic::getDataForGraph('Video');
+		$data['data_for_graph']['users'] = Statistic::getDataForGraph('User', 'reg_timestamp');
+		$data['data_for_graph']['videos_year'] = Statistic::getDataForGraph('Video', 'timestamp', 3600*24*30*12, 3600*24*30, "Y-m");
+		$data['data_for_graph']['users_year'] = Statistic::getDataForGraph('User', 'reg_timestamp', 3600*24*30*12, 3600*24*30, "Y-m");
+		return new ViewResponse('admin/statistic/graph', $data);
 	}
 	
 	public function create($request){ }
