@@ -8,7 +8,7 @@
 <script src="<?php echo JS."video.js"; ?>"></script>
 <script src="<?php echo JS."comment.js"; ?>"></script>
 <!-- <script src="<?php echo JS."player.js"; ?>"></script> -->
-<script src="<?php echo JS."dreamplayer.min.js"; ?>"></script>
+<script src="<?php echo JS."dreamplayer.min.js?r=2"; ?>"></script>
 <script src="<?php echo JS."subscribe.js"; ?>"></script>
 <script src="<?php echo JS.'admin.js'; ?>"></script>
 <script src="<?php echo JS.'marmottajax.js'; ?>"></script>
