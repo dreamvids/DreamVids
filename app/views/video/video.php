@@ -28,6 +28,7 @@
 				<?php } ?>
 			</h1>
 		</div>
+		<div id="video_status"></div>
 	</div>
 
     <div id="player-div" class="watch-page-player"></div>
