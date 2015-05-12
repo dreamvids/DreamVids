@@ -57,4 +57,25 @@
 	
 	});
 
+
+	marmottajax(_webroot_ + 'videos/<?php echo $video->id; ?>/status').then(
+			function(data){
+				data = JSON.parse(data);
+				switch (data.sd.status) {
+				case "no" : console.log('No resolution availlable yet');
+					break;
+				case "doing" : console.log('SD may not be totally done');
+					break;
+				case "ok" : console.log('SD fully availlable... Checking HD');
+					switch (data.hd.status) {
+						case "no" : console.log('No hd availiable yet, but sd is ok');
+							break;
+						case "doing" : console.log('HD may not be totally done');
+							break;
+						case "ok" : console.log('HD fully availiable');
+					}
+				}					
+			}
+	);
+
 </script>
