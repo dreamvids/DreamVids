@@ -16,7 +16,7 @@ class Request {
 		$this->protocol = $protocol;
 		$this->method = $method;
 		$this->acceptedData = $acceptedData;
-		$this->fullURI = "http://".@$_SERVER[HTTP_HOST].@$_SERVER[REQUEST_URI];
+		$this->fullURI = "http://".@$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
 		$uri = trim($uri, '?');
 		if(Utils::stringEndsWith($uri, '.json')) {
 			$this->acceptedData .= ',application/json';

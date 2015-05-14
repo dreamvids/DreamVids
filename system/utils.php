@@ -488,5 +488,10 @@ class Utils {
 				"team" => $user->isTeam()
 		];
 	}
-	 
+
+	public static function getHTTPStatusCodeFromURL($url){
+		$headers = get_headers($url);
+		return substr($headers[0], 9, 3);	
+	}
+	
 }

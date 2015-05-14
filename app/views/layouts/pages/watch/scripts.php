@@ -57,4 +57,49 @@
 	
 	});
 
+	function showErrorMessage(elem_id, type, message){
+		
+		msg = document.createElement('div');
+		msg.className = 'message ' + type;
+
+		icon = document.createElement('div');
+		icon.className = 'message-icn';
+		icon.style.background = "#ffc519";
+
+		icon_img = document.createElement('img');
+		icon_img.src = '<?php echo IMG; ?>message_' + type + '_icon.png';
+		icon_img.alt = "Message de " + type;
+
+		text = document.createElement('p');
+		text.innerHTML = message;
+
+		icon.appendChild(icon_img);
+		msg.appendChild(icon);
+		msg.appendChild(text);
+
+		document.getElementById(elem_id).appendChild(msg);
+	}
+
+	marmottajax(_webroot_ + 'videos/<?php echo $video->id; ?>/status').then(
+			function(data){
+				data = JSON.parse(data);
+				switch (data.sd.status) {
+				case "no" : showErrorMessage('video_status', 'warning','Cette vidéo est encore en conversion, merci de patienter.');
+					break;
+				case "doing" : showErrorMessage('video_status', 'warning','Cette vidéo est encore en conversion mais la "SD" est peut être disponible');
+					break;
+				case "ok" : console.log('SD fully available... Checking HD');
+					switch (data.hd.status) {
+						case "no" : showErrorMessage('video_status', 'warning','Seule la "SD" est disponible, la "HD" est en cours de conversion');
+							break;
+						case "doing" : showErrorMessage('video_status', 'warning','La HD est encore en conversion mais est peut être disponible.');
+							break;
+						case "ok" : console.log('HD fully available');
+							break;
+					}
+					break;
+				}					
+			}
+	);
+
 </script>

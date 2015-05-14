@@ -309,6 +309,49 @@ class VideoController extends Controller {
 		else 
 			return new RedirectResponse(Utils::generateLoginURL());
 	}
+	
+	/**
+	 * 
+	 * Return a Json Response. The most important index for js are data.sd.status and data.hd.status : 
+	 * values can be : 
+	 * 'ok' => everything is okay, 
+	 * 'doing' => a file is being converted, 
+	 * 'no' => There is no file availlable in this resolution
+	 */
+	public function status($id, $request){
+		if(Video::exists($id)){
+			$video = Video::find($id);
+			$data = [];
+			$sizes = ['sd' => '640x360p', 'hd' => '1280x720p']; //Arrays of sizes and formats
+			$formats = ['mp4', 'webm'];
+			
+			foreach ($sizes as $k => $size) { //For each size
+				foreach ($formats as $format) { //And each format
+					$file_name = $video->url . '_' . $size . '.' . $format; //File name = <url of the video>_<size>.<format>
+					if(Utils::stringStartsWith($file_name, 'http')){ //If stocked on an external server : absoulute path.
+						$data[$k][$format] = Utils::getHTTPStatusCodeFromURL($file_name);
+					}else{
+						$data[$k][$format] = Utils::getHTTPStatusCodeFromURL('http://'.$_SERVER['HTTP_HOST'].'/'.$file_name); //Ressource is directly on the same server with relative path
+					}
+				}
+			}
+			
+			foreach ($data as $k => $v){
+				if($v['mp4'] < 400 && $v['webm'] < 400){
+					$data[$k]['status'] = 'ok';
+				}elseif ($v['mp4'] < 400 xor $v['webm'] < 400){
+					$data[$k]['status'] = 'doing';
+				}else{
+					$data[$k]['status'] = 'no';
+				}
+			}
+
+			
+			return new JsonResponse($data); //Return as JSON
+		}else{
+			return new JsonResponse([null]);
+		}
+	}
 
 	public function index($request) {}
 
