@@ -173,6 +173,7 @@
 						<h1>DreamVids</h1>
 						
 						<a href="<?php echo WEBROOT.'pages/about'; ?>"><?php echo Translator::get("footer.about"); ?></a>
+						<a href="<?php echo WEBROOT.'faq'; ?>">FAQ</a>
 						<a href="<?php echo WEBROOT.'pages/contributors'; ?>"><?php echo Translator::get("footer.contributors"); ?></a>
 						<a href="<?php echo WEBROOT.'pages/tos'; ?>"><?php echo Translator::get("footer.tos"); ?></a>
 						<a href="<?php echo WEBROOT.'pages/cookies'; ?>"><?php echo Translator::get('footer.cookies'); ?></a>
