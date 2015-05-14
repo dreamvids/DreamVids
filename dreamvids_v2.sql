@@ -337,4 +337,14 @@ CREATE TABLE `staff_contact_details` (
 	INDEX `user_id` (`user_id`)
 ) ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS `faqs`;
+CREATE TABLE IF NOT EXISTS `faqs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ask` varchar(255) DEFAULT NULL,
+  `answer` text,
+  `showed` tinyint(1) DEFAULT '0',
+  `timestamp` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- 2014-11-17 19:49:15

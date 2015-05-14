@@ -132,6 +132,10 @@
 						"staff_select_popup": "Voulez-vous vraiment mettre cette vidéo on avant sur la page d\\'accueil ?"
 					}
 			}
+		},
+		"faq": {
+			"freq_asked_que": "Foire aux questions",
+			"no_question": "Aucune question n'est encore disponible. Merci de revenir plus tard."
 		}
 	},
 	"footer": {
