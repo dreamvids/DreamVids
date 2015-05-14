@@ -105,7 +105,8 @@
                         		
                         		"Gestion des vidéos" =>
                         			["icon" => "video-camera", "url" => "videos", "right" => ["modo_or_more"]],
-                        		
+                        		"FAQ" =>
+                        			["icon" => "question-circle", "url" => "faq", "right" => ['team_or_more']],
                         		"Tickets" => 
                         			["icon" => "bug", "url" => "tickets"],
                         		
