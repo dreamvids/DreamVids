@@ -4,11 +4,14 @@
         "menu": {
             "home": "Home",
             "news": "News",
+            "lives": "Lives",
             "flux": "Notifications",
             "upload": "Upload",
             "live": "Broadcast",
             "videos": "My Videos",
+            "assist": "Assistance",
             "user_submenu": {
+                "admin": "Administration",
                 "account": "My account",
                 "channels": "My channels",
                 "playlists": "My playlists",
@@ -40,23 +43,30 @@
     },
     "pages": {
         "home": {
-            "title": "Home"
+            "title": "Home",
+            "videos_to_discover": "Videos to discover"
         },
         "news": {
-            "title": "News"
+            "title": "News",
+            "last_posted": "Latest posted videos"
         },
         "flux": {
             "title": "Notifications"
         },
         "upload": {
             "title": "Upload",
-            "form": {
-                "private": "Private",
-                "thumbnail": "Video thumbnail",
-                "title": "Title"
-            },
             "instruction_1": "Post your video file in this area to upload it",
-            "instruction_2": "(Or select your file manually by clicking the cloud)"
+            "instruction_2": "(Or select your file manually by clicking the cloud)",
+            "form": {
+                "title": "Title",
+                "description": "Description",
+                "tags": "Keywords ( separated by a space )",
+                "thumbnail": "Video thumbnail",
+                "visibility": "Visibility",
+                "public": "Public",
+                "unlisted": "Unlisted",
+                "private": "Private"
+            }
         },
         "live": {
             "title": "My broadcasts"
@@ -74,7 +84,10 @@
                     "pseudo": "Username"
                 },
                 "password": {
-                    "title": "Password"
+                    "title": "Password",
+                    "actual_password": "Current password",
+                    "new_password": "New password",
+                    "confirm_new_password": "Confirmation of the new password"
                 },
                 "messages": {
                     "title": "Bulletin board"
@@ -84,25 +97,45 @@
                 },
                 "channels": {
                     "title": "Channels",
-                    "new_channel": "Create a new channel"
+                    "new_channel": "Create a new channel",
+                    "main_channel": "Main channel"
                 },
                 "notifications": {
-                    "notified_upload": "Be notified when "
+                    "title": "Notifications",
+                    "notified_plus": "Be notified when one of my videos receives a \"+\"",
+                    "notified_comment": "Be notified when one of my videos is commented",
+                    "notified_subscribe": "Be notified when someone subscribes to one of my channels",
+                    "notified_upload": "Be notified when a chain which I subscribe upload a new video",
+                    "notified_pm": "Be notified when I receive a private message"
+
                 }
             }
         },
         "videos": {
+            "edit": {
+                "title": "Video settings"
+            },
             "watch": {
-                "share": "Share",
-                "autoplay": "Autoplay",
+                "tags": "Tags",
                 "view": "view",
-                "admin": {
-                    "suspend": "Suspend"
-                },
-                "start_at": "Start at",
+                "share": "Share",
+                "flag": "Report",
                 "download": "Download",
-                "tags": "Tags"
+                "embed": "Embed",
+                "add_to_playlist": "Add to playlist",
+                "autoplay": "Autoplay",
+                "start_at": "Start at",
+                "share_on": "Share on",
+                "admin": {
+                    "suspend": "Suspend",
+                    "staff_select": "Put forward",
+                    "staff_select_popup": "Do you really want to put forward this video on the homepage?"
+                }
             }
+        },
+        "faq": {
+            "freq_asked_que": "Frequently Asked Questions",
+            "no_question": "No question is still available. Thank you to come back later."
         }
     },
     "footer": {
@@ -110,6 +143,7 @@
         "language": "Change language, EN",
         "contributors": "Contributors",
         "tos": "TOS",
+        "cookies": "Cookie use policy",
         "shop": "Shop",
         "dev_blog": "Development blog",
         "partners": "Parterns",
