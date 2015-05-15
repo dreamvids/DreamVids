@@ -36,6 +36,14 @@ class User extends ActiveRecord\Model {
 
 		return $videos;
 	}
+	
+	public function getSubscribedChannels(){
+		return Subscription::getSubscribedChannelsFromUser($this);
+	}
+	
+	public function getSubscribedChannelsAsList(){
+		return Subscription::getSubscribedChannelsFromUserAsList($this);
+	}
 
 	public function getSubscriptions($amount='nope') {
 		$subscriptions = array();
@@ -254,9 +262,9 @@ class User extends ActiveRecord\Model {
 
 	public function hasSubscribedToChannel($channelId) {
 		if(UserChannel::exists($channelId)) {
-			$subscriptionsStr = $this->subscriptions;
-
-			return strpos($subscriptionsStr, $channelId) !== false;
+			return in_array($channelId, $this->getSubscribedChannelsAsList());
+		}else {
+			return false;
 		}
 	}
 	

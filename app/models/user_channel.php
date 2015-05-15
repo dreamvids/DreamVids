@@ -79,6 +79,14 @@ class UserChannel extends ActiveRecord\Model {
 	public function getBackground() {
 		return (!empty($this->background)) ? $this->background : Config::getValue_('default-background');
 	}
+	
+	public function getSubscribedUsers(){
+		return Subscription::getSubscribersFromChannel($this);
+	}
+	
+	public function getSubscribedUsersAsList(){
+		return Subscription::getSubscribersFromChannelAsList($this);
+	}
 
 	public function belongToUser($userId) {
 		if(User::exists($userId)) {

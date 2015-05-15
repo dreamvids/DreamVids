@@ -8,11 +8,13 @@ class Subscription extends ActiveRecord\Model {
 			['UserChannel']
 	];
 	
+	static $table_name = 'subscriptions';
+	
 	/**
 	 * 
 	 * @param $channel Channel ID or channel object
 	 */
-	public static function getSubscribersFromChannelId($channel){
+	public static function getSubscribersFromChannel($channel){
 		if(!($channel instanceof UserChannel)){
 			$channel = UserChannel::find($channel);			
 		}
@@ -20,14 +22,58 @@ class Subscription extends ActiveRecord\Model {
 		return $channel->subscribed_users; 
 	}
 	
-	public static function getSubscribedChannelsFromUserId($user){
+	public static function getSubscribedChannelsFromUser($user){
 		if(!($user instanceof User)){
-			$user = UserChannel::find($channel);
+			$user = User::find($channel);
 		}
 		
 		return $user->subscribed_channels;
 	}
 	
-	public static function get
+	public static function getSubscribedChannelsFromUserAsList($user){
+		if($user instanceof User){
+			$id = $user->id;
+		}else{
+			$id = $user;
+		}
+		$pdo = Database::getPDOObject();
+		$stmt = $pdo->prepare('SELECT DISTINCT user_channel_id FROM ' . self::$table_name . ' WHERE user_id = ?');
+		$stmt->execute([$id]);
+		
+		
+		return self::convertOneColumnFetchResultToList($stmt->fetchAll(PDO::FETCH_NUM));
+		
+	}
+	
+	public static function getSubscribersFromChannelAsList($channel){
+		if($channel instanceof UserChannel){
+			$id = $channel->id;
+		}else{
+			$id = $channel;
+		}
+		$pdo = Database::getPDOObject();
+		$stmt = $pdo->prepare('SELECT DISTINCT user_id FROM ' . self::$table_name . ' WHERE user_channel_id = ?');
+		$stmt->execute([$id]);
+	
+	
+		return self::convertOneColumnFetchResultToList($stmt->fetchAll(PDO::FETCH_NUM));
+	
+	}
+	
+	/**
+	 * Must user PDO::fetchAll(PDO::FETCH_NUM)
+	 * @param unknown $array
+	 */
+	private static function convertOneColumnFetchResultToList($array){
+		$result=[];
+		foreach ($array as $k => $value) {
+			$result[] = $value[0];
+		}
+		return $result;
+	}
+	
+	public static function get(){
+		
+	}
 	
 }

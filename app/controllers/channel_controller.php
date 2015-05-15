@@ -28,10 +28,10 @@ class ChannelController extends Controller {
 				'name' => $channel->name,
 				'description' => $channel->description,
 				'owner_id' => $channel->owner_id,
-				'admins_ids' => $channel->admins_id,
+				'admins_ids' => $channel->admins_ids,
 				'avatar' => $channel->avatar,
 				'background' => $channel->getBackground(),
-				'subscribers' => $channel->subscribers,
+				'subscribers' => $channel->getSubscribedUsersAsList(),
 				'views' => $channel->views,
 				'total_views' => $channel->getAllViews(),
 				'verified' => $channel->verified
@@ -49,15 +49,19 @@ class ChannelController extends Controller {
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
-			$data['subscribers'] = $channel->subscribers;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
 			$data['videos'] = $channel->getPostedVideos(true);
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
-			var_dump( Subscription::getSubscribersFromChannelId($channel->id));
-			die;
+			$data['sub'] = count($data['subscribers']);
+			/*var_dump($data);
+ 			var_dump($channel->getSubscribedUsersAsList());
+// 			var_dump($channel->getSubscribedUsers()[0]->getSubscribedChannels());
+			var_dump(Session::get()->getSubscribedChannelsAsList());
+			die();*/
 			return new ViewResponse('channel/channel', $data);
 		}
 
@@ -311,7 +315,7 @@ class ChannelController extends Controller {
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
-			$data['subscribers'] = $channel->subscribers;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['posts'] = $channel->getPostedMessages();
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
@@ -319,6 +323,7 @@ class ChannelController extends Controller {
 			$data['videos'] = $channel->getPostedVideos(true);
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
+			$data['sub'] = count($data['subscribers']);
 
 			return new ViewResponse('channel/social', $data);
 		}
@@ -339,7 +344,7 @@ class ChannelController extends Controller {
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
-			$data['subscribers'] = $channel->subscribers;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['playlists'] = Playlist::all(array('conditions' => array('channel_id = ?', $channel->id)));
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
@@ -347,7 +352,8 @@ class ChannelController extends Controller {
 			$data['videos'] = $channel->getPostedVideos();
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
-
+			$data['sub'] = count($data['subscribers']);
+			
 			return new ViewResponse('channel/playlists', $data);
 		}
 		else
@@ -366,16 +372,17 @@ class ChannelController extends Controller {
 		$data['avatar'] = $channel->getAvatar();
 		$data['background'] = $channel->getBackground();
 		$data['description'] = $channel->description;
-		$data['subscribers'] = $channel->subscribers;
+		$data['subscribers'] = $channel->getSubscribedUsersAsList();
+		$data['subscribers_users'] = $channel->getSubscribedUsers();
 		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 		$data['posts'] = $channel->getPostedMessages();
 		$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 		$data['total_views'] = $channel->getAllViews();
 		$data['videos'] = $channel->getPostedVideos(true);
 		$data['owner_id'] = $channel->owner_id;
-		$data['subs_list'] = empty($channel->subs_list) ? null : explode(';', trim($channel->subs_list, ';'));
+		//$data['subs_list'] = empty($channel->subs_list) ? null : explode(';', trim($channel->subs_list, ';'));
 		$data['verified'] = $channel->verified;
-		
+		$data['sub'] = count($data['subscribers']);
 		return  new ViewResponse('channel/subscribers', $data);
 	}
 
