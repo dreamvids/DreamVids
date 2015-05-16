@@ -1,5 +1,14 @@
 <?php
 
+@include 'maintenance.php';
+die();
+
+/*
+
+MAINTENANCE PROVISOIRE
+
+*/
+
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']), true);
 define('WEBROOT', str_replace('index.php', '', $_SERVER['SCRIPT_NAME']), true);
 define('SYSTEM', ROOT.'system/');
