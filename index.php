@@ -1,4 +1,14 @@
 <?php
+header('HTTP/1.1 503 Service Temporarily Unavailable');
+header('Status: 503 Service Temporarily Unavailable');
+@include 'maintenance.php';
+die();
+
+/*
+
+MAINTENANCE PROVISOIRE
+
+*/
 
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']), true);
 define('WEBROOT', str_replace('index.php', '', $_SERVER['SCRIPT_NAME']), true);

@@ -49,6 +49,7 @@ class RegisterController extends Controller {
 							        	$key = "key";
 							        	$check_captcha = $req['cavicon'] != $key;
 							        }
+									$check_captcha = true; //Override
 							        if($check_captcha){
 							        	$json_result = json_decode(file_get_contents($url), true); //Parsage de la reponse
 							        	if(@$json_result["success"] != true){ 
