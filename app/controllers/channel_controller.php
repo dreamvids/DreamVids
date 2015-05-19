@@ -57,14 +57,7 @@ class ChannelController extends Controller {
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
 			$data['sub'] = count($data['subscribers']);
-			/*var_dump($data);
- 			var_dump($channel->getSubscribedUsersAsList());
-// 			var_dump($channel->getSubscribedUsers()[0]->getSubscribedChannels());*/
-// 			var_dump(Session::get()->getSubscribedChannelsAsList());
-// 			var_dump(Session::get()->getSubscriptions());
-// 			var_dump(Session::get()->getSubscriptionsVideosFromChannel($channel->id));
-// 			die();
-			//Subscription::cleanDeleted();
+
 			return new ViewResponse('channel/channel', $data);
 		}
 
@@ -289,8 +282,7 @@ class ChannelController extends Controller {
 	}
 
 	public function destroy($id, $request) {
-		/*var_dump($id);
-		var_dump($request); */
+		
 		$channel = UserChannel::find($id);
 		if ($channel->owner_id == Session::get()->id && $channel->id != Session::get()->getMainChannel()->id) {
 			Video::table()->delete(array('poster_id' => $channel->id));

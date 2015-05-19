@@ -128,7 +128,7 @@ class UserChannel extends ActiveRecord\Model {
 		ChannelAction::create(array(
 		'id' => ChannelAction::generateId(6),
 		'channel_id' => $this->id,
-		'recipients_ids' => ';'.trim($this->subs_list, ';').';',
+		'recipients_ids' => ';'.implode(';'$this->getSubscribedUsersAsList()).';',
 		'type' => 'message',
 		'target' => $messageContent,
 		'complementary_id' => $post->id,
@@ -258,7 +258,6 @@ class UserChannel extends ActiveRecord\Model {
 	ON(total_sub.user_channel_id = users_channels.id) 
 	
 	WHERE name LIKE ? OR description LIKE ? ORDER BY total_sub DESC LIMIT 6', ["%$query%","%$query%"]);
-				//return UserChannel::all(array('conditions' => array('name LIKE ? OR description LIKE ?', '%'.$query.'%', '%'.$query.'%'), 'order' => 'subscribers desc', 'limit' => 6));
 		}
 	}
 	

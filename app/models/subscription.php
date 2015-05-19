@@ -48,7 +48,7 @@ class Subscription extends ActiveRecord\Model {
 			$id = $user;
 		}
 		$pdo = Database::getPDOObject();
-		$stmt = $pdo->prepare('SELECT DISTINCT user_channel_id FROM ' . self::$table_name . ' WHERE user_id = ? AND user_id IN (SELECT id FROM users WHERE id = user_id) AND user_channel_id IN (SELECT id FROM users_channels WHERE id = user_channel_id)');
+		$stmt = $pdo->prepare('SELECT DISTINCT user_channel_id FROM ' . self::$table_name . ' WHERE user_id = ? AND user_id IN (SELECT id FROM users WHERE id = user_id) AND user_channel_id IN (SELECT id FROM users_channels WHERE id = user_channel_id) ORDER BY timestamp DESC');
 		$stmt->execute([$id]);
 		
 		
@@ -67,7 +67,7 @@ class Subscription extends ActiveRecord\Model {
 			$id = $channel;
 		}
 		$pdo = Database::getPDOObject();
-		$stmt = $pdo->prepare('SELECT DISTINCT user_id FROM ' . self::$table_name . ' WHERE user_channel_id = ? AND user_id IN (SELECT id FROM users WHERE id = user_id) AND user_channel_id IN (SELECT id FROM users_channels WHERE id = user_channel_id)');
+		$stmt = $pdo->prepare('SELECT DISTINCT user_id FROM ' . self::$table_name . ' WHERE user_channel_id = ? AND user_id IN (SELECT id FROM users WHERE id = user_id) AND user_channel_id IN (SELECT id FROM users_channels WHERE id = user_channel_id) ORDER BY timestamp DESC');
 		$stmt->execute([$id]);
 	
 	

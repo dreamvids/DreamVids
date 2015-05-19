@@ -53,7 +53,7 @@ class User extends ActiveRecord\Model {
 		return Subscription::getSubscribedChannelsFromUserAsList($this);
 	}
 
-	public function getSubscriptions($amount='nope') {
+/*	public function getSubscriptions($amount='nope') {
 		$subscriptions = array();
 		$subs = $this->subscriptions;
 
@@ -83,7 +83,7 @@ class User extends ActiveRecord\Model {
 		}
 			
 		return $subscriptions;
-	}
+	}*/
 
 	public function getSubscriptionsVideos($amount='nope') {
 		return Video::getSubscriptionsVideos($this->id, $amount);
@@ -99,11 +99,7 @@ class User extends ActiveRecord\Model {
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id=? ORDER BY timestamp DESC", array($channelId));
 		}
 
-		foreach ($vidsToAdd as $vid) {
-			array_push($videos, $vid);
-		}
-
-		return $videos;
+		return $vidsToAdd;
 	}
 
 	public function getNotifications() {
