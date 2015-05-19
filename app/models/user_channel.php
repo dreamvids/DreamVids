@@ -128,7 +128,7 @@ class UserChannel extends ActiveRecord\Model {
 		ChannelAction::create(array(
 		'id' => ChannelAction::generateId(6),
 		'channel_id' => $this->id,
-		'recipients_ids' => ';'.implode(';'$this->getSubscribedUsersAsList()).';',
+		'recipients_ids' => ';'.implode(';', $this->getSubscribedUsersAsList()).';',
 		'type' => 'message',
 		'target' => $messageContent,
 		'complementary_id' => $post->id,
