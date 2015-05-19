@@ -14,7 +14,7 @@ Le développement front-end necessite quelques [dépendances à installer](https
 
 ##Authors
 
-Back-end development: [Peter Cauty](https://github.com/Vetiore), [Quadrifoglio](https://github.com/Quadrifoglio), [Snapcube](https://github.com/Snapcube)
+Back-end development: [Peter Cauty](https://github.com/Vetiore), [Quadrifoglio](https://github.com/Quadrifoglio), [Snapcube](https://github.com/Snapcube), [Benjamin Robinet](https://github.com/benjaminrobinet)
 
 Design: [DarkWos](https://twitter.com/darkwos1), [LowiSky](https://github.com/LowiSky)
 
