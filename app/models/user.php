@@ -53,37 +53,6 @@ class User extends ActiveRecord\Model {
 		return Subscription::getSubscribedChannelsFromUserAsList($this);
 	}
 
-/*	public function getSubscriptions($amount='nope') {
-		$subscriptions = array();
-		$subs = $this->subscriptions;
-
-		if(Utils::stringStartsWith($subs, ';'))
-			$subs = substr_replace($subs, '', 0, 1);
-		if(Utils::stringEndsWith($subs, ';'))
-			$subs = substr_replace($subs, '', -1);
-
-		$subscriptionsArray = explode(';', $subs);
-		$subscriptionsArray = array_filter($subscriptionsArray);
-		foreach ($subscriptionsArray as $k => $value) {
-			if(!UserChannel::exists($value)) {
-				unset($subscriptionsArray[$k]);
-			}
-		}
-		
-		if (empty($subscriptionsArray)) {
-			return [];
-		}
-		
-		if($amount != 'nope'){
-			$amount = count($subscriptionsArray) > $amount = count($subscriptionsArray);
-			
-			$subscriptions = UserChannel::find($subscriptionsArray, ['limit' => $amount]);				
-		}else{
-			$subscriptions = UserChannel::find($subscriptionsArray);
-		}
-			
-		return $subscriptions;
-	}*/
 
 	public function getSubscriptionsVideos($amount='nope') {
 		return Video::getSubscriptionsVideos($this->id, $amount);
