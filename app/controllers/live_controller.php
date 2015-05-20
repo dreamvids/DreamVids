@@ -51,7 +51,7 @@ class LiveController extends Controller {
 				$data['channel'] = $channel;
 				$data['viewers'] = $access->viewers;
 				$data['currentPageTitle'] = 'Live de '.$channel->name;
-				$data['subscribers'] = $channel->subscribers;
+				$data['subscribers'] = count($channel->getSubscribedUsersAsList());
 				$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 				$data['onAir'] = is_object($access) ? $access->isOnline() : false;
 				$data['liveKey'] = is_object($access) ? $access->key : '';
@@ -62,7 +62,7 @@ class LiveController extends Controller {
 				$data['channel'] = $channel;
 				$data['viewers'] = 0;
 				$data['currentPageTitle'] = 'Live de '.$channel->name;
-				$data['subscribers'] = $channel->subscribers;
+				$data['subscribers'] = count($channel->getSubscribedUsersAsList());
 				$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 				$data['onAir'] = false;
 				$data['liveKey'] = '';

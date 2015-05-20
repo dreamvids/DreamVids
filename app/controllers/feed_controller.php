@@ -31,7 +31,7 @@ class FeedController extends Controller {
 			
 			$actions = Session::get()->getNotifications();
 			
-			$data['subscriptions'] = Session::get()->getSubscriptions();
+			$data['subscriptions'] = Session::get()->getSubscribedChannels();
 			if(count($actions) > 0) {
 				$data['actions'] = $actions;
 			}
@@ -53,7 +53,7 @@ class FeedController extends Controller {
 		if(is_object($subscription) && !$subscription->belongToUser(Session::get()->id)) {
 			$data = array();
 
-			$data['subscriptions'] = Session::get()->getSubscriptions();
+			$data['subscriptions'] = Session::get()->getSubscribedChannels();
 			$data['vids'] = Session::get()->getSubscriptionsVideosFromChannel($subscription->id, 6);
 
 			return new ViewResponse('feed/feed', $data);

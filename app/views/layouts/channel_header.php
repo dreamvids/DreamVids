@@ -9,7 +9,7 @@
 	</form>
 	<?php } ?>
 	<ul class="top">
-			<li><?php echo '<a style="color: inherit;" href="' . WEBROOT .  'channel/' . $name . '/followers"><b>' . $sub . '</b> Abonnés</a></li>'; ?>
+			<li><?php echo '<a style="color: inherit;" href="' . WEBROOT .  'channel/' . $name . '/subscribers"><b>' . $sub . '</b> Abonnés</a></li>'; ?>
 			<li><b><?php echo count($videos); ?></b> Vidéos</li>
 			<li><b><?php echo $total_views; ?></b> Vue<?php echo $total_views>1? 's' : ''; ?></li>
 		</ul>

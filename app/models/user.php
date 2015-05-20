@@ -9,6 +9,12 @@ class User extends ActiveRecord\Model {
 			['details', 'class_name' => 'StaffContact']
 	];
 	
+	static $has_many = [
+			['subscriptions'],
+			['subscribed_channels', 'class_name' => 'UserChannel', 'through' => 'subscriptions']
+			
+	];
+	
 	static $default_notifications_settings = ["like" => 1, "comment" => 1, "subscription" => 1, "upload" => 1, "pm" => 1, "staff_select" => 1];
 	
 	public function getMainChannel() {
@@ -20,6 +26,14 @@ class User extends ActiveRecord\Model {
 		$others = UserChannel::all(array('conditions' => array('admins_ids LIKE ? AND name != ?', '%;'.$this->id.';%', $this->username), 'order' => 'id desc'));
 		return array_merge($first, $others);
 	}
+	
+	public function getOwnedChannelsAsList() {
+		$result = [];
+		foreach ($this->getOwnedChannels() as $c) {
+			$result[] = $c->id;
+		}
+		return $result;
+	}
 
 	public function getPostedVideos() {
 		$videos = array();
@@ -30,95 +44,31 @@ class User extends ActiveRecord\Model {
 
 		return $videos;
 	}
-
-	public function getSubscriptions($amount='nope') {
-		$subscriptions = array();
-		$subs = $this->subscriptions;
-
-		if(Utils::stringStartsWith($subs, ';'))
-			$subs = substr_replace($subs, '', 0, 1);
-		if(Utils::stringEndsWith($subs, ';'))
-			$subs = substr_replace($subs, '', -1);
-
-		$subscriptionsArray = explode(';', $subs);
-		$subscriptionsArray = array_filter($subscriptionsArray);
-		foreach ($subscriptionsArray as $k => $value) {
-			if(!UserChannel::exists($value)) {
-				unset($subscriptionsArray[$k]);
-			}
-		}
-		
-		if (empty($subscriptionsArray)) {
-			return [];
-		}
-		
-		if($amount != 'nope'){
-			$amount = count($subscriptionsArray) > $amount = count($subscriptionsArray);
-			
-			$subscriptions = UserChannel::find($subscriptionsArray, ['limit' => $amount]);				
-		}else{
-			$subscriptions = UserChannel::find($subscriptionsArray);
-		}
-			
-		return $subscriptions;
+	
+	public function getSubscribedChannels(){
+		return Subscription::getSubscribedChannelsFromUser($this);
+	}
+	
+	public function getSubscribedChannelsAsList(){
+		return Subscription::getSubscribedChannelsFromUserAsList($this);
 	}
 
+
 	public function getSubscriptionsVideos($amount='nope') {
-		$videos = array();
-		$subs = $this->subscriptions;
-
-		if(Utils::stringStartsWith($subs, ';'))
-			$subs = substr_replace($subs, '', 0, 1);
-		if(Utils::stringEndsWith($subs, ';'))
-			$subs = substr_replace($subs, '', -1);
-
-		$subs = str_replace(';', ',', $subs);
-
-		$subArrayTemp = explode(',', $subs);
-		$subs = "";
-		foreach ($subArrayTemp as $sub) $subs .= "'".$sub."',";
-
-		if(Utils::stringEndsWith($subs, ','))
-			$subs = substr_replace($subs, '', -1);
-
-		$subs = "(".$subs.")";
-		if($subs == '()') return array();
-
-		if($amount != 'nope')
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
-		else
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id IN ".$subs." ORDER BY timestamp DESC");
-
-
-		foreach ($vidsToAdd as $vid) {
-			array_push($videos, $vid);
-		}
-
-		return $videos;
+		return Video::getSubscriptionsVideos($this->id, $amount);
 	}
 
 	public function getSubscriptionsVideosFromChannel($channelId, $amount='nope') {
-		$videos = array();
-		$subs = $this->subscriptions;
+		$videos = [];
 
-		if(Utils::stringStartsWith($subs, ';'))
-			$subs = substr_replace($subs, '', 0, 1);
-		if(Utils::stringEndsWith($subs, ';'))
-			$subs = substr_replace($subs, '', -1);
-
-		$subs = str_replace(';', ',', $subs);
-		$subs = '('.$subs.')';
-
-		if($amount != 'nope')
+		if($amount != 'nope'){
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id=? ORDER BY timestamp DESC LIMIT ".$amount, array($channelId));
-		else
+		}
+		else{
 			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE poster_id=? ORDER BY timestamp DESC", array($channelId));
-
-		foreach ($vidsToAdd as $vid) {
-			array_push($videos, $vid);
 		}
 
-		return $videos;
+		return $vidsToAdd;
 	}
 
 	public function getNotifications() {
@@ -248,9 +198,9 @@ class User extends ActiveRecord\Model {
 
 	public function hasSubscribedToChannel($channelId) {
 		if(UserChannel::exists($channelId)) {
-			$subscriptionsStr = $this->subscriptions;
-
-			return strpos($subscriptionsStr, $channelId) !== false;
+			return in_array($channelId, $this->getSubscribedChannelsAsList());
+		}else {
+			return false;
 		}
 	}
 	
