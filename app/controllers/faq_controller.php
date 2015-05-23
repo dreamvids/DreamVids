@@ -2,6 +2,7 @@
 require_once SYSTEM . "controller.php";
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
+require_once MODEL.'faq.php';
 
 class FaqController extends Controller {
 	public function __construct() {

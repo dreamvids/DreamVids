@@ -2,6 +2,7 @@
 
 require_once MODEL.'video.php';
 require_once MODEL.'channel_post.php';
+require_once MODEL.'subscription.php';
 
 // Used for multi-user channels
 class UserChannel extends ActiveRecord\Model {
