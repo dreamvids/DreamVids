@@ -3,7 +3,7 @@ DEFINE('HOST', 'localhost'); 	//you know what these are
 DEFINE('DB', 'dreamvids_v2'); 
 DEFINE('USER', 'root');
 DEFINE('PASS', '');
-DEFINE('DOIT', true); //For testing let it at false
+DEFINE('DOIT', false); //For testing let it at false
 
 	echo "#This script will not modify other tables than `subscriptions`.\n\n";
 if(!DOIT){
