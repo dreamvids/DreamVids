@@ -52,6 +52,7 @@ DROP TABLE IF EXISTS `chat_mutes`;
 CREATE TABLE `chat_mutes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `channel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `admin_id` bigint(20) NOT NULL,
   `timestamp` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
@@ -102,13 +103,13 @@ ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `live_accesses`;
 CREATE TABLE `live_accesses` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `channel_id` varchar(50) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `key` varchar(255) NOT NULL DEFAULT '0',
   `timestamp` bigint(20) NOT NULL DEFAULT '0',
   `online` tinyint(1) NOT NULL DEFAULT '0',
-  `stream_name` varchar(255) NOT NULL,
+  `stream_name` varchar(255) NOT NULL DEFAULT '',
   `viewers` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -335,5 +336,24 @@ CREATE TABLE `staff_contact_details` (
 	PRIMARY KEY (`id`),
 	INDEX `user_id` (`user_id`)
 ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `faqs`;
+CREATE TABLE IF NOT EXISTS `faqs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ask` varchar(255) DEFAULT NULL,
+  `answer` text,
+  `showed` tinyint(1) DEFAULT '0',
+  `timestamp` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `subscriptions`;
+CREATE TABLE IF NOT EXISTS `subscriptions` (
+  `id` INT(11) NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `user_channel_id` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- 2014-11-17 19:49:15

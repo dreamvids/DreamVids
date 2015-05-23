@@ -24,7 +24,7 @@
 							<?php if($chan->verified){ echo '<span class="label label-success">Chaîne vérifiée</span>'; }?>
 						</td>
 						<td><?php echo $chan->views; ?></td>
-						<td><?php echo $chan->subscribers; ?></td>
+						<td><?php echo count($chan->getSubscribedUsersAsList()); ?></td>
 						<td><button class="btn-primary btn" onclick="alert('Pas encore implémenté')">Envoyer un message</button>
 							<a href="<?php echo WEBROOT.'admin/channel/edit/'.$chan->id; ?>" class="btn-warning btn">Editer</button>
 						</td>

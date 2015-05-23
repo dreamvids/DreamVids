@@ -75,7 +75,7 @@
 				<a href="<?php echo WEBROOT.'channel/'.$chan->name; ?>" class="channels">
 					<span style="background-image: url(<?php echo $chan->avatar; ?>)" class="avatar"></span>
 					<span class="name" href="#"><?php echo $chan->name; ?></span>
-					<p class="subscribers"><b><?php echo $chan->subscribers; ?></b> Abonnés</p>
+					<p class="subscribers"><b><?php echo $chan->total_sub; ?></b> Abonnés</p>
 				</a>
 			<?php endforeach ?>
 		</ul>

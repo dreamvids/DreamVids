@@ -33,3 +33,4 @@ Route::register('translation', 'translation');
 
 Route::register('admin', 'admin');
 Route::register('assistance', 'assist');
+Route::register('faq', 'faq');

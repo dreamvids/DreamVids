@@ -15,8 +15,11 @@
                 "messages": "My messages",
                 "logout": "Log Out",
                 "login": "Log In",
-                "register": "Register"
-            }
+                "register": "Register",
+                "admin": "Administration"
+            },
+            "assist": "Support",
+            "lives": "Lives"
         },
         "search": "Search"
     },
@@ -40,10 +43,12 @@
     },
     "pages": {
         "home": {
-            "title": "Home"
+            "title": "Home",
+            "videos_to_discover": "Videos to watch"
         },
         "news": {
-            "title": "News"
+            "title": "News",
+            "last_posted": "Recent Videos"
         },
         "flux": {
             "title": "Notifications"
@@ -53,7 +58,12 @@
             "form": {
                 "private": "Private",
                 "thumbnail": "Video thumbnail",
-                "title": "Title"
+                "title": "Title",
+                "visibility": "Privacy",
+                "public": "Public",
+                "description": "Description",
+                "tags": "Tags (separated by a space)",
+                "unlisted": "Non-listed"
             },
             "instruction_1": "Post your video file in this area to upload it",
             "instruction_2": "(Or select your file manually by clicking the cloud)"
@@ -74,7 +84,10 @@
                     "pseudo": "Username"
                 },
                 "password": {
-                    "title": "Password"
+                    "title": "Password",
+                    "new_password": "New password",
+                    "confirm_new_password": "Confirm new password",
+                    "actual_password": "Actual password"
                 },
                 "messages": {
                     "title": "Bulletin board"
@@ -84,10 +97,16 @@
                 },
                 "channels": {
                     "title": "Channels",
-                    "new_channel": "Create a new channel"
+                    "new_channel": "Create a new channel",
+                    "main_channel": "Principal channel"
                 },
                 "notifications": {
-                    "notified_upload": "Be notified when "
+                    "notified_upload": "Be notified when ",
+                    "title": "Notifications",
+                    "notified_comment": "Be notified when one of my videos receives a comment",
+                    "notified_subscribe": "Be notified when someone subscribes to one of my channels",
+                    "notified_pm": "Be notified when I receive a private message",
+                    "notified_plus": "Be notified when one of my videos receives a \" \""
                 }
             }
         },
@@ -97,12 +116,25 @@
                 "autoplay": "Autoplay",
                 "view": "view",
                 "admin": {
-                    "suspend": "Suspend"
+                    "suspend": "Suspend",
+                    "staff_select": "Show off",
+                    "staff_select_popup": "Do you really want to put this video on the homepage"
                 },
                 "start_at": "Start at",
                 "download": "Download",
-                "tags": "Tags"
+                "tags": "Tags",
+                "flag": "Flag",
+                "share_on": "Share on",
+                "add_to_playlist": "Add to playlist",
+                "embed": "Incorporate"
+            },
+            "edit": {
+                "title": "Settings of the video"
             }
+        },
+        "faq": {
+            "freq_asked_que": "Frequently Asked Questions",
+            "no_question": "No question is still available. Thank you to come back later."
         }
     },
     "footer": {
@@ -118,6 +150,7 @@
             "popup": "Send a Mail at \\'partenaires [at] dreamvids.fr\\'"
         },
         "social": "Social",
-        "made-with": "Made with "
+        "made-with": "Made with ",
+        "cookies": "Cookies policy"
     }
 }

@@ -38,7 +38,7 @@
 					<a href="<?php echo WEBROOT.'channel/'.$sub->name; ?>" class="channels">
 						<span style="background-image: url(<?php echo $sub->getAvatar(); ?>)" class="avatar"></span>
 						<span class="name" href="#"><?php echo $sub->name; ?></span>
-						<p class="subscribers"><b><?php echo $sub->subscribers; ?></b> Abonnés</p>
+						<p class="subscribers"><b><?php echo count($sub->getSubscribedUsersAsList()); ?></b> Abonnés</p>
 					</a>
 				<?php } ?>
 

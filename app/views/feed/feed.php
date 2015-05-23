@@ -15,7 +15,7 @@
 					<a href="<?php echo WEBROOT.'channel/'.$subscription->name; ?>" class="channels">
 						<span style="background-image: url(<?php echo $subscription->getAvatar(); ?>)" class="avatar"></span>
 						<span class="name"><?php echo $subscription->name; ?></span>
-						<p class="subscribers"><b><?php echo $subscription->subscribers; ?></b> Abonnés</p>
+						<p class="subscribers"><b><?php echo count($subscription->getSubscribedUsersAsList()); ?></b> Abonnés</p>
 					</a>
 				<?php endif ?>
 			<?php endforeach ?>

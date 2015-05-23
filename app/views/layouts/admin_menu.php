@@ -79,7 +79,8 @@
                         		"Statistiques" => 
                         			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"] , "sub-menu" => 
                         					["Contenu" => ["icon" => "align-justify", "url" => "statistic"],
-                        					"Accès" => ["icon" => "bar-chart", "url" => "statistic/accesses"]
+                        					"Accès" => ["icon" => "bar-chart", "url" => "statistic/accesses"],
+                        					"Graphiques" => ["icon" => "bar-chart", "url" => "statistic/graph"]
                         					]
                         			],
                         		
@@ -104,7 +105,8 @@
                         		
                         		"Gestion des vidéos" =>
                         			["icon" => "video-camera", "url" => "videos", "right" => ["modo_or_more"]],
-                        		
+                        		"FAQ" =>
+                        			["icon" => "question-circle", "url" => "faq", "right" => ['team_or_more']],
                         		"Tickets" => 
                         			["icon" => "bug", "url" => "tickets"],
                         		

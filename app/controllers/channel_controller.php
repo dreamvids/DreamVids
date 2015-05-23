@@ -28,10 +28,10 @@ class ChannelController extends Controller {
 				'name' => $channel->name,
 				'description' => $channel->description,
 				'owner_id' => $channel->owner_id,
-				'admins_ids' => $channel->admins_id,
+				'admins_ids' => $channel->admins_ids,
 				'avatar' => $channel->avatar,
 				'background' => $channel->getBackground(),
-				'subscribers' => $channel->subscribers,
+				'subscribers' => $channel->getSubscribedUsersAsList(),
 				'views' => $channel->views,
 				'total_views' => $channel->getAllViews(),
 				'verified' => $channel->verified
@@ -49,13 +49,15 @@ class ChannelController extends Controller {
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
-			$data['subscribers'] = $channel->subscribers;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
 			$data['videos'] = $channel->getPostedVideos(true);
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
 			$data['total_views'] = $channel->getAllViews();
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
+			$data['sub'] = count($data['subscribers']);
+
 			return new ViewResponse('channel/channel', $data);
 		}
 
@@ -280,14 +282,14 @@ class ChannelController extends Controller {
 	}
 
 	public function destroy($id, $request) {
-		/*var_dump($id);
-		var_dump($request); */
+		
 		$channel = UserChannel::find($id);
 		if ($channel->owner_id == Session::get()->id && $channel->id != Session::get()->getMainChannel()->id) {
 			Video::table()->delete(array('poster_id' => $channel->id));
 			ChannelAction::table()->delete(array("channel_id" => $id));
 			ChannelAction::table()->delete(array("target" => $id));
 			$channel->delete();
+			Subscription::cleanDeleted();
 			return new Response(200);
 		}
 		else {
@@ -309,7 +311,7 @@ class ChannelController extends Controller {
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
-			$data['subscribers'] = $channel->subscribers;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['posts'] = $channel->getPostedMessages();
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
@@ -317,6 +319,7 @@ class ChannelController extends Controller {
 			$data['videos'] = $channel->getPostedVideos(true);
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
+			$data['sub'] = count($data['subscribers']);
 
 			return new ViewResponse('channel/social', $data);
 		}
@@ -337,7 +340,7 @@ class ChannelController extends Controller {
 			$data['avatar'] = $channel->getAvatar();
 			$data['background'] = $channel->getBackground();
 			$data['description'] = $channel->description;
-			$data['subscribers'] = $channel->subscribers;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
 			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
 			$data['playlists'] = Playlist::all(array('conditions' => array('channel_id = ?', $channel->id)));
 			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
@@ -345,37 +348,41 @@ class ChannelController extends Controller {
 			$data['videos'] = $channel->getPostedVideos();
 			$data['owner_id'] = $channel->owner_id;
 			$data['verified'] = $channel->verified;
-
+			$data['sub'] = count($data['subscribers']);
+			
 			return new ViewResponse('channel/playlists', $data);
 		}
 		else
 			return Utils::getNotFoundResponse();
 	}
 
-	public function followers($id) {
-		return Utils::getNotFoundResponse();
+	public function subscribers($id, $request) {
 		$channel = UserChannel::exists($id) ? UserChannel::find_by_id($id) : UserChannel::find_by_name($id);
+		if(is_object($channel)) {
+			$data = array();
+			$data['currentPage'] = 'channel';
+			$data['currentPageTitle'] = $channel->name.' - Followers';
+			$data['current'] = 'subscribers';
+			$data['id'] = $channel->id;
+			$data['name'] = $channel->name;
+			$data['avatar'] = $channel->getAvatar();
+			$data['background'] = $channel->getBackground();
+			$data['description'] = $channel->description;
+			$data['subscribers'] = $channel->getSubscribedUsersAsList();
+			$data['subscribers_users'] = $channel->getSubscribedUsers();
+			$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
+			$data['posts'] = $channel->getPostedMessages();
+			$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
+			
+			$data['total_views'] = $channel->getAllViews();
+			$data['videos'] = $channel->getPostedVideos(true);
+			$data['owner_id'] = $channel->owner_id;
+			$data['verified'] = $channel->verified;
+			$data['sub'] = count($data['subscribers']);
 
-		$data = array();
-		$data['currentPage'] = 'channel';
-		$data['currentPageTitle'] = $channel->name.' - Followers';
-		$data['current'] = 'followers';
-		$data['id'] = $channel->id;
-		$data['name'] = $channel->name;
-		$data['avatar'] = $channel->getAvatar();
-		$data['background'] = $channel->getBackground();
-		$data['description'] = $channel->description;
-		$data['subscribers'] = $channel->subscribers;
-		$data['subscribed'] = Session::isActive() ? Session::get()->hasSubscribedToChannel($channel->id) : false;
-		$data['posts'] = $channel->getPostedMessages();
-		$data['channelBelongsToUser'] = Session::isActive() ? $channel->belongToUser(Session::get()->id) : false;
-		$data['total_views'] = $channel->getAllViews();
-		$data['videos'] = $channel->getPostedVideos(true);
-		$data['owner_id'] = $channel->owner_id;
-		$data['followers'] = $channel->subs_list;
-		$data['verified'] = $channel->verified;
-		
-		return  new ViewResponse('channel/followers', $data);
+			return  new ViewResponse('channel/subscribers', $data);
+		}
+		return Utils::getNotFoundResponse();
 	}
 
 	public function add($request) {

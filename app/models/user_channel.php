@@ -7,7 +7,12 @@ require_once MODEL.'channel_post.php';
 class UserChannel extends ActiveRecord\Model {
 
 	static $table_name = 'users_channels';
-
+	
+	static $has_many = [
+			['subscriptions'],
+			['subscribed_users', 'class_name' => 'user', 'through' => 'subscriptions']
+	];
+	
 	public function getPostedVideos($publicOnly = true) {
 		$visibility = ($publicOnly) ? 'AND visibility = '.Config::getValue_('vid_visibility_public') : '';
 		return Video::all(array('conditions' => array("poster_id = ? AND visibility != ? ".$visibility, $this->id, Config::getValue_('vid_visibility_suspended')), 'order' => 'timestamp desc'));
@@ -33,7 +38,7 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function getSubscribersNumber() {
-		return $this->subscribers;
+		return count($this->getSubscribedUsersAsList());
 	}
 
 	public function getAdminsNames() {
@@ -74,12 +79,19 @@ class UserChannel extends ActiveRecord\Model {
 	public function getBackground() {
 		return (!empty($this->background)) ? $this->background : Config::getValue_('default-background');
 	}
+	
+	public function getSubscribedUsers(){
+		return Subscription::getSubscribersFromChannel($this);
+	}
+	
+	public function getSubscribedUsersAsList(){
+		return Subscription::getSubscribersFromChannelAsList($this);
+	}
 
 	public function belongToUser($userId) {
 		if(User::exists($userId)) {
-			$ownedChannels = User::find($userId)->getOwnedChannels();
-
-			if(in_array($this, $ownedChannels))
+			$ownedChannels = User::find($userId)->getOwnedChannelsAsList();
+			if(in_array($this->id, $ownedChannels))
 				return true;
 			else
 				return false;
@@ -116,7 +128,7 @@ class UserChannel extends ActiveRecord\Model {
 		ChannelAction::create(array(
 		'id' => ChannelAction::generateId(6),
 		'channel_id' => $this->id,
-		'recipients_ids' => ';'.trim($this->subs_list, ';').';',
+		'recipients_ids' => ';'.implode(';', $this->getSubscribedUsersAsList()).';',
 		'type' => 'message',
 		'target' => $messageContent,
 		'complementary_id' => $post->id,
@@ -126,77 +138,49 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function subscribe($subscriber) {
+		
+		Subscription::subscribeUserToChannel($subscriber, $this);
+		
 		$subscriberUser = User::find_by_id($subscriber);
 		$subscribingChannel = $this;
 		$subscribing = $this->id;
 
-		$subscriptionsStrUser = trim($subscriberUser->subscriptions, ';');
-		$subscriptionsStrChannel = trim($subscribingChannel->subs_list, ';');
-
-		$subscriptionsArrayUser = explode(';', $subscriptionsStrUser);
-		$subscriptionsArrayChannel = explode(';', $subscriptionsStrChannel);
-
-		if(!in_array($subscribing, $subscriptionsArrayUser)) {
-			$subscriptionsArrayUser[] = $subscribing;
-			$subscriptionsArrayChannel[] = $subscriberUser->id;
-
-			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
-			$subscriberUser->save();
-
-			$subscribingChannel->subscribers++;
-			$subscribingChannel->subs_list = implode(';', $subscriptionsArrayChannel).';';
-			$subscribingChannel->save();
-
-			if (!ChannelAction::exists(array('channel_id' => User::find($subscriber)->getMainChannel()->id, 'type' => 'subscription', 'target' => $subscribing))) {		
-				ChannelAction::create(array(
-					'id' => ChannelAction::generateId(6),
-					'channel_id' => User::find($subscriber)->getMainChannel()->id,
-					'recipients_ids' => ChannelAction::filterReceiver($subscribingChannel->admins_ids, "subscription"),
-					'type' => 'subscription',
-					'target' => $subscribing,
-					'timestamp' => Utils::tps()
-				));
-			}
-		}
-	}
-
-	public function unsubscribe($subscriber) {
-		$subscriberUser = User::find_by_id($subscriber);
-		$subscribingChannel = $this;
-		$subscribing = $this->id;
-
-		$subscriptionsStrUser = trim($subscriberUser->subscriptions, ';');
-		$subscriptionsStrChannel = trim($subscribingChannel->subs_list, ';');
-		$subscriptionsArrayUser = explode(';', $subscriptionsStrUser);
-		$subscriptionsArrayChannel = explode(';', $subscriptionsStrChannel);
-
-		if(in_array($subscribing, $subscriptionsArrayUser)) {
-			$key = array_search($subscribing, $subscriptionsArrayUser);
-			unset($subscriptionsArrayUser[$key]);
-			$key = array_search($subscriber, $subscriptionsArrayChannel);
-
-			unset($subscriptionsArrayChannel[$key]);
-
-			$subscriberUser->subscriptions = implode(';', $subscriptionsArrayUser).';';
-			$subscriberUser->save();
-
-			$subscribingChannel->subscribers--;
-			$subscribingChannel->subs_list = implode(';', $subscriptionsArrayChannel).';';
-			$subscribingChannel->save();
-
+		if (!ChannelAction::exists(array('channel_id' => User::find($subscriber)->getMainChannel()->id, 'type' => 'subscription', 'target' => $subscribing))) {		
 			ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($subscriber)->getMainChannel()->id,
-				'recipients_ids' => ChannelAction::filterReceiver($subscribingChannel->admins_ids, "unsubscription"),
-				'type' => 'unsubscription',
+				'recipients_ids' => ChannelAction::filterReceiver($subscribingChannel->admins_ids, "subscription"),
+				'type' => 'subscription',
 				'target' => $subscribing,
 				'timestamp' => Utils::tps()
 			));
 		}
 	}
+
+	public function unsubscribe($subscriber) {
+		
+		Subscription::unsubscribeUserFromChannel($subscriber, $this);
+		
+		$unsubscriberUser = User::find_by_id($subscriber);
+		$unsubscribingChannel = $this;
+		$channel_id = $this->id;
+
+		ChannelAction::create(array(
+			'id' => ChannelAction::generateId(6),
+			'channel_id' => $unsubscriberUser->getMainChannel()->id,
+			'recipients_ids' => ChannelAction::filterReceiver($unsubscribingChannel->admins_ids, "unsubscription"),
+			'type' => 'unsubscription',
+			'target' => $channel_id,
+			'timestamp' => Utils::tps()
+		));
+	}
 	
 	public static function getBestChannels() {
-		return UserChannel::all(array('order' => 'subscribers desc', 'limit' => '8'));
+		return UserChannel::find_by_sql(
+			   'SELECT * FROM users_channels
+				LEFT OUTER JOIN (SELECT DISTINCT user_id, user_channel_id, COUNT(*) AS total_sub FROM subscriptions GROUP BY user_channel_id) AS total_sub
+				ON(total_sub.user_channel_id = users_channels.id)
+				ORDER BY total_sub DESC LIMIT 8');
 	}
 
 	public static function generateId($length) {
@@ -266,7 +250,14 @@ class UserChannel extends ActiveRecord\Model {
 	public static function getSearchChannels($query){
 		$query = trim(urldecode($query));
 		if ($query != '') {
-				return UserChannel::all(array('conditions' => array('name LIKE ? OR description LIKE ?', '%'.$query.'%', '%'.$query.'%'), 'order' => 'subscribers desc', 'limit' => 6));
+				return UserChannel::find_by_sql(
+						'SELECT * FROM users_channels
+	LEFT OUTER JOIN 
+		(SELECT user_channel_id, COUNT(*) AS total_sub FROM subscriptions GROUP BY user_channel_id) 
+			AS total_sub
+	ON(total_sub.user_channel_id = users_channels.id) 
+	
+	WHERE name LIKE ? OR description LIKE ? ORDER BY total_sub DESC LIMIT 6', ["%$query%","%$query%"]);
 		}
 	}
 	

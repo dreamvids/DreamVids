@@ -35,7 +35,7 @@
 							<b class="principal">Chaîne principale</b>
 						<?php } ?>
 
-						<span class="subscriber"><b><?php echo number_format($chan->subscribers); ?></b> Abonnés</span>
+						<span class="subscriber"><b><?php echo number_format(count($chan->getSubscribedUsersAsList())); ?></b> Abonnés</span>
 					</div>
 				</div>
 			<?php endforeach ?>

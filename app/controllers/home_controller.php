@@ -25,7 +25,7 @@ class HomeController extends Controller {
 		if(Session::isActive()) {
 			$channel = Session::get()->getMainChannel();
 
-			$data['subscriptions'] = Session::get()->getSubscriptions();
+			$data['subscriptions'] = Session::get()->getSubscribedChannels();
 			if($data['subscriptions'] instanceof UserChannel){
 				$data['subscriptions'] = [$data['subscriptions']];
 			} 

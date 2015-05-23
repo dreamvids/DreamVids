@@ -291,7 +291,7 @@ class Video extends ActiveRecord\Model {
 		ChannelAction::create(array(
 			'id' => ChannelAction::generateId(6),
 			'channel_id' => $channelId,
-			'recipients_ids' => ChannelAction::filterReceiver(';'.trim(UserChannel::find($channelId)->subs_list, ';').';', "upload"),
+			'recipients_ids' => ChannelAction::filterReceiver(';'.implode(';', Subscription::getSubscribersFromChannelAsList($channelId)).';', "upload"),
 			'type' => 'upload',
 			'target' => $videoId,
 			'timestamp' => Utils::tps()
@@ -324,37 +324,25 @@ class Video extends ActiveRecord\Model {
 	}
 
 	public static function getSubscriptionsVideos($userId, $amount='nope') {
-		$videos = array();
+		$videos = [];
 		$user = User::find_by_id($userId);
-		$subs = $user->subscriptions;
-
-		if(Utils::stringStartsWith($subs, ';'))
-			$subs = substr_replace($subs, '', 0, 1);
-		if(Utils::stringEndsWith($subs, ';'))
-			$subs = substr_replace($subs, '', -1);
-
-		$subs = str_replace(';', ',', $subs);
-
-		$subArrayTemp = explode(',', $subs);
-		$subs = "";
-		foreach ($subArrayTemp as $sub) $subs .= "'".$sub."',";
-
-		if(Utils::stringEndsWith($subs, ','))
-			$subs = substr_replace($subs, '', -1);
-
-		$subs = "(".$subs.")";
-		if($subs == '()') return array();
-
-		if($amount != 'nope')
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 AND poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
-		else
-			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 AND poster_id IN ".$subs." ORDER BY timestamp DESC");
-
-		foreach ($vidsToAdd as $vid) {
-			array_push($videos, $vid);
-		}
+		$sub_array = $user->getSubscribedChannelsAsList();
 		
-		return $videos;
+		if(empty($sub_array)){
+			return []; //No sub
+		} 
+		
+		$sub_array = array_map(function ($v){ return "'$v'";}, $sub_array);
+		$subs = '('.implode(', ', $sub_array).')';
+		
+		if($amount != 'nope'){
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 AND poster_id IN ".$subs." ORDER BY timestamp DESC LIMIT ".$amount);
+		}
+		else{
+			$vidsToAdd = Video::find_by_sql("SELECT * FROM videos WHERE visibility=2 AND poster_id IN ".$subs." ORDER BY timestamp DESC");
+		}
+
+		return $vidsToAdd;
 	}
 	
 	public static function getBestVideos($limit = 'nope') {
@@ -411,17 +399,5 @@ class Video extends ActiveRecord\Model {
 		return Video::all(array('conditions' =>$cond, 'order' => $order));
 	}
 	
-	public static function getDataForGraphByDay() {
-		$request = "SELECT DISTINCT day , count(*) AS count FROM (
-SELECT *, (ROUND(`timestamp` / (60*60*24))*(60*60*24)) as day FROM `videos`
-ORDER BY `videos`.`timestamp`  DESC) AS temp
-GROUP BY day";
-		$temp = Video::find_by_sql($request);
-		$result = [];
-		foreach ($temp as $k => $value) {
-			$result[] = [date("Y-m-d",$value->day) , $value->count];
-		}
-		return $result;
-	}
 
 }

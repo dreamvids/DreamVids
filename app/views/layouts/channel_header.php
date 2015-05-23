@@ -9,7 +9,7 @@
 	</form>
 	<?php } ?>
 	<ul class="top">
-			<li><b><?php echo $subscribers; ?></b> Abonnés</li>
+			<li><?php echo '<a style="color: inherit;" href="' . WEBROOT .  'channel/' . $name . '/subscribers"><b>' . $sub . '</b> Abonnés</a></li>'; ?>
 			<li><b><?php echo count($videos); ?></b> Vidéos</li>
 			<li><b><?php echo $total_views; ?></b> Vue<?php echo $total_views>1? 's' : ''; ?></li>
 		</ul>
@@ -41,8 +41,9 @@
 	<nav class="tabs">
 		<ul>
 			<li <?php echo (isset($current) && $current == 'videos') ? 'class="current"' : 'class="channel"'; ?>><a href="<?php echo WEBROOT.'channel/'.$name; ?>">Vidéos</a></li>
-			<li <?php echo (isset($current) && $current == 'playlists') ? 'class="current"' : 'class="channel"'; ?>><a href="<?php echo WEBROOT.'channel/'.$name.'/playlists/'; ?>">Playlists</a></li>
-			<li <?php echo (isset($current) && $current == 'social') ? 'class="current"' : 'class="channel"'; ?>><a href="<?php echo WEBROOT.'channel/'.$name.'/social/'; ?>">Social</a></li>
+			<li <?php echo (isset($current) && $current == 'playlists') ? 'class="current"' : 'class="channel"'; ?>><a href="<?php echo WEBROOT.'channel/'.$name.'/playlists'; ?>">Playlists</a></li>
+			<li <?php echo (isset($current) && $current == 'social') ? 'class="current"' : 'class="channel"'; ?>><a href="<?php echo WEBROOT.'channel/'.$name.'/social'; ?>">Social</a></li>
+			<li <?php echo (isset($current) && $current == 'subscribers') ? 'class="current"' : 'class="channel"'; ?>><a href="<?php echo WEBROOT.'channel/'.$name.'/subscribers'; ?>">Abonnés</a></li>
 		</ul>
 	</nav>
 </div>
