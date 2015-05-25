@@ -3,8 +3,10 @@
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
+require_once SYSTEM.'json_response.php';
 require_once SYSTEM.'redirect_response.php';
 
+require_once MODEL . 'word_search.php';
 require_once MODEL.'video.php';
 
 class SearchController extends Controller {
@@ -13,7 +15,6 @@ class SearchController extends Controller {
 	
 	public function __construct() {
 		$this->denyAction(Action::GET);
-		$this->denyAction(Action::CREATE);
 		$this->denyAction(Action::DESTROY);
 	}
 	
@@ -123,7 +124,34 @@ class SearchController extends Controller {
 		return new ViewResponse("search/advanced");
 	}
 	
+	public function autocomplete($query, $request){
+		$data = [];
+		
+		$words = explode(' ', $query);
+		$words = array_reverse($words);
+		$word_to_complete = '';
+		foreach($words as $k => $word){
+			if(strlen($word)>=3){
+				$word_to_complete = $word;
+				break;
+			}
+		}
+		$data=WordSearch::getMatchingWords($word);
+		return new JsonResponse($data);
+	}
+
+	public function create($request) {
+		$req = $request->getParameters();
+		if(isset($req['add_words'])){
+			$words = explode(" ", $req['query']);
+			$words = array_unique($words);
+			$words = array_filter($words, function ($v){
+				return strlen($v) >= 3;
+			});
+			return new JsonResponse(["ok"]);
+		}
+	}
+	
 	public function get($id, $request) {}
-	public function create($request) {}
 	public function destroy($id, $request) {}
 }

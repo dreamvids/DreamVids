@@ -71,8 +71,7 @@
 
 						</div>
 						<div class="center">
-
-							<form method="get" onsubmit="document.location.href=_webroot_+'search/&q='+encodeURIComponent(encodeURIComponent(document.getElementById('top-nav-search-input').value));return false;" action="<?php echo WEBROOT.'search'; ?>">
+							<form id="search_form" method="get" action="<?php echo WEBROOT.'search'; ?>">
 
 								<fieldset class="search_bar">
 									<input type="text" id="top-nav-search-input" name="q" required placeholder="<?php echo Translator::get("header.search"); ?>" value="<?php echo addcslashes(isset($_SESSION["last_search"]) ? $_SESSION["last_search"] : '', '"'); ?>">
@@ -80,6 +79,21 @@
 								</fieldset>
 
 							</form>
+							<script>
+								var search_form = document.getElementById('search_form');
+								var sent = false;
+								search_form.onsubmit = function(e){
+									var query = document.getElementById('top-nav-search-input').value;
+									marmottajax.post({
+										url:_webroot_ + 'search', 
+										options:{
+											query: query, add_words: ''}
+									}).then(function(r){
+										//document.location.href=_webroot_+'search/&q='+encodeURIComponent(encodeURIComponent(document.getElementById('top-nav-search-input').value));
+									});
+									return false;
+								};
+							</script>
 
 						</div>
 						<div class="right">
