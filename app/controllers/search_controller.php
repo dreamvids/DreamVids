@@ -124,19 +124,32 @@ class SearchController extends Controller {
 		return new ViewResponse("search/advanced");
 	}
 	
-	public function autocomplete($query, $request){
+	public function autocomplete($query = '', $request){
+		
 		$data = [];
 		
 		$words = explode(' ', $query);
 		$words = array_reverse($words);
-		$word_to_complete = '';
+		$words = array_filter($words, function ($v){
+				return strlen($v) >= 1 && $v != ' ';
+		});
+	
+		$words_to_complete = ['', ''];
+		
+		$i = 0;
 		foreach($words as $k => $word){
-			if(strlen($word)>=3){
-				$word_to_complete = $word;
-				break;
-			}
+				$words_to_complete[$i] = $word;
+				$i++;
+				if($i == 2){
+					break;
+				}
 		}
-		$data=WordSearch::getMatchingWords($word);
+		
+		if($words_to_complete[0] == '' && $words_to_complete[1] == ''){
+			return new JsonResponse([]);
+		}
+		
+		$data=WordSearch::getMatchingWords($words_to_complete[0], $words_to_complete[1]);
 		return new JsonResponse($data);
 	}
 
@@ -148,7 +161,8 @@ class SearchController extends Controller {
 			$words = array_filter($words, function ($v){
 				return strlen($v) >= 3;
 			});
-			return new JsonResponse(["ok"]);
+			$r = WordSearch::addWords($words);
+			return new JsonResponse($r);
 		}
 	}
 	

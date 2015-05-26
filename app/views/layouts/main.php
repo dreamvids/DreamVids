@@ -71,11 +71,12 @@
 
 						</div>
 						<div class="center">
-							<form id="search_form" method="get" action="<?php echo WEBROOT.'search'; ?>">
+							<form id="search_form" method="get" onsubmit="return false;" action="<?php echo WEBROOT.'search'; ?>">
 
 								<fieldset class="search_bar">
-									<input type="text" id="top-nav-search-input" name="q" required placeholder="<?php echo Translator::get("header.search"); ?>" value="<?php echo addcslashes(isset($_SESSION["last_search"]) ? $_SESSION["last_search"] : '', '"'); ?>">
+									<input type="text" id="top-nav-search-input" name="q" autocomplete="off" required placeholder="<?php echo Translator::get("header.search"); ?>" value="<?php echo addcslashes(isset($_SESSION["last_search"]) ? $_SESSION["last_search"] : '', '"'); ?>">
 									<input type="submit" value="">
+									<div id="test_auto-complete" style="background:white; padding-left:10px; width:100%;"></div>
 								</fieldset>
 
 							</form>
@@ -83,16 +84,40 @@
 								var search_form = document.getElementById('search_form');
 								var sent = false;
 								search_form.onsubmit = function(e){
-									var query = document.getElementById('top-nav-search-input').value;
+									var query_str = document.getElementById('top-nav-search-input').value;
 									marmottajax.post({
 										url:_webroot_ + 'search', 
 										options:{
-											query: query, add_words: ''}
+											query: query_str, add_words: ''}
 									}).then(function(r){
-										//document.location.href=_webroot_+'search/&q='+encodeURIComponent(encodeURIComponent(document.getElementById('top-nav-search-input').value));
+// 										document.location.href=_webroot_+'search/&q='+encodeURIComponent(encodeURIComponent(document.getElementById('top-nav-search-input').value));
 									});
 									return false;
-								};
+								};//test_auto-complete
+
+								var search_input = document.getElementById('top-nav-search-input');
+								var auto_prop = document.getElementById('test_auto-complete');
+								search_input.addEventListener('keyup', function(e){
+									marmottajax(_webroot_ + 'search/autocomplete/' + "%20" + search_input.value).then(function(res){
+										 transformed_str = search_input.value.split(' ');
+											transformed_str.pop();
+											transformed_str = transformed_str.join(' ').trim();
+										auto_prop.innerHTML = "";
+										var json = JSON.parse(res);
+										json.forEach(function(v,i,ar){
+											var proposition = document.createElement("div");
+											proposition.className = "autocompletion_search";
+											proposition.innerHTML = (transformed_str.length > 0 ? transformed_str + ' ' : '') + v;
+											proposition.addEventListener('click', function(){
+												search_input.value = this.innerHTML;
+											});
+											auto_prop.appendChild(proposition);
+										});
+									}).error(function(e){
+										auto_prop.innerHTML = "";
+									});
+								});
+								
 							</script>
 
 						</div>
