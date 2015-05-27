@@ -59,8 +59,6 @@ class AdminFaqController extends AdminSubController {
 			foreach (self::$fields as $field) {
 				if(isset($req[$field])){
 					$faq->$field = $req[$field];
-				}else{
-					$faq->$field = 0;
 				}
 			}
 
