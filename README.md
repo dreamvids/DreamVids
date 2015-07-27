@@ -10,7 +10,7 @@ This project is using php-activerecord as an ORM library for accessing the datab
 To install all required dependencies, just install composer and type "composer install" in a command prompt.
 
 ###Front
-Le développement front-end necessite quelques [dépendances à installer](https://github.com/DreamVids/DreamVids/blob/dreamvids-2.0/assets/README.md).
+Le développement front-end necessite quelques [dépendances à installer](https://github.com/dreamvids/DreamVids/blob/dev/assets/README.md).
 
 ##Authors
 
