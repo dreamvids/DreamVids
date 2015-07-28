@@ -212,6 +212,10 @@ class Comment extends ActiveRecord\Model {
 			return Comment::all(array('conditions' => array('flagged' => 1), 'order' => 'timestamp desc'));
 		}
 	}
+	
+	public static function getSizeOfReportedComments() {
+		return self::count(array('flagged' => 1));
+	}
 
 	public static function generateId($length) {
 		$idExists = true;

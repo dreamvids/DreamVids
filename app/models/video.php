@@ -352,11 +352,28 @@ class Video extends ActiveRecord\Model {
 
 	public static function getReportedVideos($limit = 'nope') {
 		if($limit != 'nope') {
-			return Video::all(array('conditions' => array('flagged' => 1), 'order' => 'timestamp desc', 'limit' => $limit));
+			return Video::all(array('conditions' => array('flagged' => 1, 'visibility' => array(0, 1, 2)), 'order' => 'timestamp desc', 'limit' => $limit));
 		}
 		else {
-			return Video::all(array('conditions' => array('flagged' => 1), 'order' => 'timestamp desc'));
+			return Video::all(array('conditions' => array('flagged' => 1, 'visibility' => array(0, 1, 2)), 'order' => 'timestamp desc'));
 		}
+	}
+	
+	public static function getSizeOfReportedVideos() {
+		return self::count(array('flagged' => 1, 'visibility' => array(0, 1, 2)));
+	}
+	
+	public static function getSuspendedVideos($limit = 'nope') {
+		if($limit != 'nope') {
+			return Video::all(array('conditions' => array('visibility' => 3), 'order' => 'timestamp desc', 'limit' => $limit));
+		}
+		else {
+			return Video::all(array('conditions' => array('visibility' => 3), 'order' => 'timestamp desc'));
+		}
+	}
+	
+	public static function getSizeOfSuspendedVideos() {
+		return self::count(array('flagged' => 1, 'visibility' => 3));
 	}
 	
 	public static function getSearchVideos($query, $order="none") {

@@ -24,7 +24,7 @@
 			</div>
 
 			<div class="panel-footer">
-				<a href="<?php echo WEBROOT . 'admin/moderation/'.preg_replace('#_[a-zA-Z0-9]+#', '', $k);?>">Jeter un coup d'oeil</a>
+				<a href="<?php echo WEBROOT . 'admin/moderation/'.$value[2];?>">Jeter un coup d'oeil</a>
 				<div class="clearfix"></div>
 			</div>
 			</a>

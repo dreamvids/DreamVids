@@ -20,9 +20,9 @@ class AdminModerationController extends AdminSubController {
 		$appConfig->parseFile();
 		$data = [];
 		$data['stats'] = [
-				"videos_suspended" => ["Vidéo(s) suspendue(s)", Video::count(['visibility' => Config::getValue_('vid_visibility_suspended')])],
-				"videos_flagged" => ["Vidéo(s) reportée(s)", Video::count(['flagged' => 1])],
-				"comments_flagged" => ["Commentaire(s) reporté(s)", Comment::count(['flagged' => 1])]
+				"videos_suspended" => ["Vidéo(s) suspendue(s)", Video::getSizeOfSuspendedVideos(), 'videos/suspended'],
+				"videos_flagged" => ["Vidéo(s) reportée(s)", Video::getSizeOfReportedVideos(), 'videos/reported'],
+				"comments_flagged" => ["Commentaire(s) reporté(s)", Comment::count(['flagged' => 1]), 'comments']
 		];
 		
 		$data['view_icons'] = ["videos_suspended" => ["fa-ban", "fa-video-camera"],
@@ -42,9 +42,18 @@ class AdminModerationController extends AdminSubController {
 		return new ViewResponse('admin/moderation/comments', $data);
 	}
 	
-	public function videos($id, $request){
+	public function videos($type, $request){
 		$data = [];
-		$data['videos'] = Video::getReportedVideos();
+		
+		switch ($type) {
+			case 'suspended': 
+				$data['videos'] = Video::getSuspendedVideos();
+			break;
+			
+			case 'reported':
+				$data['videos'] = Video::getReportedVideos();
+			break;
+		}
 		return new ViewResponse('admin/moderation/videos', $data);
 	}
 	
