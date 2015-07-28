@@ -41,7 +41,7 @@ function tempsRestant(timestamp) {
 	else if (minutes < 14)
 		return minutes + " minutes";
 	else if (minutes < 16)
-		return "un quart d'heures";
+		return "un quart d'heure";
 	else if (minutes < 29)
 		return minutes + " minutes";
 	else if (minutes < 31)
