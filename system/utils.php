@@ -13,7 +13,7 @@ class Utils {
 		$requestProtocol = $_SERVER['SERVER_PROTOCOL'];
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
 		$requestURI = self::getCurrentURI();
-		$requestAcceptedData = $_SERVER['HTTP_ACCEPT'];
+		$requestAcceptedData = (isset($_SERVER['HTTP_ACCEPT'])) ? $_SERVER['HTTP_ACCEPT'] : '';
 		
 		if(strtoupper($requestMethod) == 'POST') {
 			if(isset($_POST['_method'])) {
