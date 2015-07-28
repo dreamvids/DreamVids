@@ -89,8 +89,8 @@
                         			["icon" => "smile-o", "right" => ["modo_or_more"], "sub-menu" => 
                         					["Vue d'ensemble" => ["icon" => "dashboard", "url" => "moderation"],
                         					 "Vidéos suspendues" => ["icon" => "video-camera", "url" => "moderation/videos/suspended"],
-                        					 "Vidéos reportées (".Video::getSizeOfReportedVideos().")" => ["icon" => "video-camera", "url" => "moderation/videos/reported"],
-                        					 "Commentaires reportés (".Comment::getSizeOfReportedComments().")" => ["icon" => "comments", "url" => "moderation/comments"]]
+                        					 "Vidéos reportées" => ["icon" => "video-camera", "url" => "moderation/videos/reported"],
+                        					 "Commentaires reportés" => ["icon" => "comments", "url" => "moderation/comments"]]
                         			],
                         		"Event" =>
                         			["icon" => "gift", "url" => "egg"],
@@ -108,7 +108,7 @@
                         			["icon" => "video-camera", "url" => "videos", "right" => ["modo_or_more"]],
                         		"FAQ" =>
                         			["icon" => "question-circle", "url" => "faq", "right" => ['team_or_more']],
-                        		"Tickets (".Ticket::getSize().")" => 
+                        		"Tickets" => 
                         			["icon" => "bug", "url" => "tickets"],
                         		
                         		"Paramètres" =>
