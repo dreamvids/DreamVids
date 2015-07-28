@@ -6,10 +6,10 @@
 			<input type="hidden" name="_method" value="put" />
 
 			<label for="ask">Question :</label>
-			<input class="form-control" value="<?php echo $faq->ask; ?>" type="text" name="ask" placeholder="Pseudo"><br />
+			<input class="form-control" value="<?php echo $faq->ask; ?>" type="text" name="ask"><br />
 
 			<label for="answer">Réponse :</label>
-			<input class="form-control" value="<?php echo $faq->answer; ?>" type="text" name="answer" placeholder="Réponse"><br />
+			<input class="form-control" value="<?php echo $faq->answer; ?>" type="text" name="answer"><br />
 			
 			<label for="showed">Publier : </label>
 			<input type="checkbox" name="showed" value="<?php echo $faq->showed ? 0 : 1 ?>" <?php echo $faq->showed ? 'checked' : ''?>>

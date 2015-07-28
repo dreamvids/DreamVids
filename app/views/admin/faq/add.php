@@ -6,10 +6,10 @@
 			<input type="hidden" name="_method" value="post" />
 
 			<label for="ask">Question :</label>
-			<input class="form-control" type="text" name="ask" placeholder="Pseudo" autocomplete = "off"><br />
+			<input class="form-control" type="text" name="ask" autocomplete = "off"><br />
 
 			<label for="answer">Réponse :</label>
-			<input class="form-control" type="text" name="answer" placeholder="Réponse" autocomplete = "off"><br />
+			<input class="form-control" type="text" name="answer" autocomplete = "off"><br />
 			
 			<label for="showed">Publier : </label>
 			<input type="checkbox" name="showed" value="1">
