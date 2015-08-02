@@ -17,17 +17,7 @@ class AdminStaffContactDetailsController extends AdminSubController {
 	
 	public function index($request) {
 		$data = [];
-		$conf = new Config(CONFIG . 'app.json');
-		$conf->parseFile();
-		$ranks = ['rankTeam', 'rankModo', 'rankAdmin'];
-		
-		foreach ($ranks as $k => $rank) {
-			$ranks[$k] = $conf->getValue($rank);
-		}
-
-		$ranks_str = implode(' ,', $ranks);
-		
-		$data['infos'] = User::find('all',['conditions' => "rank in ($ranks_str)", 'order' => 'id=' . Session::get()->id. ' DESC', 'include' => ['details']]);
+		$data['infos'] = User::getTeam(true);
 		
 		return new ViewResponse('admin/staffContactDetails/index', $data);
 	}
