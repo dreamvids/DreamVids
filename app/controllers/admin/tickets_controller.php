@@ -26,7 +26,9 @@ class AdminTicketsController extends AdminSubController {
 		$ticket = Ticket::find($id);
 		$message = "Après prise en charge de votre problème, celui-ci a été signalé comme résolu. Si le problème persiste ou qu'un autre survient, merci de nous le faire savoir via l'assistance.";
 		$this->mail($ticket, $message);
-		Conversation::find($ticket->conv_id)->delete();
+		if (User::exists(array('id' => $ticket->user_id))) {
+			Conversation::find($ticket->conv_id)->delete();
+		}
 		$ticket->delete();
 		return new RedirectResponse(WEBROOT.'admin/tickets');
 	}
@@ -52,7 +54,9 @@ class AdminTicketsController extends AdminSubController {
 		$ticket = Ticket::find($id);
 		$message = "Après étude de votre problème, il en résulte qu'il ne s'agit pas d'un incident isolé mais bien d'un problème technique interne à DreamVids (bug). Nous travaillons actuellement à la détection et à la résolution de ce bug mais nous ne pouvons vous donner de plus amples informations. Nous nous excusons pour la gêne occasionnée et vous remerçions de votre patience.";
 		$this->mail($ticket, $message);
-		Conversation::find($ticket->conv_id)->delete();
+		if (User::exists(array('id' => $ticket->user_id))) {
+			Conversation::find($ticket->conv_id)->delete();
+		}
 		$ticket->delete();
 		return new RedirectResponse(WEBROOT.'admin/tickets');
 	}
