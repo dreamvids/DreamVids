@@ -333,6 +333,9 @@ CREATE TABLE `staff_contact_details` (
 	`tel_2` VARCHAR(50) NULL DEFAULT NULL,
 	`email` VARCHAR(50) NULL DEFAULT NULL,
 	`push_bullet_email` VARCHAR(50) NULL DEFAULT NULL,
+	`shown_name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `team_img_name` varchar(255) DEFAULT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `user_id` (`user_id`)
 ) ENGINE=InnoDB;

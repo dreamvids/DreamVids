@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL); // or E_STRICT
+ini_set("display_errors",1);
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
@@ -27,39 +29,46 @@ class AdminStaffContactDetailsController extends AdminSubController {
 
 		$ranks_str = implode(' ,', $ranks);
 		
-		$data['infos'] = User::find('all',['conditions' => "rank in ($ranks_str)", 'order' => 'id=' . Session::get()->id. ' DESC']);
+		$data['infos'] = User::find('all',['conditions' => "rank in ($ranks_str)", 'order' => 'id=' . Session::get()->id. ' DESC', 'include' => ['details']]);
 		
 		return new ViewResponse('admin/staffContactDetails/index', $data);
 	}
 	
-	public function edit($user_id){
-		if(User::exists($user_id)){
-			$data = ['user' => User::find($user_id)];
-			if($data['user']->getStaffDetails()){
-				$temp = $data['user']->details;
-				$temp = Utils::secureActiveRecordModel($temp);				
-			}
-		}else{
-			return new RedirectResponse(WEBROOT . 'admin/staffContactDetails');
-		}
+	public function edit(){
+		$data = ['user' => Session::get()];
+		$data['infos'] = Session::get()->details;
 		return new ViewResponse("admin/staffContactDetails/edit", $data);
 	}
 	
-	public function update($id, $request){ 
-		if(Session::get()->id != $id){
-			return $this->index($request);
-		}
+	public function edit_public_infos($param, $request){
+		$data['infos'] = Session::get()->details;
+		return new ViewResponse('admin/staffContactDetails/edit_public_infos', $data);
 		
-		if(StaffContact::exists(['user_id' => $id])){
+	}
+	
+	public function update($id, $request){ 
+		if(Session::get()->details !== null){
 			$infos = Session::get()->details;
 			$param = $request->getParameters();
-			$infos->tel_1 = $param['tel_1'];
-			$infos->tel_2 = $param['tel_2'];
-			$infos->email = $param['email'];
-			$infos->push_bullet_email = $param['push_bullet_email'];
+			switch($param['type']){
+				case 'contact' : 
+					$infos->tel_1 = $param['tel_1'];
+					$infos->tel_2 = $param['tel_2'];
+					$infos->email = $param['email'];
+					$infos->push_bullet_email = $param['push_bullet_email'];
+					$path = "";
+					break;
+				case 'public' : 
+					$img_url = $this->_handleUpload($request);
+					$infos->shown_name = isset($param['shown_name']) ? $param['shown_name'] : null;
+					$infos->description = isset($param['description']) ? $param['description'] : null;
+					$infos->team_img_name = $img_url;
+					$path = "edit_public_infos";
+					break;
+			}
 
 			$infos->save();
-			return $this->edit($id);
+			return new RedirectResponse(WEBROOT . 'admin/staffContactDetails/' . $path);
 		}else{
 			return $this->create($request);
 		}
@@ -67,20 +76,43 @@ class AdminStaffContactDetailsController extends AdminSubController {
 	}
 
 	public function create($request){
-		
 		$param = $request->getParameters();
+		$img_url = $this->_handleUpload($request);
 		
 		$detail = StaffContact::create([
 			'user_id' => Session::get()->id,
-			'tel_1' => $param['tel_1'],
-			'tel_2' => $param['tel_2'],
-			'email' => $param['email'],
-			'push_bullet_email' => $param['push_bullet_email']
+			'tel_1' => isset($param['tel_1']) ? $param['tel_1'] : "",
+			'tel_2' => isset($param['tel_2']) ? $param['tel_2'] : "",
+			'email' => isset($param['email']) ? $param['email'] : "",
+			'push_bullet_email' => isset($param['push_bullet_email']) ? $param['push_bullet_email'] : "",
+			'shown_name' => isset($param['shown_name']) ? $param['shown_name'] : null,
+			'description' => isset($param['description']) ? $param['description'] : null,
+			'team_img_name' => $img_url
 		]);
-		return $this->edit($detail->user_id);
+		
+		return new RedirectResponse(WEBROOT . 'admin/staffContactDetails');
+		
 	}
 	public function destroy($id, $request){ }
 	public function get($id, $request){ }
+	
+	public function _handleUpload($request){
+		$req = $request->getParameters();
+		if(!isset($req['_FILES_']['team_img_name'])){
+			return null;
+		}
+		$ext = pathinfo($req['_FILES_']['team_img_name']['name'], PATHINFO_EXTENSION);
+		if(!in_array($ext, ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'])){
+			return null;
+		}
+		$file_name = Session::get()->username . '.' . $ext;
+		if(move_uploaded_file($req['_FILES_']['team_img_name']['tmp_name'], ROOT . 'assets/img/team/'.$file_name)){
+			return $file_name;
+		}else{
+			return null;
+		}
+		
+	}
 	
 	public function hasPermission($user) {
 		return Utils::getRankArray($user)['team_or_more'];
