@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL); // or E_STRICT
-ini_set("display_errors",1);
 require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
