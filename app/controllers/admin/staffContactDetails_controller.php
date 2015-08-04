@@ -93,7 +93,7 @@ class AdminStaffContactDetailsController extends AdminSubController {
 		if(!in_array($ext, ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'])){
 			return null;
 		}
-		$file_name = Session::get()->username . '.' . $ext;
+		$file_name = Session::get()->username . '_'. Utils::tps() . '.' . $ext;
 		if(move_uploaded_file($req['_FILES_']['team_img_name']['tmp_name'], ROOT . 'assets/img/team/'.$file_name)){
 			return $file_name;
 		}else{
