@@ -416,5 +416,8 @@ class Video extends ActiveRecord\Model {
 		return Video::all(array('conditions' =>$cond, 'order' => $order));
 	}
 	
+	public static function sumViews(){
+		return Database::getPDOObject()->query('SELECT SUM(`views`) AS total_views FROM `videos`')->fetchAll()[0]['total_views'];
+	}
 
 }
