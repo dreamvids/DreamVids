@@ -6,6 +6,7 @@
 			<h3>Nombre de chaînes : <?php echo $counts['channels']; ?></h3>
 			<h3>Nombre de vidéos : <?php echo $counts['videos']; ?></h3>
 			<h3>Chaînes ayant posté des vidéos : <?php echo $counts['channels_having_videos']; ?><small> (<?php echo $counts['part_of_channels_having_videos']; ?> % )</small></h3>
+			<h3>Nombre total de vues : <?= $counts['total_views'] ?></h3>
 		</div>
 	</div>
 	<div class="col-md-6">
