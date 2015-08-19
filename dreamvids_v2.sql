@@ -78,13 +78,16 @@ CREATE TABLE `contributors` (
 
 
 DROP TABLE IF EXISTS `conversations`;
-CREATE TABLE `conversations` (
+CREATE TABLE IF NOT EXISTS `conversations` (
   `id` varchar(6) NOT NULL,
   `object` varchar(255) NOT NULL,
   `members_ids` text NOT NULL,
   `thumbnail` varchar(255) NOT NULL,
+  `is_ticket` tinyint(1) NOT NULL,
+  `tech_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 CREATE TABLE `event_eggs` (

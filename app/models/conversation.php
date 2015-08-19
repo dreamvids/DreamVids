@@ -38,6 +38,11 @@ class Conversation extends ActiveRecord\Model {
 		$names = array();
 		$membersStr = $this->members_ids;
 
+		if($this->isTicketConv()){
+			$tech_channel = $this->getTechChannel();
+			$tech_user = $this->getTechUser();
+		}
+
 		if(Utils::stringStartsWith($membersStr, ';'))
 				$membersStr = substr_replace($membersStr, '', 0, 1);
 		if(Utils::stringEndsWith($membersStr, ';'))
@@ -48,7 +53,11 @@ class Conversation extends ActiveRecord\Model {
 
 			foreach($membersIds as $memberId) {
 				if(UserChannel::exists($memberId)) {
-					$names[] = UserChannel::find($memberId)->name;
+					if(isset($tech_channel) && $tech_channel->id == $memberId){
+						$names[] = StaffContact::getShownName($tech_user);
+					}else{
+						$names[] = UserChannel::find($memberId)->name;
+					}
 				}
 			}
 		}
@@ -74,7 +83,23 @@ class Conversation extends ActiveRecord\Model {
 	public function getLastMessage() {
 		return Message::last(array('conditions' => array('conversation_id' => $this->id), 'order' => 'timestamp asc'));
 	}
-
+	
+	public function isTicketConv(){
+		return $this->is_ticket;
+	}
+	
+	public function getTechChannel(){
+		if($this->is_ticket){
+			return UserChannel::find_by_owner_id($this->tech_id);
+		}else{
+			return null;
+		}
+	}
+	
+	public function getTechUser(){
+		return User::find_by_id($this->tech_id);
+	}
+	
 	public static function getByUser($user) {
 		$conversations = array();
 
@@ -97,12 +122,21 @@ class Conversation extends ActiveRecord\Model {
 		return $conversations;
 	}
 
-	public static function createNew($object, $creator, $members) {
+	public static function createNew($object, $creator, $members, $is_ticket = false, $tech_id = null) {
+		
+		if(!$is_ticket){
+			$thumnail = $creator->getAvatar();
+		}else{
+			$thumnail = StaffContact::getImageName(User::find_by_id($tech_id));
+		}
+		
 		$conv = Conversation::create(array(
 			'id' => Conversation::generateId(6),
 			'object' => $object,
 			'members_ids' => $members,
-			'thumbnail' => $creator->getAvatar()
+			'thumbnail' => $thumnail,
+			'is_ticket' => $is_ticket,
+			'tech_id' => $tech_id
 		));
 		return $conv->id;
 	}
