@@ -125,16 +125,16 @@ class Conversation extends ActiveRecord\Model {
 	public static function createNew($object, $creator, $members, $is_ticket = false, $tech_id = null) {
 		
 		if(!$is_ticket){
-			$thumnail = $creator->getAvatar();
+			$thumbnail = $creator->getAvatar();
 		}else{
-			$thumnail = StaffContact::getImageName(User::find_by_id($tech_id));
+			$thumbnail = StaffContact::getImageName(User::find_by_id($tech_id));
 		}
 		
 		$conv = Conversation::create(array(
 			'id' => Conversation::generateId(6),
 			'object' => $object,
 			'members_ids' => $members,
-			'thumbnail' => $thumnail,
+			'thumbnail' => $thumbnail,
 			'is_ticket' => $is_ticket,
 			'tech_id' => $tech_id
 		));
