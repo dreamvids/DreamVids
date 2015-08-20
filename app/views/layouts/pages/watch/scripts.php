@@ -10,6 +10,7 @@
 <!-- <script src="<?php echo JS."player.js"; ?>"></script> -->
 <script src="<?php echo JS."dreamplayer.min.js?r=2"; ?>"></script>
 <script src="<?php echo JS."subscribe.js"; ?>"></script>
+<script src="<?php echo JS.'dl-dropdown.js'; ?>"></script>
 <script src="<?php echo JS.'admin.js'; ?>"></script>
 <script src="<?php echo JS.'marmottajax.js'; ?>"></script>
 
