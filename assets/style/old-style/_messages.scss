@@ -149,6 +149,7 @@
 				}
 
 				h3 {
+					display: block;
 					font-size: 22px;
 					color: #333;
 				}
@@ -294,17 +295,18 @@
 				margin: 10px 0;
 
 				.infos {
-					width: 50px;
-					height: 60px;
+					width: 100%;
+					min-height: 60px;
 					margin: 5px;
 
-					text-align: center;
+					text-align: right;
 
 					.avatar {
 						display: block;
 						width: 50px;
 						height: 50px;
 						margin-bottom: 8px;
+						margin-left: auto;
 
 						background-position: center;
 						
@@ -319,7 +321,9 @@
 						clear: both;
 						color: #333;
 						padding-left: 0;
-						line-height: 5px;
+						line-height: 1.2;
+						margin-top: -4px;
+						margin-bottom: 4px;
 					}
 				}
 
@@ -327,9 +331,10 @@
 					position: relative;
 
 					display: inline-block;
-					width: 80%;
+					width: 70%;
 					margin: 5px;
 					padding: 10px;
+					margin-top: -6px;
 
 					background: white;
 
@@ -357,18 +362,9 @@
 
 					.infos, div {
 						float: left;
-					}
-
-					div {
-						margin-left: 15px;
-
-						&:before {
-							left: -15px;
-							top: 0;
-
-							border-style: solid;
-							border-width: 0 15px 15px 0;
-							border-color: transparent #ffffff transparent transparent;
+						text-align: left;
+						.avatar {
+							margin-left: 0;
 						}
 					}
 				}
@@ -379,19 +375,6 @@
 
 					.infos, div {
 						float: right;
-					}
-
-					div {
-						margin-right: 15px;
-
-						&:after {
-							top: 0;
-							right: -15px;
-
-							border-style: solid;
-							border-width: 15px 15px 0 0;
-							border-color: #ffffff transparent transparent transparent;
-						}
 					}
 				}
 			}
