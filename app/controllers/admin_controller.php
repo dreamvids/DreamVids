@@ -4,6 +4,8 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once MODEL.'session.php';
 
+require_once SYSTEM.'view_response.php';
+
 class AdminController extends Controller {
 	public function index($request) {
 		return $this->handleAdminRequest('index', $request);
@@ -35,7 +37,7 @@ class AdminController extends Controller {
 	private function handleAdminRequest() {
 		$user = Session::get();
 		if($user === -1){
-			return Utils::getForbiddenResponse();
+			return new ViewResponse('admin/login/login', ['redirect' => Utils::getCurrentRequest()->getFullUri()], true, 'layouts/admin_login.php', 401);
 		}
 		if ($user->isTeam() || $user->isModerator() || $user->isAdmin()) {
 			$argc = func_num_args();
