@@ -3,7 +3,9 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
+require_once SYSTEM.'json_response.php';
 
+require_once MODEL.'storage_server.php';
 require_once MODEL.'statistic.php';
 require_once MODEL.'comment.php';
 
@@ -62,6 +64,26 @@ class AdminStatisticController extends AdminSubController {
 		$data['data_for_graph']['videos_year'] = Statistic::getDataForGraph('Video', 'timestamp', 3600*24*30*12, 3600*24*30, "Y-m");
 		$data['data_for_graph']['users_year'] = Statistic::getDataForGraph('User', 'reg_timestamp', 3600*24*30*12, 3600*24*30, "Y-m");
 		return new ViewResponse('admin/statistic/graph', $data);
+	}
+	
+	public function space($srv){
+		$data = [];
+		switch($srv){
+			case 'local_server' : $space = disk_free_space('/');
+			break;
+			default: $space = StorageServer::getEmptySpace($srv);
+			break;
+		}
+		
+		if($space !== null){
+			$data['error'] = null;
+		}else{
+			$data['error'] = "Erreur";
+		}
+		
+		$data['empty_space'] = $space;
+		return new JsonResponse($data);	
+		//shell_exec('ssh dreamvids@stor1.dreamvids.fr "df -h"');
 	}
 	
 	public function create($request){ }

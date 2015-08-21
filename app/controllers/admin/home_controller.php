@@ -15,7 +15,8 @@ class AdminHomeController extends AdminSubController {
 
 	
 	public function index($request) {
-		return new ViewResponse('admin/dashboard/index');
+		$data['storage_server'] = ['local_server', 'stor1', 'stor2'];
+		return new ViewResponse('admin/dashboard/index', $data);
 	}
 	
 	public function get($id, $request){}
