@@ -4,7 +4,7 @@ class StaffContact extends ActiveRecord\Model {
 	static $table_name = 'staff_contact_details';
 
     public static function getImageName($user){
-        if(isset($user->details->team_img_name)){
+        if(isset($user->details->team_img_name) && !is_null($user->details->team_img_name) && $user->details->team_img_name != ''){
             return IMG . 'team/' . $user->details->team_img_name;
         }else{
             return $user->getMainChannel()->avatar;
@@ -12,7 +12,7 @@ class StaffContact extends ActiveRecord\Model {
     }
     
     public static function getShownName($user){
-        if(isset($user->details->shown_name)){
+        if(isset($user->details->shown_name) && !is_null($user->details->shown_name) && $user->details->shown_name != ''){
             return $user->details->shown_name;
         }else{
             return $user->username;
@@ -20,7 +20,7 @@ class StaffContact extends ActiveRecord\Model {
     }
 
     public static function getDescription($user){
-        if(isset($user->details->description)){
+        if(isset($user->details->description) && !is_null($user->details->description) && $user->details->description != ''){
             return $user->details->description;
         }else{
             return '';
