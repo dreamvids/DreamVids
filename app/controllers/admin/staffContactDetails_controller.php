@@ -3,7 +3,7 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
-
+require_once SYSTEM.'view_message.php';
 require_once MODEL.'staff_contact.php';
 require_once MODEL.'comment.php';
 
@@ -44,7 +44,7 @@ class AdminStaffContactDetailsController extends AdminSubController {
 					$infos->tel_2 = $param['tel_2'];
 					$infos->email = $param['email'];
 					$infos->push_bullet_email = $param['push_bullet_email'];
-					$path = "";
+					$path = "edit";
 					break;
 				case 'public' : 
 					$img_url = $this->_handleUpload($request);
@@ -59,7 +59,10 @@ class AdminStaffContactDetailsController extends AdminSubController {
 			}
 
 			$infos->save();
-			return new RedirectResponse(WEBROOT . 'admin/staffContactDetails/' . $path);
+			$response = new ViewResponse('admin/staffContactDetails/'.$path, $data);
+			$response->addMessage(ViewMessage::success('Informations modifiées'));
+			
+			return $response;
 		}else{
 			return $this->create($request);
 		}
