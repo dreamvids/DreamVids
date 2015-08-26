@@ -30,7 +30,7 @@ if($user->getStaffDetails()){
 			<label for="push_bullet_email">Adresse mail PushBullet :</label>
 			<input class="form-control"type="email" name="push_bullet_email" value="<?php echo $push_bullet_email; ?>">
 			<br>
-			<input type="submit" class="btn btn-primary">
+			<button type="submit" name="type" value="contact" class="btn btn-primary">Valider</button>
 			
 		</form>		
 	</div>

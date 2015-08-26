@@ -3,6 +3,7 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
+require_once MODEL.'ticket.php';
 
 class AdminHomeController extends AdminSubController {
 	public function __construct() {
@@ -16,6 +17,7 @@ class AdminHomeController extends AdminSubController {
 	
 	public function index($request) {
 		$data['storage_server'] = ['local_server', 'stor1'];
+		$data['tickets'] = Ticket::getSize();
 		return new ViewResponse('admin/dashboard/index', $data);
 	}
 	

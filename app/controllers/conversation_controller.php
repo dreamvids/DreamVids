@@ -50,17 +50,31 @@ class ConversationController extends Controller {
 			if($conv = Conversation::find($id)) {
 				if(!$conv->isUserAllowed(Session::get()))
 					return Utils::getUnauthorizedResponse();
-
+				
+				if($conv->isTicketConv()){
+					$tech['channel'] = $conv->getTechChannel();
+					$tech['user'] = $conv->getTechUser();
+				}else{
+					$tech = null;
+				}
+				
 				$messages = $conv->getMessages();
 				foreach ($messages as $message) {
 					$sender = UserChannel::exists($message->sender_id) ? UserChannel::find($message->sender_id) : false;
-
+					
 					if(is_object($sender)) {
 						$senderAvatar = $sender->getAvatar();
+						$pseudo = $sender->name;
+						
+						if(isset($tech['channel'], $tech['user']) && $sender->id == $tech['channel']->id){
+							$pseudo = StaffContact::getShownName($tech['user']);
+							$senderAvatar = StaffContact::getImageName($tech['user']);
+						}
 
 						$messagesData[] = array(
 							'id' => 'id',
-							'pseudo' => $sender->name,
+							'pseudo' => $pseudo,
+							'channel_name' => $sender->name,
 							'avatar' => $senderAvatar,
 							'text' => $message->content,
 							'mine' => $sender->belongToUser(Session::get()->id)
@@ -79,7 +93,8 @@ class ConversationController extends Controller {
 						$avatar = Config::getValue_('default-avatar');
 				}*/
 
-
+				//var_dump($conv->isTicketConv());
+	
 				$conversationsData['infos'] = array(
 					'id' => $conv->id,
 					'title' => $conv->object,
