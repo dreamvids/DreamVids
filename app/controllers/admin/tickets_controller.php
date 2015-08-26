@@ -38,9 +38,9 @@ class AdminTicketsController extends AdminSubController {
 		if ($ticket->tech == '') {
 			$ticket->tech = Session::get()->username;
 			if (User::exists(array('id' => $ticket->user_id))) {
-				$conv = Conversation::createNew('[Assistance] Demande #'.$ticket->id, Session::get()->getMainChannel(), ';'.User::find($ticket->user_id)->getMainChannel()->id.';'.Session::get()->getMainChannel()->id.';');
+				$conv = Conversation::createNew('[Assistance] Demande #'.$ticket->id, Session::get()->getMainChannel(), ';'.User::find($ticket->user_id)->getMainChannel()->id.';'.Session::get()->getMainChannel()->id.';', 1, Session::get()->id);
 				Message::sendNew(User::find($ticket->user_id)->getMainChannel()->id, $conv, $ticket->description);
-				Message::sendNew(Session::get()->getMainChannel()->id, $conv, 'Bonjour, je suis '.Session::get()->username.' et j\'ai pris en charge votre demande d\'assistance. Cette conversation a été créée pour pouvoir discuter avec vous. ATTENTION: Ne communiquez jamais votre mot de passe, même à un technicien ! Un vrai technicien a à sa disposition tous les outils nécessaires à la résolution de votre problème !', 1);
+				Message::sendNew(Session::get()->getMainChannel()->id, $conv, 'Bonjour, je suis '.StaffContact::getShownName(Session::get()).' et j\'ai pris en charge votre demande d\'assistance. Cette conversation a été créée pour pouvoir discuter avec vous. ATTENTION: Ne communiquez jamais votre mot de passe, même à un technicien ! Un vrai technicien a à sa disposition tous les outils nécessaires à la résolution de votre problème !', 1);
 				$ticket->conv_id = $conv;
 			}
 			$ticket->save();
@@ -66,7 +66,7 @@ class AdminTicketsController extends AdminSubController {
 			$username = (User::exists(array('id' => $ticket->user_id))) ? ' '.User::find($ticket->user_id)->username : '';
 			$to = (User::exists(array('id' => $ticket->user_id))) ? User::find($ticket->user_id)->email : $ticket->user_id;
 			$subject = '[DreamVids] Avancement de votre demande d\'assistance #'.$ticket->id;
-			$message = str_replace('{{tech}}', Session::get()->username, $message);
+			$message = str_replace('{{tech}}', Utils::secure(StaffContact::getShownName(Session::get())), $message);
 			$message = "Bonjour$username,\r\n\r\n$message\r\n\r\nCordialement,\r\nL'équipe DreamVids.";
 			$headers = 'From: DreamVids <assistance@dreamvids.fr>';
 			mail($to, $subject, utf8_decode($message), $headers);

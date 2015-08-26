@@ -98,4 +98,10 @@ class StorageServer extends ActiveRecord\Model {
 		$serv = (file_exists(CACHE.self::$filepath)) ? json_decode(file_get_contents(CACHE.self::$filepath)) : array('in_use' => 0);
 		return (@$serv->in_use > 0);
 	}
+	
+	public static function getEmptySpace($server = 'stor1'){
+		$octet = @file_get_contents("http://$server.dreamvids.fr");
+		return is_numeric($octet) ? $octet : null;
+	}
+	
 }

@@ -103,3 +103,41 @@ function deleteEgg(egg_id){
 			});
 		}			
 }
+
+function checkSpace(id, srv){
+	var element = document.getElementById(id);
+	if(element){
+		setInterval(function (el, srv) {
+			$.ajax({
+				url: _webroot_ + 'admin/statistic/space/' + srv,
+				success: function(result){
+					if(result.error){
+						el.innerHTML = result.error;
+					}else{
+						var sizes = {
+							1: '',
+							1000: 'K',
+							1000000: 'M',
+							1000000000: 'G',
+							1000000000000: 'T',
+							1000000000000000: 'P',
+							1000000000000000000: 'E'
+						}
+						var unity = 1;
+						for(var size in sizes){
+							if(result.empty_space/(size) > 1){
+								unity = size;
+							}
+						}
+						el.innerHTML = (result.empty_space/unity).toFixed(0) + sizes[unity] + "o";
+					}
+				}
+			})
+		}, 1000, element, srv);
+	}
+}
+(function(servers){
+	servers.forEach(function(v,i,ar){
+		checkSpace(v+'_space', v);
+	})
+})(servers);

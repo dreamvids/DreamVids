@@ -13,16 +13,16 @@ CREATE TABLE `backups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `tickets`;
-CREATE TABLE `tickets` (
+CREATE TABLE IF NOT EXISTS `tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `conv_id` varchar(6) NOT NULL,
   `description` text NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
   `ip` varchar(15) NOT NULL,
   `tech` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS `channels_actions`;
@@ -78,13 +78,16 @@ CREATE TABLE `contributors` (
 
 
 DROP TABLE IF EXISTS `conversations`;
-CREATE TABLE `conversations` (
+CREATE TABLE IF NOT EXISTS `conversations` (
   `id` varchar(6) NOT NULL,
   `object` varchar(255) NOT NULL,
   `members_ids` text NOT NULL,
   `thumbnail` varchar(255) NOT NULL,
+  `is_ticket` tinyint(1) NOT NULL,
+  `tech_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 CREATE TABLE `event_eggs` (
@@ -333,6 +336,9 @@ CREATE TABLE `staff_contact_details` (
 	`tel_2` VARCHAR(50) NULL DEFAULT NULL,
 	`email` VARCHAR(50) NULL DEFAULT NULL,
 	`push_bullet_email` VARCHAR(50) NULL DEFAULT NULL,
+	`shown_name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `team_img_name` varchar(255) DEFAULT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `user_id` (`user_id`)
 ) ENGINE=InnoDB;

@@ -23,13 +23,12 @@
 							<td>[à remplir]</td>
 							<td>
 								<?php if($info->id == Session::get()->id) { ?>
-								<a class="btn-warning btn" href="<?php echo WEBROOT . 'admin/staffContactDetails/edit/' . $info->id; ?>">Editer</a>
+								<a class="btn-warning btn" href="<?php echo WEBROOT . 'admin/staffContactDetails/edit/'; ?>">Editer</a>
 								<?php }else{ echo '--'; }?>
 							</td>
 						</tr>
 					<?php continue; }
-						$temp = $info->details;
-						$temp = Utils::secureActiveRecordModel($info->details);
+						Utils::secureActiveRecordModel($info->details);
 					?>
 
 					<tr>
@@ -39,7 +38,7 @@
 						<td><?php echo $info->details->push_bullet_email ?></td>
 						<td>
 							<?php if($info->id == Session::get()->id) { ?>
-							<a class="btn-warning btn" href="<?php echo WEBROOT . 'admin/staffContactDetails/edit/' . $info->id; ?>">Editer</a>
+							<a class="btn-warning btn" href="<?php echo WEBROOT . 'admin/staffContactDetails/edit/'; ?>">Editer</a>
 							<?php }else{ echo '--'; }?>
 						</td>
 					</tr>

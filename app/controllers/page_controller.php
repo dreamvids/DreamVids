@@ -4,6 +4,8 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 
+require_once MODEL.'staff_contact.php';
+
 class PageController extends Controller {
 	public function __construct() {
 		$this->denyAction(Action::INDEX);
@@ -14,7 +16,9 @@ class PageController extends Controller {
 	
 	public function get($id, $request) {
 		if (file_exists(ROOT.'app/views/pages/'.$id.'.php')) {
-			return new ViewResponse('pages/'.$id);
+			$data = [];
+			$data['team'] = User::getTeam();
+			return new ViewResponse('pages/'.$id, $data);
 		}
 		else {
 			return Utils::getNotFoundResponse();

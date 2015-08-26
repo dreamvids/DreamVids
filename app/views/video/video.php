@@ -136,7 +136,7 @@
 
 			<img title="Partager" id="share-video-icon" class="share" src="<?php echo IMG.'share.png'; ?>">
 			<img title="Signaler" class="flag" src="<?php echo IMG.'flag.png'; ?>" onclick="flag('<?php echo $video->id; ?>');">
-			<img title="Télécharger" class="download" src="<?php echo IMG.'download.png'; ?>" onclick="window.open('<?php echo WEBROOT.'uploads/'.$video->poster_id.'/'.$video->id.'.'.$ext; ?>');">
+			<img title="Télécharger" class="download" src="<?php echo IMG.'download.png'; ?>" onclick="dlDropdown({ 360: '<?php echo WEBROOT.'uploads/'.$video->poster_id.'/'.$video->id.'.'.$ext; ?>' })">
 			<img title="Intégrer" id="embed-video-icon" class="embed-icon" src="<?php echo IMG.'embed.png'; ?>">
 			<?php if(Session::isActive()) { ?>
 				<img title="Ajouter à une playlist" data-vidid="<?php echo $video->id; ?>" id="add-playlist-icon" src="<?php echo IMG.'plus.png'; ?>" title="Ajouter à une playlist">

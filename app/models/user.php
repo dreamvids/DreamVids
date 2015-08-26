@@ -388,5 +388,20 @@ class User extends ActiveRecord\Model {
 			Session::set(-1);
 		}
 	}
+	
+	public static function getTeam($userInFirst = false) {
+		$order = ($userInFirst) ? 'id='.Session::get()->id.' DESC' : 'id';
+		
+		$conf = new Config(CONFIG . 'app.json');
+		$conf->parseFile();
+		$ranks = ['rankTeam', 'rankModo', 'rankAdmin'];
+		
+		foreach ($ranks as $k => $rank) {
+			$ranks[$k] = $conf->getValue($rank);
+		}
+
+		$ranks_str = implode(' ,', $ranks);
+		return self::find('all',['conditions' => "rank in ($ranks_str)", 'order' => $order, 'include' => ['details']]);
+	}
 
 }
