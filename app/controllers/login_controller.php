@@ -38,8 +38,11 @@ class LoginController extends Controller {
 	// Called by a POST request
 	public function create($request) {
 		$data = $request->getParameters();
-
+		
 		if(isset($data['submitLogin']) && !Session::isActive()) {
+			
+			$is_admin = isset($data['is_admin']) && ($data['is_admin'] == 1);
+			
 			$username = Utils::secure($data['username']);
 			$password = Utils::secure($data['pass']);
 
@@ -60,10 +63,11 @@ class LoginController extends Controller {
 					$next_try_sec = round(($next_try_tps - $next_try_min*60));
 					$next_try_str = "$next_try_min m et $next_try_sec s";
 				
-					$data = array();
+					$data = isset($data['redirect']) ? ['redirect' => $data['redirect']] : [];
 					$data['currentPageTitle'] = 'Connexion';
-					$response = new ViewResponse('login/login', $data);
-					$response->addMessage(ViewMessage::error($nb_try . " de tentatives de connexions à la suite pour ce compte. Veuillez patienter $next_try_str"));
+					
+					$response = !$is_admin ? new ViewResponse('login/login', $data) : new ViewResponse('admin/login/login', $data, true, 'layouts/admin_login.php', 401);
+					$response->addMessage(ViewMessage::error($nb_try . " tentatives de connexions à la suite pour ce compte. Veuillez patienter $next_try_str"));
 						
 					return $response;
 					
@@ -92,18 +96,19 @@ class LoginController extends Controller {
 						$user->resetLogFails();
 						$user->addLogFail();
 					}
-					$data = array();
+					
+					$data = isset($data['redirect']) ? ['redirect' => $data['redirect']] : [];
 					$data['currentPageTitle'] = 'Connexion';
-					$response = new ViewResponse('login/login', $data);
+					$response = !$is_admin ? new ViewResponse('login/login', $data) :  new ViewResponse('admin/login/login', $data, true, 'layouts/admin_login.php', 401);;
 					$response->addMessage(ViewMessage::error('Mot de passe incorrect'));
 
 					return $response;
 				}
 			}
 			else {
-				$data = array();
+				$data = isset($data['redirect']) ? ['redirect' => $data['redirect']] : [];
 				$data['currentPageTitle'] = 'Connexion';
-				$response = new ViewResponse('login/login', $data);
+				$response = !$is_admin ? new ViewResponse('login/login', $data) : new ViewResponse('admin/login/login', $data, true, 'layouts/admin_login.php', 401);;
 				$response->addMessage(ViewMessage::error('Ce nom d\'utilisateur n\'existe pas'));
 
 				return $response;

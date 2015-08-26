@@ -9,7 +9,7 @@ class RedirectResponse extends Response {
 		if(filter_var($newURL, FILTER_VALIDATE_URL)) {
 			//Prevent phising attack or malredirect link
 			$newURL_host = parse_url($newURL)["host"];
-			if ($_SERVER['HTTP_HOST'] == $newURL_host) {
+			if (str_replace(':80', '',$_SERVER['HTTP_HOST']) == $newURL_host) {
 				$this->newURL = $newURL;
 			}else{
 				$this->newURL = WEBROOT;
