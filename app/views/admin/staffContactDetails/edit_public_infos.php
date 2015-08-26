@@ -1,5 +1,7 @@
 <div class="row">
     <h1>Vos infos officielles en tant que membre du staff</h1>
+    
+		<?php include VIEW.'layouts/messages_bootstrap.php'; ?>
     <div class="col-lg-offset-4 col-lg-4 col-md-12">
         <form  method="post" action="<?= WEBROOT . 'admin/staffContactDetails/' . Session::get()->id; ?>" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PUT">
