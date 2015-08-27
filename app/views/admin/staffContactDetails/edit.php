@@ -1,4 +1,5 @@
-<?php 
+<?php
+	$user = Session::get();
 	$tel_1 = '';
 	$tel_2 = '';
 	$email = $user->email;
