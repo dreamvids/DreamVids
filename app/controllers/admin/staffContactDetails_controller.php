@@ -38,6 +38,7 @@ class AdminStaffContactDetailsController extends AdminSubController {
 		if(Session::get()->details !== null){
 			$infos = Session::get()->details;
 			$param = $request->getParameters();
+			$data['infos'] = Session::get()->details;
 			switch($param['type']){
 				case 'contact' : 
 					$infos->tel_1 = $param['tel_1'];
