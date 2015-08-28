@@ -512,6 +512,7 @@ class Utils {
 		    }
 		}
 		echo "</pre>";
+		proc_close($process);
 		
 		die();
 	}

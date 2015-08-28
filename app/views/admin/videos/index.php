@@ -30,13 +30,12 @@
 							<?php } else { ?>
 							<?php if($vid->isFlagged()){ ?>
 								<button class="btn-success btn" onclick="unFlagVideo('<?php echo $vid->id ?>')">Annuler le flag</button>
-								<?php }else{ ?>
-								<button class="btn-warning btn" onclick="flagVideo('<?php echo $vid->id ?>')">Reporter la vidéo</button>
-								<?php }?>
+								<?php } ?>
 								<button class="btn-warning btn" onclick="suspendVideo('<?php echo $vid->id ?>')">Suspendre</button>
 							<?php } ?>
 						
 							<?php if(Session::get()->isAdmin()): ?>
+								<button class="btn-info btn" onclick="window.open('<?= WEBROOT ?>admin/conversion/<?= $vid->id ?>')">Reconvertir</button>
 								<button class="btn-danger btn" onclick="eraseVideo('<?php echo $vid->id ?>')">Supprimer</button>
 							<?php endif ?>
 						</td>

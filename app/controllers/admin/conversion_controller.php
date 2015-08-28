@@ -7,28 +7,26 @@ require_once SYSTEM.'redirect_response.php';
 class AdminConversionController extends AdminSubController {
 	public function __construct() {
 		
-		$this->denyAction(Action::GET);
+		$this->denyAction(Action::INDEX);
 		$this->denyAction(Action::CREATE);
 		$this->denyAction(Action::UPDATE);
 		$this->denyAction(Action::DESTROY);
 	}
 	
-	public function index($request) {
-	    
-	 return new ViewResponse('admin/conversion/index');   
+	public function get($id, $request) {
+		if (Utils::getHTTPStatusCodeFromURL($vid->url.'_640x360p.mp4') == 200 && Utils::getHTTPStatusCodeFromURL($vid->url.'_640x360p.webm') == 200 && Utils::getHTTPStatusCodeFromURL($vid->url.'_1280x720p.mp4') == 200 && Utils::getHTTPStatusCodeFromURL($vid->url.'_1280x720p.mp4') == 200) {
+			echo '<script>window.close()</script>';
+			die();
+		}
+		$vid = Video::find($id);
+		$vid_path = preg_replace("#^https?://stor[1-9]+\.dreamvids\.fr/#", '', $vid->url);
+		echo '<!doctype html><html><head><title>Conversion en cours...</title><meta charsat="utf-8" /></head><body>';
+		Utils::streamCmdOutput('convert.sh '.ROOT.$vid_path);
+		echo '<script>window.close()</script></body></html>';
 	}
 	
-	public function get($id, $request){}
+	public function index($request){}
 	public function create($request){}
 	public function update($id, $request){}
 	public function destroy($id, $request){}
-	
-	public function progress($request){
-	    Utils::streamCmdOutput('ping 8.8.8.8 -c 10 -i 0.5', true, 'test');
-	}
-	
-	public function hasPermission($user) {
-		return Utils::getRankArray($user)['admin'];
-	}
-	
 }
