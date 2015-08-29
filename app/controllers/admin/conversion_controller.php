@@ -14,13 +14,18 @@ class AdminConversionController extends AdminSubController {
 	}
 	
 	public function get($id, $request) {
+		@ini_set('zlib.output_compression', 'Off');
+		@ini_set('output_buffering', 'Off');
+		@ini_set('output_handler', '');
+		@apache_setenv('no-gzip', 1);
+		
+		$vid = Video::find($id);
+		echo '<!doctype html><html><head><title>Conversion en cours...</title><meta charsat="utf-8" /></head><body>';
 		if (Utils::getHTTPStatusCodeFromURL($vid->url.'_640x360p.mp4') == 200 && Utils::getHTTPStatusCodeFromURL($vid->url.'_640x360p.webm') == 200 && Utils::getHTTPStatusCodeFromURL($vid->url.'_1280x720p.mp4') == 200 && Utils::getHTTPStatusCodeFromURL($vid->url.'_1280x720p.mp4') == 200) {
 			echo '<script>window.close()</script>';
 			die();
 		}
-		$vid = Video::find($id);
 		$vid_path = preg_replace("#^https?://stor[1-9]+\.dreamvids\.fr/#", '', $vid->url);
-		echo '<!doctype html><html><head><title>Conversion en cours...</title><meta charsat="utf-8" /></head><body>';
 		Utils::streamCmdOutput('convert.sh '.ROOT.$vid_path);
 		echo '<script>window.close()</script></body></html>';
 	}
