@@ -14,10 +14,7 @@ class AdminConversionController extends AdminSubController {
 	}
 	
 	public function get($id, $request) {
-		@ini_set('zlib.output_compression', 'Off');
-		@ini_set('output_buffering', 'Off');
-		@ini_set('output_handler', '');
-		@apache_setenv('no-gzip', 1);
+		// TODO: Désactiver GZip
 		
 		$vid = Video::find($id);
 		echo '<!doctype html><html><head><title>Conversion en cours...</title><meta charsat="utf-8" /></head><body>';
