@@ -52,7 +52,7 @@
 </div>
 <div class="row">
   <h2>Moi : </h2>
-  <div class="col-sm-6 col-md-4">
+  <div class="col-md-3 col-xs-6">
     <div class="thumbnail">
       <img src="<?= StaffContact::getImageName(Session::get()); ?>" alt="Avatar">
       <div class="caption">
@@ -66,4 +66,19 @@
       </div>
     </div>
   </div>
+    <div class="col-lg-3 col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Informations :</div>
+            <div class="panel-body">
+                <p>Votre adresse email @dreamvids.fr est :<br>
+                <b>[prénom]@dreamvids.fr</b><br>
+                Pour acceder au webmail il suffit de se rendre sur <a href='https://webmail.dreamvids.fr/' target="_blank">https://webmail.dreamvids.fr/</a> (pensez à ajouter une exception de sécurité). Votre mot de passe vous a été communiqué par email à l'adresse que vous avez indiqué <a href="<?= WEBROOT; ?>admin/staffContactDetails">ICI</a>.</p>
+                
+            </div>
+            <div class="panel-body">
+                <p>Pour recuperer et envoyer des mail avec un client utilisez le nom d'utilisateur : <b>[prénom]@dreamvids.fr</b><br>
+               Et utilisez le serveur <code>node-email-1.pulsepanel.eu</code> en utilisant TLS/SSL</p>
+            </div>
+        </div>
+    </div>
 </div>
