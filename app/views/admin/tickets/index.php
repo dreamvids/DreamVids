@@ -1,6 +1,6 @@
 <div class="row">
 	<h1>Traitement des tickets</h1>
-
+	<?php include VIEW.'layouts/messages_bootstrap.php'; ?>
 	<div class="col-lg-12">
 		<table class="table table-bordered table-hover table-striped table-to-sort">
 			<thead>
@@ -10,12 +10,14 @@
 					<th>Date</th>
 					<th>Utilisateur</th>
 					<th>IP</th>
+					<th>Niveau</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<?php foreach ($tickets as $tick):
+					//Utils::debug($tick->ticket_levels);
 					if (User::exists(array('id' => $tick->user_id))):
 						$user_id = User::find($tick->user_id)->username;
 					else:
@@ -40,6 +42,7 @@
 						<td><?php echo date('d/m/Y H:i', $tick->timestamp); ?></td>
 						<td><?php echo $user_id; ?></td>
 						<td><?php echo $tick->ip; ?></td>
+						<td><?php echo $tick->getLabel(); ?><a class="btn-warning btn btn-xs" href="<?= WEBROOT; ?>admin/tickets/edit_level/<?php echo $tick->id; ?>">Changer</button></td>
 						<td>
 							<button class="btn-success btn" onclick="if(confirm('Êtes-vous sur que le problème est résolu ? Un E-Mail sera envoyé à l\'utilisateur pour lui confirmer la résolution de son problème et ce ticket sera définitivement supprimé.')){document.location.href=_webroot_+'admin/tickets/solved/<?php echo $tick->id; ?>';}">Problème résolu</button>
 							<?php if ($tick->tech == ''): ?>

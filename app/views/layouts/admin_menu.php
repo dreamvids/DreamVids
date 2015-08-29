@@ -114,7 +114,8 @@
                         		"Paramètres" =>
                         			["icon" => "wrench", "right" => ["admin"], "sub-menu" =>
                         					["Mise en maintenance" => ["icon" => "plug", "url" => "settings/emergency"],
-                        					 "Gestion des admins/modérateurs" => ["icon" => "users", "url" => "settings/users"]]
+                        					 "Gestion des admins/modérateurs" => ["icon" => "users", "url" => "settings/users"],
+                        					 "Paramètres des tickets" => ["icon" => "life-ring", "url" => "ticketlevels"]]
                         			]
                         ];
                         $menu = Utils::generateAdminMenuFromArray($menu_array, Session::get()); 
