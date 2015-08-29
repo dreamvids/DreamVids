@@ -8,8 +8,12 @@ class Ticket extends ActiveRecord\Model {
 		['ticket_levels'],
 		['UserTicketsCapability']
 	];
-	public static function getSize() {
-		return self::count();
+	public static function getSize($user = null) {
+		if($user instanceof User){
+			return count($user->getAssignedTickets());
+		}else{
+			return self::count();
+		}
 	}
 	
 	public function getLabel(){

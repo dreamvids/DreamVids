@@ -19,6 +19,14 @@ class AdminTicketsController extends AdminSubController {
 	public function index($request) {
 		$data = [];
 		$data['tickets'] = Session::get()->getAssignedTickets();
+		$data['all'] = false;
+		return new ViewResponse('admin/tickets/index', $data);
+	}
+	
+	public function all($request){
+		$data = [];
+		$data['tickets'] = Ticket::find('all');
+		$data['all'] = true;
 		return new ViewResponse('admin/tickets/index', $data);
 	}
 	
@@ -69,8 +77,17 @@ class AdminTicketsController extends AdminSubController {
 	}
 	
 	public function update($id, $request){
+		$param = $request->getParameters();
 		$ticket = Ticket::find($id);
-		$ticket->ticket_levels_id = $request->getParameters()['level_id'];
+		
+		if(isset($param['new']) && $param['new']){
+			$level = TicketLevels::create([
+				'label' => $param['label']
+				]);
+			$ticket->ticket_levels_id = $level->id;
+		}else{
+			$ticket->ticket_levels_id = $param['level_id'];
+		}
 		$ticket->save();
 		$r = $this->index($request);
 		$r->addMessage(ViewMessage::success("Modification effectuée"));

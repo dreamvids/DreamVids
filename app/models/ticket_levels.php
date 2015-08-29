@@ -10,4 +10,9 @@ class TicketLevels extends ActiveRecord\Model {
 	public function countUser(){
 		return UserTicketsCapability::count(['ticket_levels_id' => $this->id]);
 	}
+	
+	public function isUsed(){
+		
+		return Ticket::count(['ticket_levels_id' => $this->id]) > 0;
+	}
 }

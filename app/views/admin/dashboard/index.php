@@ -35,7 +35,7 @@
                         <i class="fa fa-support fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><?= $tickets ?></div>
+                        <div class="huge"><?= $tickets ?> / <?= $all_tickets ?></div>
                         <div>Ticket<?= $tickets > 1 ? 's' : '' ?> à traiter</div>
                     </div>
                 </div>

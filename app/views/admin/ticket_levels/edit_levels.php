@@ -20,7 +20,11 @@
                 <td><input class="form-control" name="label" value="<?= $level->label; ?>"></td>
                 <td>
                     <button type="submit" class="btn btn-success">Valider</button>
-                    <a onclick="$.ajax(_webroot_+'admin/ticketlevels/<?= $level->id ?>',{method: 'delete', complete: function(){document.location.href = _webroot_+'admin/ticketlevels/edit_levels';}});" type="submit" class="btn btn-danger">Supprimer</a>
+                    <?php if(!$level->isUsed()): ?>
+                    <a onclick="$.ajax(_webroot_+'admin/ticketlevels/<?= $level->id ?>',{method: 'delete', complete: function(){document.location.href = _webroot_+'admin/ticketlevels/edit_levels';}});" class="btn btn-danger">Supprimer</a>
+                    <?php else: ?>
+                    <a class="btn btn-default" disabled>Supprimer [utilisé]</a>
+                    <?php endif; ?>
                 </td>
         </form>
             </tr>

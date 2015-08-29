@@ -19,7 +19,6 @@ class AdminTicketlevelsController extends AdminSubController {
 	
 	public function edit_levels(){
 	    $data['levels'] = TicketLevels::find('all');
-	    
 	    return new ViewResponse('admin/ticket_levels/edit_levels', $data);
 	}
 	
@@ -73,14 +72,6 @@ class AdminTicketlevelsController extends AdminSubController {
 	public function destroy($id, $request){
 		$level = TicketLevels::find($id);
 		$level->delete();
-		
-		$tickets_to_update = Ticket::find(['ticket_levels_id' => $id]);
-		if(!is_null($tickets_to_update)){
-			foreach($ticket_levels as $v){
-				$v->ticket_levels_id = 0;
-				$v->save();
-			}
-		}
 		
 		$r = $this->edit_levels();
 		$r->addMessage(ViewMessage::success('Supprimé'));
