@@ -23,7 +23,7 @@
 
 	<h3 class="title">Et Maintenant ?</h3>
 	<p style="text-align:justify;">
-		Aujourd'hui, DreamVids est un projet bénévole composé de 17 personnes passionnées.
+		Aujourd'hui, DreamVids est un projet bénévole composé de <?= count($team); ?> personnes passionnées.
 		Nous travaillons tous les jours pour faire de DreamVids une plateforme cool et reconnue !
 		Actuellement, vous naviguez sur la version 2 du site, qui fait suite à la version 1, qui était
 		une bêta, et qui a durée presque un an.
