@@ -4,6 +4,7 @@ require_once MODEL.'user_channel.php';
 require_once MODEL.'user_session.php';
 require_once MODEL.'staff_contact.php';
 require_once MODEL.'subscription.php';
+require_once MODEL.'news.php';
 
 class User extends ActiveRecord\Model {
 	static $has_one = [
@@ -12,6 +13,7 @@ class User extends ActiveRecord\Model {
 	
 	static $has_many = [
 			['subscriptions'],
+			['news'],
 			['subscribed_channels', 'class_name' => 'UserChannel', 'through' => 'subscriptions']
 			
 	];
