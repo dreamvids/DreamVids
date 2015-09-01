@@ -21,9 +21,22 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   `timestamp` bigint(20) NOT NULL,
   `ip` varchar(15) NOT NULL,
   `tech` varchar(40) NOT NULL,
+  `ticket_levels_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `user_tickets_capabilities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `ticket_levels_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `ticket_levels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
 DROP TABLE IF EXISTS `channels_actions`;
 CREATE TABLE `channels_actions` (
