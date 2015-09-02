@@ -97,7 +97,7 @@ class AdminStaffContactDetailsController extends AdminSubController {
 			return null;
 		}
 		$ext = pathinfo($req['_FILES_']['team_img_name']['name'], PATHINFO_EXTENSION);
-		if(!in_array($ext, ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'])){
+		if(!in_array(strtolower($ext), ['jpeg', 'jpg', 'png', 'gif', 'tiff', 'svg'])){
 			return null;
 		}
 		$file_name = Session::get()->username . '_'. Utils::tps() . '.' . $ext;
