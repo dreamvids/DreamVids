@@ -133,11 +133,87 @@ function checkSpace(id, srv){
 					}
 				}
 			})
-		}, 1000, element, srv);
+		}, 2000, element, srv);
 	}
 }
+
 (function(servers){
 	servers.forEach(function(v,i,ar){
 		checkSpace(v+'_space', v);
 	})
 })(servers);
+
+$('#news_modal').on('show.bs.modal', function (event) {
+	
+	var button = $(event.relatedTarget)
+	
+	var title = button.data('title');
+	var content = button.data('content');
+	var level = button.data('level');
+	var icon = button.data('icon');
+	
+	var modal = $(this);
+	var form = $("#news_form");
+	
+	form.data('method', button.data('method'));
+	switch(button.data('method')){
+		case 'PUT' :
+						form.data('id', button.data('id'));
+						modal.find('#input-level option[value="'+level+'"]').prop('selected', true);
+						modal.find('.modal-title').text('Modifier la news "' + title + '"');
+						modal.find('.modal-body #input-title').val(title);
+						modal.find('.modal-body #input-content').val(content);
+						modal.find('.modal-body #input-icon').val(icon);
+			break;
+		case 'POST' : 
+						modal.find('.modal-title').text('Ajouter une news');
+						modal.find('#input-level option[value=""]').prop('selected', true);
+						modal.find('.modal-body #input-title').val('');
+						modal.find('.modal-body #input-content').val('');
+						modal.find('.modal-body #input-icon').val('');
+						form.data('id', '');
+			break;
+	}
+});
+
+$('#news_form').submit(function(event) {
+	
+	var form_data = {};
+	$(this).serializeArray().forEach(function(v){
+		form_data[v.name] = v.value;
+	});
+	$.ajax({
+		method: $(this).data('method'),
+		data:form_data,
+		url: _webroot_ + 'admin/news/' + $(this).data('id'),
+		success: function(result) {
+				if(result.success == true){
+					window.location.reload();
+				}else{
+					var alert_el = document.createElement('div');
+					alert_el.innerHTML = '<div class="alert alert-danger fade in" role="alert"><strong>Oups !</strong> Une erreur s\'est produite lors de l\'envoi</div>';
+					$('#news_modal').find(".modal-header").append(alert_el);
+					
+					setTimeout(function(){
+						$(alert_el).fadeOut();
+					}, 2000);
+				}
+		}
+	});
+	
+	
+	event.preventDefault();
+});
+
+function deleteNew(el){
+	if(confirm('Supprimer cette news ?')){
+		$.ajax({
+			method: 'delete',
+			url: _webroot_ + 'admin/news/' + el.dataset.id,
+			success: function(result) {
+					window.location.reload();
+			}
+		});
+		
+	}
+}
