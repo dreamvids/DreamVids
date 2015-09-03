@@ -3,6 +3,7 @@ require_once SYSTEM.'controller.php';
 require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
+require_once SYSTEM.'view_message.php';
 
 require_once MODEL.'ticket.php';
 require_once MODEL.'conversation.php';
@@ -12,13 +13,20 @@ class AdminTicketsController extends AdminSubController {
 	public function __construct() {
 		$this->denyAction(Action::GET);
 		$this->denyAction(Action::CREATE);
-		$this->denyAction(Action::UPDATE);
 		$this->denyAction(Action::DESTROY);
 	}
 	
 	public function index($request) {
 		$data = [];
-		$data['tickets'] = Ticket::all(array('order' => 'timestamp'));
+		$data['tickets'] = Session::get()->getAssignedTickets();
+		$data['all'] = false;
+		return new ViewResponse('admin/tickets/index', $data);
+	}
+	
+	public function all($request){
+		$data = [];
+		$data['tickets'] = Ticket::find('all');
+		$data['all'] = true;
 		return new ViewResponse('admin/tickets/index', $data);
 	}
 	
@@ -61,6 +69,31 @@ class AdminTicketsController extends AdminSubController {
 		return new RedirectResponse(WEBROOT.'admin/tickets');
 	}
 	
+	public function edit_level($id){
+		$data['ticket'] = Ticket::find($id);
+		$data['levels'] = TicketLevels::find('all');
+		$data['levels'] = is_null($data['levels']) ? [] : $data['levels'];
+		return new ViewResponse('admin/tickets/edit_level', $data);
+	}
+	
+	public function update($id, $request){
+		$param = $request->getParameters();
+		$ticket = Ticket::find($id);
+		
+		if(isset($param['new']) && $param['new']){
+			$level = TicketLevels::create([
+				'label' => $param['label']
+				]);
+			$ticket->ticket_levels_id = $level->id;
+		}else{
+			$ticket->ticket_levels_id = $param['level_id'];
+		}
+		$ticket->save();
+		$r = $this->index($request);
+		$r->addMessage(ViewMessage::success("Modification effectuée"));
+		return $r;
+	}
+	
 	private function mail($ticket, $message) {
 		if ($ticket->user_id !== '0') {
 			$username = (User::exists(array('id' => $ticket->user_id))) ? ' '.User::find($ticket->user_id)->username : '';
@@ -75,6 +108,5 @@ class AdminTicketsController extends AdminSubController {
 	
 	public function get($id, $request){}
 	public function create($request){}
-	public function update($id, $request){}
 	public function destroy($id, $request){}
 }

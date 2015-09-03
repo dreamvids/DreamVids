@@ -81,6 +81,11 @@ class AdminSettingsController extends AdminSubController {
 		}
 	}
 	
+	public function tickets(){
+		$data = [];
+		return new ViewResponse('admin/settings/tickets', $data);
+	}
+	
 	public function get($id, $request){}
 	public function create($request){}
 	public function destroy($id, $request){}
