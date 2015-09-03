@@ -152,6 +152,16 @@ CREATE TABLE `modos_actions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `content` text NOT NULL,
+  `icon` varchar(15) NOT NULL,
+  `level` varchar(15) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `partners`;
 CREATE TABLE `partners` (

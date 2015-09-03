@@ -7,17 +7,19 @@ require_once MODEL.'subscription.php';
 require_once MODEL.'ticket_levels.php';
 require_once MODEL.'user_tickets_capability.php';
 require_once MODEL.'ticket.php';
+require_once MODEL.'news.php';
+
 class User extends ActiveRecord\Model {
 	static $has_one = [
 			['details', 'class_name' => 'StaffContact']
 	];
 	
 	static $has_many = [
+			['news'],
 			['subscriptions'],
 			['user_tickets_capabilities'],
 			['subscribed_channels', 'class_name' => 'UserChannel', 'through' => 'subscriptions'],
-			['assigned_ticket_level', 'class_name' => 'TicketLevels', 'through' => 'user_tickets_capabilities']/*,
-			['assigned_tickets', 'class_name' => 'Ticket', 'through' => 'user_tickets_capabilities']*/
+			['assigned_ticket_level', 'class_name' => 'TicketLevels', 'through' => 'user_tickets_capabilities']
 			
 	];
 	
