@@ -72,8 +72,8 @@ class User extends ActiveRecord\Model {
 		return $vidsToAdd;
 	}
 
-	public function getNotifications() {
-		$actions = ChannelAction::find_by_sql("SELECT * FROM channels_actions WHERE recipients_ids LIKE ? ORDER BY timestamp DESC", array('%;'.Session::get()->id.';%'));
+	public function getNotifications($limit = 50) {
+		$actions = ChannelAction::find_by_sql("SELECT * FROM channels_actions WHERE recipients_ids LIKE ? ORDER BY timestamp DESC LIMIT $limit", array('%;'.Session::get()->id.';%'));
 		return $actions;
 	}
 
