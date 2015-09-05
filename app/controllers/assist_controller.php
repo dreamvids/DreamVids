@@ -5,6 +5,7 @@ require_once SYSTEM.'response.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'view_message.php';
 
+require_once MODEL.'staff_notifications.php';
 require_once MODEL.'ticket.php';
 require_once MODEL.'pushover.php';
 
@@ -42,6 +43,9 @@ class AssistController extends Controller {
 				'timestamp' => time(),
 				'ip' => $_SERVER['REMOTE_ADDR']
 			));
+			
+			StaffNotification::createNotif('ticket', $user_id, null, $ticket->id);
+			
 			$ticket_id = $ticket->id;
 			$response->addMessage(ViewMessage::success('Envoyé ! Vous serez notifié de l\'avancement par E-Mail ou Message Privé (Ticket #'.$ticket_id.')'));
 			

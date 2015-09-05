@@ -339,7 +339,7 @@ class User extends ActiveRecord\Model {
 	}
 	
 	public function getAssignedTickets(){
-		$tickets = Ticket::find(['ticket_levels_id' => $this->getAssignedLevelsIds()]);
+		$tickets = Ticket::find('all', ['ticket_levels_id' => $this->getAssignedLevelsIds()]);
 		if(is_null($tickets)){
 			return [];
 		}

@@ -4,6 +4,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'json_response.php';
 
+require_once MODEL.'channel_action.php';
 require_once MODEL.'news.php';
 
 class AdminNewsController extends AdminSubController {
@@ -27,6 +28,8 @@ class AdminNewsController extends AdminSubController {
     	            'level' => $params['level'],
     	            'timestamp' => Utils::tps()
     	        ]);
+    	        
+    	        StaffNotification::createNotif('news', Session::get()->id);
     	        $data['success'] = is_object($new);
 	    }
 	    

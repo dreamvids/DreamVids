@@ -1,11 +1,12 @@
 <?php
-
+require_once MODEL . 'staff_notifications.php';
 class ChannelAction extends ActiveRecord\Model {
 
 	static $table_name = 'channels_actions';
-
+	
 	public $infos = array();
-
+	
+	
 	public static function generateId($length) {
 		$idExists = true;
 
@@ -63,5 +64,4 @@ class ChannelAction extends ActiveRecord\Model {
 		
 		return ';';
 	}
-
 }

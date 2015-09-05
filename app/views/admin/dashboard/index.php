@@ -1,7 +1,7 @@
 <script type="text/javascript">var servers = [];</script>
 <div class="row">
 	<h1>Dashboard</h1>
-  <div class="col-lg-3 col-sm-6 col-xs-12">
+  <div class="col-lg-4 col-sm-6 col-xs-12">
     <div class="thumbnail">
       <img src="<?= StaffContact::getImageName(Session::get()); ?>" alt="Avatar">
       <div class="caption">
@@ -15,7 +15,7 @@
       </div>
     </div>
   </div>
-	<div class="col-lg-6 col-sm-6 col-xs-12">
+	<div class="col-lg-4 col-sm-6 col-xs-12">
 <?php foreach($storage_server as $srv): ?>
 	<script type="text/javascript">servers.push('<?= $srv; ?>');</script>
         <div class="panel panel-primary">
@@ -59,7 +59,7 @@
             </a>
         </div>
 	</div>
-    <div class="col-lg-3 col-md-6 col-xs-12">
+    <div class="col-lg-4 col-md-6 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Informations :</div>
             <div class="panel-body">
@@ -74,7 +74,12 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-12 col-xs-12">
+</div>
+<div class="row">
+    <div class="col-md-8 col-sm-12 col-xs-12">
         <?php include VIEW.'admin/news/home.php'; ?>
+    </div>
+    <div class="col-lg-4 col-md-6 col-xs-12">
+        <?php include VIEW.'admin/dashboard/notifications.php'; ?>
     </div>
 </div>

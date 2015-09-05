@@ -4,6 +4,7 @@ require_once SYSTEM.'actions.php';
 require_once SYSTEM.'view_response.php';
 require_once SYSTEM.'redirect_response.php';
 require_once MODEL.'ticket.php';
+require_once MODEL.'staff_notifications.php';
 
 class AdminHomeController extends AdminSubController {
 	public function __construct() {
@@ -21,6 +22,7 @@ class AdminHomeController extends AdminSubController {
 		$data['tickets'] = Ticket::getSize(Session::get());
 		$data['all_tickets'] = Ticket::getSize();
 		$data['news'] = News::getLastNews();
+		$data['notifs'] = StaffNotification::getInternStaffNotifications();
 		
 		return new ViewResponse('admin/dashboard/index', $data);
 	}
