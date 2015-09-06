@@ -133,7 +133,7 @@ function checkSpace(id, srv){
 					}
 				}
 			})
-		}, 2000, element, srv);
+		}, 15000, element, srv);
 	}
 }
 
