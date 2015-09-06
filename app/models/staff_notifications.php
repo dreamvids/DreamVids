@@ -1,6 +1,6 @@
 <?php
 require_once MODEL . 'user.php';
-
+require_once MODEL. 'pushbullet.php';
 class StaffNotification extends ActiveRecord\Model {
 
 	static $table_name = 'staff_notifications';
@@ -99,9 +99,10 @@ class StaffNotification extends ActiveRecord\Model {
 		return $notifs;
 	}
 	
-	public static function createNotif($type, $id_one = null, $id_two = null, $value = null, $level = '', $viewers = 'team_or_more', $send_pushbullet = false){
+	public static function createNotif($type, $id_one = null, $id_two = null, $value = null, $level = '', $viewers = 'team_or_more'){
 			
-		StaffNotification::create([
+			
+		$staff_notif = StaffNotification::create([
 				'type' => $type,
 				'id_one' => $id_one,
 				'id_two' => $id_two,
@@ -110,9 +111,16 @@ class StaffNotification extends ActiveRecord\Model {
 				'level' => $level,
 				'timestamp' => Utils::tps()
 			]);
-			
-		if($send_pushbullet){
-			//TODO
-		}
+			$emails = [];
+			foreach(User::getTeam() as $user){
+				if(Utils::getRankArray($user)[$viewers]){
+					if(!is_null($user->details->push_bullet_email) && $user->details->push_bullet_email != '' && 
+						!is_null($user->details->push_bullet_email) && $user->details->enable_push_bullet == 1){
+						$emails[] = $user->details->push_bullet_email;
+					}
+				}
+			}
+			$notif = new PushBulletNotification('Dreamvids', $staff_notif->getContent(), $emails);
+			$notif->send();
 	}
 }
