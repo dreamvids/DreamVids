@@ -16,8 +16,12 @@ class AdminHomeController extends AdminSubController {
 
 	
 	public function index($request) {
+		
 		$data['storage_server'] = ['local_server', 'stor1'];
-		$data['tickets'] = Ticket::getSize();
+		$data['tickets'] = Ticket::getSize(Session::get());
+		$data['all_tickets'] = Ticket::getSize();
+		$data['news'] = News::getLastNews();
+		
 		return new ViewResponse('admin/dashboard/index', $data);
 	}
 	

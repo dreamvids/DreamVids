@@ -4,6 +4,10 @@ require_once MODEL.'user_channel.php';
 require_once MODEL.'user_session.php';
 require_once MODEL.'staff_contact.php';
 require_once MODEL.'subscription.php';
+require_once MODEL.'ticket_levels.php';
+require_once MODEL.'user_tickets_capability.php';
+require_once MODEL.'ticket.php';
+require_once MODEL.'news.php';
 
 class User extends ActiveRecord\Model {
 	static $has_one = [
@@ -11,8 +15,11 @@ class User extends ActiveRecord\Model {
 	];
 	
 	static $has_many = [
+			['news'],
 			['subscriptions'],
-			['subscribed_channels', 'class_name' => 'UserChannel', 'through' => 'subscriptions']
+			['user_tickets_capabilities'],
+			['subscribed_channels', 'class_name' => 'UserChannel', 'through' => 'subscriptions'],
+			['assigned_ticket_level', 'class_name' => 'TicketLevels', 'through' => 'user_tickets_capabilities']
 			
 	];
 	
@@ -315,6 +322,30 @@ class User extends ActiveRecord\Model {
 		}
 	}
 	
+	public function getAssignedTicketLevels(){
+		if(is_array($this->assigned_ticket_level)){
+			return $this->assigned_ticket_level;
+		}else{
+			return [];
+		}
+	}
+	
+	public function getAssignedLevelsIds(){
+		$lvls_id = [0];
+        foreach($this->getAssignedTicketLevels() as $lvl){
+            $lvls_id[] = $lvl->id;
+        }
+        return $lvls_id;
+	}
+	
+	public function getAssignedTickets(){
+		$tickets = Ticket::find(['ticket_levels_id' => $this->getAssignedLevelsIds()]);
+		if(is_null($tickets)){
+			return [];
+		}
+		
+		return is_array($tickets) ? $tickets : [$tickets];
+	}
 	
 	// Static
 	

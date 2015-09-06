@@ -108,13 +108,17 @@
                         			["icon" => "video-camera", "url" => "videos", "right" => ["modo_or_more"]],
                         		"FAQ" =>
                         			["icon" => "question-circle", "url" => "faq", "right" => ['team_or_more']],
-                        		"Tickets" => 
-                        			["icon" => "bug", "url" => "tickets"],
-                        		
+                        		"Tickets" =>
+                        			["icon" => "bug", "sub-menu" =>
+                        					["Tickets qui vous sont assignés" => ["icon" => "bug", "url" => "tickets"],
+                        					 "Tout les tickets" => ["icon" => "wrench", "url" => "tickets/all"],
+                        					 "Paramètres des tickets" => ["icon" => "gear", "url" => "ticketlevels"]]
+                        			],
                         		"Paramètres" =>
                         			["icon" => "wrench", "right" => ["admin"], "sub-menu" =>
                         					["Mise en maintenance" => ["icon" => "plug", "url" => "settings/emergency"],
-                        					 "Gestion des admins/modérateurs" => ["icon" => "users", "url" => "settings/users"]]
+                        					 "Gestion des admins/modérateurs" => ["icon" => "users", "url" => "settings/users"],
+                        					 "Paramètres des tickets" => ["icon" => "life-ring", "url" => "ticketlevels"]]
                         			]
                         ];
                         $menu = Utils::generateAdminMenuFromArray($menu_array, Session::get()); 
