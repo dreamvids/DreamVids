@@ -23,7 +23,7 @@ class AdminHomeController extends AdminSubController {
 		$data['all_tickets'] = Ticket::getSize();
 		$data['news'] = News::getLastNews();
 		$data['notifs'] = StaffNotification::getInternStaffNotifications();
-		
+		$data['is_notif_enabled'] = StaffNotification::isEnabled(Session::get());
 		return new ViewResponse('admin/dashboard/index', $data);
 	}
 	

@@ -80,6 +80,6 @@
         <?php include VIEW.'admin/news/home.php'; ?>
     </div>
     <div class="col-lg-4 col-md-6 col-xs-12">
-        <?php include VIEW.'admin/dashboard/notifications.php'; ?>
+        <?php include VIEW.'admin/notifications/notifications.php'; ?>
     </div>
 </div>

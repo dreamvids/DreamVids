@@ -13,8 +13,8 @@ class StaffNotification extends ActiveRecord\Model {
 		$fields = ['one', 'two'];
 		$users = [];
 		foreach($fields as $field){
-			if($this->{'id_' . $field} != null && $this->{'id_' . $field} != ''){
-				if(User::exists()){
+			if($this->{'id_' . $field} != null && $this->{'id_' . $field} != '' && $this->{'id_' . $field} != 0){
+				if(User::exists($this->{'id_' . $field})){
 					$users[] = User::find($this->{'id_' . $field});
 				}else{
 					$users[] = null;
@@ -94,10 +94,17 @@ class StaffNotification extends ActiveRecord\Model {
 		return Utils::getRankArray($user)[$this->viewers];
 	}
 	
+	public function isTicketChangeVisible($user){
+		return $this->type != 'ticket_level_change' || (in_array($this->getAssociatedValue('Ticket')->ticket_levels_id, $user->getAssignedLevelsIds()) || $user->isAdmin());
+	}
 	public static function getInternStaffNotifications($limit = 20){
 		$notifs = self::find('all', ['limit' => $limit, 'order' => 'timestamp DESC']);
+		$notifs = array_filter($notifs, function($k) {
+									    return $k->isTicketChangeVisible(Session::get());
+									});
 		return $notifs;
 	}
+	
 	
 	public static function createNotif($type, $id_one = null, $id_two = null, $value = null, $level = '', $viewers = 'team_or_more'){
 			
@@ -113,14 +120,27 @@ class StaffNotification extends ActiveRecord\Model {
 			]);
 			$emails = [];
 			foreach(User::getTeam() as $user){
-				if(Utils::getRankArray($user)[$viewers]){
+				if(Utils::getRankArray($user)[$viewers] && self::isEnabled($user)){
 					if(!is_null($user->details->push_bullet_email) && $user->details->push_bullet_email != '' && 
 						!is_null($user->details->push_bullet_email) && $user->details->enable_push_bullet == 1){
-						$emails[] = $user->details->push_bullet_email;
+							switch($type){
+								case 'ticket_level_change' : 
+									$ticket = $staff_notif->getAssociatedValue('Ticket');
+									if(in_array($ticket->ticket_levels_id, $user->getAssignedLevelsIds) || $user->isAdmin()){
+										$emails[] = $user->details->push_bullet_email;
+									}
+								break;
+								default: $emails[] = $user->details->push_bullet_email;
+								break;
+							}
 					}
 				}
 			}
 			$notif = new PushBulletNotification('Dreamvids', $staff_notif->getContent(), $emails);
 			$notif->send();
+	}
+	
+	public static function isEnabled($user){
+		return $user->isNotificationEnabled();
 	}
 }

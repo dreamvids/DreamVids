@@ -75,7 +75,8 @@
                         [
                         		"Vue d'ensemble" => 
                         			["icon" => "dashboard", "url" => "dashboard"],
-                        		
+                        		"Notifications" => 
+                        			["icon" => "bell", "url" => "notifications"],
                         		"Statistiques" => 
                         			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"] , "sub-menu" => 
                         					["Contenu" => ["icon" => "align-justify", "url" => "statistic"],

@@ -5,7 +5,7 @@ require_once SYSTEM.'push_notification.php';
 class PushBulletNotification  extends PushNotification {
 
 	public function __construct($title = '', $message = '', $destinations = []) {
-		parent::__construct($title, $message, $destinations, 'MYqzgpSsoSSuyUXuqhdccKTQwAucFTvV');
+		parent::__construct($title, $message, $destinations, include CONFIG . 'pushbullet_key.php');
 		$this->url = "https://api.pushbullet.com/v2/pushes";
 	}
 
