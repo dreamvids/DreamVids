@@ -107,12 +107,11 @@ function deleteEgg(egg_id){
 function checkSpace(id, srv){
 	var element = document.getElementById(id);
 	if(element){
-		setInterval(function (el, srv) {
 			$.ajax({
 				url: _webroot_ + 'admin/statistic/space/' + srv,
 				success: function(result){
 					if(result.error){
-						el.innerHTML = result.error;
+						element.innerHTML = result.error;
 					}else{
 						var sizes = {
 							1: '',
@@ -129,11 +128,10 @@ function checkSpace(id, srv){
 								unity = size;
 							}
 						}
-						el.innerHTML = (result.empty_space/unity).toFixed(0) + sizes[unity] + "o";
+						element.innerHTML = (result.empty_space/unity).toFixed(0) + sizes[unity] + "o";
 					}
 				}
-			})
-		}, 2000, element, srv);
+			});
 	}
 }
 if(typeof servers !== 'undefined'){
