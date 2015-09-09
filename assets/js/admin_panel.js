@@ -237,3 +237,35 @@ $('.push-bullet-btn-send').click(function(e){
 			}
 		});
 });
+
+$('#send-private-notif-btn').click(function(e){
+	e.preventDefault();
+	$(this).attr('disabled', 'disabled');
+	$(this).innerHTML = 'Envoi ... ';
+	var send_to = $('#send-private-notif-to');
+	var send_to_name = send_to.find('option[value="'+send_to.val()+'"]');
+	var send_content = $('#send-private-notif-content');
+	var btn = $(this);
+	var post_data = {
+		to:send_to.val(),
+		content: send_content.val(),
+		type: 'private'
+	};
+	var alert_el = $('.msg-container');
+	$.ajax({
+			method: 'post',
+			data: post_data,
+			url: _webroot_ + 'admin/notifications/',
+			success: function(result) {
+					btn.removeAttr('disabled');
+					if(result.success){
+						alert_el.html('<div class="alert alert-success fade in" role="alert"><strong>Fait !</strong> message envoyé à '+send_to_name.text()+'</div>');
+						send_to.val('');
+						send_content.val('');
+					}else{
+						btn.innerHTML = 'ERREUR ... Cliquez pour réessayer';
+						
+					}
+			}
+		});
+});

@@ -73,6 +73,7 @@
                Et utilisez le serveur <code>node-email-1.pulsepanel.eu</code> en utilisant TLS/SSL</p>
             </div>
         </div>
+        <?php include VIEW.'admin/notifications/send_notif.php';?>
     </div>
 </div>
 <div class="row">

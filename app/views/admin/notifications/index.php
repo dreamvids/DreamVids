@@ -16,6 +16,7 @@
                 <?php endif; ?>
             </div>
         </div>
+        <?php include VIEW.'admin/notifications/send_notif.php'; ?>
     </div>
     <div class="col-md-6">
         <?php include VIEW.'admin/notifications/notifications.php'; ?>

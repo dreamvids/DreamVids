@@ -169,7 +169,7 @@ class Video extends ActiveRecord\Model {
 		if($this->flagged == 0) {
 			$this->flagged = 1;
 			$this->save();
-			
+			StaffNotification::createNotif('flag_video', $userId, null, $this->id, 'warning', 'modo_or_more');
 			/*ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($userId)->getMainChannel()->id,

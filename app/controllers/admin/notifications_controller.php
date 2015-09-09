@@ -16,9 +16,9 @@ class AdminNotificationsController extends AdminSubController {
 
 	
 	public function index($request) {
-		
+		$data['team'] = User::getTeam();
 		$data['notif_page'] = true;
-		$data['notifs'] = StaffNotification::getInternStaffNotifications();
+		$data['notifs'] = StaffNotification::getInternStaffNotifications(100);
 		$data['is_notif_enabled'] = StaffNotification::isEnabled(Session::get());
 		$data['push_mail'] = Session::get()->details->push_bullet_email;
 		return new ViewResponse('admin/notifications/index', $data);
@@ -33,8 +33,19 @@ class AdminNotificationsController extends AdminSubController {
 		}
 	}
 	public function create($request){
-		$notif = new PushBulletNotification('Dreamvids', "Test de notification !", [Session::get()->details->push_bullet_email]);
-		$notif->send();
+		$params = $request->getParameters();
+		if(isset($params['type'])){
+			switch($params['type']){
+				case 'private' : 
+					StaffNotification::createNotif('private', Session::get()->id, $params['to'], $params['content']);
+					return new JsonResponse(['success' => true]);
+				break;
+			}
+			
+		}else{
+			$notif = new PushBulletNotification('Dreamvids', "Test de notification !", [Session::get()->details->push_bullet_email]);
+			$notif->send();
+		}
 	}
 	
 	public function get($id, $request){}

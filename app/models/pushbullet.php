@@ -3,9 +3,14 @@
 require_once SYSTEM.'push_notification.php';
 
 class PushBulletNotification  extends PushNotification {
-
-	public function __construct($title = '', $message = '', $destinations = []) {
+	
+	protected $is_link_push = false;
+	protected $link_url = '';
+	
+	public function __construct($title = '', $message = '', $destinations = [], $is_link = false, $link_url = '') {
 		parent::__construct($title, $message, $destinations, include CONFIG . 'pushbullet_key.php');
+		$this->is_link_push = $is_link;
+		$this->link_url = $link_url;
 		$this->url = "https://api.pushbullet.com/v2/pushes";
 	}
 
@@ -18,7 +23,10 @@ class PushBulletNotification  extends PushNotification {
 				'body' => $this->message,
 				'email' => $email
 				];
-	
+			if($this->is_link_push && $this->link_url != ''){
+				$postdata['type'] = 'link';
+				$postdata['url'] = $this->link_url;
+			}
 			$opts = array('http' =>
 			    array(
 			        'method'  => 'POST',
@@ -30,9 +38,9 @@ class PushBulletNotification  extends PushNotification {
 			);
 	
 			$context  = stream_context_create($opts);
-			$result[] = file_get_contents($this->url, false, $context);
+			$result[] = @file_get_contents($this->url, false, $context);
 		}
-		
+		//file_put_contents(CACHE.'pushbullet_limit.txt', json_encode($http_response_header, JSON_FORCE_OBJECT | JSON_PRETTY_PRINT));
 		return $result;
 	}
 }

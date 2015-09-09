@@ -64,23 +64,65 @@ class StaffNotification extends ActiveRecord\Model {
 				$vid_title = is_object($video) ? htmlspecialchars($video->title) : '[deleted]';
 				$content = "$username1 a suspendu la vidéo $vid_title";
 			break;
+			case 'flag_video' : 
+				$video = $this->getAssociatedValue('Video');
+				$vid_title = is_object($video) ? htmlspecialchars($video->title) : '[deleted]';
+				$content = "$username1 a signalé la vidéo $vid_title";
+			break;
+			case 'private' :
+				$content = "Message de $username1 : $this->value";
+			break;
 		}
 		
 		return $content;
+	}
+	/**
+	 * Return the relative path to the target of the notification 
+	 *
+	 */
+	public function getLink(){
+		switch($this->getType()){
+			case 'news' : 
+				return 'admin/';
+				break;
+			case 'rank' :
+				return 'admin/settings/users';
+				break;
+			case 'ticket':
+			case 'ticket_level_change' :
+				return 'admin/tickets';
+				break;
+			case 'flag_video' : 
+			case 'suspend_video' : 
+				return 'watch/'.$this->value;
+				break;
+			case 'private' : return 'admin/notifications';
+				break;
+			default : return null;
+				break;
+		}
 	}
 	
 	public function getIcon(){
 		switch($this->getType()){
 			case 'new' :
 			case 'newspaper' :
-			case 'news' : return 'newspaper-o';
-			break;
-			case 'rank' : return 'users';
-			break;
+			case 'news' : 
+				return 'newspaper-o';
+				break;
+			case 'rank' : 
+				return 'users';
+				break;
 			case 'ticket' :
-			case 'ticket_level_change' : return 'ticket';
-			break;
-			case 'suspend_video' : return 'video-camera';
+			case 'ticket_level_change' : 
+				return 'ticket';
+				break;
+			case 'flag_video' :
+			case 'suspend_video' : 
+				return 'video-camera';
+				break;
+			case 'private' :
+				return 'comment';
 			break;
 			default : return $this->getType();
 		}
@@ -91,7 +133,11 @@ class StaffNotification extends ActiveRecord\Model {
 	}
 	
 	public function canSee($user){
-		return Utils::getRankArray($user)[$this->viewers];
+		return Utils::getRankArray($user)[$this->viewers] && (!$this->isPrivate() || $this->id_two == $user->id);
+	}
+	
+	public function isPrivate(){
+		return $this->type == 'private';
 	}
 	
 	public function isTicketChangeVisible($user){
@@ -119,24 +165,46 @@ class StaffNotification extends ActiveRecord\Model {
 				'timestamp' => Utils::tps()
 			]);
 			$emails = [];
+			$title = 'DreamVids';
+			$sub_title = '';
+			$is_link = !is_null($staff_notif->getLink());
+			$link_url = "http://".@$_SERVER['HTTP_HOST'].WEBROOT.$staff_notif->getLink();
 			foreach(User::getTeam() as $user){
+				$content = $staff_notif->getContent();
 				if(Utils::getRankArray($user)[$viewers] && self::isEnabled($user)){
-					if(!is_null($user->details->push_bullet_email) && $user->details->push_bullet_email != '' && 
-						!is_null($user->details->push_bullet_email) && $user->details->enable_push_bullet == 1){
+					if(!is_null($user->details->push_bullet_email) && $user->details->push_bullet_email != ''){
 							switch($type){
 								case 'ticket_level_change' : 
 									$ticket = $staff_notif->getAssociatedValue('Ticket');
-									if(in_array($ticket->ticket_levels_id, $user->getAssignedLevelsIds) || $user->isAdmin()){
+									$sub_title = 'Tickets';
+									if(in_array($ticket->ticket_levels_id, $user->getAssignedLevelsIds()) || $user->isAdmin()){
 										$emails[] = $user->details->push_bullet_email;
 									}
 								break;
-								default: $emails[] = $user->details->push_bullet_email;
+								case 'ticket' :
+										$sub_title = 'Tickets';
+										$emails[] = $user->details->push_bullet_email;
+									break;
+								case 'news' : 
+									$sub_title = 'News';
+									$emails[] = $user->details->push_bullet_email;
+								break;
+								case 'private' : 
+										$sub_title = "Message privé";
+										$content = $staff_notif->value;
+										if($staff_notif->id_two == $user->id){
+											$emails[] = $user->details->push_bullet_email;
+										}
+								break;
+								default: 
+									$emails[] = $user->details->push_bullet_email;
 								break;
 							}
 					}
 				}
 			}
-			$notif = new PushBulletNotification('Dreamvids', $staff_notif->getContent(), $emails);
+			
+			$notif = new PushBulletNotification($title . ($sub_title != '' ? (' - ' . $sub_title) : ''), $content, $emails, $is_link, $link_url);
 			$notif->send();
 	}
 	
