@@ -59,7 +59,7 @@
             </a>
         </div>
 	</div>
-    <div class="col-lg-4 col-md-6 col-xs-12">
+    <div class="col-lg-4 col-md-12 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Informations :</div>
             <div class="panel-body">
@@ -73,14 +73,20 @@
                Et utilisez le serveur <code>node-email-1.pulsepanel.eu</code> en utilisant TLS/SSL</p>
             </div>
         </div>
-        <?php include VIEW.'admin/notifications/send_notif.php';?>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8 col-sm-12 col-xs-12">
+    <h2>News</h2>
+    <div class="col-lg-12 col-md-12 col-xs-12">
         <?php include VIEW.'admin/news/home.php'; ?>
     </div>
-    <div class="col-lg-4 col-md-6 col-xs-12">
+</div>
+<div class="row">
+    <h2>Notifications</h2>
+    <div class="col-lg-6 col-md-12 col-xs-12">
+        <?php include VIEW.'admin/notifications/send_notif.php';?>
+    </div>
+    <div class="col-lg-6 col-md-12 col-xs-12">
         <?php include VIEW.'admin/notifications/notifications.php'; ?>
     </div>
 </div>
