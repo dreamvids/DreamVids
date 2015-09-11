@@ -6,6 +6,7 @@ require_once MODEL.'video_vote.php';
 require_once MODEL.'video_view.php';
 require_once MODEL.'modo_action.php';
 require_once MODEL.'upload.php';
+require_once MODEL.'staff_notifications.php';
 
 class Video extends ActiveRecord\Model {
 
@@ -168,7 +169,7 @@ class Video extends ActiveRecord\Model {
 		if($this->flagged == 0) {
 			$this->flagged = 1;
 			$this->save();
-			
+			StaffNotification::createNotif('flag_video', $userId, null, $this->id, 'warning', 'modo_or_more');
 			/*ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($userId)->getMainChannel()->id,
@@ -200,7 +201,9 @@ class Video extends ActiveRecord\Model {
 		$this->visibility = $visibility;
 		$this->flagged = 1;
 		$this->save();
-
+		
+		StaffNotification::createNotif('suspend_video', $userId, null, $this->id, 'danger', 'modo_or_more');
+		
 		ModoAction::create(array(
 			'id' => ModoAction::generateId(6),
 			'user_id' => $userId,

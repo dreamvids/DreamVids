@@ -147,6 +147,13 @@ class User extends ActiveRecord\Model {
 		$this->save();
 	}
 	
+	public function setPushNotificationSetting($enable){
+		$settings = $this->getSettings();
+		$settings['push_notifs'] = $enable;
+		$this->settings = json_encode($settings);
+		$this->save();
+	}
+	
 	public function getPassword() {
 		return $this->pass;
 	}
@@ -165,6 +172,21 @@ class User extends ActiveRecord\Model {
 		}
 		
 		return $soundsetting; 
+	}
+	
+	public function getPushNotificationSetting(){
+		
+		$settings = $this->getSettings();
+		if(!isset($settings['push_notifs'])){
+			$push_notifssetting = 0;
+		}else{
+			$push_notifssetting = $settings['push_notifs'];
+		}
+		return $push_notifssetting; 
+	}
+	
+	public function isNotificationEnabled(){
+		return $this->getPushNotificationSetting();
 	}
 	
 	public function getDefinitionSetting(){
@@ -339,7 +361,7 @@ class User extends ActiveRecord\Model {
 	}
 	
 	public function getAssignedTickets(){
-		$tickets = Ticket::find(['ticket_levels_id' => $this->getAssignedLevelsIds()]);
+		$tickets = Ticket::find('all', ['ticket_levels_id' => $this->getAssignedLevelsIds()]);
 		if(is_null($tickets)){
 			return [];
 		}
