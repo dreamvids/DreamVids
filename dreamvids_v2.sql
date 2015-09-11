@@ -366,6 +366,21 @@ CREATE TABLE `staff_contact_details` (
 	INDEX `user_id` (`user_id`)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `staff_contact_details` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `tel_1` varchar(50) DEFAULT NULL,
+  `tel_2` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `push_bullet_email` varchar(50) DEFAULT NULL,
+  `enable_push_bullet` tinyint(1) DEFAULT '0',
+  `shown_name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `team_img_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
 CREATE TABLE IF NOT EXISTS `tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(255) NOT NULL,
