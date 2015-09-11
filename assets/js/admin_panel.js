@@ -245,12 +245,22 @@ $('#send-private-notif-btn').click(function(e){
 	var send_to = $('#send-private-notif-to');
 	var send_to_name = send_to.find('option[value="'+send_to.val()+'"]');
 	var send_content = $('#send-private-notif-content');
+	var send_level = $('#send-private-notif-level');
+	var send_force = $('#send-private-notif-force-push');
+	
 	var btn = $(this);
 	var post_data = {
 		to:send_to.val(),
 		content: send_content.val(),
+		level: send_level.val(),
+		force_push: send_force.prop('checked') ? 1 : 0,
 		type: 'private'
 	};
+	
+	if(post_data.to == 'send_to_all'){
+		post_data.type = 'broadcast';
+	}
+	
 	var alert_el = $('.msg-container');
 	$.ajax({
 			method: 'post',
@@ -261,7 +271,9 @@ $('#send-private-notif-btn').click(function(e){
 					if(result.success){
 						alert_el.html('<div class="alert alert-success fade in" role="alert"><strong>Fait !</strong> message envoyé à '+send_to_name.text()+'</div>');
 						send_to.val('');
+						send_level.val('');
 						send_content.val('');
+						send_force.prop('checked', false)
 					}else{
 						btn.innerHTML = 'ERREUR ... Cliquez pour réessayer';
 						

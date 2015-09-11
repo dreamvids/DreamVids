@@ -72,6 +72,9 @@ class StaffNotification extends ActiveRecord\Model {
 			case 'private' :
 				$content = "Message de $username1 : $this->value";
 			break;
+			case 'broadcast' :
+				$content = "Message de $username1 (à toute la team): $this->value";
+			break;
 		}
 		
 		return $content;
@@ -96,6 +99,7 @@ class StaffNotification extends ActiveRecord\Model {
 			case 'suspend_video' : 
 				return 'watch/'.$this->value;
 				break;
+			case 'broadcast':
 			case 'private' : return 'admin/notifications';
 				break;
 			default : return null;
@@ -122,6 +126,7 @@ class StaffNotification extends ActiveRecord\Model {
 				return 'video-camera';
 				break;
 			case 'private' :
+			case 'broadcast' :
 				return 'comment';
 			break;
 			default : return $this->getType();
@@ -152,7 +157,7 @@ class StaffNotification extends ActiveRecord\Model {
 	}
 	
 	
-	public static function createNotif($type, $id_one = null, $id_two = null, $value = null, $level = '', $viewers = 'team_or_more'){
+	public static function createNotif($type, $id_one = null, $id_two = null, $value = null, $level = '', $viewers = 'team_or_more', $force_push = false){
 			
 			
 		$staff_notif = StaffNotification::create([
@@ -171,7 +176,7 @@ class StaffNotification extends ActiveRecord\Model {
 			$link_url = "http://".@$_SERVER['HTTP_HOST'].WEBROOT.$staff_notif->getLink();
 			foreach(User::getTeam() as $user){
 				$content = $staff_notif->getContent();
-				if(Utils::getRankArray($user)[$viewers] && self::isEnabled($user)){
+				if(Utils::getRankArray($user)[$viewers] && (self::isEnabled($user) || $force_push)){
 					if(!is_null($user->details->push_bullet_email) && $user->details->push_bullet_email != ''){
 							switch($type){
 								case 'ticket_level_change' : 
@@ -195,6 +200,11 @@ class StaffNotification extends ActiveRecord\Model {
 										if($staff_notif->id_two == $user->id){
 											$emails[] = $user->details->push_bullet_email;
 										}
+								break;
+								case 'private' : 
+										$sub_title = "Message";
+										$content = $staff_notif->value;
+										$emails[] = $user->details->push_bullet_email;
 								break;
 								default: 
 									$emails[] = $user->details->push_bullet_email;

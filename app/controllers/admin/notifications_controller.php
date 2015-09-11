@@ -34,10 +34,15 @@ class AdminNotificationsController extends AdminSubController {
 	}
 	public function create($request){
 		$params = $request->getParameters();
+		$params['force_push'] = Session::get()->isAdmin() ? $params['force_push'] : 0;
 		if(isset($params['type'])){
 			switch($params['type']){
 				case 'private' : 
-					StaffNotification::createNotif('private', Session::get()->id, $params['to'], $params['content']);
+					StaffNotification::createNotif('private', Session::get()->id, $params['to'], $params['content'], $params['level'], 'team_or_more', $params['force_push']);
+					return new JsonResponse(['success' => true]);
+				break;
+				case 'broadcast' : 
+					StaffNotification::createNotif('broadcast', Session::get()->id, null, $params['content'], $params['level'], 'team_or_more', $params['force_push']);
 					return new JsonResponse(['success' => true]);
 				break;
 			}
