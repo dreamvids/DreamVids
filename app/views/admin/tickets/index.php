@@ -1,9 +1,9 @@
 <div class="row">
-	<h1>Traitement des tickets <small><?= $all ? "Tout les tickets" : "Tickets qui vous sont assignés" ?></small></h1>
+	<h1>Traitement des tickets <small><?= $all ? "Tous les tickets" : "Tickets qui vous sont assignés" ?></small></h1>
 	<?php include VIEW.'layouts/messages_bootstrap.php'; ?>
 	<div class="col-lg-12">
 		<?php if(!$all){ ?>
-			<p>Les tickets <b>ne</b> vous concernant <b>pas</b> <b>ne</b> sont <b>pas</b> affichés ici. Cependant, vous pouvez <a href="<?= WEBROOT ?>admin/tickets/all">afficher la liste de tout les tickets</a>.</p>
+			<p>Les tickets <b>ne</b> vous concernant <b>pas</b> <b>ne</b> sont <b>pas</b> affichés ici. Cependant, vous pouvez <a href="<?= WEBROOT ?>admin/tickets/all">afficher la liste de tous les tickets</a>.</p>
 		<?php } ?>
 		<table class="table table-bordered table-hover table-striped table-to-sort">
 			<thead>

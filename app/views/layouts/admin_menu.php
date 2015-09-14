@@ -112,7 +112,7 @@
                         		"Tickets" =>
                         			["icon" => "bug", "sub-menu" =>
                         					["Tickets qui vous sont assignés" => ["icon" => "bug", "url" => "tickets"],
-                        					 "Tout les tickets" => ["icon" => "wrench", "url" => "tickets/all"],
+                        					 "Tous les tickets" => ["icon" => "wrench", "url" => "tickets/all"],
                         					 "Paramètres des tickets" => ["icon" => "gear", "url" => "ticketlevels"]]
                         			],
                         		"Paramètres" =>
