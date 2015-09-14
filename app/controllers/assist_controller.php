@@ -36,7 +36,13 @@ class AssistController extends Controller {
 					$user_id = 0;
 				}
 			}
-
+			
+			if(!empty(Ticket::find('all',['conditions' => ['ip = ? AND timestamp < ' . (Utils::tps()+60), $_SERVER['REMOTE_ADDR']]]))){
+				$r = $this->index($request);
+				$r->addMessage(ViewMessage::error('Trop d\'envois avec la même IP en une minute, réssayez plus tard.'));
+				return $r;
+			}
+	
 			$ticket = Ticket::create(array(
 				'user_id' => $user_id,
 				'description' => $req['bug'],
