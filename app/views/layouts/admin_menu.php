@@ -115,6 +115,8 @@
                         					 "Tous les tickets" => ["icon" => "wrench", "url" => "tickets/all"],
                         					 "Paramètres des tickets" => ["icon" => "gear", "url" => "ticketlevels"]]
                         			],
+                        		"Partenaires" =>
+                        		    ["icon" => "usd", "url" => "partners", "right" => ['team_or_more']],
                         		"Paramètres" =>
                         			["icon" => "wrench", "right" => ["admin"], "sub-menu" =>
                         					["Mise en maintenance" => ["icon" => "plug", "url" => "settings/emergency"],
@@ -122,6 +124,7 @@
                         					 "Paramètres des tickets" => ["icon" => "life-ring", "url" => "ticketlevels"]]
                         			]
                         ];
+
                         $menu = Utils::generateAdminMenuFromArray($menu_array, Session::get()); 
                         echo $menu;
                         ?>
