@@ -1,5 +1,8 @@
 <?php
-class PushoverNotification {
+
+require_once SYSTEM.'push_notification.php';
+//TODO migrate this file to work along with the PushNotification class
+class PushoverNotification /* extends PushNotification */{
 	private static $token = 'your-pushover-application-token';
 	private static $url = 'https://api.pushover.net/1/messages.json';
 	private $array;

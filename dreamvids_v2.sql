@@ -12,19 +12,6 @@ CREATE TABLE `backups` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-CREATE TABLE IF NOT EXISTS `tickets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(255) NOT NULL,
-  `conv_id` varchar(6) NOT NULL,
-  `description` text NOT NULL,
-  `timestamp` bigint(20) NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  `tech` varchar(40) NOT NULL,
-  `ticket_levels_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-
 CREATE TABLE IF NOT EXISTS `user_tickets_capabilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -365,6 +352,32 @@ CREATE TABLE `staff_contact_details` (
 	PRIMARY KEY (`id`),
 	INDEX `user_id` (`user_id`)
 ) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `staff_notifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `viewers` varchar(50) NOT NULL DEFAULT 'team_or_more',
+  `type` varchar(50) NOT NULL,
+  `id_one` varchar(20) DEFAULT NULL,
+  `id_two` varchar(20) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `level` varchar(20) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `tickets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(255) NOT NULL,
+  `conv_id` varchar(6) NOT NULL,
+  `description` text NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  `ip` varchar(15) NOT NULL,
+  `tech` varchar(40) NOT NULL,
+  `ticket_levels_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
 
 DROP TABLE IF EXISTS `faqs`;
 CREATE TABLE IF NOT EXISTS `faqs` (

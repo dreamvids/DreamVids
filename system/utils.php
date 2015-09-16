@@ -477,6 +477,20 @@ class Utils {
 		return $output;
 	}
 	
+	public static function rankToName($rank){
+		$config = new Config(CONFIG.'app.json');
+		$config->parseFile();
+		$data = [];
+			
+		$data[$config->getValue('rankAdmin')] = ['Administrateur', 'danger'];
+		$data[$config->getValue('rankModo')] = ['Modérateur', 'warning'];
+		$data[$config->getValue('rankTeam')] = ['Equipe', 'success'];
+		$data[$config->getValue('rankContributor')] = ['Contributeur', 'primary'];
+		$data[$config->getValue('rankUser')] = ['Utilisateur', 'info'];
+		
+		return $data[$rank];
+	}
+	
 	public static function getRankArray($user) {
 		return  [ //Add here new ranks that have access to admin
 				"admin" => $user->isAdmin(),

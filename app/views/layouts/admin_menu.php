@@ -75,7 +75,8 @@
                         [
                         		"Vue d'ensemble" => 
                         			["icon" => "dashboard", "url" => "dashboard"],
-                        		
+                        		"Notifications" => 
+                        			["icon" => "bell", "url" => "notifications"],
                         		"Statistiques" => 
                         			["icon" => "bar-chart-o", "url" => "statistic", "right" => ["team_or_more"] , "sub-menu" => 
                         					["Contenu" => ["icon" => "align-justify", "url" => "statistic"],
@@ -111,9 +112,11 @@
                         		"Tickets" =>
                         			["icon" => "bug", "sub-menu" =>
                         					["Tickets qui vous sont assignés" => ["icon" => "bug", "url" => "tickets"],
-                        					 "Tout les tickets" => ["icon" => "wrench", "url" => "tickets/all"],
+                        					 "Tous les tickets" => ["icon" => "wrench", "url" => "tickets/all"],
                         					 "Paramètres des tickets" => ["icon" => "gear", "url" => "ticketlevels"]]
                         			],
+                        		"Partenaires" =>
+                        		    ["icon" => "usd", "url" => "partners", "right" => ['team_or_more']],
                         		"Paramètres" =>
                         			["icon" => "wrench", "right" => ["admin"], "sub-menu" =>
                         					["Mise en maintenance" => ["icon" => "plug", "url" => "settings/emergency"],
@@ -121,6 +124,7 @@
                         					 "Paramètres des tickets" => ["icon" => "life-ring", "url" => "ticketlevels"]]
                         			]
                         ];
+
                         $menu = Utils::generateAdminMenuFromArray($menu_array, Session::get()); 
                         echo $menu;
                         ?>

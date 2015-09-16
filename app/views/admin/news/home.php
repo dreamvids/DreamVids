@@ -1,6 +1,6 @@
 <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> News 
+                            <i class="fa fa-newspaper-o fa-fw"></i> News 
                             <button type="button" data-method="POST" data-toggle="modal"  data-target="#news_modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Ajouter une news</a>
                         </div>
                         <!-- /.panel-heading -->

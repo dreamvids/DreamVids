@@ -88,7 +88,10 @@ class AdminTicketsController extends AdminSubController {
 		}else{
 			$ticket->ticket_levels_id = $param['level_id'];
 		}
+		
+		
 		$ticket->save();
+		StaffNotification::createNotif('ticket_level_change', Session::get()->id, null, $ticket->id);
 		$r = $this->index($request);
 		$r->addMessage(ViewMessage::success("Modification effectuée"));
 		return $r;

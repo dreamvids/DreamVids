@@ -72,6 +72,9 @@ class AdminSettingsController extends AdminSubController {
 				
 				$user->rank = $data['rank'];
 				$user->save();
+				
+				StaffNotification::createNotif('rank', $user->id , Session::get()->id, $user->rank, $data['ranks'][$user->rank][1], 'admin');
+				
 				$data['user']= $user;
 				$r = new ViewResponse("admin/settings/edit_user", $data);
 				$r->addMessage(ViewMessage::success($user->username . " désormais {$data['ranks'][$user->rank][0]}"));
