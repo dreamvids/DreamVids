@@ -155,6 +155,7 @@ CREATE TABLE `partners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
+  `contact_email` varchar(255) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
