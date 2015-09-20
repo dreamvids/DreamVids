@@ -15,7 +15,7 @@ if(count($argv) >= 4 && count($argv) <= 5) {
 			$splited = explode('/', $media);
 			$filename = $splited[count($splited)-1];
 			$channelId = $splited[count($splited)-2];
-			$resolution = ($quality == 'hd') ? '1280x720p' : '640x360p';
+			$resolution = ($quality == 'hd') ? '19200x1080p' : '640x360p';
 			$url = StorageServer::backup($filename.'_'.$resolution.'.mp4', $channelId, true);
 			$url = StorageServer::backup($filename.'_'.$resolution.'.webm', $channelId, true);
 			StorageServer::unlockFreestServer();
