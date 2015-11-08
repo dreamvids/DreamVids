@@ -1,5 +1,14 @@
 <div id="upload-large-modal">
 	<div class="bg-loader" id="backgroundLoader" data-background="<?php echo UserChannel::find($channelId)->getBackground(); ?>"></div>
+<?php if(!$canUpload): ?>
+        <section id="uploader">
+            <?php  include VIEW . 'layouts/messages.php'; ?>
+		<span id="upload-illustration">
+
+		</span>
+        </section>
+<?php
+    elseif($canUpload): ?>
 	<section id="message-upload">
 		<h3>Déposez votre fichier vidéo dans cette zone pour l'uploader</h3>
 		<p>(Ou selectionnez votre fichier manuellement en cliquant sur le nuage)</p>
@@ -20,7 +29,6 @@
 		<div id="progress-bar"></div>
 	</div>
 </div>
-
 <div id="upload-content">
 	<form id="upload-form" class="form middle" method="post" action="<?php echo WEBROOT.'videos'; ?>" enctype="multipart/form-data">
 		<input type="hidden" name="channelId" id="channelId" value="<?php echo $channelId; ?>" />
@@ -73,3 +81,4 @@
 		<input type="submit" id="up-submit" name="submit" value="Valider">
 	</form>
 </div>
+<?php endif; ?>

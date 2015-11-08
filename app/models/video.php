@@ -422,5 +422,9 @@ class Video extends ActiveRecord\Model {
 	public static function sumViews(){
 		return Database::getPDOObject()->query('SELECT SUM(`views`) AS total_views FROM `videos`')->fetchAll()[0]['total_views'];
 	}
+	
+	public static function sumDurations(){
+		return Database::getPDOObject()->query('SELECT SUM(`duration`) AS total_sec FROM `videos`')->fetchAll()[0]['total_sec'];
+	}
 
 }

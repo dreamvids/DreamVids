@@ -26,6 +26,7 @@ class AdminStatisticController extends AdminSubController {
 		$counts['channels'] = UserChannel::count();
 		$counts['comments'] = Comment::count();
 		$counts['total_views'] = Video::sumViews();
+		$counts['total_sec'] = Video::sumDurations();
 		
 		$counts['channel_user_ratio'] = round($counts['channels'] / $counts['users'], 2);
 		

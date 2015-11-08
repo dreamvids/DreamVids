@@ -8,32 +8,32 @@ require_once MODEL.'subscription.php';
 class UserChannel extends ActiveRecord\Model {
 
 	static $table_name = 'users_channels';
-	
+
 	static $has_many = [
 			['subscriptions'],
 			['subscribed_users', 'class_name' => 'user', 'through' => 'subscriptions']
 	];
-	
+
 	public function getPostedVideos($publicOnly = true) {
 		$visibility = ($publicOnly) ? 'AND visibility = '.Config::getValue_('vid_visibility_public') : '';
 		return Video::all(array('conditions' => array("poster_id = ? AND visibility != ? ".$visibility, $this->id, Config::getValue_('vid_visibility_suspended')), 'order' => 'timestamp desc'));
 	}
-	
+
 	public function getAllViews() {
-		
+
 		$videos = $this->getPostedVideos();
 		$result = 0;
-		
+
 		foreach ($videos as $video) {
-			
+
 			if(!$video->isSuspended() && !$video->isPrivate()){
-			$result += $video->views;				
+			$result += $video->views;
 			}
 		}
 		return $result;
-		
+
 	}
-	
+
 	public function getPostedMessages() {
 		return ChannelPost::all(array('conditions' => array('channel_id = ?', $this->id), 'order' => 'timestamp desc'));
 	}
@@ -44,14 +44,14 @@ class UserChannel extends ActiveRecord\Model {
 
 	public function getAdminsNames() {
 		$adminsStr = '';
-		
+
 		if(strpos($this->admins_ids, ';') !== false) {
-			
+
 			$adminsIds = explode(';', $this->admins_ids);
-			
+
 			if(empty($adminsIds[count($adminsIds) - 1])) unset($adminsIds[count($adminsIds) - 1]);
 
-				
+
 			foreach ($adminsIds as $id) {
 				$adminsStr .= User::exists($id) && $id != "" ? User::find($id)->username.', ' : '';
 			}
@@ -61,14 +61,14 @@ class UserChannel extends ActiveRecord\Model {
 
 		return $adminsStr;
 	}
-	
+
 	function getArrayAdminsIds($custom_string = null) {
 		if($custom_string){
 			$trimed = trim($custom_string, ';');
 		}else{
 			$trimed = trim($this->admins_ids, ';');
 		}
-		
+
 		$array = explode(";", $trimed);
 		return $array;
 	}
@@ -80,11 +80,11 @@ class UserChannel extends ActiveRecord\Model {
 	public function getBackground() {
 		return (!empty($this->background)) ? $this->background : Config::getValue_('default-background');
 	}
-	
+
 	public function getSubscribedUsers(){
 		return Subscription::getSubscribersFromChannel($this);
 	}
-	
+
 	public function getSubscribedUsersAsList(){
 		return Subscription::getSubscribersFromChannelAsList($this);
 	}
@@ -135,18 +135,18 @@ class UserChannel extends ActiveRecord\Model {
 		'complementary_id' => $post->id,
 		'timestamp' => Utils::tps()
 		));
-		return $post; 
+		return $post;
 	}
 
 	public function subscribe($subscriber) {
-		
+
 		Subscription::subscribeUserToChannel($subscriber, $this);
-		
+
 		$subscriberUser = User::find_by_id($subscriber);
 		$subscribingChannel = $this;
 		$subscribing = $this->id;
 
-		if (!ChannelAction::exists(array('channel_id' => User::find($subscriber)->getMainChannel()->id, 'type' => 'subscription', 'target' => $subscribing))) {		
+		if (!ChannelAction::exists(array('channel_id' => User::find($subscriber)->getMainChannel()->id, 'type' => 'subscription', 'target' => $subscribing))) {
 			ChannelAction::create(array(
 				'id' => ChannelAction::generateId(6),
 				'channel_id' => User::find($subscriber)->getMainChannel()->id,
@@ -159,9 +159,9 @@ class UserChannel extends ActiveRecord\Model {
 	}
 
 	public function unsubscribe($subscriber) {
-		
+
 		Subscription::unsubscribeUserFromChannel($subscriber, $this);
-		
+
 		$unsubscriberUser = User::find_by_id($subscriber);
 		$unsubscribingChannel = $this;
 		$channel_id = $this->id;
@@ -175,7 +175,22 @@ class UserChannel extends ActiveRecord\Model {
 			'timestamp' => Utils::tps()
 		));
 	}
-	
+
+	public function canUpload(){
+		if($this->isVerified()){
+			return true;
+		}
+		$result = Video::find_by_sql(
+				"SELECT COUNT(id) AS n
+				FROM videos WHERE
+				timestamp > ".(Utils::tps() - 3600*24). "  AND
+				poster_id = ?", [$this->id]);
+
+		$config = new Config(CONFIG . 'app.json');
+		$config->parseFile();
+		return $result[0]->n < self::getMaxUploadPerDay();
+	}
+
 	public static function getBestChannels() {
 		return UserChannel::find_by_sql(
 			   'SELECT * FROM users_channels
@@ -184,13 +199,19 @@ class UserChannel extends ActiveRecord\Model {
 				ORDER BY total_sub DESC LIMIT 8');
 	}
 
+	public static function getMaxUploadPerDay(){
+		$config = new Config(CONFIG . 'app.json');
+		$config->parseFile();
+		return $config->getValue('max_upload_per_channel_per_day');
+	}
+
 	public static function generateId($length) {
 		$idExists = true;
 
 		while($idExists) {
 			$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			$id = '';
-		
+
 			for ($i = 0; $i < $length - 2; $i++) {
 				$id .= $chars[rand(0, strlen($chars) - 1)];
 			}
@@ -247,20 +268,20 @@ class UserChannel extends ActiveRecord\Model {
 		$chann->background = $background;
 		$chann->save();
 	}
-	
+
 	public static function getSearchChannels($query){
 		$query = trim(urldecode($query));
 		if ($query != '') {
 				return UserChannel::find_by_sql(
 						'SELECT * FROM users_channels
-	LEFT OUTER JOIN 
-		(SELECT user_channel_id, COUNT(*) AS total_sub FROM subscriptions GROUP BY user_channel_id) 
+	LEFT OUTER JOIN
+		(SELECT user_channel_id, COUNT(*) AS total_sub FROM subscriptions GROUP BY user_channel_id)
 			AS total_sub
-	ON(total_sub.user_channel_id = users_channels.id) 
-	
+	ON(total_sub.user_channel_id = users_channels.id)
+
 	WHERE name LIKE ? OR description LIKE ? ORDER BY total_sub DESC LIMIT 6', ["%$query%","%$query%"]);
 		}
 	}
-	
+
 
 }
