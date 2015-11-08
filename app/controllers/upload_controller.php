@@ -17,7 +17,7 @@ class UploadController extends Controller {
 		$this->denyAction(Action::UPDATE);
 		$this->denyAction(Action::DESTROY);
 	}
-	
+
 	public function index($request) {
 		if (Session::isActive() ) {
 			if (count(Session::get()->getOwnedChannels()) > 1) {
@@ -31,21 +31,23 @@ class UploadController extends Controller {
 			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
-	
+
 	public function channelSelection($request) {
-		if (Session::isActive() ) {
+		if (Session::isActive()) {
 			$data = array();
 			$data['channel'] = Session::get()->getOwnedChannels();
 			$data['currentPageTitle'] = 'Mettre en ligne';
-			return new ViewResponse('upload/channels', $data);			
+
+			return new ViewResponse('upload/channels', $data);
 		}
 		else {
 			return new RedirectResponse(Utils::generateLoginURL());
 		}
 	}
-	
+
 	public function get($id, $request) {
-		if (UserChannel::find($id)->belongToUser(Session::get()->id)) {
+		$channel = UserChannel::find($id);
+		if ($channel->belongToUser(Session::get()->id)) {
 			$uploadId = Upload::generateId(6);
 			Upload::create(array(
 				'id' => $uploadId,
@@ -53,22 +55,31 @@ class UploadController extends Controller {
 				'video_id' => Video::generateId(6),
 				'expire' => Utils::tps() + 86400
 			));
-			
+
 			$data = array();
 			$data['currentPageTitle'] = 'Mettre en ligne';
 			$data['uploadId'] = $uploadId;
 			$data['thumbnail'] = Config::getValue_('default-thumbnail');
 			$data['channelId'] = $id;
 			$data['currentPage'] = 'upload';
+			$data['canUpload'] = $channel->canUpload();
+			$data['maxUpload'] = UserChannel::getMaxUploadPerDay();
+
+			$r = new ViewResponse('upload/upload', $data);
+
+			if(!$channel->canUpload()){
+				$r->addMessage(ViewMessage::error("Vous avez atteint la limite d'upload de vidéo pour ces dernieres 24h (" . $data['maxUpload'] ." vidéos)"));
+			}
+
 			//$data['predefined_descriptions'] = PredefinedDescription::getDescriptionByChannelsids($id);
-			
-			return new ViewResponse('upload/upload', $data);
+
+			return $r;
 		}
 		else {
 			return new RedirectResponse(WEBROOT.'upload');
 		}
 	}
-	
+
 	public function create($request){}
 	public function update($id, $request){}
 	public function destroy($id, $request){}

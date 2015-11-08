@@ -129,7 +129,9 @@ class VideoController extends Controller {
 // 				$newdesc['users_channels_id']=$req['channelId'];
 // 				PredefinedDescription::create($newdesc);
 // 			}
-			
+			if(!UserChannel::find($req['channelId'])->canUpload()){
+				return new RedirectResponse(WEBROOT . 'upload');
+			}
 			$upload = Upload::find($req['uploadId']);
 			$videoId = $upload->video_id;
 			if (isset($req['_FILES_']['video'])) {

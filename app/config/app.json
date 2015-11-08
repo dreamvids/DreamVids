@@ -11,5 +11,7 @@
 	"vid_visibility_private": "0",
 	"vid_visibility_non_listed": "1",
 	"vid_visibility_public": "2",
-	"vid_visibility_suspended": "3"
+	"vid_visibility_suspended": "3",
+
+	"max_upload_per_channel_per_day": 10
 }
