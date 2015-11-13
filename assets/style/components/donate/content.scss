@@ -1,0 +1,40 @@
+.donate__title {
+
+	position: relative;
+
+	margin: 0 0 22px 0;
+
+	font-size: 72px;
+	color: white;
+
+	@media (max-width: 1000px) {
+		font-size: 52px;
+	}
+
+	@media (max-width: 600px) {
+		font-size: 36px;
+	}
+
+}
+
+.donate p {
+
+	position: relative;
+
+	font-size: 26px;
+	color: white;
+	line-height: 1.2;
+
+	b {
+		color: $blue;
+	}
+
+	@media (max-width: 1000px) {
+		font-size: 22px;
+	}
+
+	@media (max-width: 600px) {
+		font-size: 18px;
+	}
+
+} 

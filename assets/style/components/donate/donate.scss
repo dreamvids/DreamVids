@@ -1,0 +1,62 @@
+.donate {
+
+	position: relative;
+
+	display: block;
+	padding: 220px 0;
+
+	background: black;
+	@extend %background-cover;
+
+	&::before {
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		content: "";
+		display: block;
+
+		background: rgba(0, 0, 0, .4);
+
+		@media (max-width: 1000px) {
+			background: rgba(0, 0, 0, .5);
+		}
+
+		@media (max-width: 500px) {
+			background: rgba(0, 0, 0, .6);
+		}
+
+	}
+
+	@media (max-height: 900px) {
+		padding: 150px 0;
+	}
+
+	@media (max-height: 700px) {
+		padding: 90px 0;
+	}
+
+	@media (max-height: 500px) {
+		padding: 32px 0;
+	}
+
+}
+
+.donate__wrap {
+
+	display: block;
+	width: 100%;
+	max-width: 1000px;
+	margin: auto;
+
+	@media (max-width: 1000px) {
+
+		width: auto;
+		padding: 0 22px;
+
+	}
+
+}

@@ -1,0 +1,46 @@
+.dl-dropdown {
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 999;
+
+	padding: 22px 32px;
+
+	background: white;
+	box-shadow: 0 0 12px black;
+	border-radius: 4px;
+
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+
+}
+
+.dl-dropdown a {
+
+	display: block;
+	margin: 16px 0;
+
+	font-size: 32px;
+	color: $blue;
+	border-bottom: 2px solid $blue;
+
+}
+
+.dl-dropdown-overlay {
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 998;
+
+	display: block;
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0, 0, 0, .4);
+
+}
