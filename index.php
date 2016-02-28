@@ -1,56 +1,38 @@
 <?php
-
-// CODE DE MAINTENANCE //
-/* 
-header('HTTP/1.1 503 Service Temporarily Unavailable');
-header('Status: 503 Service Temporarily Unavailable');
-@include 'maintenance.php';
-die();
-*/
-// CODE DE MAINTENANCE //
-
+define('NAME', 'MVC');
+define('POST', $_SERVER['REQUEST_METHOD'] == 'POST');
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']), true);
 define('WEBROOT', str_replace('index.php', '', $_SERVER['SCRIPT_NAME']), true);
 define('SYSTEM', ROOT.'system/');
-define('SCRIPT', ROOT.'scripts/');
-define('CACHE', ROOT.'cache/');
-
 define('APP', ROOT.'app/');
-define('CONFIG', APP.'config/');
-define('TRANSLATIONS', CONFIG.'translations/');
-define('CONTROLLER', APP.'controllers/');
-define('VIEW', APP.'views/');
-define('MODEL', APP.'models/');
-
+define('MODELS', APP.'models/');
+define('VIEWS', APP.'views/');
+define('CONTROLLERS', APP.'controllers/');
 define('ASSETS', WEBROOT.'assets/');
-define('IMG', WEBROOT.'assets/img/');
-define('CSS', WEBROOT.'assets/css/');
-define('JS', WEBROOT.'assets/js/');
+define('CSS', ASSETS.'css/');
+define('JS', ASSETS.'js/');
+define('FONTS', ASSETS.'fonts/');
+define('IMG', ASSETS.'img/');
 
-require 'vendor/autoload.php';
 
-require_once SYSTEM.'config.php';
-require_once SYSTEM.'utils.php';
-require_once SYSTEM.'route.php';
-require_once SYSTEM.'router.php';
-require_once SYSTEM.'database.php';
-require_once SYSTEM.'translator.php';
+// System requires
+require_once SYSTEM.'Database.php';
+require_once SYSTEM.'Controller.php';
+require_once SYSTEM.'ModelInterface.php';
+require_once SYSTEM.'Model.php';
+require_once SYSTEM.'Entry.php';
+require_once SYSTEM.'Utils.php';
+require_once SYSTEM.'Request.php';
+require_once SYSTEM.'Data.php';
 
-require_once MODEL.'session.php';
 
-require_once CONFIG.'app.php';
+// Models
+require_once MODELS.'Example.php';
 
-// ##### <TEMPORARY>
-require_once MODEL . 'event_eggs.php';
-// #### </TEMPORARY>
 
-Database::connect();
-Session::init();
+if (!file_exists(CONTROLLERS.Request::get()->getArg(0).'.php') ) {
+	Controller::error404();
+	exit();
+}
 
-$router = new Router();
-
-$request = Utils::getPerformedRequest();
-
-Translator::init($request);
-
-$router->executeRequest($request);
+require_once CONTROLLERS.Request::get()->getArg(0).'.php';

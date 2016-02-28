@@ -1,9 +1,0 @@
-- Améliorer les chaines
-
-- Officialisé les utilisateurs avec un icône ou mention "Officiel" à coté du nom (mais ça c'est pas très important).
-
-- Avoir la durée de la vidéo sur les miniatures.
-
-- Développer une version mobile ainsi qu'une appli IOS et Android.
-
-- Dans la liste des abonnées à une chaîne. Classé par ordre croissant d'abonnement à la chaîne question.

@@ -1,83 +1,39 @@
 <?php
-
-require_once SYSTEM.'methods.php';
-require_once SYSTEM.'actions.php';
-require_once SYSTEM.'response.php';
-
-/**
- * Extend this class to create a ressource controller
- * The name of the controller should plural
- *
- * Example: PostsController for a Post ressource
- */
 abstract class Controller {
-
-	protected $allowedActions = array(Action::INDEX, Action::GET, Action::CREATE, Action::UPDATE, Action::DESTROY);
-
-	public function __construct() {
-
+	public static function renderView(string $path, bool $layout = true) {
+		$file = VIEWS.$path.'.php';
+		if (file_exists($file) ) {
+			$appView = $file;
+			extract(Data::get()->getData());
+			if ($layout) {
+				require_once VIEWS.'mainView.php';
+			}
+			else {
+				require_once $appView;
+			}
+		}
+		else {
+			self::error500();
+		}
 	}
 
-	/**
-	 * Return a listing of the concerned ressource
-	 * GET /ressource
-	 * 
-	 * @return Response
-	 */
-	abstract public function index($request);
-
-
-	/**
-	 * Return the conerned ressource's details
-	 * GET /ressource/:id
-	 * 
-	 * @return Response
-	 */
-	abstract public function get($id, $request);
-
-
-	/**
-	 * Create a new ressource
-	 * POST /ressource
-	 * 
-	 * @return Response
-	 */
-	abstract public function create($request);
-
-
-	/**
-	 * Update the specified ressource
-	 * PUT /ressource/:id
-	 * 
-	 * @return Response
-	 */
-	abstract public function update($id, $request);
-
-
-	/**
-	 * Destroy the specified ressource
-	 * DELETE /ressource/:id
-	 * 
-	 * @return Response
-	 */
-	abstract public function destroy($id, $request);
-
-	protected function allowAction($action) {
-		if(!in_array($action, $this->allowedActions))
-			array_push($this->allowedActions, $action);
+	public static function error401() {
+		header('HTTP/1.1 401 Authorization Required');
+		self::renderView('error/401');
 	}
 
-	protected function denyAction($action) {
-		if(($key = array_search($action, $this->allowedActions)) !== false)
-			unset($this->allowedActions[$key]);
+	public static function error403() {
+		header('HTTP/1.1 403 Forbidden');
+		self::renderView('error/403');
 	}
 
-	public function isActionAllowed($action) {
-		return in_array($action, $this->allowedActions);
+	public static function error404() {
+		header('HTTP/1.1 404 Not Found');
+		self::renderView('error/404');
 	}
 
-	public function getAllowedActions() {
-		return $this->allowedActions;
+	public static function error500() {
+		header('HTTP/1.1 500 Internal Server Error');
+		self::renderView('error/500');
 	}
-
 }
