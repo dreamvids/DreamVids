@@ -4,7 +4,8 @@ abstract class Controller {
 		$file = VIEWS.$path.'.php';
 		if (file_exists($file) ) {
 			$appView = $file;
-			extract(Data::get()->getData());
+			$data = Utils::secure(Data::get()->getData());
+			extract($data);
 			if ($layout) {
 				require_once VIEWS.'mainView.php';
 			}

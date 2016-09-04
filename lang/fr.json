@@ -1,0 +1,17 @@
+{
+  "login": "Connexion",
+  "register": "Inscription",
+  "successes": {
+    "register": "Inscription réussie ! Vous êtes maintenant connecté."
+  },
+  "errors": {
+    "empty": "Tous les champs douvent être remplis",
+    "credentials": "Nom d'utilisateur ou mot de passe incorrect",
+    "bad_token": "Token inexistant ou incorrect"
+  },
+  "placeholders": {
+    "username": "Nom d'utilisateur",
+    "email": "Adresse E-Mail",
+    "password": "Mot de passe"
+  }
+}

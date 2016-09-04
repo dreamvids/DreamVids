@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "38d7203d2da0e5a129c2c8ad22668bbf",
+    "content-hash": "450c636520ae99ddd91b3eeef191f788",
+    "packages": [
+        {
+            "name": "dreamvids/php-library",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dreamvids/php-library.git",
+                "reference": "ccbf4340441e62c54ad12851bc9f78fb229d91ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dreamvids/php-library/zipball/ccbf4340441e62c54ad12851bc9f78fb229d91ed",
+                "reference": "ccbf4340441e62c54ad12851bc9f78fb229d91ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DreamVids": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "DreamVids",
+                    "email": "dev@reamvids.fr"
+                }
+            ],
+            "description": "PHP Library for the new DreamVids API",
+            "time": "2016-09-03 15:57:49"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "dreamvids/php-library": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

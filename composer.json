@@ -1,0 +1,14 @@
+{
+    "name": "dreamvids/website",
+    "type": "project",
+    "require": {
+        "dreamvids/php-library": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "DreamVids",
+            "email": "dev@dreamvids.fr"
+        }
+    ],
+    "minimum-stability": "dev"
+}

@@ -1,17 +1,7 @@
-vendor/
-uploads/
+.project
+.cache/
+.settings/
 .idea/
-logs/
-tmp/
-node_modules/
-.sass-cache
+pull.php
 
-composer.phar
-composer.lock
-.npm-debug.log
-*.log
-*.swp
-
-deployment.properties
-deployment.xml
-dev.json
+/vendor/
