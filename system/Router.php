@@ -33,6 +33,6 @@ class Router {
     }
 
     public function getPathToRequire() {
-        return CONTROLLERS.$this->controller.'.php';
+        return CONTROLLERS . $this->controller .'.php';
     }
 }
