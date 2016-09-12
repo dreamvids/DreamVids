@@ -2,10 +2,13 @@
 abstract class Controller {
 	public static function renderView(string $path, bool $layout = true) {
 		$file = VIEWS.$path.'.php';
+		
 		if (file_exists($file) ) {
 			$appView = $file;
 			$data = Utils::secure(Data::get()->getData());
+			
 			extract($data);
+			
 			if ($layout) {
 				require_once VIEWS.'mainView.php';
 			}

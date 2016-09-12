@@ -15,6 +15,7 @@ class Session implements \Modelable {
         if ($req->getResponseCode() == 201) {
             self::$session = $req->getResponseData()->session->session_id;
             \Client::get()->setSessid(self::$session);
+            
             if ($cookie) {
                 setcookie(
                     'SESSID',
@@ -37,6 +38,7 @@ class Session implements \Modelable {
         if (isset($_COOKIE['SESSID'])) {
             $req = \Client::get()->prepare('GET', 'session/'.$_COOKIE['SESSID']);
             $req->send();
+            
             return ($req->getResponseCode() == 200);
         }
         return false;

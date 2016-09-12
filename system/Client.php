@@ -1,19 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: peter_000
- * Date: 03/09/2016
- * Time: 15:55
- */
 class Client {
     private static $instance = null;
 
-    /**
-     * Client constructor.
-     */
-    private function __construct() {
-    }
+    private function __construct() {}
 
     public static function get(): \DreamVids\API\Client {
         if (self::$instance == null) {

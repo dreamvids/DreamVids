@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: peter_000
- * Date: 29/08/2016
- * Time: 11:15
- */
 class Router {
     private static $instance = null;
     public static $controllers = [

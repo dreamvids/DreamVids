@@ -1,5 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Paris');
+
 define('NAME', 'DreamVids');
 define('POST', $_SERVER['REQUEST_METHOD'] == 'POST');
 define('ROOT', str_replace('index.php', '', $_SERVER['SCRIPT_FILENAME']), true);
@@ -26,6 +27,7 @@ elseif (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && file_exists(LANGDIR.$_SERVER[
 else {
 	$lang = 'fr'; // TODO: change default language if needed
 }
+
 define('LANG', $lang);
 
 // Vendor

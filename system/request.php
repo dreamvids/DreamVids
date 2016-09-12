@@ -1,4 +1,5 @@
 <?php
+
 class Request {
 	private static $instance = null;
 	private $args;

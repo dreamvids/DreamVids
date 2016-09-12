@@ -1,16 +1,9 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: peter_000
- * Date: 14/07/2016
- * Time: 19:55
- */
 class Lang {
     private static $lang = null;
 
-    private function __construct() {
-    }
+    private function __construct() {}
 
     public static function get(): stdClass {
         if (self::$lang == null) {

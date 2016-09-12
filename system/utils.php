@@ -18,13 +18,16 @@ class Utils {
 			}
 			return $data;
 		}
+
 		elseif (is_object($data)) {
 			foreach ($data as $k => $v) {
 				$data->$k = self::secure($data->$k);
 			}
+
 			$classname = get_class($data);
 			$ref = new ReflectionClass($classname);
 			$props = $ref->getProperties(ReflectionProperty::IS_PRIVATE | ReflectionProperty::IS_PROTECTED);
+			
 			foreach ($props as $prop) {
 				$getter = 'get'.self::fromSnakeCaseToCamelCase($prop->getName());
 				$setter = 'set'.self::fromSnakeCaseToCamelCase($prop->getName());
@@ -32,8 +35,10 @@ class Utils {
 					$data->$setter(self::secure($data->$getter()));
 				}
 			}
+			
 			return $data;
 		}
+		
 		elseif (!is_string($data)) {
 			return $data;
 		}
