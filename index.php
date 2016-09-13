@@ -34,14 +34,14 @@ define('LANG', $lang);
 require_once 'vendor/autoload.php';
 
 // System requires
-require_once SYSTEM.'ModelInterface.php';
-require_once SYSTEM.'Utils.php';
-require_once SYSTEM.'Controller.php';
-require_once SYSTEM.'Request.php';
-require_once SYSTEM.'Data.php';
-require_once SYSTEM.'Client.php';
-require_once SYSTEM.'Lang.php';
-require_once SYSTEM.'Router.php';
+require_once SYSTEM.'model_interface.php';
+require_once SYSTEM.'utils.php';
+require_once SYSTEM.'controller.php';
+require_once SYSTEM.'request.php';
+require_once SYSTEM.'data.php';
+require_once SYSTEM.'client.php';
+require_once SYSTEM.'lang.php';
+require_once SYSTEM.'router.php';
 
 // Models
 require_once MODELS.'Session.php';

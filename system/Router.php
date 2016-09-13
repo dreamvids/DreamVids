@@ -13,9 +13,8 @@ class Router {
     private function __construct() {
         if (self::controllerExists()) {
             $this->controller = self::$controllers[Request::get()->getArg(0)];
-        }
-        else {
-            Controller::error404();
+        }else {
+            Controller::error('404');
             exit();
         }
     }

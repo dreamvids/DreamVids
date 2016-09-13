@@ -1,4 +1,5 @@
 <?php
+
 abstract class Controller {
 	public static function renderView(string $path, bool $layout = true) {
 		$file = VIEWS.$path.'.php';
@@ -17,27 +18,37 @@ abstract class Controller {
 			}
 		}
 		else {
-			self::error500();
+			self::error('500');
 		}
 	}
 
-	public static function error401() {
-		header('HTTP/1.1 401 Authorization Required');
-		self::renderView('error/401');
-	}
 
-	public static function error403() {
-		header('HTTP/1.1 403 Forbidden');
-		self::renderView('error/403');
-	}
-
-	public static function error404() {
-		header('HTTP/1.1 404 Not Found');
-		self::renderView('error/404');
-	}
-
-	public static function error500() {
-		header('HTTP/1.1 500 Internal Server Error');
-		self::renderView('error/500');
+	public static function error($number){
+		switch ($number) {
+			case '401':
+				header('HTTP/1.1 401 Authorization Required');
+				self::renderView('error/401');
+				break;
+			
+			case '403':
+				header('HTTP/1.1 404 Not Found');
+				self::renderView('error/404');
+				break;
+			
+			case '404':
+				header('HTTP/1.1 404 Not Found');
+				self::renderView('error/404');
+				break;
+			
+			case '500':
+				header('HTTP/1.1 500 Internal Server Error');
+				self::renderView('error/500');
+				break;
+			
+			default:
+				header('HTTP/1.1 404 Not Found');
+				self::renderView('error/404');
+				break;
+		}
 	}
 }
