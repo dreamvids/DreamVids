@@ -1,9 +1,0 @@
-
-/* BOX SHADOW
-   ============================= */
-
-@mixin box-shadow($arguments) {
-
-	@include prefix(box-shadow, $arguments);
-	
-}

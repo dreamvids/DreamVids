@@ -1,1 +1,0 @@
-Toutes ces images proviennent du site http://unsplash.com/ qui propose des images totalement libre de droits (http://creativecommons.org/publicdomain/zero/1.0/)
