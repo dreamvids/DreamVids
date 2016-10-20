@@ -19,6 +19,7 @@ dev.json
 .cache/
 .settings/
 .buildpath
+.idea/
 uploads/
 BETAKEYS/
 migrator/
