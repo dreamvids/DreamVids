@@ -1,0 +1,51 @@
+{
+	"name": "dreamvids/website",
+	"description": "Plateforme de partage de vidéos libre et open-source",
+	"homepage": "https://github.com/dreamvids",
+	"type": "project",
+	"version": "0.0.1",
+	"license": "MIT",
+	"keywords": [
+		"slim3",
+		"dreamvids",
+		"micro-framework"
+	],
+
+	"authors": [
+		{
+			"name": "CamTosh",
+			"email": "ctoche@pulseheberg.com",
+			"homepage": "http://camtosh.fr/",
+			"role": "back-end developer"
+		},
+		{
+			"name": "Gynidark",
+			"email": "gynidark@gmail.com",
+			"homepage": "https://gynidark.fr/",
+			"role": "back-end developer"
+		},
+		{
+			"name": "Taccola",
+			"email": "alessandro@taccola.eu",
+			"homepage": "http://taccola.eu/",
+			"role": "back-end developer"
+		}
+	],
+
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/",
+			"Public\\": "public/",
+			"System\\": "system/"
+		}
+	},
+
+	"require": {
+		"php": ">=7.0",
+		"slim/slim": "^3.0",
+		"filp/whoops": "^2.1"
+
+	},
+
+	"require-dev": {}
+}
