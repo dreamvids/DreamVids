@@ -15,6 +15,7 @@
 return [
     'name' => 'DreamVids',
     'description' => 'Plateforme de partage de vidéos libre et open-source',
+    'debug' => true,
 
     'path' => [
         'root' => __DIR__,
