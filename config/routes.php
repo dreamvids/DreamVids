@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Welcome to the index
+ * Routes configuration
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the ./LICENSE
@@ -12,4 +12,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-echo "Salut";
+Route::get('/', 'HomeController@index');
+Route::get('/user', 'UserController@index');
+Route::get('/user/:id', 'UserController@profile');
