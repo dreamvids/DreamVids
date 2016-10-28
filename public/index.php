@@ -12,13 +12,15 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-
 define('BASE', str_replace('public', '', $_SERVER['DOCUMENT_ROOT']));
+
+$config = BASE . 'config/app.php';
 
 require BASE . 'vendor/autoload.php';
 
-var_dump($config);
-// Boostrap
+/*************************
+ *       Boostrap        *
+ ************************/
 
 use System\Boostrap;
 
