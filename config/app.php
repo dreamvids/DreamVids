@@ -15,21 +15,5 @@
 return [
     'name' => 'DreamVids',
     'description' => 'Plateforme de partage de vidéos libre et open-source',
-    'debug' => true,
-
-    'path' => [
-        'root' => __DIR__,
-        'system' => __DIR__.'/system',
-        'app' => __DIR__.'/app',
-
-        'controllers' => '',
-        'views' => '',
-        'lang' => '',
-
-        'public' => [
-            'css' => '',
-            'js' => '',
-            'img' => ''
-        ],
-    ],
+    'debug' => true
 ];

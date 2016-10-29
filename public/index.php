@@ -14,11 +14,18 @@
 
 require str_replace('public', '', $_SERVER['DOCUMENT_ROOT']) . 'vendor/autoload.php';
 
+use Slim\App;
+use System\Boostrap;
+
 /*************************
  *       Boostrap        *
  ************************/
 
-use System\Boostrap;
-
 $boostrap = new Boostrap();
 $boostrap->run();
+
+/*************************
+ *        Slim 3         *
+ ************************/
+
+$app = new App();

@@ -19,8 +19,8 @@ class Boostrap{
     /**
      * Launch the website
      */
-    public function run(){
-
+    public function run()
+    {
         // Session
         Session::check();
 
