@@ -14,7 +14,10 @@
 
 require str_replace('public', '', $_SERVER['DOCUMENT_ROOT']) . 'vendor/autoload.php';
 
-// Boostrap
+/*************************
+ *       Boostrap        *
+ ************************/
+
 use System\Boostrap;
 
 $boostrap = new Boostrap();
